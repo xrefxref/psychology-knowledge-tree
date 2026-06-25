@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>心理学知识图谱 - 林远见路</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #0f172a;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+            overflow: hidden;
+        }
+
+        .header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            padding: 14px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #1e293b;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 16px;
+            font-weight: 600;
+            color: #f8fafc;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-icon {
+            width: 26px; height: 26px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #f1f5f9;
+        }
+
+        .nav-links a.active {
+            color: #6366f1;
+        }
+
+        .edit-controls {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .edit-btn {
+            padding: 6px 14px;
+            border-radius: 6px;
+            border: none;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .edit-btn.primary {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+        }
+
+        .edit-btn.primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        }
+
+        .edit-btn.secondary {
+            background: rgba(30, 41, 59, 0.8);
+            color: #94a3b8;
+            border: 1px solid #334155;
+        }
+
+        .edit-btn.secondary:hover {
+            background: rgba(30, 41, 59, 1);
+            color: #f1f5f9;
+        }
+
+        .edit-btn.danger {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .edit-btn.danger:hover {
+            background: rgba(239, 68, 68, 0.2);
+        }
+
+        #chart-container {
+            width: 100%;
+            height: 100vh;
+        }
+
+        .legend-panel {
+            position: absolute;
+            top: 70px;
+            left: 24px;
+            background: rgba(30, 41, 59, 0.9);
+            border: 1px solid #334155;
+            padding: 18px;
+            border-radius: 10px;
+            color: #cbd5e1;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            pointer-events: none;
+            z-index: 100;
+            width: 200px;
+        }
+
+        .legend-panel h4 {
+            margin: 0 0 12px 0;
+            font-size: 14px;
+            color: #f8fafc;
+            font-weight: 600;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 12px;
+        }
+
+        .legend-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .color-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .color-explored { background-color: #ef4444; box-shadow: 0 0 8px #ef4444; }
+        .color-unexplored { background-color: #3b82f6; }
+        .color-center { background-color: #6366f1; box-shadow: 0 0 10px #6366f1; }
+
+        .chart-hint {
+            position: absolute;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+            color: #475569;
+            z-index: 100;
+            white-space: nowrap;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 480px;
+            padding: 24px;
+            animation: modalIn 0.3s ease;
+        }
+
+        @keyframes modalIn {
+            from { opacity: 0; transform: scale(0.95) translateY(10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #f8fafc;
+        }
+
+        .modal-close {
+            width: 28px; height: 28px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(51, 65, 85, 0.8);
+            color: #94a3b8;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .modal-close:hover {
+            background: rgba(51, 65, 85, 1);
+            color: #f1f5f9;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            color: #94a3b8;
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 10px 12px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid #334155;
+            border-radius: 8px;
+            color: #f1f5f9;
+            font-size: 14px;
+            font-family: inherit;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #6366f1;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .form-group select option {
+            background: #1e293b;
+            color: #f1f5f9;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 24px;
+        }
+
+        .form-btn {
+            flex: 1;
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: none;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .form-btn.primary {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+        }
+
+        .form-btn.primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        }
+
+        .form-btn.secondary {
+            background: rgba(51, 65, 85, 0.8);
+            color: #94a3b8;
+        }
+
+        .form-btn.secondary:hover {
+            background: rgba(51, 65, 85, 1);
+            color: #f1f5f9;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 12px 24px;
+            background: rgba(30, 41, 59, 0.95);
+            border: 1px solid #334155;
+            border-radius: 8px;
+            color: #f1f5f9;
+            font-size: 13px;
+            z-index: 3000;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+
+        .toast.show {
+            opacity: 1;
+        }
+
+        .selected-info {
+            position: fixed;
+            bottom: 60px;
+            left: 24px;
+            background: rgba(30, 41, 59, 0.9);
+            border: 1px solid #334155;
+            border-radius: 10px;
+            padding: 14px 18px;
+            color: #cbd5e1;
+            font-size: 13px;
+            z-index: 100;
+            min-width: 200px;
+            display: none;
+        }
+
+        .selected-info.show {
+            display: block;
+        }
+
+        .selected-info h5 {
+            color: #f8fafc;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .selected-info .node-path {
+            color: #94a3b8;
+            font-size: 12px;
+            margin-bottom: 12px;
+        }
+
+        .selected-info .node-value {
+            color: #6366f1;
+            font-size: 12px;
+            font-style: italic;
+        }
+
+        .selected-info-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #334155;
+        }
+
+        .selected-info-btn {
+            padding: 4px 12px;
+            border-radius: 4px;
+            border: 1px solid #334155;
+            background: transparent;
+            color: #94a3b8;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .selected-info-btn:hover {
+            background: rgba(99, 102, 241, 0.1);
+            color: #f1f5f9;
+            border-color: #6366f1;
+        }
+
+        @media (max-width: 768px) {
+            .legend-panel {
+                display: none;
+            }
+            .selected-info {
+                left: 12px;
+                right: 12px;
+                min-width: auto;
+            }
+            .edit-controls {
+                display: none;
+            }
+            .nav-links {
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo">
+            <div class="logo-icon">🌐</div>
+            <span>心理学知识图谱</span>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html">首页</a>
+            <a href="#" class="active">知识图谱</a>
+            <a href="timeline.html">时间树</a>
+        </nav>
+        <div class="edit-controls">
+            <button class="edit-btn primary" onclick="showAddModal()">+ 添加节点</button>
+            <button class="edit-btn secondary" onclick="resetGraph()">重置</button>
+        </div>
+    </header>
+
+    <div id="chart-container"></div>
+    
+    <div class="legend-panel">
+        <h4>知识体系图谱</h4>
+        <div class="legend-item">
+            <div class="color-dot color-center"></div>
+            <span>心理学核心</span>
+        </div>
+        <div class="legend-item">
+            <div class="color-dot color-explored"></div>
+            <span>已探索领域</span>
+        </div>
+        <div class="legend-item">
+            <div class="color-dot color-unexplored"></div>
+            <span>待探索领域</span>
+        </div>
+    </div>
+
+    <div class="chart-hint">点击节点选中 · 滚轮缩放 · 拖拽平移 · 双击编辑</div>
+
+    <div class="selected-info" id="selectedInfo">
+        <h5 id="selectedName">节点名称</h5>
+        <div class="node-path" id="selectedPath">路径信息</div>
+        <div class="node-value" id="selectedValue">描述信息</div>
+        <div class="selected-info-actions">
+            <button class="selected-info-btn" onclick="showEditModal()">编辑</button>
+            <button class="selected-info-btn" onclick="deleteSelectedNode()" style="color:#ef4444;border-color:rgba(239,68,68,0.3)">删除</button>
+            <button class="selected-info-btn" onclick="toggleNodeStatus()">切换状态</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title" id="modalTitle">添加节点</span>
+                <button class="modal-close" onclick="closeModal()">✕</button>
+            </div>
+            <div id="modalBody">
+                <div class="form-group">
+                    <label>节点名称</label>
+                    <input type="text" id="nodeName" placeholder="输入节点名称">
+                </div>
+                <div class="form-group">
+                    <label>描述信息</label>
+                    <textarea id="nodeValue" placeholder="输入描述信息（可选）"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>父节点</label>
+                    <select id="parentSelect">
+                        <option value="">选择父节点</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>状态</label>
+                    <select id="nodeStatus">
+                        <option value="explored">已探索（红色）</option>
+                        <option value="unexplored">待探索（蓝色）</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button class="form-btn secondary" onclick="closeModal()">取消</button>
+                    <button class="form-btn primary" onclick="saveNode()">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        var chartDom = document.getElementById('chart-container');
+        var myChart = echarts.init(chartDom);
+        
+        const EXPLORED_COLOR = '#ef4444';
+        const UNEXPLORED_COLOR = '#3b82f6';
+        const ROOT_COLOR = '#6366f1';
+        
+        let currentGraphData = null;
+        let selectedNode = null;
+        let editingMode = 'add';
+
+        const defaultGraphData = {
+            name: "心理学\n全景系统",
+            itemStyle: { color: ROOT_COLOR },
+            symbolSize: 45,
+            children: [
+                {
+                    name: "基础心理学\n(Basic)",
+                    itemStyle: { color: EXPLORED_COLOR },
+                    children: [
+                        { name: "认知心理学", itemStyle: { color: EXPLORED_COLOR }, value: "思维、记忆、注意力、语言" },
+                        { name: "发展心理学", itemStyle: { color: EXPLORED_COLOR }, value: "从出生到老年的心理发展" },
+                        { name: "生理心理学", itemStyle: { color: EXPLORED_COLOR }, value: "心理活动的生理基础" },
+                        { name: "人格心理学", itemStyle: { color: EXPLORED_COLOR }, value: "人格特质与理论" },
+                        { name: "心理测量学", itemStyle: { color: EXPLORED_COLOR }, value: "心理测验与评估" }
+                    ]
+                },
+                {
+                    name: "应用心理学\n(Applied)",
+                    itemStyle: { color: UNEXPLORED_COLOR },
+                    children: [
+                        { name: "临床心理学", itemStyle: { color: UNEXPLORED_COLOR }, value: "心理障碍的诊断与治疗" },
+                        { name: "咨询心理学", itemStyle: { color: UNEXPLORED_COLOR }, value: "心理咨询与辅导" },
+                        { name: "教育心理学", itemStyle: { color: UNEXPLORED_COLOR }, value: "学习与教学心理" },
+                        { name: "社会心理学", itemStyle: { color: UNEXPLORED_COLOR }, value: "人际互动与群体心理" },
+                        { name: "工业心理学", itemStyle: { color: UNEXPLORED_COLOR }, value: "工作与组织心理" }
+                    ]
+                },
+                {
+                    name: "心理学流派\n(Schools)",
+                    itemStyle: { color: EXPLORED_COLOR },
+                    children: [
+                        { name: "精神分析", itemStyle: { color: EXPLORED_COLOR }, value: "弗洛伊德、荣格、阿德勒" },
+                        { name: "行为主义", itemStyle: { color: EXPLORED_COLOR }, value: "华生、斯金纳、班杜拉" },
+                        { name: "人本主义", itemStyle: { color: EXPLORED_COLOR }, value: "马斯洛、罗杰斯" },
+                        { name: "认知学派", itemStyle: { color: EXPLORED_COLOR }, value: "皮亚杰、奈瑟" },
+                        { name: "积极心理学", itemStyle: { color: UNEXPLORED_COLOR }, value: "塞利格曼、心流理论" }
+                    ]
+                },
+                {
+                    name: "心理治疗\n(Therapy)",
+                    itemStyle: { color: UNEXPLORED_COLOR },
+                    children: [
+                        { name: "认知行为疗法", itemStyle: { color: UNEXPLORED_COLOR }, value: "CBT：改变思维与行为" },
+                        { name: "精神分析疗法", itemStyle: { color: UNEXPLORED_COLOR }, value: "探索潜意识" },
+                        { name: "人本主义疗法", itemStyle: { color: UNEXPLORED_COLOR }, value: "来访者中心" },
+                        { name: "正念疗法", itemStyle: { color: UNEXPLORED_COLOR }, value: "当下觉察与接纳" },
+                        { name: "ACT疗法", itemStyle: { color: UNEXPLORED_COLOR }, value: "接纳承诺疗法" }
+                    ]
+                },
+                {
+                    name: "专题领域\n(Topics)",
+                    itemStyle: { color: UNEXPLORED_COLOR },
+                    children: [
+                        { name: "情绪压力管理", itemStyle: { color: UNEXPLORED_COLOR }, value: "调节情绪、应对压力" },
+                        { name: "人际关系", itemStyle: { color: UNEXPLORED_COLOR }, value: "沟通、亲密关系、社交" },
+                        { name: "职业发展", itemStyle: { color: UNEXPLORED_COLOR }, value: "职业选择、职场心理" },
+                        { name: "心理健康", itemStyle: { color: UNEXPLORED_COLOR }, value: "心理健康维护与促进" },
+                        { name: "儿童青少年", itemStyle: { color: UNEXPLORED_COLOR }, value: "成长与教育心理" }
+                    ]
+                },
+                {
+                    name: "研究方法\n(Methods)",
+                    itemStyle: { color: UNEXPLORED_COLOR },
+                    children: [
+                        { name: "实验心理学", itemStyle: { color: UNEXPLORED_COLOR }, value: "科学实验设计" },
+                        { name: "心理统计", itemStyle: { color: UNEXPLORED_COLOR }, value: "数据分析方法" },
+                        { name: "质性研究", itemStyle: { color: UNEXPLORED_COLOR }, value: "访谈、观察、案例分析" },
+                        { name: "神经科学方法", itemStyle: { color: UNEXPLORED_COLOR }, value: "脑成像、生理测量" }
+                    ]
+                }
+            ]
+        };
+
+        function loadGraphData() {
+            try {
+                const saved = localStorage.getItem('psychology_graph_data');
+                if (saved) {
+                    return JSON.parse(saved);
+                }
+            } catch (e) {
+                console.error('Failed to load graph data:', e);
+            }
+            return JSON.parse(JSON.stringify(defaultGraphData));
+        }
+
+        function saveGraphData(data) {
+            try {
+                localStorage.setItem('psychology_graph_data', JSON.stringify(data));
+            } catch (e) {
+                console.error('Failed to save graph data:', e);
+            }
+        }
+
+        function getNodeByName(name, data) {
+            if (data.name === name) return data;
+            if (data.children) {
+                for (const child of data.children) {
+                    const found = getNodeByName(name, child);
+                    if (found) return found;
+                }
+            }
+            return null;
+        }
+
+        function getAllNodeNames(data, names = [], prefix = '') {
+            const displayName = data.name.replace('\n', ' ');
+            names.push({ name: data.name, displayName: displayName, fullPath: prefix ? `${prefix} > ${displayName}` : displayName });
+            if (data.children) {
+                for (const child of data.children) {
+                    getAllNodeNames(child, names, displayName);
+                }
+            }
+            return names;
+        }
+
+        function renderChart() {
+            const option = {
+                tooltip: {
+                    trigger: 'item',
+                    triggerOn: 'mousemove',
+                    backgroundColor: 'rgba(30, 41, 59, 0.9)',
+                    borderColor: '#475569',
+                    textStyle: { color: '#f1f5f9' },
+                    formatter: function (params) {
+                        let text = `<strong>${params.data.name.replace('\n', ' ')}</strong>`;
+                        if (params.data.value) {
+                            text += `<br/><em>${params.data.value}</em>`;
+                        }
+                        return text;
+                    }
+                },
+                series: [
+                    {
+                        type: 'tree',
+                        data: [currentGraphData],
+                        layout: 'radial',
+                        symbol: 'circle',
+                        symbolSize: 15,
+                        initialTreeDepth: 2,
+                        roam: true,
+                        animationDurationUpdate: 750,
+                        itemStyle: {
+                            borderColor: '#1e293b',
+                            borderWidth: 2
+                        },
+                        label: {
+                            position: 'inside',
+                            verticalAlign: 'middle',
+                            align: 'center',
+                            fontSize: 13,
+                            color: '#f1f5f9',
+                            textBorderColor: 'transparent',
+                            textBorderWidth: 0,
+                            formatter: function(params){
+                                return params.data.name.split('\n')[0];
+                            }
+                        },
+                        lineStyle: {
+                            color: '#334155',
+                            width: 1.5,
+                            curveness: 0.3
+                        },
+                        emphasis: {
+                            focus: 'descendant',
+                            lineStyle: { width: 3 }
+                        },
+                        leaves: {
+                            label: {
+                                position: 'right',
+                                verticalAlign: 'middle',
+                                align: 'left',
+                                color: '#94a3b8'
+                            },
+                            symbolSize: 10
+                        }
+                    }
+                ]
+            };
+
+            myChart.setOption(option, true);
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2000);
+        }
+
+        function showAddModal() {
+            editingMode = 'add';
+            document.getElementById('modalTitle').textContent = '添加节点';
+            document.getElementById('nodeName').value = '';
+            document.getElementById('nodeValue').value = '';
+            document.getElementById('nodeStatus').value = 'unexplored';
+            populateParentSelect();
+            document.getElementById('modalOverlay').classList.add('active');
+        }
+
+        function showEditModal() {
+            if (!selectedNode) {
+                showToast('请先选择一个节点');
+                return;
+            }
+            editingMode = 'edit';
+            document.getElementById('modalTitle').textContent = '编辑节点';
+            document.getElementById('nodeName').value = selectedNode.name.replace('\n', ' ');
+            document.getElementById('nodeValue').value = selectedNode.value || '';
+            document.getElementById('nodeStatus').value = selectedNode.itemStyle?.color === EXPLORED_COLOR ? 'explored' : 'unexplored';
+            populateParentSelect(selectedNode);
+            document.getElementById('modalOverlay').classList.add('active');
+        }
+
+        function populateParentSelect(excludeNode = null) {
+            const select = document.getElementById('parentSelect');
+            select.innerHTML = '<option value="">选择父节点（一级节点）</option>';
+            
+            const names = getAllNodeNames(currentGraphData);
+            for (const item of names) {
+                if (excludeNode && excludeNode.name === item.name) continue;
+                select.innerHTML += `<option value="${item.name}">${item.displayName}</option>`;
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('active');
+        }
+
+        function saveNode() {
+            const name = document.getElementById('nodeName').value.trim();
+            const value = document.getElementById('nodeValue').value.trim();
+            const parentName = document.getElementById('parentSelect').value;
+            const status = document.getElementById('nodeStatus').value;
+
+            if (!name) {
+                showToast('请输入节点名称');
+                return;
+            }
+
+            const color = status === 'explored' ? EXPLORED_COLOR : UNEXPLORED_COLOR;
+
+            if (editingMode === 'edit' && selectedNode) {
+                selectedNode.name = name;
+                selectedNode.value = value || undefined;
+                selectedNode.itemStyle = { color: color };
+                showToast('节点已更新');
+            } else {
+                const newNode = {
+                    name: name,
+                    itemStyle: { color: color },
+                    value: value || undefined
+                };
+
+                if (parentName) {
+                    const parentNode = getNodeByName(parentName, currentGraphData);
+                    if (parentNode) {
+                        if (!parentNode.children) parentNode.children = [];
+                        parentNode.children.push(newNode);
+                        showToast('节点已添加');
+                    } else {
+                        showToast('父节点不存在');
+                        return;
+                    }
+                } else {
+                    if (!currentGraphData.children) currentGraphData.children = [];
+                    currentGraphData.children.push(newNode);
+                    showToast('节点已添加');
+                }
+            }
+
+            saveGraphData(currentGraphData);
+            renderChart();
+            closeModal();
+            
+            if (editingMode === 'edit') {
+                updateSelectedInfo(selectedNode);
+            }
+        }
+
+        function deleteSelectedNode() {
+            if (!selectedNode) {
+                showToast('请先选择一个节点');
+                return;
+            }
+
+            if (selectedNode === currentGraphData) {
+                showToast('不能删除根节点');
+                return;
+            }
+
+            if (!confirm('确定要删除这个节点吗？')) {
+                return;
+            }
+
+            function removeNode(parent, nodeToRemove) {
+                if (parent.children) {
+                    const index = parent.children.indexOf(nodeToRemove);
+                    if (index > -1) {
+                        parent.children.splice(index, 1);
+                        return true;
+                    }
+                    for (const child of parent.children) {
+                        if (removeNode(child, nodeToRemove)) {
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            }
+
+            removeNode(currentGraphData, selectedNode);
+            saveGraphData(currentGraphData);
+            renderChart();
+            hideSelectedInfo();
+            showToast('节点已删除');
+        }
+
+        function toggleNodeStatus() {
+            if (!selectedNode) {
+                showToast('请先选择一个节点');
+                return;
+            }
+
+            const currentColor = selectedNode.itemStyle?.color;
+            const newColor = currentColor === EXPLORED_COLOR ? UNEXPLORED_COLOR : EXPLORED_COLOR;
+            selectedNode.itemStyle = { color: newColor };
+            
+            saveGraphData(currentGraphData);
+            renderChart();
+            updateSelectedInfo(selectedNode);
+            showToast('节点状态已切换');
+        }
+
+        function updateSelectedInfo(node) {
+            if (!node) {
+                hideSelectedInfo();
+                return;
+            }
+
+            const info = document.getElementById('selectedInfo');
+            document.getElementById('selectedName').textContent = node.name.replace('\n', ' ');
+            document.getElementById('selectedValue').textContent = node.value || '暂无描述';
+            
+            const names = getAllNodeNames(currentGraphData);
+            const nodeInfo = names.find(n => n.name === node.name);
+            document.getElementById('selectedPath').textContent = nodeInfo ? nodeInfo.fullPath : '未知路径';
+            
+            info.classList.add('show');
+        }
+
+        function hideSelectedInfo() {
+            document.getElementById('selectedInfo').classList.remove('show');
+            selectedNode = null;
+        }
+
+        function resetGraph() {
+            if (!confirm('确定要重置图谱到初始状态吗？所有自定义内容将丢失。')) {
+                return;
+            }
+            currentGraphData = JSON.parse(JSON.stringify(defaultGraphData));
+            saveGraphData(currentGraphData);
+            renderChart();
+            hideSelectedInfo();
+            showToast('图谱已重置');
+        }
+
+        myChart.on('click', function (params) {
+            selectedNode = params.data;
+            updateSelectedInfo(selectedNode);
+        });
+
+        myChart.on('dblclick', function (params) {
+            selectedNode = params.data;
+            showEditModal();
+        });
+
+        document.addEventListener('click', function (e) {
+            if (!chartDom.contains(e.target) && !document.getElementById('modalOverlay').contains(e.target)) {
+                hideSelectedInfo();
+            }
+        });
+
+        window.addEventListener('resize', function() {
+            myChart.resize();
+        });
+
+        currentGraphData = loadGraphData();
+        renderChart();
+    </script>
+</body>
+</html>

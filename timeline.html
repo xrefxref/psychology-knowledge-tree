@@ -1,0 +1,1536 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>心理学发展时间树 - 林远见路</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  * { box-sizing: border-box; }
+  html, body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    color: #f1f5f9;
+  }
+
+  .header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    padding: 14px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid #1e293b;
+    z-index: 1000;
+  }
+
+  .logo {
+    font-size: 16px;
+    font-weight: 600;
+    color: #f8fafc;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .logo-icon {
+    width: 26px; height: 26px;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 12px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 20px;
+  }
+
+  .nav-links a {
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover {
+    color: #f1f5f9;
+  }
+
+  .nav-links a.active {
+    color: #6366f1;
+  }
+
+  .status-bar {
+    position: fixed;
+    top: 52px; left: 0; right: 0;
+    background: rgba(30, 41, 59, 0.95);
+    border-bottom: 1px solid #334155;
+    padding: 12px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 99;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+  .status-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #f8fafc;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .title-icon {
+    width: 24px;
+    height: 24px;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 12px;
+  }
+  .legend {
+    display: flex;
+    gap: 20px;
+    font-size: 12px;
+    color: #94a3b8;
+    align-items: center;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .dot-unlearned {
+    background: rgba(59, 130, 246, 0.2);
+    border: 2px solid #3b82f6;
+  }
+  .dot-learned {
+    background: #10b981;
+    border: 2px solid #10b981;
+    box-shadow: 0 0 6px #10b981;
+  }
+  .progress-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 300px;
+  }
+  .progress-text {
+    font-size: 12px;
+    color: #94a3b8;
+    white-space: nowrap;
+    font-weight: 500;
+  }
+  .progress-bar {
+    flex: 1;
+    height: 6px;
+    background: rgba(51, 65, 85, 0.5);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #10b981, #34d399);
+    border-radius: 999px;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .reset-btn {
+    padding: 5px 12px;
+    border-radius: 6px;
+    border: 1px solid #334155;
+    background: rgba(51, 65, 85, 0.5);
+    color: #94a3b8;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .reset-btn:hover {
+    background: rgba(51, 65, 85, 0.8);
+    color: #f1f5f9;
+  }
+
+  .filter-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(30, 41, 59, 0.95);
+    border-top: 1px solid #334155;
+    padding: 10px 32px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 99;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .filter-bar::-webkit-scrollbar {
+    display: none;
+  }
+  .filter-label {
+    font-size: 12px;
+    color: #94a3b8;
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+  .filter-tag {
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 11px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid #334155;
+    background: rgba(51, 65, 85, 0.5);
+    color: #94a3b8;
+    flex-shrink: 0;
+  }
+  .filter-tag:hover {
+    background: rgba(51, 65, 85, 0.8);
+  }
+  .filter-tag.active {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: white;
+    border-color: #6366f1;
+  }
+
+  .timeline-wrap {
+    padding-top: 120px;
+    padding-bottom: 60px;
+    overflow-x: auto;
+    overflow-y: visible;
+    width: 100%;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .timeline-wrap::-webkit-scrollbar {
+    display: none;
+  }
+  .timeline-inner {
+    min-width: 6000px;
+    padding: 20px 80px 100px;
+    position: relative;
+    min-height: 600px;
+  }
+
+  .timeline-axis {
+    position: relative;
+    height: 4px;
+    background: linear-gradient(90deg, #6366f1, #8b5cf6, #a855f7);
+    border-radius: 2px;
+    width: 100%;
+  }
+  .timeline-axis::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: linear-gradient(90deg, rgba(99, 102, 241, 0.15), rgba(168, 85, 247, 0.15));
+    border-radius: 4px;
+  }
+
+  .year-marker {
+    position: absolute;
+    top: 20px;
+    font-size: 11px;
+    color: #64748b;
+    transform: translateX(-50%);
+    white-space: nowrap;
+  }
+  .year-marker::before {
+    content: '';
+    position: absolute;
+    bottom: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 12px;
+    background: #475569;
+  }
+
+  .timeline-node {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 3px solid #6366f1;
+    cursor: pointer;
+    z-index: 3;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+  }
+  .timeline-node:hover {
+    transform: translate(-50%, -50%) scale(1.3);
+    box-shadow: 0 0 0 8px rgba(99, 102, 241, 0.15);
+  }
+  .timeline-node.learned {
+    background: linear-gradient(135deg, #10b981, #34d399);
+    border-color: #10b981;
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+  }
+  .timeline-node.learned:hover {
+    box-shadow: 0 0 0 8px rgba(16, 185, 129, 0.15);
+  }
+  .timeline-node.filtered {
+    opacity: 0.3;
+    pointer-events: none;
+  }
+
+  .info-card {
+    position: absolute;
+    left: 0;
+    transform: translateX(-50%);
+    width: 280px;
+    padding: 16px 18px;
+    background: rgba(30, 41, 59, 0.95);
+    border: 1px solid #334155;
+    border-radius: 12px;
+    font-size: 13px;
+    line-height: 1.6;
+    z-index: 2;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+  }
+  .info-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #6366f1, #8b5cf6);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .info-card:hover {
+    z-index: 10;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+    transform: translateX(-50%) translateY(-8px) scale(1.02);
+    border-color: #6366f1;
+  }
+  .info-card:hover::before {
+    opacity: 1;
+  }
+  .info-card.learned {
+    border-color: #10b981;
+  }
+  .info-card.learned::before {
+    background: linear-gradient(90deg, #10b981, #34d399);
+    opacity: 1;
+  }
+  .info-card.above {
+    bottom: 35px;
+  }
+  .info-card.below {
+    top: 35px;
+  }
+  .info-card.filtered {
+    opacity: 0.3;
+    pointer-events: none;
+  }
+
+  .card-year {
+    font-weight: 700;
+    color: #f8fafc;
+    font-size: 18px;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card-year::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #334155;
+  }
+  .card-title {
+    font-weight: 600;
+    color: #6366f1;
+    font-size: 15px;
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+  .card-school {
+    display: inline-block;
+    padding: 2px 10px;
+    background: rgba(99, 102, 241, 0.15);
+    color: #a5b4fc;
+    border-radius: 999px;
+    font-size: 11px;
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  .card-figure {
+    color: #cbd5e1;
+    margin-bottom: 6px;
+    font-weight: 500;
+    font-size: 13px;
+  }
+  .card-desc {
+    color: #94a3b8;
+    font-size: 12px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-bottom: 10px;
+  }
+  .card-tag {
+    padding: 1px 8px;
+    background: rgba(51, 65, 85, 0.5);
+    color: #94a3b8;
+    border-radius: 4px;
+    font-size: 10px;
+  }
+  .card-book {
+    background: rgba(51, 65, 85, 0.3);
+    padding: 8px 10px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    font-size: 11px;
+    color: #94a3b8;
+  }
+  .card-book-title {
+    font-weight: 500;
+    color: #cbd5e1;
+    display: block;
+    margin-bottom: 2px;
+  }
+  .card-book-author {
+    color: #64748b;
+    font-size: 10px;
+  }
+  .card-status {
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid #334155;
+    font-size: 11px;
+    color: #64748b;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .card-status .learned-tag {
+    color: #10b981;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .connector {
+    position: absolute;
+    left: 0;
+    width: 2px;
+    background: #475569;
+    z-index: 1;
+    transition: all 0.3s;
+  }
+  .connector.above {
+    bottom: 12px;
+    height: 23px;
+    transform: translateX(-50%);
+  }
+  .connector.below {
+    top: 12px;
+    height: 23px;
+    transform: translateX(-50%);
+  }
+  .connector.filtered {
+    opacity: 0.3;
+  }
+
+  .axis-label {
+    position: absolute;
+    top: -12px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #64748b;
+    background: rgba(30, 41, 59, 0.9);
+    padding: 4px 12px;
+    border-radius: 6px;
+    border: 1px solid #334155;
+  }
+  .axis-label.left { left: -100px; }
+  .axis-label.right { right: -80px; }
+
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+  }
+  .modal-overlay.active {
+    display: flex;
+  }
+  .modal-content {
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    animation: modalIn 0.3s ease;
+  }
+  @keyframes modalIn {
+    from { opacity: 0; transform: scale(0.95) translateY(20px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  .modal-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid #334155;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .modal-close {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(51, 65, 85, 0.5);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #94a3b8;
+    transition: all 0.2s;
+  }
+  .modal-close:hover {
+    background: rgba(51, 65, 85, 0.8);
+    color: #f1f5f9;
+  }
+  .modal-body {
+    padding: 24px;
+  }
+  .modal-year {
+    font-size: 28px;
+    font-weight: 700;
+    color: #6366f1;
+    margin-bottom: 8px;
+  }
+  .modal-title {
+    font-size: 22px;
+    font-weight: 600;
+    color: #f8fafc;
+    margin-bottom: 12px;
+  }
+  .modal-school {
+    display: inline-block;
+    padding: 3px 12px;
+    background: rgba(99, 102, 241, 0.15);
+    color: #a5b4fc;
+    border-radius: 999px;
+    font-size: 12px;
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+  .modal-figure {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    padding: 12px;
+    background: rgba(51, 65, 85, 0.3);
+    border-radius: 10px;
+  }
+  .figure-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .figure-info {
+    flex: 1;
+  }
+  .figure-name {
+    font-weight: 600;
+    color: #f8fafc;
+  }
+  .figure-desc {
+    font-size: 12px;
+    color: #94a3b8;
+  }
+  .modal-desc {
+    color: #cbd5e1;
+    line-height: 1.8;
+    margin-bottom: 20px;
+  }
+  .modal-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+  .modal-tag {
+    padding: 3px 10px;
+    background: rgba(51, 65, 85, 0.5);
+    color: #94a3b8;
+    border-radius: 6px;
+    font-size: 11px;
+  }
+  .modal-section {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid #334155;
+  }
+  .modal-section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #f8fafc;
+    margin-bottom: 12px;
+  }
+  .modal-books {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .modal-book-item {
+    display: flex;
+    gap: 8px;
+    padding: 8px 12px;
+    background: rgba(51, 65, 85, 0.3);
+    border-radius: 8px;
+  }
+  .book-number {
+    font-weight: 600;
+    color: #6366f1;
+    font-size: 13px;
+    min-width: 24px;
+  }
+  .book-info {
+    flex: 1;
+  }
+  .book-title {
+    font-weight: 500;
+    color: #cbd5e1;
+    font-size: 13px;
+    display: block;
+  }
+  .book-author {
+    font-size: 11px;
+    color: #64748b;
+  }
+  .modal-figures {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .modal-figure-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    background: rgba(51, 65, 85, 0.3);
+    border-radius: 8px;
+  }
+  .figure-mini-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #8b5cf6, #a855f7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .figure-mini-info {
+    flex: 1;
+  }
+  .figure-mini-name {
+    font-weight: 500;
+    color: #cbd5e1;
+    font-size: 13px;
+    display: block;
+  }
+  .figure-mini-desc {
+    font-size: 11px;
+    color: #64748b;
+  }
+  .modal-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+  }
+  .modal-btn {
+    flex: 1;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .modal-btn.primary {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: white;
+  }
+  .modal-btn.primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+  }
+  .modal-btn.secondary {
+    background: rgba(51, 65, 85, 0.5);
+    color: #94a3b8;
+  }
+  .modal-btn.secondary:hover {
+    background: rgba(51, 65, 85, 0.8);
+    color: #f1f5f9;
+  }
+  .modal-btn.pin-btn {
+    background: rgba(251, 191, 36, 0.15);
+    color: #fbbf24;
+    border: 1px solid rgba(251, 191, 36, 0.3);
+  }
+  .modal-btn.pin-btn:hover {
+    background: rgba(251, 191, 36, 0.25);
+  }
+  .modal-btn.pin-btn.pinned {
+    background: rgba(251, 191, 36, 0.25);
+    color: #f59e0b;
+  }
+  .info-card.pinned {
+    box-shadow: 0 8px 30px rgba(251, 191, 36, 0.2);
+    border-color: #fbbf24;
+  }
+
+  @media (max-width: 768px) {
+    .status-bar {
+      flex-direction: column;
+      gap: 10px;
+      padding: 10px 16px;
+    }
+    .progress-wrap {
+      min-width: auto;
+      width: 100%;
+    }
+    .legend {
+      display: none;
+    }
+    .filter-bar {
+      top: 105px;
+      padding: 8px 16px;
+    }
+    .timeline-wrap {
+      padding-top: 150px;
+    }
+    .info-card {
+      width: 240px;
+      padding: 12px 14px;
+    }
+    .axis-label {
+      display: none;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+    <div class="logo">
+        <div class="logo-icon">⏳</div>
+        <span>心理学发展时间树</span>
+    </div>
+    <nav class="nav-links">
+        <a href="index.html">首页</a>
+        <a href="knowledge-map.html">知识图谱</a>
+        <a href="#" class="active">时间树</a>
+    </nav>
+</header>
+
+<div class="status-bar">
+  <div style="display:flex;align-items:center;gap:24px;">
+    <div class="status-title">
+      <span class="title-icon">🧠</span>
+      <span>心理学发展全景时间树</span>
+    </div>
+    <div class="legend">
+      <div class="legend-item">
+        <span class="legend-dot dot-unlearned"></span>
+        <span>未学习</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-dot dot-learned"></span>
+        <span>已学习</span>
+      </div>
+    </div>
+  </div>
+  <div class="progress-wrap">
+    <span class="progress-text" id="progressText">0 / 34</span>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <button class="reset-btn" onclick="resetAll()">重置进度</button>
+  </div>
+</div>
+
+<div class="filter-bar">
+  <span class="filter-label">筛选学派:</span>
+  <span class="filter-tag active" data-filter="all">全部</span>
+  <span class="filter-tag" data-filter="精神分析">精神分析</span>
+  <span class="filter-tag" data-filter="行为主义">行为主义</span>
+  <span class="filter-tag" data-filter="人本主义">人本主义</span>
+  <span class="filter-tag" data-filter="认知心理学">认知心理学</span>
+  <span class="filter-tag" data-filter="发展心理学">发展心理学</span>
+  <span class="filter-tag" data-filter="临床心理学">临床心理学</span>
+  <span class="filter-tag" data-filter="应用心理学">应用心理学</span>
+</div>
+
+<div class="timeline-wrap">
+  <div class="timeline-inner">
+    <div class="timeline-axis" id="timelineAxis">
+      <div class="axis-label left">1879 · 科学心理学创立</div>
+      <div class="axis-label right">2025 · 数字化时代</div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span style="font-size:16px;font-weight:600;color:#f8fafc">详细信息</span>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+const timelineData = [
+  {
+    year: 1879,
+    title: "科学心理学诞生",
+    figure: "威廉·冯特 (W. Wundt)",
+    figureDesc: "德国心理学家，实验心理学之父",
+    school: "构造主义 / 实验心理学",
+    desc: "在莱比锡大学建立世界首个心理学实验室，标志着心理学脱离哲学成为独立学科。冯特采用内省法研究意识结构，奠定了实验心理学的基础。",
+    tags: ["基础", "实验", "意识"],
+    book: { title: "《生理心理学原理》", author: "威廉·冯特" }
+  },
+  {
+    year: 1885,
+    title: "记忆曲线研究",
+    figure: "赫尔曼·艾宾浩斯 (H. Ebbinghaus)",
+    figureDesc: "德国心理学家，记忆研究先驱",
+    school: "实验心理学",
+    desc: "发表《记忆》一书，提出著名的艾宾浩斯遗忘曲线，开创了对记忆进行系统实验研究的先河。",
+    tags: ["记忆", "实验", "学习"],
+    book: { title: "《记忆》", author: "赫尔曼·艾宾浩斯" }
+  },
+  {
+    year: 1890,
+    title: "机能主义兴起",
+    figure: "威廉·詹姆斯 (W. James)",
+    figureDesc: "美国心理学之父",
+    school: "机能主义心理学",
+    desc: "出版《心理学原理》，提出意识流概念，关注心理的适应功能而非结构，强调心理学的实际应用价值。",
+    tags: ["意识", "适应", "实用"],
+    book: { title: "《心理学原理》", author: "威廉·詹姆斯" }
+  },
+  {
+    year: 1892,
+    title: "美国心理学会成立",
+    figure: "斯坦利·霍尔 (G. S. Hall)",
+    figureDesc: "发展心理学先驱",
+    school: "心理学组织",
+    desc: "APA成立，推动心理学在美国的专业化发展，成为全球最大的心理学组织。",
+    tags: ["组织", "发展", "美国"],
+    book: { title: "《青少年心理学》", author: "斯坦利·霍尔" }
+  },
+  {
+    year: 1900,
+    title: "精神分析学派创立",
+    figure: "西格蒙德·弗洛伊德 (S. Freud)",
+    figureDesc: "精神分析创始人",
+    school: "精神分析学派",
+    desc: "出版《梦的解析》，提出潜意识、人格结构（本我、自我、超我）、性心理发展阶段等革命性理论，开创了心理治疗的新纪元。",
+    tags: ["潜意识", "心理治疗", "人格"],
+    books: [
+      { title: "《梦的解析》", author: "西格蒙德·弗洛伊德" },
+      { title: "《精神分析引论》", author: "西格蒙德·弗洛伊德" },
+      { title: "《性学三论》", author: "西格蒙德·弗洛伊德" },
+      { title: "《自我与本我》", author: "西格蒙德·弗洛伊德" }
+    ],
+    relatedFigures: [
+      { name: "卡尔·荣格", desc: "分析心理学创始人，发展了集体潜意识理论" },
+      { name: "阿尔弗雷德·阿德勒", desc: "个体心理学创始人，提出自卑与超越理论" },
+      { name: "安娜·弗洛伊德", desc: "儿童精神分析先驱" }
+    ]
+  },
+  {
+    year: 1905,
+    title: "首个科学智力测验",
+    figure: "阿尔弗雷德·比奈 & 西奥多·西蒙",
+    figureDesc: "法国心理学家",
+    school: "心理测量学",
+    desc: "编制比奈-西蒙量表，开创心理测量领域，智力测验开始大规模应用于教育和临床领域。",
+    tags: ["测量", "智力", "教育"],
+    book: { title: "《智力的实验研究》", author: "阿尔弗雷德·比奈" }
+  },
+  {
+    year: 1911,
+    title: "个体心理学创立",
+    figure: "阿尔弗雷德·阿德勒 (A. Adler)",
+    figureDesc: "精神分析学派重要人物",
+    school: "精神分析分支",
+    desc: "提出自卑与超越、社会兴趣、生活风格等概念，强调社会因素对人格的影响，聚焦人际关系。",
+    tags: ["社会", "自卑", "人际关系"],
+    book: { title: "《自卑与超越》", author: "阿尔弗雷德·阿德勒" }
+  },
+  {
+    year: 1912,
+    title: "格式塔心理学创立",
+    figure: "马克斯·韦特海默 / 沃尔夫冈·苛勒",
+    figureDesc: "德国格式塔学派创始人",
+    school: "格式塔学派",
+    desc: "提出「整体大于部分之和」的核心观点，研究知觉组织规律，反对将意识拆分为元素。",
+    tags: ["知觉", "整体", "认知"],
+    book: { title: "《格式塔心理学原理》", author: "马克斯·韦特海默" }
+  },
+  {
+    year: 1913,
+    title: "行为主义革命",
+    figure: "约翰·华生 (J. Watson)",
+    figureDesc: "行为主义创始人",
+    school: "行为主义学派",
+    desc: "发表《行为主义者眼中的心理学》，主张只研究可观察的行为，拒绝研究意识，使心理学走向完全客观化。",
+    tags: ["行为", "客观", "学习"],
+    book: { title: "《行为主义者眼中的心理学》", author: "约翰·华生" }
+  },
+  {
+    year: 1916,
+    title: "分析心理学创立",
+    figure: "卡尔·荣格 (C. G. Jung)",
+    figureDesc: "分析心理学创始人",
+    school: "精神分析分支",
+    desc: "提出集体潜意识、原型、人格类型（内倾/外倾）、自性化等理论，对心理学、文学、艺术产生深远影响。",
+    tags: ["潜意识", "原型", "人格类型"],
+    book: { title: "《心理类型》", author: "卡尔·荣格" }
+  },
+  {
+    year: 1920,
+    title: "经典条件反射研究",
+    figure: "伊万·巴甫洛夫 (I. Pavlov)",
+    figureDesc: "俄国生理学家，诺贝尔得主",
+    school: "行为主义",
+    desc: "通过狗的唾液分泌实验发现经典条件反射，为行为主义提供了重要的实验基础。",
+    tags: ["学习", "反射", "实验"],
+    book: { title: "《条件反射》", author: "伊万·巴甫洛夫" }
+  },
+  {
+    year: 1938,
+    title: "操作性条件反射",
+    figure: "B.F.斯金纳 (B. Skinner)",
+    figureDesc: "新行为主义代表人物",
+    school: "新行为主义",
+    desc: "提出强化与惩罚理论，设计斯金纳箱进行动物学习实验，将行为主义推向顶峰，影响教育和行为矫正领域。",
+    tags: ["学习", "强化", "行为矫正"],
+    book: { title: "《沃尔登第二》", author: "B.F.斯金纳" }
+  },
+  {
+    year: 1942,
+    title: "来访者中心疗法",
+    figure: "卡尔·罗杰斯 (C. Rogers)",
+    figureDesc: "人本主义心理学创始人",
+    school: "人本主义心理学",
+    desc: "提出真诚、无条件积极关注、共情三大核心条件，创立以来访者为中心的心理治疗方法。",
+    tags: ["心理治疗", "人本", "共情"],
+    book: { title: "《当事人中心治疗》", author: "卡尔·罗杰斯" }
+  },
+  {
+    year: 1946,
+    title: "存在主义心理学",
+    figure: "罗洛·梅 (R. May)",
+    figureDesc: "美国存在主义心理学创始人",
+    school: "存在主义心理学",
+    desc: "将存在主义哲学引入心理学，关注人的存在意义、自由选择和责任，强调个体的独特性和主观体验。",
+    tags: ["存在", "意义", "自由"],
+    book: { title: "《存在主义心理学》", author: "罗洛·梅" }
+  },
+  {
+    year: 1946,
+    title: "意义疗法创立",
+    figure: "维克多·弗兰克尔 (V. Frankl)",
+    figureDesc: "存在主义心理学家",
+    school: "存在主义心理学",
+    desc: "基于集中营经历提出追求意义的意志，提出三条意义路径和矛盾意向法，帮助人们找到生命意义。",
+    tags: ["意义", "存在", "心理治疗"],
+    book: { title: "《活出生命的意义》", author: "维克多·弗兰克尔" }
+  },
+  {
+    year: 1950,
+    title: "认知发展阶段论",
+    figure: "让·皮亚杰 (J. Piaget)",
+    figureDesc: "瑞士发展心理学家",
+    school: "发展心理学",
+    desc: "提出儿童认知发展四阶段理论：感知运动、前运算、具体运算、形式运算，奠定了现代发展心理学基础。",
+    tags: ["儿童", "认知", "发展"],
+    book: { title: "《发生认识论原理》", author: "让·皮亚杰" }
+  },
+  {
+    year: 1954,
+    title: "需求层次理论",
+    figure: "亚伯拉罕·马斯洛 (A. Maslow)",
+    figureDesc: "人本主义心理学创始人",
+    school: "人本主义心理学",
+    desc: "提出需求五层次理论（生理、安全、归属、尊重、自我实现），成为心理学「第三势力」的代表理论。",
+    tags: ["动机", "人本", "自我实现"],
+    books: [
+      { title: "《动机与人格》", author: "亚伯拉罕·马斯洛" },
+      { title: "《存在心理学探索》", author: "亚伯拉罕·马斯洛" },
+      { title: "《人性能达的境界》", author: "亚伯拉罕·马斯洛" }
+    ],
+    relatedFigures: [
+      { name: "卡尔·罗杰斯", desc: "来访者中心疗法创始人" },
+      { name: "罗洛·梅", desc: "存在主义心理学代表人物" }
+    ]
+  },
+  {
+    year: 1957,
+    title: "认知失调理论",
+    figure: "利昂·费斯汀格 (L. Festinger)",
+    figureDesc: "社会心理学家",
+    school: "社会心理学",
+    desc: "提出认知失调理论，解释人们如何处理信念与行为之间的矛盾，成为态度改变研究的经典理论。",
+    tags: ["态度", "认知", "社会"],
+    book: { title: "《认知失调理论》", author: "利昂·费斯汀格" }
+  },
+  {
+    year: 1963,
+    title: "社会学习理论",
+    figure: "阿尔伯特·班杜拉 (A. Bandura)",
+    figureDesc: "社会认知理论创始人",
+    school: "社会认知理论",
+    desc: "提出观察学习和自我效能感概念，连接行为主义与认知心理学，为理解人类学习提供新视角。",
+    tags: ["学习", "社会", "自我效能"],
+    book: { title: "《社会学习理论》", author: "阿尔伯特·班杜拉" }
+  },
+  {
+    year: 1967,
+    title: "认知心理学诞生",
+    figure: "乌尔里克·奈瑟 (U. Neisser)",
+    figureDesc: "认知心理学之父",
+    school: "认知心理学",
+    desc: "出版《认知心理学》，标志认知革命爆发，重新将意识、注意、记忆、思维等内部心理过程纳入研究范畴。",
+    tags: ["认知", "意识", "思维"],
+    book: { title: "《认知心理学》", author: "乌尔里克·奈瑟" }
+  },
+  {
+    year: 1971,
+    title: "斯坦福监狱实验",
+    figure: "菲利普·津巴多 (P. Zimbardo)",
+    figureDesc: "社会心理学家",
+    school: "社会心理学",
+    desc: "著名的斯坦福监狱实验揭示了情境对人类行为的巨大影响，引发对人性和社会环境的深刻思考。",
+    tags: ["社会", "情境", "人性"],
+    book: { title: "《路西法效应》", author: "菲利普·津巴多" }
+  },
+  {
+    year: 1978,
+    title: "生态系统理论",
+    figure: "尤里·布朗芬布伦纳 (U. Bronfenbrenner)",
+    figureDesc: "发展心理学家",
+    school: "发展心理学",
+    desc: "提出生态系统理论，强调个体发展受多层环境系统（微观、中间、外层、宏观系统）的影响。",
+    tags: ["发展", "环境", "系统"],
+    book: { title: "《人类发展的生态系统理论》", author: "尤里·布朗芬布伦纳" }
+  },
+  {
+    year: 1980,
+    title: "进化心理学兴起",
+    figure: "大卫·巴斯 / E.O.威尔逊",
+    figureDesc: "进化心理学先驱",
+    school: "进化心理学",
+    desc: "用进化论视角解释人类心理机制，研究择偶、合作、攻击、亲代投资等行为的进化根源。",
+    tags: ["进化", "本能", "适应性"],
+    book: { title: "《进化心理学》", author: "大卫·巴斯" }
+  },
+  {
+    year: 1987,
+    title: "诊断体系标准化",
+    figure: "美国精神病学会 (APA)",
+    figureDesc: "权威学术组织",
+    school: "临床心理学",
+    desc: "DSM-III-R发布，精神障碍诊断体系实现系统化、标准化，推动临床心理学的科学化发展。",
+    tags: ["诊断", "临床", "标准化"],
+    book: { title: "《精神疾病诊断与统计手册》", author: "APA" }
+  },
+  {
+    year: 1990,
+    title: "情绪智力概念提出",
+    figure: "彼得·萨洛维 / 约翰·梅耶",
+    figureDesc: "心理学家",
+    school: "情绪心理学",
+    desc: "提出情绪智力（EI）概念，包含自我觉察、情绪管理、自我激励、共情、社交技巧五大能力。",
+    tags: ["情绪", "智力", "社交"],
+    book: { title: "《情绪智力》", author: "丹尼尔·戈尔曼" }
+  },
+  {
+    year: 1992,
+    title: "多元智能理论",
+    figure: "霍华德·加德纳 (H. Gardner)",
+    figureDesc: "发展心理学家",
+    school: "教育心理学",
+    desc: "提出多元智能理论，认为智能包含语言、逻辑-数学、空间、音乐、身体-动觉、人际、内省、自然观察等多种形式。",
+    tags: ["智力", "教育", "多元"],
+    book: { title: "《智能的结构》", author: "霍华德·加德纳" }
+  },
+  {
+    year: 1998,
+    title: "积极心理学运动",
+    figure: "马丁·塞利格曼 (M. Seligman)",
+    figureDesc: "积极心理学创始人",
+    school: "积极心理学",
+    desc: "发起积极心理学运动，将心理学研究重心从疾病转向研究幸福、优势与美德，推动心理学的积极转向。",
+    tags: ["幸福", "优势", "积极"],
+    books: [
+      { title: "《真实的幸福》", author: "马丁·塞利格曼" },
+      { title: "《持续的幸福》", author: "马丁·塞利格曼" },
+      { title: "《活出最乐观的自己》", author: "马丁·塞利格曼" }
+    ],
+    relatedFigures: [
+      { name: "米哈里·契克森米哈赖", desc: "心流理论提出者" },
+      { name: "克里斯托弗·彼得森", desc: "优势与美德分类体系提出者" }
+    ]
+  },
+  {
+    year: 2000,
+    title: "接纳承诺疗法",
+    figure: "史蒂芬·海斯 (S. Hayes)",
+    figureDesc: "ACT疗法创始人",
+    school: "临床心理学",
+    desc: "创立接纳承诺疗法（ACT），结合正念与行为激活，帮助来访者接纳内在体验，朝向价值方向行动。",
+    tags: ["心理治疗", "正念", "接纳"],
+    books: [
+      { title: "《接纳与承诺疗法》", author: "史蒂芬·海斯" },
+      { title: "《跳出头脑，融入生活》", author: "史蒂芬·海斯" },
+      { title: "《幸福的陷阱》", author: "路斯·哈里斯" }
+    ],
+    relatedFigures: [
+      { name: "凯利·威尔森", desc: "ACT疗法重要发展者" },
+      { name: "乔·卡巴金", desc: "正念减压疗法创始人" }
+    ]
+  },
+  {
+    year: 2000,
+    title: "认知神经科学崛起",
+    figure: "迈克尔·加扎尼加 等",
+    figureDesc: "认知神经科学先驱",
+    school: "认知神经科学",
+    desc: "fMRI等脑成像技术普及，心理现象终于有了坚实的神经生物学基础，开启脑科学与心理学的深度融合。",
+    tags: ["神经科学", "脑成像", "认知"],
+    book: { title: "《认知神经科学》", author: "迈克尔·加扎尼加" }
+  },
+  {
+    year: 2002,
+    title: "正念疗法兴起",
+    figure: "乔·卡巴金 (J. Kabat-Zinn)",
+    figureDesc: "正念减压创始人",
+    school: "临床心理学",
+    desc: "将正念引入临床领域，开发正念减压疗法（MBSR），为压力管理和心理治疗提供新方法。",
+    tags: ["正念", "治疗", "压力"],
+    book: { title: "《正念：此刻是一枝花》", author: "乔·卡巴金" }
+  },
+  {
+    year: 2010,
+    title: "具身认知理论",
+    figure: "劳伦斯·巴萨卢 (L. Barsalou)",
+    figureDesc: "认知科学家",
+    school: "认知心理学",
+    desc: "提出具身认知理论，强调身体体验和环境互动对认知过程的塑造作用，挑战传统认知主义观点。",
+    tags: ["认知", "身体", "体验"],
+    book: { title: "《具身认知》", author: "劳伦斯·巴萨卢" }
+  },
+  {
+    year: 2015,
+    title: "AI与心理学交叉",
+    figure: "全球学界",
+    figureDesc: "跨学科研究者",
+    school: "应用心理学前沿",
+    desc: "计算心理学、数字疗法、AI心理咨询兴起，心理学与人工智能技术深度融合，开启数字化心理健康时代。",
+    tags: ["AI", "数字疗法", "技术"],
+    book: { title: "《人工智能与心理学》", author: "全球学界" }
+  },
+  {
+    year: 2020,
+    title: "疫情心理研究爆发",
+    figure: "全球心理学界",
+    figureDesc: "全球研究者",
+    school: "临床与社会心理学",
+    desc: "新冠疫情推动心理健康研究大发展，远程心理服务普及，心理健康受到前所未有的重视。",
+    tags: ["心理健康", "疫情", "远程"],
+    book: { title: "《疫情时代的心理调适》", author: "全球心理学界" }
+  },
+  {
+    year: 2025,
+    title: "数字心理健康时代",
+    figure: "创新实践者",
+    figureDesc: "前沿探索者",
+    school: "应用心理学前沿",
+    desc: "AI驱动的心理健康工具普及，心理健康筛查与干预走向智能化、个性化，全民心理健康素养提升。",
+    tags: ["数字化", "AI", "心理健康"],
+    book: { title: "《数字心理健康》", author: "创新实践者" }
+  }
+];
+
+const START_YEAR = 1875;
+const END_YEAR = 2025;
+const STORAGE_KEY = "psych_timeline_full";
+const PINNED_KEY = "psych_timeline_pinned";
+
+function initTimeline() {
+  const axis = document.getElementById("timelineAxis");
+  const totalSpan = END_YEAR - START_YEAR;
+  
+  for (let year = 1880; year <= 2020; year += 20) {
+    const position = ((year - START_YEAR) / totalSpan) * 100;
+    const marker = document.createElement("div");
+    marker.className = "year-marker";
+    marker.style.left = position + "%";
+    marker.textContent = year;
+    axis.appendChild(marker);
+  }
+
+  const learnedSet = getLearnedSet();
+
+  timelineData.forEach((item, index) => {
+    const position = ((item.year - START_YEAR) / totalSpan) * 100;
+    const isAbove = index % 2 === 0;
+    const key = `${item.year}-${item.title}`;
+    const isLearned = learnedSet.has(key);
+
+    const line = document.createElement("div");
+    line.className = "connector " + (isAbove ? "above" : "below");
+    line.style.left = position + "%";
+    line.dataset.key = key;
+
+    const node = document.createElement("div");
+    node.className = "timeline-node" + (isLearned ? " learned" : "");
+    node.style.left = position + "%";
+    node.dataset.key = key;
+
+    const card = document.createElement("div");
+    card.className = "info-card " + (isAbove ? "above" : "below") + (isLearned ? " learned" : "");
+    card.style.left = position + "%";
+    card.dataset.key = key;
+    
+    const tagHtml = item.tags.map(tag => `<span class="card-tag">${tag}</span>`).join('');
+    const bookHtml = item.book ? `
+      <div class="card-book">
+        <span class="card-book-title">📚 ${item.book.title}</span>
+        <span class="card-book-author">—— ${item.book.author}</span>
+      </div>
+    ` : '';
+    
+    card.innerHTML = `
+      <div class="card-year">${item.year}</div>
+      <div class="card-title">${item.title}</div>
+      <span class="card-school">${item.school}</span>
+      <div class="card-figure">👤 ${item.figure}</div>
+      <div class="card-desc">${item.desc.substring(0, 60)}...</div>
+      <div class="card-tags">${tagHtml}</div>
+      ${bookHtml}
+      <div class="card-status">
+        <span>点击查看详情</span>
+        <span class="learned-tag" style="display:${isLearned ? 'inline' : 'none'}">✓ 已学</span>
+      </div>
+    `;
+
+    node.addEventListener("click", () => openModal(item, key));
+    card.addEventListener("click", () => openModal(item, key));
+
+    axis.appendChild(line);
+    axis.appendChild(node);
+    axis.appendChild(card);
+  });
+
+  updateProgress();
+  initFilters();
+  initPinnedCards();
+}
+
+function initFilters() {
+  const filters = document.querySelectorAll('.filter-tag');
+  filters.forEach(tag => {
+    tag.addEventListener('click', () => {
+      filters.forEach(t => t.classList.remove('active'));
+      tag.classList.add('active');
+      filterBySchool(tag.dataset.filter);
+    });
+  });
+}
+
+function filterBySchool(filter) {
+  const cards = document.querySelectorAll('.info-card');
+  const nodes = document.querySelectorAll('.timeline-node');
+  const connectors = document.querySelectorAll('.connector');
+
+  cards.forEach(card => {
+    const school = card.querySelector('.card-school').textContent;
+    const shouldShow = filter === 'all' || school.includes(filter);
+    card.classList.toggle('filtered', !shouldShow);
+  });
+
+  nodes.forEach(node => {
+    const card = document.querySelector(`.info-card[data-key="${node.dataset.key}"]`);
+    node.classList.toggle('filtered', card.classList.contains('filtered'));
+  });
+
+  connectors.forEach(connector => {
+    const card = document.querySelector(`.info-card[data-key="${connector.dataset.key}"]`);
+    connector.classList.toggle('filtered', card.classList.contains('filtered'));
+  });
+}
+
+function openModal(item, key) {
+  const learnedSet = getLearnedSet();
+  const isLearned = learnedSet.has(key);
+  
+  const tagHtml = item.tags.map(tag => `<span class="modal-tag">${tag}</span>`).join('');
+  
+  const books = item.books || (item.book ? [item.book] : []);
+  const booksHtml = books.length > 0 ? `
+    <div class="modal-section">
+      <h4 class="modal-section-title">📚 必读书目</h4>
+      <div class="modal-books">
+        ${books.map((book, index) => `
+          <div class="modal-book-item">
+            <span class="book-number">${index + 1}.</span>
+            <div class="book-info">
+              <span class="book-title">${book.title}</span>
+              <span class="book-author">—— ${book.author}</span>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  ` : '';
+  
+  const relatedFigures = item.relatedFigures || [];
+  const relatedHtml = relatedFigures.length > 0 ? `
+    <div class="modal-section">
+      <h4 class="modal-section-title">👥 相关心理学家</h4>
+      <div class="modal-figures">
+        ${relatedFigures.map((fig, index) => `
+          <div class="modal-figure-item">
+            <div class="figure-mini-avatar">${fig.name.charAt(0)}</div>
+            <div class="figure-mini-info">
+              <span class="figure-mini-name">${fig.name}</span>
+              <span class="figure-mini-desc">${fig.desc}</span>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  ` : '';
+  
+  const pinnedSet = getPinnedSet();
+  const isPinned = pinnedSet.has(key);
+  
+  document.getElementById('modalBody').innerHTML = `
+    <div class="modal-year">${item.year} 年</div>
+    <div class="modal-title">${item.title}</div>
+    <span class="modal-school">${item.school}</span>
+    <div class="modal-figure">
+      <div class="figure-avatar">${item.figure.charAt(0)}</div>
+      <div class="figure-info">
+        <div class="figure-name">${item.figure}</div>
+        <div class="figure-desc">${item.figureDesc}</div>
+      </div>
+    </div>
+    <div class="modal-desc">${item.desc}</div>
+    <div class="modal-tags">${tagHtml}</div>
+    ${booksHtml}
+    ${relatedHtml}
+    <div class="modal-actions">
+      <button class="modal-btn secondary" onclick="closeModal()">关闭</button>
+      <button class="modal-btn primary" onclick="toggleLearned('${key}'); closeModal();">
+        ${isLearned ? '取消学习' : '标记已学'}
+      </button>
+      <button class="modal-btn pin-btn ${isPinned ? 'pinned' : ''}" onclick="togglePin('${key}', closeModal);">
+        ${isPinned ? '📍 取消置顶' : '📌 置顶显示'}
+      </button>
+    </div>
+  `;
+  
+  document.getElementById('modalOverlay').classList.add('active');
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('active');
+}
+
+function toggleLearned(key) {
+  const learnedSet = getLearnedSet();
+  const nodes = document.querySelectorAll(`[data-key="${key}"]`);
+  const tag = document.querySelector(`.info-card[data-key="${key}"] .learned-tag`);
+
+  if (learnedSet.has(key)) {
+    learnedSet.delete(key);
+    nodes.forEach(el => el.classList.remove("learned"));
+    if (tag) tag.style.display = "none";
+  } else {
+    learnedSet.add(key);
+    nodes.forEach(el => el.classList.add("learned"));
+    if (tag) tag.style.display = "inline";
+  }
+
+  saveLearnedSet(learnedSet);
+  updateProgress();
+}
+
+function getPinnedSet() {
+  try {
+    const data = localStorage.getItem(PINNED_KEY);
+    return new Set(data ? JSON.parse(data) : []);
+  } catch (e) { return new Set(); }
+}
+
+function savePinnedSet(set) {
+  localStorage.setItem(PINNED_KEY, JSON.stringify([...set]));
+}
+
+function togglePin(key, closeCallback) {
+  const pinnedSet = getPinnedSet();
+  const cards = document.querySelectorAll(`.info-card[data-key="${key}"]`);
+  const nodes = document.querySelectorAll(`.timeline-node[data-key="${key}"]`);
+
+  if (pinnedSet.has(key)) {
+    pinnedSet.delete(key);
+    cards.forEach(card => {
+      card.classList.remove('pinned');
+      card.style.zIndex = '2';
+    });
+    nodes.forEach(node => {
+      node.style.zIndex = '3';
+    });
+  } else {
+    pinnedSet.add(key);
+    cards.forEach(card => {
+      card.classList.add('pinned');
+      card.style.zIndex = '999';
+    });
+    nodes.forEach(node => {
+      node.style.zIndex = '1000';
+    });
+  }
+
+  savePinnedSet(pinnedSet);
+  
+  if (closeCallback) {
+    setTimeout(closeCallback, 100);
+  }
+}
+
+function initPinnedCards() {
+  const pinnedSet = getPinnedSet();
+  pinnedSet.forEach(key => {
+    const cards = document.querySelectorAll(`.info-card[data-key="${key}"]`);
+    const nodes = document.querySelectorAll(`.timeline-node[data-key="${key}"]`);
+    cards.forEach(card => {
+      card.classList.add('pinned');
+      card.style.zIndex = '999';
+    });
+    nodes.forEach(node => {
+      node.style.zIndex = '1000';
+    });
+  });
+}
+
+function updateProgress() {
+  const learnedSet = getLearnedSet();
+  const total = timelineData.length;
+  const count = learnedSet.size;
+  const percent = (count / total) * 100;
+
+  document.getElementById("progressText").textContent = `${count} / ${total} 已完成`;
+  document.getElementById("progressFill").style.width = percent + "%";
+}
+
+function resetAll() {
+  if (confirm("确定要重置全部学习进度吗？")) {
+    localStorage.removeItem(STORAGE_KEY);
+    location.reload();
+  }
+}
+
+function getLearnedSet() {
+  try {
+    const data = localStorage.getItem(STORAGE_KEY);
+    return new Set(data ? JSON.parse(data) : []);
+  } catch (e) { return new Set(); }
+}
+
+function saveLearnedSet(set) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify([...set]));
+}
+
+initTimeline();
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeModal();
+  }
+});
+
+const timelineWrap = document.querySelector('.timeline-wrap');
+if (timelineWrap) {
+  timelineWrap.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    const delta = e.deltaY || e.detail || e.wheelDelta;
+    const scrollAmount = delta * 1.5;
+    timelineWrap.scrollLeft += scrollAmount;
+  }, { passive: false });
+}
+</script>
+
+</body>
+</html>
