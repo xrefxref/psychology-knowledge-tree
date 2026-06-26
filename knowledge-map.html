@@ -386,6 +386,7 @@
             margin-top: 12px;
             padding-top: 12px;
             border-top: 1px solid #334155;
+            flex-wrap: wrap;
         }
 
         .selected-info-btn {
@@ -403,6 +404,102 @@
             background: rgba(99, 102, 241, 0.1);
             color: #f1f5f9;
             border-color: #6366f1;
+        }
+
+        .selected-info-btn.learned {
+            background: rgba(34, 197, 94, 0.1);
+            color: #22c55e;
+            border-color: rgba(34, 197, 94, 0.3);
+        }
+
+        .selected-info-btn.learned:hover {
+            background: rgba(34, 197, 94, 0.2);
+        }
+
+        .stats-panel {
+            position: fixed;
+            bottom: 60px;
+            right: 24px;
+            background: rgba(30, 41, 59, 0.9);
+            border: 1px solid #334155;
+            border-radius: 10px;
+            padding: 14px 18px;
+            color: #cbd5e1;
+            font-size: 12px;
+            z-index: 100;
+            min-width: 180px;
+        }
+
+        .stats-panel h5 {
+            color: #f8fafc;
+            margin-bottom: 10px;
+            font-size: 13px;
+        }
+
+        .stats-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+        }
+
+        .stats-label {
+            color: #94a3b8;
+        }
+
+        .stats-value {
+            color: #6366f1;
+            font-weight: 600;
+        }
+
+        .stats-value.green {
+            color: #22c55e;
+        }
+
+        .stats-value.orange {
+            color: #f97316;
+        }
+
+        .notes-section {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #334155;
+            display: none;
+        }
+
+        .notes-section.show {
+            display: block;
+        }
+
+        .notes-textarea {
+            width: 100%;
+            min-height: 60px;
+            padding: 8px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid #334155;
+            border-radius: 6px;
+            color: #f1f5f9;
+            font-size: 12px;
+            font-family: inherit;
+            resize: vertical;
+            margin-bottom: 8px;
+        }
+
+        .notes-textarea:focus {
+            outline: none;
+            border-color: #6366f1;
+        }
+
+        .learn-history {
+            margin-top: 8px;
+            padding: 6px;
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 6px;
+            font-size: 11px;
+            color: #94a3b8;
+        }
+
+        .learn-history span {
+            color: #22c55e;
         }
 
         @media (max-width: 768px) {
@@ -465,10 +562,41 @@
         <h5 id="selectedName">节点名称</h5>
         <div class="node-path" id="selectedPath">路径信息</div>
         <div class="node-value" id="selectedValue">描述信息</div>
+        <div class="learn-history" id="learnHistory"></div>
         <div class="selected-info-actions">
             <button class="selected-info-btn" onclick="showEditModal()">编辑</button>
             <button class="selected-info-btn" onclick="deleteSelectedNode()" style="color:#ef4444;border-color:rgba(239,68,68,0.3)">删除</button>
             <button class="selected-info-btn" onclick="toggleNodeStatus()">切换状态</button>
+            <button class="selected-info-btn" id="markLearnedBtn" onclick="markAsLearned()">标记已学</button>
+            <button class="selected-info-btn" onclick="toggleNotes()">笔记</button>
+        </div>
+        <div class="notes-section" id="notesSection">
+            <textarea class="notes-textarea" id="nodeNotes" placeholder="添加学习笔记..."></textarea>
+            <button class="selected-info-btn" onclick="saveNotes()">保存笔记</button>
+        </div>
+    </div>
+
+    <div class="stats-panel" id="statsPanel">
+        <h5>📊 学习统计</h5>
+        <div class="stats-item">
+            <span class="stats-label">总访问次数</span>
+            <span class="stats-value" id="visitCount">0</span>
+        </div>
+        <div class="stats-item">
+            <span class="stats-label">已学节点</span>
+            <span class="stats-value green" id="learnedCount">0</span>
+        </div>
+        <div class="stats-item">
+            <span class="stats-label">学习进度</span>
+            <span class="stats-value orange" id="learnProgress">0%</span>
+        </div>
+        <div class="stats-item">
+            <span class="stats-label">学习天数</span>
+            <span class="stats-value" id="studyDays">0</span>
+        </div>
+        <div class="stats-item">
+            <span class="stats-label">添加笔记</span>
+            <span class="stats-value" id="notesCount">0</span>
         </div>
     </div>
 
@@ -517,10 +645,20 @@
         const EXPLORED_COLOR = '#ef4444';
         const UNEXPLORED_COLOR = '#3b82f6';
         const ROOT_COLOR = '#6366f1';
+        const LEARNED_COLOR = '#22c55e';
         
         let currentGraphData = null;
         let selectedNode = null;
         let editingMode = 'add';
+        
+        let learnData = {};
+        let notesData = {};
+        let statsData = {
+            visitCount: 0,
+            studyDays: 0,
+            lastVisitDate: '',
+            learnedCount: 0
+        };
 
         const defaultGraphData = {
             name: "心理学\n全景系统",
@@ -613,6 +751,87 @@
             } catch (e) {
                 console.error('Failed to save graph data:', e);
             }
+        }
+
+        function loadLearnData() {
+            try {
+                const saved = localStorage.getItem('psychology_learn_data');
+                if (saved) return JSON.parse(saved);
+            } catch (e) {
+                console.error('Failed to load learn data:', e);
+            }
+            return {};
+        }
+
+        function saveLearnData(data) {
+            try {
+                localStorage.setItem('psychology_learn_data', JSON.stringify(data));
+            } catch (e) {
+                console.error('Failed to save learn data:', e);
+            }
+        }
+
+        function loadNotesData() {
+            try {
+                const saved = localStorage.getItem('psychology_notes_data');
+                if (saved) return JSON.parse(saved);
+            } catch (e) {
+                console.error('Failed to load notes data:', e);
+            }
+            return {};
+        }
+
+        function saveNotesData(data) {
+            try {
+                localStorage.setItem('psychology_notes_data', JSON.stringify(data));
+            } catch (e) {
+                console.error('Failed to save notes data:', e);
+            }
+        }
+
+        function loadStatsData() {
+            try {
+                const saved = localStorage.getItem('psychology_stats_data');
+                if (saved) return JSON.parse(saved);
+            } catch (e) {
+                console.error('Failed to load stats data:', e);
+            }
+            return { visitCount: 0, studyDays: 0, lastVisitDate: '', learnedCount: 0 };
+        }
+
+        function saveStatsData(data) {
+            try {
+                localStorage.setItem('psychology_stats_data', JSON.stringify(data));
+            } catch (e) {
+                console.error('Failed to save stats data:', e);
+            }
+        }
+
+        function updateVisitStats() {
+            const today = new Date().toISOString().split('T')[0];
+            statsData.visitCount++;
+            
+            if (statsData.lastVisitDate !== today) {
+                statsData.studyDays++;
+                statsData.lastVisitDate = today;
+            }
+            
+            saveStatsData(statsData);
+            updateStatsPanel();
+        }
+
+        function updateStatsPanel() {
+            const allNodes = getAllNodeNames(currentGraphData);
+            const totalNodes = allNodes.length - 1;
+            const learnedCount = Object.keys(learnData).length;
+            const progress = totalNodes > 0 ? Math.round((learnedCount / totalNodes) * 100) : 0;
+            const notesCount = Object.keys(notesData).length;
+            
+            document.getElementById('visitCount').textContent = statsData.visitCount;
+            document.getElementById('learnedCount').textContent = learnedCount;
+            document.getElementById('learnProgress').textContent = progress + '%';
+            document.getElementById('studyDays').textContent = statsData.studyDays;
+            document.getElementById('notesCount').textContent = notesCount;
         }
 
         function getNodeByName(name, data) {
@@ -871,12 +1090,110 @@
             const nodeInfo = names.find(n => n.name === node.name);
             document.getElementById('selectedPath').textContent = nodeInfo ? nodeInfo.fullPath : '未知路径';
             
+            const learnHistory = document.getElementById('learnHistory');
+            const nodeKey = node.name.replace('\n', ' ');
+            if (learnData[nodeKey]) {
+                learnHistory.innerHTML = `<span>✓ 已学习</span> · ${formatDate(learnData[nodeKey])}`;
+                learnHistory.style.display = 'block';
+                document.getElementById('markLearnedBtn').textContent = '取消已学';
+                document.getElementById('markLearnedBtn').classList.add('learned');
+            } else {
+                learnHistory.style.display = 'none';
+                document.getElementById('markLearnedBtn').textContent = '标记已学';
+                document.getElementById('markLearnedBtn').classList.remove('learned');
+            }
+            
+            const notesSection = document.getElementById('notesSection');
+            notesSection.classList.remove('show');
+            
             info.classList.add('show');
         }
 
         function hideSelectedInfo() {
             document.getElementById('selectedInfo').classList.remove('show');
             selectedNode = null;
+        }
+
+        function formatDate(timestamp) {
+            const date = new Date(timestamp);
+            return `${date.getMonth() + 1}月${date.getDate()}日 ${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+        }
+
+        function markAsLearned() {
+            if (!selectedNode) {
+                showToast('请先选择一个节点');
+                return;
+            }
+            
+            const nodeKey = selectedNode.name.replace('\n', ' ');
+            
+            if (learnData[nodeKey]) {
+                delete learnData[nodeKey];
+                showToast('已取消学习标记');
+            } else {
+                learnData[nodeKey] = Date.now();
+                showToast('已标记为已学');
+            }
+            
+            saveLearnData(learnData);
+            updateSelectedInfo(selectedNode);
+            updateStatsPanel();
+            updateLearnedNodesStyle();
+        }
+
+        function toggleNotes() {
+            if (!selectedNode) {
+                showToast('请先选择一个节点');
+                return;
+            }
+            
+            const notesSection = document.getElementById('notesSection');
+            const nodeKey = selectedNode.name.replace('\n', ' ');
+            
+            if (notesSection.classList.contains('show')) {
+                notesSection.classList.remove('show');
+            } else {
+                document.getElementById('nodeNotes').value = notesData[nodeKey] || '';
+                notesSection.classList.add('show');
+            }
+        }
+
+        function saveNotes() {
+            if (!selectedNode) {
+                showToast('请先选择一个节点');
+                return;
+            }
+            
+            const nodeKey = selectedNode.name.replace('\n', ' ');
+            const notes = document.getElementById('nodeNotes').value.trim();
+            
+            if (notes) {
+                notesData[nodeKey] = notes;
+                showToast('笔记已保存');
+            } else {
+                delete notesData[nodeKey];
+                showToast('笔记已清空');
+            }
+            
+            saveNotesData(notesData);
+            updateStatsPanel();
+        }
+
+        function updateLearnedNodesStyle() {
+            function traverse(node) {
+                const nodeKey = node.name.replace('\n', ' ');
+                if (learnData[nodeKey]) {
+                    node.itemStyle = { color: LEARNED_COLOR };
+                    node.symbolSize = node.symbolSize ? node.symbolSize + 5 : 20;
+                }
+                if (node.children) {
+                    for (const child of node.children) {
+                        traverse(child);
+                    }
+                }
+            }
+            traverse(currentGraphData);
+            renderChart();
         }
 
         function resetGraph() {
@@ -911,7 +1228,11 @@
         });
 
         currentGraphData = loadGraphData();
-        renderChart();
+        learnData = loadLearnData();
+        notesData = loadNotesData();
+        statsData = loadStatsData();
+        updateVisitStats();
+        updateLearnedNodesStyle();
     </script>
 </body>
 </html>
