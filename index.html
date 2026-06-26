@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>心理学全景学习 - 林远见路</title>
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/leancloud-storage@4.13.0/dist/av-min.js"></script>
+    <script src="js/leancloud.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body, html {
@@ -69,6 +71,104 @@
         .nav-links a.active {
             color: #6366f1;
             font-weight: 500;
+        }
+
+        .user-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .user-btn {
+            padding: 8px 16px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .user-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #f1f5f9;
+            font-size: 14px;
+        }
+
+        .logout-btn {
+            padding: 4px 12px;
+            background: transparent;
+            border: 1px solid #334155;
+            color: #94a3b8;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .logout-btn:hover {
+            border-color: #ef4444;
+            color: #ef4444;
+        }
+
+        .auth-form {
+            text-align: left;
+        }
+
+        .auth-form-group {
+            margin-bottom: 16px;
+        }
+
+        .auth-form-group label {
+            display: block;
+            font-size: 13px;
+            color: #94a3b8;
+            margin-bottom: 6px;
+        }
+
+        .auth-form-group input {
+            width: 100%;
+            padding: 10px 12px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid #334155;
+            border-radius: 8px;
+            color: #f1f5f9;
+            font-size: 14px;
+            font-family: inherit;
+            transition: border-color 0.2s;
+        }
+
+        .auth-form-group input:focus {
+            outline: none;
+            border-color: #6366f1;
+        }
+
+        .auth-switch {
+            font-size: 12px;
+            color: #6366f1;
+            cursor: pointer;
+            margin-top: 12px;
+            text-align: center;
+        }
+
+        .auth-switch:hover {
+            text-decoration: underline;
+        }
+
+        .auth-error {
+            color: #ef4444;
+            font-size: 12px;
+            margin-top: 8px;
+            display: none;
         }
 
         .hero-section {
@@ -717,6 +817,13 @@
             <a href="timeline.html">时间树</a>
             <a href="#host">主理人</a>
         </nav>
+        <div class="user-area">
+            <button id="userBtn" class="user-btn" onclick="showAuthModal()">登录 / 注册</button>
+            <div id="userInfo" class="user-info" style="display: none;">
+                <span id="userName">用户名</span>
+                <button class="logout-btn" onclick="logout()">退出</button>
+            </div>
+        </div>
     </header>
 
     <section class="hero-section">
@@ -844,6 +951,26 @@
             <h3 id="modal-title" class="modal-title"></h3>
             <p id="modal-desc" class="modal-desc"></p>
             <div id="modal-hint" class="modal-hint"></div>
+        </div>
+    </div>
+
+    <div id="auth-modal-overlay" class="modal-overlay" onclick="closeAuthModal()">
+        <div class="modal-content" onclick="event.stopPropagation()" style="max-width: 380px;">
+            <div class="modal-close" onclick="closeAuthModal()">×</div>
+            <h3 id="auth-modal-title" class="modal-title">用户登录</h3>
+            <div id="auth-form" class="auth-form">
+                <div class="auth-form-group">
+                    <label>用户名</label>
+                    <input type="text" id="auth-username" placeholder="请输入用户名">
+                </div>
+                <div class="auth-form-group">
+                    <label>密码</label>
+                    <input type="password" id="auth-password" placeholder="请输入密码">
+                </div>
+                <div class="auth-error" id="auth-error"></div>
+                <button class="card-btn" style="width: 100%; margin-top: 8px;" onclick="handleAuth()">登录</button>
+                <div class="auth-switch" onclick="switchAuthMode()">切换到注册</div>
+            </div>
         </div>
     </div>
 
@@ -1061,8 +1188,99 @@
         document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape') {
                 closeModal();
+                closeAuthModal();
             }
         });
+
+        var authMode = 'login';
+
+        async function checkUser() {
+            try {
+                if (window.LC && window.LC.getUser) {
+                    var user = window.LC.getUser();
+                    if (user) {
+                        document.getElementById('userBtn').style.display = 'none';
+                        document.getElementById('userInfo').style.display = 'flex';
+                        document.getElementById('userName').textContent = user.getUsername();
+                    } else {
+                        document.getElementById('userBtn').style.display = 'block';
+                        document.getElementById('userInfo').style.display = 'none';
+                    }
+                }
+            } catch (error) {
+                console.error('检查用户状态失败:', error);
+            }
+        }
+
+        function showAuthModal() {
+            document.getElementById('auth-modal-overlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeAuthModal() {
+            document.getElementById('auth-modal-overlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function switchAuthMode() {
+            if (authMode === 'login') {
+                authMode = 'register';
+                document.getElementById('auth-modal-title').textContent = '用户注册';
+                document.querySelector('.card-btn').textContent = '注册';
+                document.querySelector('.auth-switch').textContent = '切换到登录';
+            } else {
+                authMode = 'login';
+                document.getElementById('auth-modal-title').textContent = '用户登录';
+                document.querySelector('.card-btn').textContent = '登录';
+                document.querySelector('.auth-switch').textContent = '切换到注册';
+            }
+            document.getElementById('auth-error').style.display = 'none';
+        }
+
+        async function handleAuth() {
+            var username = document.getElementById('auth-username').value.trim();
+            var password = document.getElementById('auth-password').value.trim();
+            var errorEl = document.getElementById('auth-error');
+
+            if (!username || !password) {
+                errorEl.textContent = '请输入用户名和密码';
+                errorEl.style.display = 'block';
+                return;
+            }
+
+            try {
+                if (authMode === 'login') {
+                    await window.LC.login(username, password);
+                } else {
+                    await window.LC.register(username, password);
+                }
+                
+                closeAuthModal();
+                checkUser();
+                
+                if (authMode === 'login') {
+                    alert('登录成功！');
+                } else {
+                    alert('注册成功！请登录');
+                    switchAuthMode();
+                }
+            } catch (error) {
+                errorEl.textContent = error.message;
+                errorEl.style.display = 'block';
+            }
+        }
+
+        async function logout() {
+            try {
+                await window.LC.logout();
+                checkUser();
+                alert('已退出登录');
+            } catch (error) {
+                console.error('退出失败:', error);
+            }
+        }
+
+        checkUser();
     </script>
 
 </body>
