@@ -6,6 +6,11 @@
     <title>心理学全景学习 - 林远见路</title>
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
     <script src="https://imgcache.qq.com/qcloud/cloudbase-js-sdk/1.7.0/cloudbase.full.js"></script>
+    <script>
+        if (typeof tcb === 'undefined') {
+            console.warn('CloudBase SDK未加载，将使用本地存储模式');
+        }
+    </script>
     <script src="js/cloudbase.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
