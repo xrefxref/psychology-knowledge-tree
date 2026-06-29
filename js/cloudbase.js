@@ -72,7 +72,7 @@ var CloudBase = (function() {
             return new Promise(function(resolve, reject) {
                 auth.createUserWithEmailAndPassword(username + '@psychology.com', password)
                     .then(function(user) {
-                        db.collection('users').add({
+                        db.collection('psy_users').add({
                             username: username,
                             uid: user.uid,
                             createdAt: new Date().toISOString()
@@ -113,18 +113,18 @@ var CloudBase = (function() {
                 return Promise.reject('请先登录');
             }
             init();
-            return db.collection('learn_progress').where({
+            return db.collection('psy_learn_progress').where({
                 uid: currentUser.uid,
                 nodeKey: nodeKey
             }).get().then(function(res) {
                 if (res.data.length > 0) {
-                    return db.collection('learn_progress').doc(res.data[0]._id).update({
+                    return db.collection('psy_learn_progress').doc(res.data[0]._id).update({
                         learned: learned,
                         notes: notes || '',
                         updatedAt: new Date().toISOString()
                     });
                 } else {
-                    return db.collection('learn_progress').add({
+                    return db.collection('psy_learn_progress').add({
                         uid: currentUser.uid,
                         nodeKey: nodeKey,
                         learned: learned,
@@ -145,7 +145,7 @@ var CloudBase = (function() {
                 return Promise.resolve(null);
             }
             init();
-            return db.collection('learn_progress').where({
+            return db.collection('psy_learn_progress').where({
                 uid: currentUser.uid,
                 nodeKey: nodeKey
             }).get().then(function(res) {
@@ -158,7 +158,7 @@ var CloudBase = (function() {
                 return Promise.resolve([]);
             }
             init();
-            return db.collection('learn_progress').where({
+            return db.collection('psy_learn_progress').where({
                 uid: currentUser.uid
             }).get().then(function(res) {
                 return res.data || [];
@@ -171,17 +171,17 @@ var CloudBase = (function() {
                 return Promise.reject('请先登录');
             }
             init();
-            return db.collection('notes').where({
+            return db.collection('psy_notes').where({
                 uid: currentUser.uid,
                 nodeKey: nodeKey
             }).get().then(function(res) {
                 if (res.data.length > 0) {
-                    return db.collection('notes').doc(res.data[0]._id).update({
+                    return db.collection('psy_notes').doc(res.data[0]._id).update({
                         content: content,
                         updatedAt: new Date().toISOString()
                     });
                 } else {
-                    return db.collection('notes').add({
+                    return db.collection('psy_notes').add({
                         uid: currentUser.uid,
                         nodeKey: nodeKey,
                         content: content,
@@ -201,7 +201,7 @@ var CloudBase = (function() {
                 return Promise.resolve(null);
             }
             init();
-            return db.collection('notes').where({
+            return db.collection('psy_notes').where({
                 uid: currentUser.uid,
                 nodeKey: nodeKey
             }).get().then(function(res) {
@@ -215,11 +215,11 @@ var CloudBase = (function() {
                 return Promise.reject('请先登录');
             }
             init();
-            return db.collection('users').where({
+            return db.collection('psy_users').where({
                 uid: currentUser.uid
             }).get().then(function(res) {
                 var username = res.data.length > 0 ? res.data[0].username : '匿名用户';
-                return db.collection('comments').add({
+                return db.collection('psy_comments').add({
                     uid: currentUser.uid,
                     content: content,
                     username: username,
@@ -235,7 +235,7 @@ var CloudBase = (function() {
 
         getComments: function(limit, skip) {
             init();
-            return db.collection('comments').orderBy('createdAt', 'desc')
+            return db.collection('psy_comments').orderBy('createdAt', 'desc')
                 .limit(limit || 20)
                 .skip(skip || 0)
                 .get().then(function(res) {
@@ -248,7 +248,7 @@ var CloudBase = (function() {
                 return Promise.resolve({ total: 0, learned: 0 });
             }
             init();
-            return db.collection('learn_progress').where({
+            return db.collection('psy_learn_progress').where({
                 uid: currentUser.uid
             }).get().then(function(res) {
                 var data = res.data || [];
