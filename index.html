@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>心理学全景学习 - 林远见路</title>
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/leancloud-storage@4.13.0/dist/av-min.js"></script>
-    <script src="js/leancloud.js"></script>
+    <script src="https://imgcache.qq.com/qcloud/cloudbase-js-sdk/1.7.0/cloudbase.full.js"></script>
+    <script src="js/cloudbase.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body, html {
@@ -758,6 +758,16 @@
             font-size: 12px;
         }
 
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+
+        @keyframes fadeOutUp {
+            from { opacity: 1; transform: translateX(-50%) translateY(0); }
+            to { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+        }
+
         @media (max-width: 768px) {
             .header {
                 padding: 12px 20px;
@@ -1196,16 +1206,14 @@
 
         async function checkUser() {
             try {
-                if (window.LC && window.LC.getUser) {
-                    var user = window.LC.getUser();
-                    if (user) {
-                        document.getElementById('userBtn').style.display = 'none';
-                        document.getElementById('userInfo').style.display = 'flex';
-                        document.getElementById('userName').textContent = user.getUsername();
-                    } else {
-                        document.getElementById('userBtn').style.display = 'block';
-                        document.getElementById('userInfo').style.display = 'none';
-                    }
+                var user = window.CloudBase.getUser();
+                if (user) {
+                    document.getElementById('userBtn').style.display = 'none';
+                    document.getElementById('userInfo').style.display = 'flex';
+                    document.getElementById('userName').textContent = user.email ? user.email.split('@')[0] : '用户';
+                } else {
+                    document.getElementById('userBtn').style.display = 'block';
+                    document.getElementById('userInfo').style.display = 'none';
                 }
             } catch (error) {
                 console.error('检查用户状态失败:', error);
@@ -1250,34 +1258,22 @@
 
             try {
                 if (authMode === 'login') {
-                    await window.LC.login(username, password);
+                    await window.CloudBase.login(username, password);
                 } else {
-                    await window.LC.register(username, password);
+                    await window.CloudBase.register(username, password);
                 }
                 
                 closeAuthModal();
                 checkUser();
-                
-                if (authMode === 'login') {
-                    alert('登录成功！');
-                } else {
-                    alert('注册成功！请登录');
-                    switchAuthMode();
-                }
             } catch (error) {
-                errorEl.textContent = error.message;
+                errorEl.textContent = error.message || '操作失败';
                 errorEl.style.display = 'block';
             }
         }
 
-        async function logout() {
-            try {
-                await window.LC.logout();
-                checkUser();
-                alert('已退出登录');
-            } catch (error) {
-                console.error('退出失败:', error);
-            }
+        function logout() {
+            window.CloudBase.logout();
+            checkUser();
         }
 
         checkUser();
