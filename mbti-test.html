@@ -604,6 +604,7 @@
 
       <div class="btn-group">
         <button class="btn btn-primary" onclick="startTest()">开始测试</button>
+        <button class="btn btn-secondary" onclick="viewAllTypes()">查看所有类型分析</button>
       </div>
     </div>
 
@@ -890,6 +891,24 @@ function startTest() {
   document.getElementById('welcomeSection').classList.add('hidden');
   document.getElementById('questionSection').classList.remove('hidden');
   renderQuestion();
+}
+
+function viewAllTypes() {
+  document.getElementById('welcomeSection').classList.add('hidden');
+  document.getElementById('questionSection').classList.add('hidden');
+  document.getElementById('resultSection').classList.remove('hidden');
+  
+  document.getElementById('resultType').textContent = 'MBTI';
+  document.getElementById('resultTitle').textContent = '16种人格类型详解';
+  document.getElementById('resultDesc').textContent = '点击下方任意类型，查看该类型的详细分析，包括核心特质、优势、潜在挑战、适合职业等信息。';
+  
+  const scoreGrid = document.getElementById('scoreGrid');
+  scoreGrid.innerHTML = '<div style="grid-column: 1 / -1; text-align: center; color: #94a3b8; padding: 20px;">直接浏览模式 - 点击下方类型卡片查看详细分析</div>';
+  
+  renderTypeGrid('');
+  renderDetail('INTJ');
+  
+  document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function renderQuestion() {
