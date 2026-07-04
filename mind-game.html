@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>心灵守护 - CBT思维挑战游戏</title>
+    <link rel="icon" href="favicon.ico">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body, html {
+            width: 100%;
+            min-height: 100%;
+            background: linear-gradient(135deg, #0f172a, #1e1b4b);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+            overflow-x: hidden;
+            color: #f1f5f9;
+        }
+
+        .header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            padding: 16px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #1e293b;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 18px;
+            font-weight: 700;
+            color: #f8fafc;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 28px; height: 28px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover { color: #f1f5f9; }
+        .nav-links a.active { color: #6366f1; font-weight: 500; }
+
+        .container {
+            padding-top: 100px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .screen {
+            display: none;
+            width: 100%;
+            max-width: 800px;
+            padding: 40px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .screen.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .welcome-screen {
+            text-align: center;
+        }
+
+        .welcome-icon {
+            width: 120px; height: 120px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6, #a855f7);
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            animation: pulse 2s infinite;
+            box-shadow: 0 0 60px rgba(99, 102, 241, 0.4);
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 60px rgba(99, 102, 241, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 0 80px rgba(99, 102, 241, 0.6); }
+        }
+
+        .welcome-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: #f8fafc;
+            margin-bottom: 16px;
+        }
+
+        .welcome-subtitle {
+            font-size: 18px;
+            color: #94a3b8;
+            margin-bottom: 40px;
+        }
+
+        .welcome-card {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .welcome-card h3 {
+            font-size: 16px;
+            color: #6366f1;
+            margin-bottom: 16px;
+        }
+
+        .welcome-card p {
+            color: #cbd5e1;
+            font-size: 14px;
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+
+        .cbt-types {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .cbt-type {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            color: #94a3b8;
+        }
+
+        .btn-start {
+            padding: 14px 48px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+
+        .btn-start:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4);
+        }
+
+        .game-screen {
+            display: none;
+        }
+
+        .game-screen.active {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 30px;
+            padding: 16px 20px;
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: 12px;
+        }
+
+        .game-header-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .game-header-item span {
+            font-size: 14px;
+            color: #94a3b8;
+        }
+
+        .score-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #10b981;
+        }
+
+        .level-value {
+            font-size: 20px;
+            font-weight: 600;
+            color: #f59e0b;
+        }
+
+        .timer-value {
+            font-size: 20px;
+            font-weight: 600;
+            color: #ef4444;
+        }
+
+        .game-area {
+            width: 100%;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .thought-bubble {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(239, 68, 68, 0.05));
+            border: 2px solid #ef4444;
+            border-radius: 24px;
+            padding: 32px 40px;
+            font-size: 20px;
+            color: #fca5a5;
+            text-align: center;
+            max-width: 600px;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: bubbleAppear 0.5s ease;
+            position: relative;
+            box-shadow: 0 0 40px rgba(239, 68, 68, 0.2);
+        }
+
+        .thought-bubble::before {
+            content: '💭';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 24px;
+        }
+
+        @keyframes bubbleAppear {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .thought-bubble.correct {
+            animation: correctPulse 0.5s ease;
+            border-color: #10b981;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(16, 185, 129, 0.05));
+            color: #86efac;
+            box-shadow: 0 0 40px rgba(16, 185, 129, 0.3);
+        }
+
+        .thought-bubble.wrong {
+            animation: wrongShake 0.5s ease;
+            border-color: #ef4444;
+            box-shadow: 0 0 40px rgba(239, 68, 68, 0.4);
+        }
+
+        @keyframes correctPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes wrongShake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        .options-area {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .option-btn {
+            padding: 20px 24px;
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid #334155;
+            border-radius: 12px;
+            color: #cbd5e1;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: left;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .option-btn:hover {
+            border-color: #6366f1;
+            background: rgba(99, 102, 241, 0.1);
+            transform: translateX(8px);
+        }
+
+        .option-btn.correct {
+            border-color: #10b981;
+            background: rgba(16, 185, 129, 0.15);
+            color: #86efac;
+        }
+
+        .option-btn.wrong {
+            border-color: #ef4444;
+            background: rgba(239, 68, 68, 0.15);
+            color: #fca5a5;
+        }
+
+        .option-icon {
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            background: rgba(99, 102, 241, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .option-btn:hover .option-icon {
+            background: #6366f1;
+        }
+
+        .option-btn.correct .option-icon {
+            background: #10b981;
+            content: '✓';
+        }
+
+        .option-btn.wrong .option-icon {
+            background: #ef4444;
+            content: '✗';
+        }
+
+        .feedback-area {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 12px;
+            display: none;
+        }
+
+        .feedback-area.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .feedback-title {
+            font-size: 14px;
+            color: #10b981;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .feedback-text {
+            font-size: 13px;
+            color: #94a3b8;
+            line-height: 1.6;
+        }
+
+        .result-screen {
+            text-align: center;
+        }
+
+        .result-icon {
+            width: 120px; height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+        }
+
+        .result-icon.excellent {
+            background: linear-gradient(135deg, #10b981, #34d399);
+            box-shadow: 0 0 60px rgba(16, 185, 129, 0.4);
+        }
+
+        .result-icon.good {
+            background: linear-gradient(135deg, #f59e0b, #fbbf24);
+            box-shadow: 0 0 60px rgba(245, 158, 11, 0.4);
+        }
+
+        .result-icon.needmore {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            box-shadow: 0 0 60px rgba(99, 102, 241, 0.4);
+        }
+
+        .result-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #f8fafc;
+            margin-bottom: 16px;
+        }
+
+        .result-score {
+            font-size: 48px;
+            font-weight: 700;
+            color: #6366f1;
+            margin-bottom: 8px;
+        }
+
+        .result-label {
+            font-size: 16px;
+            color: #94a3b8;
+            margin-bottom: 40px;
+        }
+
+        .skill-summary {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .skill-summary h3 {
+            font-size: 18px;
+            color: #f8fafc;
+            margin-bottom: 20px;
+        }
+
+        .skill-item {
+            margin-bottom: 16px;
+            padding: 16px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 8px;
+        }
+
+        .skill-item h4 {
+            font-size: 14px;
+            color: #6366f1;
+            margin-bottom: 8px;
+        }
+
+        .skill-item p {
+            font-size: 13px;
+            color: #94a3b8;
+            line-height: 1.6;
+        }
+
+        .reality-tips {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 30px;
+        }
+
+        .reality-tips h3 {
+            font-size: 16px;
+            color: #10b981;
+            margin-bottom: 12px;
+        }
+
+        .reality-tips ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .reality-tips li {
+            font-size: 14px;
+            color: #cbd5e1;
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .reality-tips li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #10b981;
+        }
+
+        .btn-restart {
+            padding: 14px 48px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-right: 16px;
+        }
+
+        .btn-restart:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-home {
+            padding: 14px 32px;
+            background: transparent;
+            color: #94a3b8;
+            border: 1px solid #334155;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-home:hover {
+            border-color: #6366f1;
+            color: #f1f5f9;
+        }
+
+        @media (max-width: 768px) {
+            .header { padding: 12px 20px; }
+            .nav-links { gap: 12px; }
+            .container { padding-top: 80px; }
+            .screen { padding: 20px; }
+            .welcome-title { font-size: 28px; }
+            .cbt-types { grid-template-columns: 1fr; }
+            .thought-bubble { font-size: 16px; padding: 24px; }
+            .option-btn { padding: 16px; font-size: 14px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <div class="logo-icon">🧠</div>
+            <span>心灵守护</span>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html">首页</a>
+            <a href="knowledge-map.html">知识图谱</a>
+            <a href="timeline.html">时间树</a>
+            <a href="mbti-test.html">MBTI测试</a>
+            <a href="sparx.html">游戏治疗</a>
+            <a href="mind-game.html" class="active">思维挑战</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div id="welcome-screen" class="screen active">
+            <div class="welcome-icon">⚔️</div>
+            <h1 class="welcome-title">心灵守护 - CBT思维挑战</h1>
+            <p class="welcome-subtitle">识别并击败消极思维，建立积极认知模式</p>
+            
+            <div class="welcome-card">
+                <h3>🎮 游戏规则</h3>
+                <p>屏幕上会出现各种消极想法（GNATS），它们会像飞虫一样不断骚扰你。你需要：</p>
+                <p><strong>1.</strong> 识别这个想法属于哪种认知扭曲类型</p>
+                <p><strong>2.</strong> 选择最恰当的理性回应来"击碎"它</p>
+                <p><strong>3.</strong> 每关有60秒时间，答对得分，答错扣分</p>
+                
+                <div class="cbt-types">
+                    <div class="cbt-type"><strong>灾难化</strong><br>把事情想象得最坏</div>
+                    <div class="cbt-type"><strong>过度概括</strong><br>一次失败代表永远失败</div>
+                    <div class="cbt-type"><strong>非黑即白</strong><br>要么完美要么一无是处</div>
+                    <div class="cbt-type"><strong>个人化</strong><br>把所有问题归咎于自己</div>
+                </div>
+            </div>
+
+            <button class="btn-start" onclick="startGame()">开始挑战</button>
+        </div>
+
+        <div id="game-screen" class="game-screen">
+            <div class="game-header">
+                <div class="game-header-item">
+                    <span>关卡</span>
+                    <span id="level-display" class="level-value">1</span>
+                </div>
+                <div class="game-header-item">
+                    <span>得分</span>
+                    <span id="score-display" class="score-value">0</span>
+                </div>
+                <div class="game-header-item">
+                    <span>时间</span>
+                    <span id="timer-display" class="timer-value">60</span>
+                </div>
+            </div>
+
+            <div class="game-area">
+                <div id="thought-bubble" class="thought-bubble"></div>
+            </div>
+
+            <div class="options-area" id="options-area"></div>
+
+            <div class="feedback-area" id="feedback-area">
+                <div class="feedback-title" id="feedback-title"></div>
+                <div class="feedback-text" id="feedback-text"></div>
+            </div>
+        </div>
+
+        <div id="result-screen" class="screen">
+            <div id="result-icon" class="result-icon">🏆</div>
+            <h1 class="result-title" id="result-title">挑战完成！</h1>
+            <div class="result-score" id="result-score">0</div>
+            <p class="result-label" id="result-label">最终得分</p>
+
+            <div class="skill-summary">
+                <h3>💡 你学到的CBT技能</h3>
+                <div class="skill-item">
+                    <h4>识别自动化负性思维</h4>
+                    <p>学会识别那些自动跳入脑海的消极想法，它们往往不是事实，只是大脑的习惯性反应。</p>
+                </div>
+                <div class="skill-item">
+                    <h4>思维解离</h4>
+                    <p>明白"想法不是事实"，你可以观察自己的想法而不认同它们，就像看着天空中的云朵飘过。</p>
+                </div>
+                <div class="skill-item">
+                    <h4>认知重构</h4>
+                    <p>用更理性、更平衡的方式重新看待事物，将"我不行"转化为"我可以试试看"。</p>
+                </div>
+            </div>
+
+            <div class="reality-tips">
+                <h3>🌱 现实生活迁移建议</h3>
+                <ul>
+                    <li>每天记录3个出现的消极想法，分析它们属于哪种认知扭曲</li>
+                    <li>当消极想法出现时，问自己："这是事实还是想法？"</li>
+                    <li>练习用"我现在有一个想法是……"来描述，而不是直接认同它</li>
+                    <li>将理性回应写下来，重复阅读直到成为习惯</li>
+                </ul>
+            </div>
+
+            <button class="btn-restart" onclick="startGame()">再来一次</button>
+            <button class="btn-home" onclick="showScreen('welcome-screen')">返回首页</button>
+        </div>
+    </div>
+
+    <script>
+        const thoughtData = [
+            {
+                thought: "我这次考试没考好，我真是一个失败者。",
+                type: "过度概括",
+                options: [
+                    "一次考试不代表全部，我可以分析错题改进。",
+                    "我就是笨，永远学不好。",
+                    "老师肯定觉得我很差。"
+                ],
+                correct: 0,
+                feedback: "这是典型的过度概括——一次失败被放大成了'永远失败'。记住：一次考试成绩 ≠ 你的全部能力。"
+            },
+            {
+                thought: "朋友今天没理我，他一定讨厌我了。",
+                type: "个人化",
+                options: [
+                    "他可能今天很忙或者心情不好，不一定和我有关。",
+                    "我肯定做错了什么，他再也不想理我了。",
+                    "我这个人就是不招人喜欢。"
+                ],
+                correct: 0,
+                feedback: "这是个人化思维——把别人的行为都归因于自己。其实每个人都有自己的事情，不要轻易把责任揽到自己身上。"
+            },
+            {
+                thought: "如果我在会议上发言说错了，大家都会嘲笑我，我的职业生涯就完了。",
+                type: "灾难化",
+                options: [
+                    "说错话很正常，大家会理解的，这是学习的机会。",
+                    "我一定会出丑，所有人都会看不起我。",
+                    "我还是不要发言了，省得丢人。"
+                ],
+                correct: 0,
+                feedback: "这是灾难化思维——把事情想象得最坏。实际上，绝大多数人都很宽容，一个小错误并不会毁掉你的职业生涯。"
+            },
+            {
+                thought: "我必须做到完美，否则我就是个废物。",
+                type: "非黑即白",
+                options: [
+                    "完美是不存在的，进步比完美更重要。",
+                    "做不到完美就没有价值。",
+                    "我要么做到最好，要么干脆不做。"
+                ],
+                correct: 0,
+                feedback: "这是非黑即白的思维——把事情分成绝对的两极。实际上，大多数事情都有灰色地带，接受不完美是成长的第一步。"
+            },
+            {
+                thought: "我什么都做不好，我真是一无是处。",
+                type: "过度概括",
+                options: [
+                    "我只是在这件事上遇到了困难，其他方面我还是很擅长的。",
+                    "我就是个没用的人，活着都没意义。",
+                    "所有人都比我强。"
+                ],
+                correct: 0,
+                feedback: "这是过度概括——用一个点否定了全部。每个人都有自己的优点和擅长的领域，不要因为一时的挫折否定自己的全部价值。"
+            },
+            {
+                thought: "大家都在看我，他们一定觉得我很奇怪。",
+                type: "个人化",
+                options: [
+                    "人们更关注自己，并没有那么多人在注意我。",
+                    "我肯定哪里不对劲，大家都在嘲笑我。",
+                    "我应该躲起来，不让别人看到我。"
+                ],
+                correct: 0,
+                feedback: "这是个人化思维——过度关注自己在别人眼中的形象。实际上，每个人最关心的都是自己，没有人会像你想象的那样关注你的一举一动。"
+            },
+            {
+                thought: "如果我拒绝别人，他们就会讨厌我，我会孤独终老。",
+                type: "灾难化",
+                options: [
+                    "健康的边界是关系的基础，真正的朋友会理解我的拒绝。",
+                    "我不能拒绝任何人，否则就没人喜欢我了。",
+                    "拒绝一次就会失去所有朋友。"
+                ],
+                correct: 0,
+                feedback: "这是灾难化思维——把拒绝的后果无限放大。实际上，健康的人际关系需要相互尊重，合理的拒绝不会毁掉你的社交生活。"
+            },
+            {
+                thought: "我这次演讲表现一般，我的演讲能力就是不行。",
+                type: "非黑即白",
+                options: [
+                    "表现一般不代表能力不行，我可以通过练习提高。",
+                    "要么完美要么就放弃，我不适合演讲。",
+                    "我天生就不是演讲的料。"
+                ],
+                correct: 0,
+                feedback: "这是非黑即白的思维——把一次表现等同于全部能力。演讲是一项技能，可以通过学习和练习不断提升，一次普通的表现说明不了什么。"
+            },
+            {
+                thought: "老板今天脸色不好，一定是我做错了什么。",
+                type: "个人化",
+                options: [
+                    "老板可能有其他事情困扰他，不一定和我有关。",
+                    "我肯定搞砸了什么项目，老板要开除我了。",
+                    "我总是做错事，让别人不高兴。"
+                ],
+                correct: 0,
+                feedback: "这是个人化思维——把别人的情绪都归因于自己。老板的情绪可能来自工作压力、家庭问题等多种原因，不要轻易自我归因。"
+            },
+            {
+                thought: "如果我表白被拒绝，那我这辈子都找不到对象了。",
+                type: "灾难化",
+                options: [
+                    "一次拒绝只是说明我们不合适，还有很多机会。",
+                    "被拒绝就说明我不配被爱，永远孤独。",
+                    "我还是不要表白了，省得被羞辱。"
+                ],
+                correct: 0,
+                feedback: "这是灾难化思维——把一次拒绝的后果无限放大。实际上，感情需要双方的意愿，一次拒绝只是人生中的一个小插曲，不代表你的全部。"
+            },
+            {
+                thought: "我今天状态不好，什么都没完成，我真是浪费时间。",
+                type: "过度概括",
+                options: [
+                    "状态不好是暂时的，休息也是重要的，明天可以继续。",
+                    "我就是个懒惰的人，永远一事无成。",
+                    "别人都在进步，只有我在退步。"
+                ],
+                correct: 0,
+                feedback: "这是过度概括——用一天的状态否定了全部。每个人都有状态不好的时候，给自己一些宽容和休息的时间，才是长久之道。"
+            },
+            {
+                thought: "要么瘦要么死，我必须达到理想体重否则就没价值。",
+                type: "非黑即白",
+                options: [
+                    "健康比数字更重要，我的价值不取决于体重秤。",
+                    "达不到理想体重我就不配活着。",
+                    "胖就是罪恶，瘦才是美德。"
+                ],
+                correct: 0,
+                feedback: "这是非黑即白的思维——把体重和个人价值划等号。你的价值在于你的品格、才华和贡献，而不是身体上的数字。"
+            }
+        ];
+
+        let currentLevel = 1;
+        let score = 0;
+        let timeLeft = 60;
+        let timer = null;
+        let currentQuestionIndex = 0;
+        let usedQuestions = [];
+        let isAnswering = false;
+
+        function getRandomQuestion() {
+            let available = thoughtData.filter((_, i) => !usedQuestions.includes(i));
+            if (available.length === 0) {
+                usedQuestions = [];
+                available = thoughtData;
+            }
+            const randomIndex = Math.floor(Math.random() * available.length);
+            const questionIndex = thoughtData.indexOf(available[randomIndex]);
+            usedQuestions.push(questionIndex);
+            return thoughtData[questionIndex];
+        }
+
+        function startGame() {
+            currentLevel = 1;
+            score = 0;
+            timeLeft = 60;
+            usedQuestions = [];
+            isAnswering = false;
+            
+            showScreen('game-screen');
+            updateGameHeader();
+            loadQuestion();
+            startTimer();
+        }
+
+        function showScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.game-screen').forEach(s => s.style.display = 'none');
+            document.getElementById(screenId).classList.add('active');
+            if (screenId === 'game-screen') {
+                document.getElementById('game-screen').style.display = 'flex';
+            }
+        }
+
+        function updateGameHeader() {
+            document.getElementById('level-display').textContent = currentLevel;
+            document.getElementById('score-display').textContent = score;
+            document.getElementById('timer-display').textContent = timeLeft;
+        }
+
+        function startTimer() {
+            if (timer) clearInterval(timer);
+            timer = setInterval(() => {
+                timeLeft--;
+                updateGameHeader();
+                
+                const timerDisplay = document.getElementById('timer-display');
+                if (timeLeft <= 10) {
+                    timerDisplay.style.color = '#ef4444';
+                    timerDisplay.style.animation = 'pulse 0.5s infinite';
+                }
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    endGame();
+                }
+            }, 1000);
+        }
+
+        function loadQuestion() {
+            const question = getRandomQuestion();
+            const bubble = document.getElementById('thought-bubble');
+            const optionsArea = document.getElementById('options-area');
+            const feedbackArea = document.getElementById('feedback-area');
+            
+            bubble.textContent = question.thought;
+            bubble.className = 'thought-bubble';
+            feedbackArea.classList.remove('show');
+            optionsArea.innerHTML = '';
+            
+            question.options.forEach((option, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.innerHTML = `<span class="option-icon">${String.fromCharCode(65 + index)}</span><span>${option}</span>`;
+                btn.onclick = () => checkAnswer(question, index, btn);
+                optionsArea.appendChild(btn);
+            });
+        }
+
+        function checkAnswer(question, selectedIndex, btn) {
+            if (isAnswering) return;
+            isAnswering = true;
+            
+            const bubble = document.getElementById('thought-bubble');
+            const feedbackArea = document.getElementById('feedback-area');
+            const feedbackTitle = document.getElementById('feedback-title');
+            const feedbackText = document.getElementById('feedback-text');
+            
+            const options = document.querySelectorAll('.option-btn');
+            
+            options.forEach((opt, idx) => {
+                if (idx === question.correct) {
+                    opt.classList.add('correct');
+                    opt.querySelector('.option-icon').textContent = '✓';
+                } else if (idx === selectedIndex) {
+                    opt.classList.add('wrong');
+                    opt.querySelector('.option-icon').textContent = '✗';
+                }
+                opt.disabled = true;
+            });
+            
+            if (selectedIndex === question.correct) {
+                score += 10;
+                bubble.classList.add('correct');
+                feedbackTitle.textContent = '✅ 回答正确！';
+            } else {
+                score = Math.max(0, score - 5);
+                bubble.classList.add('wrong');
+                feedbackTitle.textContent = '❌ 回答错误';
+            }
+            
+            feedbackText.textContent = question.feedback;
+            feedbackArea.classList.add('show');
+            updateGameHeader();
+            
+            if (score >= currentLevel * 30) {
+                currentLevel++;
+                timeLeft = Math.min(60, timeLeft + 10);
+                updateGameHeader();
+            }
+            
+            setTimeout(() => {
+                isAnswering = false;
+                loadQuestion();
+            }, 2000);
+        }
+
+        function endGame() {
+            clearInterval(timer);
+            showScreen('result-screen');
+            
+            const resultScore = document.getElementById('result-score');
+            const resultIcon = document.getElementById('result-icon');
+            const resultTitle = document.getElementById('result-title');
+            const resultLabel = document.getElementById('result-label');
+            
+            resultScore.textContent = score;
+            
+            if (score >= 80) {
+                resultIcon.className = 'result-icon excellent';
+                resultIcon.textContent = '🏆';
+                resultTitle.textContent = '太棒了！';
+                resultLabel.textContent = '你已经掌握了识别和挑战消极思维的技巧！';
+            } else if (score >= 50) {
+                resultIcon.className = 'result-icon good';
+                resultIcon.textContent = '👍';
+                resultTitle.textContent = '做得不错！';
+                resultLabel.textContent = '继续练习，你会越来越熟练！';
+            } else {
+                resultIcon.className = 'result-icon needmore';
+                resultIcon.textContent = '💪';
+                resultTitle.textContent = '继续加油！';
+                resultLabel.textContent = '识别消极思维需要练习，多玩几次吧！';
+            }
+        }
+    </script>
+</body>
+</html>
