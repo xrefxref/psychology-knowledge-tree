@@ -76,7 +76,7 @@
   }
 
   .test-container {
-    max-width: 700px;
+    max-width: 900px;
     margin: 0 auto;
     padding: 40px 24px;
   }
@@ -103,100 +103,26 @@
   .section-subtitle {
     font-size: 14px;
     color: #94a3b8;
-    margin-bottom: 24px;
-  }
-
-  .dimension-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-    margin-bottom: 24px;
-  }
-
-  .dimension-card {
-    background: rgba(51, 65, 85, 0.3);
-    border-radius: 10px;
-    padding: 16px;
-    text-align: center;
-    border: 1px solid #334155;
-  }
-
-  .dimension-letter {
-    font-size: 24px;
-    font-weight: 700;
-    color: #6366f1;
-    margin-bottom: 4px;
-  }
-
-  .dimension-name {
-    font-size: 12px;
-    color: #94a3b8;
-  }
-
-  .dimension-desc {
-    font-size: 10px;
-    color: #64748b;
-    margin-top: 4px;
-  }
-
-  .btn {
-    padding: 12px 32px;
-    border-radius: 10px;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    border: none;
-  }
-
-  .btn-primary {
-    background: linear-gradient(135deg, #6366f1, #8b5cf6);
-    color: white;
-  }
-
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.3);
-  }
-
-  .btn-secondary {
-    background: rgba(51, 65, 85, 0.5);
-    color: #94a3b8;
-    border: 1px solid #334155;
-  }
-
-  .btn-secondary:hover {
-    background: rgba(51, 65, 85, 0.8);
-    color: #f1f5f9;
-  }
-
-  .btn-group {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    margin-top: 24px;
   }
 
   .progress-bar {
-    width: 100%;
-    height: 8px;
+    height: 6px;
     background: rgba(51, 65, 85, 0.5);
-    border-radius: 999px;
+    border-radius: 3px;
+    margin-bottom: 20px;
     overflow: hidden;
-    margin-bottom: 24px;
   }
 
   .progress-fill {
     height: 100%;
     background: linear-gradient(90deg, #6366f1, #8b5cf6);
-    border-radius: 999px;
+    border-radius: 3px;
     transition: width 0.3s ease;
   }
 
   .question-number {
     font-size: 13px;
-    color: #6366f1;
-    font-weight: 600;
+    color: #64748b;
     margin-bottom: 16px;
     display: flex;
     align-items: center;
@@ -323,45 +249,14 @@
     transition: width 0.5s ease;
   }
 
-  .score-segment.e {
-    background: #3b82f6;
-    border-radius: 4px 0 0 4px;
-  }
-
-  .score-segment.i {
-    background: #8b5cf6;
-    border-radius: 0 4px 4px 0;
-  }
-
-  .score-segment.s {
-    background: #10b981;
-    border-radius: 4px 0 0 4px;
-  }
-
-  .score-segment.n {
-    background: #f59e0b;
-    border-radius: 0 4px 4px 0;
-  }
-
-  .score-segment.t {
-    background: #ef4444;
-    border-radius: 4px 0 0 4px;
-  }
-
-  .score-segment.f {
-    background: #ec4899;
-    border-radius: 0 4px 4px 0;
-  }
-
-  .score-segment.j {
-    background: #06b6d4;
-    border-radius: 4px 0 0 4px;
-  }
-
-  .score-segment.p {
-    background: #84cc16;
-    border-radius: 0 4px 4px 0;
-  }
+  .score-segment.e { background: #3b82f6; border-radius: 4px 0 0 4px; }
+  .score-segment.i { background: #8b5cf6; border-radius: 0 4px 4px 0; }
+  .score-segment.s { background: #10b981; border-radius: 4px 0 0 4px; }
+  .score-segment.n { background: #f59e0b; border-radius: 0 4px 4px 0; }
+  .score-segment.t { background: #ef4444; border-radius: 4px 0 0 4px; }
+  .score-segment.f { background: #ec4899; border-radius: 0 4px 4px 0; }
+  .score-segment.j { background: #06b6d4; border-radius: 4px 0 0 4px; }
+  .score-segment.p { background: #84cc16; border-radius: 0 4px 4px 0; }
 
   .score-values {
     display: flex;
@@ -378,15 +273,22 @@
   }
 
   .type-item {
-    padding: 8px 12px;
+    padding: 10px 12px;
     border-radius: 8px;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 600;
     text-align: center;
     background: rgba(51, 65, 85, 0.3);
     color: #94a3b8;
     border: 1px solid #334155;
     transition: all 0.2s;
+    cursor: pointer;
+  }
+
+  .type-item:hover {
+    background: rgba(99, 102, 241, 0.2);
+    color: #6366f1;
+    border-color: #6366f1;
   }
 
   .type-item.active {
@@ -395,9 +297,131 @@
     border-color: #6366f1;
   }
 
-  .hidden {
-    display: none;
+  .detail-section {
+    background: rgba(30, 41, 59, 0.9);
+    border: 1px solid #334155;
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 24px;
+    animation: fadeIn 0.4s ease;
   }
+
+  .detail-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #334155;
+  }
+
+  .detail-type {
+    font-size: 40px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .detail-name {
+    font-size: 20px;
+    font-weight: 600;
+    color: #f8fafc;
+  }
+
+  .detail-desc {
+    font-size: 14px;
+    color: #94a3b8;
+    line-height: 1.6;
+  }
+
+  .detail-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+
+  .detail-card {
+    background: rgba(51, 65, 85, 0.3);
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid #334155;
+  }
+
+  .detail-card h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #6366f1;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .detail-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .detail-card li {
+    font-size: 13px;
+    color: #cbd5e1;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(71, 85, 105, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .detail-card li:last-child {
+    border-bottom: none;
+  }
+
+  .detail-card li::before {
+    content: '✓';
+    color: #10b981;
+    font-size: 12px;
+  }
+
+  .detail-text {
+    font-size: 14px;
+    color: #cbd5e1;
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+
+  .strength-weakness {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .strength-card {
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    border-radius: 12px;
+    padding: 20px;
+  }
+
+  .weakness-card {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: 12px;
+    padding: 20px;
+  }
+
+  .strength-card h4 {
+    color: #10b981;
+  }
+
+  .weakness-card h4 {
+    color: #ef4444;
+  }
+
+  .hidden { display: none; }
 
   .fade-in {
     animation: fadeIn 0.5s ease;
@@ -420,6 +444,87 @@
     margin: 0 auto 24px;
     box-shadow: 0 8px 32px rgba(99, 102, 241, 0.3);
   }
+
+  .dimension-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .dimension-card {
+    background: rgba(51, 65, 85, 0.3);
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+    border: 1px solid #334155;
+  }
+
+  .dimension-letter {
+    font-size: 24px;
+    font-weight: 700;
+    color: #6366f1;
+    margin-bottom: 4px;
+  }
+
+  .dimension-name {
+    font-size: 14px;
+    color: #f8fafc;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  .dimension-desc {
+    font-size: 12px;
+    color: #94a3b8;
+  }
+
+  .btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  .btn {
+    padding: 12px 32px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: none;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: white;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(99, 102, 241, 0.4);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: #94a3b8;
+    border: 1px solid #334155;
+  }
+
+  .btn-secondary:hover {
+    border-color: #6366f1;
+    color: #f1f5f9;
+  }
+
+  @media (max-width: 768px) {
+    .dimension-grid { grid-template-columns: repeat(2, 1fr); }
+    .score-grid { grid-template-columns: repeat(2, 1fr); }
+    .type-grid { grid-template-columns: repeat(4, 1fr); }
+    .detail-grid { grid-template-columns: 1fr; }
+    .strength-weakness { grid-template-columns: 1fr; }
+    .detail-header { flex-direction: column; text-align: center; }
+  }
 </style>
 </head>
 <body>
@@ -435,8 +540,8 @@
         <a href="timeline.html">时间树</a>
         <a href="#" class="active">MBTI测试</a>
         <a href="sparx.html">游戏治疗</a>
-            <a href="mind-game.html">思维挑战</a>
-        </nav>
+        <a href="mind-game.html">思维挑战</a>
+    </nav>
 </header>
 
 <div class="main-content">
@@ -493,7 +598,7 @@
         <p><strong>测试说明：</strong></p>
         <p>1. 本测试包含40个问题，每个问题请根据您的实际情况选择</p>
         <p>2. 测试将从四个维度评估您的性格类型</p>
-        <p>3. 完成测试后，将为您生成您的MBTI性格类型及简要描述</p>
+        <p>3. 完成测试后，将为您生成您的MBTI性格类型及详细分析</p>
         <p>4. 请诚实回答，以获得最准确的结果</p>
       </div>
 
@@ -525,7 +630,12 @@
         
         <div class="score-grid" id="scoreGrid"></div>
         
-        <div class="type-grid" id="typeGrid"></div>
+        <div style="margin-bottom: 16px;">
+          <div style="font-size: 14px; color: #94a3b8; margin-bottom: 12px;">点击下方类型查看详细分析：</div>
+          <div class="type-grid" id="typeGrid"></div>
+        </div>
+
+        <div id="detailSection" class="detail-section hidden"></div>
         
         <div style="color: #64748b; font-size: 13px; line-height: 1.6; margin-bottom: 24px;">
           <p>性格类型没有好坏之分，每种类型都有其独特的价值和优势。</p>
@@ -609,27 +719,172 @@ const scoringMap = {
 };
 
 const personalityTypes = {
-  'ESTJ': { name: '监督者型人格', desc: '注重实际、逻辑、事实，果断、有条理，重视规则和传统。' },
-  'ESTP': { name: '企业家型人格', desc: '灵活、现实、擅长应对紧急情况，注重行动和结果。' },
-  'ESFJ': { name: '提供者型人格', desc: '友好、合作、有责任感，善于与人相处，重视和谐。' },
-  'ESFP': { name: '表演者型人格', desc: '外向、友好、热爱生活，喜欢体验新事物，善于与人交往。' },
-  'ENTJ': { name: '指挥官型人格', desc: '自信、果断、有领导力，善于制定计划和策略。' },
-  'ENTP': { name: '辩论家型人格', desc: '好奇、机智、善于分析，喜欢挑战和创新。' },
-  'ENFJ': { name: '教导者型人格', desc: '热情、有同情心、善于理解他人，喜欢帮助和引导他人。' },
-  'ENFP': { name: '倡导者型人格', desc: '热情、创意丰富、充满活力，重视个人成长和意义。' },
-  'ISTJ': { name: '检查者型人格', desc: '可靠、务实、注重细节，坚持原则，善于组织和管理。' },
-  'ISTP': { name: '手艺者型人格', desc: '冷静、务实、善于分析和解决问题，喜欢探索和动手实践。' },
-  'ISFJ': { name: '保护者型人格', desc: '温暖、富有同情心、善于照顾他人，重视传统和稳定。' },
-  'ISFP': { name: '艺术家型人格', desc: '敏感、温和、注重个人体验，喜欢和谐与美好。' },
-  'INTJ': { name: '策划者型人格', desc: '独立、创新、有远见，善于分析和制定长远计划。' },
-  'INTP': { name: '思考者型人格', desc: '好奇、理性、善于分析，喜欢抽象思维和理论探讨。' },
-  'INFJ': { name: '引路人型人格', desc: '富有洞察力、理想主义、善于理解他人，追求意义和价值。' },
-  'INFP': { name: '调停者型人格', desc: '理想主义、敏感、富有同情心，重视个人价值观和内在和谐。' }
+  'ESTJ': {
+    name: '监督者型人格',
+    desc: '注重实际、逻辑、事实，果断、有条理，重视规则和传统。',
+    traits: ['务实可靠', '责任心强', '善于组织', '重视传统'],
+    strengths: ['出色的组织者', '责任心强', '善于管理', '务实可靠'],
+    weaknesses: ['可能过于固执', '对变化敏感', '缺乏灵活性', '有时过于严厉'],
+    careers: ['管理岗位', '行政主管', '项目经理', '教师', '律师'],
+    relationships: ['忠诚可靠的伴侣', '重视家庭和责任', '喜欢传统的家庭结构', '需要学会表达情感'],
+    famous: ['乔治·华盛顿', '玛格丽特·撒切尔', '克林特·伊斯特伍德']
+  },
+  'ESTP': {
+    name: '企业家型人格',
+    desc: '灵活、现实、擅长应对紧急情况，注重行动和结果。',
+    traits: ['精力充沛', '行动导向', '善于变通', '务实高效'],
+    strengths: ['出色的应变能力', '行动力强', '善于解决实际问题', '充满活力'],
+    weaknesses: ['缺乏耐心', '可能冲动', '不喜欢规则约束', '难以坚持长期计划'],
+    careers: ['销售', '创业', '运动员', '急救人员', '市场营销'],
+    relationships: ['充满激情的伴侣', '喜欢冒险和刺激', '需要自由空间', '可能忽视情感需求'],
+    famous: ['麦当娜', '迈克尔·乔丹', '史蒂夫·乔布斯']
+  },
+  'ESFJ': {
+    name: '提供者型人格',
+    desc: '友好、合作、有责任感，善于与人相处，重视和谐。',
+    traits: ['热情友好', '乐于助人', '重视人际关系', '善于倾听'],
+    strengths: ['出色的团队合作者', '善于沟通', '乐于助人', '重视和谐'],
+    weaknesses: ['过于在意他人看法', '难以拒绝他人', '可能忽视自身需求', '害怕冲突'],
+    careers: ['人力资源', '教师', '护士', '社会工作者', '客户服务'],
+    relationships: ['温暖体贴的伴侣', '重视家庭和谐', '善于照顾他人', '需要学会说"不"'],
+    famous: ['特蕾莎修女', '奥普拉·温弗瑞', '黛安娜王妃']
+  },
+  'ESFP': {
+    name: '表演者型人格',
+    desc: '外向、友好、热爱生活，喜欢体验新事物，善于与人交往。',
+    traits: ['活泼开朗', '热爱生活', '善于表达', '喜欢表演'],
+    strengths: ['出色的沟通者', '充满魅力', '善于娱乐他人', '适应能力强'],
+    weaknesses: ['可能过于追求刺激', '缺乏耐心', '难以专注', '需要持续关注'],
+    careers: ['演员', '主持人', '销售', '活动策划', '旅游业'],
+    relationships: ['充满乐趣的伴侣', '喜欢社交和聚会', '需要新鲜感', '可能过于情绪化'],
+    famous: ['玛丽莲·梦露', '罗宾·威廉姆斯', '布兰妮·斯皮尔斯']
+  },
+  'ENTJ': {
+    name: '指挥官型人格',
+    desc: '自信、果断、有领导力，善于制定计划和策略。',
+    traits: ['自信果断', '善于领导', '目标导向', '战略思维'],
+    strengths: ['出色的领导者', '善于制定战略', '决策能力强', '目标明确'],
+    weaknesses: ['可能过于强势', '缺乏耐心', '不善于倾听', '有时显得冷漠'],
+    careers: ['企业高管', '政治家', '军事指挥官', 'CEO', '战略顾问'],
+    relationships: ['有远见的伴侣', '重视效率和结果', '需要尊重和认可', '需要学会妥协'],
+    famous: ['拿破仑', '比尔·盖茨', '希拉里·克林顿']
+  },
+  'ENTP': {
+    name: '辩论家型人格',
+    desc: '好奇、机智、善于分析，喜欢挑战和创新。',
+    traits: ['聪明好奇', '善于辩论', '富有创意', '思维敏捷'],
+    strengths: ['出色的分析能力', '创造力强', '善于挑战现状', '思维敏捷'],
+    weaknesses: ['可能过于固执', '难以专注', '喜欢争论', '缺乏耐心'],
+    careers: ['创业家', '律师', '记者', '市场营销', '产品经理'],
+    relationships: ['有趣的伴侣', '喜欢智力刺激', '需要精神共鸣', '可能忽视情感'],
+    famous: ['本杰明·富兰克林', '马克·扎克伯格', '查理·卓别林']
+  },
+  'ENFJ': {
+    name: '教导者型人格',
+    desc: '热情、有同情心、善于理解他人，喜欢帮助和引导他人。',
+    traits: ['热情洋溢', '善于引导', '富有同情心', '善于沟通'],
+    strengths: ['出色的导师', '善于激励他人', '富有感染力', '善于理解他人'],
+    weaknesses: ['过于理想化', '难以拒绝他人', '可能忽视自身需求', '过于投入'],
+    careers: ['教育工作者', '心理咨询师', '培训师', '政治家', '非营利组织管理者'],
+    relationships: ['充满爱心的伴侣', '重视精神交流', '善于支持他人', '需要学会自我保护'],
+    famous: ['马丁·路德·金', '纳尔逊·曼德拉', '奥黛丽·赫本']
+  },
+  'ENFP': {
+    name: '倡导者型人格',
+    desc: '热情、创意丰富、充满活力，重视个人成长和意义。',
+    traits: ['充满热情', '富有创意', '理想主义', '善于激励'],
+    strengths: ['出色的创意者', '善于激励他人', '充满活力', '善于发现可能性'],
+    weaknesses: ['可能不切实际', '难以专注', '害怕承诺', '容易情绪化'],
+    careers: ['作家', '设计师', '创业家', '市场营销', '培训师'],
+    relationships: ['充满激情的伴侣', '重视情感连接', '需要新鲜感', '可能过于理想化'],
+    famous: ['沃尔特·迪士尼', '理查德·布兰森', '海伦·凯勒']
+  },
+  'ISTJ': {
+    name: '检查者型人格',
+    desc: '可靠、务实、注重细节，坚持原则，善于组织和管理。',
+    traits: ['可靠务实', '注重细节', '坚持原则', '善于组织'],
+    strengths: ['出色的执行者', '责任心强', '注重细节', '值得信赖'],
+    weaknesses: ['可能过于保守', '难以接受变化', '不善于表达情感', '过于严肃'],
+    careers: ['会计', '工程师', '管理者', '警察', '军人'],
+    relationships: ['可靠忠诚的伴侣', '重视承诺和责任', '需要安全感', '需要学会放松'],
+    famous: ['乔治·布什', '德怀特·艾森豪威尔', '安吉丽娜·朱莉']
+  },
+  'ISTP': {
+    name: '手艺者型人格',
+    desc: '冷静、务实、善于分析和解决问题，喜欢探索和动手实践。',
+    traits: ['冷静务实', '善于分析', '动手能力强', '喜欢探索'],
+    strengths: ['出色的问题解决者', '动手能力强', '善于分析', '适应能力强'],
+    weaknesses: ['可能过于独立', '难以表达情感', '不喜欢规则', '可能忽视他人'],
+    careers: ['工程师', '机械师', '程序员', '飞行员', '探险家'],
+    relationships: ['独立自主的伴侣', '需要个人空间', '不善于表达感情', '重视行动胜于言语'],
+    famous: ['史蒂夫·沃兹尼亚克', '克林特·伊斯特伍德', '詹姆斯·邦德']
+  },
+  'ISFJ': {
+    name: '保护者型人格',
+    desc: '温暖、富有同情心、善于照顾他人，重视传统和稳定。',
+    traits: ['温暖体贴', '善于照顾', '重视传统', '富有同情心'],
+    strengths: ['出色的照顾者', '善于倾听', '富有同情心', '重视家庭'],
+    weaknesses: ['过于在意他人看法', '难以拒绝', '害怕冲突', '可能忽视自身需求'],
+    careers: ['护士', '教师', '社工', '行政人员', '家庭主妇'],
+    relationships: ['温柔体贴的伴侣', '重视家庭和谐', '善于照顾他人', '需要学会自我关怀'],
+    famous: ['莫罕达斯·甘地', '特蕾莎修女', '凯特·米德尔顿']
+  },
+  'ISFP': {
+    name: '艺术家型人格',
+    desc: '敏感、温和、注重个人体验，喜欢和谐与美好。',
+    traits: ['敏感细腻', '温和友善', '注重体验', '追求美好'],
+    strengths: ['出色的艺术家', '善于表达情感', '富有创造力', '注重当下'],
+    weaknesses: ['可能过于敏感', '难以面对冲突', '不善于计划', '需要安全感'],
+    careers: ['艺术家', '设计师', '音乐家', '摄影师', '园艺师'],
+    relationships: ['温柔浪漫的伴侣', '重视情感连接', '需要安全感', '善于创造浪漫氛围'],
+    famous: ['约翰·列侬', '麦当娜', '弗里达·卡罗']
+  },
+  'INTJ': {
+    name: '策划者型人格',
+    desc: '独立、创新、有远见，善于分析和制定长远计划。',
+    traits: ['独立思考', '富有远见', '善于分析', '追求完美'],
+    strengths: ['出色的战略家', '善于分析', '独立自主', '目标明确'],
+    weaknesses: ['可能过于独立', '难以表达情感', '对他人要求高', '可能显得冷漠'],
+    careers: ['科学家', '工程师', '战略顾问', '企业家', '建筑师'],
+    relationships: ['理智深沉的伴侣', '重视精神交流', '需要个人空间', '需要学会表达情感'],
+    famous: ['艾萨克·牛顿', '阿尔伯特·爱因斯坦', '尼古拉·特斯拉']
+  },
+  'INTP': {
+    name: '思考者型人格',
+    desc: '好奇、理性、善于分析，喜欢抽象思维和理论探讨。',
+    traits: ['好奇心强', '理性客观', '善于分析', '喜欢思考'],
+    strengths: ['出色的思想家', '善于分析', '好奇心强', '逻辑严密'],
+    weaknesses: ['可能过于理性', '难以表达情感', '不善于社交', '可能脱离现实'],
+    careers: ['科学家', '程序员', '哲学家', '数学家', '研究员'],
+    relationships: ['理智聪慧的伴侣', '重视智力交流', '需要个人空间', '可能忽视情感需求'],
+    famous: ['卡尔·马克思', '查尔斯·达尔文', '比尔·盖茨']
+  },
+  'INFJ': {
+    name: '引路人型人格',
+    desc: '富有洞察力、理想主义、善于理解他人，追求意义和价值。',
+    traits: ['富有洞察', '理想主义', '善于理解', '追求意义'],
+    strengths: ['出色的洞察者', '善于理解他人', '富有远见', '价值观明确'],
+    weaknesses: ['可能过于理想主义', '难以拒绝他人', '容易受伤害', '需要独处恢复'],
+    careers: ['心理咨询师', '作家', '哲学家', '教育工作者', '精神导师'],
+    relationships: ['深刻理解的伴侣', '重视精神连接', '需要深度交流', '可能过于投入'],
+    famous: ['耶稣', '佛陀', '马丁·路德·金']
+  },
+  'INFP': {
+    name: '调停者型人格',
+    desc: '理想主义、敏感、富有同情心，重视个人价值观和内在和谐。',
+    traits: ['理想主义', '敏感细腻', '富有同情', '追求和谐'],
+    strengths: ['出色的倾听者', '富有同情心', '价值观明确', '善于理解他人'],
+    weaknesses: ['可能过于敏感', '难以拒绝他人', '害怕冲突', '容易理想化'],
+    careers: ['作家', '艺术家', '心理咨询师', '社工', '教师'],
+    relationships: ['温柔体贴的伴侣', '重视情感连接', '需要安全感', '可能过于理想化'],
+    famous: ['威廉·莎士比亚', '约翰·列侬', '安妮·弗兰克']
+  }
 };
 
 let currentQuestionIndex = 0;
 let answers = {};
 let scores = { E: 0, I: 0, S: 0, N: 0, T: 0, F: 0, J: 0, P: 0 };
+let currentPersonality = '';
 
 function startTest() {
   document.getElementById('welcomeSection').classList.add('hidden');
@@ -714,18 +969,19 @@ function calculateResults() {
   const tOrF = scores.T > scores.F ? 'T' : 'F';
   const jOrP = scores.J > scores.P ? 'J' : 'P';
   
-  const personality = eOrI + sOrN + tOrF + jOrP;
-  const typeInfo = personalityTypes[personality];
+  currentPersonality = eOrI + sOrN + tOrF + jOrP;
+  const typeInfo = personalityTypes[currentPersonality];
   
   document.getElementById('questionSection').classList.add('hidden');
   document.getElementById('resultSection').classList.remove('hidden');
   
-  document.getElementById('resultType').textContent = personality;
+  document.getElementById('resultType').textContent = currentPersonality;
   document.getElementById('resultTitle').textContent = typeInfo.name;
   document.getElementById('resultDesc').textContent = typeInfo.desc;
   
   renderScoreGrid();
-  renderTypeGrid(personality);
+  renderTypeGrid(currentPersonality);
+  renderDetail(currentPersonality);
   
   document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
@@ -769,8 +1025,63 @@ function renderTypeGrid(personality) {
   ];
   
   document.getElementById('typeGrid').innerHTML = types.map(t => 
-    `<div class="type-item ${t === personality ? 'active' : ''}">${t}</div>`
+    `<div class="type-item ${t === personality ? 'active' : ''}" onclick="renderDetail('${t}')">${t}</div>`
   ).join('');
+}
+
+function renderDetail(personality) {
+  const typeInfo = personalityTypes[personality];
+  const detailSection = document.getElementById('detailSection');
+  
+  document.querySelectorAll('.type-item').forEach(item => {
+    item.classList.remove('active');
+    if (item.textContent === personality) {
+      item.classList.add('active');
+    }
+  });
+  
+  detailSection.innerHTML = `
+    <div class="detail-header">
+      <div class="detail-type">${personality}</div>
+      <div>
+        <div class="detail-name">${typeInfo.name}</div>
+        <div class="detail-desc">${typeInfo.desc}</div>
+      </div>
+    </div>
+    
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>🎯 核心特质</h4>
+        <ul>${typeInfo.traits.map(t => `<li>${t}</li>`).join('')}</ul>
+      </div>
+      <div class="detail-card">
+        <h4>💼 适合职业</h4>
+        <ul>${typeInfo.careers.map(c => `<li>${c}</li>`).join('')}</ul>
+      </div>
+      <div class="detail-card">
+        <h4>❤️ 人际关系</h4>
+        <ul>${typeInfo.relationships.map(r => `<li>${r}</li>`).join('')}</ul>
+      </div>
+      <div class="detail-card">
+        <h4>🌟 代表人物</h4>
+        <ul>${typeInfo.famous.map(f => `<li>${f}</li>`).join('')}</ul>
+      </div>
+    </div>
+    
+    <div class="strength-weakness">
+      <div class="strength-card">
+        <h4>✅ 优势</h4>
+        <ul>${typeInfo.strengths.map(s => `<li>${s}</li>`).join('')}</ul>
+      </div>
+      <div class="weakness-card">
+        <h4>⚠️ 潜在挑战</h4>
+        <ul>${typeInfo.weaknesses.map(w => `<li>${w}</li>`).join('')}</ul>
+      </div>
+    </div>
+  `;
+  
+  detailSection.classList.remove('hidden');
+  detailSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function restartTest() {
@@ -778,6 +1089,7 @@ function restartTest() {
   answers = {};
   scores = { E: 0, I: 0, S: 0, N: 0, T: 0, F: 0, J: 0, P: 0 };
   document.getElementById('resultSection').classList.add('hidden');
+  document.getElementById('detailSection').classList.add('hidden');
   document.getElementById('welcomeSection').classList.remove('hidden');
 }
 
