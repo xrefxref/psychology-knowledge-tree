@@ -1212,8 +1212,9 @@
 
         var authMode = 'login';
 
-        async function checkUser() {
+        function checkUser() {
             try {
+                window.CloudBase.init();
                 var user = window.CloudBase.getUser();
                 if (user) {
                     document.getElementById('userBtn').style.display = 'none';
@@ -1225,6 +1226,8 @@
                 }
             } catch (error) {
                 console.error('检查用户状态失败:', error);
+                document.getElementById('userBtn').style.display = 'block';
+                document.getElementById('userInfo').style.display = 'none';
             }
         }
 
@@ -1265,6 +1268,7 @@
             }
 
             try {
+                window.CloudBase.init();
                 if (authMode === 'login') {
                     await window.CloudBase.login(username, password);
                 } else {

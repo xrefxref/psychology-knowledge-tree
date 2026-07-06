@@ -9,29 +9,10 @@ var CloudBase = (function() {
     function init() {
         if (initialized) return;
         
-        if (typeof window.tcb === 'undefined') {
-            console.warn('CloudBase SDK未加载，使用本地存储模式');
-            useLocalStorage = true;
-            initialized = true;
-            loadLocalUser();
-            return;
-        }
-        
-        try {
-            app = window.tcb.init({
-                env: 'yunkaifa20260626-d0el5yg4df33bbf'
-            });
-
-            db = app.database();
-            auth = app.auth();
-            initialized = true;
-            console.log('CloudBase初始化成功');
-        } catch (err) {
-            console.error('CloudBase初始化失败，使用本地存储模式:', err);
-            useLocalStorage = true;
-            initialized = true;
-            loadLocalUser();
-        }
+        useLocalStorage = true;
+        loadLocalUser();
+        initialized = true;
+        console.log('使用本地存储模式，登录功能已就绪');
     }
 
     function loadLocalUser() {
