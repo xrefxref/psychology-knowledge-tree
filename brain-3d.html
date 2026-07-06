@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3D大脑模型 - 林远见路</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<style>
+  * { box-sizing: border-box; }
+  html, body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    overflow: hidden;
+    color: #f1f5f9;
+  }
+
+  .header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    padding: 14px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid #1e293b;
+    z-index: 1000;
+  }
+
+  .logo {
+    font-size: 16px;
+    font-weight: 600;
+    color: #f8fafc;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .logo-icon {
+    width: 26px; height: 26px;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 12px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 20px;
+  }
+
+  .nav-links a {
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover {
+    color: #f1f5f9;
+  }
+
+  .nav-links a.active {
+    color: #6366f1;
+  }
+
+  #canvas-container {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+  }
+
+  .controls {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    z-index: 100;
+  }
+
+  .control-btn {
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: none;
+    background: rgba(30, 41, 59, 0.9);
+    color: #f1f5f9;
+    border: 1px solid #334155;
+    backdrop-filter: blur(8px);
+  }
+
+  .control-btn:hover {
+    background: rgba(99, 102, 241, 0.2);
+    border-color: #6366f1;
+    transform: translateY(-2px);
+  }
+
+  .control-btn.active {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    border-color: #6366f1;
+  }
+
+  .info-panel {
+    position: fixed;
+    top: 100px;
+    right: 30px;
+    width: 280px;
+    background: rgba(30, 41, 59, 0.95);
+    border: 1px solid #334155;
+    border-radius: 16px;
+    padding: 20px;
+    z-index: 500;
+    backdrop-filter: blur(12px);
+    display: none;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    max-height: 70vh;
+    overflow-y: auto;
+  }
+
+  .info-panel.dragging {
+    cursor: move;
+    z-index: 600;
+  }
+
+  .info-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #334155;
+  }
+
+  .info-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #f8fafc;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .info-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+
+  .info-close {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(71, 85, 105, 0.5);
+    border: none;
+    color: #94a3b8;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+  }
+
+  .info-close:hover {
+    background: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+  }
+
+  .info-section {
+    margin-bottom: 16px;
+  }
+
+  .info-section h4 {
+    font-size: 13px;
+    font-weight: 600;
+    color: #6366f1;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .info-section p {
+    font-size: 13px;
+    color: #cbd5e1;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .info-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .info-section li {
+    font-size: 13px;
+    color: #cbd5e1;
+    padding: 4px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .info-section li::before {
+    content: '•';
+    color: #6366f1;
+  }
+
+  .legend {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 200px;
+    background: rgba(30, 41, 59, 0.9);
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 16px;
+    z-index: 100;
+    backdrop-filter: blur(8px);
+  }
+
+  .legend-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: #94a3b8;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+    font-size: 12px;
+    color: #cbd5e1;
+  }
+
+  .legend-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 4px;
+  }
+
+  .hint {
+    position: fixed;
+    top: 80px;
+    left: 30px;
+    background: rgba(30, 41, 59, 0.9);
+    border: 1px solid #334155;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 12px;
+    color: #94a3b8;
+    z-index: 100;
+    backdrop-filter: blur(8px);
+  }
+
+  .tooltip {
+    position: fixed;
+    background: rgba(0, 0, 0, 0.9);
+    color: #f1f5f9;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    pointer-events: none;
+    z-index: 200;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .tooltip.visible {
+    opacity: 1;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgba(30, 41, 59, 0.5);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(99, 102, 241, 0.5);
+    border-radius: 3px;
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+    <div class="logo">
+        <div class="logo-icon">🧠</div>
+        <span>3D大脑模型</span>
+    </div>
+    <nav class="nav-links">
+        <a href="index.html">首页</a>
+        <a href="knowledge-map.html">知识图谱</a>
+        <a href="timeline.html">时间树</a>
+        <a href="mbti-test.html">MBTI测试</a>
+        <a href="sparx.html">游戏治疗</a>
+        <a href="mind-game.html">思维挑战</a>
+        <a href="#" class="active">大脑模型</a>
+    </nav>
+</header>
+
+<div id="canvas-container"></div>
+
+<div class="hint">
+  <strong>操作提示：</strong><br>
+  🖱️ 左键拖动旋转<br>
+  🖱️ 滚轮缩放<br>
+  🖱️ 点击脑区查看详情<br>
+  📱 触摸旋转
+</div>
+
+<div class="controls">
+  <button class="control-btn" id="resetBtn">重置视角</button>
+  <button class="control-btn" id="explodeBtn">拆解模型</button>
+  <button class="control-btn" id="assembleBtn">组合模型</button>
+</div>
+
+<div class="legend">
+  <div class="legend-title">大脑区域</div>
+  <div class="legend-item"><div class="legend-color" style="background: #ef4444;"></div>额叶</div>
+  <div class="legend-item"><div class="legend-color" style="background: #f59e0b;"></div>顶叶</div>
+  <div class="legend-item"><div class="legend-color" style="background: #8b5cf6;"></div>颞叶</div>
+  <div class="legend-item"><div class="legend-color" style="background: #10b981;"></div>枕叶</div>
+  <div class="legend-item"><div class="legend-color" style="background: #3b82f6;"></div>小脑</div>
+  <div class="legend-item"><div class="legend-color" style="background: #06b6d4;"></div>脑干</div>
+  <div class="legend-item"><div class="legend-color" style="background: #ec4899;"></div>海马体</div>
+  <div class="legend-item"><div class="legend-color" style="background: #f97316;"></div>杏仁核</div>
+</div>
+
+<div class="info-panel" id="infoPanel">
+  <div class="info-header">
+    <div class="info-title">
+      <div class="info-color" id="infoColor"></div>
+      <span id="infoName">脑区名称</span>
+    </div>
+    <button class="info-close" onclick="closeInfoPanel()">×</button>
+  </div>
+  <div class="info-section">
+    <h4>基本信息</h4>
+    <p id="infoDescription">脑区描述</p>
+  </div>
+  <div class="info-section">
+    <h4>主要功能</h4>
+    <ul id="infoFunctions"></ul>
+  </div>
+  <div class="info-section">
+    <h4>相关心理现象</h4>
+    <ul id="infoPhenomena"></ul>
+  </div>
+  <div class="info-section">
+    <h4>受损症状</h4>
+    <ul id="infoSymptoms"></ul>
+  </div>
+</div>
+
+<div class="tooltip" id="tooltip"></div>
+
+<script>
+var scene, camera, renderer, controls;
+var brainParts = [];
+var raycaster, mouse;
+var isExploded = false;
+var infoPanel = document.getElementById('infoPanel');
+var tooltip = document.getElementById('tooltip');
+
+var brainData = {
+  frontalLobe: {
+    name: '额叶',
+    color: 0xef4444,
+    description: '额叶位于大脑前端，是大脑中最大的区域之一，负责高级认知功能。',
+    functions: ['决策与判断', '计划与执行', '注意力控制', '工作记忆', '情绪调节', '社交行为'],
+    phenomena: ['意志力', '自我控制', '目标导向行为', '道德判断', '创造力'],
+    symptoms: ['注意力不集中', '冲动行为', '决策困难', '情绪失控', '社交障碍']
+  },
+  parietalLobe: {
+    name: '顶叶',
+    color: 0xf59e0b,
+    description: '顶叶位于大脑顶部，主要负责处理感觉信息和空间认知。',
+    functions: ['躯体感觉处理', '空间感知', '注意力转移', '数学能力', '语言理解'],
+    phenomena: ['身体意象', '空间导航', '触觉感知', '注意力分配'],
+    symptoms: ['感觉障碍', '空间定向困难', '计算能力下降', '左右混淆']
+  },
+  temporalLobe: {
+    name: '颞叶',
+    color: 0x8b5cf6,
+    description: '颞叶位于大脑两侧，是听觉和记忆处理的中心。',
+    functions: ['听觉处理', '语言理解', '记忆存储', '情绪反应', '面孔识别'],
+    phenomena: ['听觉感知', '记忆形成', '语言理解', '情绪识别'],
+    symptoms: ['听觉障碍', '语言理解困难', '记忆丧失', '面孔识别障碍']
+  },
+  occipitalLobe: {
+    name: '枕叶',
+    color: 0x10b981,
+    description: '枕叶位于大脑后部，是视觉处理的主要区域。',
+    functions: ['视觉感知', '图像识别', '颜色辨别', '空间视觉'],
+    phenomena: ['视觉注意', '图像记忆', '色彩感知', '深度知觉'],
+    symptoms: ['视觉障碍', '图像识别困难', '色盲', '视觉忽视']
+  },
+  cerebellum: {
+    name: '小脑',
+    color: 0x3b82f6,
+    description: '小脑位于大脑后方，负责协调运动和平衡。',
+    functions: ['运动协调', '平衡控制', '动作学习', '精细运动', '认知功能'],
+    phenomena: ['运动记忆', '协调能力', '平衡感', '熟练动作'],
+    symptoms: ['运动不协调', '平衡障碍', '动作迟缓', '震颤']
+  },
+  brainstem: {
+    name: '脑干',
+    color: 0x06b6d4,
+    description: '脑干连接大脑和脊髓，控制基本生命功能。',
+    functions: ['呼吸调节', '心跳控制', '睡眠唤醒', '吞咽反射', '基本反射'],
+    phenomena: ['意识状态', '生物钟', '本能行为'],
+    symptoms: ['呼吸困难', '心率异常', '意识障碍', '吞咽困难']
+  },
+  hippocampus: {
+    name: '海马体',
+    color: 0xec4899,
+    description: '海马体位于颞叶内侧，是记忆形成的关键结构。',
+    functions: ['情景记忆形成', '空间记忆', '记忆巩固', '学习能力'],
+    phenomena: ['记忆编码', '空间导航', '学习新技能'],
+    symptoms: ['顺行性遗忘', '空间定位困难', '学习障碍']
+  },
+  amygdala: {
+    name: '杏仁核',
+    color: 0xf97316,
+    description: '杏仁核位于颞叶深处，是情绪处理的中心。',
+    functions: ['情绪识别', '恐惧反应', '情绪记忆', '社交行为'],
+    phenomena: ['恐惧情绪', '情绪记忆', '社交判断', '焦虑反应'],
+    symptoms: ['情绪识别障碍', '恐惧反应异常', '社交退缩', '焦虑症']
+  },
+  thalamus: {
+    name: '丘脑',
+    color: 0x84cc16,
+    description: '丘脑位于大脑中央，是感觉信息的中转站。',
+    functions: ['感觉中继', '注意力调节', '意识状态', '记忆处理'],
+    phenomena: ['感觉整合', '意识唤醒', '选择性注意'],
+    symptoms: ['感觉异常', '意识障碍', '注意力缺陷']
+  },
+  hypothalamus: {
+    name: '下丘脑',
+    color: 0x0ea5e9,
+    description: '下丘脑位于丘脑下方，控制内分泌和自主神经系统。',
+    functions: ['体温调节', '食欲控制', '睡眠周期', '激素分泌', '性行为'],
+    phenomena: ['饥饿感', '渴感', '昼夜节律', '情绪反应'],
+    symptoms: ['体温异常', '食欲失调', '睡眠障碍', '激素失衡']
+  }
+};
+
+function init() {
+  scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x0f172a);
+
+  camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+  camera.position.set(0, 0, 8);
+
+  renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(window.devicePixelRatio);
+  renderer.shadowMap.enabled = true;
+  document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+  controls = new THREE.OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true;
+  controls.dampingFactor = 0.05;
+  controls.minDistance = 3;
+  controls.maxDistance = 15;
+
+  var ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+  scene.add(ambientLight);
+
+  var directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+  directionalLight.position.set(5, 5, 5);
+  directionalLight.castShadow = true;
+  scene.add(directionalLight);
+
+  var pointLight = new THREE.PointLight(0x6366f1, 0.5);
+  pointLight.position.set(-5, -5, 5);
+  scene.add(pointLight);
+
+  createBrainModel();
+
+  raycaster = new THREE.Raycaster();
+  mouse = new THREE.Vector2();
+
+  window.addEventListener('resize', onWindowResize);
+  renderer.domElement.addEventListener('click', onMouseClick);
+  renderer.domElement.addEventListener('mousemove', onMouseMove);
+
+  animate();
+}
+
+function createBrainModel() {
+  var materialParams = {
+    shininess: 80,
+    metalness: 0.1,
+    roughness: 0.4,
+    transparent: true,
+    opacity: 0.9
+  };
+
+  var frontalMaterial = new THREE.MeshStandardMaterial({ ...materialParams, color: 0xef4444 });
+  var parietalMaterial = new THREE.MeshStandardMaterial({ ...materialParams, color: 0xf59e0b });
+  var temporalMaterial = new THREE.MeshStandardMaterial({ ...materialParams, color: 0x8b5cf6 });
+  var occipitalMaterial = new THREE.MeshStandardMaterial({ ...materialParams, color: 0x10b981 });
+  var cerebellumMaterial = new THREE.MeshStandardMaterial({ ...materialParams, color: 0x3b82f6 });
+  var brainstemMaterial = new THREE.MeshStandardMaterial({ ...materialParams, color: 0x06b6d4 });
+  var hippocampusMaterial = new THREE.MeshStandardMaterial({ ...materialParams, color: 0xec4899 });
+  var amygdalaMaterial = new THREE.MeshStandardMaterial({ ...materialParams, color: 0xf97316 });
+  var thalamusMaterial = new THREE.MeshStandardMaterial({ ...materialParams, color: 0x84cc16 });
+  var hypothalamusMaterial = new THREE.MeshStandardMaterial({ ...materialParams, color: 0x0ea5e9 });
+
+  var frontalLobe = createFrontalLobe(frontalMaterial);
+  var parietalLobe = createParietalLobe(parietalMaterial);
+  var temporalLobe = createTemporalLobe(temporalMaterial);
+  var occipitalLobe = createOccipitalLobe(occipitalMaterial);
+  var cerebellum = createCerebellum(cerebellumMaterial);
+  var brainstem = createBrainstem(brainstemMaterial);
+  var hippocampus = createHippocampus(hippocampusMaterial);
+  var amygdala = createAmygdala(amygdalaMaterial);
+  var thalamus = createThalamus(thalamusMaterial);
+  var hypothalamus = createHypothalamus(hypothalamusMaterial);
+
+  var brainGroup = new THREE.Group();
+  brainGroup.add(frontalLobe.mesh);
+  brainGroup.add(parietalLobe.mesh);
+  brainGroup.add(temporalLobe.mesh);
+  brainGroup.add(occipitalLobe.mesh);
+  brainGroup.add(cerebellum.mesh);
+  brainGroup.add(brainstem.mesh);
+  brainGroup.add(hippocampus.mesh);
+  brainGroup.add(amygdala.mesh);
+  brainGroup.add(thalamus.mesh);
+  brainGroup.add(hypothalamus.mesh);
+
+  scene.add(brainGroup);
+
+  brainParts = [
+    { mesh: frontalLobe.mesh, data: brainData.frontalLobe, offset: new THREE.Vector3(0, 0.8, 1.5) },
+    { mesh: parietalLobe.mesh, data: brainData.parietalLobe, offset: new THREE.Vector3(0, 0.5, -0.5) },
+    { mesh: temporalLobe.mesh, data: brainData.temporalLobe, offset: new THREE.Vector3(0, -0.5, -0.3) },
+    { mesh: occipitalLobe.mesh, data: brainData.occipitalLobe, offset: new THREE.Vector3(0, 0, -2) },
+    { mesh: cerebellum.mesh, data: brainData.cerebellum, offset: new THREE.Vector3(0, -1.2, -1.5) },
+    { mesh: brainstem.mesh, data: brainData.brainstem, offset: new THREE.Vector3(0, -2, 0) },
+    { mesh: hippocampus.mesh, data: brainData.hippocampus, offset: new THREE.Vector3(0, -0.3, -0.8) },
+    { mesh: amygdala.mesh, data: brainData.amygdala, offset: new THREE.Vector3(0, -0.4, -0.5) },
+    { mesh: thalamus.mesh, data: brainData.thalamus, offset: new THREE.Vector3(0, 0, 0.2) },
+    { mesh: hypothalamus.mesh, data: brainData.hypothalamus, offset: new THREE.Vector3(0, -0.3, 0.3) }
+  ];
+}
+
+function createFrontalLobe(material) {
+  var geometry = new THREE.SphereGeometry(1.8, 32, 32);
+  var mesh = new THREE.Mesh(geometry, material);
+  mesh.position.set(0, 0.5, 1.2);
+  mesh.scale.set(1.2, 0.9, 0.8);
+  mesh.castShadow = true;
+  mesh.receiveShadow = true;
+  mesh.name = 'frontalLobe';
+  return { mesh: mesh };
+}
+
+function createParietalLobe(material) {
+  var geometry = new THREE.SphereGeometry(1.6, 32, 32);
+  var mesh = new THREE.Mesh(geometry, material);
+  mesh.position.set(0, 0.5, 0.2);
+  mesh.scale.set(1.1, 0.8, 0.9);
+  mesh.castShadow = true;
+  mesh.receiveShadow = true;
+  mesh.name = 'parietalLobe';
+  return { mesh: mesh };
+}
+
+function createTemporalLobe(material) {
+  var geometry = new THREE.SphereGeometry(1.4, 32, 32);
+  var mesh = new THREE.Mesh(geometry, material);
+  mesh.position.set(0, -0.6, 0.5);
+  mesh.scale.set(1.2, 0.7, 0.8);
+  mesh.castShadow = true;
+  mesh.receiveShadow = true;
+  mesh.name = 'temporalLobe';
+  return { mesh: mesh };
+}
+
+function createOccipitalLobe(material) {
+  var geometry = new THREE.SphereGeometry(1.2, 32, 32);
+  var mesh = new THREE.Mesh(geometry, material);
+  mesh.position.set(0, 0.2, -1.2);
+  mesh.scale.set(0.9, 0.7, 0.8);
+  mesh.castShadow = true;
+  mesh.receiveShadow = true;
+  mesh.name = 'occipitalLobe';
+  return { mesh: mesh };
+}
+
+function createCerebellum(material) {
+  var geometry = new THREE.SphereGeometry(1.0, 32, 32);
+  var mesh = new THREE.Mesh(geometry, material);
+  mesh.position.set(0, -1.5, -1.0);
+  mesh.scale.set(0.8, 0.6, 0.7);
+  mesh.castShadow = true;
+  mesh.receiveShadow = true;
+  mesh.name = 'cerebellum';
+  return { mesh: mesh };
+}
+
+function createBrainstem(material) {
+  var geometry = new THREE.CylinderGeometry(0.4, 0.5, 1.2, 32);
+  var mesh = new THREE.Mesh(geometry, material);
+  mesh.position.set(0, -2.2, 0);
+  mesh.castShadow = true;
+  mesh.receiveShadow = true;
+  mesh.name = 'brainstem';
+  return { mesh: mesh };
+}
+
+function createHippocampus(material) {
+  var geometry = new THREE.TorusGeometry(0.4, 0.15, 16, 32);
+  var mesh = new THREE.Mesh(geometry, material);
+  mesh.position.set(0, -0.5, -0.6);
+  mesh.rotation.set(Math.PI / 2, 0, 0);
+  mesh.castShadow = true;
+  mesh.receiveShadow = true;
+  mesh.name = 'hippocampus';
+  return { mesh: mesh };
+}
+
+function createAmygdala(material) {
+  var geometry = new THREE.SphereGeometry(0.3, 16, 16);
+  var mesh = new THREE.Mesh(geometry, material);
+  mesh.position.set(0.2, -0.5, -0.3);
+  mesh.castShadow = true;
+  mesh.receiveShadow = true;
+  mesh.name = 'amygdala';
+  return { mesh: mesh };
+}
+
+function createThalamus(material) {
+  var geometry = new THREE.SphereGeometry(0.4, 16, 16);
+  var mesh = new THREE.Mesh(geometry, material);
+  mesh.position.set(0, 0.1, 0);
+  mesh.castShadow = true;
+  mesh.receiveShadow = true;
+  mesh.name = 'thalamus';
+  return { mesh: mesh };
+}
+
+function createHypothalamus(material) {
+  var geometry = new THREE.SphereGeometry(0.25, 16, 16);
+  var mesh = new THREE.Mesh(geometry, material);
+  mesh.position.set(0, -0.2, 0.2);
+  mesh.castShadow = true;
+  mesh.receiveShadow = true;
+  mesh.name = 'hypothalamus';
+  return { mesh: mesh };
+}
+
+function onWindowResize() {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+}
+
+function onMouseClick(event) {
+  event.preventDefault();
+  mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+  mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+  raycaster.setFromCamera(mouse, camera);
+
+  var meshes = brainParts.map(function(p) { return p.mesh; });
+  var intersects = raycaster.intersectObjects(meshes);
+
+  if (intersects.length > 0) {
+    var clickedMesh = intersects[0].object;
+    var part = brainParts.find(function(p) { return p.mesh === clickedMesh; });
+    if (part) {
+      showInfoPanel(part.data);
+    }
+  } else {
+    closeInfoPanel();
+  }
+}
+
+function onMouseMove(event) {
+  mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+  mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+  raycaster.setFromCamera(mouse, camera);
+
+  var meshes = brainParts.map(function(p) { return p.mesh; });
+  var intersects = raycaster.intersectObjects(meshes);
+
+  if (intersects.length > 0) {
+    var hoveredMesh = intersects[0].object;
+    var part = brainParts.find(function(p) { return p.mesh === hoveredMesh; });
+    if (part) {
+      tooltip.textContent = part.data.name;
+      tooltip.style.left = (event.clientX + 15) + 'px';
+      tooltip.style.top = (event.clientY - 25) + 'px';
+      tooltip.classList.add('visible');
+      document.body.style.cursor = 'pointer';
+      hoveredMesh.material.emissive = new THREE.Color(0xffffff);
+      hoveredMesh.material.emissiveIntensity = 0.2;
+    }
+  } else {
+    tooltip.classList.remove('visible');
+    document.body.style.cursor = 'default';
+    brainParts.forEach(function(p) {
+      p.mesh.material.emissive = new THREE.Color(0x000000);
+      p.mesh.material.emissiveIntensity = 0;
+    });
+  }
+}
+
+function showInfoPanel(data) {
+  document.getElementById('infoName').textContent = data.name;
+  document.getElementById('infoColor').style.backgroundColor = '#' + data.color.toString(16).padStart(6, '0');
+  document.getElementById('infoDescription').textContent = data.description;
+  
+  document.getElementById('infoFunctions').innerHTML = data.functions.map(function(f) {
+    return '<li>' + f + '</li>';
+  }).join('');
+  
+  document.getElementById('infoPhenomena').innerHTML = data.phenomena.map(function(p) {
+    return '<li>' + p + '</li>';
+  }).join('');
+  
+  document.getElementById('infoSymptoms').innerHTML = data.symptoms.map(function(s) {
+    return '<li>' + s + '</li>';
+  }).join('');
+
+  infoPanel.style.display = 'block';
+  makeDraggable(infoPanel);
+}
+
+function closeInfoPanel() {
+  infoPanel.style.display = 'none';
+}
+
+function makeDraggable(element) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  
+  function dragMouseDown(e) {
+    e.preventDefault();
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    element.classList.add('dragging');
+    document.onmouseup = closeDragElement;
+    document.onmousemove = elementDrag;
+  }
+  
+  function elementDrag(e) {
+    e.preventDefault();
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    element.style.top = (element.offsetTop - pos2) + 'px';
+    element.style.left = (element.offsetLeft - pos1) + 'px';
+  }
+  
+  function closeDragElement() {
+    document.onmouseup = null;
+    document.onmousemove = null;
+    element.classList.remove('dragging');
+  }
+  
+  element.onmousedown = dragMouseDown;
+}
+
+function explodeModel() {
+  if (isExploded) return;
+  isExploded = true;
+  
+  brainParts.forEach(function(part) {
+    var targetPos = part.offset.clone().multiplyScalar(2);
+    animateMesh(part.mesh, targetPos, 1000);
+  });
+}
+
+function assembleModel() {
+  if (!isExploded) return;
+  isExploded = false;
+  
+  brainParts.forEach(function(part) {
+    animateMesh(part.mesh, new THREE.Vector3(0, 0, 0), 1000);
+  });
+}
+
+function animateMesh(mesh, targetPos, duration) {
+  var startPos = mesh.position.clone();
+  var startTime = Date.now();
+  
+  function animate() {
+    var elapsed = Date.now() - startTime;
+    var progress = Math.min(elapsed / duration, 1);
+    
+    var eased = 1 - Math.pow(1 - progress, 3);
+    
+    mesh.position.lerpVectors(startPos, targetPos, eased);
+    
+    if (progress < 1) {
+      requestAnimationFrame(animate);
+    }
+  }
+  
+  animate();
+}
+
+function resetView() {
+  controls.reset();
+  assembleModel();
+}
+
+function animate() {
+  requestAnimationFrame(animate);
+  controls.update();
+  renderer.render(scene, camera);
+}
+
+document.getElementById('resetBtn').addEventListener('click', resetView);
+document.getElementById('explodeBtn').addEventListener('click', explodeModel);
+document.getElementById('assembleBtn').addEventListener('click', assembleModel);
+
+init();
+</script>
+</body>
+</html>
