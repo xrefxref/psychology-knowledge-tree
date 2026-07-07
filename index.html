@@ -138,42 +138,117 @@
             font-size: 13px;
             color: #94a3b8;
             margin-bottom: 6px;
+            font-weight: 500;
         }
 
         .auth-form-group input {
             width: 100%;
-            padding: 10px 12px;
-            background: rgba(15, 23, 42, 0.8);
+            padding: 12px 16px;
+            background: rgba(15, 23, 42, 0.9);
             border: 1px solid #334155;
-            border-radius: 8px;
+            border-radius: 10px;
             color: #f1f5f9;
             font-size: 14px;
             font-family: inherit;
-            transition: border-color 0.2s;
+            transition: all 0.2s;
         }
 
         .auth-form-group input:focus {
             outline: none;
             border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .auth-form-group input.valid {
+            border-color: #10b981;
+        }
+
+        .auth-form-group input.invalid {
+            border-color: #ef4444;
+        }
+
+        .password-strength {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 8px;
+        }
+
+        .strength-bar {
+            flex: 1;
+            height: 4px;
+            background: rgba(71, 85, 105, 0.5);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .strength-bar-fill {
+            height: 100%;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        .strength-text {
+            font-size: 12px;
+            color: #94a3b8;
+        }
+
+        .auth-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+            font-size: 13px;
+            color: #94a3b8;
+            cursor: pointer;
+        }
+
+        .auth-checkbox input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+            border: 2px solid #334155;
+            background: rgba(15, 23, 42, 0.8);
+            cursor: pointer;
         }
 
         .auth-switch {
-            font-size: 12px;
+            font-size: 13px;
             color: #6366f1;
             cursor: pointer;
-            margin-top: 12px;
+            margin-top: 16px;
             text-align: center;
+            padding: 10px;
+            border-radius: 8px;
+            transition: all 0.2s;
         }
 
         .auth-switch:hover {
-            text-decoration: underline;
+            background: rgba(99, 102, 241, 0.1);
+            text-decoration: none;
         }
 
         .auth-error {
             color: #ef4444;
             font-size: 12px;
-            margin-top: 8px;
+            padding: 8px 12px;
+            background: rgba(239, 68, 68, 0.1);
+            border-radius: 6px;
+            margin-bottom: 12px;
             display: none;
+        }
+
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
         }
 
         .hero-section {
@@ -839,6 +914,7 @@
         <div class="user-area">
             <button id="userBtn" class="user-btn" onclick="showAuthModal()">登录 / 注册</button>
             <div id="userInfo" class="user-info" style="display: none;">
+                <div id="userAvatar" class="user-avatar" style="margin-right: 8px;">U</div>
                 <span id="userName">用户名</span>
                 <button class="logout-btn" onclick="logout()">退出</button>
             </div>
@@ -974,19 +1050,35 @@
     </div>
 
     <div id="auth-modal-overlay" class="modal-overlay" onclick="closeAuthModal()">
-        <div class="modal-content" onclick="event.stopPropagation()" style="max-width: 380px;">
+        <div class="modal-content" onclick="event.stopPropagation()" style="max-width: 400px;">
             <div class="modal-close" onclick="closeAuthModal()">×</div>
-            <h3 id="auth-modal-title" class="modal-title">用户登录</h3>
+            <div style="text-align: center; margin-bottom: 24px;">
+                <div style="width: 56px; height: 56px; margin: 0 auto 12px; background: linear-gradient(135deg, #6366f1, #8b5cf6); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 28px;">
+                    🧠
+                </div>
+                <h3 id="auth-modal-title" class="modal-title">用户登录</h3>
+                <p style="font-size: 13px; color: #94a3b8; margin-top: 4px;">心理学全景学习系统</p>
+            </div>
             <div id="auth-form" class="auth-form">
                 <div class="auth-form-group">
                     <label>用户名</label>
-                    <input type="text" id="auth-username" placeholder="请输入用户名">
+                    <input type="text" id="auth-username" placeholder="请输入用户名（至少3个字符）">
                 </div>
                 <div class="auth-form-group">
                     <label>密码</label>
-                    <input type="password" id="auth-password" placeholder="请输入密码">
+                    <input type="password" id="auth-password" placeholder="请输入密码（至少6个字符）">
+                    <div id="password-strength" class="password-strength" style="display: none;">
+                        <div class="strength-bar">
+                            <div class="strength-bar-fill" id="strength-bar-fill"></div>
+                        </div>
+                        <span class="strength-text" id="strength-text"></span>
+                    </div>
                 </div>
                 <div class="auth-error" id="auth-error"></div>
+                <div class="auth-checkbox" onclick="toggleRememberMe()">
+                    <input type="checkbox" id="auth-remember">
+                    <span>记住我</span>
+                </div>
                 <button class="card-btn" style="width: 100%; margin-top: 8px;" onclick="handleAuth()">登录</button>
                 <div class="auth-switch" onclick="switchAuthMode()">切换到注册</div>
             </div>
@@ -1220,7 +1312,15 @@
                 if (user) {
                     document.getElementById('userBtn').style.display = 'none';
                     document.getElementById('userInfo').style.display = 'flex';
-                    document.getElementById('userName').textContent = user.email ? user.email.split('@')[0] : '用户';
+                    var displayName = user.username || (user.email ? user.email.split('@')[0] : '用户');
+                    document.getElementById('userName').textContent = displayName;
+                    var avatar = document.getElementById('userAvatar');
+                    avatar.textContent = displayName.charAt(0).toUpperCase();
+                    if (user.avatar) {
+                        avatar.style.background = user.avatar;
+                    } else {
+                        avatar.style.background = 'linear-gradient(135deg, #6366f1, #8b5cf6)';
+                    }
                 } else {
                     document.getElementById('userBtn').style.display = 'block';
                     document.getElementById('userInfo').style.display = 'none';
@@ -1243,18 +1343,83 @@
         }
 
         function switchAuthMode() {
+            var passwordStrength = document.getElementById('password-strength');
             if (authMode === 'login') {
                 authMode = 'register';
                 document.getElementById('auth-modal-title').textContent = '用户注册';
                 document.querySelector('.card-btn').textContent = '注册';
                 document.querySelector('.auth-switch').textContent = '切换到登录';
+                passwordStrength.style.display = 'flex';
             } else {
                 authMode = 'login';
                 document.getElementById('auth-modal-title').textContent = '用户登录';
                 document.querySelector('.card-btn').textContent = '登录';
                 document.querySelector('.auth-switch').textContent = '切换到注册';
+                passwordStrength.style.display = 'none';
             }
             document.getElementById('auth-error').style.display = 'none';
+        }
+
+        function toggleRememberMe() {
+            var checkbox = document.getElementById('auth-remember');
+            checkbox.checked = !checkbox.checked;
+        }
+
+        function checkPasswordStrength(password) {
+            if (!password) {
+                document.getElementById('strength-bar-fill').style.width = '0%';
+                document.getElementById('strength-text').textContent = '';
+                return;
+            }
+            
+            var strength = 0;
+            if (password.length >= 6) strength++;
+            if (/[a-z]/.test(password)) strength++;
+            if (/[A-Z]/.test(password)) strength++;
+            if (/[0-9]/.test(password)) strength++;
+            if (/[^a-zA-Z0-9]/.test(password)) strength++;
+            
+            var colors = ['transparent', '#ef4444', '#f59e0b', '#10b981', '#10b981'];
+            var texts = ['', '弱', '一般', '强', '非常强'];
+            
+            document.getElementById('strength-bar-fill').style.width = (strength * 25) + '%';
+            document.getElementById('strength-bar-fill').style.backgroundColor = colors[strength] || '#6366f1';
+            document.getElementById('strength-text').textContent = texts[strength] || '';
+        }
+
+        function validateUsernameInput(username) {
+            var input = document.getElementById('auth-username');
+            var validation = window.CloudBase.validateUsername(username);
+            
+            input.classList.remove('valid', 'invalid');
+            if (username.length > 0) {
+                input.classList.add(validation.valid ? 'valid' : 'invalid');
+            }
+        }
+
+        document.getElementById('auth-password').addEventListener('input', function(e) {
+            checkPasswordStrength(e.target.value);
+        });
+
+        document.getElementById('auth-username').addEventListener('input', function(e) {
+            validateUsernameInput(e.target.value);
+        });
+
+        function loadRememberedUser() {
+            var saved = localStorage.getItem('psy_remember_me');
+            if (saved) {
+                var data = JSON.parse(saved);
+                document.getElementById('auth-username').value = data.username;
+                document.getElementById('auth-remember').checked = true;
+            }
+        }
+
+        function saveRememberMe(username) {
+            if (document.getElementById('auth-remember').checked) {
+                localStorage.setItem('psy_remember_me', JSON.stringify({ username: username }));
+            } else {
+                localStorage.removeItem('psy_remember_me');
+            }
         }
 
         async function handleAuth() {
@@ -1268,12 +1433,30 @@
                 return;
             }
 
+            var validation = window.CloudBase.validateUsername(username);
+            if (!validation.valid) {
+                errorEl.textContent = validation.message;
+                errorEl.style.display = 'block';
+                return;
+            }
+
+            if (authMode === 'register') {
+                validation = window.CloudBase.validatePassword(password);
+                if (!validation.valid) {
+                    errorEl.textContent = validation.message;
+                    errorEl.style.display = 'block';
+                    return;
+                }
+            }
+
             try {
                 window.CloudBase.init();
                 if (authMode === 'login') {
                     await window.CloudBase.login(username, password);
+                    saveRememberMe(username);
                 } else {
                     await window.CloudBase.register(username, password);
+                    saveRememberMe(username);
                 }
                 
                 closeAuthModal();
@@ -1290,6 +1473,7 @@
         }
 
         checkUser();
+        loadRememberedUser();
     </script>
 
 </body>
