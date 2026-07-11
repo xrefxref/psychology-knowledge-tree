@@ -84,6 +84,16 @@
             gap: 12px;
         }
 
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #94a3b8;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 4px 8px;
+        }
+
         .user-btn {
             padding: 8px 16px;
             background: linear-gradient(135deg, #6366f1, #8b5cf6);
@@ -853,7 +863,23 @@
                 padding: 12px 20px;
             }
             .nav-links {
-                gap: 16px;
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(15, 23, 42, 0.95);
+                backdrop-filter: blur(12px);
+                flex-direction: column;
+                padding: 16px 20px;
+                gap: 12px;
+                border-bottom: 1px solid #1e293b;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
             }
             .hero-section {
                 padding: 80px 20px 40px;
@@ -901,7 +927,7 @@
             <div class="logo-icon">心</div>
             <span>心理学全景学习</span>
         </div>
-        <nav class="nav-links">
+        <nav class="nav-links" id="navLinks">
             <a href="#" class="active">首页</a>
             <a href="knowledge-map.html">知识图谱</a>
             <a href="timeline.html">时间树</a>
@@ -912,6 +938,7 @@
             <a href="mind-city.html">心象城市</a>
             <a href="#host">主理人</a>
         </nav>
+        <button class="menu-toggle" id="menuToggle" onclick="toggleMenu()">☰</button>
         <div class="user-area">
             <button id="userBtn" class="user-btn" onclick="showAuthModal()">登录 / 注册</button>
             <div id="userInfo" class="user-info" style="display: none;">
@@ -1359,6 +1386,11 @@
                 passwordStrength.style.display = 'none';
             }
             document.getElementById('auth-error').style.display = 'none';
+        }
+
+        function toggleMenu() {
+            var navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
         }
 
         function toggleRememberMe() {
