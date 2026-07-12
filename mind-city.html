@@ -5,8 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>心象城市 - 在关系中搭建自我</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 <style>
   * { box-sizing: border-box; }
   html, body {
@@ -89,25 +87,28 @@
     background: rgba(99, 102, 241, 0.3);
   }
 
-  #canvas-container {
+  #game-canvas {
+    position: fixed;
+    top: 52px;
+    left: 0;
     width: 100%;
-    height: 100vh;
-    position: relative;
+    height: calc(100vh - 180px);
+    z-index: 1;
   }
 
   .materials-panel {
     position: fixed;
-    bottom: 30px;
+    bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
     background: rgba(15, 23, 42, 0.95);
     border: 1px solid rgba(99, 102, 241, 0.2);
     border-radius: 16px;
-    padding: 16px 20px;
+    padding: 16px 24px;
     z-index: 100;
     backdrop-filter: blur(12px);
     display: flex;
-    gap: 16px;
+    gap: 20px;
     align-items: center;
     box-shadow: 0 10px 40px rgba(0,0,0,0.4);
   }
@@ -118,8 +119,8 @@
     align-items: center;
     gap: 6px;
     cursor: pointer;
-    padding: 8px 12px;
-    border-radius: 10px;
+    padding: 10px 16px;
+    border-radius: 12px;
     transition: all 0.2s;
     position: relative;
   }
@@ -135,23 +136,23 @@
   }
 
   .material-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
+    font-size: 24px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     transition: all 0.2s;
   }
 
   .material-category:hover .material-icon {
-    transform: scale(1.05);
+    transform: scale(1.08);
   }
 
   .material-name {
-    font-size: 11px;
+    font-size: 12px;
     color: #94a3b8;
     font-weight: 500;
   }
@@ -162,45 +163,23 @@
     right: -4px;
     background: #6366f1;
     color: white;
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 600;
-    padding: 1px 6px;
-    border-radius: 10px;
-    min-width: 18px;
+    padding: 2px 8px;
+    border-radius: 12px;
+    min-width: 22px;
     text-align: center;
-  }
-
-  .material-description {
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(15, 23, 42, 0.98);
-    border: 1px solid rgba(99, 102, 241, 0.3);
-    border-radius: 8px;
-    padding: 10px 14px;
-    font-size: 12px;
-    color: #cbd5e1;
-    white-space: nowrap;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.2s;
-    z-index: 200;
-  }
-
-  .material-category:hover .material-description {
-    opacity: 1;
   }
 
   .building-area {
     position: fixed;
-    top: 60px;
-    right: 30px;
+    top: 70px;
+    right: 20px;
     background: rgba(15, 23, 42, 0.95);
     border: 1px solid rgba(99, 102, 241, 0.2);
     border-radius: 14px;
     padding: 16px 20px;
-    width: 200px;
+    width: 220px;
     z-index: 100;
     backdrop-filter: blur(12px);
   }
@@ -258,8 +237,8 @@
 
   .hint-panel {
     position: fixed;
-    top: 80px;
-    left: 30px;
+    top: 70px;
+    left: 20px;
     background: rgba(15, 23, 42, 0.95);
     border: 1px solid rgba(99, 102, 241, 0.2);
     border-radius: 12px;
@@ -356,8 +335,8 @@
 
   .relationship-panel {
     position: fixed;
-    top: 80px;
-    left: 30px;
+    top: 70px;
+    left: 20px;
     background: rgba(15, 23, 42, 0.95);
     border: 1px solid rgba(99, 102, 241, 0.2);
     border-radius: 14px;
@@ -399,782 +378,427 @@
     justify-content: center;
   }
 
+  .rel-close:hover {
+    background: rgba(71, 85, 105, 0.8);
+  }
+
   .rel-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px;
+    background: rgba(71, 85, 105, 0.2);
     border-radius: 10px;
+    padding: 12px 16px;
     margin-bottom: 10px;
-    background: rgba(30, 41, 59, 0.5);
+    cursor: pointer;
     transition: all 0.2s;
   }
 
   .rel-item:hover {
-    background: rgba(30, 41, 59, 0.8);
+    background: rgba(71, 85, 105, 0.35);
+    transform: translateX(4px);
+  }
+
+  .rel-item:last-child {
+    margin-bottom: 0;
   }
 
   .rel-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 22px;
-  }
-
-  .rel-info {
-    flex: 1;
+    font-size: 18px;
+    margin-right: 10px;
   }
 
   .rel-name {
     font-size: 13px;
     font-weight: 600;
     color: #f1f5f9;
-    margin-bottom: 2px;
   }
 
   .rel-desc {
     font-size: 11px;
     color: #64748b;
-  }
-
-  .rel-interact {
-    padding: 6px 12px;
-    border-radius: 6px;
-    font-size: 11px;
-    font-weight: 500;
-    cursor: pointer;
-    border: none;
-    background: rgba(99, 102, 241, 0.2);
-    color: #a5b4fc;
-    transition: all 0.2s;
-  }
-
-  .rel-interact:hover {
-    background: rgba(99, 102, 241, 0.3);
-  }
-
-  .grow-archive {
-    position: fixed;
-    top: 80px;
-    left: 30px;
-    background: rgba(15, 23, 42, 0.95);
-    border: 1px solid rgba(99, 102, 241, 0.2);
-    border-radius: 14px;
-    padding: 20px;
-    width: 300px;
-    z-index: 100;
-    backdrop-filter: blur(12px);
-    display: none;
-    max-height: 70vh;
-    overflow-y: auto;
-  }
-
-  .grow-archive.active {
-    display: block;
-  }
-
-  .archive-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 16px;
-  }
-
-  .archive-title {
-    font-size: 16px;
-    font-weight: 600;
-    color: #f8fafc;
-  }
-
-  .archive-close {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    background: rgba(71, 85, 105, 0.5);
-    border: none;
-    color: #94a3b8;
-    font-size: 16px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .archive-stat {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-bottom: 20px;
-  }
-
-  .stat-card {
-    background: rgba(30, 41, 59, 0.6);
-    border-radius: 10px;
-    padding: 12px;
-    text-align: center;
-  }
-
-  .stat-card-value {
-    font-size: 20px;
-    font-weight: 700;
-    color: #f8fafc;
-  }
-
-  .stat-card-label {
-    font-size: 11px;
-    color: #64748b;
     margin-top: 4px;
   }
 
-  .timeline {
-    position: relative;
-    padding-left: 24px;
-  }
-
-  .timeline::before {
-    content: '';
-    position: absolute;
-    left: 8px;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: rgba(99, 102, 241, 0.3);
-  }
-
-  .timeline-item {
-    position: relative;
-    margin-bottom: 16px;
-    padding: 12px;
-    background: rgba(30, 41, 59, 0.5);
-    border-radius: 10px;
-  }
-
-  .timeline-item::before {
-    content: '';
-    position: absolute;
-    left: -24px;
-    top: 16px;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: #6366f1;
-    border: 2px solid #0f172a;
-  }
-
-  .timeline-time {
-    font-size: 11px;
-    color: #64748b;
-    margin-bottom: 6px;
-  }
-
-  .timeline-desc {
-    font-size: 12px;
-    color: #cbd5e1;
-  }
-
-  .notification {
+  .message-toast {
     position: fixed;
-    top: 20px;
+    top: 80px;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(16, 185, 129, 0.9);
-    color: white;
+    background: rgba(99, 102, 241, 0.95);
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    border-radius: 10px;
     padding: 12px 24px;
-    border-radius: 8px;
-    z-index: 10000;
     font-size: 13px;
-    font-weight: 500;
+    color: #f1f5f9;
+    z-index: 2000;
     opacity: 0;
     transition: opacity 0.3s;
-    box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
+    pointer-events: none;
   }
 
-  .notification.show {
+  .message-toast.show {
     opacity: 1;
   }
 
-  .start-screen {
+  .grow-record-panel {
+    position: fixed;
+    top: 70px;
+    right: 250px;
+    background: rgba(15, 23, 42, 0.95);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    border-radius: 14px;
+    padding: 16px 20px;
+    width: 240px;
+    z-index: 100;
+    backdrop-filter: blur(12px);
+    max-height: 300px;
+    overflow-y: auto;
+  }
+
+  .record-item {
+    font-size: 12px;
+    color: #94a3b8;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(71, 85, 105, 0.2);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .record-time {
+    font-size: 10px;
+    color: #475569;
+    flex-shrink: 0;
+  }
+
+  .record-content {
+    flex: 1;
+  }
+
+  .age-select-panel {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: linear-gradient(180deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+    background: rgba(15, 23, 42, 0.98);
     z-index: 2000;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 40px;
-    text-align: center;
   }
 
-  .start-logo {
-    width: 80px;
-    height: 80px;
-    background: linear-gradient(135deg, #6366f1, #8b5cf6);
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 40px;
-    margin-bottom: 24px;
-    box-shadow: 0 10px 40px rgba(99, 102, 241, 0.3);
-  }
-
-  .start-title {
-    font-size: 36px;
+  .age-title {
+    font-size: 32px;
     font-weight: 700;
     color: #f8fafc;
     margin-bottom: 8px;
   }
 
-  .start-subtitle {
+  .age-subtitle {
     font-size: 14px;
     color: #94a3b8;
-    margin-bottom: 32px;
-  }
-
-  .start-desc {
-    font-size: 13px;
-    color: #94a3b8;
-    line-height: 1.8;
-    max-width: 400px;
-    margin-bottom: 32px;
-  }
-
-  .age-selector {
-    display: flex;
-    gap: 16px;
-    margin-bottom: 32px;
-  }
-
-  .age-btn {
-    padding: 14px 28px;
-    border-radius: 12px;
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s;
-    border: 2px solid #334155;
-    background: rgba(15, 23, 42, 0.6);
-    color: #94a3b8;
-    min-width: 100px;
-  }
-
-  .age-btn:hover {
-    border-color: #6366f1;
-    color: #f1f5f9;
-    transform: translateY(-2px);
-  }
-
-  .age-btn.active {
-    background: rgba(99, 102, 241, 0.2);
-    border-color: #6366f1;
-    color: #a5b4fc;
-  }
-
-  .start-btn {
-    padding: 16px 48px;
-    border-radius: 12px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s;
-    border: none;
-    background: linear-gradient(135deg, #6366f1, #8b5cf6);
-    color: white;
-    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.3);
-  }
-
-  .start-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 36px rgba(99, 102, 241, 0.4);
-  }
-
-  .message-toast {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(15, 23, 42, 0.98);
-    border: 1px solid rgba(99, 102, 241, 0.3);
-    border-radius: 16px;
-    padding: 24px 32px;
-    font-size: 14px;
-    color: #cbd5e1;
-    z-index: 10000;
-    opacity: 0;
-    transition: opacity 0.3s;
+    margin-bottom: 40px;
     text-align: center;
-    line-height: 1.8;
+    max-width: 400px;
   }
 
-  .message-toast.show {
-    opacity: 1;
+  .age-options {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .age-option {
+    padding: 24px 36px;
+    border-radius: 16px;
+    background: rgba(71, 85, 105, 0.2);
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: center;
+    min-width: 180px;
+  }
+
+  .age-option:hover {
+    border-color: #6366f1;
+    transform: translateY(-4px);
+    background: rgba(71, 85, 105, 0.3);
+  }
+
+  .age-option .age-range {
+    font-size: 20px;
+    font-weight: 700;
+    color: #f8fafc;
+    margin-bottom: 8px;
+  }
+
+  .age-option .age-desc {
+    font-size: 12px;
+    color: #94a3b8;
+    line-height: 1.6;
   }
 </style>
 </head>
 <body>
 
-<div class="start-screen" id="startScreen">
-  <div class="start-logo">🏙️</div>
-  <div class="start-title">心象城市</div>
-  <div class="start-subtitle">自我，在关系中搭建而成</div>
-  <div class="start-desc">
-    在这里，你将用来自关系的方块搭建专属的自我建筑。<br>
-    每一块材料都代表一段真实的互动，<br>
-    每一次搭建都是自我成长的记录。
+<div class="age-select-panel" id="ageSelectPanel">
+  <div class="age-title">心象城市</div>
+  <div class="age-subtitle">选择你的年龄段，开始搭建属于你的自我建筑</div>
+  <div class="age-options">
+    <div class="age-option" onclick="selectAge('low')">
+      <div class="age-range">6-9 岁</div>
+      <div class="age-desc">卡通向导引导<br>大尺寸方块<br>自动对齐</div>
+    </div>
+    <div class="age-option" onclick="selectAge('medium')">
+      <div class="age-range">9-12 岁</div>
+      <div class="age-desc">标准操作<br>支持微调<br>同伴互动</div>
+    </div>
+    <div class="age-option" onclick="selectAge('high')">
+      <div class="age-range">12-18 岁</div>
+      <div class="age-desc">全自由搭建<br>异形方块<br>自主探索</div>
+    </div>
   </div>
-  <div class="age-selector">
-    <button class="age-btn" onclick="selectAge('low')">6-9岁</button>
-    <button class="age-btn" onclick="selectAge('mid')">9-12岁</button>
-    <button class="age-btn" onclick="selectAge('high')">12-18岁</button>
-  </div>
-  <button class="start-btn" onclick="startGame()">开始搭建</button>
 </div>
 
 <header class="header">
   <div class="logo">
-    <div class="logo-icon">🏙️</div>
+    <div class="logo-icon">心</div>
     <span>心象城市</span>
   </div>
   <nav class="nav-links">
-    <a href="index.html">首页</a>
-    <a href="knowledge-map.html">知识图谱</a>
-    <a href="timeline.html">时间树</a>
-    <a href="brain-3d.html">大脑模型</a>
-    <a href="#" class="active">心象城市</a>
+    <a href="index.html">返回首页</a>
   </nav>
   <div class="header-right">
     <button class="header-btn" onclick="showRelationshipPanel()">关系材料</button>
-    <button class="header-btn" onclick="showArchive()">成长档案</button>
-    <button class="header-btn" onclick="enterOverview()">看一看</button>
+    <button class="header-btn" onclick="showOverlook()">看一看</button>
+    <button class="header-btn" onclick="showGrowRecord()">成长档案</button>
+    <button class="header-btn" onclick="resetGame()">重新开始</button>
   </div>
 </header>
 
-<div id="canvas-container"></div>
-
 <div class="hint-panel" id="hintPanel">
-  <strong>操作提示：</strong><br>
-  🖱️ 左键拖动旋转视角<br>
-  🖱️ 滚轮缩放<br>
-  🖱️ 点击放置方块<br>
-  📱 触摸旋转视角
-</div>
-
-<div class="building-area">
-  <div class="area-title">我的建筑</div>
-  <div class="area-stat">
-    <span class="stat-label">高度</span>
-    <span class="stat-value" id="buildHeight">0</span>
-  </div>
-  <div class="area-stat">
-    <span class="stat-label">宽度</span>
-    <span class="stat-value" id="buildWidth">0</span>
-  </div>
-  <div class="area-stat">
-    <span class="stat-label">稳固度</span>
-    <div class="stability-bar">
-      <div class="stability-fill stable" id="stabilityFill" style="width: 100%"></div>
-    </div>
-  </div>
-</div>
-
-<div class="materials-panel">
-  <div class="material-category" data-type="mother" onclick="selectMaterial('mother')">
-    <div class="material-icon" style="background: linear-gradient(135deg, #fce7f3, #fbcfe8); color: #be185d;">👩</div>
-    <div class="material-name">母婴</div>
-    <div class="material-count" id="count-mother">5</div>
-    <div class="material-description">填补细微缝隙，加固底层安全感</div>
-  </div>
-  <div class="material-category" data-type="father" onclick="selectMaterial('father')">
-    <div class="material-icon" style="background: linear-gradient(135deg, #1e3a8a, #312e81); color: #bfdbfe;">👨</div>
-    <div class="material-name">父子</div>
-    <div class="material-count" id="count-father">3</div>
-    <div class="material-description">搭建结构框架，建立规则边界</div>
-  </div>
-  <div class="material-category" data-type="relative" onclick="selectMaterial('relative')">
-    <div class="material-icon" style="background: linear-gradient(135deg, #c2410c, #9a3412); color: #fed7aa;">👴</div>
-    <div class="material-name">亲戚</div>
-    <div class="material-count" id="count-relative">4</div>
-    <div class="material-description">丰富中层结构，拓展归属感</div>
-  </div>
-  <div class="material-category" data-type="peer" onclick="selectMaterial('peer')">
-    <div class="material-icon" style="background: linear-gradient(135deg, #059669, #047857); color: #a7f3d0;">👫</div>
-    <div class="material-name">同伴</div>
-    <div class="material-count" id="count-peer">6</div>
-    <div class="material-description">构成建筑主体，社会化核心建材</div>
-  </div>
-  <div class="material-category" data-type="society" onclick="selectMaterial('society')">
-    <div class="material-icon" style="background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #ddd6fe;">🌍</div>
-    <div class="material-name">社会</div>
-    <div class="material-count" id="count-society">2</div>
-    <div class="material-description">拓展边界，实现个性化突破</div>
-  </div>
+  <strong>搭建提示</strong><br>
+  1. 点击下方材料选择方块类型<br>
+  2. 点击网格放置方块<br>
+  3. 不同关系方块有不同功能<br>
+  4. 保持建筑稳固很重要
 </div>
 
 <div class="relationship-panel" id="relationshipPanel">
   <div class="rel-header">
-    <div class="rel-title">关系材料获取</div>
+    <div class="rel-title">获取关系材料</div>
     <button class="rel-close" onclick="hideRelationshipPanel()">×</button>
   </div>
-  <div class="rel-item">
-    <div class="rel-icon" style="background: linear-gradient(135deg, #fce7f3, #fbcfe8);">👩</div>
-    <div class="rel-info">
-      <div class="rel-name">母亲</div>
-      <div class="rel-desc">温暖的基础，填补细微缝隙</div>
-    </div>
-    <button class="rel-interact" onclick="interactWithRelationship('mother')">互动</button>
-  </div>
-  <div class="rel-item">
-    <div class="rel-icon" style="background: linear-gradient(135deg, #1e3a8a, #312e81);">👨</div>
-    <div class="rel-info">
-      <div class="rel-name">父亲</div>
-      <div class="rel-desc">建立规则，搭建结构框架</div>
-    </div>
-    <button class="rel-interact" onclick="interactWithRelationship('father')">互动</button>
-  </div>
-  <div class="rel-item">
-    <div class="rel-icon" style="background: linear-gradient(135deg, #c2410c, #9a3412);">👴</div>
-    <div class="rel-info">
-      <div class="rel-name">祖辈</div>
-      <div class="rel-desc">代际支持，丰富中层结构</div>
-    </div>
-    <button class="rel-interact" onclick="interactWithRelationship('relative')">互动</button>
-  </div>
-  <div class="rel-item">
-    <div class="rel-icon" style="background: linear-gradient(135deg, #059669, #047857);">👫</div>
-    <div class="rel-info">
-      <div class="rel-name">同伴/老师</div>
-      <div class="rel-desc">社交能力，构成建筑主体</div>
-    </div>
-    <button class="rel-interact" onclick="interactWithRelationship('peer')">互动</button>
-  </div>
-  <div class="rel-item">
-    <div class="rel-icon" style="background: linear-gradient(135deg, #7c3aed, #6d28d9);">🌍</div>
-    <div class="rel-info">
-      <div class="rel-name">社会/社群</div>
-      <div class="rel-desc">多元价值，拓展个性边界</div>
-    </div>
-    <button class="rel-interact" onclick="interactWithRelationship('society')">互动</button>
-  </div>
-</div>
-
-<div class="grow-archive" id="growArchive">
-  <div class="archive-header">
-    <div class="archive-title">成长档案</div>
-    <button class="archive-close" onclick="hideArchive()">×</button>
-  </div>
-  <div class="archive-stat">
-    <div class="stat-card">
-      <div class="stat-card-value" id="statHeight">0</div>
-      <div class="stat-card-label">最高高度</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-card-value" id="statBlocks">0</div>
-      <div class="stat-card-label">方块总数</div>
+  <div class="rel-item" onclick="interactWithRelationship('mother')">
+    <span class="rel-icon">👩</span>
+    <div>
+      <div class="rel-name">母婴关系</div>
+      <div class="rel-desc">填补细微缝隙，加固底层安全感</div>
     </div>
   </div>
-  <div class="area-title" style="margin-top: 16px;">生长轨迹</div>
-  <div class="timeline" id="timeline">
-    <div class="timeline-item">
-      <div class="timeline-time">刚刚</div>
-      <div class="timeline-desc">开始搭建你的心象城市</div>
+  <div class="rel-item" onclick="interactWithRelationship('father')">
+    <span class="rel-icon">👨</span>
+    <div>
+      <div class="rel-name">父子关系</div>
+      <div class="rel-desc">搭建结构框架，建立规则边界</div>
+    </div>
+  </div>
+  <div class="rel-item" onclick="interactWithRelationship('relative')">
+    <span class="rel-icon">👴</span>
+    <div>
+      <div class="rel-name">亲戚祖辈</div>
+      <div class="rel-desc">丰富中层结构，拓展归属感</div>
+    </div>
+  </div>
+  <div class="rel-item" onclick="interactWithRelationship('peer')">
+    <span class="rel-icon">👫</span>
+    <div>
+      <div class="rel-name">同伴老师</div>
+      <div class="rel-desc">构成建筑主体，社会化核心</div>
+    </div>
+  </div>
+  <div class="rel-item" onclick="interactWithRelationship('society')">
+    <span class="rel-icon">🌍</span>
+    <div>
+      <div class="rel-name">社会社群</div>
+      <div class="rel-desc">拓展边界，实现个性化突破</div>
     </div>
   </div>
 </div>
 
-<div class="overlay-panel" id="overviewPanel">
+<div class="building-area">
+  <div class="area-title">建筑状态</div>
+  <div class="area-stat">
+    <span class="stat-label">高度</span>
+    <span class="stat-value" id="statHeight">0</span>
+  </div>
+  <div class="area-stat">
+    <span class="stat-label">宽度</span>
+    <span class="stat-value" id="statWidth">0</span>
+  </div>
+  <div class="area-stat">
+    <span class="stat-label">方块数</span>
+    <span class="stat-value" id="statBlocks">0</span>
+  </div>
+  <div class="area-stat">
+    <span class="stat-label">稳固度</span>
+    <div class="stability-bar">
+      <div class="stability-fill" id="stabilityFill"></div>
+    </div>
+  </div>
+</div>
+
+<div class="grow-record-panel" id="growRecordPanel" style="display: none;">
+  <div class="area-title">成长记录</div>
+  <div id="growRecords"></div>
+</div>
+
+<canvas id="game-canvas"></canvas>
+
+<div class="materials-panel">
+  <div class="material-category" onclick="selectMaterial('mother')">
+    <div class="material-icon" style="background: linear-gradient(135deg, #fbcfe8, #f9a8d4);">👩</div>
+    <div class="material-name">母婴</div>
+    <div class="material-count" id="countMother">5</div>
+    <div class="material-description">填补细微缝隙，加固底层安全感</div>
+  </div>
+  <div class="material-category" onclick="selectMaterial('father')">
+    <div class="material-icon" style="background: linear-gradient(135deg, #93c5fd, #60a5fa);">👨</div>
+    <div class="material-name">父子</div>
+    <div class="material-count" id="countFather">3</div>
+    <div class="material-description">搭建结构框架，建立规则边界</div>
+  </div>
+  <div class="material-category" onclick="selectMaterial('relative')">
+    <div class="material-icon" style="background: linear-gradient(135deg, #fdba74, #fb923c);">👴</div>
+    <div class="material-name">亲戚</div>
+    <div class="material-count" id="countRelative">3</div>
+    <div class="material-description">丰富中层结构，拓展归属感</div>
+  </div>
+  <div class="material-category" onclick="selectMaterial('peer')">
+    <div class="material-icon" style="background: linear-gradient(135deg, #86efac, #4ade80);">👫</div>
+    <div class="material-name">同伴</div>
+    <div class="material-count" id="countPeer">5</div>
+    <div class="material-description">构成建筑主体，社会化核心</div>
+  </div>
+  <div class="material-category" onclick="selectMaterial('society')">
+    <div class="material-icon" style="background: linear-gradient(135deg, #c4b5fd, #a78bfa);">🌍</div>
+    <div class="material-name">社会</div>
+    <div class="material-count" id="countSociety">2</div>
+    <div class="material-description">拓展边界，实现个性化突破</div>
+  </div>
+</div>
+
+<div class="message-toast" id="messageToast"></div>
+
+<div class="overlay-panel" id="overlookPanel">
   <div class="overlay-title">无限城市</div>
-  <div class="overlay-subtitle">看一看这个正在生长的世界</div>
+  <div class="overlay-subtitle">从不同视角看这个世界</div>
   <div class="view-levels">
-    <button class="view-btn" onclick="setViewLevel(0)">建筑全貌</button>
+    <button class="view-btn active" onclick="setViewLevel(0)">建筑全貌</button>
     <button class="view-btn" onclick="setViewLevel(1)">邻里街区</button>
     <button class="view-btn" onclick="setViewLevel(2)">城区视野</button>
     <button class="view-btn" onclick="setViewLevel(3)">全域天际</button>
   </div>
-  <button class="overlay-close" onclick="exitOverview()">继续搭建</button>
+  <canvas id="overlookCanvas" style="width: 800px; height: 500px; border-radius: 12px; background: #0f172a;"></canvas>
+  <button class="overlay-close" onclick="hideOverlook()">继续搭建</button>
 </div>
 
-<div class="notification" id="notification"></div>
-<div class="message-toast" id="messageToast"></div>
-
 <script>
-var scene, camera, renderer, controls;
-var buildingGroup, cityGroup;
-var selectedMaterial = 'mother';
-var materialsCount = { mother: 5, father: 3, relative: 4, peer: 6, society: 2 };
-var placedBlocks = [];
-var hoverPoint = null;
-var raycaster, mouse;
-var gridHelper;
-var isOverview = false;
-var currentViewLevel = 0;
-var ageGroup = 'mid';
-var growHistory = [];
+var canvas = document.getElementById('game-canvas');
+var ctx = canvas.getContext('2d');
+var overlookCanvas = document.getElementById('overlookCanvas');
+var overlookCtx = overlookCanvas.getContext('2d');
 
 var materialConfig = {
-  mother: { size: 1, color: 0xfbcfe8, name: '母婴', gapSize: 0.5 },
-  father: { size: 2, color: 0x3b82f6, name: '父子', gapSize: 1 },
-  relative: { size: 1.5, color: 0xf97316, name: '亲戚', gapSize: 0.75 },
-  peer: { size: 2, color: 0x10b981, name: '同伴', gapSize: 1 },
-  society: { size: 2.5, color: 0x8b5cf6, name: '社会', gapSize: 1.25 }
+  mother: { name: '母婴', color: '#f9a8d4', size: 1, icon: '👩' },
+  father: { name: '父子', color: '#60a5fa', size: 2, icon: '👨' },
+  relative: { name: '亲戚', color: '#fb923c', size: 2, icon: '👴' },
+  peer: { name: '同伴', color: '#4ade80', size: 2, icon: '👫' },
+  society: { name: '社会', color: '#a78bfa', size: 3, icon: '🌍' }
 };
 
-function startGame() {
-  document.getElementById('startScreen').style.display = 'none';
-  init();
+var selectedMaterial = 'mother';
+var materialsCount = { mother: 5, father: 3, relative: 3, peer: 5, society: 2 };
+var placedBlocks = [];
+var gridSize = 40;
+var offsetX = 0;
+var offsetY = 0;
+var mousePos = { x: 0, y: 0 };
+var hoverPos = { x: null, y: null };
+var stability = 100;
+
+var currentAge = '';
+var growRecords = [];
+var currentViewLevel = 0;
+
+function selectAge(age) {
+  currentAge = age;
+  document.getElementById('ageSelectPanel').style.display = 'none';
+  initGame();
 }
 
-function selectAge(group) {
-  ageGroup = group;
-  document.querySelectorAll('.age-btn').forEach(function(btn) {
-    btn.classList.remove('active');
-  });
-  event.target.classList.add('active');
-}
-
-function init() {
-  scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x0f172a);
-
-  camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-  camera.position.set(0, 8, 12);
-
-  renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(window.devicePixelRatio);
-  renderer.shadowMap.enabled = true;
-  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-  document.getElementById('canvas-container').appendChild(renderer.domElement);
-
-  controls = new THREE.OrbitControls(camera, renderer.domElement);
-  controls.enableDamping = true;
-  controls.dampingFactor = 0.05;
-  controls.minDistance = 5;
-  controls.maxDistance = 50;
-  controls.maxPolarAngle = Math.PI / 2.2;
-
-  var ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-  scene.add(ambientLight);
-
-  var directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-  directionalLight.position.set(10, 15, 10);
-  directionalLight.castShadow = true;
-  directionalLight.shadow.mapSize.width = 2048;
-  directionalLight.shadow.mapSize.height = 2048;
-  scene.add(directionalLight);
-
-  var pointLight = new THREE.PointLight(0x6366f1, 0.5);
-  pointLight.position.set(-5, 5, -5);
-  scene.add(pointLight);
-
-  var gridSize = 20;
-  var gridDivisions = 20;
-  var gridColor = new THREE.Color(0x334155);
-  gridHelper = new THREE.GridHelper(gridSize, gridDivisions, gridColor, gridColor);
-  gridHelper.position.y = 0;
-  scene.add(gridHelper);
-
-  buildingGroup = new THREE.Group();
-  scene.add(buildingGroup);
-
-  cityGroup = new THREE.Group();
-  scene.add(cityGroup);
-
-  createInitialFoundation();
-  generateCity();
-
-  raycaster = new THREE.Raycaster();
-  mouse = new THREE.Vector2();
-
-  window.addEventListener('resize', onWindowResize);
-  renderer.domElement.addEventListener('click', onMouseClick);
-  renderer.domElement.addEventListener('mousemove', onMouseMove);
-
-  loadSavedData();
-  updateMaterialCounts();
+function initGame() {
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+  canvas.addEventListener('mousemove', onMouseMove);
+  canvas.addEventListener('click', onCanvasClick);
+  canvas.addEventListener('wheel', onWheel);
   
+  if (localStorage.getItem('mindCityData')) {
+    loadData();
+  }
+  
+  if (materialsCount.mother === 0) {
+    materialsCount.mother = 5;
+  }
+  
+  updateMaterialCounts();
   animate();
 }
 
-function createInitialFoundation() {
-  var foundationMaterial = new THREE.MeshStandardMaterial({
-    color: 0xfbcfe8,
-    shininess: 50,
-    metalness: 0.1,
-    roughness: 0.4,
-    transparent: true,
-    opacity: 0.9
-  });
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight - 180;
+  offsetX = canvas.width / 2;
+  offsetY = canvas.height / 2;
+}
 
-  for (var x = -2; x <= 2; x++) {
-    for (var z = -2; z <= 2; z++) {
-      var geometry = new THREE.BoxGeometry(1, 0.5, 1);
-      var block = new THREE.Mesh(geometry, foundationMaterial);
-      block.position.set(x, 0.25, z);
-      block.castShadow = true;
-      block.receiveShadow = true;
-      block.userData = { type: 'mother', size: 1 };
-      buildingGroup.add(block);
-      placedBlocks.push({ mesh: block, x: x, y: 0.25, z: z, type: 'mother' });
-    }
+function onMouseMove(e) {
+  mousePos.x = e.clientX;
+  mousePos.y = e.clientY;
+  updateHoverPos();
+}
+
+function updateHoverPos() {
+  var rect = canvas.getBoundingClientRect();
+  var x = mousePos.x - rect.left - offsetX;
+  var y = mousePos.y - rect.top - offsetY;
+  
+  var gridX = Math.round(x / gridSize) * gridSize;
+  var gridY = Math.round(y / gridSize) * gridSize;
+  
+  hoverPos = { x: gridX, y: gridY };
+}
+
+function onCanvasClick(e) {
+  if (materialsCount[selectedMaterial] <= 0) {
+    showMessage('材料不足，请先获取关系材料！');
+    return;
   }
   
-  addGrowRecord('完成初始地基搭建，来自母亲的温暖支撑');
-  updateStats();
+  var rect = canvas.getBoundingClientRect();
+  var x = e.clientX - rect.left - offsetX;
+  var y = e.clientY - rect.top - offsetY;
+  
+  var gridX = Math.round(x / gridSize) * gridSize;
+  var gridY = Math.round(y / gridSize) * gridSize;
+  
+  placeBlock(gridX, gridY);
 }
 
-function generateCity() {
-  var cityColors = [0x6366f1, 0x8b5cf6, 0x3b82f6, 0x06b6d4, 0x10b981, 0xf59e0b, 0xf97316, 0xec4899];
-  
-  for (var i = 0; i < 50; i++) {
-    var x = (Math.random() - 0.5) * 100;
-    var z = (Math.random() - 0.5) * 100;
-    if (Math.abs(x) < 6 && Math.abs(z) < 6) continue;
-    
-    var height = 1 + Math.random() * 8;
-    var width = 1 + Math.random() * 2;
-    var depth = 1 + Math.random() * 2;
-    
-    var color = cityColors[Math.floor(Math.random() * cityColors.length)];
-    var material = new THREE.MeshStandardMaterial({
-      color: color,
-      shininess: 30,
-      metalness: 0.1,
-      roughness: 0.5,
-      transparent: true,
-      opacity: 0.85
-    });
-    
-    var geometry = new THREE.BoxGeometry(width, height, depth);
-    var building = new THREE.Mesh(geometry, material);
-    building.position.set(x, height / 2, z);
-    building.castShadow = true;
-    building.receiveShadow = true;
-    
-    cityGroup.add(building);
-  }
-}
-
-function onWindowResize() {
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth, window.innerHeight);
-}
-
-function onMouseMove(event) {
-  mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-  mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-
-  raycaster.setFromCamera(mouse, camera);
-
-  var plane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
-  var intersectPoint = new THREE.Vector3();
-  raycaster.ray.intersectPlane(plane, intersectPoint);
-
-  if (intersectPoint) {
-    intersectPoint.x = Math.round(intersectPoint.x);
-    intersectPoint.z = Math.round(intersectPoint.z);
-    
-    var maxHeight = getMaxHeightAt(intersectPoint.x, intersectPoint.z);
-    intersectPoint.y = maxHeight + 0.5;
-
-    if (hoverPoint) {
-      hoverPoint.position.copy(intersectPoint);
-    } else {
-      var geometry = new THREE.BoxGeometry(1, 1, 1);
-      var material = new THREE.MeshStandardMaterial({
-        color: materialConfig[selectedMaterial].color,
-        transparent: true,
-        opacity: 0.3,
-        wireframe: true
-      });
-      hoverPoint = new THREE.Mesh(geometry, material);
-      hoverPoint.position.copy(intersectPoint);
-      scene.add(hoverPoint);
-    }
-  }
-}
-
-function getMaxHeightAt(x, z) {
-  var maxHeight = 0;
-  
-  placedBlocks.forEach(function(block) {
-    var blockSize = block.size || 1;
-    var blockX = block.x;
-    var blockZ = block.z;
-    
-    if (Math.abs(blockX - x) < blockSize && Math.abs(blockZ - z) < blockSize) {
-      maxHeight = Math.max(maxHeight, block.y + (blockSize / 2));
-    }
-  });
-  
-  return maxHeight;
-}
-
-function onMouseClick(event) {
-  if (isOverview) return;
-  
-  mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-  mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-
-  raycaster.setFromCamera(mouse, camera);
-
-  var plane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
-  var intersectPoint = new THREE.Vector3();
-  raycaster.ray.intersectPlane(plane, intersectPoint);
-
-  if (intersectPoint && materialsCount[selectedMaterial] > 0) {
-    intersectPoint.x = Math.round(intersectPoint.x);
-    intersectPoint.z = Math.round(intersectPoint.z);
-    
-    var maxHeight = getMaxHeightAt(intersectPoint.x, intersectPoint.z);
-    intersectPoint.y = maxHeight + 0.5;
-
-    placeBlock(intersectPoint);
-  }
-}
-
-function placeBlock(position) {
-  var config = materialConfig[selectedMaterial];
-  var size = config.size;
-  
-  var geometry = new THREE.BoxGeometry(size, size, size);
-  var material = new THREE.MeshStandardMaterial({
-    color: config.color,
-    shininess: 50,
-    metalness: 0.1,
-    roughness: 0.4,
-    transparent: true,
-    opacity: 0.9
-  });
-  
-  var block = new THREE.Mesh(geometry, material);
-  block.position.copy(position);
-  block.castShadow = true;
-  block.receiveShadow = true;
-  block.userData = { type: selectedMaterial, size: size };
-  
-  buildingGroup.add(block);
-  placedBlocks.push({ 
-    mesh: block, 
-    x: position.x, 
-    y: position.y, 
-    z: position.z, 
-    type: selectedMaterial, 
-    size: size 
-  });
-  
-  materialsCount[selectedMaterial]--;
-  updateMaterialCounts();
-  updateStats();
-  checkStability();
-  
-  addGrowRecord('放置了一块「' + config.name + '」方块');
-  
-  saveData();
+function onWheel(e) {
+  e.preventDefault();
+  var delta = e.deltaY > 0 ? 1 : -1;
+  offsetY += delta * 20;
 }
 
 function selectMaterial(type) {
@@ -1182,139 +806,225 @@ function selectMaterial(type) {
   document.querySelectorAll('.material-category').forEach(function(el) {
     el.classList.remove('active');
   });
-  document.querySelector('[data-type="' + type + '"]').classList.add('active');
-  
-  if (hoverPoint) {
-    hoverPoint.material.color.setHex(materialConfig[type].color);
-    var size = materialConfig[type].size;
-    hoverPoint.scale.set(size, size, size);
-  }
+  event.currentTarget.classList.add('active');
 }
 
-function updateMaterialCounts() {
-  Object.keys(materialsCount).forEach(function(key) {
-    document.getElementById('count-' + key).textContent = materialsCount[key];
-  });
-}
-
-function updateStats() {
-  var maxY = 0;
-  var minX = Infinity, maxX = -Infinity;
-  var minZ = Infinity, maxZ = -Infinity;
+function placeBlock(x, y) {
+  var config = materialConfig[selectedMaterial];
+  var size = config.size;
   
-  placedBlocks.forEach(function(block) {
-    maxY = Math.max(maxY, block.y);
-    minX = Math.min(minX, block.x);
-    maxX = Math.max(maxX, block.x);
-    minZ = Math.min(minZ, block.z);
-    maxZ = Math.max(maxZ, block.z);
-  });
+  var block = {
+    x: x,
+    y: y,
+    type: selectedMaterial,
+    size: size,
+    color: config.color,
+    icon: config.icon
+  };
   
-  var height = Math.round(maxY * 2);
-  var width = Math.round(maxX - minX + 1);
+  placedBlocks.push(block);
+  materialsCount[selectedMaterial]--;
   
-  document.getElementById('buildHeight').textContent = height;
-  document.getElementById('buildWidth').textContent = width;
-  document.getElementById('statHeight').textContent = height;
-  document.getElementById('statBlocks').textContent = placedBlocks.length;
+  updateMaterialCounts();
+  updateStats();
+  checkStability();
+  
+  addGrowRecord('放置了一块「' + config.name + '」方块');
+  
+  saveData();
+  
+  showMessage('放置成功！');
 }
 
 function checkStability() {
-  var stability = 100;
-  var gaps = countGaps();
-  
-  if (gaps > 5) stability = 50;
-  else if (gaps > 2) stability = 75;
-  else stability = 100;
-  
-  var fill = document.getElementById('stabilityFill');
-  fill.style.width = stability + '%';
-  fill.className = 'stability-fill ' + (stability >= 75 ? 'stable' : stability >= 50 ? 'warning' : 'danger');
-  
-  if (gaps > 0 && gaps <= 2) {
-    showMessage('好像有点不稳，可以回头补一补');
-  } else if (gaps > 5) {
-    showMessage('结构有些摇晃，建议先修补底层');
+  if (placedBlocks.length === 0) {
+    stability = 100;
+    updateStabilityUI();
+    return;
   }
-}
-
-function countGaps() {
+  
   var gaps = 0;
-  var occupied = new Set();
+  var total = placedBlocks.length;
   
-  placedBlocks.forEach(function(block) {
-    occupied.add(block.x + ',' + block.z + ',' + Math.floor(block.y));
-  });
-  
-  placedBlocks.forEach(function(block) {
-    var belowY = block.y - 1;
-    if (belowY > 0 && !occupied.has(block.x + ',' + block.z + ',' + Math.floor(belowY))) {
+  placedBlocks.forEach(function(block, i) {
+    var hasBelow = false;
+    placedBlocks.forEach(function(other, j) {
+      if (i !== j && Math.abs(block.x - other.x) < gridSize && block.y === other.y + gridSize) {
+        hasBelow = true;
+      }
+    });
+    if (block.y > -gridSize && !hasBelow) {
       gaps++;
     }
   });
   
-  return gaps;
-}
-
-function showMessage(text) {
-  var toast = document.getElementById('messageToast');
-  toast.textContent = text;
-  toast.classList.add('show');
-  setTimeout(function() {
-    toast.classList.remove('show');
-  }, 3000);
-}
-
-function showNotification(text, type) {
-  type = type || 'success';
-  var notification = document.getElementById('notification');
-  notification.textContent = text;
-  notification.style.background = type === 'success' ? 'rgba(16, 185, 129, 0.9)' : 'rgba(99, 102, 241, 0.9)';
-  notification.classList.add('show');
-  setTimeout(function() {
-    notification.classList.remove('show');
-  }, 2500);
-}
-
-function addGrowRecord(text) {
-  var now = new Date();
-  var timeStr = now.toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' });
+  stability = Math.max(0, 100 - (gaps * 15));
+  updateStabilityUI();
   
-  growHistory.unshift({
-    time: timeStr,
-    desc: text
-  });
+  if (stability < 50) {
+    showMessage('好像有点不稳，可以回头补一补');
+  }
+}
+
+function updateStabilityUI() {
+  var fill = document.getElementById('stabilityFill');
+  fill.style.width = stability + '%';
   
-  if (growHistory.length > 20) {
-    growHistory.pop();
+  fill.className = 'stability-fill';
+  if (stability >= 70) fill.classList.add('stable');
+  else if (stability >= 40) fill.classList.add('warning');
+  else fill.classList.add('danger');
+}
+
+function updateStats() {
+  if (placedBlocks.length === 0) {
+    document.getElementById('statHeight').textContent = '0';
+    document.getElementById('statWidth').textContent = '0';
+    document.getElementById('statBlocks').textContent = '0';
+    return;
   }
   
-  updateTimeline();
+  var minY = Infinity, maxY = -Infinity;
+  var minX = Infinity, maxX = -Infinity;
+  
+  placedBlocks.forEach(function(block) {
+    minY = Math.min(minY, block.y);
+    maxY = Math.max(maxY, block.y);
+    minX = Math.min(minX, block.x);
+    maxX = Math.max(maxX, block.x);
+  });
+  
+  var height = Math.floor((maxY - minY) / gridSize) + 1;
+  var width = Math.floor((maxX - minX) / gridSize) + 1;
+  
+  document.getElementById('statHeight').textContent = height;
+  document.getElementById('statWidth').textContent = width;
+  document.getElementById('statBlocks').textContent = placedBlocks.length;
 }
 
-function updateTimeline() {
-  var timeline = document.getElementById('timeline');
-  timeline.innerHTML = growHistory.map(function(item) {
-    return '<div class="timeline-item"><div class="timeline-time">' + item.time + '</div><div class="timeline-desc">' + item.desc + '</div></div>';
-  }).join('');
+function updateMaterialCounts() {
+  Object.keys(materialsCount).forEach(function(key) {
+    document.getElementById('count' + key.charAt(0).toUpperCase() + key.slice(1)).textContent = materialsCount[key];
+  });
+}
+
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  
+  drawGrid();
+  drawBlocks();
+  drawHoverPreview();
+  
+  requestAnimationFrame(animate);
+}
+
+function drawGrid() {
+  ctx.strokeStyle = 'rgba(71, 85, 105, 0.3)';
+  ctx.lineWidth = 1;
+  
+  var startX = offsetX % gridSize;
+  var startY = offsetY % gridSize;
+  
+  for (var x = startX; x < canvas.width; x += gridSize) {
+    ctx.beginPath();
+    ctx.moveTo(x, 0);
+    ctx.lineTo(x, canvas.height);
+    ctx.stroke();
+  }
+  
+  for (var y = startY; y < canvas.height; y += gridSize) {
+    ctx.beginPath();
+    ctx.moveTo(0, y);
+    ctx.lineTo(canvas.width, y);
+    ctx.stroke();
+  }
+  
+  ctx.strokeStyle = 'rgba(99, 102, 241, 0.4)';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(offsetX, 0);
+  ctx.lineTo(offsetX, canvas.height);
+  ctx.stroke();
+  
+  ctx.beginPath();
+  ctx.moveTo(0, offsetY);
+  ctx.lineTo(canvas.width, offsetY);
+  ctx.stroke();
+}
+
+function drawBlocks() {
+  placedBlocks.forEach(function(block) {
+    var screenX = offsetX + block.x;
+    var screenY = offsetY + block.y;
+    var size = block.size * gridSize;
+    var halfSize = size / 2;
+    
+    ctx.fillStyle = block.color;
+    ctx.globalAlpha = 0.85;
+    ctx.beginPath();
+    ctx.roundRect(screenX - halfSize, screenY - halfSize, size, size, 6);
+    ctx.fill();
+    
+    ctx.fillStyle = 'rgba(0,0,0,0.1)';
+    ctx.beginPath();
+    ctx.roundRect(screenX - halfSize + 4, screenY - halfSize + 4, size - 8, size - 8, 4);
+    ctx.fill();
+    
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = '#fff';
+    ctx.font = '16px Arial';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(block.icon, screenX, screenY);
+    
+    if (block.size > 1) {
+      ctx.fillStyle = 'rgba(255,255,255,0.6)';
+      ctx.font = '11px Arial';
+      ctx.fillText(block.size + '×' + block.size, screenX, screenY + halfSize - 10);
+    }
+  });
+}
+
+function drawHoverPreview() {
+  if (hoverPos.x === null || materialsCount[selectedMaterial] <= 0) return;
+  
+  var screenX = offsetX + hoverPos.x;
+  var screenY = offsetY + hoverPos.y;
+  var config = materialConfig[selectedMaterial];
+  var size = config.size * gridSize;
+  var halfSize = size / 2;
+  
+  ctx.fillStyle = config.color;
+  ctx.globalAlpha = 0.3;
+  ctx.beginPath();
+  ctx.roundRect(screenX - halfSize, screenY - halfSize, size, size, 6);
+  ctx.fill();
+  
+  ctx.strokeStyle = config.color;
+  ctx.globalAlpha = 0.6;
+  ctx.lineWidth = 2;
+  ctx.setLineDash([5, 5]);
+  ctx.beginPath();
+  ctx.roundRect(screenX - halfSize, screenY - halfSize, size, size, 6);
+  ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.globalAlpha = 1;
+  
+  ctx.fillStyle = config.color;
+  ctx.font = '16px Arial';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(config.icon, screenX, screenY);
 }
 
 function showRelationshipPanel() {
   document.getElementById('relationshipPanel').classList.add('active');
-  document.getElementById('growArchive').classList.remove('active');
+  document.getElementById('hintPanel').style.display = 'none';
 }
 
 function hideRelationshipPanel() {
   document.getElementById('relationshipPanel').classList.remove('active');
-}
-
-function showArchive() {
-  document.getElementById('growArchive').classList.add('active');
-  document.getElementById('relationshipPanel').classList.remove('active');
-}
-
-function hideArchive() {
-  document.getElementById('growArchive').classList.remove('active');
+  document.getElementById('hintPanel').style.display = 'block';
 }
 
 function interactWithRelationship(type) {
@@ -1340,28 +1050,60 @@ function interactWithRelationship(type) {
   hideRelationshipPanel();
 }
 
-function enterOverview() {
-  isOverview = true;
-  document.getElementById('overviewPanel').classList.add('active');
-  document.getElementById('materials-panel').style.display = 'none';
-  document.getElementById('building-area').style.display = 'none';
-  document.getElementById('hintPanel').style.display = 'none';
-  
-  controls.enableRotate = true;
-  controls.enableZoom = true;
-  
-  setViewLevel(0);
+function showMessage(text) {
+  var toast = document.getElementById('messageToast');
+  toast.textContent = text;
+  toast.classList.add('show');
+  setTimeout(function() {
+    toast.classList.remove('show');
+  }, 3000);
 }
 
-function exitOverview() {
-  isOverview = false;
-  document.getElementById('overviewPanel').classList.remove('active');
-  document.getElementById('materials-panel').style.display = 'flex';
-  document.getElementById('building-area').style.display = 'block';
-  document.getElementById('hintPanel').style.display = 'block';
+function showNotification(text) {
+  var toast = document.getElementById('messageToast');
+  toast.textContent = text;
+  toast.classList.add('show');
+  setTimeout(function() {
+    toast.classList.remove('show');
+  }, 3000);
+}
+
+function addGrowRecord(text) {
+  var now = new Date();
+  var time = now.getHours() + ':' + String(now.getMinutes()).padStart(2, '0');
+  growRecords.unshift({ time: time, content: text });
   
-  camera.position.set(0, 8, 12);
-  controls.target.set(0, 0, 0);
+  if (growRecords.length > 20) {
+    growRecords.pop();
+  }
+  
+  updateGrowRecordsUI();
+}
+
+function updateGrowRecordsUI() {
+  var container = document.getElementById('growRecords');
+  container.innerHTML = '';
+  
+  growRecords.forEach(function(record) {
+    var item = document.createElement('div');
+    item.className = 'record-item';
+    item.innerHTML = '<span class="record-time">' + record.time + '</span><span class="record-content">' + record.content + '</span>';
+    container.appendChild(item);
+  });
+}
+
+function showGrowRecord() {
+  var panel = document.getElementById('growRecordPanel');
+  panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+}
+
+function showOverlook() {
+  document.getElementById('overlookPanel').classList.add('active');
+  drawOverlook();
+}
+
+function hideOverlook() {
+  document.getElementById('overlookPanel').classList.remove('active');
 }
 
 function setViewLevel(level) {
@@ -1370,96 +1112,133 @@ function setViewLevel(level) {
     btn.classList.remove('active');
   });
   event.target.classList.add('active');
-  
-  var positions = [
-    { x: 0, y: 8, z: 12 },
-    { x: 0, y: 20, z: 30 },
-    { x: 0, y: 40, z: 60 },
-    { x: 0, y: 80, z: 120 }
-  ];
-  
-  var pos = positions[level];
-  
-  animateCamera(pos.x, pos.y, pos.z);
+  drawOverlook();
 }
 
-function animateCamera(x, y, z) {
-  var startPos = camera.position.clone();
-  var startTime = Date.now();
-  var duration = 1500;
+function drawOverlook() {
+  overlookCtx.clearRect(0, 0, overlookCanvas.width, overlookCanvas.height);
   
-  function animate() {
-    var elapsed = Date.now() - startTime;
-    var progress = Math.min(elapsed / duration, 1);
-    var eased = 1 - Math.pow(1 - progress, 4);
-    
-    camera.position.x = startPos.x + (x - startPos.x) * eased;
-    camera.position.y = startPos.y + (y - startPos.y) * eased;
-    camera.position.z = startPos.z + (z - startPos.z) * eased;
-    
-    if (progress < 1) {
-      requestAnimationFrame(animate);
+  var levels = [
+    { scale: 1, range: 5 },
+    { scale: 0.5, range: 15 },
+    { scale: 0.2, range: 40 },
+    { scale: 0.05, range: 100 }
+  ];
+  
+  var level = levels[currentViewLevel];
+  var centerX = overlookCanvas.width / 2;
+  var centerY = overlookCanvas.height / 2;
+  
+  overlookCtx.fillStyle = '#0f172a';
+  overlookCtx.fillRect(0, 0, overlookCanvas.width, overlookCanvas.height);
+  
+  if (currentViewLevel === 3) {
+    for (var i = 0; i < 50; i++) {
+      var x = Math.random() * overlookCanvas.width;
+      var y = Math.random() * overlookCanvas.height;
+      var size = Math.random() * 3 + 1;
+      var alpha = Math.random() * 0.3 + 0.1;
+      
+      overlookCtx.fillStyle = 'rgba(255,255,255,' + alpha + ')';
+      overlookCtx.beginPath();
+      overlookCtx.arc(x, y, size, 0, Math.PI * 2);
+      overlookCtx.fill();
     }
   }
   
-  animate();
+  var buildings = [];
+  
+  for (var i = 0; i < level.range * level.range; i++) {
+    var gx = Math.floor(i / level.range) - level.range / 2;
+    var gy = (i % level.range) - level.range / 2;
+    
+    if (gx === 0 && gy === 0) continue;
+    
+    var hasBuilding = Math.random() > 0.3;
+    if (hasBuilding) {
+      buildings.push({
+        x: gx,
+        y: gy,
+        height: Math.floor(Math.random() * 8) + 1,
+        color: ['#f9a8d4', '#60a5fa', '#fb923c', '#4ade80', '#a78bfa'][Math.floor(Math.random() * 5)],
+        size: Math.floor(Math.random() * 2) + 1
+      });
+    }
+  }
+  
+  buildings.forEach(function(building) {
+    var screenX = centerX + building.x * 40 * level.scale;
+    var screenY = centerY + building.y * 40 * level.scale;
+    var width = building.size * 30 * level.scale;
+    var height = building.height * 20 * level.scale;
+    
+    overlookCtx.fillStyle = building.color;
+    overlookCtx.globalAlpha = 0.7;
+    overlookCtx.fillRect(screenX - width/2, screenY - height, width, height);
+    
+    overlookCtx.fillStyle = 'rgba(0,0,0,0.2)';
+    overlookCtx.fillRect(screenX - width/2 + 2, screenY - height + 2, width - 4, height - 4);
+    
+    overlookCtx.globalAlpha = 1;
+  });
+  
+  placedBlocks.forEach(function(block) {
+    var screenX = centerX + block.x * level.scale;
+    var screenY = centerY + block.y * level.scale;
+    var size = block.size * gridSize * level.scale;
+    var halfSize = size / 2;
+    
+    overlookCtx.fillStyle = block.color;
+    overlookCtx.globalAlpha = 0.9;
+    overlookCtx.fillRect(screenX - halfSize, screenY - halfSize, size, size);
+    
+    overlookCtx.globalAlpha = 1;
+  });
+  
+  overlookCtx.fillStyle = '#fbbf24';
+  overlookCtx.globalAlpha = 0.5;
+  overlookCtx.beginPath();
+  overlookCtx.arc(centerX, centerY, 8, 0, Math.PI * 2);
+  overlookCtx.fill();
+  
+  overlookCtx.globalAlpha = 1;
 }
 
 function saveData() {
   var data = {
-    blocks: placedBlocks.map(function(b) {
-      return { x: b.x, y: b.y, z: b.z, type: b.type, size: b.size };
-    }),
-    counts: materialsCount,
-    history: growHistory,
-    ageGroup: ageGroup
+    placedBlocks: placedBlocks,
+    materialsCount: materialsCount,
+    growRecords: growRecords,
+    stability: stability,
+    currentAge: currentAge
   };
-  localStorage.setItem('mind_city_data', JSON.stringify(data));
+  localStorage.setItem('mindCityData', JSON.stringify(data));
 }
 
-function loadSavedData() {
-  var saved = localStorage.getItem('mind_city_data');
-  if (saved) {
-    try {
-      var data = JSON.parse(saved);
-      data.blocks.forEach(function(block) {
-        var config = materialConfig[block.type];
-        var geometry = new THREE.BoxGeometry(block.size, block.size, block.size);
-        var material = new THREE.MeshStandardMaterial({
-          color: config.color,
-          shininess: 50,
-          metalness: 0.1,
-          roughness: 0.4,
-          transparent: true,
-          opacity: 0.9
-        });
-        var mesh = new THREE.Mesh(geometry, material);
-        mesh.position.set(block.x, block.y, block.z);
-        mesh.castShadow = true;
-        mesh.receiveShadow = true;
-        mesh.userData = { type: block.type, size: block.size };
-        buildingGroup.add(mesh);
-        placedBlocks.push({ mesh: mesh, ...block });
-      });
-      
-      materialsCount = data.counts;
-      growHistory = data.history || [];
-      ageGroup = data.ageGroup || 'mid';
-      
-      updateMaterialCounts();
-      updateStats();
-      updateTimeline();
-      checkStability();
-    } catch (e) {
-      console.error('加载存档失败:', e);
-    }
+function loadData() {
+  var data = JSON.parse(localStorage.getItem('mindCityData'));
+  if (data) {
+    placedBlocks = data.placedBlocks || [];
+    materialsCount = data.materialsCount || { mother: 5, father: 3, relative: 3, peer: 5, society: 2 };
+    growRecords = data.growRecords || [];
+    stability = data.stability || 100;
+    currentAge = data.currentAge || '';
   }
 }
 
-function animate() {
-  requestAnimationFrame(animate);
-  controls.update();
-  renderer.render(scene, camera);
+function resetGame() {
+  if (confirm('确定要重新开始吗？当前进度将丢失。')) {
+    placedBlocks = [];
+    materialsCount = { mother: 5, father: 3, relative: 3, peer: 5, society: 2 };
+    growRecords = [];
+    stability = 100;
+    localStorage.removeItem('mindCityData');
+    updateMaterialCounts();
+    updateStats();
+    updateStabilityUI();
+    updateGrowRecordsUI();
+    showMessage('已重新开始');
+  }
 }
 </script>
 </body>
