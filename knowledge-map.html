@@ -667,71 +667,347 @@
         const defaultGraphData = {
             name: "心理学\n全景系统",
             itemStyle: { color: ROOT_COLOR },
-            symbolSize: 45,
+            symbolSize: 50,
             children: [
                 {
                     name: "基础心理学\n(Basic)",
                     itemStyle: { color: EXPLORED_COLOR },
+                    symbolSize: 35,
                     children: [
-                        { name: "认知心理学", itemStyle: { color: EXPLORED_COLOR }, value: "思维、记忆、注意力、语言" },
-                        { name: "发展心理学", itemStyle: { color: EXPLORED_COLOR }, value: "从出生到老年的心理发展" },
-                        { name: "生理心理学", itemStyle: { color: EXPLORED_COLOR }, value: "心理活动的生理基础" },
-                        { name: "人格心理学", itemStyle: { color: EXPLORED_COLOR }, value: "人格特质与理论" },
-                        { name: "心理测量学", itemStyle: { color: EXPLORED_COLOR }, value: "心理测验与评估" }
+                        { 
+                            name: "认知心理学", 
+                            itemStyle: { color: EXPLORED_COLOR }, 
+                            value: "思维、记忆、注意力、语言、问题解决",
+                            children: [
+                                { name: "感觉与知觉", itemStyle: { color: EXPLORED_COLOR }, value: "视觉、听觉、嗅觉、触觉" },
+                                { name: "记忆系统", itemStyle: { color: EXPLORED_COLOR }, value: "感觉记忆、短时记忆、长时记忆" },
+                                { name: "思维与推理", itemStyle: { color: EXPLORED_COLOR }, value: "概念、判断、决策、问题解决" },
+                                { name: "注意与意识", itemStyle: { color: EXPLORED_COLOR }, value: "选择性注意、意识状态" }
+                            ]
+                        },
+                        { 
+                            name: "发展心理学", 
+                            itemStyle: { color: EXPLORED_COLOR }, 
+                            value: "从出生到老年的心理发展规律",
+                            children: [
+                                { name: "婴儿发展", itemStyle: { color: EXPLORED_COLOR }, value: "认知、社交、情感发展" },
+                                { name: "儿童发展", itemStyle: { color: EXPLORED_COLOR }, value: "皮亚杰认知发展阶段" },
+                                { name: "青少年发展", itemStyle: { color: EXPLORED_COLOR }, value: "自我认同、同伴关系" },
+                                { name: "成年与老年", itemStyle: { color: UNEXPLORED_COLOR }, value: "中年危机、认知老化" }
+                            ]
+                        },
+                        { 
+                            name: "生理心理学", 
+                            itemStyle: { color: EXPLORED_COLOR }, 
+                            value: "心理活动的生理与神经基础",
+                            children: [
+                                { name: "神经解剖", itemStyle: { color: EXPLORED_COLOR }, value: "大脑结构与功能分区" },
+                                { name: "神经递质", itemStyle: { color: EXPLORED_COLOR }, value: "多巴胺、血清素、乙酰胆碱" },
+                                { name: "激素与行为", itemStyle: { color: UNEXPLORED_COLOR }, value: "内分泌系统对行为的影响" }
+                            ]
+                        },
+                        { 
+                            name: "人格心理学", 
+                            itemStyle: { color: EXPLORED_COLOR }, 
+                            value: "人格特质、类型与理论",
+                            children: [
+                                { name: "特质理论", itemStyle: { color: EXPLORED_COLOR }, value: "大五人格、16PF" },
+                                { name: "类型理论", itemStyle: { color: EXPLORED_COLOR }, value: "MBTI、气质类型" },
+                                { name: "精神分析人格", itemStyle: { color: EXPLORED_COLOR }, value: "本我、自我、超我" }
+                            ]
+                        },
+                        { 
+                            name: "心理测量学", 
+                            itemStyle: { color: EXPLORED_COLOR }, 
+                            value: "心理测验与评估方法",
+                            children: [
+                                { name: "测验编制", itemStyle: { color: UNEXPLORED_COLOR }, value: "信度、效度、标准化" },
+                                { name: "智力测验", itemStyle: { color: EXPLORED_COLOR }, value: "韦氏量表、瑞文测验" },
+                                { name: "人格测验", itemStyle: { color: UNEXPLORED_COLOR }, value: "MMPI、罗夏墨迹" }
+                            ]
+                        },
+                        { name: "神经心理学", itemStyle: { color: UNEXPLORED_COLOR }, value: "脑损伤与认知功能障碍" },
+                        { name: "比较心理学", itemStyle: { color: UNEXPLORED_COLOR }, value: "动物行为与心理进化" },
+                        { name: "学习心理学", itemStyle: { color: EXPLORED_COLOR }, value: "经典条件反射、操作性条件反射" },
+                        { name: "异常心理学", itemStyle: { color: UNEXPLORED_COLOR }, value: "心理障碍的分类与诊断" },
+                        { name: "情绪心理学", itemStyle: { color: EXPLORED_COLOR }, value: "情绪理论、情绪调节" }
                     ]
                 },
                 {
                     name: "应用心理学\n(Applied)",
-                    itemStyle: { color: UNEXPLORED_COLOR },
+                    itemStyle: { color: EXPLORED_COLOR },
+                    symbolSize: 35,
                     children: [
-                        { name: "临床心理学", itemStyle: { color: UNEXPLORED_COLOR }, value: "心理障碍的诊断与治疗" },
-                        { name: "咨询心理学", itemStyle: { color: UNEXPLORED_COLOR }, value: "心理咨询与辅导" },
-                        { name: "教育心理学", itemStyle: { color: UNEXPLORED_COLOR }, value: "学习与教学心理" },
-                        { name: "社会心理学", itemStyle: { color: UNEXPLORED_COLOR }, value: "人际互动与群体心理" },
-                        { name: "工业心理学", itemStyle: { color: UNEXPLORED_COLOR }, value: "工作与组织心理" }
+                        { 
+                            name: "临床心理学", 
+                            itemStyle: { color: EXPLORED_COLOR }, 
+                            value: "心理障碍的诊断、治疗与预防",
+                            children: [
+                                { name: "心理评估", itemStyle: { color: UNEXPLORED_COLOR }, value: "诊断性访谈、心理测验" },
+                                { name: "心理治疗", itemStyle: { color: EXPLORED_COLOR }, value: "各种治疗方法应用" },
+                                { name: "危机干预", itemStyle: { color: UNEXPLORED_COLOR }, value: "自杀预防、创伤干预" }
+                            ]
+                        },
+                        { 
+                            name: "咨询心理学", 
+                            itemStyle: { color: EXPLORED_COLOR }, 
+                            value: "心理咨询与辅导",
+                            children: [
+                                { name: "个体咨询", itemStyle: { color: EXPLORED_COLOR }, value: "一对一咨询服务" },
+                                { name: "团体咨询", itemStyle: { color: UNEXPLORED_COLOR }, value: "小组辅导与治疗" },
+                                { name: "生涯咨询", itemStyle: { color: UNEXPLORED_COLOR }, value: "职业规划与发展" }
+                            ]
+                        },
+                        { 
+                            name: "教育心理学", 
+                            itemStyle: { color: EXPLORED_COLOR }, 
+                            value: "学习与教学心理",
+                            children: [
+                                { name: "学习理论", itemStyle: { color: EXPLORED_COLOR }, value: "建构主义、行为主义学习" },
+                                { name: "教学方法", itemStyle: { color: UNEXPLORED_COLOR }, value: "教学设计、课堂管理" },
+                                { name: "学习障碍", itemStyle: { color: UNEXPLORED_COLOR }, value: "阅读障碍、ADHD" }
+                            ]
+                        },
+                        { 
+                            name: "社会心理学", 
+                            itemStyle: { color: EXPLORED_COLOR }, 
+                            value: "人际互动与群体心理",
+                            children: [
+                                { name: "社会认知", itemStyle: { color: EXPLORED_COLOR }, value: "归因、偏见、刻板印象" },
+                                { name: "社会影响", itemStyle: { color: EXPLORED_COLOR }, value: "从众、服从、说服" },
+                                { name: "人际关系", itemStyle: { color: EXPLORED_COLOR }, value: "人际吸引、亲密关系" },
+                                { name: "群体心理", itemStyle: { color: UNEXPLORED_COLOR }, value: "群体决策、群体极化" }
+                            ]
+                        },
+                        { 
+                            name: "工业组织心理学", 
+                            itemStyle: { color: UNEXPLORED_COLOR }, 
+                            value: "工作与组织心理",
+                            children: [
+                                { name: "人才选拔", itemStyle: { color: UNEXPLORED_COLOR }, value: "招聘测评、胜任力模型" },
+                                { name: "组织行为", itemStyle: { color: UNEXPLORED_COLOR }, value: "领导力、团队建设" },
+                                { name: "职业健康", itemStyle: { color: UNEXPLORED_COLOR }, value: "工作压力、职业倦怠" }
+                            ]
+                        },
+                        { name: "运动心理学", itemStyle: { color: UNEXPLORED_COLOR }, value: "运动员心理训练与表现" },
+                        { name: "犯罪心理学", itemStyle: { color: UNEXPLORED_COLOR }, value: "犯罪行为心理与 Profiling" },
+                        { name: "健康心理学", itemStyle: { color: UNEXPLORED_COLOR }, value: "健康行为、心身疾病" },
+                        { name: "环境心理学", itemStyle: { color: UNEXPLORED_COLOR }, value: "环境对心理与行为的影响" },
+                        { name: "消费者心理学", itemStyle: { color: UNEXPLORED_COLOR }, value: "消费行为与市场营销" }
                     ]
                 },
                 {
                     name: "心理学流派\n(Schools)",
                     itemStyle: { color: EXPLORED_COLOR },
+                    symbolSize: 35,
                     children: [
-                        { name: "精神分析", itemStyle: { color: EXPLORED_COLOR }, value: "弗洛伊德、荣格、阿德勒" },
-                        { name: "行为主义", itemStyle: { color: EXPLORED_COLOR }, value: "华生、斯金纳、班杜拉" },
-                        { name: "人本主义", itemStyle: { color: EXPLORED_COLOR }, value: "马斯洛、罗杰斯" },
-                        { name: "认知学派", itemStyle: { color: EXPLORED_COLOR }, value: "皮亚杰、奈瑟" },
-                        { name: "积极心理学", itemStyle: { color: UNEXPLORED_COLOR }, value: "塞利格曼、心流理论" }
+                        { 
+                            name: "精神分析", 
+                            itemStyle: { color: EXPLORED_COLOR }, 
+                            value: "弗洛伊德、荣格、阿德勒",
+                            children: [
+                                { name: "经典精神分析", itemStyle: { color: EXPLORED_COLOR }, value: "潜意识、性心理发展" },
+                                { name: "分析心理学", itemStyle: { color: EXPLORED_COLOR }, value: "荣格、集体无意识" },
+                                { name: "个体心理学", itemStyle: { color: UNEXPLORED_COLOR }, value: "阿德勒、自卑与超越" }
+                            ]
+                        },
+                        { 
+                            name: "行为主义", 
+                            itemStyle: { color: EXPLORED_COLOR }, 
+                            value: "华生、斯金纳、班杜拉",
+                            children: [
+                                { name: "经典行为主义", itemStyle: { color: EXPLORED_COLOR }, value: "华生、刺激-反应" },
+                                { name: "操作性条件作用", itemStyle: { color: EXPLORED_COLOR }, value: "斯金纳、强化理论" },
+                                { name: "社会学习理论", itemStyle: { color: EXPLORED_COLOR }, value: "班杜拉、观察学习" }
+                            ]
+                        },
+                        { 
+                            name: "人本主义", 
+                            itemStyle: { color: EXPLORED_COLOR }, 
+                            value: "马斯洛、罗杰斯",
+                            children: [
+                                { name: "需要层次理论", itemStyle: { color: EXPLORED_COLOR }, value: "生理到自我实现" },
+                                { name: "来访者中心", itemStyle: { color: EXPLORED_COLOR }, value: "罗杰斯、无条件积极关注" }
+                            ]
+                        },
+                        { 
+                            name: "认知学派", 
+                            itemStyle: { color: EXPLORED_COLOR }, 
+                            value: "皮亚杰、奈瑟、西蒙",
+                            children: [
+                                { name: "皮亚杰认知发展", itemStyle: { color: EXPLORED_COLOR }, value: "感知运动到形式运算" },
+                                { name: "信息加工理论", itemStyle: { color: EXPLORED_COLOR }, value: "奈瑟、人脑=计算机" }
+                            ]
+                        },
+                        { 
+                            name: "积极心理学", 
+                            itemStyle: { color: UNEXPLORED_COLOR }, 
+                            value: "塞利格曼、心流理论",
+                            children: [
+                                { name: "品格优势", itemStyle: { color: UNEXPLORED_COLOR }, value: "24种品格优势" },
+                                { name: "心流体验", itemStyle: { color: UNEXPLORED_COLOR }, value: "米哈里·契克森米哈赖" },
+                                { name: "幸福科学", itemStyle: { color: UNEXPLORED_COLOR }, value: "主观幸福感研究" }
+                            ]
+                        },
+                        { name: "构造主义", itemStyle: { color: UNEXPLORED_COLOR }, value: "冯特、铁钦纳、内省法" },
+                        { name: "机能主义", itemStyle: { color: UNEXPLORED_COLOR }, value: "詹姆斯、杜威、意识功能" },
+                        { name: "格式塔心理学", itemStyle: { color: UNEXPLORED_COLOR }, value: "整体大于部分之和" },
+                        { name: "存在主义心理学", itemStyle: { color: UNEXPLORED_COLOR }, value: "萨特、自由与责任" },
+                        { name: "进化心理学", itemStyle: { color: UNEXPLORED_COLOR }, value: "心理机制的进化解释" }
                     ]
                 },
                 {
                     name: "心理治疗\n(Therapy)",
-                    itemStyle: { color: UNEXPLORED_COLOR },
+                    itemStyle: { color: EXPLORED_COLOR },
+                    symbolSize: 35,
                     children: [
-                        { name: "认知行为疗法", itemStyle: { color: UNEXPLORED_COLOR }, value: "CBT：改变思维与行为" },
-                        { name: "精神分析疗法", itemStyle: { color: UNEXPLORED_COLOR }, value: "探索潜意识" },
-                        { name: "人本主义疗法", itemStyle: { color: UNEXPLORED_COLOR }, value: "来访者中心" },
-                        { name: "正念疗法", itemStyle: { color: UNEXPLORED_COLOR }, value: "当下觉察与接纳" },
-                        { name: "ACT疗法", itemStyle: { color: UNEXPLORED_COLOR }, value: "接纳承诺疗法" }
+                        { 
+                            name: "认知行为疗法", 
+                            itemStyle: { color: EXPLORED_COLOR }, 
+                            value: "CBT：改变思维与行为",
+                            children: [
+                                { name: "贝克认知疗法", itemStyle: { color: EXPLORED_COLOR }, value: "自动思维、认知歪曲" },
+                                { name: "理性情绪行为疗法", itemStyle: { color: UNEXPLORED_COLOR }, value: "埃利斯、ABC理论" },
+                                { name: "行为激活", itemStyle: { color: UNEXPLORED_COLOR }, value: "抑郁干预方法" }
+                            ]
+                        },
+                        { 
+                            name: "精神分析疗法", 
+                            itemStyle: { color: UNEXPLORED_COLOR }, 
+                            value: "探索潜意识",
+                            children: [
+                                { name: "自由联想", itemStyle: { color: UNEXPLORED_COLOR }, value: "弗洛伊德技术" },
+                                { name: "梦的解析", itemStyle: { color: UNEXPLORED_COLOR }, value: "梦境象征意义" },
+                                { name: "移情分析", itemStyle: { color: UNEXPLORED_COLOR }, value: "来访者对治疗师情感" }
+                            ]
+                        },
+                        { 
+                            name: "人本主义疗法", 
+                            itemStyle: { color: UNEXPLORED_COLOR }, 
+                            value: "来访者中心",
+                            children: [
+                                { name: "无条件积极关注", itemStyle: { color: UNEXPLORED_COLOR }, value: "罗杰斯核心条件" },
+                                { name: "真诚一致", itemStyle: { color: UNEXPLORED_COLOR }, value: "治疗师真实表达" }
+                            ]
+                        },
+                        { 
+                            name: "正念与ACT", 
+                            itemStyle: { color: EXPLORED_COLOR }, 
+                            value: "当下觉察与接纳",
+                            children: [
+                                { name: "正念减压疗法", itemStyle: { color: EXPLORED_COLOR }, value: "卡巴金、MBSR" },
+                                { name: "接纳承诺疗法", itemStyle: { color: EXPLORED_COLOR }, value: "ACT、六大核心过程" },
+                                { name: "辩证行为疗法", itemStyle: { color: UNEXPLORED_COLOR }, value: "DBT、情绪调节" }
+                            ]
+                        },
+                        { name: "家庭系统疗法", itemStyle: { color: UNEXPLORED_COLOR }, value: "家庭结构与互动模式" },
+                        { name: "人际关系疗法", itemStyle: { color: UNEXPLORED_COLOR }, value: "IPT、人际关系问题" },
+                        { name: "艺术治疗", itemStyle: { color: UNEXPLORED_COLOR }, value: "绘画、音乐、舞蹈治疗" },
+                        { name: "团体治疗", itemStyle: { color: UNEXPLORED_COLOR }, value: "小组动力与人际学习" }
                     ]
                 },
                 {
                     name: "专题领域\n(Topics)",
                     itemStyle: { color: UNEXPLORED_COLOR },
+                    symbolSize: 35,
                     children: [
-                        { name: "情绪压力管理", itemStyle: { color: UNEXPLORED_COLOR }, value: "调节情绪、应对压力" },
-                        { name: "人际关系", itemStyle: { color: UNEXPLORED_COLOR }, value: "沟通、亲密关系、社交" },
-                        { name: "职业发展", itemStyle: { color: UNEXPLORED_COLOR }, value: "职业选择、职场心理" },
-                        { name: "心理健康", itemStyle: { color: UNEXPLORED_COLOR }, value: "心理健康维护与促进" },
-                        { name: "儿童青少年", itemStyle: { color: UNEXPLORED_COLOR }, value: "成长与教育心理" }
+                        { 
+                            name: "情绪与压力", 
+                            itemStyle: { color: EXPLORED_COLOR }, 
+                            value: "调节情绪、应对压力",
+                            children: [
+                                { name: "情绪识别", itemStyle: { color: EXPLORED_COLOR }, value: "表情识别、情绪觉察" },
+                                { name: "压力管理", itemStyle: { color: EXPLORED_COLOR }, value: "正念、放松训练" },
+                                { name: "韧性培养", itemStyle: { color: UNEXPLORED_COLOR }, value: "心理弹性提升" }
+                            ]
+                        },
+                        { 
+                            name: "人际关系", 
+                            itemStyle: { color: EXPLORED_COLOR }, 
+                            value: "沟通、亲密关系、社交",
+                            children: [
+                                { name: "沟通技巧", itemStyle: { color: EXPLORED_COLOR }, value: "有效倾听、表达" },
+                                { name: "亲密关系", itemStyle: { color: EXPLORED_COLOR }, value: "依恋理论、伴侣沟通" },
+                                { name: "社交焦虑", itemStyle: { color: UNEXPLORED_COLOR }, value: "社交恐惧与克服" }
+                            ]
+                        },
+                        { 
+                            name: "职业发展", 
+                            itemStyle: { color: UNEXPLORED_COLOR }, 
+                            value: "职业选择、职场心理",
+                            children: [
+                                { name: "职业探索", itemStyle: { color: UNEXPLORED_COLOR }, value: "霍兰德职业兴趣" },
+                                { name: "职场心理", itemStyle: { color: UNEXPLORED_COLOR }, value: "职业倦怠、工作满意度" }
+                            ]
+                        },
+                        { 
+                            name: "心理健康", 
+                            itemStyle: { color: EXPLORED_COLOR }, 
+                            value: "心理健康维护与促进",
+                            children: [
+                                { name: "焦虑障碍", itemStyle: { color: EXPLORED_COLOR }, value: "GAD、惊恐发作" },
+                                { name: "抑郁障碍", itemStyle: { color: EXPLORED_COLOR }, value: "抑郁症识别与干预" },
+                                { name: "双相情感障碍", itemStyle: { color: UNEXPLORED_COLOR }, value: "躁郁症" },
+                                { name: "强迫症", itemStyle: { color: UNEXPLORED_COLOR }, value: "强迫思维与行为" }
+                            ]
+                        },
+                        { 
+                            name: "儿童青少年", 
+                            itemStyle: { color: UNEXPLORED_COLOR }, 
+                            value: "成长与教育心理",
+                            children: [
+                                { name: "亲子关系", itemStyle: { color: EXPLORED_COLOR }, value: "依恋类型、教养方式" },
+                                { name: "青春期心理", itemStyle: { color: UNEXPLORED_COLOR }, value: "叛逆、自我认同" },
+                                { name: "学习困难", itemStyle: { color: UNEXPLORED_COLOR }, value: "学习障碍干预" }
+                            ]
+                        }
                     ]
                 },
                 {
                     name: "研究方法\n(Methods)",
                     itemStyle: { color: UNEXPLORED_COLOR },
+                    symbolSize: 35,
                     children: [
-                        { name: "实验心理学", itemStyle: { color: UNEXPLORED_COLOR }, value: "科学实验设计" },
-                        { name: "心理统计", itemStyle: { color: UNEXPLORED_COLOR }, value: "数据分析方法" },
-                        { name: "质性研究", itemStyle: { color: UNEXPLORED_COLOR }, value: "访谈、观察、案例分析" },
-                        { name: "神经科学方法", itemStyle: { color: UNEXPLORED_COLOR }, value: "脑成像、生理测量" }
+                        { 
+                            name: "实验心理学", 
+                            itemStyle: { color: EXPLORED_COLOR }, 
+                            value: "科学实验设计",
+                            children: [
+                                { name: "实验设计", itemStyle: { color: EXPLORED_COLOR }, value: "被试内、被试间设计" },
+                                { name: "变量控制", itemStyle: { color: UNEXPLORED_COLOR }, value: "自变量、因变量、控制变量" },
+                                { name: "实验仪器", itemStyle: { color: UNEXPLORED_COLOR }, value: "眼动仪、脑电仪、fMRI" }
+                            ]
+                        },
+                        { 
+                            name: "心理统计", 
+                            itemStyle: { color: UNEXPLORED_COLOR }, 
+                            value: "数据分析方法",
+                            children: [
+                                { name: "描述统计", itemStyle: { color: EXPLORED_COLOR }, value: "均值、标准差、相关" },
+                                { name: "推论统计", itemStyle: { color: UNEXPLORED_COLOR }, value: "t检验、方差分析" },
+                                { name: "多元统计", itemStyle: { color: UNEXPLORED_COLOR }, value: "回归分析、因子分析" }
+                            ]
+                        },
+                        { 
+                            name: "质性研究", 
+                            itemStyle: { color: UNEXPLORED_COLOR }, 
+                            value: "访谈、观察、案例分析",
+                            children: [
+                                { name: "深度访谈", itemStyle: { color: UNEXPLORED_COLOR }, value: "半结构化、开放式访谈" },
+                                { name: "参与观察", itemStyle: { color: UNEXPLORED_COLOR }, value: "田野调查方法" },
+                                { name: "个案研究", itemStyle: { color: UNEXPLORED_COLOR }, value: "深入分析单个案例" }
+                            ]
+                        },
+                        { 
+                            name: "神经科学方法", 
+                            itemStyle: { color: UNEXPLORED_COLOR }, 
+                            value: "脑成像、生理测量",
+                            children: [
+                                { name: "脑电EEG", itemStyle: { color: UNEXPLORED_COLOR }, value: "事件相关电位ERP" },
+                                { name: "脑成像fMRI", itemStyle: { color: UNEXPLORED_COLOR }, value: "功能性磁共振成像" },
+                                { name: "近红外NIRS", itemStyle: { color: UNEXPLORED_COLOR }, value: "脑功能近红外成像" }
+                            ]
+                        }
                     ]
                 }
             ]
