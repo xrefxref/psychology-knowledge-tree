@@ -5,8 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>3D大脑模型 - 林远见路</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r158/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.158.0/examples/js/controls/OrbitControls.js"></script>
+<script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.158.0/examples/jsm/"
+    }
+  }
+</script>
 <style>
   * { box-sizing: border-box; }
   html, body {
@@ -441,7 +447,10 @@
 
 <div class="tooltip" id="tooltip"></div>
 
-<script>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
 var scene, camera, renderer, controls;
 var brainGroup;
 var brainParts = [];
@@ -549,7 +558,7 @@ function init() {
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     document.getElementById('canvas-container').appendChild(renderer.domElement);
 
-    controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
     controls.dampingFactor = 0.05;
     controls.minDistance = 3;
@@ -629,28 +638,28 @@ function createBrain() {
   var thalamus = createThalamus(thalamusMaterial);
   var hypothalamus = createHypothalamus(hypothalamusMaterial);
 
-  brainGroup.add(frontalLobe.mesh);
-  brainGroup.add(parietalLobe.mesh);
-  brainGroup.add(temporalLobe.mesh);
-  brainGroup.add(occipitalLobe.mesh);
-  brainGroup.add(cerebellum.mesh);
-  brainGroup.add(brainstem.mesh);
-  brainGroup.add(hippocampus.mesh);
-  brainGroup.add(amygdala.mesh);
-  brainGroup.add(thalamus.mesh);
-  brainGroup.add(hypothalamus.mesh);
+  brainGroup.add(frontalLobe);
+  brainGroup.add(parietalLobe);
+  brainGroup.add(temporalLobe);
+  brainGroup.add(occipitalLobe);
+  brainGroup.add(cerebellum);
+  brainGroup.add(brainstem);
+  brainGroup.add(hippocampus);
+  brainGroup.add(amygdala);
+  brainGroup.add(thalamus);
+  brainGroup.add(hypothalamus);
 
   brainParts = [
-    { id: 'frontalLobe', mesh: frontalLobe.mesh, data: brainData.frontalLobe, offset: new THREE.Vector3(0, 0.6, 1.8) },
-    { id: 'parietalLobe', mesh: parietalLobe.mesh, data: brainData.parietalLobe, offset: new THREE.Vector3(0, 0.4, -0.3) },
-    { id: 'temporalLobe', mesh: temporalLobe.mesh, data: brainData.temporalLobe, offset: new THREE.Vector3(0.8, -0.6, 0.2) },
-    { id: 'occipitalLobe', mesh: occipitalLobe.mesh, data: brainData.occipitalLobe, offset: new THREE.Vector3(0, 0.2, -2.2) },
-    { id: 'cerebellum', mesh: cerebellum.mesh, data: brainData.cerebellum, offset: new THREE.Vector3(0, -1.5, -1.2) },
-    { id: 'brainstem', mesh: brainstem.mesh, data: brainData.brainstem, offset: new THREE.Vector3(0, -2.5, 0) },
-    { id: 'hippocampus', mesh: hippocampus.mesh, data: brainData.hippocampus, offset: new THREE.Vector3(0.6, -0.4, -0.8) },
-    { id: 'amygdala', mesh: amygdala.mesh, data: brainData.amygdala, offset: new THREE.Vector3(0.5, -0.5, -0.3) },
-    { id: 'thalamus', mesh: thalamus.mesh, data: brainData.thalamus, offset: new THREE.Vector3(0, 0, 0.3) },
-    { id: 'hypothalamus', mesh: hypothalamus.mesh, data: brainData.hypothalamus, offset: new THREE.Vector3(0, -0.4, 0.4) }
+    { id: 'frontalLobe', mesh: frontalLobe, data: brainData.frontalLobe, offset: new THREE.Vector3(0, 0.6, 1.8) },
+    { id: 'parietalLobe', mesh: parietalLobe, data: brainData.parietalLobe, offset: new THREE.Vector3(0, 0.4, -0.3) },
+    { id: 'temporalLobe', mesh: temporalLobe, data: brainData.temporalLobe, offset: new THREE.Vector3(0.8, -0.6, 0.2) },
+    { id: 'occipitalLobe', mesh: occipitalLobe, data: brainData.occipitalLobe, offset: new THREE.Vector3(0, 0.2, -2.2) },
+    { id: 'cerebellum', mesh: cerebellum, data: brainData.cerebellum, offset: new THREE.Vector3(0, -1.5, -1.2) },
+    { id: 'brainstem', mesh: brainstem, data: brainData.brainstem, offset: new THREE.Vector3(0, -2.5, 0) },
+    { id: 'hippocampus', mesh: hippocampus, data: brainData.hippocampus, offset: new THREE.Vector3(0.6, -0.4, -0.8) },
+    { id: 'amygdala', mesh: amygdala, data: brainData.amygdala, offset: new THREE.Vector3(0.5, -0.5, -0.3) },
+    { id: 'thalamus', mesh: thalamus, data: brainData.thalamus, offset: new THREE.Vector3(0, 0, 0.3) },
+    { id: 'hypothalamus', mesh: hypothalamus, data: brainData.hypothalamus, offset: new THREE.Vector3(0, -0.4, 0.4) }
   ];
 }
 
@@ -661,7 +670,7 @@ function createFrontalLobe(material) {
   mesh.scale.set(1.15, 0.85, 0.75);
   mesh.castShadow = true;
   mesh.receiveShadow = true;
-  return { mesh: mesh };
+  return mesh;
 }
 
 function createParietalLobe(material) {
@@ -671,7 +680,7 @@ function createParietalLobe(material) {
   mesh.scale.set(1.0, 0.8, 0.85);
   mesh.castShadow = true;
   mesh.receiveShadow = true;
-  return { mesh: mesh };
+  return mesh;
 }
 
 function createTemporalLobe(material) {
@@ -681,7 +690,7 @@ function createTemporalLobe(material) {
   mesh.scale.set(0.6, 0.7, 0.8);
   mesh.castShadow = true;
   mesh.receiveShadow = true;
-  return { mesh: mesh };
+  return mesh;
 }
 
 function createOccipitalLobe(material) {
@@ -691,7 +700,7 @@ function createOccipitalLobe(material) {
   mesh.scale.set(0.85, 0.65, 0.75);
   mesh.castShadow = true;
   mesh.receiveShadow = true;
-  return { mesh: mesh };
+  return mesh;
 }
 
 function createCerebellum(material) {
@@ -712,7 +721,7 @@ function createCerebellum(material) {
   group.add(mainMesh);
   group.castShadow = true;
   group.receiveShadow = true;
-  return { mesh: group };
+  return group;
 }
 
 function createBrainstem(material) {
@@ -722,7 +731,7 @@ function createBrainstem(material) {
   mesh.rotation.x = Math.PI / 2;
   mesh.castShadow = true;
   mesh.receiveShadow = true;
-  return { mesh: mesh };
+  return mesh;
 }
 
 function createHippocampus(material) {
@@ -732,7 +741,7 @@ function createHippocampus(material) {
   mesh.scale.set(0.8, 0.8, 0.8);
   mesh.castShadow = true;
   mesh.receiveShadow = true;
-  return { mesh: mesh };
+  return mesh;
 }
 
 function createAmygdala(material) {
@@ -741,7 +750,7 @@ function createAmygdala(material) {
   mesh.position.set(0.4, -0.55, -0.35);
   mesh.castShadow = true;
   mesh.receiveShadow = true;
-  return { mesh: mesh };
+  return mesh;
 }
 
 function createThalamus(material) {
@@ -750,7 +759,7 @@ function createThalamus(material) {
   mesh.position.set(0, 0.1, 0);
   mesh.castShadow = true;
   mesh.receiveShadow = true;
-  return { mesh: mesh };
+  return mesh;
 }
 
 function createHypothalamus(material) {
@@ -759,7 +768,7 @@ function createHypothalamus(material) {
   mesh.position.set(0, -0.25, 0.25);
   mesh.castShadow = true;
   mesh.receiveShadow = true;
-  return { mesh: mesh };
+  return mesh;
 }
 
 function onWindowResize() {
