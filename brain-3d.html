@@ -5,9 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>3D大脑模型 - 林远见路</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r158/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.158.0/examples/js/controls/OrbitControls.js"></script>
 <style>
   * { box-sizing: border-box; }
   html, body {
@@ -258,6 +257,7 @@
     font-size: 12px;
     color: #cbd5e1;
     transition: all 0.2s;
+    cursor: pointer;
   }
 
   .legend-item:hover {
@@ -401,14 +401,16 @@
 
 <div class="legend">
   <div class="legend-title">大脑区域</div>
-  <div class="legend-item"><div class="legend-color" style="background: #ef4444;"></div>额叶</div>
-  <div class="legend-item"><div class="legend-color" style="background: #f59e0b;"></div>顶叶</div>
-  <div class="legend-item"><div class="legend-color" style="background: #8b5cf6;"></div>颞叶</div>
-  <div class="legend-item"><div class="legend-color" style="background: #10b981;"></div>枕叶</div>
-  <div class="legend-item"><div class="legend-color" style="background: #3b82f6;"></div>小脑</div>
-  <div class="legend-item"><div class="legend-color" style="background: #06b6d4;"></div>脑干</div>
-  <div class="legend-item"><div class="legend-color" style="background: #ec4899;"></div>海马体</div>
-  <div class="legend-item"><div class="legend-color" style="background: #f97316;"></div>杏仁核</div>
+  <div class="legend-item" data-part="frontalLobe"><div class="legend-color" style="background: #ef4444;"></div>额叶</div>
+  <div class="legend-item" data-part="parietalLobe"><div class="legend-color" style="background: #f59e0b;"></div>顶叶</div>
+  <div class="legend-item" data-part="temporalLobe"><div class="legend-color" style="background: #8b5cf6;"></div>颞叶</div>
+  <div class="legend-item" data-part="occipitalLobe"><div class="legend-color" style="background: #10b981;"></div>枕叶</div>
+  <div class="legend-item" data-part="cerebellum"><div class="legend-color" style="background: #3b82f6;"></div>小脑</div>
+  <div class="legend-item" data-part="brainstem"><div class="legend-color" style="background: #06b6d4;"></div>脑干</div>
+  <div class="legend-item" data-part="hippocampus"><div class="legend-color" style="background: #ec4899;"></div>海马体</div>
+  <div class="legend-item" data-part="amygdala"><div class="legend-color" style="background: #f97316;"></div>杏仁核</div>
+  <div class="legend-item" data-part="thalamus"><div class="legend-color" style="background: #84cc16;"></div>丘脑</div>
+  <div class="legend-item" data-part="hypothalamus"><div class="legend-color" style="background: #0ea5e9;"></div>下丘脑</div>
 </div>
 
 <div class="info-panel" id="infoPanel">
@@ -533,63 +535,70 @@ var brainData = {
 };
 
 function init() {
-  scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x0a0e1a);
+  try {
+    scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x0a0e1a);
 
-  camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-  camera.position.set(0, 0, 8);
+    camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.set(0, 0, 8);
 
-  renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(window.devicePixelRatio);
-  renderer.shadowMap.enabled = true;
-  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-  document.getElementById('canvas-container').appendChild(renderer.domElement);
+    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    document.getElementById('canvas-container').appendChild(renderer.domElement);
 
-  controls = new THREE.OrbitControls(camera, renderer.domElement);
-  controls.enableDamping = true;
-  controls.dampingFactor = 0.05;
-  controls.minDistance = 3;
-  controls.maxDistance = 20;
-  controls.autoRotate = true;
-  controls.autoRotateSpeed = 0.5;
+    controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+    controls.minDistance = 3;
+    controls.maxDistance = 20;
+    controls.autoRotate = true;
+    controls.autoRotateSpeed = 0.5;
 
-  var ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-  scene.add(ambientLight);
+    var ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    scene.add(ambientLight);
 
-  var directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-  directionalLight.position.set(5, 8, 5);
-  directionalLight.castShadow = true;
-  directionalLight.shadow.mapSize.width = 2048;
-  directionalLight.shadow.mapSize.height = 2048;
-  scene.add(directionalLight);
+    var directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+    directionalLight.position.set(5, 8, 5);
+    directionalLight.castShadow = true;
+    directionalLight.shadow.mapSize.width = 2048;
+    directionalLight.shadow.mapSize.height = 2048;
+    scene.add(directionalLight);
 
-  var directionalLight2 = new THREE.DirectionalLight(0x6366f1, 0.4);
-  directionalLight2.position.set(-5, -5, -5);
-  scene.add(directionalLight2);
+    var directionalLight2 = new THREE.DirectionalLight(0x6366f1, 0.4);
+    directionalLight2.position.set(-5, -5, -5);
+    scene.add(directionalLight2);
 
-  var pointLight = new THREE.PointLight(0xffdab9, 0.6);
-  pointLight.position.set(3, 3, -3);
-  scene.add(pointLight);
+    var pointLight = new THREE.PointLight(0xffdab9, 0.6);
+    pointLight.position.set(3, 3, -3);
+    scene.add(pointLight);
 
-  var hemisphereLight = new THREE.HemisphereLight(0x6366f1, 0x0f172a, 0.5);
-  scene.add(hemisphereLight);
+    var hemisphereLight = new THREE.HemisphereLight(0x6366f1, 0x0f172a, 0.5);
+    scene.add(hemisphereLight);
 
-  brainGroup = new THREE.Group();
-  scene.add(brainGroup);
+    brainGroup = new THREE.Group();
+    scene.add(brainGroup);
 
-  raycaster = new THREE.Raycaster();
-  mouse = new THREE.Vector2();
+    raycaster = new THREE.Raycaster();
+    mouse = new THREE.Vector2();
 
-  window.addEventListener('resize', onWindowResize);
-  renderer.domElement.addEventListener('mousemove', onMouseMove);
-  renderer.domElement.addEventListener('click', onMouseClick);
+    window.addEventListener('resize', onWindowResize);
+    renderer.domElement.addEventListener('mousemove', onMouseMove);
+    renderer.domElement.addEventListener('click', onMouseClick);
 
-  createRealisticBrain();
-  animate();
+    createBrain();
+    animate();
+    
+    loading.style.display = 'none';
+  } catch (error) {
+    console.error('初始化失败:', error);
+    loading.innerHTML = '<p style="color:#ef4444;">加载失败，请刷新重试</p>';
+  }
 }
 
-function createRealisticBrain() {
+function createBrain() {
   var brainMaterialParams = {
     shininess: 100,
     metalness: 0.05,
@@ -609,16 +618,16 @@ function createRealisticBrain() {
   var thalamusMaterial = new THREE.MeshStandardMaterial({ ...brainMaterialParams, color: 0x84cc16 });
   var hypothalamusMaterial = new THREE.MeshStandardMaterial({ ...brainMaterialParams, color: 0x0ea5e9 });
 
-  var frontalLobe = createRealisticFrontalLobe(frontalMaterial);
-  var parietalLobe = createRealisticParietalLobe(parietalMaterial);
-  var temporalLobe = createRealisticTemporalLobe(temporalMaterial);
-  var occipitalLobe = createRealisticOccipitalLobe(occipitalMaterial);
-  var cerebellum = createRealisticCerebellum(cerebellumMaterial);
-  var brainstem = createRealisticBrainstem(brainstemMaterial);
-  var hippocampus = createRealisticHippocampus(hippocampusMaterial);
-  var amygdala = createRealisticAmygdala(amygdalaMaterial);
-  var thalamus = createRealisticThalamus(thalamusMaterial);
-  var hypothalamus = createRealisticHypothalamus(hypothalamusMaterial);
+  var frontalLobe = createFrontalLobe(frontalMaterial);
+  var parietalLobe = createParietalLobe(parietalMaterial);
+  var temporalLobe = createTemporalLobe(temporalMaterial);
+  var occipitalLobe = createOccipitalLobe(occipitalMaterial);
+  var cerebellum = createCerebellum(cerebellumMaterial);
+  var brainstem = createBrainstem(brainstemMaterial);
+  var hippocampus = createHippocampus(hippocampusMaterial);
+  var amygdala = createAmygdala(amygdalaMaterial);
+  var thalamus = createThalamus(thalamusMaterial);
+  var hypothalamus = createHypothalamus(hypothalamusMaterial);
 
   brainGroup.add(frontalLobe.mesh);
   brainGroup.add(parietalLobe.mesh);
@@ -632,111 +641,61 @@ function createRealisticBrain() {
   brainGroup.add(hypothalamus.mesh);
 
   brainParts = [
-    { mesh: frontalLobe.mesh, data: brainData.frontalLobe, offset: new THREE.Vector3(0, 0.6, 1.8) },
-    { mesh: parietalLobe.mesh, data: brainData.parietalLobe, offset: new THREE.Vector3(0, 0.4, -0.3) },
-    { mesh: temporalLobe.mesh, data: brainData.temporalLobe, offset: new THREE.Vector3(0.8, -0.6, 0.2) },
-    { mesh: occipitalLobe.mesh, data: brainData.occipitalLobe, offset: new THREE.Vector3(0, 0.2, -2.2) },
-    { mesh: cerebellum.mesh, data: brainData.cerebellum, offset: new THREE.Vector3(0, -1.5, -1.2) },
-    { mesh: brainstem.mesh, data: brainData.brainstem, offset: new THREE.Vector3(0, -2.5, 0) },
-    { mesh: hippocampus.mesh, data: brainData.hippocampus, offset: new THREE.Vector3(0.6, -0.4, -0.8) },
-    { mesh: amygdala.mesh, data: brainData.amygdala, offset: new THREE.Vector3(0.5, -0.5, -0.3) },
-    { mesh: thalamus.mesh, data: brainData.thalamus, offset: new THREE.Vector3(0, 0, 0.3) },
-    { mesh: hypothalamus.mesh, data: brainData.hypothalamus, offset: new THREE.Vector3(0, -0.4, 0.4) }
+    { id: 'frontalLobe', mesh: frontalLobe.mesh, data: brainData.frontalLobe, offset: new THREE.Vector3(0, 0.6, 1.8) },
+    { id: 'parietalLobe', mesh: parietalLobe.mesh, data: brainData.parietalLobe, offset: new THREE.Vector3(0, 0.4, -0.3) },
+    { id: 'temporalLobe', mesh: temporalLobe.mesh, data: brainData.temporalLobe, offset: new THREE.Vector3(0.8, -0.6, 0.2) },
+    { id: 'occipitalLobe', mesh: occipitalLobe.mesh, data: brainData.occipitalLobe, offset: new THREE.Vector3(0, 0.2, -2.2) },
+    { id: 'cerebellum', mesh: cerebellum.mesh, data: brainData.cerebellum, offset: new THREE.Vector3(0, -1.5, -1.2) },
+    { id: 'brainstem', mesh: brainstem.mesh, data: brainData.brainstem, offset: new THREE.Vector3(0, -2.5, 0) },
+    { id: 'hippocampus', mesh: hippocampus.mesh, data: brainData.hippocampus, offset: new THREE.Vector3(0.6, -0.4, -0.8) },
+    { id: 'amygdala', mesh: amygdala.mesh, data: brainData.amygdala, offset: new THREE.Vector3(0.5, -0.5, -0.3) },
+    { id: 'thalamus', mesh: thalamus.mesh, data: brainData.thalamus, offset: new THREE.Vector3(0, 0, 0.3) },
+    { id: 'hypothalamus', mesh: hypothalamus.mesh, data: brainData.hypothalamus, offset: new THREE.Vector3(0, -0.4, 0.4) }
   ];
-
-  addBrainTextures();
-
-  loading.style.display = 'none';
 }
 
-function addBrainTextures() {
-  var textureLoader = new THREE.TextureLoader();
-  
-  textureLoader.load('https://threejs.org/examples/textures/noise.png', function(noiseTexture) {
-    noiseTexture.wrapS = THREE.RepeatWrapping;
-    noiseTexture.wrapT = THREE.RepeatWrapping;
-    
-    brainParts.forEach(function(part) {
-      if (part.mesh.material) {
-        part.mesh.material.bumpMap = noiseTexture;
-        part.mesh.material.bumpScale = 0.05;
-        part.mesh.material.needsUpdate = true;
-      }
-    });
-  });
-}
-
-function createRealisticFrontalLobe(material) {
-  var geometry = new THREE.SphereGeometry(2.2, 128, 128);
+function createFrontalLobe(material) {
+  var geometry = new THREE.SphereGeometry(2.2, 64, 64);
   var mesh = new THREE.Mesh(geometry, material);
-  
   mesh.position.set(0, 0.3, 1.5);
   mesh.scale.set(1.15, 0.85, 0.75);
-  
-  var shape = new THREE.Shape();
-  shape.moveTo(0, 0);
-  shape.quadraticCurveTo(2, 1, 2, 0);
-  shape.quadraticCurveTo(2, -1, 0, 0);
-  
-  var extrudeSettings = { depth: 0.5, bevelEnabled: true, bevelSegments: 2 };
-  var gyriGeometry = new THREE.ExtrudeGeometry(shape, extrudeSettings);
-  
-  for (var i = 0; i < 8; i++) {
-    var gyri = new THREE.Mesh(gyriGeometry, material.clone());
-    gyri.position.set(
-      (Math.random() - 0.5) * 3,
-      (Math.random() - 0.5) * 2,
-      (Math.random() - 0.5) * 1 + 1.8
-    );
-    gyri.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, Math.random() * Math.PI);
-    gyri.scale.set(0.3, 0.3, 0.3);
-    mesh.add(gyri);
-  }
-  
   mesh.castShadow = true;
   mesh.receiveShadow = true;
   return { mesh: mesh };
 }
 
-function createRealisticParietalLobe(material) {
-  var geometry = new THREE.SphereGeometry(1.8, 128, 128);
+function createParietalLobe(material) {
+  var geometry = new THREE.SphereGeometry(1.8, 64, 64);
   var mesh = new THREE.Mesh(geometry, material);
-  
   mesh.position.set(0, 0.4, 0.2);
   mesh.scale.set(1.0, 0.8, 0.85);
-  
   mesh.castShadow = true;
   mesh.receiveShadow = true;
   return { mesh: mesh };
 }
 
-function createRealisticTemporalLobe(material) {
-  var geometry = new THREE.SphereGeometry(1.6, 128, 128);
+function createTemporalLobe(material) {
+  var geometry = new THREE.SphereGeometry(1.6, 64, 64);
   var mesh = new THREE.Mesh(geometry, material);
-  
   mesh.position.set(0.7, -0.5, 0.5);
   mesh.scale.set(0.6, 0.7, 0.8);
-  
   mesh.castShadow = true;
   mesh.receiveShadow = true;
   return { mesh: mesh };
 }
 
-function createRealisticOccipitalLobe(material) {
-  var geometry = new THREE.SphereGeometry(1.4, 128, 128);
+function createOccipitalLobe(material) {
+  var geometry = new THREE.SphereGeometry(1.4, 64, 64);
   var mesh = new THREE.Mesh(geometry, material);
-  
   mesh.position.set(0, 0.2, -1.5);
   mesh.scale.set(0.85, 0.65, 0.75);
-  
   mesh.castShadow = true;
   mesh.receiveShadow = true;
   return { mesh: mesh };
 }
 
-function createRealisticCerebellum(material) {
+function createCerebellum(material) {
   var group = new THREE.Group();
-  
   var mainGeometry = new THREE.SphereGeometry(1.1, 64, 64);
   var mainMesh = new THREE.Mesh(mainGeometry, material);
   mainMesh.position.set(0, -1.3, -1.0);
@@ -756,58 +715,48 @@ function createRealisticCerebellum(material) {
   return { mesh: group };
 }
 
-function createRealisticBrainstem(material) {
-  var geometry = new THREE.CapsuleGeometry(0.35, 1.4, 32, 64);
+function createBrainstem(material) {
+  var geometry = new THREE.CylinderGeometry(0.35, 0.3, 1.4, 32);
   var mesh = new THREE.Mesh(geometry, material);
-  
   mesh.position.set(0, -2.2, 0);
   mesh.rotation.x = Math.PI / 2;
-  
   mesh.castShadow = true;
   mesh.receiveShadow = true;
   return { mesh: mesh };
 }
 
-function createRealisticHippocampus(material) {
+function createHippocampus(material) {
   var geometry = new THREE.TorusKnotGeometry(0.3, 0.1, 64, 16, 2, 3);
   var mesh = new THREE.Mesh(geometry, material);
-  
   mesh.position.set(0.5, -0.5, -0.7);
   mesh.scale.set(0.8, 0.8, 0.8);
-  
   mesh.castShadow = true;
   mesh.receiveShadow = true;
   return { mesh: mesh };
 }
 
-function createRealisticAmygdala(material) {
+function createAmygdala(material) {
   var geometry = new THREE.SphereGeometry(0.35, 64, 64);
   var mesh = new THREE.Mesh(geometry, material);
-  
   mesh.position.set(0.4, -0.55, -0.35);
-  
   mesh.castShadow = true;
   mesh.receiveShadow = true;
   return { mesh: mesh };
 }
 
-function createRealisticThalamus(material) {
+function createThalamus(material) {
   var geometry = new THREE.SphereGeometry(0.45, 64, 64);
   var mesh = new THREE.Mesh(geometry, material);
-  
   mesh.position.set(0, 0.1, 0);
-  
   mesh.castShadow = true;
   mesh.receiveShadow = true;
   return { mesh: mesh };
 }
 
-function createRealisticHypothalamus(material) {
+function createHypothalamus(material) {
   var geometry = new THREE.SphereGeometry(0.28, 64, 64);
   var mesh = new THREE.Mesh(geometry, material);
-  
   mesh.position.set(0, -0.25, 0.25);
-  
   mesh.castShadow = true;
   mesh.receiveShadow = true;
   return { mesh: mesh };
@@ -1018,6 +967,16 @@ function animate() {
 document.getElementById('resetBtn').addEventListener('click', resetView);
 document.getElementById('explodeBtn').addEventListener('click', explodeModel);
 document.getElementById('assembleBtn').addEventListener('click', assembleModel);
+
+document.querySelectorAll('.legend-item').forEach(function(item) {
+  item.addEventListener('click', function() {
+    var partId = this.dataset.part;
+    var part = brainParts.find(function(p) { return p.id === partId; });
+    if (part) {
+      showInfoPanel(part.data);
+    }
+  });
+});
 
 init();
 </script>
