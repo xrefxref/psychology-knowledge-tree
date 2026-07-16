@@ -38,12 +38,17 @@ var CloudBase = (function() {
 
     function hashPassword(password) {
         var hash = 0;
+        var prime = 31;
         for (var i = 0; i < password.length; i++) {
             var char = password.charCodeAt(i);
-            hash = ((hash << 5) - hash) + char;
-            hash = hash & hash;
+            hash = (hash * prime + char) & 0xFFFFFFFF;
         }
-        return 'psy_' + Math.abs(hash).toString(36) + Date.now().toString(36);
+        var salt = 'psy_salt_2024';
+        var saltHash = 0;
+        for (var j = 0; j < salt.length; j++) {
+            saltHash = (saltHash * prime + salt.charCodeAt(j)) & 0xFFFFFFFF;
+        }
+        return 'psy_' + (hash ^ saltHash).toString(36);
     }
 
     function validateUsername(username) {
