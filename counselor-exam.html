@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>心理咨询师四级真题考试</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #0a0e1a 0%, #1a1f35 100%);
+            color: #f8fafc;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%);
+            border-radius: 20px;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 12px;
+        }
+
+        .header .exam-info {
+            color: #94a3b8;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .header .exam-date {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(99, 102, 241, 0.2);
+            border-radius: 20px;
+            color: #a5b4fc;
+            font-size: 13px;
+            margin-top: 8px;
+        }
+
+        .exam-start-screen {
+            text-align: center;
+            padding: 60px 40px;
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: 20px;
+            border: 1px solid #334155;
+        }
+
+        .exam-start-screen h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #f8fafc;
+        }
+
+        .exam-start-screen .info-list {
+            text-align: left;
+            max-width: 500px;
+            margin: 0 auto 30px;
+        }
+
+        .exam-start-screen .info-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 10px;
+            margin-bottom: 10px;
+            border-left: 3px solid #6366f1;
+        }
+
+        .exam-start-screen .info-icon {
+            font-size: 20px;
+            margin-right: 12px;
+        }
+
+        .exam-start-screen .info-text {
+            color: #cbd5e1;
+            font-size: 14px;
+        }
+
+        .btn-start {
+            display: inline-block;
+            padding: 16px 48px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-start:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(99, 102, 241, 0.5);
+        }
+
+        .exam-screen {
+            display: none;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(51, 65, 85, 0.5);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            text-align: center;
+            color: #94a3b8;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .question-card {
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 20px;
+            border: 1px solid #334155;
+        }
+
+        .question-type {
+            display: inline-block;
+            padding: 4px 12px;
+            background: rgba(99, 102, 241, 0.2);
+            color: #a5b4fc;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .question-score {
+            float: right;
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        .question-text {
+            font-size: 17px;
+            line-height: 1.6;
+            color: #f8fafc;
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option {
+            display: flex;
+            align-items: flex-start;
+            padding: 16px 20px;
+            background: rgba(15, 23, 42, 0.6);
+            border: 2px solid #334155;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: left;
+        }
+
+        .option:hover {
+            border-color: #6366f1;
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .option.selected {
+            border-color: #6366f1;
+            background: rgba(99, 102, 241, 0.2);
+        }
+
+        .option.correct {
+            border-color: #10b981;
+            background: rgba(16, 185, 129, 0.2);
+        }
+
+        .option.wrong {
+            border-color: #ef4444;
+            background: rgba(239, 68, 68, 0.2);
+        }
+
+        .option-letter {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            background: #334155;
+            border-radius: 50%;
+            margin-right: 14px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .option.selected .option-letter {
+            background: #6366f1;
+        }
+
+        .option.correct .option-letter {
+            background: #10b981;
+        }
+
+        .option.wrong .option-letter {
+            background: #ef4444;
+        }
+
+        .option-text {
+            flex: 1;
+            line-height: 1.6;
+        }
+
+        .true-false-options {
+            display: flex;
+            gap: 20px;
+        }
+
+        .tf-option {
+            flex: 1;
+            padding: 20px;
+            background: rgba(15, 23, 42, 0.6);
+            border: 2px solid #334155;
+            border-radius: 12px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .tf-option:hover {
+            border-color: #6366f1;
+        }
+
+        .tf-option.selected {
+            border-color: #6366f1;
+            background: rgba(99, 102, 241, 0.2);
+        }
+
+        .tf-option.correct {
+            border-color: #10b981;
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+        }
+
+        .tf-option.wrong {
+            border-color: #ef4444;
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            margin-top: 30px;
+        }
+
+        .btn-nav {
+            padding: 14px 28px;
+            background: rgba(99, 102, 241, 0.2);
+            border: 1px solid #6366f1;
+            color: #a5b4fc;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-nav:hover:not(:disabled) {
+            background: rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-nav:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .btn-submit {
+            flex: 1;
+            padding: 16px 28px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            border: none;
+            color: white;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(16, 185, 129, 0.4);
+        }
+
+        .submit-screen {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .score-circle {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 30px;
+            position: relative;
+        }
+
+        .score-circle svg {
+            transform: rotate(-90deg);
+        }
+
+        .score-circle .score-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .score-circle .score-value {
+            font-size: 48px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .score-circle .score-label {
+            font-size: 14px;
+            color: #94a3b8;
+        }
+
+        .score-result {
+            margin-bottom: 30px;
+        }
+
+        .score-result h2 {
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+
+        .score-result.pass h2 {
+            color: #10b981;
+        }
+
+        .score-result.fail h2 {
+            color: #ef4444;
+        }
+
+        .score-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            padding: 20px;
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 12px;
+            border: 1px solid #334155;
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: #f8fafc;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: #94a3b8;
+            margin-top: 4px;
+        }
+
+        .question-review {
+            text-align: left;
+            margin-top: 30px;
+        }
+
+        .question-review h3 {
+            margin-bottom: 20px;
+            color: #f8fafc;
+        }
+
+        .review-item {
+            padding: 16px 20px;
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 10px;
+            margin-bottom: 12px;
+            border-left: 4px solid #6366f1;
+        }
+
+        .review-item.correct {
+            border-left-color: #10b981;
+        }
+
+        .review-item.wrong {
+            border-left-color: #ef4444;
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .review-number {
+            font-weight: 600;
+            color: #f8fafc;
+        }
+
+        .review-status {
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .review-status.correct {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+        }
+
+        .review-status.wrong {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+
+        .review-content {
+            color: #cbd5e1;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .review-answer {
+            margin-top: 6px;
+            font-size: 13px;
+        }
+
+        .review-answer .label {
+            color: #94a3b8;
+        }
+
+        .review-answer .value {
+            color: #10b981;
+            font-weight: 600;
+        }
+
+        .review-answer .user-answer {
+            color: #ef4444;
+        }
+
+        .btn-restart {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 14px 36px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-restart:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(99, 102, 241, 0.4);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 12px;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .question-card {
+                padding: 20px;
+            }
+
+            .question-text {
+                font-size: 15px;
+            }
+
+            .score-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .true-false-options {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>心理咨询师（四级）真题模拟考试</h1>
+            <div class="exam-info">模拟题 · 含理论知识与咨询实务</div>
+            <div class="exam-date">📅 2024年 · 心理咨询师四级真题</div>
+        </div>
+
+        <!-- 开始答题页面 -->
+        <div class="exam-start-screen" id="startScreen">
+            <h2>欢迎参加模拟考试</h2>
+            <div class="info-list">
+                <div class="info-item">
+                    <span class="info-icon">📋</span>
+                    <span class="info-text">共 30 道题目，满分 100 分，60 分合格</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-icon">⏱️</span>
+                    <span class="info-text">建议答题时间：45 分钟</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-icon">📝</span>
+                    <span class="info-text">题型：单选题、多选题、判断题</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-icon">✅</span>
+                    <span class="info-text">答完所有题目后点击"提交"按钮查看成绩</span>
+                </div>
+            </div>
+            <button class="btn-start" onclick="startExam()">开始答题</button>
+        </div>
+
+        <!-- 答题页面 -->
+        <div class="exam-screen" id="examScreen">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text" id="progressText">第 1 / 30 题</div>
+            
+            <div class="question-card" id="questionCard">
+                <!-- 题目将通过JS动态生成 -->
+            </div>
+
+            <div class="navigation">
+                <button class="btn-nav" id="prevBtn" onclick="prevQuestion()" disabled>← 上一题</button>
+                <button class="btn-nav" id="nextBtn" onclick="nextQuestion()">下一题 →</button>
+                <button class="btn-submit hidden" id="submitBtn" onclick="submitExam()">提交答卷</button>
+            </div>
+        </div>
+
+        <!-- 成绩页面 -->
+        <div class="submit-screen" id="submitScreen">
+            <div class="score-circle">
+                <svg width="180" height="180">
+                    <circle cx="90" cy="90" r="75" stroke="#334155" stroke-width="12" fill="none"/>
+                    <circle cx="90" cy="90" r="75" stroke="url(#gradient)" stroke-width="12" fill="none"
+                            stroke-linecap="round" stroke-dasharray="471.24" stroke-dashoffset="471.24" id="scoreCircle"/>
+                    <defs>
+                        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:#6366f1"/>
+                            <stop offset="100%" style="stop-color:#8b5cf6"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <div class="score-text">
+                    <div class="score-value" id="scoreValue">0</div>
+                    <div class="score-label">/ 100 分</div>
+                </div>
+            </div>
+
+            <div class="score-result" id="scoreResult">
+                <h2 id="scoreTitle">考试完成！</h2>
+                <p id="scoreMessage">查看您的考试成绩和答题情况</p>
+            </div>
+
+            <div class="score-stats">
+                <div class="stat-card">
+                    <div class="stat-value" id="correctCount">0</div>
+                    <div class="stat-label">答对题数</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="wrongCount">0</div>
+                    <div class="stat-label">答错题数</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="accuracyRate">0%</div>
+                    <div class="stat-label">正确率</div>
+                </div>
+            </div>
+
+            <div class="question-review" id="questionReview">
+                <!-- 答题详情将通过JS动态生成 -->
+            </div>
+
+            <button class="btn-restart" onclick="restartExam()">重新考试</button>
+        </div>
+    </div>
+
+    <script>
+        // 题库数据
+        const questionBank = [
+            {
+                id: 1,
+                type: 'single',
+                typeName: '单选题',
+                score: 3,
+                text: '基础心理学中，人脑对客观事物个别属性的反映是（ ）',
+                options: ['感觉', '知觉', '思维', '记忆'],
+                answer: 0,
+                explanation: '感觉是人脑对客观事物个别属性的反映，而知觉是对事物整体属性的反映。'
+            },
+            {
+                id: 2,
+                type: 'single',
+                typeName: '单选题',
+                score: 3,
+                text: '个体自我意识发展的最高阶段是（ ）',
+                options: ['生理自我', '社会自我', '心理自我', '理想自我'],
+                answer: 2,
+                explanation: '自我意识发展经历从生理自我到社会自我再到心理自我的过程，心理自我是最高阶段。'
+            },
+            {
+                id: 3,
+                type: 'single',
+                typeName: '单选题',
+                score: 3,
+                text: '心理咨询的核心宗旨是（ ）',
+                options: [
+                    '直接替来访者解决问题',
+                    '助人自助、促进来访者自我成长',
+                    '开具药物治疗处方',
+                    '评判来访者对错'
+                ],
+                answer: 1,
+                explanation: '心理咨询的宗旨是"助人自助"，帮助来访者获得自我成长的能力，而不是直接替他解决问题。'
+            },
+            {
+                id: 4,
+                type: 'single',
+                typeName: '单选题',
+                score: 3,
+                text: '下列不属于心理咨询师职业保密例外的是（ ）',
+                options: [
+                    '来访者有明确自杀计划',
+                    '来访者存在伤人风险',
+                    '普通情绪倾诉问题',
+                    '涉及未成年人遭受侵害'
+                ],
+                answer: 2,
+                explanation: '保密例外包括：来访者有自伤、自杀计划；有伤人风险；未成年人遭受侵害等。普通情绪倾诉不属于保密例外。'
+            },
+            {
+                id: 5,
+                type: 'single',
+                typeName: '单选题',
+                score: 3,
+                text: '一般心理问题的核心诊断依据是（ ）',
+                options: [
+                    '持续时间长、社会功能严重受损',
+                    '由现实因素引发、情绪反应适度、无泛化',
+                    '存在幻觉妄想',
+                    '躯体症状严重无法缓解'
+                ],
+                answer: 1,
+                explanation: '一般心理问题的特点：由现实因素激发、持续时间较短（1-2个月）、情绪反应适度、无明显泛化、社会功能轻度受损。'
+            },
+            {
+                id: 6,
+                type: 'single',
+                typeName: '单选题',
+                score: 3,
+                text: '倾听技术的核心要求是（ ）',
+                options: [
+                    '快速打断来访者发言',
+                    '真诚接纳、耐心倾听、不评判、不打断',
+                    '频繁给出建议',
+                    '主观解读来访者内心'
+                ],
+                answer: 1,
+                explanation: '倾听的核心是真诚接纳、耐心倾听、不评判、不打断，让来访者感到被理解和尊重。'
+            },
+            {
+                id: 7,
+                type: 'single',
+                typeName: '单选题',
+                score: 3,
+                text: '来访者把对父母、亲人的情感转移到咨询师身上，属于（ ）',
+                options: ['移情', '反移情', '阻抗', '投射'],
+                answer: 0,
+                explanation: '移情是指来访者把过去对重要他人的情感和态度无意识地转移到咨询师身上。'
+            },
+            {
+                id: 8,
+                type: 'single',
+                typeName: '单选题',
+                score: 3,
+                text: '心理测验中，WAIS量表主要用于测评（ ）',
+                options: ['人格特质', '智力水平', '抑郁焦虑程度', '心理健康状态'],
+                answer: 1,
+                explanation: 'WAIS（韦氏成人智力量表）是目前应用最广泛的智力测验工具之一，用于测评智力水平。'
+            },
+            {
+                id: 9,
+                type: 'single',
+                typeName: '单选题',
+                score: 3,
+                text: '合理情绪疗法（RET）的创始人是（ ）',
+                options: ['罗杰斯', '艾利斯', '弗洛伊德', '贝克'],
+                answer: 1,
+                explanation: '合理情绪疗法（RET）由美国心理学家阿尔伯特·艾利斯（Albert Ellis）于20世纪50年代创立。'
+            },
+            {
+                id: 10,
+                type: 'single',
+                typeName: '单选题',
+                score: 3,
+                text: '合理情绪疗法的核心ABC理论中，B指的是（ ）',
+                options: ['诱发事件', '个体不合理信念', '情绪行为结果', '干预方式'],
+                answer: 1,
+                explanation: 'ABC理论中：A是诱发事件，B是个体对事件的信念、看法和解释，C是情绪和行为结果。'
+            },
+            {
+                id: 11,
+                type: 'single',
+                typeName: '单选题',
+                score: 3,
+                text: '来访者沉默不语、回避核心问题，这种咨询阻力称为（ ）',
+                options: ['移情', '阻抗', '共情缺失', '投射'],
+                answer: 1,
+                explanation: '阻抗是指来访者在咨询过程中表现出的各种阻碍咨询进展的行为，包括沉默、回避、转移话题等。'
+            },
+            {
+                id: 12,
+                type: 'single',
+                typeName: '单选题',
+                score: 3,
+                text: '系统脱敏法主要用于治疗（ ）',
+                options: ['抑郁障碍', '恐惧、焦虑障碍', '精神分裂症', '人格障碍'],
+                answer: 1,
+                explanation: '系统脱敏法是由沃尔普提出的行为治疗技术，主要用于治疗恐惧症、焦虑障碍等。'
+            },
+            {
+                id: 13,
+                type: 'single',
+                typeName: '单选题',
+                score: 3,
+                text: '心理咨询的首要原则是（ ）',
+                options: ['保密原则', '有偿原则', '指导原则', '权威原则'],
+                answer: 0,
+                explanation: '保密原则是心理咨询的首要原则，是建立安全咨询关系的基础。'
+            },
+            {
+                id: 14,
+                type: 'single',
+                typeName: '单选题',
+                score: 3,
+                text: '人本主义咨询的核心技术是（ ）',
+                options: [
+                    '自由联想',
+                    '共情、真诚、无条件积极关注',
+                    '系统脱敏',
+                    '认知矫正'
+                ],
+                answer: 1,
+                explanation: '人本主义疗法的核心条件是：共情、真诚和无条件积极关注，这是罗杰斯提出的必要条件。'
+            },
+            {
+                id: 15,
+                type: 'single',
+                typeName: '单选题',
+                score: 3,
+                text: '弗洛伊德人格结构理论中，遵循快乐原则的是（ ）',
+                options: ['本我', '自我', '超我', '意识'],
+                answer: 0,
+                explanation: '弗洛伊德人格结构理论：本我遵循快乐原则，自我遵循现实原则，超我遵循道德原则。'
+            },
+            {
+                id: 16,
+                type: 'multiple',
+                typeName: '多选题',
+                score: 4,
+                text: '心理咨询师必备的职业素养包括（ ）',
+                options: ['真诚共情', '尊重接纳', '严格保密', '客观中立'],
+                answer: [0, 1, 2, 3],
+                explanation: '心理咨询师的核心素养包括：真诚、共情、尊重、接纳、保密、客观中立等，这些都是建立良好咨询关系的基础。'
+            },
+            {
+                id: 17,
+                type: 'multiple',
+                typeName: '多选题',
+                score: 4,
+                text: '属于心理咨询保密例外的情况有（ ）',
+                options: [
+                    '来访者有明确自杀、自伤计划',
+                    '来访者蓄意伤害他人',
+                    '未成年人遭受家暴、性侵',
+                    '普通情绪困惑倾诉'
+                ],
+                answer: [0, 1, 2],
+                explanation: '保密例外：来访者有自伤自杀风险、伤人风险、未成年人遭受侵害等情况。普通情绪倾诉不属于保密例外。'
+            },
+            {
+                id: 18,
+                type: 'multiple',
+                typeName: '多选题',
+                score: 4,
+                text: '合理情绪疗法中常见的不合理信念包括（ ）',
+                options: ['绝对化要求', '过分概括化', '糟糕至极', '客观理性认知'],
+                answer: [0, 1, 2],
+                explanation: '艾利斯总结的三种常见不合理信念：绝对化要求、过分概括化、糟糕至极。'
+            },
+            {
+                id: 19,
+                type: 'multiple',
+                typeName: '多选题',
+                score: 4,
+                text: '心理问题按严重程度可划分为（ ）',
+                options: ['一般心理问题', '严重心理问题', '神经症性心理问题', '精神疾病'],
+                answer: [0, 1, 2, 3],
+                explanation: '心理问题按严重程度分为：一般心理问题、严重心理问题、神经症性心理问题和精神疾病。'
+            },
+            {
+                id: 20,
+                type: 'multiple',
+                typeName: '多选题',
+                score: 4,
+                text: '有效共情的实施要点包括（ ）',
+                options: [
+                    '换位思考理解来访者情绪',
+                    '准确复述来访者感受',
+                    '不主观评判、不随意说教',
+                    '完全认同来访者所有行为'
+                ],
+                answer: [0, 1, 2],
+                explanation: '共情的要点：换位思考、准确理解、有效反馈、不评判说教。共情不是完全认同来访者的所有行为。'
+            },
+            {
+                id: 21,
+                type: 'multiple',
+                typeName: '多选题',
+                score: 4,
+                text: '属于行为疗法的技术有（ ）',
+                options: ['系统脱敏法', '阳性强化法', '厌恶疗法', '自由联想'],
+                answer: [0, 1, 2],
+                explanation: '行为疗法技术包括：系统脱敏、阳性强化、厌恶疗法、冲击疗法等。自由联想属于精神分析技术。'
+            },
+            {
+                id: 22,
+                type: 'multiple',
+                typeName: '多选题',
+                score: 4,
+                text: '青少年常见心理问题包括（ ）',
+                options: ['学业焦虑', '人际交往障碍', '青春期情绪波动', '自我认同混乱'],
+                answer: [0, 1, 2, 3],
+                explanation: '青少年常见心理问题：学业压力与焦虑、人际关系困扰、情绪波动、自我认同问题、亲子冲突等。'
+            },
+            {
+                id: 23,
+                type: 'multiple',
+                typeName: '多选题',
+                score: 4,
+                text: '心理评估的常用工具包括（ ）',
+                options: ['SCL-90症状自评量表', 'SDS抑郁自评量表', 'SAS焦虑自评量表', 'WAIS智力量表'],
+                answer: [0, 1, 2, 3],
+                explanation: '常用心理评估工具：SCL-90（症状）、SDS（抑郁）、SAS（焦虑）、WAIS（智力）、MMPI（人格）等。'
+            },
+            {
+                id: 24,
+                type: 'multiple',
+                typeName: '多选题',
+                score: 4,
+                text: '心理咨询师职业禁止行为包括（ ）',
+                options: [
+                    '超范围诊疗精神疾病',
+                    '泄露来访者隐私',
+                    '双重关系咨询',
+                    '主观评判来访者人格'
+                ],
+                answer: [0, 1, 2, 3],
+                explanation: '职业禁止行为：超范围诊疗、泄密、建立双重关系（如与来访者谈恋爱）、主观评判等。'
+            },
+            {
+                id: 25,
+                type: 'truefalse',
+                typeName: '判断题',
+                score: 2,
+                text: '心理咨询可以替代精神科药物治疗。',
+                answer: false,
+                explanation: '心理咨询不能替代药物治疗。精神障碍的治疗需要药物治疗为主，心理咨询为辅。'
+            },
+            {
+                id: 26,
+                type: 'truefalse',
+                typeName: '判断题',
+                score: 2,
+                text: '心理健康的标准之一是没有任何负面情绪。',
+                answer: false,
+                explanation: '心理健康不是没有负面情绪，而是能够合理调节和管理负面情绪。'
+            },
+            {
+                id: 27,
+                type: 'truefalse',
+                typeName: '判断题',
+                score: 2,
+                text: '一般心理问题的情绪反应通常没有泛化。',
+                answer: true,
+                explanation: '一般心理问题的特点之一是情绪反应局限于最初刺激，没有明显泛化。'
+            },
+            {
+                id: 28,
+                type: 'truefalse',
+                typeName: '判断题',
+                score: 2,
+                text: '咨询师与来访者之间建立良好的治疗联盟是咨询成功的关键。',
+                answer: true,
+                explanation: '治疗联盟是心理咨询成功的最重要预测因素之一，包括工作联盟、情感联盟和目标联盟。'
+            },
+            {
+                id: 29,
+                type: 'truefalse',
+                typeName: '判断题',
+                score: 2,
+                text: '严重心理问题的情绪反应通常会出现泛化现象。',
+                answer: true,
+                explanation: '严重心理问题的特点：情绪强烈、持续时间长、出现泛化、社会功能明显受损。'
+            },
+            {
+                id: 30,
+                type: 'truefalse',
+                typeName: '判断题',
+                score: 2,
+                text: '心理咨询师在咨询过程中应避免与来访者产生双重关系。',
+                answer: true,
+                explanation: '双重关系会损害咨询师的客观性和专业性，影响来访者利益，是职业伦理严格禁止的。'
+            }
+        ];
+
+        // 答题状态
+        let currentIndex = 0;
+        let answers = {}; // { questionId: userAnswer }
+        let submitted = false;
+
+        function startExam() {
+            document.getElementById('startScreen').style.display = 'none';
+            document.getElementById('examScreen').style.display = 'block';
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            const question = questionBank[currentIndex];
+            const card = document.getElementById('questionCard');
+            const progressFill = document.getElementById('progressFill');
+            const progressText = document.getElementById('progressText');
+            const submitBtn = document.getElementById('submitBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const prevBtn = document.getElementById('prevBtn');
+
+            // 更新进度
+            const progress = ((currentIndex + 1) / questionBank.length) * 100;
+            progressFill.style.width = progress + '%';
+            progressText.textContent = `第 ${currentIndex + 1} / ${questionBank.length} 题`;
+
+            // 显示提交按钮在最后一题
+            if (currentIndex === questionBank.length - 1) {
+                nextBtn.classList.add('hidden');
+                submitBtn.classList.remove('hidden');
+            } else {
+                nextBtn.classList.remove('hidden');
+                submitBtn.classList.add('hidden');
+            }
+
+            // 第一题禁用上一题
+            prevBtn.disabled = currentIndex === 0;
+
+            // 渲染题目
+            let html = `
+                <div style="margin-bottom: 20px;">
+                    <span class="question-type">${question.typeName}</span>
+                    <span class="question-score">${question.score} 分</span>
+                </div>
+                <div class="question-text">${question.text}</div>
+            `;
+
+            if (question.type === 'single' || question.type === 'multiple') {
+                html += '<div class="options">';
+                question.options.forEach((option, index) => {
+                    const letter = String.fromCharCode(65 + index);
+                    const isSelected = answers[question.id] !== undefined && 
+                        (Array.isArray(answers[question.id]) ? answers[question.id].includes(index) : answers[question.id] === index);
+                    html += `
+                        <div class="option ${isSelected ? 'selected' : ''}" onclick="selectOption(${index})">
+                            <span class="option-letter">${letter}</span>
+                            <span class="option-text">${option}</span>
+                        </div>
+                    `;
+                });
+                html += '</div>';
+            } else if (question.type === 'truefalse') {
+                const selectedAnswer = answers[question.id];
+                html += '<div class="true-false-options">';
+                html += `<div class="tf-option ${selectedAnswer === true ? 'selected' : ''}" onclick="selectTrueFalse(true)">✓ 正确</div>`;
+                html += `<div class="tf-option ${selectedAnswer === false ? 'selected' : ''}" onclick="selectTrueFalse(false)">✗ 错误</div>`;
+                html += '</div>';
+            }
+
+            card.innerHTML = html;
+        }
+
+        function selectOption(index) {
+            const question = questionBank[currentIndex];
+            if (question.type === 'single') {
+                answers[question.id] = index;
+            } else if (question.type === 'multiple') {
+                if (!answers[question.id]) {
+                    answers[question.id] = [];
+                }
+                const idx = answers[question.id].indexOf(index);
+                if (idx > -1) {
+                    answers[question.id].splice(idx, 1);
+                } else {
+                    answers[question.id].push(index);
+                    answers[question.id].sort();
+                }
+            }
+            renderQuestion();
+        }
+
+        function selectTrueFalse(value) {
+            const question = questionBank[currentIndex];
+            answers[question.id] = value;
+            renderQuestion();
+        }
+
+        function prevQuestion() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                renderQuestion();
+            }
+        }
+
+        function nextQuestion() {
+            if (currentIndex < questionBank.length - 1) {
+                currentIndex++;
+                renderQuestion();
+            }
+        }
+
+        function submitExam() {
+            // 检查是否有未作答
+            let unanswered = [];
+            questionBank.forEach(q => {
+                if (answers[q.id] === undefined || 
+                    (Array.isArray(answers[q.id]) && answers[q.id].length === 0)) {
+                    unanswered.push(q.id);
+                }
+            });
+
+            if (unanswered.length > 0) {
+                if (!confirm(`您还有 ${unanswered.length} 道题未作答，确定要提交吗？`)) {
+                    return;
+                }
+            }
+
+            submitted = true;
+            calculateScore();
+        }
+
+        function calculateScore() {
+            let totalScore = 0;
+            let correctCount = 0;
+            let wrongCount = 0;
+            const results = [];
+
+            questionBank.forEach(question => {
+                const userAnswer = answers[question.id];
+                let isCorrect = false;
+
+                if (question.type === 'single' || question.type === 'truefalse') {
+                    isCorrect = userAnswer === question.answer;
+                } else if (question.type === 'multiple') {
+                    if (Array.isArray(userAnswer)) {
+                        isCorrect = userAnswer.length === question.answer.length &&
+                            userAnswer.every(a => question.answer.includes(a));
+                    }
+                }
+
+                if (isCorrect) {
+                    totalScore += question.score;
+                    correctCount++;
+                } else {
+                    wrongCount++;
+                }
+
+                results.push({
+                    question: question,
+                    userAnswer: userAnswer,
+                    isCorrect: isCorrect
+                });
+            });
+
+            showResult(totalScore, correctCount, wrongCount, results);
+        }
+
+        function showResult(score, correct, wrong, results) {
+            document.getElementById('examScreen').style.display = 'none';
+            document.getElementById('submitScreen').style.display = 'block';
+
+            // 分数圆圈动画
+            const circle = document.getElementById('scoreCircle');
+            const scoreValue = document.getElementById('scoreValue');
+            const circumference = 2 * Math.PI * 75;
+            const offset = circumference - (score / 100) * circumference;
+            
+            setTimeout(() => {
+                circle.style.strokeDashoffset = offset;
+                scoreValue.textContent = score;
+            }, 100);
+
+            // 及格状态
+            const scoreResult = document.getElementById('scoreResult');
+            const scoreTitle = document.getElementById('scoreTitle');
+            const scoreMessage = document.getElementById('scoreMessage');
+            
+            if (score >= 60) {
+                scoreResult.classList.add('pass');
+                scoreResult.classList.remove('fail');
+                scoreTitle.textContent = '🎉 恭喜，考试合格！';
+                scoreMessage.textContent = `您的得分是 ${score} 分，已达到合格线（60分）`;
+            } else {
+                scoreResult.classList.add('fail');
+                scoreResult.classList.remove('pass');
+                scoreTitle.textContent = '😅 很遗憾，未达合格线';
+                scoreMessage.textContent = `您的得分是 ${score} 分，距离合格线还差 ${60 - score} 分`;
+            }
+
+            // 统计
+            document.getElementById('correctCount').textContent = correct;
+            document.getElementById('wrongCount').textContent = wrong;
+            document.getElementById('accuracyRate').textContent = 
+                Math.round((correct / questionBank.length) * 100) + '%';
+
+            // 答题详情
+            const reviewDiv = document.getElementById('questionReview');
+            let reviewHtml = '<h3>📝 答题详情</h3>';
+            
+            results.forEach((result, index) => {
+                const q = result.question;
+                let userAnswerText = '未作答';
+                let correctAnswerText = '';
+
+                if (q.type === 'single') {
+                    if (result.userAnswer !== undefined) {
+                        const letter = String.fromCharCode(65 + result.userAnswer);
+                        userAnswerText = `${letter}. ${q.options[result.userAnswer]}`;
+                    }
+                    correctAnswerText = `${String.fromCharCode(65 + q.answer)}. ${q.options[q.answer]}`;
+                } else if (q.type === 'multiple') {
+                    if (Array.isArray(result.userAnswer) && result.userAnswer.length > 0) {
+                        userAnswerText = result.userAnswer.map(a => 
+                            `${String.fromCharCode(65 + a)}. ${q.options[a]}`
+                        ).join('；');
+                    }
+                    correctAnswerText = q.answer.map(a => 
+                        `${String.fromCharCode(65 + a)}. ${q.options[a]}`
+                    ).join('；');
+                } else if (q.type === 'truefalse') {
+                    if (result.userAnswer !== undefined) {
+                        userAnswerText = result.userAnswer ? '正确 ✓' : '错误 ✗';
+                    }
+                    correctAnswerText = q.answer ? '正确 ✓' : '错误 ✗';
+                }
+
+                reviewHtml += `
+                    <div class="review-item ${result.isCorrect ? 'correct' : 'wrong'}">
+                        <div class="review-header">
+                            <span class="review-number">${index + 1}. ${q.text.substring(0, 30)}...</span>
+                            <span class="review-status ${result.isCorrect ? 'correct' : 'wrong'}">
+                                ${result.isCorrect ? '✓ 正确' : '✗ 错误'}
+                            </span>
+                        </div>
+                        <div class="review-content">
+                            <div class="review-answer">
+                                <span class="label">您的答案：</span>
+                                <span class="user-answer">${userAnswerText}</span>
+                            </div>
+                            <div class="review-answer">
+                                <span class="label">正确答案：</span>
+                                <span class="value">${correctAnswerText}</span>
+                            </div>
+                            <div style="margin-top: 8px; color: #94a3b8; font-size: 13px;">
+                                💡 <strong>解析：</strong>${q.explanation}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            reviewDiv.innerHTML = reviewHtml;
+        }
+
+        function restartExam() {
+            currentIndex = 0;
+            answers = {};
+            submitted = false;
+            document.getElementById('submitScreen').style.display = 'none';
+            document.getElementById('submitBtn').classList.add('hidden');
+            document.getElementById('nextBtn').classList.remove('hidden');
+            document.getElementById('startScreen').style.display = 'block';
+            // 重置分数圆圈
+            document.getElementById('scoreCircle').style.strokeDashoffset = 471.24;
+            document.getElementById('scoreValue').textContent = '0';
+        }
+    </script>
+</body>
+</html>
