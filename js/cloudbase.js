@@ -5,10 +5,12 @@ var CloudBase = (function() {
     var initialized = false;
     var currentUser = null;
     var useLocalStorage = false;
+    var anonymousPromise = null;
+    var PV_COLLECTION = 'page_views';
 
     function init() {
         if (initialized) return;
-        
+
         if (typeof window.tcb === 'undefined') {
             console.warn('CloudBase SDK未加载，使用本地存储模式');
             useLocalStorage = true;
@@ -16,7 +18,7 @@ var CloudBase = (function() {
             loadLocalUser();
             return;
         }
-        
+
         try {
             app = window.tcb.init({
                 env: 'yunkaifa20260626-d0el5yg4df33bbf'
@@ -32,6 +34,44 @@ var CloudBase = (function() {
             initialized = true;
             loadLocalUser();
         }
+    }
+
+    /**
+     * 匿名登录（用于无需注册即可记录页面访问）
+     * 失败时返回 reject，调用方自行降级
+     */
+    function ensureAnonymous() {
+        if (anonymousPromise) return anonymousPromise;
+        anonymousPromise = new Promise(function (resolve, reject) {
+            if (useLocalStorage || !auth) { reject(new Error('CloudBase 不可用')); return; }
+            try {
+                var cur = (typeof auth.currentUser !== 'undefined') ? auth.currentUser : null;
+                if (cur) { resolve(cur); return; }
+            } catch (e) {}
+            var p;
+            if (typeof auth.signInAnonymously === 'function') {
+                p = auth.signInAnonymously();
+            } else if (auth.anonymousAuthProvider && typeof auth.anonymousAuthProvider().signIn === 'function') {
+                p = auth.anonymousAuthProvider().signIn();
+            } else {
+                reject(new Error('当前 SDK 不支持匿名登录'));
+                return;
+            }
+            p.then(function (u) { currentUser = u; resolve(u); })
+             .catch(function (err) { reject(err); });
+        });
+        return anonymousPromise;
+    }
+
+    function localGetPV(pageKey) {
+        var v = JSON.parse(localStorage.getItem('psy_local_page_views') || '{}');
+        return v[pageKey] || 0;
+    }
+    function localIncrementPV(pageKey) {
+        var v = JSON.parse(localStorage.getItem('psy_local_page_views') || '{}');
+        v[pageKey] = (v[pageKey] || 0) + 1;
+        localStorage.setItem('psy_local_page_views', JSON.stringify(v));
+        return v[pageKey];
     }
 
     function loadLocalUser() {
@@ -482,6 +522,58 @@ var CloudBase = (function() {
             }).catch(function(err) {
                 console.error('获取学习统计失败:', err);
                 return Promise.resolve({ total: 0, learned: 0 });
+            });
+        },
+
+        /**
+         * 记录页面访问（+1）。需要 CloudBase 后台已启用匿名登录，
+         * 且 page_views 集合权限设为"所有用户可读，登录用户可写"。
+         * 失败时返回 0，调用方应降级到 localStorage。
+         */
+        recordPageView: function(pageKey) {
+            init();
+            if (useLocalStorage || !db) {
+                return Promise.resolve(0);
+            }
+            return ensureAnonymous().then(function() {
+                var _ = db.command;
+                return db.collection(PV_COLLECTION).where({ pageKey: pageKey }).get();
+            }).then(function(res) {
+                if (res.data && res.data.length > 0) {
+                    var doc = res.data[0];
+                    var newCount = (doc.count || 0) + 1;
+                    return db.collection(PV_COLLECTION).doc(doc._id).update({
+                        count: newCount,
+                        lastViewAt: new Date().toISOString()
+                    }).then(function() { return newCount; });
+                } else {
+                    return db.collection(PV_COLLECTION).add({
+                        pageKey: pageKey,
+                        count: 1,
+                        createdAt: new Date().toISOString(),
+                        lastViewAt: new Date().toISOString()
+                    }).then(function() { return 1; });
+                }
+            }).catch(function(err) {
+                console.warn('记录页面访问失败（降级到本地）:', err && err.message ? err.message : err);
+                return 0;
+            });
+        },
+
+        /**
+         * 读取页面累计访问数。失败返回 0。
+         */
+        getPageViews: function(pageKey) {
+            init();
+            if (useLocalStorage || !db) {
+                return Promise.resolve(0);
+            }
+            return ensureAnonymous().then(function() {
+                return db.collection(PV_COLLECTION).where({ pageKey: pageKey }).get();
+            }).then(function(res) {
+                return (res.data && res.data.length > 0) ? (res.data[0].count || 0) : 0;
+            }).catch(function() {
+                return 0;
             });
         }
     };
