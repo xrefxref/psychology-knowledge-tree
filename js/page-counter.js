@@ -108,10 +108,10 @@
             if (window.CloudBase && typeof window.CloudBase.recordPageView === 'function') {
                 resolve(window.CloudBase); return;
             }
-            var chain = (typeof window.tcb === 'undefined')
-                ? loadScript(CB_SDK).then(function () { return loadScript(SCRIPT_BASE + CB_APP_JS); })
-                : (typeof window.CloudBase === 'undefined')
-                    ? loadScript(SCRIPT_BASE + CB_APP_JS) : Promise.resolve();
+            var sdkReady = !!(window.tcb || window.cloudbase);
+            var chain = sdkReady
+                ? loadScript(SCRIPT_BASE + CB_APP_JS)
+                : loadScript(CB_SDK).then(function () { return loadScript(SCRIPT_BASE + CB_APP_JS); });
             chain.then(function () {
                 if (window.CloudBase && typeof window.CloudBase.recordPageView === 'function') {
                     resolve(window.CloudBase);
