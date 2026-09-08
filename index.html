@@ -7,7 +7,7 @@
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
     <script src="js/cloudbase.full.js"></script>
     <script>
-        if (typeof tcb === 'undefined') {
+        if (typeof (window.tcb || window.cloudbase) === 'undefined') {
             console.warn('CloudBase SDK未加载，将使用本地存储模式');
         }
     </script>

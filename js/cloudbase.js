@@ -11,7 +11,8 @@ var CloudBase = (function() {
     function init() {
         if (initialized) return;
 
-        if (typeof window.tcb === 'undefined') {
+        var tcbSDK = window.tcb || window.cloudbase;
+        if (typeof tcbSDK === 'undefined') {
             console.warn('CloudBase SDK未加载，使用本地存储模式');
             useLocalStorage = true;
             initialized = true;
@@ -20,7 +21,7 @@ var CloudBase = (function() {
         }
 
         try {
-            app = window.tcb.init({
+            app = tcbSDK.init({
                 env: 'yunkaifa20260626-d0el5yg4df33bbf'
             });
 
