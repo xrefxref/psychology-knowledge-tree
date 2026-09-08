@@ -312,6 +312,23 @@
     section{padding:28px 0;}
     .bias,.act,.quote,.sys{break-inside:avoid;}
   }
+
+  /* ===== 系列互链 ===== */
+  .more-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .more{
+    display:flex;flex-direction:column;gap:3px;background:var(--paper-2);
+    border:1px solid var(--line);border-left:4px solid var(--mc);border-radius:12px;
+    padding:16px 18px;text-decoration:none;color:inherit;
+  }
+  a.more:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm,0 4px 18px rgba(43,39,34,.08));}
+  .more b{font-family:var(--serif);font-size:15.5px;}
+  .more i{font-style:normal;font-size:12.5px;color:var(--ink-faint);}
+  .more.current{opacity:.75;background:var(--paper);}
+  .more.current i{color:var(--accent);}
+  .more-all{display:inline-flex;margin-top:18px;font-size:13.5px;color:var(--accent);
+    border:1px solid var(--line);background:var(--paper-2);padding:9px 18px;border-radius:24px;text-decoration:none;transition:all .18s;}
+  .more-all:hover{border-color:var(--accent);background:rgba(154,59,46,.05);}
+  @media(max-width:880px){.more-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -660,6 +677,20 @@
   </section>
 
 </div>
+
+
+  <div class="divider"></div>
+
+  <section id="more">
+    <div class="sec-head"><div class="sec-no">&rarr;</div><h2>读书笔记系列</h2></div>
+    <p class="sec-sub">同一系列的精读摘要卡，可继续翻阅</p>
+    <div class="more-grid">
+    <span class="more current" style="--mc:#9a3b2e"><b>《思考，快与慢》</b><i>双系统 · 认知偏误 · 当前阅读</i></span>
+    <a class="more" href="contagious-book-notes.html" style="--mc:#a15c1c"><b>《疯传》</b><i>STEPPS 六原则</i></a>
+    <a class="more" href="invisible-influence-book-notes.html" style="--mc:#2e5a77"><b>《传染》</b><i>社会影响 · 最优差异化</i></a>
+    </div>
+    <a class="more-all" href="book-notes.html">查看全部读书笔记 &rarr;</a>
+  </section>
 
 <footer>
   <div class="line"></div>
