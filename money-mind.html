@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>一分钟搞钱心智检测 | 测测你脑海里的"财富黑洞"</title>
+    <meta name="description" content="一分钟搞钱心智检测：10 道题测绘你大脑里的心力拓扑场，找出你的财富壁垒与心智象限，生成专属诊断报告。">
+    <meta property="og:title" content="一分钟搞钱心智检测">
+    <meta property="og:description" content="10 道题，1 分钟，测测你脑海里的'财富黑洞'，生成专属心力拓扑诊断报告。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://shenzhen-ai.icu/money-mind.html">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { -webkit-text-size-adjust: 100%; }
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px 12px 40px;
+            color: #1f2937;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.97);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
+            padding: 32px 22px;
+            max-width: 640px;
+            width: 100%;
+        }
+        .screen { display: none; }
+        .screen.active { display: block; animation: fadeIn .35s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+        /* ===== 首页 ===== */
+        .brand-tag { display: inline-block; font-size: 12px; letter-spacing: 2px; color: #764ba2; border: 1px solid #d6cdf0; border-radius: 999px; padding: 4px 14px; margin-bottom: 18px; }
+        .hero-title { font-size: 30px; font-weight: 800; line-height: 1.3; margin-bottom: 10px; }
+        .hero-title .hl { background: linear-gradient(90deg, #667eea, #764ba2); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .hero-sub { color: #6b7280; font-size: 15px; line-height: 1.7; margin-bottom: 22px; }
+        .intro-card { background: #f6f7fb; border: 1px solid #e8eaf3; border-radius: 14px; padding: 16px 18px; font-size: 14px; color: #4b5563; line-height: 1.8; margin-bottom: 22px; }
+        .intro-card b { color: #1f2937; }
+        .form-group { margin-bottom: 16px; }
+        .form-group label { display: block; font-size: 14px; color: #374151; margin-bottom: 8px; font-weight: 600; }
+        .form-group input {
+            width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px;
+            font-size: 16px; outline: none; background: #f8fafc; transition: all .25s ease;
+        }
+        .form-group input:focus { border-color: #667eea; background: #fff; box-shadow: 0 0 0 4px rgba(102,126,234,.12); }
+        .error-msg { color: #e53e3e; font-size: 13px; margin-top: 6px; display: none; }
+        .error-msg.show { display: block; }
+
+        .btn {
+            display: inline-block; width: 100%; border: none; cursor: pointer; outline: none;
+            padding: 15px 28px; font-size: 17px; font-weight: 700; border-radius: 50px; color: #fff;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, .35);
+            transition: transform .2s ease, box-shadow .2s ease, opacity .2s;
+            letter-spacing: 1px;
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(102, 126, 234, .45); }
+        .btn:active { transform: translateY(0); }
+        .btn:disabled { opacity: .45; cursor: not-allowed; transform: none; box-shadow: none; }
+        .btn.ghost { background: #fff; color: #667eea; border: 2px solid #c9d2f5; box-shadow: none; }
+        .btn.small { width: auto; padding: 10px 22px; font-size: 14px; }
+
+        /* ===== 答题 ===== */
+        .quiz-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+        .quiz-count { font-size: 14px; font-weight: 700; color: #667eea; }
+        .quiz-timer { font-size: 13px; color: #9ca3af; }
+        .progress { height: 8px; background: #edf0f8; border-radius: 999px; overflow: hidden; margin-bottom: 24px; }
+        .progress-bar { height: 100%; width: 0%; border-radius: 999px; background: linear-gradient(90deg, #667eea, #764ba2); transition: width .3s ease; }
+        .question { font-size: 19px; font-weight: 700; line-height: 1.65; margin-bottom: 22px; }
+        .options { display: flex; flex-direction: column; gap: 12px; margin-bottom: 26px; }
+        .option {
+            display: flex; align-items: flex-start; gap: 12px; text-align: left; width: 100%;
+            background: #f8fafc; border: 2px solid #e5e9f2; padding: 15px 16px; border-radius: 12px;
+            font-size: 15px; line-height: 1.6; color: #4b5563; cursor: pointer; transition: all .2s ease;
+            font-family: inherit;
+        }
+        .option:hover { border-color: #a5b0e8; background: #f4f6ff; }
+        .option .letter { font-weight: 800; color: #667eea; flex-shrink: 0; }
+        .option.selected { border-color: #667eea; background: #eef1ff; color: #4338ca; }
+        .option.selected .letter { color: #4338ca; }
+        .quiz-nav { display: flex; gap: 12px; }
+        .quiz-nav .btn { flex: 1; }
+        .quiz-nav .btn.prev { background: #fff; color: #64748b; border: 2px solid #dbe1ee; box-shadow: none; }
+        .quiz-nav .btn.prev:disabled { opacity: .4; }
+
+        /* ===== 结果 ===== */
+        .result-header { text-align: center; margin-bottom: 24px; }
+        .result-eyebrow { font-size: 13px; color: #9ca3af; letter-spacing: 3px; margin-bottom: 8px; }
+        .quadrant-name { font-size: 34px; font-weight: 800; background: linear-gradient(90deg, #667eea, #764ba2); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 6px; }
+        .quadrant-position { font-size: 13px; color: #6b7280; }
+        .user-line { font-size: 13px; color: #9ca3af; margin-top: 10px; }
+
+        .topo-chart { background: #f8fafc; border: 1px solid #e8eaf3; border-radius: 14px; padding: 18px; margin-bottom: 24px; }
+        .chart-title { font-size: 14px; font-weight: 700; text-align: center; margin-bottom: 14px; color: #374151; }
+        .chart-area { position: relative; width: 100%; height: 260px; background: linear-gradient(to right, #f0f2ff 50%, #fff5f0 50%); border: 1px solid #e2e8f0; border-radius: 10px; overflow: hidden; }
+        .quad { position: absolute; width: 50%; height: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 8px; }
+        .quad .qtag { font-size: 11px; color: #94a3b8; font-weight: 700; letter-spacing: 1px; }
+        .quad .qname { font-size: 13px; color: #4b5563; font-weight: 700; margin-top: 3px; }
+        .quad-1 { top: 0; left: 0; } .quad-3 { top: 0; right: 0; }
+        .quad-4 { bottom: 0; left: 0; } .quad-2 { bottom: 0; right: 0; }
+        .quad.active { background: rgba(102, 126, 234, .14); }
+        .quad.active .qtag, .quad.active .qname { color: #4338ca; }
+        .axis-x { position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: #94a3b8; }
+        .axis-y { position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: #94a3b8; }
+        .point { position: absolute; width: 16px; height: 16px; background: #667eea; border: 3px solid #fff; border-radius: 50%; box-shadow: 0 2px 10px rgba(102,126,234,.6); transform: translate(-50%, -50%); z-index: 2; transition: all .8s cubic-bezier(.2,.8,.2,1); }
+        .axis-label-x { font-size: 12px; color: #6b7280; text-align: center; margin-top: 8px; }
+        .axis-label-y { font-size: 12px; color: #6b7280; text-align: center; margin-top: 3px; }
+
+        .metric-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+        .metric { flex: 1 1 30%; min-width: 96px; background: #f8fafc; border: 1px solid #e8eaf3; border-radius: 12px; padding: 13px 8px; text-align: center; }
+        .metric .num { font-size: 24px; font-weight: 800; display: block; }
+        .metric .label { font-size: 12px; color: #6b7280; display: block; margin-top: 3px; }
+        .m-a .num { color: #10b981; } .m-b .num { color: #6366f1; } .m-c .num { color: #ef4444; }
+        .m-p .num { color: #f59e0b; } .m-ib .num { color: #8b5cf6; }
+
+        .section { margin-bottom: 24px; }
+        .section-title { font-size: 17px; font-weight: 800; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 2px solid #eef0f6; display: flex; align-items: center; gap: 8px; }
+        .section-title::before { content: ''; width: 5px; height: 18px; border-radius: 3px; background: linear-gradient(#667eea, #764ba2); display: inline-block; }
+        .section-text { font-size: 14.5px; line-height: 1.85; color: #4b5563; background: #f8fafc; border-radius: 12px; padding: 16px 18px; white-space: pre-wrap; }
+
+        .result-actions { display: flex; flex-direction: column; gap: 10px; margin-top: 28px; }
+        .footnote { text-align: center; font-size: 12px; color: #b0b7c3; margin-top: 22px; }
+        .footnote a { color: #8a94e8; text-decoration: none; }
+
+        /* ===== 管理页 ===== */
+        .records-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        .records-table th, .records-table td { padding: 9px 8px; border-bottom: 1px solid #eef0f6; text-align: left; white-space: nowrap; }
+        .records-table th { color: #6b7280; font-weight: 700; background: #f8fafc; }
+        .records-wrap { overflow-x: auto; border: 1px solid #e8eaf3; border-radius: 12px; }
+        .empty-tip { text-align: center; color: #9ca3af; padding: 30px 0; font-size: 14px; }
+        .toast { position: fixed; left: 50%; bottom: 48px; transform: translateX(-50%) translateY(20px); background: rgba(31,41,55,.92); color: #fff; font-size: 14px; padding: 10px 22px; border-radius: 999px; opacity: 0; pointer-events: none; transition: all .3s ease; z-index: 99; }
+        .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+        @media (max-width: 480px) {
+            .container { padding: 26px 16px; }
+            .hero-title { font-size: 25px; }
+            .question { font-size: 17px; }
+            .quadrant-name { font-size: 28px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- 首页 -->
+    <section id="screen-info" class="screen active">
+        <span class="brand-tag">心力拓扑 · 财富心理</span>
+        <h1 class="hero-title">一分钟<span class="hl">搞钱心智</span>检测</h1>
+        <p class="hero-sub">10 道题 · 约 1 分钟 · 测测你脑海里的"财富黑洞"</p>
+        <div class="intro-card">
+            请根据你<b>最近 3 个月</b>最真实的直觉做出选择。本测试不评估你的理财知识，只测绘你大脑里的<b>"心力拓扑场"</b>——
+            统计 A/B/C 选项数量，即可算出你的<b>壁垒存在度（P = B + C）</b>与<b>心力平衡度（IB = C − B）</b>，
+            定位你在财富心智四象限中的坐标。
+        </div>
+        <div class="form-group">
+            <label for="nickname">昵称（选填）</label>
+            <input type="text" id="nickname" placeholder="怎么称呼你？" maxlength="20">
+        </div>
+        <div class="form-group">
+            <label for="phone">手机号</label>
+            <input type="tel" id="phone" placeholder="请输入 11 位手机号" maxlength="11" inputmode="numeric">
+            <span class="error-msg" id="phoneError">请正确填写电话号码</span>
+        </div>
+        <button class="btn" id="startBtn">开始检测 →</button>
+        <p class="footnote">数据仅保存在你的浏览器本地 · <a href="https://shenzhen-ai.icu/">返回首页</a></p>
+    </section>
+
+    <!-- 答题 -->
+    <section id="screen-quiz" class="screen">
+        <div class="quiz-top">
+            <span class="quiz-count" id="quizCount">1 / 10</span>
+            <span class="quiz-timer" id="quizTimer">00:00</span>
+        </div>
+        <div class="progress"><div class="progress-bar" id="progressBar"></div></div>
+        <div class="question" id="questionText"></div>
+        <div class="options" id="optionsBox"></div>
+        <div class="quiz-nav">
+            <button class="btn prev" id="prevBtn" disabled>上一题</button>
+            <button class="btn" id="nextBtn">下一题</button>
+        </div>
+    </section>
+
+    <!-- 结果 -->
+    <section id="screen-result" class="screen">
+        <div class="result-header">
+            <div class="result-eyebrow">财富心智拓扑 · 诊断报告</div>
+            <div class="quadrant-name" id="quadrantName"></div>
+            <div class="quadrant-position" id="quadrantPosition"></div>
+            <div class="user-line" id="userLine"></div>
+        </div>
+
+        <div class="topo-chart">
+            <div class="chart-title">心力拓扑坐标系 · 你的坐标点</div>
+            <div class="chart-area" id="chartArea">
+                <div class="quad quad-1" data-q="1"><span class="qtag">象限一</span><span class="qname">清爽掌控者</span></div>
+                <div class="quad quad-3" data-q="3"><span class="qtag">象限三</span><span class="qname">代偿暴走型</span></div>
+                <div class="quad quad-4" data-q="4"><span class="qtag">象限四</span><span class="qname">理性慢跑者</span></div>
+                <div class="quad quad-2" data-q="2"><span class="qtag">象限二</span><span class="qname">消极规避型</span></div>
+                <div class="axis-x"></div><div class="axis-y"></div>
+                <div class="point" id="coordPoint"></div>
+            </div>
+            <div class="axis-label-x" id="labelX"></div>
+            <div class="axis-label-y" id="labelY"></div>
+        </div>
+
+        <div class="metric-grid">
+            <div class="metric m-a"><span class="num" id="countA">0</span><span class="label">A · 健康免疫值</span></div>
+            <div class="metric m-b"><span class="num" id="countB">0</span><span class="label">B · 消极规避度</span></div>
+            <div class="metric m-c"><span class="num" id="countC">0</span><span class="label">C · 代偿爆发度</span></div>
+            <div class="metric m-p"><span class="num" id="valP">0</span><span class="label">壁垒存在度 P</span></div>
+            <div class="metric m-ib"><span class="num" id="valIB">0</span><span class="label">心力平衡度 IB</span></div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">心智侧写</div>
+            <div class="section-text" id="profileText"></div>
+        </div>
+        <div class="section">
+            <div class="section-title">自愈药方</div>
+            <div class="section-text" id="remedyText"></div>
+        </div>
+
+        <div class="result-actions">
+            <button class="btn" id="shareBtn">分享给朋友</button>
+            <button class="btn ghost" id="retestBtn">重新测试</button>
+        </div>
+        <p class="footnote">数据仅保存在你的浏览器本地 · <a href="https://shenzhen-ai.icu/">返回首页</a></p>
+    </section>
+
+    <!-- 管理 -->
+    <section id="screen-manager" class="screen">
+        <div class="section-title">检测记录管理</div>
+        <div class="records-wrap" id="recordsWrap"></div>
+        <div class="result-actions">
+            <button class="btn ghost" id="exportBtn">导出 CSV</button>
+            <button class="btn ghost" id="managerBackBtn">返回</button>
+        </div>
+    </section>
+
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+(function () {
+    'use strict';
+
+    /* ================= 题库（与小程序版一致，选项不含类型标注） ================= */
+    var QUESTIONS = [
+        { q: '帮朋友做了一个 PPT 方案，对方发微信问："这次多少钱？"你的第一反应是：',
+          o: ['坦荡报价："标准价 5000 元，给你友情价 4500 元，合作愉快！"',
+              '卑微闪躲："哎呀，谈钱伤感情，你看着随便发个红包就行了……"',
+              '憋出内伤："这次就算了，下次再说吧。"'] },
+        { q: '账户里刚发了 2 万块奖金，你看到一款长草很久、但超出日常预算的轻奢包包或数码单品，你会：',
+          o: ['规划进定投账户，明确"能赚才能花"，拒绝控制幻觉。',
+              '认为"反正我也存不下大钱，买了拉倒"，然后选择一个月不查银行余额。',
+              '激情下单，心里大喊："钱是流动的，能花才能挣，买了它能刺激我赚更多！"'] },
+        { q: '周五晚上拖着散架的身体走出公司大楼，在极度自我损耗的疲惫状态下，你最真实的独白是：',
+          o: ['"今天大脑带宽耗尽，回家洗热水澡，11 点前睡觉恢复心力。"',
+              '"太委屈了！我必须去吃顿大餐，再熬夜刷手机到凌晨 3 点，不然这周白过了！"',
+              '"明天周六，我要把所有网课排满，绝对不能让自己闲下来，闲下来就意味着退步！"'] },
+        { q: '在柜台看到一件小时候极度渴望、但现在其实没啥实用价值的玩具/天价手办，你：',
+          o: ['一笑置之："我的内心小孩已经长大了，我不需要通过买玩具证明自己。"',
+              '站在柜台前反复内耗半小时，纠结买不买，最后空着手回家，生了一晚上闷气。',
+              '瞬间刷卡："我要把童年的匮乏感连本带利补回来，我要再富养一次内心的小孩！"'] },
+        { q: '刚利用业余时间赚到了第一笔 3000 元的外快，你的第一反应通常是：',
+          o: ['闷声发大财，默默把其中的 80% 定投到纳指基金中，继续打磨核心能力。',
+              '患得患失："万一下个月没有这笔收入了怎么办？"陷入持久的不确定性焦虑。',
+              '呼朋唤友："走，今天我请客去吃顿好的！"急于通过请客或买面子单在社交中确认自己的社会定位。'] },
+        { q: '关于"存够多少钱"和"享受生活"的关系，你的底层信念是：',
+          o: ['"一边搞钱，一边清爽地体验当下。搞钱是手段，好好活着才是目的。"',
+              '"等我存够了 500 万，我才配开始享受生活。现在的我只配当个受尽折磨的工具人。"',
+              '"大环境这么难，能快活一天是一天，今朝有酒今朝醉，存什么钱。"'] },
+        { q: '看到朋友圈里同龄人又晒出了精致的露营、高级度假或买车照片，你：',
+          o: ['心平气和。深知朋友圈只是别人刻意构建的"符号景观"，继续按自己的节奏防守。',
+              '焦虑中箭。觉得自己是个彻底的失败者，默默关掉手机，晚上报复性消费以求心理代偿。',
+              '暗自较劲。也精心挑选修图、摆拍几张高大上的照片发出去，假装自己过得更好，绝不露怯。'] },
+        { q: '听说最近"AI 微短剧出海、闲鱼副业"日入过万，你：',
+          o: ['评估自己现有的"边角料资源"（我是谁、我拥有什么、我认识谁），以可承受损失为底线小步快跑。',
+              '叹一口气："那是别人，我什么也不会，反正肯定没我的份了。"彻底放弃尝试。',
+              '疯狂跟风。立刻交几千块学费报班，做了三天发现没流量，又急忙退课去追下一个风口。'] },
+        { q: '关于你和伴侣/家人的账目往来和财务讨论，你的真实状态是：',
+          o: ['开诚布公地讨论彼此的金钱观念和债务，建立家庭理财的"统一战线"。',
+              '实行绝对冷漠的隔离，各花各的。只要一提到钱，就觉得尴尬，甚至故意隐瞒真实花销。',
+              '谁赚得多谁在家里拥有绝对的话语权，用金钱作为在关系里指责、控制对方的筹码。'] },
+        { q: '结束了一天高强度的工作，你的精力状态通常呈现为：',
+          o: ['系统有序。有明确的"精力留白"和时间整理，掌握战略主动权。',
+              '彻底瘫痪。每天用肉体的极度忙碌逃避核心人生规划，除了画图/写代码，回家只想躺平装死。',
+              '无效超载。像陀螺一样把所有时间填满，天天假装很充实，实则是用无意义的执行逃避高能耗的战略决策。'] }
+    ];
+
+    /* ================= 四象限诊断数据 ================= */
+    var QUADRANTS = {
+        '1': { name: '清爽掌控者', position: '象限一：低存在度，高平衡度',
+            profile: '恭喜你！你脑海里几乎没有"金钱耻感违建"。你将金钱视为中立的流转资源，能清爽、体面、有底气地谈价格、做结算，没有多余的道德内耗。你对环境有极高的感知控制感，深谙如何通过物理秩序和语义重置来保护自己的认知带宽。',
+            remedy: '你已经是成熟的"财富驭风者"。请继续保持你的"主业定投+副业即兴拼凑"战略，建立稳固的财富统一战线。' },
+        '2': { name: '消极规避型', position: '象限二：高存在度，低平衡度 —— "黑洞接收器"',
+            profile: '你是典型的"不好意思谈钱"受害者。当面临利益博弈、催账或报价时，你的大脑会瞬间激活"避战机制"，宁愿委屈自己，也不敢体面谈钱，导致你的财富流动处于长期淤积状态。你正在承受高强度的管窥压力，用肉体的忙碌来逃避核心人生的战略重构。',
+            remedy: '契约话术重置：立刻停止使用"不好意思，这次要收费"等心虚口吻，强行改用标准的契约语言——"为了确保项目能以最高的专业标准交付，我们需要遵循标准的契约流程。厘清利益边界，是对我们双方时间和劳动最成熟的体面尊重。"\n物理空间认知卸载：今天下班前，花 5 分钟把你的办公桌和电脑桌面收拾得极度清爽。用可见的物理秩序，强制为大脑释放被焦虑霸占的认知带宽。' },
+        '3': { name: '代偿暴走型', position: '象限三：高存在度，高平衡度 —— "高能耗代偿"',
+            profile: '你极度渴望钱，但同时伴随着深重的匮乏焦虑。你习惯于使用"身体的极度忙碌"来逃避痛苦，并在极度疲惫后，启动"要把内心小孩再富养一次"的补偿性消费和享乐适应。你赚到的每一分辛苦钱，都在通过无意识的"漏财账户"流走。',
+            remedy: '启动信念法庭（Putting Thoughts on Trial）：下次再想用"我都这么累了，买个大件奖励自己"进行财务自残时，在大脑里建立法庭辩论——"这件消费真的能恢复我的心力吗？还是只会带给我下个月还账单时更深的痛苦？"\n建立物理情绪玄关：每天下班走到家门口前，物理站立 60 秒，闭上眼睛深呼吸三次，暗示自己将职场/副业博弈的紧绷"卸载"在门外。守住这道硬边界，不让外界的厮杀污染家里的安全水源。' },
+        '4': { name: '理性慢跑者', position: '象限四：低存在度，低平衡度 —— "低噪平稳态"',
+            profile: '你对世俗的物质比较和朋友圈的"符号景观"钝化。你不怎么被同辈压力裹挟，没有强烈的物质崇拜，但也容易在面临重大的高毛利副业机遇时，因为过于保守、厌恶风险而主动缩回舒适区。',
+            remedy: '改变调节聚焦方向：强行将你的心理暗示从"我求安稳，不乱折腾（预防定向）"，转换为"我做出这次尝试，是在用可承受损失博取一个能让家人过得更好的概率空间（促进定向）"。\n寻找同温层楷模：不要去看太宏大的暴富叙事。去寻找在阶层、初始资源方面和你完全重合的身边同辈突围者，拆解他们实现小微变现的动作细节，为自己的执行力升温。' }
+    };
+
+    var STORE_KEY = 'wealthMindTestRecords';
+    var MANAGER_CODE = '20201020';
+
+    /* ================= 状态 ================= */
+    var state = { index: 0, answers: [], nickname: '', phone: '', startTime: 0, timerId: null, lastResult: null };
+
+    /* ================= 工具 ================= */
+    function $(id) { return document.getElementById(id); }
+    function showScreen(name) {
+        var screens = document.querySelectorAll('.screen');
+        for (var i = 0; i < screens.length; i++) screens[i].classList.remove('active');
+        $('screen-' + name).classList.add('active');
+        window.scrollTo(0, 0);
+    }
+    function toast(msg) {
+        var t = $('toast');
+        t.textContent = msg;
+        t.classList.add('show');
+        clearTimeout(t._tid);
+        t._tid = setTimeout(function () { t.classList.remove('show'); }, 2200);
+    }
+    function esc(s) {
+        return String(s).replace(/[&<>"']/g, function (c) {
+            return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+        });
+    }
+
+    /* ================= 计分与象限（核心算法） ================= */
+    function computeResult(answers) {
+        var A = 0, B = 0, C = 0;
+        answers.forEach(function (a) {
+            if (a === 'a') A++; else if (a === 'b') B++; else if (a === 'c') C++;
+        });
+        var P = B + C;          // 壁垒存在度 0-10
+        var IB = C - B;         // 心力平衡度 -10 ~ +10
+        var key;
+        if (P < 5) { key = IB >= 0 ? '1' : '4'; }
+        else { key = IB >= 0 ? '3' : '2'; }
+        return { A: A, B: B, C: C, P: P, IB: IB, key: key, quad: QUADRANTS[key] };
+    }
+
+    /* ================= 首页逻辑 ================= */
+    $('startBtn').addEventListener('click', function () {
+        var phone = $('phone').value.trim();
+        var err = $('phoneError');
+        if (phone === MANAGER_CODE) { openManager(); return; }
+        if (!/^1[3-9]\d{9}$/.test(phone)) { err.classList.add('show'); return; }
+        err.classList.remove('show');
+        state.nickname = $('nickname').value.trim();
+        state.phone = phone;
+        startQuiz();
+    });
+    $('phone').addEventListener('input', function () {
+        var v = this.value.trim();
+        if (/^1[3-9]\d{9}$/.test(v) || v === MANAGER_CODE) $('phoneError').classList.remove('show');
+    });
+    $('phone').addEventListener('keydown', function (e) { if (e.key === 'Enter') $('startBtn').click(); });
+
+    /* ================= 答题逻辑 ================= */
+    function startQuiz() {
+        state.index = 0;
+        state.answers = new Array(QUESTIONS.length).fill('');
+        state.startTime = Date.now();
+        clearInterval(state.timerId);
+        state.timerId = setInterval(updateTimer, 1000);
+        updateTimer();
+        renderQuestion();
+        showScreen('quiz');
+    }
+    function updateTimer() {
+        var s = Math.floor((Date.now() - state.startTime) / 1000);
+        var m = Math.floor(s / 60);
+        s = s % 60;
+        $('quizTimer').textContent = (m < 10 ? '0' + m : m) + ':' + (s < 10 ? '0' + s : s);
+    }
+    function renderQuestion() {
+        var i = state.index;
+        var item = QUESTIONS[i];
+        $('quizCount').textContent = (i + 1) + ' / ' + QUESTIONS.length;
+        $('progressBar').style.width = (i / QUESTIONS.length * 100) + '%';
+        $('questionText').textContent = item.q;
+
+        var box = $('optionsBox');
+        box.innerHTML = '';
+        var letters = ['A', 'B', 'C'];
+        for (var j = 0; j < item.o.length; j++) {
+            (function (j) {
+                var btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'option' + (state.answers[i] === 'abc'[j] ? ' selected' : '');
+                btn.innerHTML = '<span class="letter">' + letters[j] + '.</span><span>' + esc(item.o[j]) + '</span>';
+                btn.addEventListener('click', function () { selectOption('abc'[j], btn); });
+                box.appendChild(btn);
+            })(j);
+        }
+        $('prevBtn').disabled = i === 0;
+        $('nextBtn').textContent = i === QUESTIONS.length - 1 ? '查看诊断报告' : '下一题';
+        $('nextBtn').disabled = !state.answers[i];
+    }
+    function selectOption(val, el) {
+        state.answers[state.index] = val;
+        var opts = $('optionsBox').children;
+        for (var k = 0; k < opts.length; k++) opts[k].classList.remove('selected');
+        el.classList.add('selected');
+        $('nextBtn').disabled = false;
+        // 选中后自动跳下一题（最后一题手动点击查看报告）
+        if (state.index < QUESTIONS.length - 1) {
+            setTimeout(function () {
+                if (state.answers[state.index] === val) { state.index++; renderQuestion(); }
+            }, 280);
+        }
+    }
+    $('prevBtn').addEventListener('click', function () {
+        if (state.index > 0) { state.index--; renderQuestion(); }
+    });
+    $('nextBtn').addEventListener('click', function () {
+        if (!state.answers[state.index]) return;
+        if (state.index < QUESTIONS.length - 1) { state.index++; renderQuestion(); }
+        else { finishQuiz(); }
+    });
+
+    /* ================= 结果页 ================= */
+    function finishQuiz() {
+        clearInterval(state.timerId);
+        var elapsed = Math.floor((Date.now() - state.startTime) / 1000);
+        var r = computeResult(state.answers);
+        state.lastResult = r;
+
+        $('quadrantName').textContent = r.quad.name;
+        $('quadrantPosition').textContent = r.quad.position;
+        $('userLine').textContent = (state.nickname ? state.nickname + ' · ' : '') + '用时 ' + elapsed + ' 秒';
+
+        $('countA').textContent = r.A;
+        $('countB').textContent = r.B;
+        $('countC').textContent = r.C;
+        $('valP').textContent = r.P;
+        $('valIB').textContent = (r.IB > 0 ? '+' : '') + r.IB;
+        $('labelX').textContent = '壁垒存在度 (P = ' + r.P + ')';
+        $('labelY').textContent = '心力平衡度 (IB = ' + (r.IB > 0 ? '+' : '') + r.IB + ')';
+
+        $('profileText').textContent = r.quad.profile;
+        $('remedyText').textContent = r.quad.remedy;
+
+        // 象限高亮
+        var quads = document.querySelectorAll('.quad');
+        for (var i = 0; i < quads.length; i++) {
+            quads[i].classList.toggle('active', quads[i].getAttribute('data-q') === r.key);
+        }
+        // 坐标点（先复位再动画到位）
+        var point = $('coordPoint');
+        point.style.transition = 'none';
+        point.style.left = '0%';
+        point.style.top = '50%';
+        showScreen('result');
+        requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+                point.style.transition = '';
+                point.style.left = (r.P / 10 * 100) + '%';
+                point.style.top = (50 - r.IB / 10 * 50) + '%';
+            });
+        });
+
+        saveRecord(r, elapsed);
+    }
+    function saveRecord(r, elapsed) {
+        try {
+            var records = JSON.parse(localStorage.getItem(STORE_KEY) || '[]');
+            records.unshift({
+                id: Date.now(),
+                nickname: state.nickname,
+                phone: state.phone.replace(/^(\d{3})\d{4}(\d{4})$/, '$1****$2'),
+                result: r.quad.name,
+                resultKey: r.key,
+                A: r.A, B: r.B, C: r.C, P: r.P, IB: r.IB,
+                answers: state.answers.join(','),
+                seconds: elapsed,
+                testTime: new Date().toLocaleString('zh-CN')
+            });
+            if (records.length > 500) records = records.slice(0, 500);
+            localStorage.setItem(STORE_KEY, JSON.stringify(records));
+        } catch (e) { /* 隐私模式下忽略存储失败 */ }
+    }
+
+    $('shareBtn').addEventListener('click', function () {
+        var text = '我在「一分钟搞钱心智检测」测出了【' + state.lastResult.quad.name + '】！10 道题测测你脑海里的财富黑洞 → ' + location.href;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(function () { toast('已复制，去粘贴给朋友吧'); }, function () { toast('复制失败，请手动复制地址栏链接'); });
+        } else {
+            var ta = document.createElement('textarea');
+            ta.value = text; document.body.appendChild(ta); ta.select();
+            try { document.execCommand('copy'); toast('已复制，去粘贴给朋友吧'); } catch (e) { toast('复制失败，请手动复制地址栏链接'); }
+            document.body.removeChild(ta);
+        }
+    });
+    $('retestBtn').addEventListener('click', function () {
+        $('phone').value = ''; $('nickname').value = '';
+        showScreen('info');
+    });
+
+    /* ================= 管理页（输入 20201020 进入） ================= */
+    function openManager() {
+        var records = [];
+        try { records = JSON.parse(localStorage.getItem(STORE_KEY) || '[]'); } catch (e) {}
+        var wrap = $('recordsWrap');
+        if (!records.length) {
+            wrap.innerHTML = '<div class="empty-tip">暂无检测记录</div>';
+        } else {
+            var html = '<table class="records-table"><thead><tr><th>时间</th><th>昵称</th><th>手机号</th><th>结果</th><th>A</th><th>B</th><th>C</th><th>P</th><th>IB</th><th>用时</th></tr></thead><tbody>';
+            records.forEach(function (rec) {
+                html += '<tr><td>' + esc(rec.testTime) + '</td><td>' + esc(rec.nickname || '-') + '</td><td>' + esc(rec.phone) + '</td><td>' + esc(rec.result) + '</td><td>' + rec.A + '</td><td>' + rec.B + '</td><td>' + rec.C + '</td><td>' + rec.P + '</td><td>' + rec.IB + '</td><td>' + rec.seconds + 's</td></tr>';
+            });
+            html += '</tbody></table>';
+            wrap.innerHTML = html;
+        }
+        showScreen('manager');
+    }
+    $('exportBtn').addEventListener('click', function () {
+        var records = [];
+        try { records = JSON.parse(localStorage.getItem(STORE_KEY) || '[]'); } catch (e) {}
+        if (!records.length) { toast('暂无记录可导出'); return; }
+        var head = '时间,昵称,手机号,结果,A,B,C,P,IB,答题顺序,用时(秒)\n';
+        var rows = records.map(function (r) {
+            return [r.testTime, r.nickname || '', r.phone, r.result, r.A, r.B, r.C, r.P, r.IB, r.answers, r.seconds]
+                .map(function (v) { return '"' + String(v).replace(/"/g, '""') + '"'; }).join(',');
+        }).join('\n');
+        var blob = new Blob(['\ufeff' + head + rows], { type: 'text/csv;charset=utf-8' });
+        var a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = '搞钱心智检测数据_' + new Date().toISOString().slice(0, 10) + '.csv';
+        document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    });
+    $('managerBackBtn').addEventListener('click', function () { showScreen('info'); });
+})();
+</script>
+</body>
+</html>
