@@ -14,7 +14,7 @@
     var BADGE_ID = 'psy-page-counter-badge';
     var SESSION_KEY = 'psy_pv_session';   // sessionStorage 防同会话重复
     var LOCAL_KEY = 'psy_local_page_views'; // 本地兜底（与 cloudbase.js 一致）
-    var CB_SDK = 'https://imgcache.qq.com/qcloud/cloudbase-js-sdk/1.7.0/cloudbase.full.js';
+    var CB_SDK = 'https://imgcache.qq.com/qcloud/cloudbase-js-sdk/1.7.1/cloudbase.full.js';
     var CB_APP_JS = 'js/cloudbase.js';
     var SCRIPT_BASE = (function () {
         var scripts = document.getElementsByTagName('script');
