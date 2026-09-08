@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>我的阅读宇宙 · 知识图谱与分类书架 · 林远见路</title>
+<meta name="description" content="基于微信读书书架生成的阅读知识图谱：292 本藏书按主题聚类、连线成网，分门别类，随时翻阅。">
+<style>
+:root{
+  --paper:#f6f1e7;--paper-2:#fbf8f1;--ink:#2b2722;--ink-soft:#5c554b;--ink-faint:#8a8074;
+  --line:#e3dac8;--accent:#9a3b2e;--accent-2:#b8794a;
+  --shadow:0 12px 40px rgba(43,39,34,.10);
+  --serif:"Songti SC","Source Han Serif SC","Noto Serif SC",Georgia,serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+body{font-family:var(--sans);color:var(--ink);background:var(--paper);line-height:1.7;
+  background-image:radial-gradient(circle at 18% 8%,rgba(184,121,74,.06),transparent 42%),radial-gradient(circle at 84% 88%,rgba(46,90,119,.05),transparent 46%);
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.035'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");}
+body>*{position:relative;z-index:1;}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px;}
+h1,h2,h3,.serif{font-family:var(--serif);}::selection{background:rgba(154,59,46,.18);}
+
+.hero{position:relative;overflow:hidden;color:#fbf6ec;background:linear-gradient(150deg,#241f1a,#3a312a 55%,#272219);padding:84px 0 60px;}
+.hero::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 82% 12%,rgba(184,121,74,.20),transparent 55%);}
+.hero-inner{position:relative;z-index:2;max-width:1120px;margin:0 auto;padding:0 24px;}
+.kicker{display:inline-flex;gap:8px;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:#f0d9b8;border:1px solid rgba(240,217,184,.42);padding:6px 15px;border-radius:30px;margin-bottom:20px;}
+.hero h1{font-size:clamp(30px,5vw,50px);line-height:1.14;margin-bottom:8px;}
+.sub-en{font-family:var(--serif);font-style:italic;font-size:clamp(15px,2vw,19px);color:#e2cba6;opacity:.9;margin-bottom:16px;}
+.lead{max-width:680px;font-size:clamp(15px,2vw,17px);color:#efe4d3;}
+.ribbon{position:absolute;top:0;right:clamp(16px,5vw,52px);width:44px;background:var(--accent);color:#fff;text-align:center;padding:15px 0 24px;font-family:var(--serif);font-size:13px;letter-spacing:.14em;box-shadow:0 6px 16px rgba(0,0,0,.32);z-index:3;}
+.ribbon::after{content:"";position:absolute;left:0;bottom:-13px;border-width:0 22px 14px;border-style:solid;border-color:var(--accent) var(--accent) transparent;}
+.ribbon span{writing-mode:vertical-rl;}
+
+section{padding:52px 0 44px;}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:8px;}
+.sec-no{font-family:var(--serif);font-size:14px;color:#fff;background:var(--accent);border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;flex:none;}
+.sec-head h2{font-size:clamp(22px,3.2vw,29px);}
+.sec-sub{color:var(--ink-faint);font-size:14.5px;margin-bottom:26px;padding-left:48px;}
+@media(max-width:880px){.sec-sub{padding-left:0;}}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:26px;}
+.stat{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center;box-shadow:var(--shadow);}
+.stat b{font-family:var(--serif);font-size:30px;display:block;}
+.stat span{font-size:13px;color:var(--ink-soft);}
+@media(max-width:760px){.stats{grid-template-columns:repeat(2,1fr);}}
+
+/* graph */
+.graph-wrap{background:var(--paper-2);border:1px solid var(--line);border-radius:18px;padding:14px;box-shadow:var(--shadow);}
+.graph-wrap svg{width:100%;height:auto;display:block;}
+.edge{stroke:#c9bda6;stroke-width:1.6;}
+.elabel{font-size:11px;fill:var(--ink-faint);text-anchor:middle;font-family:var(--sans);}
+.node circle{stroke:#fff;stroke-width:3;transition:.2s;cursor:pointer;}
+.node:hover circle{transform:scale(1.06);}
+.nnum{font-family:var(--serif);font-size:20px;fill:#fff;text-anchor:middle;font-weight:700;}
+.nname{font-size:12px;fill:#fff;text-anchor:middle;font-family:var(--sans);}
+@media(max-width:620px){.nname{font-size:10px;}.nnum{font-size:16px;}}
+
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;}
+.legend span{display:inline-flex;align-items:center;gap:7px;font-size:13px;color:var(--ink-soft);background:var(--paper);border:1px solid var(--line);padding:5px 12px;border-radius:20px;}
+.legend i{width:11px;height:11px;border-radius:50%;display:inline-block;}
+
+/* core authors */
+.authors{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;}
+.au{font-size:13.5px;background:var(--paper-2);border:1px solid var(--line);padding:6px 13px;border-radius:22px;color:var(--ink-soft);}
+.au i{color:var(--accent);font-style:normal;font-family:var(--serif);font-weight:600;}
+
+/* shelf */
+.cluster{margin-bottom:34px;}
+.cluster-head{display:flex;align-items:center;gap:11px;margin-bottom:14px;border-bottom:1px solid var(--line);padding-bottom:10px;}
+.cluster-head .dot{width:14px;height:14px;border-radius:50%;flex:none;}
+.cluster-head h3{font-size:20px;}
+.cluster-head .cnt{margin-left:auto;font-size:13px;color:var(--ink-faint);}
+.subcat{display:flex;align-items:center;gap:10px;margin:14px 0 10px;}
+.subtag{font-size:13px;color:var(--accent);background:rgba(154,59,46,.07);padding:3px 11px;border-radius:6px;font-family:var(--serif);}
+.subn{font-size:12px;color:var(--ink-faint);}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+@media(max-width:980px){.grid{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:720px){.grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:460px){.grid{grid-template-columns:1fr;}}
+.card{display:flex;flex-direction:column;background:var(--paper);border:1px solid var(--line);border-radius:11px;padding:12px 13px;text-decoration:none;color:inherit;transition:.18s;min-height:64px;}
+.card:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(43,39,34,.12);border-color:rgba(154,59,46,.3);}
+.card.ex{border-color:var(--accent);background:linear-gradient(180deg,rgba(154,59,46,.06),var(--paper));}
+.ct{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;}
+.ctitle{font-size:13.5px;line-height:1.45;font-weight:600;color:var(--ink);}
+.cauth{font-size:11.5px;color:var(--ink-faint);margin-top:5px;}
+.fin{font-size:10.5px;color:#2e6f5e;background:rgba(46,111,94,.1);padding:1px 6px;border-radius:5px;white-space:nowrap;flex:none;}
+.exb{font-size:10.5px;color:#fff;background:var(--accent);padding:1px 6px;border-radius:5px;white-space:nowrap;flex:none;}
+
+.note{margin-top:22px;background:var(--paper-2);border:1px dashed var(--accent-2);border-radius:12px;padding:16px 20px;font-size:14.5px;color:var(--ink-soft);}
+.note b{color:var(--accent);font-family:var(--serif);}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--line) 18%,var(--line) 82%,transparent);}
+.back{display:inline-flex;align-items:center;gap:8px;margin-top:6px;font-size:13.5px;color:var(--ink-soft);text-decoration:none;border:1px solid var(--line);background:var(--paper-2);padding:8px 16px;border-radius:24px;transition:.18s;}
+.back:hover{color:var(--accent);border-color:rgba(154,59,46,.35);background:rgba(154,59,46,.05);}
+footer{padding:44px 24px 58px;text-align:center;color:var(--ink-faint);font-size:13px;}
+footer .line{width:60px;height:3px;background:var(--accent);margin:0 auto 20px;border-radius:3px;}
+footer b{font-family:var(--serif);color:var(--ink-soft);}
+.disclaim{margin-top:10px;font-size:12px;max-width:720px;margin-left:auto;margin-right:auto;line-height:1.7;}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="ribbon"><span>阅读宇宙</span></div>
+  <div class="hero-inner">
+    <span class="kicker">微信读书书架 · 知识图谱</span>
+    <h1>我的阅读宇宙</h1>
+    <div class="sub-en">Reading Universe &nbsp;·&nbsp; 292 本藏书 · 林远见路</div>
+    <p class="lead">把书架变成一张网：292 本藏书按主题聚类，连线成知识图谱，再分门别类铺开。点书卡可在微信读书继续读；标 ★ 的是已做好的精读笔记。</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+<section>
+  <div class="sec-head"><div class="sec-no">1</div><h2>总览</h2></div>
+  <p class="sec-sub">数据来自微信读书书架（/shelf/sync，含电子书、有声书与文章收藏）</p>
+  <div class="stats">
+    <div class="stat"><b>292</b><span>书架条目</span></div>
+    <div class="stat"><b>80</b><span>已读完</span></div>
+    <div class="stat"><b style="color:#c2593f">99</b><span>心理与自我成长</span></div>
+<div class="stat"><b style="color:#6b4a8a">20</b><span>哲学与思想</span></div>
+<div class="stat"><b style="color:#b05a7a">49</b><span>小说与文学</span></div>
+<div class="stat"><b style="color:#2e6f5e">44</b><span>经济·理财·商业</span></div>
+<div class="stat"><b style="color:#4a6fa5">9</b><span>传记</span></div>
+<div class="stat"><b style="color:#8a6d3b">32</b><span>历史</span></div>
+<div class="stat"><b style="color:#4a7a4a">6</b><span>科学·医学·技术</span></div>
+<div class="stat"><b style="color:#3f8a8a">8</b><span>教育·育儿</span></div>
+<div class="stat"><b style="color:#a86b2e">11</b><span>社会·政治·文化</span></div>
+<div class="stat"><b style="color:#8a8074">10</b><span>其他</span></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section>
+  <div class="sec-head"><div class="sec-no">2</div><h2>知识图谱</h2></div>
+  <p class="sec-sub">九大主题聚类，连线标注它们之间的思想纽带</p>
+  <div class="graph-wrap">
+    <svg viewBox="0 0 900 660" role="img" aria-label="阅读知识图谱">
+      <line x1="450" y1="110" x2="150" y2="110" class="edge"/>
+<text x="300.0" y="106.0" class="elabel">存在·理性</text>
+<line x1="450" y1="110" x2="150" y2="300" class="edge"/>
+<text x="300.0" y="201.0" class="elabel">行为经济</text>
+<line x1="450" y1="110" x2="750" y2="110" class="edge"/>
+<text x="600.0" y="106.0" class="elabel">人性书写</text>
+<line x1="450" y1="110" x2="450" y2="490" class="edge"/>
+<text x="450.0" y="296.0" class="elabel">育儿心理</text>
+<line x1="450" y1="110" x2="450" y2="300" class="edge"/>
+<text x="450.0" y="201.0" class="elabel">心理家传记</text>
+<line x1="150" y1="300" x2="750" y2="300" class="edge"/>
+<text x="450.0" y="296.0" class="elabel">经济史</text>
+<line x1="750" y1="300" x2="450" y2="300" class="edge"/>
+<text x="600.0" y="296.0" class="elabel">人物与时代</text>
+<line x1="150" y1="300" x2="750" y2="490" class="edge"/>
+<text x="450.0" y="391.0" class="elabel">制度治理</text>
+<line x1="750" y1="110" x2="750" y2="490" class="edge"/>
+<text x="750.0" y="296.0" class="elabel">社会小说</text>
+<line x1="150" y1="490" x2="150" y2="300" class="edge"/>
+<text x="150.0" y="391.0" class="elabel">技术经济</text>
+<line x1="450" y1="300" x2="750" y2="110" class="edge"/>
+<text x="600.0" y="201.0" class="elabel">文学传记</text>
+<line x1="150" y1="110" x2="750" y2="110" class="edge"/>
+<text x="450.0" y="106.0" class="elabel">存在主义文学</text>
+<line x1="750" y1="300" x2="150" y2="110" class="edge"/>
+<text x="450.0" y="201.0" class="elabel">思想史</text>
+<line x1="750" y1="490" x2="450" y2="110" class="edge"/>
+<text x="600.0" y="296.0" class="elabel">社会心理</text>
+      <g class="node" data-c="psy"><circle cx="450" cy="110" r="40" fill="#c2593f"/><text x="450" y="106" class="nnum">99</text><text x="450" y="126" class="nname">心理与自我成长</text></g>
+<g class="node" data-c="phil"><circle cx="150" cy="110" r="40" fill="#6b4a8a"/><text x="150" y="106" class="nnum">20</text><text x="150" y="126" class="nname">哲学与思想</text></g>
+<g class="node" data-c="lit"><circle cx="750" cy="110" r="40" fill="#b05a7a"/><text x="750" y="106" class="nnum">49</text><text x="750" y="126" class="nname">小说与文学</text></g>
+<g class="node" data-c="econ"><circle cx="150" cy="300" r="40" fill="#2e6f5e"/><text x="150" y="296" class="nnum">44</text><text x="150" y="316" class="nname">经济·理财·商业</text></g>
+<g class="node" data-c="bio"><circle cx="450" cy="300" r="40" fill="#4a6fa5"/><text x="450" y="296" class="nnum">9</text><text x="450" y="316" class="nname">传记</text></g>
+<g class="node" data-c="hist"><circle cx="750" cy="300" r="40" fill="#8a6d3b"/><text x="750" y="296" class="nnum">32</text><text x="750" y="316" class="nname">历史</text></g>
+<g class="node" data-c="sci"><circle cx="150" cy="490" r="40" fill="#4a7a4a"/><text x="150" y="486" class="nnum">6</text><text x="150" y="506" class="nname">科学·医学·技术</text></g>
+<g class="node" data-c="edu"><circle cx="450" cy="490" r="40" fill="#3f8a8a"/><text x="450" y="486" class="nnum">8</text><text x="450" y="506" class="nname">教育·育儿</text></g>
+<g class="node" data-c="soc"><circle cx="750" cy="490" r="40" fill="#a86b2e"/><text x="750" y="486" class="nnum">11</text><text x="750" y="506" class="nname">社会·政治·文化</text></g>
+<g class="node" data-c="misc"><circle cx="450" cy="600" r="40" fill="#8a8074"/><text x="450" y="596" class="nnum">10</text><text x="450" y="616" class="nname">其他</text></g>
+    </svg>
+  </div>
+  <div class="legend">
+    <span><i style="background:#c2593f"></i>心理与自我成长</span>
+    <span><i style="background:#2e6f5e"></i>经济·理财·商业</span>
+    <span><i style="background:#8a6d3b"></i>历史</span>
+    <span><i style="background:#6b4a8a"></i>哲学与思想</span>
+    <span><i style="background:#b05a7a"></i>小说与文学</span>
+    <span><i style="background:#4a6fa5"></i>传记</span>
+    <span><i style="background:#3f8a8a"></i>教育·育儿</span>
+    <span><i style="background:#a86b2e"></i>社会·政治·文化</span>
+    <span><i style="background:#4a7a4a"></i>科学·医学·技术</span>
+  </div>
+  <div class="note"><b>核心作者枢纽 —</b> 同一作者多本藏书，是图谱里的"引力点"：<span class="au">阿德勒 <i>×7</i></span> <span class="au">东野 <i>×6</i></span> <span class="au">罗素 <i>×6</i></span> <span class="au">弗洛姆 <i>×4</i></span> <span class="au">黄仁 <i>×3</i></span> <span class="au">大前 <i>×3</i></span> <span class="au">荣格 <i>×3</i></span> <span class="au">钱德勒 <i>×2</i></span> <span class="au">王占 <i>×2</i></span> <span class="au">余华 <i>×2</i></span> <span class="au">杨白 <i>×2</i></span> <span class="au">公众 <i>×2</i></span>。其中 <b>乔纳·伯杰</b> 的《疯传》《传染》正是已做精读笔记的两本，分别落在"经济·商业"与"心理"的交界，是理解"人如何被影响"的双翼。</div>
+</section>
+
+<div class="divider"></div>
+
+<section>
+  <div class="sec-head"><div class="sec-no">3</div><h2>分类书架</h2></div>
+  <p class="sec-sub">点书卡可在微信读书打开继续读；★ 为已完成的精读笔记</p>
+  <div class="cluster" id="c-psy">
+<div class="cluster-head"><span class="dot" style="background:#c2593f"></span><h3>心理与自我成长</h3><span class="cnt">99 本 · 读完 26</span></div>
+<div class="subcat"><span class="subtag">心理-心理学研究</span><span class="subn">18</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=3300198297" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">《伯恩斯焦虑自助疗法》深度解读</span></div><div class="cauth">韦子圣</div></a>
+<a class="card" href="weread://reading?bId=3300127322" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">乌合之众</span><span class="fin">✓读完</span></div><div class="cauth">[法]古斯塔夫·勒庞</div></a>
+<a class="card" href="weread://reading?bId=33692352" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">分析心理学的理论与实践（荣格心理学的入门读物）</span><span class="fin">✓读完</span></div><div class="cauth">[瑞士]卡尔·荣格</div></a>
+<a class="card" href="weread://reading?bId=3300075248" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">存在主义心理治疗</span><span class="fin">✓读完</span></div><div class="cauth">[美]亚隆</div></a>
+<a class="card" href="weread://reading?bId=807271" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">弗洛伊德的尾巴：心理学极简史</span><span class="fin">✓读完</span></div><div class="cauth">肖戈</div></a>
+<a class="card" href="weread://reading?bId=907595" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">性、谋杀及生命的意义</span></div><div class="cauth">道格拉斯·肯里克</div></a>
+<a class="card" href="weread://reading?bId=568791" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">性学三论（果麦经典）</span></div><div class="cauth">弗洛伊德</div></a>
+<a class="card" href="weread://reading?bId=3300032913" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">津巴多普通心理学（第8版）</span></div><div class="cauth">[美]菲利普•津巴多   [美]罗伯特•约翰逊    [美]薇薇安•麦卡恩　著</div></a>
+<a class="card" href="weread://reading?bId=627170" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">生命对你意味着什么</span></div><div class="cauth">阿尔弗雷德·阿德勒</div></a>
+<a class="card" href="weread://reading?bId=41139991" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">生命的意义</span></div><div class="cauth">阿尔弗雷德·阿德勒</div></a>
+<a class="card" href="weread://reading?bId=3300070097" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">积极心理学</span></div><div class="cauth">韦志中</div></a>
+<a class="card" href="weread://reading?bId=3300121005" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">自体的分析</span></div><div class="cauth">[美]海因茨·科胡特</div></a>
+<a class="card" href="weread://reading?bId=23796230" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">自我的追寻</span></div><div class="cauth">艾·弗洛姆</div></a>
+<a class="card" href="weread://reading?bId=3300123413" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">荣格：阴影与自我</span></div><div class="cauth">[瑞士]荣格</div></a>
+<a class="card" href="weread://reading?bId=27522761" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">认知心理学</span></div><div class="cauth">威廉·冯特</div></a>
+<a class="card" href="weread://reading?bId=3300145306" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">认知心理学（彩色图解版）</span></div><div class="cauth">[英]戈登D. A.布朗</div></a>
+<a class="card" href="weread://reading?bId=3300127990" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">认知心理学：认知科学与你的生活（原书第5版）</span></div><div class="cauth">[美]凯瑟琳·加洛蒂</div></a>
+<a class="card" href="weread://reading?bId=3300174383" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">进化心理学</span><span class="fin">✓读完</span></div><div class="cauth">[美]戴维·巴斯</div></a>
+</div>
+<div class="subcat"><span class="subtag">心理-心理学应用</span><span class="subn">17</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=3300022101" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">ACT就这么简单：接纳承诺疗法简明实操手册（原书第2版）</span></div><div class="cauth">路斯·哈里斯</div></a>
+<a class="card" href="weread://reading?bId=35566572" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">伯恩斯焦虑自助疗法</span><span class="fin">✓读完</span></div><div class="cauth">[美]戴维·伯恩斯</div></a>
+<a class="card" href="weread://reading?bId=3300200144" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">创伤与解离</span></div><div class="cauth">利奈特·S. 丹尼恰克 凯文·J. 康纳斯</div></a>
+<a class="card" href="weread://reading?bId=3300208193" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">客体关系心理治疗：理论、实务与案例</span></div><div class="cauth">[美]谢尔登·卡什丹</div></a>
+<a class="card" href="weread://reading?bId=3300194543" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">心理类型：理解MBTI背后的心理学原理</span></div><div class="cauth">[瑞士]卡尔·荣格</div></a>
+<a class="card" href="weread://reading?bId=921073" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">意志力：关于自控、专注和效率的心理学</span><span class="fin">✓读完</span></div><div class="cauth">罗伊·鲍迈斯特 约翰·蒂尔尼</div></a>
+<a class="card" href="weread://reading?bId=3300081236" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">意识：心智的基本奥秘</span></div><div class="cauth">安娜卡· 哈里斯</div></a>
+<a class="card" href="weread://reading?bId=3300107263" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">愤怒之舞：亲密关系中情绪表达的艺术</span></div><div class="cauth">[美]哈丽特·勒纳</div></a>
+<a class="card" href="weread://reading?bId=3300135453" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">我们内心的冲突</span></div><div class="cauth">[美]卡伦·霍妮</div></a>
+<a class="card" href="weread://reading?bId=33800882" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">我们内心的冲突</span></div><div class="cauth">卡伦·霍妮</div></a>
+<a class="card" href="weread://reading?bId=43027588" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">热锅上的家庭：家庭问题背后的心理真相</span><span class="fin">✓读完</span></div><div class="cauth">奥古斯都·纳皮尔  卡尔·惠特克</div></a>
+<a class="card" href="weread://reading?bId=3300142640" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">煤气灯效应</span><span class="fin">✓读完</span></div><div class="cauth">[美]罗宾·斯特恩</div></a>
+<a class="card" href="weread://reading?bId=3300194597" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">理解人性（果麦经典）</span></div><div class="cauth">[奥]阿尔弗雷德·阿德勒</div></a>
+<a class="card" href="weread://reading?bId=3300079794" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">认知行为治疗18讲</span></div><div class="cauth">徐勇</div></a>
+<a class="card" href="weread://reading?bId=31361462" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">认知：人行为背后的思维与智能</span></div><div class="cauth">赫伯特·西蒙</div></a>
+<a class="card" href="weread://reading?bId=820124" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">身体从未忘记：心理创伤疗愈中的大脑、心智和身体</span></div><div class="cauth">范德考克</div></a>
+<a class="card" href="weread://reading?bId=3300060305" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">非暴力沟通（修订版）</span></div><div class="cauth">马歇尔·卢森堡</div></a>
+</div>
+<div class="subcat"><span class="subtag">个人成长-人生哲学</span><span class="subn">13</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=825613" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">从北京到伦敦：一个金融白领的移民生活纪实</span><span class="fin">✓读完</span></div><div class="cauth">吴凌凌</div></a>
+<a class="card" href="weread://reading?bId=33357226" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">内在动机：自主掌控人生的力量</span><span class="fin">✓读完</span></div><div class="cauth">爱德华·L.德西 理查德·弗拉斯特</div></a>
+<a class="card" href="weread://reading?bId=23768871" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">发现你的天赋：天分与热情成就幸福人生</span></div><div class="cauth">肯·罗宾逊 卢·阿罗尼卡</div></a>
+<a class="card" href="weread://reading?bId=23691358" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">发现天赋的15个训练方法</span><span class="fin">✓读完</span></div><div class="cauth">肯·罗宾逊 卢·阿罗尼卡</div></a>
+<a class="card" href="weread://reading?bId=31265523" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">向上生长</span><span class="fin">✓读完</span></div><div class="cauth">九边</div></a>
+<a class="card" href="weread://reading?bId=840822" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">奇特的一生（精装珍藏版）</span></div><div class="cauth">格拉宁</div></a>
+<a class="card" href="weread://reading?bId=33800862" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">少有人走的路：心智成熟的旅程</span></div><div class="cauth">M.斯科特·派克</div></a>
+<a class="card" href="weread://reading?bId=35679936" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">幸福之路（果麦经典）</span></div><div class="cauth">伯特兰·罗素</div></a>
+<a class="card" href="weread://reading?bId=933041" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">心流+发现心流（套装全2册）</span></div><div class="cauth">米哈里·契克森米哈赖</div></a>
+<a class="card" href="weread://reading?bId=3300059308" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">生命的礼物（关于爱、死亡和存在的意义）</span></div><div class="cauth">[美]欧文·D.亚隆 [美]玛丽莲·亚隆</div></a>
+<a class="card" href="weread://reading?bId=927152" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">财商养成第一课 (原名: 最富足的投资)</span></div><div class="cauth">[美]吉姆·罗杰斯</div></a>
+<a class="card" href="weread://reading?bId=3300113171" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">这就是人性（合集）</span></div><div class="cauth">王心傲</div></a>
+<a class="card" href="weread://reading?bId=3300120533" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">隐藏的潜能</span></div><div class="cauth">[美]亚当·格兰特</div></a>
+</div>
+<div class="subcat"><span class="subtag">心理-认知与行为</span><span class="subn">10</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=39937632" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">幽微的人性</span></div><div class="cauth">李玫瑾</div></a>
+<a class="card" href="weread://reading?bId=3300205385" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">当焦虑型爱上回避型：修复你的亲密关系</span></div><div class="cauth">听风屿</div></a>
+<a class="card" href="weread://reading?bId=3300039580" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">心由境造：人人都能看懂的环境心理学</span></div><div class="cauth">朱建军</div></a>
+<a class="card" href="weread://reading?bId=3300053160" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">理解人性（西方心理学大师经典译丛）</span></div><div class="cauth">阿尔弗雷德·阿德勒</div></a>
+<a class="card" href="weread://reading?bId=3300100609" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">自体的重建</span></div><div class="cauth">[美]海因茨·科胡特 著 许豪冲 译</div></a>
+<a class="card" href="weread://reading?bId=3300098442" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">自卑与超越（专家伴读版）</span><span class="fin">✓读完</span></div><div class="cauth">[奥]阿尔弗雷德·阿德勒</div></a>
+<a class="card" href="weread://reading?bId=3300085920" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">自我效能</span></div><div class="cauth">[加]阿尔伯特·班杜拉</div></a>
+<a class="card" href="weread://reading?bId=30654038" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">认知行为疗法入门</span></div><div class="cauth">郭召良</div></a>
+<a class="card" href="weread://reading?bId=33628204" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">认知觉醒：开启自我改变的原动力</span></div><div class="cauth">周岭</div></a>
+<a class="card" href="weread://reading?bId=3300022969" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">超越元认知：五大认知缺陷及应对策略</span></div><div class="cauth">[加]泰德·卡兹比著</div></a>
+</div>
+<div class="subcat"><span class="subtag">心理-社会心理学</span><span class="subn">9</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=40958946" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">占有还是存在</span></div><div class="cauth">[美]艾里希·弗洛姆</div></a>
+<a class="card" href="weread://reading?bId=924592" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">怪诞行为学（全四册）（新版）</span></div><div class="cauth">丹·艾瑞里</div></a>
+<a class="card" href="weread://reading?bId=26955067" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">文明及其不满（果麦经典）</span></div><div class="cauth">西格蒙德·弗洛伊德</div></a>
+<a class="card" href="weread://reading?bId=3300079872" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">理解人性（专家伴读版）</span></div><div class="cauth">阿尔弗雷德·阿德勒</div></a>
+<a class="card" href="weread://reading?bId=3300126187" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">西方社会心理学理论：一门学科的多元解释路径与当代状况</span><span class="fin">✓读完</span></div><div class="cauth">周晓虹</div></a>
+<a class="card" href="weread://reading?bId=32083597" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">身边的金钱心理学</span><span class="fin">✓读完</span></div><div class="cauth">周欣悦</div></a>
+<a class="card" href="weread://reading?bId=3300065326" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">逃避自由（弗洛姆作品系列）</span></div><div class="cauth">[美]艾里希·弗洛姆</div></a>
+<a class="card" href="weread://reading?bId=3300213521" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">阿德勒心理成长课：人际课题分离</span></div><div class="cauth">[日]岩井俊宪</div></a>
+<a class="card" href="weread://reading?bId=3300034147" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">隐秘的人格：人格怎样决定命运</span></div><div class="cauth">曾奇峰</div></a>
+</div>
+<div class="subcat"><span class="subtag">个人成长-沟通表达</span><span class="subn">7</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=915288" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">亲密关系</span><span class="fin">✓读完</span></div><div class="cauth">克里斯多福·孟</div></a>
+<a class="card" href="weread://reading?bId=908306" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">如何成为一个有趣的人</span><span class="fin">✓读完</span></div><div class="cauth">王小圈</div></a>
+<a class="card" href="weread://reading?bId=3300067672" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">深度关系：从建立信任到彼此成就</span></div><div class="cauth">大卫·布拉德福德 卡罗尔·罗宾</div></a>
+<a class="card" href="weread://reading?bId=3300067374" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">深度社交</span></div><div class="cauth">海松</div></a>
+<a class="card" href="weread://reading?bId=24153927" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">深度社交：如何“深耕”人际关系的交际艺术</span><span class="fin">✓读完</span></div><div class="cauth">伍小丁</div></a>
+<a class="card" href="weread://reading?bId=3300055335" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">萨提亚深层沟通力</span></div><div class="cauth">李崇建 曹敬唯</div></a>
+<a class="card" href="weread://reading?bId=3300137926" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">魔力说服（《疯传》作者新作）</span></div><div class="cauth">[美]乔纳·伯杰著</div></a>
+</div>
+<div class="subcat"><span class="subtag">个人成长-励志成长</span><span class="subn">6</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=3300100889" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">如何找到想做的事</span><span class="fin">✓读完</span></div><div class="cauth">[日]八木仁平</div></a>
+<a class="card" href="weread://reading?bId=38334243" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">我的第一本人生规划手册</span><span class="fin">✓读完</span></div><div class="cauth">柏永辉</div></a>
+<a class="card" href="weread://reading?bId=3300200432" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">把热爱变成事业：等着每月领工资，是人生最大的陷阱</span><span class="fin">✓读完</span></div><div class="cauth">凯莉彭</div></a>
+<a class="card" href="weread://reading?bId=816076" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">澳洲留学的那些事儿</span></div><div class="cauth">秦岭</div></a>
+<a class="card" href="weread://reading?bId=915642" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">终身成长（全新修订版）</span></div><div class="cauth">卡罗尔·德韦克</div></a>
+<a class="card" href="weread://reading?bId=3300149579" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">那些我希望自己二十出头就能明白的事</span></div><div class="cauth">弗兰克扬</div></a>
+</div>
+<div class="subcat"><span class="subtag">心理-积极心理学</span><span class="subn">6</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=37349219" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">心智突围</span></div><div class="cauth">Windy Liu</div></a>
+<a class="card" href="weread://reading?bId=3300214703" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">情绪的本质</span></div><div class="cauth">[美]大卫·J.安德森</div></a>
+<a class="card" href="weread://reading?bId=823432" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">持续的幸福</span></div><div class="cauth">马丁·塞利格曼</div></a>
+<a class="card" href="weread://reading?bId=25615385" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">被讨厌的勇气：“自我启发之父”阿德勒的哲学课</span><span class="fin">✓读完</span></div><div class="cauth">岸见一郎 古贺史健</div></a>
+<a class="card" href="weread://reading?bId=3300213548" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">阿德勒心理成长课：你要成为你自己</span></div><div class="cauth">[日]岩井俊宪</div></a>
+<a class="card" href="weread://reading?bId=3300144776" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">青春期心理学</span><span class="fin">✓读完</span></div><div class="cauth">[美]劳伦斯·斯坦伯格</div></a>
+</div>
+<div class="subcat"><span class="subtag">未分类</span><span class="subn">4</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=CB_AXGF4P3U98tr6wh75O06BC4k" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">关系性存在：超越自我与共同体</span></div><div class="cauth"></div></a>
+<a class="card" href="weread://reading?bId=CB_AT7AqD2npDFE6bj75F22B9d2" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">弗洛伊德【精神分析引论】</span></div><div class="cauth">弗洛伊德</div></a>
+<a class="card" href="weread://reading?bId=CB_3xz3aG2pi2b770V75P5D01Ke" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">拓扑心理学原理 (西方心理学名著译丛)</span></div><div class="cauth">库尔德·勒温(Kurt Lewin)</div></a>
+<a class="card" href="weread://reading?bId=CB_46H18z1qE24z71V75PCJr2a0" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">认知心理学</span></div><div class="cauth"></div></a>
+</div>
+<div class="subcat"><span class="subtag">心理-发展心理学</span><span class="subn">4</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=22620238" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">依恋：为什么我们爱得如此卑微</span></div><div class="cauth">苏珊·福沃德博士 [美]琼·托雷斯</div></a>
+<a class="card" href="weread://reading?bId=3300050928" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">抱持与解释：一则精神分析的片段</span></div><div class="cauth">唐纳德·W温尼科特</div></a>
+<a class="card" href="weread://reading?bId=860260" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">教出乐观的孩子：让孩子受用一生的幸福经典（珍藏版）</span></div><div class="cauth">马丁·塞利格曼 卡伦·莱维奇</div></a>
+<a class="card" href="weread://reading?bId=3300204360" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">阿德勒正面管教心理学</span><span class="fin">✓读完</span></div><div class="cauth">[奥]阿尔弗雷德·阿德勒</div></a>
+</div>
+<div class="subcat"><span class="subtag">个人成长-认知思维</span><span class="subn">3</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=635922" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">习惯的力量（新版）</span></div><div class="cauth">查尔斯·都希格</div></a>
+<a class="card ex" href="thinking-fast-and-slow.html"><div class="ct"><span class="ctitle">思考，快与慢（第二版）</span><span class="exb">★精读笔记</span></div><div class="cauth">[美]丹尼尔·卡尼曼</div></a>
+<a class="card" href="weread://reading?bId=26934843" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">掌控习惯：如何养成好习惯并戒除坏习惯（《原子习惯》中文版）（新版）</span></div><div class="cauth">詹姆斯·克利尔</div></a>
+</div>
+<div class="subcat"><span class="subtag">个人成长-人在职场</span><span class="subn">2</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=3300217198" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">工资外收入：不要再单次、廉价地出卖你的时间</span></div><div class="cauth">陈录</div></a>
+<a class="card" href="weread://reading?bId=3300106073" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">打爆 : 个人品牌实战手册</span></div><div class="cauth">孔蓓  查克</div></a>
+</div>
+</div>
+<div class="cluster" id="c-econ">
+<div class="cluster-head"><span class="dot" style="background:#2e6f5e"></span><h3>经济·理财·商业</h3><span class="cnt">44 本 · 读完 14</span></div>
+<div class="subcat"><span class="subtag">经济理财-财经</span><span class="subn">18</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=574017" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">21世纪资本论</span><span class="fin">✓读完</span></div><div class="cauth">托马斯·皮凯蒂</div></a>
+<a class="card" href="weread://reading?bId=3300052979" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">LTC与铁三角∶从线索到回款</span><span class="fin">✓读完</span></div><div class="cauth">王占刚　</div></a>
+<a class="card" href="weread://reading?bId=3300159706" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">以日为鉴：衰退时代生存指南（微信读书特别版）</span></div><div class="cauth">分析师Boden</div></a>
+<a class="card" href="weread://reading?bId=34260677" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">会赚钱的人想的不一样</span></div><div class="cauth">黄启团</div></a>
+<a class="card" href="weread://reading?bId=3300224610" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">低欲望社会：人口老龄化的经济危机与破解之道（珍藏版）</span></div><div class="cauth">[日]大前研一</div></a>
+<a class="card" href="weread://reading?bId=603422" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">利率史（第四版）</span></div><div class="cauth">霍默 西勒</div></a>
+<a class="card" href="weread://reading?bId=840992" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">十六世纪明代中国之财政与税收（精装版）</span></div><div class="cauth">黄仁宇</div></a>
+<a class="card" href="weread://reading?bId=3300084206" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">打造个人IP</span></div><div class="cauth">粥左罗</div></a>
+<a class="card" href="weread://reading?bId=3300069962" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">新消费时代1：摸着日本过河</span></div><div class="cauth">房家毅</div></a>
+<a class="card" href="weread://reading?bId=44554419" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">海南国际旅游岛建设研究</span></div><div class="cauth">周伟</div></a>
+<a class="card" href="weread://reading?bId=918297" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">激荡十年，水大鱼大：中国企业2008-2018</span><span class="fin">✓读完</span></div><div class="cauth">吴晓波</div></a>
+<a class="card" href="weread://reading?bId=3300129526" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">简单致富：实现财务自由与富足人生的路线图</span></div><div class="cauth">[美]J.L. 柯林斯</div></a>
+<a class="card" href="weread://reading?bId=3300054036" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">美国货币和银行史：从殖民地时代到第二次世界大战</span><span class="fin">✓读完</span></div><div class="cauth">默里·罗斯巴德</div></a>
+<a class="card" href="weread://reading?bId=25306682" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">美国陷阱</span><span class="fin">✓读完</span></div><div class="cauth">弗雷德里克·皮耶鲁齐 马修·阿伦</div></a>
+<a class="card" href="weread://reading?bId=41864922" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">超级IP孵化原理</span></div><div class="cauth">陈格雷</div></a>
+<a class="card" href="weread://reading?bId=908186" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">金融的本质：伯南克四讲美联储（中英双语版）</span></div><div class="cauth">本·伯南克</div></a>
+<a class="card" href="weread://reading?bId=3300123419" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">银发经济学：老龄时代的商业机会</span><span class="fin">✓读完</span></div><div class="cauth">[日]大前研一</div></a>
+<a class="card" href="weread://reading?bId=933055" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">错误的行为+助推+赢家的诅咒（理查德·塞勒套装3册）</span></div><div class="cauth">[美]理查德·塞勒</div></a>
+</div>
+<div class="subcat"><span class="subtag">经济理财-管理</span><span class="subn">13</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=3300022120" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">IP之道——30家国内一线创新公司的知识产权是如何运营的</span></div><div class="cauth">柯晓鹏</div></a>
+<a class="card" href="weread://reading?bId=3300137898" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">为什么越 “不干活” 的人收入越高（轻成长）</span></div><div class="cauth">刘润</div></a>
+<a class="card" href="weread://reading?bId=23513733" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">奈飞文化手册：支撑 827 亿 IP 整合的底层逻辑</span><span class="fin">✓读完</span></div><div class="cauth">帕蒂·麦考德</div></a>
+<a class="card" href="weread://reading?bId=34618672" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">客户第一：华为客户关系管理法</span><span class="fin">✓读完</span></div><div class="cauth">王占刚</div></a>
+<a class="card" href="weread://reading?bId=25812841" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">思考的技术</span><span class="fin">✓读完</span></div><div class="cauth">大前研一</div></a>
+<a class="card" href="weread://reading?bId=3300139124" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">效率为王</span></div><div class="cauth">卫哲</div></a>
+<a class="card" href="weread://reading?bId=32908902" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">无限的游戏</span></div><div class="cauth">西蒙·斯涅克</div></a>
+<a class="card" href="weread://reading?bId=3300019652" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">波士顿咨询工作法：精准预测答案</span></div><div class="cauth"> 内田和成</div></a>
+<a class="card" href="weread://reading?bId=3300220151" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">第一性原理（微信读书特别版）</span></div><div class="cauth">李善友</div></a>
+<a class="card" href="weread://reading?bId=3300075151" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">第五项修炼：学习型组织的艺术与实践</span></div><div class="cauth">彼得·圣吉</div></a>
+<a class="card" href="weread://reading?bId=739662" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">联盟：互联网时代的人才变革</span></div><div class="cauth">里德·霍夫曼 本·卡斯诺查 克里斯·叶</div></a>
+<a class="card" href="weread://reading?bId=3300064013" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">阿米巴经营（畅销十周年纪念版）</span><span class="fin">✓读完</span></div><div class="cauth">稻盛和夫  京瓷通信系统株式会社</div></a>
+<a class="card" href="weread://reading?bId=3300063996" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">驱动力（新版）</span></div><div class="cauth">丹尼尔·平克</div></a>
+</div>
+<div class="subcat"><span class="subtag">经济理财-理财</span><span class="subn">7</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=3300205676" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">半小时精读《小狗钱钱》：通往财富自由的十三堂心灵必修课</span></div><div class="cauth">李振</div></a>
+<a class="card" href="weread://reading?bId=3300152680" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">懂人性就是会赚钱：隐藏在人性背后的财富密码</span></div><div class="cauth">小义</div></a>
+<a class="card" href="weread://reading?bId=44026191" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">纳瓦尔宝典</span></div><div class="cauth">埃里克·乔根森</div></a>
+<a class="card" href="weread://reading?bId=3300219843" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">财商之道——50条商人不会告诉你的赚钱规律</span></div><div class="cauth">衍何文化 编著</div></a>
+<a class="card" href="weread://reading?bId=3300107061" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">赚钱的艺术（微信读书定制版，蔡澜的理财之道）</span><span class="fin">✓读完</span></div><div class="cauth">[新加坡]蔡澜</div></a>
+<a class="card" href="weread://reading?bId=3300217817" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">跳出工资思维：钱只会流向能解决问题的人</span></div><div class="cauth">邹简峻</div></a>
+<a class="card" href="weread://reading?bId=3300204620" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">金钱心理学 （全新增订版）</span></div><div class="cauth">[美]摩根·豪泽尔</div></a>
+</div>
+<div class="subcat"><span class="subtag">经济理财-商业</span><span class="subn">6</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=335319" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">任正非正传</span></div><div class="cauth">赵凡禹 燕君</div></a>
+<a class="card ex" href="invisible-influence-book-notes.html"><div class="ct"><span class="ctitle">传染：塑造消费、心智、决策的隐秘力量</span><span class="exb">★精读笔记</span></div><div class="cauth">乔纳·伯杰</div></a>
+<a class="card" href="weread://reading?bId=40666970" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">兰德公司与美国的崛起</span><span class="fin">✓读完</span></div><div class="cauth">亚历克斯·阿贝拉</div></a>
+<a class="card" href="weread://reading?bId=3300065058" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">张一鸣传记 大力出奇迹：张一鸣的创业心路与算法思维</span><span class="fin">✓读完</span></div><div class="cauth">王健平</div></a>
+<a class="card" href="weread://reading?bId=924961" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">爆款文案</span></div><div class="cauth">关健明</div></a>
+<a class="card ex" href="contagious-book-notes.html"><div class="ct"><span class="ctitle">疯传：让你的产品、思想、行为像病毒一样入侵（经典平装版）</span><span class="exb">★精读笔记</span></div><div class="cauth">乔纳·伯杰</div></a>
+</div>
+</div>
+<div class="cluster" id="c-hist">
+<div class="cluster-head"><span class="dot" style="background:#8a6d3b"></span><h3>历史</h3><span class="cnt">32 本 · 读完 13</span></div>
+<div class="subcat"><span class="subtag">历史-世界史</span><span class="subn">10</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=23453607" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">厉以宁讲欧洲经济史（插图版）</span><span class="fin">✓读完</span></div><div class="cauth">厉以宁著 王大庆改编</div></a>
+<a class="card" href="weread://reading?bId=41868272" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">奥斯曼帝国：1299-1923</span></div><div class="cauth">卡罗琳·芬克尔</div></a>
+<a class="card" href="weread://reading?bId=27563200" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">奥斯曼帝国：五百年的和平（讲谈社·兴亡的世界史 05）</span><span class="fin">✓读完</span></div><div class="cauth">林佳世子</div></a>
+<a class="card" href="weread://reading?bId=837386" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">德意志是铁打的</span><span class="fin">✓读完</span></div><div class="cauth">杨白劳</div></a>
+<a class="card" href="weread://reading?bId=40420319" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">武士威廉：大航海时代的日本与西方</span><span class="fin">✓读完</span></div><div class="cauth">贾尔斯·米尔顿</div></a>
+<a class="card" href="weread://reading?bId=3300018864" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">泪之地：殖民、贸易与非洲全球化的残酷历史</span><span class="fin">✓读完</span></div><div class="cauth">罗伯特•哈姆斯</div></a>
+<a class="card" href="weread://reading?bId=827421" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">罗马帝国睡着了</span><span class="fin">✓读完</span></div><div class="cauth">杨白劳</div></a>
+<a class="card" href="weread://reading?bId=25949875" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">西班牙史：从十五世纪至今</span></div><div class="cauth">瓦尔特·L.伯尔奈克</div></a>
+<a class="card" href="weread://reading?bId=3300045070" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">西班牙帝国：走向全球霸权之路，1492—1763</span></div><div class="cauth">亨利·卡门</div></a>
+<a class="card" href="weread://reading?bId=37445423" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">非洲现代史（第三版）</span></div><div class="cauth">理查德·雷德</div></a>
+</div>
+<div class="subcat"><span class="subtag">历史-中国古代</span><span class="subn">8</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=36561936" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">万历传</span></div><div class="cauth">樊树志著</div></a>
+<a class="card" href="weread://reading?bId=840995" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">万历十五年（精装版）</span><span class="fin">✓读完</span></div><div class="cauth">黄仁宇</div></a>
+<a class="card" href="weread://reading?bId=3300036999" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">万历十五年（经典版）</span><span class="fin">✓读完</span></div><div class="cauth">[美]黄仁宇</div></a>
+<a class="card" href="weread://reading?bId=23562650" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">大唐兴亡三百年（全集）</span><span class="fin">✓读完</span></div><div class="cauth">王觉仁</div></a>
+<a class="card" href="weread://reading?bId=822995" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">明朝那些事儿（全集）</span></div><div class="cauth">当年明月</div></a>
+<a class="card" href="weread://reading?bId=3300046329" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">朱熹--中华先贤人物故事汇</span></div><div class="cauth">郭庆财</div></a>
+<a class="card" href="weread://reading?bId=3300039069" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">洋务与赈务：盛宣怀的晚清四十年（当代中国人文大系）</span></div><div class="cauth">朱浒</div></a>
+<a class="card" href="weread://reading?bId=841456" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">饥饿的盛世：乾隆时代的得与失</span><span class="fin">✓读完</span></div><div class="cauth">张宏杰</div></a>
+</div>
+<div class="subcat"><span class="subtag">历史-历史文化</span><span class="subn">6</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=34854958" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">海南岛传：一座岛屿的前世今生</span></div><div class="cauth">孔见</div></a>
+<a class="card" href="weread://reading?bId=23669381" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">海口史（海南地方史研究丛书）</span></div><div class="cauth">赵全鹏</div></a>
+<a class="card" href="weread://reading?bId=43135492" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">深圳传</span></div><div class="cauth">老亨</div></a>
+<a class="card" href="weread://reading?bId=32152179" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">深圳传：未来的世界之城</span></div><div class="cauth">胡野秋</div></a>
+<a class="card" href="weread://reading?bId=25121820" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">漳州传：从九龙江到太平洋</span><span class="fin">✓读完</span></div><div class="cauth">陈子铭</div></a>
+<a class="card" href="weread://reading?bId=23509081" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">闯关东历史与文化研究</span></div><div class="cauth">范立君</div></a>
+</div>
+<div class="subcat"><span class="subtag">历史-历史小说</span><span class="subn">4</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=182788" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">北京法源寺（文学性与思想性相结合的经典作品）</span></div><div class="cauth">李敖</div></a>
+<a class="card" href="weread://reading?bId=548403" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">张居正(全4册)（茅盾文学奖获奖作品）</span><span class="fin">✓读完</span></div><div class="cauth">熊召政</div></a>
+<a class="card" href="weread://reading?bId=25950912" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">李鸿章（全三册）</span><span class="fin">✓读完</span></div><div class="cauth">张鸿福</div></a>
+<a class="card" href="weread://reading?bId=3300146159" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">起初·纪年</span></div><div class="cauth">王朔</div></a>
+</div>
+<div class="subcat"><span class="subtag">历史-历史典籍</span><span class="subn">2</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=745216" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">大学</span></div><div class="cauth">[宋]朱熹</div></a>
+<a class="card" href="weread://reading?bId=25719921" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">大学·中庸（中华经典藏书·升级版）</span></div><div class="cauth">王国轩译注</div></a>
+</div>
+<div class="subcat"><span class="subtag">历史-历史读物</span><span class="subn">1</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=3300196216" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">繁盛与衰败：3000年帝国都城变迁史</span></div><div class="cauth">孙晓飞</div></a>
+</div>
+<div class="subcat"><span class="subtag">历史-中国近现代</span><span class="subn">1</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=3300070925" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">《真相——海南岛近现代史研究会海南岛17年（27次）调查足迹》</span></div><div class="cauth">海南省文化交流促进会</div></a>
+</div>
+</div>
+<div class="cluster" id="c-phil">
+<div class="cluster-head"><span class="dot" style="background:#6b4a8a"></span><h3>哲学与思想</h3><span class="cnt">20 本 · 读完 4</span></div>
+<div class="subcat"><span class="subtag">哲学宗教-西方哲学</span><span class="subn">9</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=3300180465" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">与孤独为伍</span></div><div class="cauth">[德]弗里德里希·尼采</div></a>
+<a class="card" href="weread://reading?bId=3300183591" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">半小时掌握维特根斯坦思想精华</span></div><div class="cauth">柯申</div></a>
+<a class="card" href="weread://reading?bId=3300161033" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">叔本华：在意志的风暴与安宁之间（轻哲学）</span><span class="fin">✓读完</span></div><div class="cauth">边江</div></a>
+<a class="card" href="weread://reading?bId=3300207471" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">哲学简史（精译精注彩插版）</span></div><div class="cauth">[英]伯特兰·罗素 著  [英]保罗·福克斯 编</div></a>
+<a class="card" href="weread://reading?bId=3300215043" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">爱情的幻象与本质：从柏拉图到尼采（轻文学）</span></div><div class="cauth">牛冲</div></a>
+<a class="card" href="weread://reading?bId=3300032946" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">维特根斯坦精选集（全五册）</span></div><div class="cauth">[奥]路德维希·维特根斯坦</div></a>
+<a class="card" href="weread://reading?bId=3300077173" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">苏格拉底的申辩(第3版)</span></div><div class="cauth">[古希腊]柏拉图</div></a>
+<a class="card" href="weread://reading?bId=36557721" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">西西弗神话</span></div><div class="cauth">[法]阿尔贝·加缪</div></a>
+<a class="card" href="weread://reading?bId=3300179512" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">逻辑哲学论</span><span class="fin">✓读完</span></div><div class="cauth">[英]维特根斯坦</div></a>
+</div>
+<div class="subcat"><span class="subtag">哲学宗教-逻辑学</span><span class="subn">3</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=3300185076" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">什么是理性思考</span></div><div class="cauth">[英]伦纳德·罗素</div></a>
+<a class="card" href="weread://reading?bId=3300198922" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">大白话讲透逻辑学</span></div><div class="cauth">丁毓峰</div></a>
+<a class="card" href="weread://reading?bId=3300059465" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">简单的逻辑学：清晰思考的起点</span></div><div class="cauth">D.Q.麦克伦尼</div></a>
+</div>
+<div class="subcat"><span class="subtag">哲学宗教-哲学著作</span><span class="subn">3</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=29313509" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">哲学研究</span></div><div class="cauth">维特根斯坦</div></a>
+<a class="card" href="weread://reading?bId=931853" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">我与你（果麦经典）</span></div><div class="cauth">马丁·布伯</div></a>
+<a class="card" href="weread://reading?bId=3300200010" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">我所相信的生活</span></div><div class="cauth">[英]伯特兰·罗素</div></a>
+</div>
+<div class="subcat"><span class="subtag">哲学宗教-哲学读物</span><span class="subn">3</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=3300149993" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">享乐与虚无</span></div><div class="cauth">[斯]斯拉沃热·齐泽克</div></a>
+<a class="card" href="weread://reading?bId=857527" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">活出生命的意义</span><span class="fin">✓读完</span></div><div class="cauth">[奥]维克多·弗兰克尔</div></a>
+<a class="card" href="weread://reading?bId=3300100349" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">语言·意义·世界：语言哲学简史</span></div><div class="cauth">王维</div></a>
+</div>
+<div class="subcat"><span class="subtag">未分类</span><span class="subn">1</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=CB_Bzg8Ka8NK40E74A75M0WPGFe" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">黑猩猩悖论：控制非理性冲动</span><span class="fin">✓读完</span></div><div class="cauth">史蒂夫彼得斯</div></a>
+</div>
+<div class="subcat"><span class="subtag">哲学宗教-宗教</span><span class="subn">1</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=3300029527" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">没有烦恼的世界</span></div><div class="cauth">王觉仁</div></a>
+</div>
+</div>
+<div class="cluster" id="c-lit">
+<div class="cluster-head"><span class="dot" style="background:#b05a7a"></span><h3>小说与文学</h3><span class="cnt">49 本 · 读完 16</span></div>
+<div class="subcat"><span class="subtag">精品小说-悬疑推理</span><span class="subn">10</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=3300024180" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">冷血</span></div><div class="cauth">杜鲁门·卡波特</div></a>
+<a class="card" href="weread://reading?bId=23355027" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">刺客之死</span><span class="fin">✓读完</span></div><div class="cauth">肯·福莱特</div></a>
+<a class="card" href="weread://reading?bId=39206134" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">回响（第十一届茅盾文学奖获奖作品｜宋佳、王阳主演同名电视剧原著）</span><span class="fin">✓读完</span></div><div class="cauth">东西</div></a>
+<a class="card" href="weread://reading?bId=851251" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">圣女的救济</span></div><div class="cauth">东野圭吾</div></a>
+<a class="card" href="weread://reading?bId=840686" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">放学后</span><span class="fin">✓读完</span></div><div class="cauth">东野圭吾</div></a>
+<a class="card" href="weread://reading?bId=840704" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">新参者</span></div><div class="cauth">东野圭吾</div></a>
+<a class="card" href="weread://reading?bId=26541518" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">漫长的告别</span></div><div class="cauth">雷蒙德·钱德勒</div></a>
+<a class="card" href="weread://reading?bId=230107" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">白夜行</span><span class="fin">✓读完</span></div><div class="cauth">东野圭吾</div></a>
+<a class="card" href="weread://reading?bId=840703" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">红手指</span></div><div class="cauth">东野圭吾</div></a>
+<a class="card" href="weread://reading?bId=937024" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">黎明之街</span></div><div class="cauth">东野圭吾</div></a>
+</div>
+<div class="subcat"><span class="subtag">文学-散文杂著</span><span class="subn">6</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=3300131553" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">上海记</span><span class="fin">✓读完</span></div><div class="cauth">汗漫 著</div></a>
+<a class="card" href="weread://reading?bId=856780" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">他们的异地恋</span><span class="fin">✓读完</span></div><div class="cauth">夏晏</div></a>
+<a class="card" href="weread://reading?bId=26713355" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">你当像鸟飞往你的山</span></div><div class="cauth">[美]塔拉·韦斯特弗</div></a>
+<a class="card" href="weread://reading?bId=3300211313" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">缓慢生长</span></div><div class="cauth">倪虹洁</div></a>
+<a class="card" href="weread://reading?bId=25812620" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">论不服从（弗洛姆作品系列）</span></div><div class="cauth">[美]艾里希·弗洛姆</div></a>
+<a class="card" href="weread://reading?bId=3300171413" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">赞美闲散（果麦经典）</span></div><div class="cauth">[英]伯特兰·罗素</div></a>
+</div>
+<div class="subcat"><span class="subtag">文学-纪实文学</span><span class="subn">5</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=3300222157" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">关于东野圭吾，那些你不知道的事（轻纪实）</span></div><div class="cauth">《人物》杂志 赖祐萱</div></a>
+<a class="card" href="weread://reading?bId=25424217" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">地下</span></div><div class="cauth">[日]村上春树</div></a>
+<a class="card" href="weread://reading?bId=3300134459" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">太平洋大逃杀亲历者自述（轻纪实）</span><span class="fin">✓读完</span></div><div class="cauth">杜强</div></a>
+<a class="card" href="weread://reading?bId=31583163" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">操纵美国命运的犹太人</span></div><div class="cauth">汤天一 胡新航</div></a>
+<a class="card" href="weread://reading?bId=3300205560" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">马驹桥的时间：清华博士的日结手记</span></div><div class="cauth">丛瑞安</div></a>
+</div>
+<div class="subcat"><span class="subtag">精品小说-社会小说</span><span class="subn">5</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=27403460" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">天行者</span></div><div class="cauth">刘醒龙</div></a>
+<a class="card" href="weread://reading?bId=728774" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">第七天</span><span class="fin">✓读完</span></div><div class="cauth">余华</div></a>
+<a class="card" href="weread://reading?bId=35008168" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">繁花</span></div><div class="cauth">金宇澄</div></a>
+<a class="card" href="weread://reading?bId=926010" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">金牌投资人（全三册）</span></div><div class="cauth">龙在宇</div></a>
+<a class="card" href="weread://reading?bId=41282241" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">铁皮鼓（同名电影原著）</span></div><div class="cauth">[德]君特·格拉斯</div></a>
+</div>
+<div class="subcat"><span class="subtag">精品小说-年代小说</span><span class="subn">5</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=23601441" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">主角（张嘉益、刘浩存、秦海璐主演同名电视剧原著）</span><span class="fin">✓读完</span></div><div class="cauth">陈彦</div></a>
+<a class="card" href="weread://reading?bId=23523115" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">余华作品全集（收录《河边的错误》同名原著小说）</span></div><div class="cauth">余华</div></a>
+<a class="card" href="weread://reading?bId=23303897" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">秦腔</span></div><div class="cauth">贾平凹</div></a>
+<a class="card" href="weread://reading?bId=26459049" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">长恨歌（新中国70年70部长篇小说典藏）</span><span class="fin">✓读完</span></div><div class="cauth">王安忆</div></a>
+<a class="card" href="weread://reading?bId=3300067398" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">雪山大地（第十一届茅盾文学奖获奖作品）</span><span class="fin">✓读完</span></div><div class="cauth">杨志军</div></a>
+</div>
+<div class="subcat"><span class="subtag">文学-外国文学</span><span class="subn">4</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=935941" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">荆棘鸟：纪念版（经典译林）</span></div><div class="cauth">考琳·麦卡洛</div></a>
+<a class="card" href="weread://reading?bId=3300138106" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">陀思妥耶夫斯基作品集（6册）</span></div><div class="cauth">[俄]陀思妥耶夫斯基</div></a>
+<a class="card" href="weread://reading?bId=820809" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">面纱（果麦经典）</span><span class="fin">✓读完</span></div><div class="cauth">毛姆</div></a>
+<a class="card" href="weread://reading?bId=859153" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">饥饿游戏三部曲（詹妮弗·劳伦斯主演）</span></div><div class="cauth">苏珊·柯林斯</div></a>
+</div>
+<div class="subcat"><span class="subtag">精品小说-官场小说</span><span class="subn">4</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=929195" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">《掌舵》三部曲</span><span class="fin">✓读完</span></div><div class="cauth">龙在宇</div></a>
+<a class="card" href="weread://reading?bId=3300204305" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">二号首长（全三册）</span></div><div class="cauth">黄晓阳</div></a>
+<a class="card" href="weread://reading?bId=788041" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">侯卫东官场笔记（1-8册+巴国侯氏）</span></div><div class="cauth">小桥老树</div></a>
+<a class="card" href="weread://reading?bId=3300036706" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">房建辉官场全集（全4册）</span></div><div class="cauth">房建辉</div></a>
+</div>
+<div class="subcat"><span class="subtag">女生小说-现代言情</span><span class="subn">1</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=140228" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">猎头</span><span class="fin">✓读完</span></div><div class="cauth">诺言</div></a>
+</div>
+<div class="subcat"><span class="subtag">精品小说-情感小说</span><span class="subn">1</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=23199779" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">金粉世家（全集）</span><span class="fin">✓读完</span></div><div class="cauth">张恨水</div></a>
+</div>
+<div class="subcat"><span class="subtag">精品小说-治愈小说</span><span class="subn">1</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=23355045" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">漫长的告别（读客三个圈经典文库）</span><span class="fin">✓读完</span></div><div class="cauth">雷蒙德·钱德勒</div></a>
+</div>
+<div class="subcat"><span class="subtag">女生小说-萌宝团宠</span><span class="subn">1</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=11365829" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">萌宝来袭：拐个妈咪送爹地</span></div><div class="cauth">密云不雨</div></a>
+</div>
+<div class="subcat"><span class="subtag">男生小说-都市小说</span><span class="subn">1</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=23561493" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">股神</span></div><div class="cauth">股天乐</div></a>
+</div>
+<div class="subcat"><span class="subtag">文学-经典作品</span><span class="subn">1</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=846408" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">大后台</span></div><div class="cauth">冯珺</div></a>
+</div>
+<div class="subcat"><span class="subtag">文学-语言文字</span><span class="subn">1</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=3300108591" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">洞见写作：打造可复制的文章方法论</span></div><div class="cauth">洞见君</div></a>
+</div>
+<div class="subcat"><span class="subtag">漫画-治愈漫画</span><span class="subn">1</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=3300036635" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">滚蛋吧！肿瘤君</span></div><div class="cauth">熊顿</div></a>
+</div>
+<div class="subcat"><span class="subtag">精品小说-女性小说</span><span class="subn">1</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=43689514" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">萤火虫小巷（同名美剧原著）</span></div><div class="cauth">克莉丝汀·汉娜</div></a>
+</div>
+<div class="subcat"><span class="subtag">精品小说-玄幻小说</span><span class="subn">1</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=3300115431" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">本巴（第十一届茅盾文学奖获奖作品）</span></div><div class="cauth">刘亮程</div></a>
+</div>
+</div>
+<div class="cluster" id="c-bio">
+<div class="cluster-head"><span class="dot" style="background:#4a6fa5"></span><h3>传记</h3><span class="cnt">9 本 · 读完 2</span></div>
+<div class="subcat"><span class="subtag">人物传记-传记综合</span><span class="subn">5</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=25848978" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">人类群星闪耀时（果麦经典）</span></div><div class="cauth">[奥]斯蒂芬·茨威格</div></a>
+<a class="card" href="weread://reading?bId=25614391" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">成为我自己：欧文·亚隆回忆录</span></div><div class="cauth">[美]欧文·D.亚隆</div></a>
+<a class="card" href="weread://reading?bId=3300142877" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">我看见的世界：李飞飞自传</span></div><div class="cauth">[美]李飞飞</div></a>
+<a class="card" href="weread://reading?bId=3300007392" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">朱熹</span></div><div class="cauth">梁新宇</div></a>
+<a class="card" href="weread://reading?bId=35634792" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">积极心理学之父塞利格曼幸福启示录（套装6册）</span></div><div class="cauth">马丁·塞利格曼</div></a>
+</div>
+<div class="subcat"><span class="subtag">人物传记-学者</span><span class="subn">2</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=3300136405" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">我为何而活：罗素自传（果麦经典）</span><span class="fin">✓读完</span></div><div class="cauth">[英]伯特兰·罗素</div></a>
+<a class="card" href="weread://reading?bId=3300104552" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">测量人类的心理：阿德勒传</span><span class="fin">✓读完</span></div><div class="cauth">[德]亚历山大·克鲁伊</div></a>
+</div>
+<div class="subcat"><span class="subtag">人物传记-文学家</span><span class="subn">1</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=926610" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">鲍勃·迪伦：诗人之歌</span></div><div class="cauth">让-多米尼克·布里埃</div></a>
+</div>
+<div class="subcat"><span class="subtag">人物传记-财经人物</span><span class="subn">1</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=3300070929" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">埃隆·马斯克传</span></div><div class="cauth">沃尔特·艾萨克森</div></a>
+</div>
+</div>
+<div class="cluster" id="c-edu">
+<div class="cluster-head"><span class="dot" style="background:#3f8a8a"></span><h3>教育·育儿</h3><span class="cnt">8 本 · 读完 0</span></div>
+<div class="subcat"><span class="subtag">教育学习-育儿</span><span class="subn">4</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=3300082551" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">与孩子深度交谈：高质量谈话提升孩子的七大能力</span></div><div class="cauth">丽贝卡·罗兰</div></a>
+<a class="card" href="weread://reading?bId=713333" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">培养高情商的孩子</span></div><div class="cauth">约翰·戈特曼 琼·德克莱尔</div></a>
+<a class="card" href="weread://reading?bId=3300131645" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">妈妈的心灵课</span></div><div class="cauth">[英]温尼科特</div></a>
+<a class="card" href="weread://reading?bId=43832746" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">孩子、家庭和外部世界</span></div><div class="cauth">唐纳德·温尼科特</div></a>
+</div>
+<div class="subcat"><span class="subtag">教育学习-教育</span><span class="subn">2</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=3300217562" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">如何跟孩子谈钱：18岁前要上的15堂财商课（轻理财）</span></div><div class="cauth">传说中的大熊</div></a>
+<a class="card" href="weread://reading?bId=3300062106" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">孩子、家庭与人世间</span></div><div class="cauth">唐纳德·温尼科特</div></a>
+</div>
+<div class="subcat"><span class="subtag">教育学习-教材</span><span class="subn">1</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=29970286" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">妈妈，才是一切的答案：母女关系里的沟通心理学</span></div><div class="cauth">科琳·欧格雷迪</div></a>
+</div>
+<div class="subcat"><span class="subtag">未分类</span><span class="subn">1</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=CB_4ej7eX7dx9pp72P71H57P5ju" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">养育的觉醒：学习能力强、动力足的孩子这样培养</span></div><div class="cauth">杨明金</div></a>
+</div>
+</div>
+<div class="cluster" id="c-soc">
+<div class="cluster-head"><span class="dot" style="background:#a86b2e"></span><h3>社会·政治·文化</h3><span class="cnt">11 本 · 读完 3</span></div>
+<div class="subcat"><span class="subtag">生活百科-情感</span><span class="subn">4</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=27522788" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">亲密陷阱：爱、欲望与平衡艺术</span></div><div class="cauth">埃丝特·佩瑞尔</div></a>
+<a class="card" href="weread://reading?bId=3300064082" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">危险关系：爱、背叛与修复之路</span></div><div class="cauth">埃丝特•佩瑞尔</div></a>
+<a class="card" href="weread://reading?bId=3300084529" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">幸福的婚姻（全新升级版）</span></div><div class="cauth">[美]约翰·戈特曼  [美]娜恩·西尔弗</div></a>
+<a class="card" href="weread://reading?bId=3300074648" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">爱的博弈（2023新版）</span></div><div class="cauth">约翰·戈特曼 娜恩·西尔弗</div></a>
+</div>
+<div class="subcat"><span class="subtag">社会文化-社科</span><span class="subn">3</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=3300207045" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">个体化社会</span></div><div class="cauth">[英]齐格蒙特·鲍曼</div></a>
+<a class="card" href="weread://reading?bId=42766048" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">枪炮、病菌与钢铁</span></div><div class="cauth">贾雷德·戴蒙德</div></a>
+<a class="card" href="weread://reading?bId=22649056" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">西方社会建构论思潮研究</span><span class="fin">✓读完</span></div><div class="cauth">林聚任</div></a>
+</div>
+<div class="subcat"><span class="subtag">政治军事-政治</span><span class="subn">2</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=3300159920" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">中国问题</span><span class="fin">✓读完</span></div><div class="cauth">[英]伯特兰·罗素</div></a>
+<a class="card" href="weread://reading?bId=44171521" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">从巴格达到伊斯坦布尔：历史视野下的中东大变局</span></div><div class="cauth">昝涛</div></a>
+</div>
+<div class="subcat"><span class="subtag">政治军事-军事</span><span class="subn">1</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=641058" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">朝鲜战争：未曾透露的真相</span><span class="fin">✓读完</span></div><div class="cauth">约瑟夫·古尔登</div></a>
+</div>
+<div class="subcat"><span class="subtag">社会文化-文化</span><span class="subn">1</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=3300064764" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">语言的历史</span></div><div class="cauth">史蒂文·罗杰·费舍尔</div></a>
+</div>
+</div>
+<div class="cluster" id="c-sci">
+<div class="cluster-head"><span class="dot" style="background:#4a7a4a"></span><h3>科学·医学·技术</h3><span class="cnt">6 本 · 读完 1</span></div>
+<div class="subcat"><span class="subtag">科学技术-自然科学</span><span class="subn">3</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=32507335" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">文化伟人代表作图释书系：自然哲学的数学原理</span></div><div class="cauth">艾萨克·牛顿</div></a>
+<a class="card" href="weread://reading?bId=36558596" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">破天机：基因编辑的惊人力量</span></div><div class="cauth">珍妮佛·杜德娜 塞缪尔·斯滕伯格</div></a>
+<a class="card" href="weread://reading?bId=3300054364" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">自然哲学之数学原理</span></div><div class="cauth">艾萨克·牛顿</div></a>
+</div>
+<div class="subcat"><span class="subtag">医学健康-健康</span><span class="subn">1</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=3300136803" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">来吧，更年期！</span></div><div class="cauth">[意]莉萨·莫斯科尼</div></a>
+</div>
+<div class="subcat"><span class="subtag">医学健康-医学</span><span class="subn">1</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=3300150751" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">多层迷走神经指南（套装3册）</span></div><div class="cauth">斯蒂芬·W. 波格斯 德博拉·A.达娜</div></a>
+</div>
+<div class="subcat"><span class="subtag">计算机-人工智能</span><span class="subn">1</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=3300153974" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">零基础开发AI Agent——手把手教你用扣子做智能体</span><span class="fin">✓读完</span></div><div class="cauth">叶涛</div></a>
+</div>
+</div>
+<div class="cluster" id="c-misc">
+<div class="cluster-head"><span class="dot" style="background:#8a8074"></span><h3>其他</h3><span class="cnt">10 本 · 读完 1</span></div>
+<div class="subcat"><span class="subtag">未分类</span><span class="subn">10</span></div>
+<div class="grid">
+<a class="card" href="weread://reading?bId=MP_WXS_3085758328" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">上海交大医学院附属精神卫生中心</span></div><div class="cauth">公众号</div></a>
+<a class="card" href="weread://reading?bId=CB_CoSGboGbC38H6vd6x86J6DlF" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">中县干部：以成长历程为中心.pdf</span></div><div class="cauth"></div></a>
+<a class="card" href="weread://reading?bId=CB_1Rl82X82dEmd6vP6svBk7Gno" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">二号首长</span><span class="fin">✓读完</span></div><div class="cauth">黄晓明</div></a>
+<a class="card" href="weread://reading?bId=CB_1yf22n22XEiU6vO6svGN1FXp" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">二号首长(黄晓阳).pdf</span></div><div class="cauth"></div></a>
+<a class="card" href="weread://reading?bId=CB_Gs1B0fAzm30373v75M46SFAf" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">依恋三步曲 第一卷 依恋</span></div><div class="cauth">（英）约翰·鲍尔比著</div></a>
+<a class="card" href="weread://reading?bId=CB_5nCA7aA4C3Gd73z75M9Fb9A4" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">依恋三部曲 第2卷 分离</span></div><div class="cauth">（英）约翰·鲍尔比著</div></a>
+<a class="card" href="weread://reading?bId=CB_EoYEHG8gX1c26jA71D1Aj0Hx" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">张艺谋的作业</span></div><div class="cauth"></div></a>
+<a class="card" href="weread://reading?bId=CB_5nCEz0EwN0LH74J75MGTd4L8" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">梦的解析</span></div><div class="cauth">西格蒙德·弗洛伊德</div></a>
+<a class="card" href="weread://reading?bId=MP_WXS_3556016808" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">遥远的救世主全集</span></div><div class="cauth">公众号</div></a>
+<a class="card" href="weread://reading?bId=CB_8rt0PV0RpENh6vF6sv5OX7Ue" target="_blank" rel="noopener"><div class="ct"><span class="ctitle">鞠建东团队：米兰报告解读(4)</span></div><div class="cauth"></div></a>
+</div>
+</div>
+<div class="cluster"><div class="cluster-head"><span class="dot" style="background:#7a6f9a"></span><h3>有声书 / 专辑</h3><span class="cnt">3</span></div><div class="grid">
+<a class="card" href="#"><div class="ct"><span class="ctitle">做难而正确的事</span><span class="fin">✓听毕</span></div><div class="cauth">湛庐阅读 · 57集</div></a>
+<a class="card" href="#"><div class="ct"><span class="ctitle">一个国家的复仇：摩萨德在行动</span><span class="fin">✓听毕</span></div><div class="cauth">MC · 30集</div></a>
+<a class="card" href="#"><div class="ct"><span class="ctitle">我的第一本人生规划手册</span><span class="fin">✓听毕</span></div><div class="cauth">BookDNA本唐出版 · 40集</div></a>
+</div></div>
+<div class="cluster"><div class="cluster-head"><span class="dot" style="background:#8a8074"></span><h3>文章收藏</h3><span class="cnt">1</span></div><div class="grid"><a class="card" href="#"><div class="ct"><span class="ctitle">微信读书·文章收藏</span></div><div class="cauth">公众号 / 网页长文合集</div></a></div></div>
+</section>
+
+<div class="divider"></div>
+
+<section style="padding-top:30px;">
+  <a class="back" href="book-notes.html">← 返回精读笔记合集（3 本 ★）</a>
+  &nbsp;&nbsp;<a class="back" href="/">← 返回「心理学全景学习」首页</a>
+</section>
+
+</div>
+
+<footer>
+  <div class="line"></div>
+  <b>我的阅读宇宙 · 知识图谱与分类书架</b>
+  <p class="disclaim">本页由微信读书书架数据（2026-09-08 同步）自动生成，用于个人知识整理与学习参考。书名、作者与封面版权归原作者及出版方、腾讯微信读书所有。带 ★ 的精读笔记为基于公开核心观点整理的科普内容，非原文转载。</p>
+</footer>
+
+</body>
+</html>
