@@ -169,14 +169,56 @@
   .add-btn:hover{background:rgba(184,121,74,.1);border-style:solid;}
 
   /* 思维导图 */
-  .mind input{margin-bottom:10px;}
+  /* 思维导图：规则说明 + 示例 */
+  .mind-guide{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-bottom:16px;}
+  .mind-guide details{margin-top:6px;}
+  .mind-guide summary{cursor:pointer;font-family:var(--serif);font-size:15px;color:var(--accent);list-style:none;display:flex;align-items:center;gap:8px;}
+  .mind-guide summary::-webkit-details-marker{display:none;}
+  .mind-guide summary::before{content:"▸";transition:.2s;display:inline-block;}
+  .mind-guide details[open] summary::before{transform:rotate(90deg);}
+  .mind-rules{list-style:none;margin:14px 0 6px;padding:0;counter-reset:rule;}
+  .mind-rules li{counter-increment:rule;position:relative;padding:8px 0 8px 38px;font-size:14px;color:var(--ink-soft);border-bottom:1px dashed var(--line);line-height:1.7;}
+  .mind-rules li:last-child{border-bottom:none;}
+  .mind-rules li::before{content:counter(rule);position:absolute;left:0;top:9px;width:24px;height:24px;border-radius:50%;
+    background:rgba(154,59,46,.1);color:var(--accent);font-family:var(--serif);font-size:13px;
+    display:flex;align-items:center;justify-content:center;}
+  .mind-rules b{color:var(--accent);font-family:var(--serif);}
+  .demo-tree{margin:14px 0 4px;background:var(--paper-2);border:1px solid var(--line);border-radius:10px;padding:16px 14px;}
+  .demo-seed{font-family:var(--serif);font-size:14px;color:#fff;background:var(--ink);display:inline-block;padding:6px 16px;border-radius:20px;margin-bottom:14px;}
+  .demo-node{margin-bottom:6px;}
+  .demo-kids{margin-left:20px;padding-left:14px;border-left:2px dotted var(--line);}
+  .demo-word{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;padding:4px 12px;border-radius:16px;margin:2px 0;}
+  .demo-word .lv{font-family:var(--serif);font-size:10px;opacity:.75;}
+  .demo-l1{background:rgba(154,59,46,.12);color:var(--accent);font-weight:600;}
+  .demo-l2{background:rgba(184,121,74,.12);color:var(--accent-2);}
+  .demo-l3{background:rgba(46,90,119,.12);color:var(--accent-3);}
+  .demo-l4{background:rgba(74,107,58,.14);color:var(--accent-4);}
+  .demo-ideas{margin-top:14px;background:rgba(154,59,46,.05);border:1px dashed var(--accent);border-radius:10px;padding:12px 14px;}
+  .demo-ideas .di{font-size:13.5px;color:var(--ink-soft);margin:6px 0;line-height:1.7;}
+  .demo-ideas .di b{color:var(--accent);font-family:var(--serif);}
+  .demo-ideas .src{color:var(--accent-3);font-size:12.5px;}
+  .demo-cap{font-size:12.5px;color:var(--ink-faint);margin-top:8px;}
+
+  /* 思维导图：可编辑树 */
   .mind-tree{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:16px;margin-top:10px;}
-  .mind-level{margin-bottom:14px;}
-  .mind-branch{display:flex;gap:8px;align-items:center;margin-bottom:8px;flex-wrap:wrap;}
-  .mind-branch input{flex:1 1 160px;}
-  .mind-branch .tag{font-family:var(--serif);font-size:12px;color:var(--accent);width:24px;flex:none;}
+  .mtree{margin-top:6px;}
+  .mrow{display:flex;gap:8px;align-items:center;margin-bottom:8px;flex-wrap:wrap;}
+  .mrow input{flex:1 1 200px;min-width:140px;}
+  .mtag{font-family:var(--serif);font-size:10.5px;width:30px;flex:none;text-align:center;padding:3px 0;border-radius:6px;letter-spacing:.04em;}
+  .mtag.lv1{background:rgba(154,59,46,.14);color:var(--accent);}
+  .mtag.lv2{background:rgba(184,121,74,.16);color:var(--accent-2);}
+  .mtag.lv3{background:rgba(46,90,119,.14);color:var(--accent-3);}
+  .mtag.lv4{background:rgba(74,107,58,.16);color:var(--accent-4);}
+  .mkids{margin-left:15px;padding-left:14px;border-left:2px dotted var(--line);}
+  .mbtn{background:none;border:1px solid var(--line);color:var(--ink-faint);font-size:12px;padding:5px 10px;border-radius:16px;cursor:pointer;transition:.16s;white-space:nowrap;flex:none;}
+  .mbtn:hover{border-color:var(--accent);color:var(--accent);}
+  .mbtn.del:hover{border-color:var(--accent);color:var(--accent);}
+  .mbtn.leaf{border-style:dashed;cursor:default;opacity:.7;}
+  .mbtn.leaf:hover{border-color:var(--line);color:var(--ink-faint);}
+  .mind-addroot{margin-top:10px;}
   .ideas-box{margin-top:14px;background:rgba(154,59,46,.05);border:1px dashed var(--accent);border-radius:12px;padding:16px;}
   .ideas-box h4{font-family:var(--serif);font-size:15px;color:var(--accent);margin-bottom:10px;}
+  .ideas-box .hint2{font-size:12.5px;color:var(--ink-faint);margin-bottom:10px;line-height:1.7;}
 
   /* 奥德赛三计划 */
   .ody-plan{border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:16px;background:var(--paper-2);}
@@ -283,7 +325,7 @@ function loadData(){
     gravity:"", coreQ:"",
     workview:"", lifeview:"", consistency:0, consistencyNote:"",
     journal:[],   // {activity,engagement,energy,flow}
-    mind:{seed:"", l1:["","","","",""], l2:[["","","","",""],["","","","",""],["","","","",""],["","","","",""],["","","","",""]], ideas:["","",""]},
+    mind:{seed:"", tree:[], ideas:["","",""]},
     ody:[
       {title:"",tagline:"",timeline:"",questions:"",resources:"",gauge:5},
       {title:"",tagline:"",timeline:"",questions:"",resources:"",gauge:5},
@@ -295,6 +337,36 @@ function loadData(){
   };
 }
 function save(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }
+
+/* 旧版思维导图（固定 l1/l2 二维数组）迁移为自由树形结构 */
+function migrateMind(){
+  const m = data.mind;
+  let changed = false;
+  if(!m) { data.mind = {seed:"", tree:[], ideas:["","",""]}; changed = true; }
+  else {
+    if(!Array.isArray(m.tree)){
+      m.tree = [];
+      if(Array.isArray(m.l1)){
+        m.l1.forEach(function(w,i){
+          const node = { word: w||"", children: [] };
+          if(Array.isArray(m.l2) && Array.isArray(m.l2[i])){
+            m.l2[i].forEach(function(w2){ if(w2) node.children.push({ word:w2, children:[] }); });
+          }
+          m.tree.push(node);
+        });
+      }
+      delete m.l1; delete m.l2;
+      changed = true;
+    }
+    if(!Array.isArray(m.ideas)){ m.ideas = ["","",""]; changed = true; }
+    if(m.tree.length === 0){
+      // 新用户：预置 5 个空的一级节点，降低启动成本
+      for(let i=0;i<5;i++) m.tree.push({word:"", children:[]});
+      changed = true;
+    }
+  }
+  if(changed) save();
+}
 
 /* ==================== 导航渲染 ==================== */
 function renderNav(){
@@ -325,7 +397,7 @@ function isDone(id){
     case 1: return data.coreQ.trim().length > 0;
     case 2: return data.workview.length > 30 && data.lifeview.length > 30;
     case 3: return data.journal.length > 0;
-    case 4: return data.mind.ideas.some(function(s){return s.trim();});
+    case 4: return mindHasWords() || data.mind.ideas.some(function(s){return s.trim();});
     case 5: return data.ody.some(function(p){return p.title.trim();});
     case 6: return data.proto.convos.length>0 || data.proto.experiences.length>0;
     case 7: return data.fails.length > 0;
@@ -476,24 +548,92 @@ const TPL = {
     <div class="step-head">
       <span class="step-badge">第 4 步</span>
       <h1>思维导图</h1>
-      <p class="desc">从上一步挑一个让你心流的活动作为种子，向外发散两级，再从组合中提取 3 个<strong>奇思妙想</strong>。规则：不评判、追求数量、越离谱越好——原型设计的素材就在这里。</p>
+      <p class="desc">从上一步挑一个让你心流的活动作为<strong>种子</strong>，让大脑自由联想、层层发散，最后从最外圈的词里组合出 <strong>3 个奇思妙想</strong>。这一步不是"想清楚"，而是让潜意识替你发现你没意识到的连接。</p>
     </div>
+
+    <div class="mind-guide">
+      <details open>
+        <summary>📖 不会填？先看规则和示例（点击折叠/展开）</summary>
+        <ol class="mind-rules">
+          <li><b>写种子</b>：从上一步的活动记录里，挑一项最让你投入/忘我 的具体活动，填在最上方。</li>
+          <li><b>第一层（5-6 个词）</b>：看着种子，脑子里冒出什么就写什么——名词、动词、场景、情绪都行。<b>不评判、不筛选</b>，字越少越好。</li>
+          <li><b>继续发散（3-4 个词，可到第三、第四层）</b>：点每个词旁边的「联想」按钮，给它写下一层关联词。每个词发散 <b>3-4 个</b>；来了灵感就继续往第三层、第四层走，没有灵感就停。</li>
+          <li><b>只求数量，越意外越好</b>：这一步在调动潜意识，"离谱"的词往往是金矿。字不会写错，只可能写得太少。</li>
+          <li><b>组合奇思妙想</b>：发散完，看最外圈（树的叶子）的词，挑 <b>2-3 个互不相干的词硬拼在一起</b>，拼成一个"如果……会不会很酷？"的可能性。荒谬感越强，越值得下一步去做原型验证。</li>
+        </ol>
+        <div class="demo-tree">
+          <div class="demo-seed">🎯 种子：在白板前把复杂问题画成框架</div>
+          <div class="demo-node"><span class="demo-word demo-l1">教育</span>
+            <div class="demo-kids">
+              <div class="demo-node"><span class="demo-word demo-l2">课程设计</span>
+                <div class="demo-kids">
+                  <div class="demo-node"><span class="demo-word demo-l3">在线课</span></div>
+                  <div class="demo-node"><span class="demo-word demo-l3">工作坊</span></div>
+                </div>
+              </div>
+              <div class="demo-node"><span class="demo-word demo-l2">培训</span></div>
+              <div class="demo-node"><span class="demo-word demo-l2">知识付费</span></div>
+            </div>
+          </div>
+          <div class="demo-node"><span class="demo-word demo-l1">心理学</span>
+            <div class="demo-kids">
+              <div class="demo-node"><span class="demo-word demo-l2">认知科学</span>
+                <div class="demo-kids">
+                  <div class="demo-node"><span class="demo-word demo-l3">学习方法</span></div>
+                  <div class="demo-node"><span class="demo-word demo-l3">记忆法</span></div>
+                </div>
+              </div>
+              <div class="demo-node"><span class="demo-word demo-l2">行为改变</span>
+                <div class="demo-kids"><div class="demo-node"><span class="demo-word demo-l3">习惯养成</span></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="demo-node"><span class="demo-word demo-l1">视觉设计</span>
+            <div class="demo-kids">
+              <div class="demo-node"><span class="demo-word demo-l2">信息图</span>
+                <div class="demo-kids"><div class="demo-node"><span class="demo-word demo-l3">数据可视化</span></div></div>
+              </div>
+              <div class="demo-node"><span class="demo-word demo-l2">动画</span></div>
+            </div>
+          </div>
+          <div class="demo-node"><span class="demo-word demo-l1">讲故事</span>
+            <div class="demo-kids">
+              <div class="demo-node"><span class="demo-word demo-l2">短视频</span>
+                <div class="demo-kids"><div class="demo-node"><span class="demo-word demo-l3">科普账号</span></div></div>
+              </div>
+              <div class="demo-node"><span class="demo-word demo-l2">写作</span></div>
+            </div>
+          </div>
+          <div class="demo-node"><span class="demo-word demo-l1">系统思考</span>
+            <div class="demo-kids">
+              <div class="demo-node"><span class="demo-word demo-l2">咨询</span></div>
+              <div class="demo-node"><span class="demo-word demo-l2">教练</span>
+                <div class="demo-kids"><div class="demo-node"><span class="demo-word demo-l3">职场教练</span></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="demo-ideas">
+            <div class="di">✨ <b>奇思妙想 1</b>：<span class="src">〔学习方法＋信息图＋短视频〕</span>→ 做一个"把学习方法画出来"的短视频科普账号</div>
+            <div class="di">✨ <b>奇思妙想 2</b>：<span class="src">〔工作坊＋职场教练＋画框架〕</span>→ 开"白板思考"工作坊，教职场人把乱问题画清楚</div>
+            <div class="di">✨ <b>奇思妙想 3</b>：<span class="src">〔知识付费＋习惯养成＋写作〕</span>→ 写一套"21 天行为改变"实操小册</div>
+          </div>
+          <div class="demo-cap">↑ 注意：三个奇思妙想都不是某一个词本身，而是把<b>最外圈几个不相干的词拼在一起</b>产生的新东西。</div>
+        </div>
+      </details>
+    </div>
+
     <div class="card mind">
       <div class="card-title"><span class="ic">🌱</span> 种子活动</div>
-      <div class="card-desc">填入上一步最让你投入的一项活动。</div>
+      <div class="card-desc">从上一步挑一项最让你投入的活动，写得越具体越好（不只是"工作"，而是"在白板前画框架说服团队"）。</div>
       <input type="text" id="mindSeed" placeholder="例如：在白板前把复杂问题画成框架" data-bind2="mind.seed" value="${esc(data.mind.seed)}">
       <div class="mind-tree">
-        <div class="mind-level">
-          <div class="card-title" style="font-size:15px;margin-bottom:10px;"><span class="ic">①</span> 第一层发散（5 个词）</div>
-          <div id="l1Box"></div>
-        </div>
-        <div class="mind-level">
-          <div class="card-title" style="font-size:15px;margin-bottom:10px;"><span class="ic">②</span> 第二层发散（每个一级词再发散 5 个）</div>
-          <div id="l2Box"></div>
-        </div>
+        <div class="card-title" style="font-size:15px;margin-bottom:12px;"><span class="ic">🌀</span> 自由发散树</div>
+        <div id="mindTreeRoot" class="mtree"></div>
+        <button class="add-btn mind-addroot" id="addRoot">＋ 添加一个一级词</button>
       </div>
       <div class="ideas-box">
-        <h4>✨ 三个奇思妙想（从一二级词中任意组合，写出 3 个看似荒诞但诱人的可能）</h4>
+        <h4>✨ 三个奇思妙想</h4>
+        <div class="hint2">从树最外圈的词里，挑 2-3 个互不相干的词硬拼在一起，写成"如果……会不会很酷？"的可能性。先别管可不可行。</div>
         <div id="ideasBox"></div>
       </div>
     </div>
@@ -603,6 +743,109 @@ function navBtns(prev,next){
 }
 function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
 
+/* ==================== 思维导图：自由树形结构 ==================== */
+var MIND_MAX_LEVEL = 4;
+/* 按路径定位节点；path=[] 返回根容器 {children:tree} */
+function mindNode(path){
+  var holder = {children: data.mind.tree};
+  path.forEach(function(i){ holder = holder.children[i]; });
+  return holder;
+}
+function mindParent(path){
+  if(path.length===0) return null;
+  var p = path.slice(0,-1);
+  return p.length===0 ? {children: data.mind.tree} : mindNode(p);
+}
+function renderMindTree(){
+  var root = document.getElementById("mindTreeRoot");
+  if(!root) return;
+  root.innerHTML = "";
+  data.mind.tree.forEach(function(n,i){
+    root.appendChild(renderMindNode(n, [i], 1));
+  });
+}
+function renderMindNode(node, path, level){
+  var wrap = document.createElement("div");
+  wrap.className = "mnode";
+  var row = document.createElement("div");
+  row.className = "mrow";
+  var ph = level===1 ? "一级联想词（看着种子，想到什么写什么）"
+        : level===2 ? "从上面的词联想 3-4 个"
+        : level===3 ? "三级词（还有灵感就继续）"
+        : "四级词（最外圈）";
+  row.innerHTML =
+    '<span class="mtag lv'+level+'">L'+level+'</span>' +
+    '<input type="text" value="'+esc(node.word)+'" placeholder="'+ph+'">' +
+    (level < MIND_MAX_LEVEL
+      ? '<button class="mbtn" data-act="child" title="为这个词联想下一层">＋联想</button>'
+      : '<span class="mbtn leaf" title="第四层是最外圈，从这里选词组合奇思妙想">叶子</span>') +
+    '<button class="mbtn del" data-act="del" title="删除">×</button>';
+  var inp = row.querySelector("input");
+  inp.addEventListener("input", function(){
+    mindNode(path).word = inp.value;
+    save();
+  });
+  inp.addEventListener("blur", function(){ updateProgress(); renderNav(); });
+  var childBtn = row.querySelector('[data-act="child"]');
+  if(childBtn){
+    childBtn.addEventListener("click", function(){
+      var n = mindNode(path);
+      if(!n.children) n.children = [];
+      n.children.push({word:"", children:[]});
+      save(); renderMindTree();
+    });
+  }
+  row.querySelector('[data-act="del"]').addEventListener("click", function(){
+    var parent = mindParent(path);
+    parent.children.splice(path[path.length-1], 1);
+    save(); renderMindTree(); updateProgress(); renderNav();
+  });
+  wrap.appendChild(row);
+  if(node.children && node.children.length){
+    var kids = document.createElement("div");
+    kids.className = "mkids";
+    node.children.forEach(function(c,i){
+      kids.appendChild(renderMindNode(c, path.concat(i), level+1));
+    });
+    wrap.appendChild(kids);
+  }
+  return wrap;
+}
+function mindWalk(arr, fn){
+  arr.forEach(function(n){
+    fn(n);
+    if(n.children) mindWalk(n.children, fn);
+  });
+}
+function mindHasWords(){
+  var found = false;
+  mindWalk(data.mind.tree, function(n){ if(n.word && n.word.trim()) found = true; });
+  return found;
+}
+function mindCountWords(){
+  var c = 0;
+  mindWalk(data.mind.tree, function(n){ if(n.word && n.word.trim()) c++; });
+  return c;
+}
+function mindLeaves(){
+  var out = [];
+  function walk(arr){
+    arr.forEach(function(n){
+      if(n.children && n.children.length){ walk(n.children); }
+      else if(n.word && n.word.trim()){ out.push(n.word.trim()); }
+    });
+  }
+  walk(data.mind.tree);
+  return out;
+}
+function mindDumpMarkdown(arr, depth, out){
+  arr.forEach(function(n){
+    if(!n.word || !n.word.trim()) return;
+    out.push(new Array(depth+1).join("  ") + "- " + n.word);
+    if(n.children) mindDumpMarkdown(n.children, depth+1, out);
+  });
+}
+
 /* ==================== 各步骤 hook ==================== */
 const HOOK = {
   1: function(){
@@ -655,56 +898,36 @@ const HOOK = {
   },
   4: function(){
     bindTextareas2();
-    const l1box=document.getElementById("l1Box");
-    l1box.innerHTML="";
-    data.mind.l1.forEach(function(v,i){
-      const div=document.createElement("div");
-      div.className="mind-branch";
-      div.innerHTML='<span class="tag">①'+(i+1)+'</span><input type="text" value="'+esc(v)+'" data-l1="'+i+'" placeholder="发散词 '+(i+1)+'">';
-      l1box.appendChild(div);
+    renderMindTree();
+    document.getElementById("addRoot").addEventListener("click", function(){
+      data.mind.tree.push({word:"", children:[]});
+      save(); renderMindTree();
     });
-    const l2box=document.getElementById("l2Box");
-    l2box.innerHTML="";
-    data.mind.l2.forEach(function(arr,i){
-      if(!data.mind.l1[i] || !data.mind.l1[i].trim()) return;
-      const grp=document.createElement("div");
-      grp.style.marginBottom="14px";
-      grp.innerHTML='<div style="font-family:var(--serif);font-size:13px;color:var(--accent-2);margin-bottom:6px;">从「'+esc(data.mind.l1[i])+'」发散：</div>';
-      arr.forEach(function(v,j){
-        const div=document.createElement("div");
-        div.className="mind-branch";
-        div.innerHTML='<span class="tag">②'+(j+1)+'</span><input type="text" value="'+esc(v)+'" data-l2="'+i+'-'+j+'" placeholder="二级词 '+(j+1)+'">';
-        grp.appendChild(div);
-      });
-      l2box.appendChild(grp);
-    });
-    l1box.querySelectorAll("input").forEach(function(inp){
-      inp.addEventListener("input",function(){
-        data.mind.l1[+inp.getAttribute("data-l1")]=inp.value; save();
-        if(inp.value.trim() && !data.mind.l2[+inp.getAttribute("data-l1")].some(function(s){return s.trim();})){
-          renderStep();
-        }
-      });
-    });
-    l2box.querySelectorAll("input").forEach(function(inp){
-      inp.addEventListener("input",function(){
-        const k=inp.getAttribute("data-l2").split("-");
-        data.mind.l2[+k[0]][+k[1]]=inp.value; save();
-      });
-    });
+    // 奇思妙想
     const ideasBox=document.getElementById("ideasBox");
     ideasBox.innerHTML="";
     data.mind.ideas.forEach(function(v,i){
       const div=document.createElement("div");
-      div.className="mind-branch";
-      div.innerHTML='<span class="tag">✨'+(i+1)+'</span><input type="text" value="'+esc(v)+'" data-idea="'+i+'" placeholder="奇思妙想 '+(i+1)+'">';
+      div.className="mrow";
+      div.innerHTML='<span class="mtag lv1" style="width:auto;padding:3px 12px;">✨'+(i+1)+'</span>'+
+        '<input type="text" value="'+esc(v)+'" data-idea="'+i+'" placeholder="奇思妙想：把几个不相干的外圈词硬拼在一起"><button class="mbtn del" data-idea-del="'+i+'">×</button>';
       ideasBox.appendChild(div);
     });
     ideasBox.querySelectorAll("input").forEach(function(inp){
       inp.addEventListener("input",function(){
         data.mind.ideas[+inp.getAttribute("data-idea")]=inp.value; save();
       });
+      inp.addEventListener("blur",function(){ updateProgress(); renderNav(); });
     });
+    ideasBox.querySelectorAll("[data-idea-del]").forEach(function(b){
+      b.addEventListener("click",function(){ data.mind.ideas.splice(+b.getAttribute("data-idea-del"),1); save(); renderStep(); });
+    });
+    const addIdea=document.createElement("button");
+    addIdea.className="add-btn";
+    addIdea.style.marginTop="10px";
+    addIdea.textContent="＋ 再写一个奇思妙想";
+    addIdea.addEventListener("click",function(){ data.mind.ideas.push(""); save(); renderStep(); });
+    ideasBox.appendChild(addIdea);
   },
   5: function(){
     const tags=["直线路径","备选路径","狂野路径"];
@@ -935,7 +1158,7 @@ function renderSummary(){
   // 时光日志
   html+=sc("心流活动",data.journal.filter(function(e){return e.activity.trim();}).length+" 条记录");
   // 思维导图
-  html+=sc("奇思妙想",data.mind.ideas.filter(function(s){return s.trim();}).length+" 个");
+  html+=sc("思维导图",mindCountWords()+" 个联想词 · "+data.mind.ideas.filter(function(s){return s.trim();}).length+" 个奇思妙想");
   // 奥德赛
   html+=sc("人生计划",data.ody.filter(function(p){return p.title.trim();}).length+" 个备选");
   // 原型
@@ -983,9 +1206,14 @@ function exportData(){
   d.journal.forEach(function(e,i){ if(e.activity.trim()) md+=(i+1)+". "+e.activity+"（参与"+e.engagement+" 能量"+e.energy+" 心流"+e.flow+"）\n"; });
   md+="\n---\n\n## 4. 思维导图\n\n";
   if(d.mind.seed.trim()) md+="**种子活动：**"+d.mind.seed+"\n\n";
-  md+="**一级发散：**"+d.mind.l1.filter(function(s){return s.trim();}).join("、")+"\n\n";
-  d.mind.l2.forEach(function(arr,i){ if(d.mind.l1[i]&&d.mind.l1[i].trim()&&arr.some(function(s){return s.trim();})) md+="从「"+d.mind.l1[i]+"」："+arr.filter(function(s){return s.trim();}).join("、")+"\n"; });
-  md+="\n**奇思妙想：**\n";
+  var treeLines=[];
+  mindDumpMarkdown(d.mind.tree, 0, treeLines);
+  if(treeLines.length){
+    md+="**发散树：**\n"+treeLines.join("\n")+"\n\n";
+    var leaves=mindLeaves();
+    if(leaves.length) md+="**最外圈叶子词：**"+leaves.join("、")+"\n\n";
+  }
+  md+="**奇思妙想：**\n";
   d.mind.ideas.forEach(function(s,i){ if(s.trim()) md+=(i+1)+". "+s+"\n"; });
   md+="\n---\n\n## 5. 奥德赛计划\n\n";
   const otags=["Plan A 直线路径","Plan B 备选路径","Plan C 狂野路径"];
@@ -1023,9 +1251,10 @@ document.getElementById("exportBtn").addEventListener("click",exportData);
 document.getElementById("resetBtn").addEventListener("click",function(){
   if(confirm("确定清空所有数据？此操作不可撤销。")){
     localStorage.removeItem(STORAGE_KEY);
-    data=loadData(); cur=0; renderNav(); updateProgress(); renderStep();
+    data=loadData(); migrateMind(); cur=0; renderNav(); updateProgress(); renderStep();
   }
 });
+migrateMind();
 renderNav();
 updateProgress();
 renderStep();
