@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>人生设计工坊 · 斯坦福人生设计课实操 · 林远见路</title>
+<meta name="description" content="基于斯坦福《人生设计课》的 8 步实操工坊：HWPL 仪表盘、人生指南针、美好时光日志、思维导图、奥德赛计划、原型设计、失败免疫，最终输出你当前的人生最优解。数据本地保存，可导出完整档案。">
+<style>
+  :root{
+    --paper:#f6f1e7;
+    --paper-2:#fbf8f1;
+    --paper-3:#efe6d3;
+    --ink:#2b2722;
+    --ink-soft:#5c554b;
+    --ink-faint:#8a8074;
+    --line:#e3dac8;
+    --accent:#9a3b2e;      /* 朱红书签 */
+    --accent-2:#b8794a;
+    --accent-3:#2e5a77;    /* 深青 */
+    --accent-4:#4a6b3a;    /* 墨绿 */
+    --gold:#b89048;
+    --shadow:0 12px 40px rgba(43,39,34,.10);
+    --serif:"Songti SC","Source Han Serif SC","Noto Serif SC",Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--sans);color:var(--ink);background:var(--paper);
+    background-image:
+      radial-gradient(circle at 18% 8%, rgba(184,121,74,.06), transparent 42%),
+      radial-gradient(circle at 84% 88%, rgba(46,90,119,.05), transparent 46%);
+    line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.035'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  body>*{position:relative;z-index:1;}
+  ::selection{background:rgba(154,59,46,.18);}
+
+  /* ===== 顶部进度条 ===== */
+  .progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent-2));z-index:50;transition:width .4s ease;}
+
+  /* ===== 布局 ===== */
+  .app{display:grid;grid-template-columns:268px 1fr;min-height:100vh;}
+  @media(max-width:900px){.app{grid-template-columns:1fr;}}
+
+  /* ===== 侧边栏 ===== */
+  .side{
+    position:sticky;top:0;height:100vh;overflow-y:auto;
+    background:linear-gradient(180deg,#2e2721,#3d332b);
+    color:#efe4d3;padding:30px 0 24px;display:flex;flex-direction:column;
+    border-right:1px solid rgba(0,0,0,.25);
+  }
+  @media(max-width:900px){
+    .side{position:relative;height:auto;flex-direction:column;}
+  }
+  .side::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(circle at 70% 10%, rgba(184,121,74,.16), transparent 55%);
+  }
+  .side > *{position:relative;z-index:2;}
+  .side .brand{padding:0 26px 22px;border-bottom:1px solid rgba(240,217,184,.14);}
+  .side .brand .ic{font-size:22px;}
+  .side .brand h1{font-family:var(--serif);font-size:21px;color:#fff;margin-top:6px;letter-spacing:.02em;}
+  .side .brand .sub{font-size:12px;color:#d6c1a3;letter-spacing:.08em;margin-top:4px;}
+  .side .nav{list-style:none;padding:16px 16px;flex:1;}
+  .side .nav li{margin-bottom:3px;}
+  .side .nav button{
+    width:100%;display:flex;align-items:center;gap:12px;text-align:left;
+    background:none;border:none;color:#c9b89c;font-family:var(--sans);font-size:14px;
+    padding:11px 14px;border-radius:10px;cursor:pointer;transition:all .18s;position:relative;
+  }
+  .side .nav button:hover{background:rgba(240,217,184,.08);color:#f0d9b8;}
+  .side .nav button.active{background:rgba(154,59,46,.32);color:#fff;}
+  .side .nav button.active::before{content:"";position:absolute;left:0;top:8px;bottom:8px;width:3px;background:var(--accent);border-radius:2px;}
+  .side .nav .no{font-family:var(--serif);font-size:13px;width:24px;flex:none;color:#e2cba6;}
+  .side .nav button.active .no{color:#fff;}
+  .side .nav .done{margin-left:auto;font-size:11px;color:var(--accent-2);}
+  .side .nav button.active .done{color:#f0d9b8;}
+  .side .nav .phase{font-size:10.5px;letter-spacing:.16em;color:#8a7a60;text-transform:uppercase;padding:14px 14px 6px;}
+  .side .foot{padding:16px 26px;border-top:1px solid rgba(240,217,184,.14);}
+  .side .foot .export{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;
+    background:var(--accent);color:#fff;border:none;padding:12px;border-radius:10px;cursor:pointer;
+    font-family:var(--sans);font-size:13.5px;font-weight:600;transition:.18s;}
+  .side .foot .export:hover{background:#7f2f24;}
+  .side .foot .reset{display:block;margin:12px auto 0;background:none;border:none;color:#8a7a60;
+    font-size:12px;cursor:pointer;text-decoration:underline;}
+  .side .foot .reset:hover{color:#d6c1a3;}
+  @media(max-width:900px){
+    .side .nav{display:flex;overflow-x:auto;gap:4px;padding:12px;}
+    .side .nav li{margin-bottom:0;flex:none;}
+    .side .nav button{white-space:nowrap;padding:9px 13px;}
+    .side .nav .phase{display:none;}
+  }
+
+  /* ===== 主区 ===== */
+  .main{padding:46px clamp(20px,4vw,56px) 80px;max-width:880px;margin:0 auto;width:100%;}
+  .step{display:none;animation:fade .4s ease;}
+  .step.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+  .step-head{margin-bottom:28px;padding-bottom:18px;border-bottom:1px solid var(--line);}
+  .step-badge{display:inline-block;font-family:var(--serif);font-size:12.5px;letter-spacing:.14em;
+    color:var(--accent);border:1px solid var(--accent);padding:4px 14px;border-radius:30px;margin-bottom:14px;text-transform:uppercase;}
+  .step-head h1{font-family:var(--serif);font-size:clamp(26px,4vw,34px);line-height:1.2;margin-bottom:8px;}
+  .step-head .desc{color:var(--ink-soft);font-size:15px;max-width:680px;}
+  .step-head .desc strong{color:var(--accent);font-family:var(--serif);}
+
+  /* ===== 卡片 ===== */
+  .card{background:var(--paper-2);border:1px solid var(--line);border-radius:16px;
+    padding:24px 26px;margin-bottom:20px;box-shadow:var(--shadow);}
+  .card-title{font-family:var(--serif);font-size:18px;margin-bottom:6px;display:flex;align-items:center;gap:10px;}
+  .card-title .ic{font-size:18px;}
+  .card-desc{color:var(--ink-soft);font-size:14px;margin-bottom:16px;}
+  .card-desc strong{color:var(--accent);}
+
+  label{display:block;font-size:13.5px;color:var(--ink-soft);margin:14px 0 7px;font-weight:600;}
+  .hint{font-weight:400;color:var(--ink-faint);font-size:12.5px;}
+  textarea,input[type=text],input[type=number]{
+    width:100%;font-family:var(--sans);font-size:14.5px;color:var(--ink);
+    background:var(--paper);border:1px solid var(--line);border-radius:10px;
+    padding:12px 14px;resize:vertical;line-height:1.7;transition:.18s;
+  }
+  textarea{min-height:90px;}
+  textarea:focus,input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(154,59,46,.1);}
+  .count{font-size:12px;color:var(--ink-faint);text-align:right;margin-top:4px;}
+
+  /* 滑块 */
+  .slider-row{margin-bottom:18px;}
+  .slider-row .lbl{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+  .slider-row .lbl b{font-family:var(--serif);font-size:15px;}
+  .slider-row .lbl .v{font-family:var(--serif);font-size:18px;color:var(--accent);min-width:30px;text-align:right;}
+  .slider-row .scale{font-size:11px;color:var(--ink-faint);display:flex;justify-content:space-between;margin-top:4px;}
+  input[type=range]{-webkit-appearance:none;width:100%;height:6px;border-radius:3px;
+    background:linear-gradient(90deg,var(--line),var(--accent-2));outline:none;}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;
+    background:var(--accent);border:3px solid var(--paper-2);cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.2);}
+  input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--accent);border:3px solid var(--paper-2);cursor:pointer;}
+
+  /* 单选药丸 */
+  .pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;}
+  .pill{font-size:13px;border:1px solid var(--line);background:var(--paper);color:var(--ink-soft);
+    padding:8px 16px;border-radius:24px;cursor:pointer;transition:.16s;}
+  .pill:hover{border-color:var(--accent);color:var(--accent);}
+  .pill.active{background:var(--accent);color:#fff;border-color:var(--accent);}
+
+  /* 雷达图 */
+  .radar-wrap{display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:center;margin-top:8px;}
+  .radar-wrap svg{flex:none;}
+  .radar-legend{display:flex;flex-direction:column;gap:10px;font-size:13px;}
+  .radar-legend .li{display:flex;align-items:center;gap:8px;}
+  .radar-legend .dot{width:12px;height:12px;border-radius:50%;flex:none;}
+  .balance{text-align:center;font-size:13px;color:var(--ink-faint);margin-top:10px;}
+
+  /* 列表条目（时光日志/失败/原型） */
+  .entry{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:12px;position:relative;}
+  .entry .row{display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap;}
+  .entry .row > input{flex:1 1 200px;}
+  .entry .mini-sliders{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:10px;}
+  .entry .ms{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--ink-soft);}
+  .entry .ms input{flex:1;height:4px;padding:0;}
+  .entry .ms input::-webkit-slider-thumb{width:14px;height:14px;}
+  .entry .ms b{font-family:var(--serif);color:var(--accent);min-width:18px;text-align:right;}
+  .entry .del{background:none;border:none;color:var(--ink-faint);font-size:18px;cursor:pointer;padding:0 4px;flex:none;line-height:1;}
+  .entry .del:hover{color:var(--accent);}
+  .add-btn{display:inline-flex;align-items:center;gap:6px;background:var(--paper);border:1px dashed var(--accent-2);
+    color:var(--accent-2);padding:9px 18px;border-radius:24px;cursor:pointer;font-size:13.5px;transition:.18s;}
+  .add-btn:hover{background:rgba(184,121,74,.1);border-style:solid;}
+
+  /* 思维导图 */
+  .mind input{margin-bottom:10px;}
+  .mind-tree{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:16px;margin-top:10px;}
+  .mind-level{margin-bottom:14px;}
+  .mind-branch{display:flex;gap:8px;align-items:center;margin-bottom:8px;flex-wrap:wrap;}
+  .mind-branch input{flex:1 1 160px;}
+  .mind-branch .tag{font-family:var(--serif);font-size:12px;color:var(--accent);width:24px;flex:none;}
+  .ideas-box{margin-top:14px;background:rgba(154,59,46,.05);border:1px dashed var(--accent);border-radius:12px;padding:16px;}
+  .ideas-box h4{font-family:var(--serif);font-size:15px;color:var(--accent);margin-bottom:10px;}
+
+  /* 奥德赛三计划 */
+  .ody-plan{border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:16px;background:var(--paper-2);}
+  .ody-plan .ptag{font-family:var(--serif);font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px;}
+  .ody-plan h3{font-family:var(--serif);font-size:18px;margin-bottom:14px;}
+  .ody-plan .a{border-left:4px solid var(--accent-3);}
+  .ody-plan .b{border-left:4px solid var(--accent-2);}
+  .ody-plan .c{border-left:4px solid var(--accent);}
+  .ody-plan .a .ptag{color:var(--accent-3);}
+  .ody-plan .b .ptag{color:var(--accent-2);}
+  .ody-plan .c .ptag{color:var(--accent);}
+
+  /* 失败免疫 */
+  .fail-entry{border-left:4px solid var(--line);}
+  .fail-entry.err{border-left-color:var(--accent);}
+  .fail-entry.weak{border-left-color:var(--accent-2);}
+  .fail-entry.grow{border-left-color:var(--accent-4);}
+  .fail-type{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;}
+  .fail-type .pill{font-size:12px;padding:6px 12px;}
+
+  /* 最优解 */
+  .final-box{background:linear-gradient(150deg,#2e2721,#3d332b);color:#efe4d3;border-radius:18px;padding:34px 30px;margin-bottom:20px;}
+  .final-box h3{font-family:var(--serif);color:#f0d9b8;font-size:16px;margin-bottom:8px;}
+  .final-box .stmt{font-family:var(--serif);font-size:clamp(18px,2.6vw,22px);line-height:1.6;color:#fff;margin:10px 0;min-height:40px;}
+  .final-box .stmt.empty{color:#8a7a60;font-style:italic;}
+  .next-list{margin-top:18px;}
+  .next-list li{margin-bottom:8px;padding-left:4px;}
+  .summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:16px;}
+  .summary-grid .sc{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:16px;}
+  .summary-grid .sc .k{font-size:12px;color:var(--ink-faint);margin-bottom:4px;}
+  .summary-grid .sc .v{font-family:var(--serif);font-size:15px;color:var(--ink);}
+
+  /* 导航按钮 */
+  .nav-btns{display:flex;justify-content:space-between;gap:12px;margin-top:30px;}
+  .btn{font-family:var(--sans);font-size:14.5px;padding:12px 26px;border-radius:24px;cursor:pointer;transition:.18s;border:1px solid var(--line);background:var(--paper-2);color:var(--ink-soft);}
+  .btn:hover{border-color:rgba(154,59,46,.35);color:var(--accent);}
+  .btn.primary{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600;}
+  .btn.primary:hover{background:#7f2f24;}
+  .btn[disabled]{opacity:.4;cursor:not-allowed;}
+
+  /* welcome 五心态 */
+  .mindset-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-top:10px;}
+  .mindset-card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:16px;}
+  .mindset-card .t{font-family:var(--serif);font-size:15px;color:var(--accent);margin-bottom:4px;}
+  .mindset-card .d{font-size:13px;color:var(--ink-soft);}
+  .note-box{margin-top:18px;background:var(--paper);border:1px dashed var(--accent-2);border-radius:12px;padding:18px 22px;font-size:14.5px;color:var(--ink-soft);}
+  .note-box ul{list-style:disc;padding-left:20px;line-height:2;}
+  .note-box b{color:var(--accent);font-family:var(--serif);}
+
+  footer{padding:40px 28px 54px;text-align:center;color:var(--ink-faint);font-size:13px;}
+  footer .line{width:60px;height:3px;background:var(--accent);margin:0 auto 18px;border-radius:3px;}
+  footer b{font-family:var(--serif);color:var(--ink-soft);}
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progressBar" style="width:0%"></div>
+<div class="app">
+  <!-- 侧边栏 -->
+  <aside class="side">
+    <div class="brand">
+      <div class="ic">🧭</div>
+      <h1>人生设计工坊</h1>
+      <div class="sub">基于斯坦福《人生设计课》</div>
+    </div>
+    <ul class="nav" id="navList"></ul>
+    <div class="foot">
+      <button class="export" id="exportBtn">📥 导出我的设计</button>
+      <button class="reset" id="resetBtn">清空所有数据</button>
+    </div>
+  </aside>
+
+  <!-- 主区 -->
+  <main class="main" id="main"></main>
+</div>
+
+<footer>
+  <div class="line"></div>
+  <b>林远见路 · 人生设计工坊</b><br>
+  数据保存在你的浏览器本地，不上传任何服务器 · 基于斯坦福《Designing Your Life》方法论
+</footer>
+
+<script>
+/* ==================== 数据与步骤定义 ==================== */
+const STORAGE_KEY = "lifeDesignV1";
+const STEPS = [
+  { id:0, no:"0", title:"开始", phase:"引入" },
+  { id:1, no:"Ⅰ", title:"HWPL 仪表盘", phase:"了解自己" },
+  { id:2, no:"Ⅱ", title:"人生指南针", phase:"了解自己" },
+  { id:3, no:"Ⅲ", title:"美好时光日志", phase:"了解自己" },
+  { id:4, no:"Ⅳ", title:"思维导图", phase:"了解自己" },
+  { id:5, no:"Ⅴ", title:"奥德赛计划", phase:"探索可能" },
+  { id:6, no:"Ⅵ", title:"原型设计", phase:"探索可能" },
+  { id:7, no:"Ⅶ", title:"失败免疫", phase:"探索可能" },
+  { id:8, no:"✓", title:"当前最优解", phase:"输出" }
+];
+
+let data = loadData();
+let cur = 0;
+
+function loadData(){
+  try{ const raw = localStorage.getItem(STORAGE_KEY); if(raw) return JSON.parse(raw); }catch(e){}
+  return {
+    hwpl:{health:5,work:5,play:5,love:5},
+    gravity:"", coreQ:"",
+    workview:"", lifeview:"", consistency:0, consistencyNote:"",
+    journal:[],   // {activity,engagement,energy,flow}
+    mind:{seed:"", l1:["","","","",""], l2:[["","","","",""],["","","","",""],["","","","",""],["","","","",""],["","","","",""]], ideas:["","",""]},
+    ody:[
+      {title:"",tagline:"",timeline:"",questions:"",resources:"",gauge:5},
+      {title:"",tagline:"",timeline:"",questions:"",resources:"",gauge:5},
+      {title:"",tagline:"",timeline:"",questions:"",resources:"",gauge:5}
+    ],
+    proto:{convos:[], experiences:[]},
+    fails:[],  // {desc,type,insight}
+    final:{statement:"", next:[]}
+  };
+}
+function save(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }
+
+/* ==================== 导航渲染 ==================== */
+function renderNav(){
+  const ul = document.getElementById("navList");
+  let lastPhase = "";
+  ul.innerHTML = "";
+  STEPS.forEach(function(s){
+    if(s.phase && s.phase !== lastPhase){
+      lastPhase = s.phase;
+      const ph = document.createElement("li");
+      ph.className = "phase";
+      ph.textContent = s.phase;
+      ul.appendChild(ph);
+    }
+    const li = document.createElement("li");
+    const btn = document.createElement("button");
+    const done = isDone(s.id) ? '<span class="done">✓</span>' : "";
+    btn.innerHTML = '<span class="no">' + s.no + '</span><span>' + s.title + '</span>' + done;
+    if(s.id === cur) btn.classList.add("active");
+    btn.addEventListener("click", function(){ goTo(s.id); });
+    li.appendChild(btn);
+    ul.appendChild(li);
+  });
+}
+function isDone(id){
+  switch(id){
+    case 0: return true;
+    case 1: return data.coreQ.trim().length > 0;
+    case 2: return data.workview.length > 30 && data.lifeview.length > 30;
+    case 3: return data.journal.length > 0;
+    case 4: return data.mind.ideas.some(function(s){return s.trim();});
+    case 5: return data.ody.some(function(p){return p.title.trim();});
+    case 6: return data.proto.convos.length>0 || data.proto.experiences.length>0;
+    case 7: return data.fails.length > 0;
+    case 8: return data.final.statement.trim().length > 0;
+  }
+  return false;
+}
+function updateProgress(){
+  let n = 0;
+  for(var i=1;i<=8;i++){ if(isDone(i)) n++; }
+  document.getElementById("progressBar").style.width = Math.round(n/8*100) + "%";
+}
+
+/* ==================== 步骤切换 ==================== */
+function goTo(id){
+  cur = id;
+  renderNav();
+  updateProgress();
+  renderStep();
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+
+/* ==================== 渲染主区 ==================== */
+function renderStep(){
+  const main = document.getElementById("main");
+  main.innerHTML = "";
+  const sec = document.createElement("section");
+  sec.className = "step active";
+  sec.id = "step" + cur;
+  sec.innerHTML = TPL[cur]();
+  main.appendChild(sec);
+  HOOK[cur] && HOOK[cur]();
+}
+
+/* ==================== 模板 ==================== */
+const TPL = {
+  0: function(){ return `
+    <div class="step-head">
+      <span class="step-badge">欢迎</span>
+      <h1>人生设计工坊</h1>
+      <p class="desc">本工具基于斯坦福大学最受欢迎的课程《人生设计课》（Designing Your Life），由比尔·博内特和戴夫·伊万斯创建。<br><br>
+      人生没有最优解，只有<strong>持续优化的原型</strong>。这套工具将带你走过完整的 <strong>8 个步骤</strong>，从评估现状到最终找到你当前的最优解。<br><br>
+      所有数据自动保存在浏览器本地，不会上传任何服务器。随时可以导出你的完整设计档案。</p>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="ic">🧭</span> 五大设计心态</div>
+      <div class="card-desc">在开始之前，请记住这五种心态——它们是整套方法的灵魂：</div>
+      <div class="mindset-grid">
+        <div class="mindset-card"><div class="t">🔍 保持好奇</div><div class="d">好奇心让可能性涌现</div></div>
+        <div class="mindset-card"><div class="t">🔄 不断尝试</div><div class="d">不要空想，去试</div></div>
+        <div class="mindset-card"><div class="t">💡 重新定义问题</div><div class="d">你面临的问题往往不是真正的问题</div></div>
+        <div class="mindset-card"><div class="t">🎯 专注过程</div><div class="d">把精力放在可改变的事上</div></div>
+        <div class="mindset-card"><div class="t">🤝 深度合作</div><div class="d">人生设计不是一个人的事，建立你的支持网络</div></div>
+      </div>
+    </div>
+    <div class="note-box">
+      <b>📋 操作说明</b>
+      <ul>
+        <li>按左侧导航顺序逐步完成，每步约需 10-30 分钟</li>
+        <li>所有输入自动保存，关闭页面后再回来不会丢失</li>
+        <li>建议在安静的环境下认真填写，越真实越好</li>
+        <li>第 1-4 步是"了解自己"，第 5-7 步是"探索可能"，第 8 步综合输出最优解</li>
+        <li>完成后点击"导出我的设计"可保存完整档案</li>
+      </ul>
+    </div>
+    <div class="nav-btns"><div></div><button class="btn primary" onclick="goTo(1)">开始第一步 →</button></div>
+  `;},
+
+  1: function(){ return `
+    <div class="step-head">
+      <span class="step-badge">第 1 步</span>
+      <h1>HWPL 仪表盘</h1>
+      <p class="desc">从<strong>健康(Health)、工作(Work)、娱乐(Play)、爱(Love)</strong>四个维度给当前生活打分（0=糟糕 → 10=完美）。不要求四项绝对均衡，但需要识别失衡点。</p>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="ic">📊</span> 当前生活满意度</div>
+      <div class="card-desc">拖动滑块为每个维度打分。直觉作答，不要过度思考。</div>
+      <div id="hwplSliders"></div>
+      <div class="radar-wrap" id="radarWrap"></div>
+      <div class="balance" id="hwplBalance"></div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="ic">⚓</span> 识别重力问题</div>
+      <div class="card-desc"><strong>重力问题</strong> = 你无法改变的现实（年龄、经济环境、他人想法、已发生的事）。它们不是"问题"，而是"处境"。接受它们，把精力花在可解决的事上。</div>
+      <label>你当前面临的"重力问题"有哪些？<span class="hint">（每行一个，列出后告诉自己：这不是问题，这是处境）</span></label>
+      <textarea id="gravity" placeholder="例如：&#10;我已经35岁了，无法回到20岁&#10;当前经济环境下就业机会有限&#10;家人不理解我的职业选择&#10;我的学历背景限制了某些路径" data-bind="gravity">${esc(data.gravity)}</textarea>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="ic">❓</span> 你真正想解决的人生问题</div>
+      <div class="card-desc">很多时候我们纠结的不是真正的问题。花一分钟想想：如果你现在有一年时间，什么都不用担心，你最想解决的关于"人生方向"的问题是什么？</div>
+      <textarea id="coreQ" placeholder="例如：我到底该继续现在的职业，还是大胆转向一个全新的方向？" data-bind="coreQ">${esc(data.coreQ)}</textarea>
+    </div>
+    ${navBtns(0,2)}
+  `;},
+
+  2: function(){ return `
+    <div class="step-head">
+      <span class="step-badge">第 2 步</span>
+      <h1>人生指南针</h1>
+      <p class="desc">分别写下你的<strong>工作观</strong>和<strong>人生观</strong>，然后检查两者的内在一致性。幸福 = 意义 + 快乐。当你的所做、所信、所是能讲成一个连贯的故事时，人生就是有意义的。</p>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="ic">💼</span> 工作观 — Workview</div>
+      <div class="card-desc">工作对你意味着什么？它与社会的关系是什么？什么样的工作对你来说是"好工作"？</div>
+      <div class="note-box"><b>💡 参考问题</b>① 为什么工作？② 工作的意义？③ 工作与个人、他人、社会的关系？④ 什么是好工作？⑤ 金钱与工作的关系？⑥ 经验、成长、成就与工作哪个更重要？</div>
+      <textarea id="workview" placeholder="写下你对工作的看法，建议不少于 100 字..." style="min-height:140px" data-bind="workview">${esc(data.workview)}</textarea>
+      <div class="count"><span id="wvCount">${data.workview.length}</span> 字</div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="ic">🌟</span> 人生观 — Lifeview</div>
+      <div class="card-desc">人生的意义是什么？你为什么活？什么东西对你最重要？</div>
+      <div class="note-box"><b>💡 参考问题</b>① 为什么活着？人生的目的？② 人生的意义？③ 个人与他人的关系？④ 家庭、社区、国家在人生中的位置？⑤ 善恶是否存在？⑥ 是否有超越日常的力量？</div>
+      <textarea id="lifeview" placeholder="写下你对人生的看法，建议不少于 100 字..." style="min-height:140px" data-bind="lifeview">${esc(data.lifeview)}</textarea>
+      <div class="count"><span id="lvCount">${data.lifeview.length}</span> 字</div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="ic">🔗</span> 一致性检查</div>
+      <div class="card-desc">你的工作观和人生观之间是否协调？工作是否服务于你对人生意义的理解？有没有矛盾之处？</div>
+      <label>你的工作观和人生观的一致程度：</label>
+      <div class="pills" id="consPills">
+        <span class="pill" data-val="1">完全矛盾</span>
+        <span class="pill" data-val="2">部分矛盾</span>
+        <span class="pill" data-val="3">基本一致</span>
+        <span class="pill" data-val="4">高度一致</span>
+      </div>
+      <label>具体说明矛盾或一致之处：<span class="hint">（哪里协调？哪里需要调整？）</span></label>
+      <textarea id="consNote" placeholder="例如：我希望做有社会价值的工作，但现在的工作只是为了赚钱，这与我认为人生应创造价值相矛盾..." data-bind="consistencyNote">${esc(data.consistencyNote)}</textarea>
+    </div>
+    ${navBtns(1,3)}
+  `;},
+
+  3: function(){ return `
+    <div class="step-head">
+      <span class="step-badge">第 3 步</span>
+      <h1>美好时光日志</h1>
+      <p class="desc">记录让你投入、带来能量、产生心流的活动。这是后续思维导图和奥德赛计划的燃料。<strong>记录越具体越好</strong>——不只是"开会"，而是"在白板前画框架说服团队"。</p>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="ic">📒</span> 我的活动记录</div>
+      <div class="card-desc">为每项活动打分：参与度（多投入）、能量（正负）、心流（忘我程度），均 0-10。</div>
+      <div id="journalList"></div>
+      <button class="add-btn" id="addJournal">+ 添加一条活动</button>
+    </div>
+    ${navBtns(2,4)}
+  `;},
+
+  4: function(){ return `
+    <div class="step-head">
+      <span class="step-badge">第 4 步</span>
+      <h1>思维导图</h1>
+      <p class="desc">从上一步挑一个让你心流的活动作为种子，向外发散两级，再从组合中提取 3 个<strong>奇思妙想</strong>。规则：不评判、追求数量、越离谱越好——原型设计的素材就在这里。</p>
+    </div>
+    <div class="card mind">
+      <div class="card-title"><span class="ic">🌱</span> 种子活动</div>
+      <div class="card-desc">填入上一步最让你投入的一项活动。</div>
+      <input type="text" id="mindSeed" placeholder="例如：在白板前把复杂问题画成框架" data-bind2="mind.seed" value="${esc(data.mind.seed)}">
+      <div class="mind-tree">
+        <div class="mind-level">
+          <div class="card-title" style="font-size:15px;margin-bottom:10px;"><span class="ic">①</span> 第一层发散（5 个词）</div>
+          <div id="l1Box"></div>
+        </div>
+        <div class="mind-level">
+          <div class="card-title" style="font-size:15px;margin-bottom:10px;"><span class="ic">②</span> 第二层发散（每个一级词再发散 5 个）</div>
+          <div id="l2Box"></div>
+        </div>
+      </div>
+      <div class="ideas-box">
+        <h4>✨ 三个奇思妙想（从一二级词中任意组合，写出 3 个看似荒诞但诱人的可能）</h4>
+        <div id="ideasBox"></div>
+      </div>
+    </div>
+    ${navBtns(3,5)}
+  `;},
+
+  5: function(){ return `
+    <div class="step-head">
+      <span class="step-badge">第 5 步</span>
+      <h1>奥德赛计划</h1>
+      <p class="desc">为未来 5 年设计<strong>三个截然不同的计划</strong>。不是三选一，而是同时存在——它们共同构成你的人生选项空间。</p>
+    </div>
+    <div class="card" style="padding:18px;">
+      <div class="ody-plan a">
+        <div class="ptag">Plan A · 直线路径</div>
+        <h3>当前方向的延伸与深化</h3>
+        <p class="card-desc">如果你继续现在的轨迹，5 年后会是怎样？这是最"合理"的计划。</p>
+        ${odyFields(0)}
+      </div>
+      <div class="ody-plan b">
+        <div class="ptag">Plan B · 备选路径</div>
+        <h3>如果 Plan A 突然不可行</h3>
+        <p class="card-desc">如果现在的方向走不通了（行业消失、健康原因…），你会做什么？</p>
+        ${odyFields(1)}
+      </div>
+      <div class="ody-plan c">
+        <div class="ptag">Plan C · 狂野路径</div>
+        <h3>如果金钱与面子都不是问题</h3>
+        <p class="card-desc">去掉所有现实约束，你最想做什么？越离谱越好。</p>
+        ${odyFields(2)}
+      </div>
+    </div>
+    ${navBtns(4,6)}
+  `;},
+
+  6: function(){ return `
+    <div class="step-head">
+      <span class="step-badge">第 6 步</span>
+      <h1>原型设计</h1>
+      <p class="desc">人生设计靠的不是空想，而是<strong>微型实验</strong>。用两种方式低成本验证你的计划：与过来人对话、做一次小体验。别承诺，先试。</p>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="ic">🗣️</span> 原型对话清单</div>
+      <div class="card-desc">列出你想采访的人（在你想去的领域里真实生活着的人）。问他：你的一天怎么过？你怎么走到今天？有什么出乎意料？</div>
+      <div id="convosList"></div>
+      <button class="add-btn" id="addConvo">+ 添加对话对象</button>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="ic">🧪</span> 原型体验清单</div>
+      <div class="card-desc">列出你能在一周内完成的小体验（花 2 小时到 1 天）。如：旁听一门课、做一天义工、写一篇该领域的文章。</div>
+      <div id="expList"></div>
+      <button class="add-btn" id="addExp">+ 添加体验</button>
+    </div>
+    ${navBtns(5,7)}
+  `;},
+
+  7: function(){ return `
+    <div class="step-head">
+      <span class="step-badge">第 7 步</span>
+      <h1>失败免疫</h1>
+      <p class="desc">把失败分类，你就不再害怕它。每次失败都是数据。<strong>错误</strong>（可改正）、<strong>弱点</strong>（需绕开）、<strong>成长机会</strong>（值得拥抱）。</p>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="ic">🛡️</span> 失败记录簿</div>
+      <div class="card-desc">记录近期的一次失败，分类它，提炼洞察。失败的终极价值是"不再为同一件事失败"。</div>
+      <div id="failsList"></div>
+      <button class="add-btn" id="addFail">+ 记录一次失败</button>
+    </div>
+    ${navBtns(6,8)}
+  `;},
+
+  8: function(){ return `
+    <div class="step-head">
+      <span class="step-badge">第 8 步</span>
+      <h1>当前最优解</h1>
+      <p class="desc">这不是"最终答案"——人生没有最终答案。这是<strong>此时此刻你的最优解</strong>：基于前 7 步的洞察，你接下来 6-12 个月想走的方向。每隔半年重做一次。</p>
+    </div>
+    <div class="final-box">
+      <h3>🧭 我的人生方向声明</h3>
+      <div class="stmt ${data.final.statement.trim()?'':'empty'}" id="stmtPreview">${data.final.statement.trim() || '（在下方写下你当前的人生方向声明，会实时显示在这里）'}</div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="ic">✍️</span> 写下你当前的方向声明</div>
+      <div class="card-desc">综合你的工作观/人生观、心流活动、奥德赛计划，用 2-3 句话写下：接下来我打算朝什么方向走、为什么。</div>
+      <textarea id="finalStmt" placeholder="例如：接下来一年，我要在保持现有工作的同时，用业余时间把心理学知识产品化，因为它同时满足了我对'创造价值'和'深度思考'的需要..." style="min-height:120px" data-bind="final.statement">${esc(data.final.statement)}</textarea>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="ic">🎯</span> 接下来的 3 个具体行动</div>
+      <div class="card-desc">从原型对话/体验中挑出未来 2 周就能开始的 3 个最小行动。</div>
+      <div id="nextList"></div>
+      <button class="add-btn" id="addNext">+ 添加一个行动</button>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="ic">📊</span> 我的 8 步全景回顾</div>
+      <div class="summary-grid" id="summaryGrid"></div>
+    </div>
+    ${navBtns(7,0).replace('→','').replace('下一步','完成')}
+  `}
+};
+
+function navBtns(prev,next){
+  const last = next===0;
+  return `<div class="nav-btns">
+    <button class="btn" onclick="goTo(${prev})">← 上一步</button>
+    <button class="btn primary" onclick="goTo(${next})">${last?'完成 ✓':'下一步 →'}</button>
+  </div>`;
+}
+function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
+
+/* ==================== 各步骤 hook ==================== */
+const HOOK = {
+  1: function(){
+    const dims = [["health","健康 Health","#9a3b2e"],["work","工作 Work","#b8794a"],["play","娱乐 Play","#2e5a77"],["love","爱 Love","#4a6b3a"]];
+    const box = document.getElementById("hwplSliders");
+    box.innerHTML = "";
+    dims.forEach(function(d){
+      const row = document.createElement("div");
+      row.className = "slider-row";
+      row.innerHTML = '<div class="lbl"><b>'+d[1]+'</b><span class="v">'+data.hwpl[d[0]]+'</span></div>'+
+        '<input type="range" min="0" max="10" value="'+data.hwpl[d[0]]+'" data-dim="'+d[0]+'" style="accent-color:'+d[2]+'">'+
+        '<div class="scale"><span>0 糟糕</span><span>10 完美</span></div>';
+      box.appendChild(row);
+    });
+    box.querySelectorAll("input[type=range]").forEach(function(sl){
+      sl.addEventListener("input", function(){
+        data.hwpl[sl.getAttribute("data-dim")] = +sl.value;
+        sl.parentElement.querySelector(".v").textContent = sl.value;
+        save(); renderRadar();
+      });
+    });
+    bindTextareas();
+    renderRadar();
+  },
+  2: function(){
+    bindTextareas();
+    const pills = document.getElementById("consPills").querySelectorAll(".pill");
+    pills.forEach(function(p){
+      if(+p.getAttribute("data-val")===data.consistency) p.classList.add("active");
+      p.addEventListener("click", function(){
+        pills.forEach(function(x){x.classList.remove("active");});
+        p.classList.add("active");
+        data.consistency = +p.getAttribute("data-val");
+        save();
+      });
+    });
+    const wv=document.getElementById("workview"), lv=document.getElementById("lifeview");
+    wv.addEventListener("input",function(){document.getElementById("wvCount").textContent=wv.value.length;});
+    lv.addEventListener("input",function(){document.getElementById("lvCount").textContent=lv.value.length;});
+  },
+  3: function(){
+    const list=document.getElementById("journalList");
+    list.innerHTML="";
+    if(data.journal.length===0){ renderJournalEmpty(); }
+    data.journal.forEach(function(e,i){ list.appendChild(makeJournalRow(e,i)); });
+    document.getElementById("addJournal").addEventListener("click",function(){
+      data.journal.push({activity:"",engagement:5,energy:5,flow:5});
+      save(); renderStep();
+    });
+  },
+  4: function(){
+    bindTextareas2();
+    const l1box=document.getElementById("l1Box");
+    l1box.innerHTML="";
+    data.mind.l1.forEach(function(v,i){
+      const div=document.createElement("div");
+      div.className="mind-branch";
+      div.innerHTML='<span class="tag">①'+(i+1)+'</span><input type="text" value="'+esc(v)+'" data-l1="'+i+'" placeholder="发散词 '+(i+1)+'">';
+      l1box.appendChild(div);
+    });
+    const l2box=document.getElementById("l2Box");
+    l2box.innerHTML="";
+    data.mind.l2.forEach(function(arr,i){
+      if(!data.mind.l1[i] || !data.mind.l1[i].trim()) return;
+      const grp=document.createElement("div");
+      grp.style.marginBottom="14px";
+      grp.innerHTML='<div style="font-family:var(--serif);font-size:13px;color:var(--accent-2);margin-bottom:6px;">从「'+esc(data.mind.l1[i])+'」发散：</div>';
+      arr.forEach(function(v,j){
+        const div=document.createElement("div");
+        div.className="mind-branch";
+        div.innerHTML='<span class="tag">②'+(j+1)+'</span><input type="text" value="'+esc(v)+'" data-l2="'+i+'-'+j+'" placeholder="二级词 '+(j+1)+'">';
+        grp.appendChild(div);
+      });
+      l2box.appendChild(grp);
+    });
+    l1box.querySelectorAll("input").forEach(function(inp){
+      inp.addEventListener("input",function(){
+        data.mind.l1[+inp.getAttribute("data-l1")]=inp.value; save();
+        if(inp.value.trim() && !data.mind.l2[+inp.getAttribute("data-l1")].some(function(s){return s.trim();})){
+          renderStep();
+        }
+      });
+    });
+    l2box.querySelectorAll("input").forEach(function(inp){
+      inp.addEventListener("input",function(){
+        const k=inp.getAttribute("data-l2").split("-");
+        data.mind.l2[+k[0]][+k[1]]=inp.value; save();
+      });
+    });
+    const ideasBox=document.getElementById("ideasBox");
+    ideasBox.innerHTML="";
+    data.mind.ideas.forEach(function(v,i){
+      const div=document.createElement("div");
+      div.className="mind-branch";
+      div.innerHTML='<span class="tag">✨'+(i+1)+'</span><input type="text" value="'+esc(v)+'" data-idea="'+i+'" placeholder="奇思妙想 '+(i+1)+'">';
+      ideasBox.appendChild(div);
+    });
+    ideasBox.querySelectorAll("input").forEach(function(inp){
+      inp.addEventListener("input",function(){
+        data.mind.ideas[+inp.getAttribute("data-idea")]=inp.value; save();
+      });
+    });
+  },
+  5: function(){
+    const tags=["直线路径","备选路径","狂野路径"];
+    const list=document.querySelectorAll(".ody-plan");
+    list.forEach(function(plan,idx){
+      const inputs=plan.querySelectorAll("[data-ody]");
+      inputs.forEach(function(inp){
+        const f=inp.getAttribute("data-ody");
+        if(inp.type==="range"){
+          inp.value=data.ody[idx][f];
+          inp.addEventListener("input",function(){
+            data.ody[idx][f]=+inp.value; inp.parentElement.querySelector(".gauge-v").textContent=inp.value; save();
+          });
+        }
+      });
+      plan.querySelectorAll("textarea,input[type=text]").forEach(function(inp){
+        inp.addEventListener("input",function(){ data.ody[idx][inp.getAttribute("data-ody")]=inp.value; save(); });
+      });
+    });
+  },
+  6: function(){
+    renderList("convosList",data.proto.convos,"对话对象（如：在 XX 行业做了 5 年的 A）","addConvo");
+    renderList("expList",data.proto.experiences,"原型体验（如：花半天去旁听一门课）","addExp");
+  },
+  7: function(){
+    const list=document.getElementById("failsList");
+    list.innerHTML="";
+    if(data.fails.length===0) list.innerHTML='<div class="card-desc">还没有记录。失败是数据，记下来它就不再可怕。</div>';
+    data.fails.forEach(function(f,i){ list.appendChild(makeFailRow(f,i)); });
+    document.getElementById("addFail").addEventListener("click",function(){
+      data.fails.push({desc:"",type:"grow",insight:""}); save(); renderStep();
+    });
+  },
+  8: function(){
+    bindTextareas();
+    const stmt=document.getElementById("finalStmt");
+    const preview=document.getElementById("stmtPreview");
+    stmt.addEventListener("input",function(){
+      preview.textContent=stmt.value || '（在下方写下你当前的人生方向声明，会实时显示在这里）';
+      preview.className="stmt"+(stmt.value.trim()?"":" empty");
+    });
+    const nextList=document.getElementById("nextList");
+    nextList.innerHTML="";
+    if(data.final.next.length===0){
+      data.final.next=["","",""]; 
+    }
+    data.final.next.forEach(function(v,i){
+      const div=document.createElement("div");
+      div.className="entry";
+      div.innerHTML='<div class="row"><input type="text" value="'+esc(v)+'" data-next="'+i+'" placeholder="行动 '+(i+1)+'：未来 2 周内能开始的最小动作"><button class="del" data-del-next="'+i+'">×</button></div>';
+      nextList.appendChild(div);
+    });
+    nextList.querySelectorAll("input").forEach(function(inp){
+      inp.addEventListener("input",function(){ data.final.next[+inp.getAttribute("data-next")]=inp.value; save(); });
+    });
+    nextList.querySelectorAll(".del").forEach(function(b){
+      b.addEventListener("click",function(){ data.final.next.splice(+b.getAttribute("data-del-next"),1); save(); renderStep(); });
+    });
+    document.getElementById("addNext").addEventListener("click",function(){
+      data.final.next.push(""); save(); renderStep();
+    });
+    renderSummary();
+  }
+};
+
+/* ==================== 通用文本绑定 ==================== */
+function bindTextareas(){
+  document.querySelectorAll("[data-bind]").forEach(function(el){
+    el.addEventListener("input",function(){
+      const path=el.getAttribute("data-bind").split(".");
+      if(path.length===1){ data[path[0]]=el.value; }
+      else { data[path[0]][path[1]]=el.value; }
+      save();
+    });
+  });
+}
+function bindTextareas2(){
+  document.querySelectorAll("[data-bind2]").forEach(function(el){
+    el.addEventListener("input",function(){
+      const path=el.getAttribute("data-bind2").split(".");
+      data[path[0]][path[1]]=el.value; save();
+    });
+  });
+}
+
+/* ==================== 雷达图 ==================== */
+function renderRadar(){
+  const wrap=document.getElementById("radarWrap");
+  if(!wrap) return;
+  const dims=[["health","健康","health"],["work","工作","work"],["play","娱乐","play"],["love","爱","love"]];
+  const colors={health:"#9a3b2e",work:"#b8794a",play:"#2e5a77",love:"#4a6b3a"};
+  const size=240, cx=size/2, cy=size/2, R=86;
+  // 四个方向：上 右 下 左
+  const dirs=[[0,-1],[1,0],[0,1],[-1,0]];
+  let pts=dims.map(function(d,i){ return [cx+dirs[i][0]*R*data.hwpl[d[2]]/10, cy+dirs[i][1]*R*data.hwpl[d[2]]/10]; });
+  let grid=[2,4,6,8,10].map(function(v){ return dirs.map(function(d){ return [cx+d[0]*R*v/10, cy+d[1]*R*v/10]; }).join(" "); });
+  let poly=pts.map(function(p){return p.join(" ");}).join(" ");
+  let svg='<svg width="'+size+'" height="'+size+'" viewBox="0 0 '+size+' '+size+'">';
+  grid.forEach(function(g,i){ svg+='<polygon points="'+g+'" fill="none" stroke="#e3dac8" stroke-width="1" opacity="'+(0.5+i*0.08)+'"/>'; });
+  // 轴线
+  dirs.forEach(function(d){ svg+='<line x1="'+cx+'" y1="'+cy+'" x2="'+(cx+d[0]*R)+'" y2="'+(cy+d[1]*R)+'" stroke="#e3dac8" stroke-width="1"/>'; });
+  // 数据多边形
+  svg+='<polygon points="'+poly+'" fill="rgba(154,59,46,.18)" stroke="#9a3b2e" stroke-width="2"/>';
+  pts.forEach(function(p,i){ svg+='<circle cx="'+p[0]+'" cy="'+p[1]+'" r="4" fill="'+colors[dims[i][2]]+'"/>'; });
+  // 标签
+  const labels=[[cx,cy-R-12,"健康",colors.health],[cx+R+12,cy,"工作",colors.work],[cx,cy+R+14,"娱乐",colors.play],[cx-R-12,cy,"爱",colors.love]];
+  labels.forEach(function(l){ svg+='<text x="'+l[0]+'" y="'+l[1]+'" text-anchor="middle" fill="'+l[3]+'" font-size="13" font-family="Songti SC,serif" font-weight="600">'+l[2]+'</text>'; });
+  svg+='</svg>';
+  let legend='<div class="radar-legend">';
+  dims.forEach(function(d){ legend+='<div class="li"><span class="dot" style="background:'+colors[d[2]]+'"></span>'+d[1]+' <b style="color:'+colors[d[2]]+';font-family:var(--serif)">'+data.hwpl[d[2]]+'</b>/10</div>'; });
+  legend+='</div>';
+  wrap.innerHTML=svg+legend;
+  // 平衡度
+  const vals=dims.map(function(d){return data.hwpl[d[2]];});
+  const max=Math.max.apply(null,vals), min=Math.min.apply(null,vals);
+  const avg=(vals.reduce(function(a,b){return a+b;},0)/4).toFixed(1);
+  const bal=document.getElementById("hwplBalance");
+  if(bal) bal.textContent="平均 "+avg+" · 极差 "+(max-min)+"（"+(max-min<=2?"相当均衡":max-min<=4?"略有倾斜":"明显失衡，留意最低项")+"）";
+}
+
+/* ==================== 时光日志 ==================== */
+function renderJournalEmpty(){}
+function makeJournalRow(e,i){
+  const div=document.createElement("div");
+  div.className="entry";
+  div.innerHTML='<div class="row"><input type="text" value="'+esc(e.activity)+'" data-j-act="'+i+'" placeholder="活动描述（越具体越好）"><button class="del" data-j-del="'+i+'">×</button></div>'+
+    '<div class="mini-sliders">'+
+      ms("参与度",e.engagement,i,"engagement")+
+      ms("能量",e.energy,i,"energy")+
+      ms("心流",e.flow,i,"flow")+
+    '</div>';
+  return div;
+}
+function ms(label,v,i,key){
+  return '<div class="ms"><span>'+label+'</span><input type="range" min="0" max="10" value="'+v+'" data-j="'+i+'-'+key+'"><b>'+v+'</b></div>';
+}
+
+/* ==================== 列表渲染（原型对话/体验） ==================== */
+function renderList(boxId,arr,placeholder,addId){
+  const list=document.getElementById(boxId);
+  list.innerHTML="";
+  if(arr.length===0) list.innerHTML='<div class="card-desc">还没有添加。</div>';
+  arr.forEach(function(v,i){
+    const div=document.createElement("div");
+    div.className="entry";
+    div.innerHTML='<div class="row"><input type="text" value="'+esc(v)+'" data-list="'+boxId+'-'+i+'" placeholder="'+placeholder+'"><button class="del" data-del="'+boxId+'-'+i+'">×</button></div>';
+    list.appendChild(div);
+  });
+  list.querySelectorAll("input").forEach(function(inp){
+    inp.addEventListener("input",function(){
+      const k=inp.getAttribute("data-list").split("-");
+      const idx=+k[1];
+      if(boxId==="convosList") data.proto.convos[idx]=inp.value;
+      else data.proto.experiences[idx]=inp.value;
+      save();
+    });
+  });
+  list.querySelectorAll(".del").forEach(function(b){
+    b.addEventListener("click",function(){
+      const k=b.getAttribute("data-del").split("-");
+      const idx=+k[1];
+      if(boxId==="convosList") data.proto.convos.splice(idx,1);
+      else data.proto.experiences.splice(idx,1);
+      save(); renderStep();
+    });
+  });
+  document.getElementById(addId).addEventListener("click",function(){
+    if(boxId==="convosList") data.proto.convos.push("");
+    else data.proto.experiences.push("");
+    save(); renderStep();
+  });
+}
+
+/* ==================== 失败记录 ==================== */
+function makeFailRow(f,i){
+  const div=document.createElement("div");
+  const cls=f.type==="err"?"err":f.type==="weak"?"weak":"grow";
+  div.className="entry fail-entry "+cls;
+  const types=[["err","错误（可改正）"],["weak","弱点（需绕开）"],["grow","成长机会（值得拥抱）"]];
+  let pills='<div class="fail-type">';
+  types.forEach(function(t){
+    pills+='<span class="pill'+(f.type===t[0]?" active":"")+'" data-ft="'+i+'" data-v="'+t[0]+'">'+t[1]+'</span>';
+  });
+  pills+='</div>';
+  div.innerHTML=pills+
+    '<textarea data-fd="'+i+'" placeholder="发生了什么？">'+esc(f.desc)+'</textarea>'+
+    '<label>洞察：<span class="hint">（从中可以学到什么？）</span></label>'+
+    '<textarea data-fi="'+i+'" placeholder="如果再来一次，我会..." style="min-height:70px">'+esc(f.insight)+'</textarea>'+
+    '<button class="del" data-f-del="'+i+'" style="margin-top:8px">删除这条</button>';
+  div.querySelectorAll(".pill").forEach(function(p){
+    p.addEventListener("click",function(){
+      data.fails[i].type=p.getAttribute("data-v"); save(); renderStep();
+    });
+  });
+  div.querySelector("[data-fd]").addEventListener("input",function(){ data.fails[i].desc=this.value; save(); });
+  div.querySelector("[data-fi]").addEventListener("input",function(){ data.fails[i].insight=this.value; save(); });
+  div.querySelector("[data-f-del]").addEventListener("click",function(){ data.fails.splice(i,1); save(); renderStep(); });
+  return div;
+}
+
+/* ==================== 奥德赛字段 ==================== */
+function odyFields(idx){
+  const p=data.ody[idx];
+  return '<label>计划标题</label>'+
+    '<input type="text" value="'+esc(p.title)+'" data-ody="title" placeholder="给这个计划起个名字">'+
+    '<label>一句话标语</label>'+
+    '<input type="text" value="'+esc(p.tagline)+'" data-ody="tagline" placeholder="用一句话概括这 5 年">'+
+    '<label>5 年时间线 <span class="hint">（关键节点）</span></label>'+
+    '<textarea data-ody="timeline" placeholder="第1年：... 第3年：... 第5年：...">'+esc(p.timeline)+'</textarea>'+
+    '<label>需要回答的关键问题</label>'+
+    '<textarea data-ody="questions" placeholder="要验证这个计划，必须先搞清什么？">'+esc(p.questions)+'</textarea>'+
+    '<label>所需资源与缺口</label>'+
+    '<textarea data-ody="resources" placeholder="人脉/技能/资金/时间... 哪些已有？哪些缺？">'+esc(p.resources)+'</textarea>'+
+    '<label>信心指数 <span class="gauge-v" style="color:var(--accent);font-family:var(--serif)">'+p.gauge+'</span>/10</label>'+
+    '<input type="range" min="0" max="10" value="'+p.gauge+'" data-ody="gauge" style="accent-color:var(--accent)">';
+}
+
+/* ==================== 全景回顾 ==================== */
+function renderSummary(){
+  const grid=document.getElementById("summaryGrid");
+  if(!grid) return;
+  let html="";
+  // HWPL
+  html+=sc("生活四象限","健康"+data.hwpl.health+" · 工作"+data.hwpl.work+" · 娱乐"+data.hwpl.play+" · 爱"+data.hwpl.love);
+  // 指南针
+  const consMap={0:"未评",1:"完全矛盾",2:"部分矛盾",3:"基本一致",4:"高度一致"};
+  html+=sc("三观一致性",consMap[data.consistency]||"未评");
+  // 时光日志
+  html+=sc("心流活动",data.journal.filter(function(e){return e.activity.trim();}).length+" 条记录");
+  // 思维导图
+  html+=sc("奇思妙想",data.mind.ideas.filter(function(s){return s.trim();}).length+" 个");
+  // 奥德赛
+  html+=sc("人生计划",data.ody.filter(function(p){return p.title.trim();}).length+" 个备选");
+  // 原型
+  html+=sc("原型设计",(data.proto.convos.length+data.proto.experiences.length)+" 项（对话+体验）");
+  // 失败
+  html+=sc("失败数据",data.fails.length+" 条已复盘");
+  // 方向声明
+  html+=sc("方向声明",data.final.statement.trim()?"已写":"待写");
+  grid.innerHTML=html;
+}
+function sc(k,v){ return '<div class="sc"><div class="k">'+k+'</div><div class="v">'+v+'</div></div>'; }
+
+/* ==================== 时光日志事件代理 ==================== */
+document.addEventListener("input",function(e){
+  const t=e.target;
+  if(t.hasAttribute("data-j-act")){ data.journal[+t.getAttribute("data-j-act")].activity=t.value; save(); }
+  if(t.hasAttribute("data-j")){
+    const k=t.getAttribute("data-j").split("-");
+    data.journal[+k[0]][k[1]]=+t.value; save();
+    t.parentElement.querySelector("b").textContent=t.value;
+  }
+});
+document.addEventListener("click",function(e){
+  const t=e.target;
+  if(t.hasAttribute("data-j-del")){ data.journal.splice(+t.getAttribute("data-j-del"),1); save(); renderStep(); }
+});
+
+/* ==================== 导出 ==================== */
+function exportData(){
+  const d=data;
+  let md="# 我的人生设计档案\n\n";
+  md+="导出时间："+new Date().toLocaleString("zh-CN")+"\n\n";
+  md+="> 基于斯坦福《人生设计课》方法论 · 由「人生设计工坊」生成\n\n---\n\n";
+  md+="## 1. HWPL 仪表盘\n\n";
+  md+="- 健康："+d.hwpl.health+"/10\n- 工作："+d.hwpl.work+"/10\n- 娱乐："+d.hwpl.play+"/10\n- 爱："+d.hwpl.love+"/10\n\n";
+  if(d.gravity.trim()) md+="**重力问题（处境）：**\n"+d.gravity+"\n\n";
+  if(d.coreQ.trim()) md+="**我真正想解决的问题：**\n"+d.coreQ+"\n\n---\n\n";
+  md+="## 2. 人生指南针\n\n";
+  if(d.workview.trim()) md+="**工作观：**\n"+d.workview+"\n\n";
+  if(d.lifeview.trim()) md+="**人生观：**\n"+d.lifeview+"\n\n";
+  const consMap={0:"未评",1:"完全矛盾",2:"部分矛盾",3:"基本一致",4:"高度一致"};
+  md+="**一致性：**"+consMap[d.consistency]+"\n";
+  if(d.consistencyNote.trim()) md+="\n"+d.consistencyNote+"\n";
+  md+="\n---\n\n## 3. 美好时光日志\n\n";
+  d.journal.forEach(function(e,i){ if(e.activity.trim()) md+=(i+1)+". "+e.activity+"（参与"+e.engagement+" 能量"+e.energy+" 心流"+e.flow+"）\n"; });
+  md+="\n---\n\n## 4. 思维导图\n\n";
+  if(d.mind.seed.trim()) md+="**种子活动：**"+d.mind.seed+"\n\n";
+  md+="**一级发散：**"+d.mind.l1.filter(function(s){return s.trim();}).join("、")+"\n\n";
+  d.mind.l2.forEach(function(arr,i){ if(d.mind.l1[i]&&d.mind.l1[i].trim()&&arr.some(function(s){return s.trim();})) md+="从「"+d.mind.l1[i]+"」："+arr.filter(function(s){return s.trim();}).join("、")+"\n"; });
+  md+="\n**奇思妙想：**\n";
+  d.mind.ideas.forEach(function(s,i){ if(s.trim()) md+=(i+1)+". "+s+"\n"; });
+  md+="\n---\n\n## 5. 奥德赛计划\n\n";
+  const otags=["Plan A 直线路径","Plan B 备选路径","Plan C 狂野路径"];
+  d.ody.forEach(function(p,i){
+    if(!p.title.trim()&&!p.tagline.trim()&&!p.timeline.trim()) return;
+    md+="### "+otags[i]+(p.title.trim()?"："+p.title:"")+"\n\n";
+    if(p.tagline.trim()) md+="> "+p.tagline+"\n\n";
+    if(p.timeline.trim()) md+="**时间线：**\n"+p.timeline+"\n\n";
+    if(p.questions.trim()) md+="**关键问题：**\n"+p.questions+"\n\n";
+    if(p.resources.trim()) md+="**资源与缺口：**\n"+p.resources+"\n\n";
+    md+="**信心指数：**"+p.gauge+"/10\n\n";
+  });
+  md+="---\n\n## 6. 原型设计\n\n";
+  if(d.proto.convos.filter(function(s){return s.trim();}).length) md+="**原型对话：**\n"+d.proto.convos.filter(function(s){return s.trim();}).map(function(s,i){return (i+1)+". "+s;}).join("\n")+"\n\n";
+  if(d.proto.experiences.filter(function(s){return s.trim();}).length) md+="**原型体验：**\n"+d.proto.experiences.filter(function(s){return s.trim();}).map(function(s,i){return (i+1)+". "+s;}).join("\n")+"\n\n";
+  md+="---\n\n## 7. 失败免疫\n\n";
+  const fmap={err:"错误",weak:"弱点",grow:"成长机会"};
+  d.fails.forEach(function(f,i){ if(f.desc.trim()) md+=(i+1)+". 【"+fmap[f.type]+"】"+f.desc+"\n   洞察："+f.insight+"\n\n"; });
+  md+="---\n\n## 8. 当前最优解\n\n";
+  if(d.final.statement.trim()) md+="**我的人生方向声明：**\n\n"+d.final.statement+"\n\n";
+  const next=d.final.next.filter(function(s){return s.trim();});
+  if(next.length) md+="**接下来的行动：**\n"+next.map(function(s,i){return (i+1)+". "+s;}).join("\n")+"\n";
+  md+="\n---\n\n*人生没有最优解，只有持续优化的原型。半年后重做一次。*\n";
+
+  const blob=new Blob([md],{type:"text/markdown;charset=utf-8"});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement("a");
+  a.href=url; a.download="我的人生设计-"+new Date().toISOString().slice(0,10)+".md";
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+/* ==================== 初始化 ==================== */
+document.getElementById("exportBtn").addEventListener("click",exportData);
+document.getElementById("resetBtn").addEventListener("click",function(){
+  if(confirm("确定清空所有数据？此操作不可撤销。")){
+    localStorage.removeItem(STORAGE_KEY);
+    data=loadData(); cur=0; renderNav(); updateProgress(); renderStep();
+  }
+});
+renderNav();
+updateProgress();
+renderStep();
+</script>
+<script src="js/page-counter.js?v=20260908c" defer></script>
+</body>
+</html>
