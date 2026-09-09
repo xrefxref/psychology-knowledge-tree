@@ -124,7 +124,10 @@
   .search{flex:1 1 240px;min-width:180px;display:flex;align-items:center;gap:8px;background:var(--paper-2);
     border:1px solid var(--line);border-radius:24px;padding:8px 16px;}
   .search input{border:none;background:transparent;outline:none;font-size:14.5px;font-family:var(--sans);color:var(--ink);width:100%;}
-  .chips{display:flex;flex-wrap:wrap;gap:7px;}
+  .chips{display:flex;flex-wrap:nowrap;gap:7px;overflow-x:auto;
+    -webkit-overflow-scrolling:touch;scrollbar-width:thin;padding-bottom:4px;}
+  .chips::-webkit-scrollbar{height:4px;}
+  .chips::-webkit-scrollbar-thumb{background:rgba(154,59,46,.25);border-radius:2px;}
   .chip{font-size:13px;border:1px solid var(--line);background:var(--paper-2);color:var(--ink-soft);
     padding:6px 13px;border-radius:20px;cursor:pointer;transition:.16s;display:inline-flex;align-items:center;gap:6px;}
   .chip .d{width:9px;height:9px;border-radius:50%;}
@@ -134,7 +137,7 @@
   .reset{font-size:13px;color:var(--ink-faint);background:none;border:none;cursor:pointer;text-decoration:underline;padding:6px 4px;}
   .reset:hover{color:var(--accent);}
 
-  .cluster{margin-bottom:26px;scroll-margin-top:84px;}
+  .cluster{margin-bottom:26px;scroll-margin-top:72px;}
   .cluster-head{display:flex;align-items:center;gap:11px;margin-bottom:12px;border-bottom:1px solid var(--line);padding-bottom:9px;}
   .cluster-head .dot{width:14px;height:14px;border-radius:50%;flex:none;}
   .cluster-head h3{font-size:20px;}
@@ -280,7 +283,7 @@
     </div>
 
     <!-- JS 渲染书单的容器 -->
-    <section id="booklist" style="padding-top:18px;"></section>
+    <section id="booklist" style="padding-top:18px;scroll-margin-top:72px;"></section>
   </section>
 
   <div class="divider"></div>
@@ -462,9 +465,12 @@ function buildChips(){
     c.setAttribute("data-cid", cid);
     c.innerHTML = '<span class="d" style="background:' + cl.color + '"></span>' + cl.name + ' · ' + count;
     c.addEventListener("click", function(){
-      state.filter = (state.filter === cid) ? null : cid;
-      state.query = ""; syncToolbar(); render();
-    });
+    state.filter = (state.filter === cid) ? null : cid;
+    state.query = ""; syncToolbar(); render();
+    // 切换筛选后，平滑滚到书单顶部，避免视图停在原位
+    var list = document.getElementById("booklist");
+    if(list) list.scrollIntoView({behavior:"smooth", block:"start"});
+  });
     box.appendChild(c);
   });
 }
