@@ -448,7 +448,18 @@ function render(){
       if(sec) sec.scrollIntoView({behavior:"smooth", block:"start"});
     });
   });
+  syncScrollMargin();
 }
+
+function syncScrollMargin(){
+  var tb = document.querySelector('.toolbar');
+  if(!tb) return;
+  var h = tb.offsetHeight + 6;
+  var list = document.getElementById("booklist");
+  if(list) list.style.scrollMarginTop = h + 'px';
+  document.querySelectorAll('.cluster').forEach(function(c){ c.style.scrollMarginTop = h + 'px'; });
+}
+window.addEventListener('resize', syncScrollMargin);
 
 function syncToolbar(){
   document.getElementById("q").value = state.query;
