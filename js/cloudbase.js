@@ -87,6 +87,17 @@ var CloudBase = (function() {
         localStorage.setItem('psy_local_user', JSON.stringify(user));
     }
 
+    /* 站长判断：登录用户名 === 'admin' 即为站长 */
+    var ADMIN_NAME = 'admin';
+    function isAdmin() {
+        if (!currentUser) return false;
+        var name = currentUser._username || (currentUser.username) || '';
+        if (name === ADMIN_NAME) return true;
+        var email = currentUser.email || currentUser._email || '';
+        if (email && email.split('@')[0] === ADMIN_NAME) return true;
+        return false;
+    }
+
     function getLocalUsers() {
         var saved = localStorage.getItem('psy_local_users');
         return saved ? JSON.parse(saved) : [];
@@ -261,6 +272,7 @@ var CloudBase = (function() {
             return new Promise(function(resolve, reject) {
                 auth.signInWithEmailAndPassword(username + '@psychology.com', password)
                     .then(function(user) {
+                        user._username = username;
                         currentUser = user;
                         showToast('登录成功');
                         resolve(user);
@@ -330,6 +342,10 @@ var CloudBase = (function() {
 
         getUser: function() {
             return currentUser;
+        },
+
+        isAdmin: function() {
+            return isAdmin();
         },
 
         saveLearnProgress: function(nodeKey, learned, notes) {
@@ -460,7 +476,7 @@ var CloudBase = (function() {
             });
         },
 
-        addComment: function(content) {
+        addComment: function(content, pageKey) {
             init();
             if (!currentUser) {
                 showToast('请先登录');
@@ -477,12 +493,14 @@ var CloudBase = (function() {
                     uid: currentUser.uid,
                     content: content,
                     username: username,
+                    pageKey: pageKey || 'global',
+                    status: 'pending',
                     createdAt: new Date().toISOString()
                 });
             }).then(function() {
-                showToast('评论已发布');
+                showToast('留言已提交，精选后将公开显示');
             }).catch(function(err) {
-                console.error('发布评论失败:', err);
+                console.error('发布留言失败:', err);
                 showToast('发布失败: ' + (err.message || err.code));
                 return Promise.reject(err);
             });
@@ -502,6 +520,97 @@ var CloudBase = (function() {
                     console.error('获取评论失败:', err);
                     return Promise.resolve([]);
                 });
+        },
+
+        /* 获取已精选留言（公开展示用），按页面过滤 */
+        getFeaturedComments: function(pageKey, limit, skip) {
+            init();
+            if (useLocalStorage) {
+                return getCommentsLocal(limit, skip);
+            }
+            var q = db.collection('psy_comments');
+            var _ = db.command;
+            var cond = { status: 'featured' };
+            if (pageKey) cond.pageKey = pageKey;
+            return q.where(cond).orderBy('createdAt', 'desc')
+                .limit(limit || 50)
+                .skip(skip || 0)
+                .get().then(function(res) {
+                    return res.data || [];
+                }).catch(function(err) {
+                    console.error('获取精选留言失败:', err);
+                    return Promise.resolve([]);
+                });
+        },
+
+        /* 站长获取待审留言 */
+        getPendingComments: function(pageKey) {
+            init();
+            if (!isAdmin()) {
+                return Promise.resolve([]);
+            }
+            var cond = { status: 'pending' };
+            if (pageKey) cond.pageKey = pageKey;
+            return db.collection('psy_comments').where(cond)
+                .orderBy('createdAt', 'desc')
+                .limit(100)
+                .get().then(function(res) {
+                    return res.data || [];
+                }).catch(function(err) {
+                    console.error('获取待审留言失败:', err);
+                    return Promise.resolve([]);
+                });
+        },
+
+        /* 站长精选留言 */
+        featureComment: function(commentId) {
+            init();
+            if (!isAdmin()) {
+                return Promise.reject('无权限');
+            }
+            return db.collection('psy_comments').doc(commentId).update({
+                status: 'featured',
+                featuredAt: new Date().toISOString()
+            }).then(function() {
+                showToast('已精选');
+            }).catch(function(err) {
+                console.error('精选失败:', err);
+                showToast('精选失败: ' + (err.message || err.code));
+                return Promise.reject(err);
+            });
+        },
+
+        /* 站长取消精选（退回待审） */
+        unfeatureComment: function(commentId) {
+            init();
+            if (!isAdmin()) {
+                return Promise.reject('无权限');
+            }
+            return db.collection('psy_comments').doc(commentId).update({
+                status: 'pending',
+                featuredAt: null
+            }).then(function() {
+                showToast('已取消精选');
+            }).catch(function(err) {
+                console.error('取消精选失败:', err);
+                showToast('操作失败: ' + (err.message || err.code));
+                return Promise.reject(err);
+            });
+        },
+
+        /* 站长或作者删除留言 */
+        deleteComment: function(commentId) {
+            init();
+            if (!currentUser) {
+                return Promise.reject('请先登录');
+            }
+            return db.collection('psy_comments').doc(commentId).remove()
+              .then(function(){ showToast('已删除'); })
+              .catch(function(err){
+                console.error('删除失败:', err);
+                showToast('删除失败: ' + (err.message || err.code));
+                return Promise.reject(err);
+              });
         },
 
         getLearnStats: function() {
