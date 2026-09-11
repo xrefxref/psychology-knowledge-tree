@@ -33,6 +33,10 @@
   .auth-box .btn:hover{background:#7f2f24;}
   .auth-box .err{color:var(--accent);font-size:13px;text-align:center;min-height:20px;margin-top:8px;}
   .auth-box .note{font-size:12.5px;color:var(--ink-faint);text-align:center;margin-top:18px;line-height:1.7;}
+  .auth-tabs{display:flex;gap:8px;margin-bottom:20px;border-bottom:1px solid var(--line);}
+  .auth-tab{flex:1;text-align:center;padding:10px 0;font-size:14px;cursor:pointer;color:var(--ink-faint);border-bottom:2px solid transparent;margin-bottom:-1px;transition:.16s;font-family:var(--sans);background:none;border-top:none;border-left:none;border-right:none;}
+  .auth-tab.active{color:var(--accent);border-bottom-color:var(--accent);font-weight:600;}
+  .auth-box .warn{background:rgba(184,121,74,.1);border:1px solid rgba(184,121,74,.3);color:var(--accent-2);font-size:12.5px;padding:10px 14px;border-radius:8px;margin-bottom:14px;line-height:1.7;}
 
   /* 站长后台 */
   .bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:24px;}
@@ -88,6 +92,7 @@
   'use strict';
   var app = document.getElementById('app');
   var user = null;
+  var authMode = 'login'; // login | register
 
   function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
   function fmtDate(iso){
@@ -112,28 +117,57 @@
   }
 
   function renderLogin(){
+    var isLogin = authMode === 'login';
+    var warnHtml = isLogin ? '' :
+      '<div class="warn">⚠️ 首次使用请在此注册站长账号，<b>用户名必须填写 admin</b>，密码请牢记。<br>该账号仅用于审核留言，注册后不可更改用户名。</div>';
     app.innerHTML =
       '<div class="auth-box">' +
-      '<h2>站长登录</h2>' +
-      '<div class="field"><label>用户名</label><input type="text" id="lg-uname" placeholder="站长用户名" maxlength="20"></div>' +
-      '<div class="field"><label>密码</label><input type="password" id="lg-pwd" placeholder="密码"></div>' +
-      '<button class="btn" id="lg-btn">登录</button>' +
+      '<div class="auth-tabs">' +
+        '<button class="auth-tab' + (isLogin?' active':'') + '" data-mode="login">登录</button>' +
+        '<button class="auth-tab' + (!isLogin?' active':'') + '" data-mode="register">注册</button>' +
+      '</div>' +
+      '<h2>' + (isLogin?'站长登录':'注册站长账号') + '</h2>' +
+      warnHtml +
+      '<div class="field"><label>用户名</label><input type="text" id="lg-uname" placeholder="' + (isLogin?'站长用户名':'请填写 admin') + '" maxlength="20"' + (!isLogin?' value="admin"':'') + '></div>' +
+      '<div class="field"><label>密码</label><input type="password" id="lg-pwd" placeholder="密码（至少 6 位）"></div>' +
+      '<button class="btn" id="lg-btn">' + (isLogin?'登录':'注册并进入') + '</button>' +
       '<div class="err" id="lg-err"></div>' +
       '<div class="note">仅站长账号可进入审核后台。<br>如忘记密码，请在 CloudBase 控制台处理。</div>' +
       '</div>';
-    document.getElementById('lg-btn').addEventListener('click', doLogin);
-    document.getElementById('lg-pwd').addEventListener('keydown', function(e){ if(e.key==='Enter') doLogin(); });
+    var self = this;
+    document.querySelectorAll('.auth-tab').forEach(function(t){
+      t.addEventListener('click', function(){
+        authMode = t.getAttribute('data-mode');
+        renderLogin();
+      });
+    });
+    document.getElementById('lg-btn').addEventListener('click', doAuth);
+    document.getElementById('lg-pwd').addEventListener('keydown', function(e){ if(e.key==='Enter') doAuth(); });
+    document.getElementById('lg-uname').addEventListener('keydown', function(e){ if(e.key==='Enter') document.getElementById('lg-pwd').focus(); });
   }
 
-  function doLogin(){
+  function doAuth(){
     var name = document.getElementById('lg-uname').value.trim();
     var pwd = document.getElementById('lg-pwd').value;
     var err = document.getElementById('lg-err');
     if(!name){ err.textContent='请输入用户名'; return; }
+    if(pwd.length < 6){ err.textContent='密码至少 6 位'; return; }
+    if(authMode === 'register' && name !== 'admin'){
+      err.textContent = '站长账号用户名必须为 admin';
+      return;
+    }
     err.textContent = '';
-    CloudBase.login(name, pwd).then(function(u){
+    var btn = document.getElementById('lg-btn');
+    btn.disabled = true;
+    btn.textContent = authMode === 'login' ? '登录中…' : '注册中…';
+    var fn = authMode === 'login' ? CloudBase.login : CloudBase.register;
+    fn.call(CloudBase, name, pwd).then(function(u){
       u._username = name; user = u; render();
-    }).catch(function(e){ err.textContent = (e&&e.message)?e.message:'登录失败'; });
+    }).catch(function(e){
+      err.textContent = (e&&e.message)?e.message:(authMode==='login'?'登录失败':'注册失败');
+      btn.disabled = false;
+      btn.textContent = authMode === 'login' ? '登录' : '注册并进入';
+    });
   }
 
   function renderDenied(){
