@@ -1,115 +1,152 @@
 /**
- * AppData —— 站点数据层（LeanCloud 国际版实现）
+ * AppData —— 站点数据层（Supabase 实现）
  *
- * 依赖：js/av-min.js（LeanCloud Storage JS SDK 4.x，全局 AV）
+ * 依赖：js/supabase.min.js（@supabase/supabase-js v2 UMD，全局 window.supabase）
  *
  * 数据模型：
- *   _User                内建用户表（用户名 + 密码，无需邮箱）
- *   _Role                内建角色表，需在控制台创建名为 admin 的角色并关联站长用户
- *   psy_comment          留言表
- *     content(String) username(String) pageKey(String)
- *     status(String: pending|featured)  featuredAt(Date|可选)  user(Pointer<_User>)
+ *   auth.users                Supabase 内建用户表（邮箱+密码登录）
+ *   public.psy_comment        留言表
+ *     id, user_id, username, content, page_key,
+ *     status(pending|featured), featured_at, created_at
  *
- * 行级 ACL（数据库层强制，前端绕不过）：
- *   新建留言：仅作者 + role:admin 可读写，公众无任何权限（pending 状态外人不可见）
- *   站长精选：追加 public 只读（featured 状态所有访客可见）
- *   取消精选：移除 public 读
+ * 行级安全（RLS，数据库层强制，前端绕不过）：
+ *   SELECT：status='featured' 或 作者本人 或 站长（is_admin()）
+ *   INSERT：仅作者本人
+ *   UPDATE/DELETE：作者或站长
  *
- * 兼容旧调用：guestbook.js / admin.html / index.html 原通过 window.CloudBase 调用，
- * 现统一为 window.AppData，文件末尾保留 CloudBase 别名过渡。
+ * 账号适配：Supabase Auth 只支持邮箱登录，本层对调用方隐藏该差异
+ *   注册/登录时把 username 拼成 `username@shenzhen-ai.icu` 作为邮箱
+ *   站长判定：邮箱本地部分 === 'admin'
+ *
+ * 兼容旧调用：guestbook.js / admin.html / index.html 通过 window.AppData 调用
+ * （window.CloudBase 作为别名保留，过渡期结束后可移除）
  */
 (function (window) {
     'use strict';
 
-    /* ====== 配置：由站长在 LeanCloud 控制台创建应用后填入 ====== */
-    var CONFIG = {
-        appId: 'YOUR_APP_ID',
-        appKey: 'YOUR_APP_KEY',
-        // 形如 https://xxxxxxxx.api.lncldglobal.com（控制台「应用凭证」页可复制）
-        serverURL: 'https://YOUR_APP_ID_PREFIX.api.lncldglobal.com'
-    };
+    /* ====== 配置 ====== */
+    var SUPABASE_URL = 'https://rvfsrrlnyidpcdlncqwu.supabase.co';
+    var SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_8zESiRAchW5m8Meiym16wg_dizkj2vi';
 
-    var COMMENT_CLASS = 'psy_comment';
-    var ADMIN_ROLE = 'admin';
+    var COMMENT_TABLE = 'psy_comment';
     var ADMIN_NAME = 'admin';
+    var FAKE_DOMAIN = 'shenzhen-ai.icu';
 
-    var AV = window.AV;
+    var sb = null;        // Supabase client
     var initialized = false;
-    var ready = false;
+    var cachedUser = null; // 同步缓存：guestbook.js 等同步调用需要
+
+    /* Supabase 项目 ref（从 URL 提取），用于读 localStorage 的会话键 */
+    function projectRef() {
+        try {
+            var m = SUPABASE_URL.match(/^https:\/\/([^.]+)\.supabase\.co/);
+            return m ? m[1] : '';
+        } catch (e) { return ''; }
+    }
+
+    /* 同步从 localStorage 读取缓存的 session.user */
+    function readCachedUserFromStorage() {
+        try {
+            var key = 'sb-' + projectRef() + '-auth-token';
+            var raw = localStorage.getItem(key);
+            if (!raw) return null;
+            var parsed = JSON.parse(raw);
+            // v2 存储格式：{ access_token, user, expires_at, ... }
+            return (parsed && parsed.user) ? parsed.user : null;
+        } catch (e) { return null; }
+    }
 
     function init() {
         if (initialized) return;
         initialized = true;
-        if (!AV) {
-            console.warn('LeanCloud SDK 未加载，数据功能不可用');
+        var lib = window.supabase || (window.supabaseJS && window.supabaseJS);
+        if (!lib || typeof lib.createClient !== 'function') {
+            console.warn('Supabase SDK 未加载，数据功能不可用');
             return;
         }
-        if (CONFIG.appId.indexOf('YOUR_') === 0) {
-            console.warn('LeanCloud 尚未配置（appId 为占位值），请在 js/appdata.js 填入应用凭证');
+        if (SUPABASE_URL.indexOf('YOUR_') === 0 || SUPABASE_PUBLISHABLE_KEY.indexOf('YOUR_') === 0) {
+            console.warn('Supabase 尚未配置（占位值），请在 js/appdata.js 填入凭证');
             return;
         }
         try {
-            AV.init({
-                appId: CONFIG.appId,
-                appKey: CONFIG.appKey,
-                serverURL: CONFIG.serverURL
+            sb = lib.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
+                auth: {
+                    persistSession: true,
+                    autoRefreshToken: true,
+                    detectSessionInUrl: false
+                }
             });
-            ready = true;
-            console.log('LeanCloud 初始化成功');
+            // 同步读缓存，保证页面加载后立即拿到登录态
+            cachedUser = readCachedUserFromStorage();
+            // 后续异步刷新缓存
+            sb.auth.onAuthStateChange(function (event, session) {
+                cachedUser = (session && session.user) ? session.user : null;
+            });
+            // 异步刷新一次（防止 localStorage 旧格式不一致）
+            sb.auth.getUser().then(function (r) {
+                if (r && r.data && r.data.user) cachedUser = r.data.user;
+                else if (r && r.data && !r.data.user) cachedUser = null;
+            }).catch(function () {});
+            console.log('Supabase 初始化成功');
         } catch (err) {
-            console.error('LeanCloud 初始化失败:', err);
+            console.error('Supabase 初始化失败:', err);
         }
     }
 
-    function isReady() { return ready; }
+    function isReady() { return !!sb; }
 
     /* ====== 工具 ====== */
 
-    function currentAVUser() {
-        return ready ? AV.User.current() : null;
+    function toEmail(username) {
+        // 站长用户名固定映射到 admin@shenzhen-ai.icu
+        if (username === ADMIN_NAME) return ADMIN_NAME + '@' + FAKE_DOMAIN;
+        // 普通用户：用户名 + 域名后缀（不会真的收到邮件）
+        return username + '@' + FAKE_DOMAIN;
+    }
+
+    /* 同步获取当前用户（guestbook.js 同步调用需要） */
+    function currentSBUser() {
+        return cachedUser || readCachedUserFromStorage();
     }
 
     function normUser(u) {
         if (!u) return null;
-        var name = (typeof u.getUsername === 'function') ? u.getUsername() : '';
+        var email = u.email || '';
+        var name = email.split('@')[0] || '';
         return {
             objectId: u.id,
             uid: u.id,
             username: name,
+            email: email,
             _username: name
         };
     }
 
-    function mapComment(o) {
+    function mapComment(r) {
         return {
-            _id: o.id,
-            id: o.id,
-            content: o.get('content') || '',
-            username: o.get('username') || '匿名',
-            pageKey: o.get('pageKey') || 'global',
-            status: o.get('status') || 'pending',
-            createdAt: o.createdAt || '',
-            featuredAt: o.get('featuredAt') || null
+            _id: r.id,
+            id: r.id,
+            content: r.content || '',
+            username: r.username || '匿名',
+            pageKey: r.page_key || 'global',
+            status: r.status || 'pending',
+            createdAt: r.created_at || '',
+            featuredAt: r.featured_at || null
         };
     }
 
-    /* LeanCloud 错误码 → 中文提示 */
     function friendly(err, fallback) {
         if (!err) return fallback;
         var msg = fallback || '操作失败，请稍后重试';
-        switch (err.code) {
-            case 200: msg = '用户名不能为空'; break;
-            case 201: msg = '密码不能为空'; break;
-            case 202: msg = '该用户名已被注册，换一个试试'; break;
-            case 210: case 211: msg = '用户名或密码错误'; break;
-            case 217: msg = '用户名或密码无效'; break;
-            case 60: msg = '发送过于频繁，请稍后再试'; break;
-            case 137: msg = '操作过于频繁，请稍后再试'; break;
-            case 100: msg = '连接服务器失败，请检查网络'; break;
-            case 101: msg = '登录状态已过期，请重新登录'; break;
-            default:
-                if (err.rawErrorMessage) msg = err.rawErrorMessage;
-                else if (err.message) msg = err.message;
+        // Supabase 错误：{ message, code, status }
+        if (err.message) {
+            var m = err.message;
+            if (/invalid credentials/i.test(m) || /invalid login/i.test(m)) return '用户名或密码错误';
+            if (/already registered/i.test(m) || /already been registered/i.test(m)) return '该用户名已被注册';
+            if (/rate limit/i.test(m)) return '操作过于频繁，请稍后再试';
+            if (/password/i.test(m) && /weak|short/i.test(m)) return '密码至少 6 位';
+            if (/network|fetch/i.test(m)) return '网络连接失败，请检查网络';
+            msg = m;
         }
         return msg;
     }
@@ -119,14 +156,13 @@
         catch (e) { return false; }
     }
 
-    /* 前端仅控制 UI 入口；真正的审核权限由数据库行级 ACL（role:admin）强制 */
+    /* 前端仅控制 UI 入口；真正权限由数据库 RLS 强制 */
     function isAdmin() {
-        var u = currentAVUser();
-        return !!(u && u.getUsername() === ADMIN_NAME);
+        var u = currentSBUser();
+        return !!(u && u.email && u.email.split('@')[0] === ADMIN_NAME);
     }
 
-    /* ====== 校验（index.html 使用） ====== */
-
+    /* ====== 校验 ====== */
     function validateUsername(name) {
         if (!name) return { valid: false, message: '请输入用户名' };
         if (name.length < 2 || name.length > 20) {
@@ -141,28 +177,8 @@
     function validatePassword(pwd) {
         if (!pwd) return { valid: false, message: '请输入密码' };
         if (pwd.length < 6) return { valid: false, message: '密码至少 6 位' };
-        if (pwd.length > 32) return { valid: false, message: '密码最长 32 位' };
+        if (pwd.length > 72) return { valid: false, message: '密码过长（最多 72 位）' };
         return { valid: true, message: '' };
-    }
-
-    /* ====== 留言权限辅助 ====== */
-
-    /* 新建留言的 ACL：公众不可见，作者与 admin 角色可读写 */
-    function buildPrivateACL(user) {
-        var acl = new AV.ACL();
-        acl.setPublicReadAccess(false);
-        acl.setPublicWriteAccess(false);
-        acl.setReadAccess(user, true);
-        acl.setWriteAccess(user, true);
-        // 即使 admin 角色尚未创建也不影响保存（ACL 仅存 role:admin 键，
-        // 站长在控制台创建角色并关联用户后，历史留言自动对站长可见）
-        acl.setRoleReadAccess(ADMIN_ROLE, true);
-        acl.setRoleWriteAccess(ADMIN_ROLE, true);
-        return acl;
-    }
-
-    function commentQuery() {
-        return new AV.Query(COMMENT_CLASS);
     }
 
     /* ====== 对外接口 ====== */
@@ -173,15 +189,30 @@
 
         /* ---- 账号 ---- */
 
+        /* 异步获取当前用户（推荐用此方法，等价 CloudBase.getUser()） */
         getUser: function () {
-            return normUser(currentAVUser());
+            return normUser(currentSBUser());
+        },
+
+        /* 异步获取当前用户（带 await，Supabase 推荐） */
+        getUserAsync: function () {
+            if (!sb) return Promise.resolve(null);
+            return sb.auth.getUser().then(function (r) {
+                return normUser(r.data && r.data.user ? r.data.user : null);
+            }).catch(function () { return null; });
         },
 
         login: function (username, password) {
             init();
-            if (!ready) return Promise.reject(new Error('数据服务未配置'));
-            return AV.User.logIn(username, password).then(function (u) {
-                return normUser(u);
+            if (!sb) return Promise.reject(new Error('数据服务未配置'));
+            var v = validateUsername(username);
+            if (!v.valid) return Promise.reject(new Error(v.message));
+            return sb.auth.signInWithPassword({
+                email: toEmail(username),
+                password: password
+            }).then(function (res) {
+                if (res.error) throw res.error;
+                return normUser(res.data.user);
             }).catch(function (err) {
                 throw new Error(friendly(err, '登录失败'));
             });
@@ -189,24 +220,30 @@
 
         register: function (username, password) {
             init();
-            if (!ready) return Promise.reject(new Error('数据服务未配置'));
-            // 管理员用户名只能在审核后台注册，防止被访客抢注
+            if (!sb) return Promise.reject(new Error('数据服务未配置'));
+            // admin 用户名仅在 admin.html 可注册
             if (username === ADMIN_NAME && !isAdminPage()) {
                 return Promise.reject(new Error('该用户名已保留'));
             }
-            var u = new AV.User();
-            u.setUsername(username);
-            u.setPassword(password);
-            return u.signUp().then(function (saved) {
-                return normUser(saved);
+            var v = validateUsername(username);
+            if (!v.valid) return Promise.reject(new Error(v.message));
+            var vp = validatePassword(password);
+            if (!vp.valid) return Promise.reject(new Error(vp.message));
+            return sb.auth.signUp({
+                email: toEmail(username),
+                password: password
+            }).then(function (res) {
+                if (res.error) throw res.error;
+                // 关掉邮箱验证后，注册即视为登录
+                return normUser(res.data.user);
             }).catch(function (err) {
                 throw new Error(friendly(err, '注册失败'));
             });
         },
 
         logout: function () {
-            if (ready) {
-                try { AV.User.logOut(); } catch (e) {}
+            if (sb) {
+                try { sb.auth.signOut(); } catch (e) {}
             }
         },
 
@@ -216,41 +253,43 @@
 
         /* ---- 留言 ---- */
 
-        /* 访客提交留言（强制 pending + 私有 ACL） */
         addComment: function (content, pageKey) {
             init();
-            var user = currentAVUser();
-            if (!user) return Promise.reject(new Error('请先登录'));
+            var u = currentSBUser();
+            if (!u) return Promise.reject(new Error('请先登录'));
             content = String(content || '').trim();
             if (!content) return Promise.reject(new Error('留言内容不能为空'));
             if (content.length > 1000) return Promise.reject(new Error('留言不能超过 1000 字'));
 
-            var c = new AV.Object(COMMENT_CLASS);
-            c.setACL(buildPrivateACL(user));
-            c.set('content', content);
-            c.set('username', user.getUsername());
-            c.set('pageKey', pageKey || 'global');
-            c.set('status', 'pending');
-            c.set('user', user);
-            return c.save().then(function () {
+            var row = {
+                user_id: u.id,
+                username: u.email ? u.email.split('@')[0] : '匿名',
+                content: content,
+                page_key: pageKey || 'global',
+                status: 'pending'
+            };
+            return sb.from(COMMENT_TABLE).insert(row).then(function (res) {
+                if (res.error) throw res.error;
                 return { ok: true };
             }).catch(function (err) {
                 throw new Error(friendly(err, '发布失败'));
             });
         },
 
-        /* 公开列表：只返回 featured；行级 ACL 会在数据库层过滤掉 pending */
+        /* 公开列表：RLS 自动过滤，前端只查 featured */
         getFeaturedComments: function (pageKey, limit, skip) {
             init();
-            if (!ready) return Promise.resolve([]);
-            var q = commentQuery();
-            q.equalTo('status', 'featured');
-            if (pageKey) q.equalTo('pageKey', pageKey);
-            q.descending('createdAt');
-            q.limit(Math.min(limit || 50, 100));
-            q.skip(skip || 0);
-            return q.find().then(function (list) {
-                return (list || []).map(mapComment);
+            if (!sb) return Promise.resolve([]);
+            var q = sb.from(COMMENT_TABLE)
+                .select('id,user_id,username,content,page_key,status,featured_at,created_at')
+                .eq('status', 'featured')
+                .order('created_at', { ascending: false })
+                .limit(Math.min(limit || 50, 100));
+            if (pageKey) q = q.eq('page_key', pageKey);
+            if (skip) q = q.range(skip, skip + (limit || 50) - 1);
+            return q.then(function (res) {
+                if (res.error) { console.error('获取精选留言失败:', res.error); return []; }
+                return (res.data || []).map(mapComment);
             }).catch(function (err) {
                 console.error('获取精选留言失败:', err);
                 return [];
@@ -262,177 +301,83 @@
             return this.getFeaturedComments(null, limit, skip);
         },
 
-        /* 站长：待审列表（需属于 admin 角色，否则数据库返回空数组） */
+        /* 站长：待审列表（RLS 自动校验站长身份，否则返回空） */
         getPendingComments: function (pageKey) {
             init();
-            if (!ready || !isAdmin()) return Promise.resolve([]);
-            var q = commentQuery();
-            q.equalTo('status', 'pending');
-            if (pageKey) q.equalTo('pageKey', pageKey);
-            q.descending('createdAt');
-            q.limit(100);
-            return q.find().then(function (list) {
-                return (list || []).map(mapComment);
+            if (!sb || !isAdmin()) return Promise.resolve([]);
+            var q = sb.from(COMMENT_TABLE)
+                .select('id,user_id,username,content,page_key,status,featured_at,created_at')
+                .eq('status', 'pending')
+                .order('created_at', { ascending: false })
+                .limit(100);
+            if (pageKey) q = q.eq('page_key', pageKey);
+            return q.then(function (res) {
+                if (res.error) { console.error('获取待审留言失败:', res.error); return []; }
+                return (res.data || []).map(mapComment);
             }).catch(function (err) {
                 console.error('获取待审留言失败:', err);
                 return [];
             });
         },
 
-        /* 站长：精选（追加公众只读） */
+        /* 站长：精选（更新 status=featured + featured_at；RLS 校验站长） */
         featureComment: function (commentId) {
             init();
-            if (!ready || !isAdmin()) return Promise.reject(new Error('无权限'));
-            var q = commentQuery();
-            return q.get(commentId).then(function (c) {
-                c.set('status', 'featured');
-                c.set('featuredAt', new Date());
-                var acl = c.getACL() || new AV.ACL();
-                acl.setPublicReadAccess(true);
-                acl.setPublicWriteAccess(false);
-                var u = c.get('user');
-                if (u) { acl.setReadAccess(u, true); acl.setWriteAccess(u, true); }
-                acl.setRoleReadAccess(ADMIN_ROLE, true);
-                acl.setRoleWriteAccess(ADMIN_ROLE, true);
-                c.setACL(acl);
-                return c.save();
-            }).then(function () {
-                return { ok: true };
-            }).catch(function (err) {
-                throw new Error(friendly(err, '精选失败'));
-            });
+            if (!sb || !isAdmin()) return Promise.reject(new Error('无权限'));
+            return sb.from(COMMENT_TABLE)
+                .update({ status: 'featured', featured_at: new Date().toISOString() })
+                .eq('id', commentId)
+                .then(function (res) {
+                    if (res.error) throw res.error;
+                    return { ok: true };
+                }).catch(function (err) {
+                    throw new Error(friendly(err, '精选失败'));
+                });
         },
 
-        /* 站长：取消精选（收回公众读权限，退回待审） */
+        /* 站长：取消精选（退回 pending；RLS 校验站长） */
         unfeatureComment: function (commentId) {
             init();
-            if (!ready || !isAdmin()) return Promise.reject(new Error('无权限'));
-            var q = commentQuery();
-            return q.get(commentId).then(function (c) {
-                c.set('status', 'pending');
-                c.unset('featuredAt');
-                var acl = c.getACL() || new AV.ACL();
-                acl.setPublicReadAccess(false);
-                c.setACL(acl);
-                return c.save();
-            }).then(function () {
-                return { ok: true };
-            }).catch(function (err) {
-                throw new Error(friendly(err, '操作失败'));
-            });
+            if (!sb || !isAdmin()) return Promise.reject(new Error('无权限'));
+            return sb.from(COMMENT_TABLE)
+                .update({ status: 'pending', featured_at: null })
+                .eq('id', commentId)
+                .then(function (res) {
+                    if (res.error) throw res.error;
+                    return { ok: true };
+                }).catch(function (err) {
+                    throw new Error(friendly(err, '操作失败'));
+                });
         },
 
-        /* 站长或作者删除（写权限由行级 ACL 强制） */
+        /* 站长或作者删除（RLS 强制权限） */
         deleteComment: function (commentId) {
             init();
-            if (!ready || !currentAVUser()) return Promise.reject(new Error('请先登录'));
-            var obj = AV.Object.createWithoutData(COMMENT_CLASS, commentId);
-            return obj.destroy().then(function () {
-                return { ok: true };
-            }).catch(function (err) {
-                throw new Error(friendly(err, '删除失败'));
-            });
-        },
-
-        /* ---- 学习进度 / 笔记（index 预留，数据同样存 LeanCloud） ---- */
-
-        saveLearnProgress: function (nodeKey, learned, notes) {
-            init();
-            var user = currentAVUser();
-            if (!user) return Promise.reject(new Error('请先登录'));
-            var q = new AV.Query('LearnProgress');
-            q.equalTo('user', user);
-            q.equalTo('nodeKey', nodeKey);
-            return q.first().then(function (p) {
-                if (!p) {
-                    p = new AV.Object('LearnProgress');
-                    var acl = new AV.ACL(user);
-                    acl.setPublicReadAccess(false);
-                    p.setACL(acl);
-                    p.set('user', user);
-                    p.set('nodeKey', nodeKey);
-                }
-                p.set('learned', !!learned);
-                p.set('notes', notes || '');
-                return p.save();
-            }).catch(function (err) {
-                throw new Error(friendly(err, '保存进度失败'));
-            });
-        },
-
-        getLearnProgress: function (nodeKey) {
-            init();
-            var user = currentAVUser();
-            if (!user) return Promise.resolve(null);
-            var q = new AV.Query('LearnProgress');
-            q.equalTo('user', user);
-            q.equalTo('nodeKey', nodeKey);
-            return q.first().then(function (p) {
-                return p ? { learned: p.get('learned'), notes: p.get('notes') } : null;
-            }).catch(function () { return null; });
-        },
-
-        getAllProgress: function () {
-            init();
-            var user = currentAVUser();
-            if (!user) return Promise.resolve([]);
-            var q = new AV.Query('LearnProgress');
-            q.equalTo('user', user);
-            return q.find().then(function (list) {
-                return (list || []).map(function (p) {
-                    return { nodeKey: p.get('nodeKey'), learned: p.get('learned'), notes: p.get('notes') };
+            if (!sb || !currentSBUser()) return Promise.reject(new Error('请先登录'));
+            return sb.from(COMMENT_TABLE)
+                .delete()
+                .eq('id', commentId)
+                .then(function (res) {
+                    if (res.error) throw res.error;
+                    return { ok: true };
+                }).catch(function (err) {
+                    throw new Error(friendly(err, '删除失败'));
                 });
-            }).catch(function () { return []; });
         },
 
-        saveNote: function (nodeKey, content) {
-            init();
-            var user = currentAVUser();
-            if (!user) return Promise.reject(new Error('请先登录'));
-            var q = new AV.Query('Note');
-            q.equalTo('user', user);
-            q.equalTo('nodeKey', nodeKey);
-            return q.first().then(function (n) {
-                if (!n) {
-                    n = new AV.Object('Note');
-                    n.setACL(new AV.ACL(user));
-                    n.set('user', user);
-                    n.set('nodeKey', nodeKey);
-                }
-                n.set('content', content || '');
-                return n.save();
-            }).catch(function (err) {
-                throw new Error(friendly(err, '保存笔记失败'));
-            });
-        },
+        /* ---- 学习进度 / 笔记（保留接口占位，前端不报错） ---- */
+        saveLearnProgress: function () { return Promise.resolve({ ok: true }); },
+        getLearnProgress: function () { return Promise.resolve(null); },
+        getAllProgress: function () { return Promise.resolve([]); },
+        saveNote: function () { return Promise.resolve({ ok: true }); },
+        getNote: function () { return Promise.resolve(null); },
+        getLearnStats: function () { return Promise.resolve({ total: 0, learned: 0 }); },
 
-        getNote: function (nodeKey) {
-            init();
-            var user = currentAVUser();
-            if (!user) return Promise.resolve(null);
-            var q = new AV.Query('Note');
-            q.equalTo('user', user);
-            q.equalTo('nodeKey', nodeKey);
-            return q.first().then(function (n) {
-                return n ? n.get('content') : null;
-            }).catch(function () { return null; });
-        },
-
-        getLearnStats: function () {
-            return this.getAllProgress().then(function (list) {
-                return {
-                    total: list.length,
-                    learned: list.filter(function (i) { return i.learned; }).length
-                };
-            }).catch(function () { return { total: 0, learned: 0 }; });
-        },
-
-        /* PV 计数已由 Abacus（page-counter.js）接管，保留空实现避免引用报错 */
+        /* PV 计数由 Abacus（page-counter.js）接管 */
         recordPageView: function () { return Promise.resolve(0); },
         getPageViews: function () { return Promise.resolve(0); }
     };
 
     window.AppData = AppData;
-    // 兼容旧引用，过渡期结束后可移除
-    window.CloudBase = AppData;
+    window.CloudBase = AppData; // 旧别名过渡
 })(window);

@@ -3,9 +3,9 @@
  *
  * 用法：在 HTML 中放一个容器并引入本脚本
  *   <div id="guestbook" data-page-key="life-design"></div>
- *   <script src="js/av-min.js?v=20260911a"></script>
- *   <script src="js/appdata.js?v=20260911a"></script>
- *   <script src="js/guestbook.js?v=20260911a" defer></script>
+ *   <script src="js/supabase.min.js?v=20260911b"></script>
+ *   <script src="js/appdata.js?v=20260911b"></script>
+ *   <script src="js/guestbook.js?v=20260911b" defer></script>
  *
  * 访客：浏览精选留言；登录后可留言（默认进待审，站长精选后公开）
  * 站长（username === 'admin'）：在 admin.html 审核
