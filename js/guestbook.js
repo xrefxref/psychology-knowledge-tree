@@ -3,8 +3,9 @@
  *
  * 用法：在 HTML 中放一个容器并引入本脚本
  *   <div id="guestbook" data-page-key="life-design"></div>
- *   <script src="js/cloudbase.js?v=20260910a"></script>
- *   <script src="js/guestbook.js?v=20260910a" defer></script>
+ *   <script src="js/av-min.js?v=20260911a"></script>
+ *   <script src="js/appdata.js?v=20260911a"></script>
+ *   <script src="js/guestbook.js?v=20260911a" defer></script>
  *
  * 访客：浏览精选留言；登录后可留言（默认进待审，站长精选后公开）
  * 站长（username === 'admin'）：在 admin.html 审核
@@ -88,9 +89,9 @@
 
     Guestbook.prototype.init = function () {
         var self = this;
-        if (window.CloudBase) {
-            CloudBase.init();
-            var u = CloudBase.getUser();
+        if (window.AppData) {
+            AppData.init();
+            var u = AppData.getUser();
             if (u) {
                 this.user = u;
                 if (!u._username && u.email) u._username = u.email.split('@')[0];
@@ -116,13 +117,13 @@
     Guestbook.prototype.renderFormArea = function () {
         var box = document.getElementById('gb-form-' + this.pageKey);
         if (!box) return;
-        if (!this.user || !window.CloudBase) {
+        if (!this.user || !window.AppData) {
             box.innerHTML = this.renderAuth();
             this.bindAuth(box);
             return;
         }
         var name = this.user._username || (this.user.email ? this.user.email.split('@')[0] : '我');
-        var adminBadge = CloudBase.isAdmin() ? ' · 站长' : '';
+        var adminBadge = AppData.isAdmin() ? ' · 站长' : '';
         box.innerHTML =
             '<div class="gb-userbar"><span class="gb-uname">👤 ' + esc(name) + adminBadge + '</span>' +
             '<button class="gb-logout" id="gb-logout-' + this.pageKey + '">退出登录</button></div>' +
@@ -136,7 +137,7 @@
         if (btn) btn.addEventListener('click', function () { self.submitComment(); });
         var out = document.getElementById('gb-logout-' + this.pageKey);
         if (out) out.addEventListener('click', function () {
-            if (window.CloudBase) { CloudBase.logout(); self.user = null; self.renderFormArea(); }
+            if (window.AppData) { AppData.logout(); self.user = null; self.renderFormArea(); }
         });
     };
 
@@ -178,8 +179,8 @@
         if (!name) { if (errEl) errEl.textContent = '请输入用户名'; return; }
         if (pwd.length < 6) { if (errEl) errEl.textContent = '密码至少 6 位'; return; }
         if (errEl) errEl.textContent = '';
-        var fn = this.authMode === 'login' ? CloudBase.login : CloudBase.register;
-        fn.call(CloudBase, name, pwd).then(function (user) {
+        var fn = this.authMode === 'login' ? AppData.login : AppData.register;
+        fn.call(AppData, name, pwd).then(function (user) {
             user._username = name;
             self.user = user;
             self.renderFormArea();
@@ -190,8 +191,8 @@
 
     Guestbook.prototype.loadComments = function () {
         var self = this;
-        if (!window.CloudBase) { this.renderComments([]); return; }
-        CloudBase.getFeaturedComments(this.pageKey, 50).then(function (list) {
+        if (!window.AppData) { this.renderComments([]); return; }
+        AppData.getFeaturedComments(this.pageKey, 50).then(function (list) {
             self.comments = list || [];
             self.renderComments(self.comments);
         });
@@ -222,7 +223,7 @@
         var content = ta.value.trim();
         if (!content) return;
         if (btn) { btn.disabled = true; btn.textContent = '提交中…'; }
-        CloudBase.addComment(content, this.pageKey).then(function () {
+        AppData.addComment(content, this.pageKey).then(function () {
             ta.value = '';
             if (btn) { btn.disabled = false; btn.textContent = '提交留言'; }
         }).catch(function () {

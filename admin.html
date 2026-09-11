@@ -85,8 +85,8 @@
   <div id="app"></div>
 </div>
 
-<script src="js/cloudbase.full.js"></script>
-<script src="js/cloudbase.js?v=20260910a"></script>
+<script src="js/av-min.js?v=20260911a"></script>
+<script src="js/appdata.js?v=20260911a"></script>
 <script>
 (function(){
   'use strict';
@@ -103,16 +103,16 @@
   }
 
   function init(){
-    if(!window.CloudBase){ app.innerHTML='<div class="empty">CloudBase 未加载</div>'; return; }
-    CloudBase.init();
-    var u = CloudBase.getUser();
+    if(!window.AppData){ app.innerHTML='<div class="empty">数据服务未加载</div>'; return; }
+    AppData.init();
+    var u = AppData.getUser();
     if(u){ user = u; if(!u._username && u.email) u._username = u.email.split('@')[0]; }
     render();
   }
 
   function render(){
     if(!user){ renderLogin(); return; }
-    if(!CloudBase.isAdmin()){ renderDenied(); return; }
+    if(!AppData.isAdmin()){ renderDenied(); return; }
     renderDashboard();
   }
 
@@ -132,7 +132,7 @@
       '<div class="field"><label>密码</label><input type="password" id="lg-pwd" placeholder="密码（至少 6 位）"></div>' +
       '<button class="btn" id="lg-btn">' + (isLogin?'登录':'注册并进入') + '</button>' +
       '<div class="err" id="lg-err"></div>' +
-      '<div class="note">仅站长账号可进入审核后台。<br>如忘记密码，请在 CloudBase 控制台处理。</div>' +
+      '<div class="note">仅站长账号可进入审核后台。<br>如忘记密码，请在 LeanCloud 控制台处理。</div>' +
       '</div>';
     var self = this;
     document.querySelectorAll('.auth-tab').forEach(function(t){
@@ -160,8 +160,8 @@
     var btn = document.getElementById('lg-btn');
     btn.disabled = true;
     btn.textContent = authMode === 'login' ? '登录中…' : '注册中…';
-    var fn = authMode === 'login' ? CloudBase.login : CloudBase.register;
-    fn.call(CloudBase, name, pwd).then(function(u){
+    var fn = authMode === 'login' ? AppData.login : AppData.register;
+    fn.call(AppData, name, pwd).then(function(u){
       u._username = name; user = u; render();
     }).catch(function(e){
       err.textContent = (e&&e.message)?e.message:(authMode==='login'?'登录失败':'注册失败');
@@ -197,7 +197,7 @@
       '<div id="featured-box"><div class="empty">加载中…</div></div>';
     document.getElementById('refresh').addEventListener('click', loadAll);
     document.getElementById('logout').addEventListener('click', function(){
-      CloudBase.logout(); user = null; render();
+      AppData.logout(); user = null; render();
     });
     document.getElementById('pageFilter').addEventListener('change', function(){
       filterKey = this.value; loadAll();
@@ -207,11 +207,11 @@
 
   function loadAll(){
     var pk = filterKey || null;
-    CloudBase.getPendingComments(pk).then(function(list){
+    AppData.getPendingComments(pk).then(function(list){
       pendingList = list || [];
       renderPending();
     });
-    CloudBase.getFeaturedComments(pk, 100).then(function(list){
+    AppData.getFeaturedComments(pk, 100).then(function(list){
       featuredList = list || [];
       renderFeatured();
     });
@@ -256,14 +256,14 @@
       b.addEventListener('click', function(){
         var id = b.getAttribute('data-feature');
         b.disabled = true; b.textContent = '处理中…';
-        CloudBase.featureComment(id).then(loadAll).catch(function(){ b.disabled=false; b.textContent='✓ 精选'; });
+        AppData.featureComment(id).then(loadAll).catch(function(){ b.disabled=false; b.textContent='✓ 精选'; });
       });
     });
     document.querySelectorAll('#pending-box [data-delete]').forEach(function(b){
       b.addEventListener('click', function(){
         if(!confirm('确认删除这条留言？')) return;
         var id = b.getAttribute('data-delete');
-        CloudBase.deleteComment(id).then(loadAll);
+        AppData.deleteComment(id).then(loadAll);
       });
     });
   }
@@ -273,14 +273,14 @@
       b.addEventListener('click', function(){
         var id = b.getAttribute('data-unfeature');
         b.disabled = true; b.textContent = '处理中…';
-        CloudBase.unfeatureComment(id).then(loadAll).catch(function(){ b.disabled=false; b.textContent='取消精选'; });
+        AppData.unfeatureComment(id).then(loadAll).catch(function(){ b.disabled=false; b.textContent='取消精选'; });
       });
     });
     document.querySelectorAll('#featured-box [data-delete]').forEach(function(b){
       b.addEventListener('click', function(){
         if(!confirm('确认删除这条精选留言？')) return;
         var id = b.getAttribute('data-delete');
-        CloudBase.deleteComment(id).then(loadAll);
+        AppData.deleteComment(id).then(loadAll);
       });
     });
   }
