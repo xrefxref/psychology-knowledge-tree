@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>搞钱锦囊 · 今日一抽</title>
+<style>
+  :root{
+    --paper:#f5efe2;
+    --card:#fffdf6;
+    --ink:#3a3226;
+    --ink-light:#8a7f6d;
+    --accent:#b3432b;      /* 朱红 */
+    --accent-deep:#8e3520;
+    --green:#2f5d50;       /* 墨绿 */
+    --gold:#b98a2f;
+    --ribbon:#b3432b;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html,body{height:100%;}
+  body{
+    font-family:"Noto Serif SC","Source Han Serif SC","Songti SC",STSong,SimSun,serif;
+    background:
+      repeating-linear-gradient(0deg, rgba(58,50,38,.018) 0 1px, transparent 1px 3px),
+      radial-gradient(ellipse at 50% 0%, #faf6ec 0%, var(--paper) 70%);
+    color:var(--ink);
+    display:flex;justify-content:center;
+    min-height:100vh;
+  }
+  .wrap{
+    width:100%;max-width:480px;
+    padding:0 22px calc(30px + env(safe-area-inset-bottom));
+    position:relative;
+  }
+  /* ── 书签色带 ── */
+  .ribbon{
+    position:absolute;top:0;left:34px;width:34px;height:86px;
+    background:linear-gradient(180deg,var(--accent),var(--accent-deep));
+    clip-path:polygon(0 0,100% 0,100% 100%,50% 86%,0 100%);
+    box-shadow:0 2px 6px rgba(142,53,32,.25);
+    z-index:2;
+  }
+  .ribbon::after{
+    content:"錦囊";writing-mode:vertical-rl;
+    color:#f7ecd8;font-size:12px;letter-spacing:4px;
+    position:absolute;top:12px;left:50%;transform:translateX(-50%);
+  }
+  header{text-align:center;padding-top:64px;margin-bottom:6px;}
+  .kicker{
+    display:inline-block;font-size:11px;letter-spacing:6px;color:var(--gold);
+    border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);
+    padding:5px 10px 5px 16px;margin-bottom:16px;
+  }
+  h1{font-size:34px;letter-spacing:10px;font-weight:700;text-indent:10px;}
+  .sub{font-size:13px;color:var(--ink-light);letter-spacing:3px;margin-top:10px;}
+
+  /* ── 次数 ── */
+  .quota{
+    text-align:center;font-size:12px;color:var(--ink-light);
+    letter-spacing:2px;margin:18px 0 22px;
+  }
+  .quota b{color:var(--accent);font-weight:700;}
+
+  /* ── 锦囊卡（翻转）── */
+  .stage{perspective:1200px;display:flex;justify-content:center;}
+  .flip{
+    position:relative;width:280px;height:380px;
+    transform-style:preserve-3d;
+    transition:transform .8s cubic-bezier(.2,.7,.2,1);
+  }
+  .flip.open{transform:rotateY(180deg);}
+  .face{
+    position:absolute;inset:0;border-radius:10px;
+    backface-visibility:hidden;-webkit-backface-visibility:hidden;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    box-shadow:0 12px 32px rgba(58,50,38,.16);
+  }
+  .face.front{
+    background:
+      repeating-linear-gradient(45deg, rgba(185,138,47,.07) 0 2px, transparent 2px 14px),
+      linear-gradient(160deg,#a03a24,#7c2c1a);
+    color:#f7ecd8;cursor:pointer;
+  }
+  .face.front:active{transform:scale(.98);}
+  .pouch-icon{font-size:58px;margin-bottom:18px;filter:drop-shadow(0 4px 6px rgba(0,0,0,.25));}
+  .front-title{font-size:22px;letter-spacing:8px;text-indent:8px;font-weight:700;}
+  .front-hint{
+    margin-top:22px;font-size:12px;letter-spacing:3px;color:#e8c9a0;
+    border:1px solid rgba(247,236,216,.4);border-radius:999px;padding:7px 18px;
+    animation:breathe 2.2s ease-in-out infinite;
+  }
+  @keyframes breathe{0%,100%{opacity:.55}50%{opacity:1}}
+  .face.back{
+    background:
+      repeating-linear-gradient(0deg, rgba(58,50,38,.02) 0 1px, transparent 1px 4px),
+      linear-gradient(180deg,var(--card),#f9f3e4);
+    transform:rotateY(180deg);
+    padding:30px 26px;
+  }
+  .back-label{
+    font-size:11px;letter-spacing:5px;color:var(--gold);margin-bottom:4px;text-indent:5px;
+  }
+  .back-seal{
+    width:34px;height:2px;background:var(--accent);margin:12px auto 20px;
+  }
+  .tip{
+    font-size:19px;line-height:2;letter-spacing:1px;text-align:center;
+    font-weight:600;
+  }
+  .back-no{
+    margin-top:20px;font-size:11px;color:var(--ink-light);letter-spacing:2px;
+  }
+  /* 抽取抖动 */
+  .shake{animation:shake .5s ease;}
+  @keyframes shake{
+    0%,100%{transform:rotate(0)}
+    20%{transform:rotate(-3deg)}
+    40%{transform:rotate(3deg)}
+    60%{transform:rotate(-2deg)}
+    80%{transform:rotate(2deg)}
+  }
+
+  /* ── 按钮 ── */
+  .actions{margin-top:30px;display:flex;justify-content:center;gap:14px;}
+  button{
+    font-family:inherit;font-size:14px;letter-spacing:3px;text-indent:3px;
+    border-radius:999px;padding:12px 30px;cursor:pointer;
+    transition:opacity .2s,transform .1s;
+  }
+  button:active{transform:scale(.96);}
+  .btn-main{
+    background:var(--green);color:#f3efe4;border:none;
+    box-shadow:0 6px 16px rgba(47,93,80,.3);
+  }
+  .btn-main:disabled{opacity:.4;box-shadow:none;cursor:default;}
+  .btn-copy{
+    background:transparent;color:var(--ink-light);
+    border:1px solid #cfc4ac;
+  }
+
+  /* ── 底部 ── */
+  footer{
+    margin-top:46px;text-align:center;font-size:11px;
+    color:var(--ink-light);letter-spacing:2px;line-height:2;
+  }
+  footer .dot{color:var(--gold);margin:0 8px;}
+  .toast{
+    position:fixed;left:50%;bottom:70px;transform:translateX(-50%) translateY(20px);
+    background:rgba(58,50,38,.92);color:#f7ecd8;font-size:13px;letter-spacing:2px;
+    padding:10px 22px;border-radius:999px;opacity:0;pointer-events:none;
+    transition:all .3s;z-index:99;
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="ribbon"></div>
+
+  <header>
+    <div class="kicker">搞钱心理学</div>
+    <h1>搞钱锦囊</h1>
+    <p class="sub">每天一抽 · 把一条金钱心法装进口袋</p>
+  </header>
+
+  <p class="quota" id="quota"></p>
+
+  <div class="stage">
+    <div class="flip" id="flip">
+      <div class="face front" id="front">
+        <div class="pouch-icon">🧧</div>
+        <div class="front-title">点我开囊</div>
+        <div class="front-hint">轻触抽取今日锦囊</div>
+      </div>
+      <div class="face back">
+        <div class="back-label">今日锦囊</div>
+        <div class="back-seal"></div>
+        <div class="tip" id="tip"></div>
+        <div class="back-no" id="backNo"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button class="btn-main" id="drawBtn">再抽一次</button>
+    <button class="btn-copy" id="copyBtn">复制分享</button>
+  </div>
+
+  <footer>
+    林远见路<span class="dot">·</span>搞钱心理学<br>
+    关注公众号，每周拆解一条金钱心法
+  </footer>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ── 锦囊内容：金钱心理学心法（第二人称， practical）── */
+const TIPS = [
+  "先给钱安排岗位再让它上岗：工资到账先分三份——生存、成长、享乐。",
+  "把“我买不起”换成“我怎样才能买得起”，大脑才肯开工找答案。",
+  "冲动消费的克星不是意志力，是“放进购物车睡一觉再决定”。",
+  "存钱不是抠门，是给未来那个更值钱的自己发工资。",
+  "别用消费制造勤奋的错觉：买课程不等于学习，买装备不等于开始。",
+  "记账三天，你就会发现钱是怎么替你做决定的。",
+  "你的注意力花在哪，你的钱迟早跟到哪——先管好刷手机的手。",
+  "涨薪最快的人不是最忙的，是最能说清自己值多少钱的。",
+  "每月留一笔“犯傻额度”，允许小错，才能避免大错。",
+  "账户余额，就是你对不喜欢的事说“不”的底气。",
+  "情绪上头时别做大额决定：先处理心情，再处理账单。",
+  "把大目标拆成“每天 50 块”，坚持比金额更重要。",
+  "免费的东西最贵——用你的时间和注意力去衡量一下。",
+  "先让一部分钱动起来，钱才愿意跟你走。",
+  "别在深夜下单，别在兴奋时签约，别在沮丧时清仓。",
+  "技能是你唯一不会贬值的资产，持续给它复利。",
+  "你身边最常来往的五个人，正在校准你的赚钱标准。",
+  "赚钱的本质是帮别人解决问题——问题越大，回报越高。",
+  "报价时先沉默三秒，你会惊讶于自己的底气值多少钱。",
+  "把“等有钱了再说”改成“先做到再说”，顺序反了就永远等不到。",
+  "消费让你爽一次，投资让你爽很多次——分配比例暴露你的未来。",
+  "小钱大方的样子很贵，大钱谨慎的样子才值钱。",
+  "复盘比努力便宜，却比努力值钱：每月花一小时看账单。",
+  "“懂”和“会”之间隔着一万次练习，搞钱也一样。",
+  "拒绝一次无效社交，你就多了一小时自我增值的时间。",
+  "钱是工具不是主人：让它为你工作，别为它工作一辈子。",
+  "复利的朋友是时间，敌人是中断——先做到不断，再谈多少。",
+  "今天能留住的钱，就是你明天的选择权。"
+];
+
+const KEY = "capsule_daily";
+const MAX = 3;
+
+function today(){ return new Date().toISOString().slice(0,10); }
+function getUsed(){
+  try{
+    const d = JSON.parse(localStorage.getItem(KEY) || "{}");
+    return d.date === today() ? (d.count || 0) : 0;
+  }catch(e){ return 0; }
+}
+function useOne(){
+  const n = getUsed() + 1;
+  localStorage.setItem(KEY, JSON.stringify({date:today(), count:n}));
+  return n;
+}
+let lastTip = "";
+
+const flip   = document.getElementById("flip");
+const tipEl  = document.getElementById("tip");
+const backNo = document.getElementById("backNo");
+const quota  = document.getElementById("quota");
+const drawBtn= document.getElementById("drawBtn");
+const toast  = document.getElementById("toast");
+
+function updateQuota(){
+  const left = MAX - getUsed();
+  quota.innerHTML = left > 0
+    ? `今日还可抽 <b>${left}</b> / ${MAX} 次`
+    : `今日次数已用完，明天再来`;
+  drawBtn.disabled = left <= 0;
+}
+function showToast(msg){
+  toast.textContent = msg;
+  toast.classList.add("show");
+  setTimeout(()=>toast.classList.remove("show"), 1600);
+}
+function draw(){
+  if (getUsed() >= MAX){ showToast("今日次数已用完，明天再来"); return; }
+  if (!flip.classList.contains("open")){
+    front.classList.add("shake");
+    setTimeout(()=>front.classList.remove("shake"), 500);
+    setTimeout(reveal, 480);
+  } else {
+    flip.classList.remove("open");
+    setTimeout(reveal, 750);
+  }
+  function reveal(){
+    let i;
+    do { i = Math.floor(Math.random()*TIPS.length); } while (TIPS[i] === lastTip && TIPS.length > 1);
+    lastTip = TIPS[i];
+    tipEl.textContent = TIPS[i];
+    const n = useOne();
+    backNo.textContent = `第 ${String(n).padStart(2,"0")} 次抽取 · 第 ${String(i+1).padStart(2,"0")} 号锦囊`;
+    flip.classList.add("open");
+    updateQuota();
+  }
+}
+const front = document.getElementById("front");
+front.addEventListener("click", draw);
+drawBtn.addEventListener("click", draw);
+
+document.getElementById("copyBtn").addEventListener("click", ()=>{
+  if (!lastTip){ showToast("先抽一次才有内容可分享"); return; }
+  const text = `【搞钱锦囊】${lastTip}\n—— 林远见路 · 搞钱心理学`;
+  const done = ()=>showToast("已复制，去粘贴分享吧");
+  if (navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(done).catch(fallback);
+  } else fallback();
+  function fallback(){
+    const ta = document.createElement("textarea");
+    ta.value = text; document.body.appendChild(ta);
+    ta.select(); document.execCommand("copy");
+    document.body.removeChild(ta); done();
+  }
+});
+
+updateQuota();
+</script>
+</body>
+</html>
