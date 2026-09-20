@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page-node-id="okFqlbNBF7X5k2U5R7GDsL">
+<head data-page-node-id="7Ju0SHuMjbLGdWPFrf8Llk">
+<meta charset="UTF-8" data-page-node-id="3aIicMTDFNQyXDlI684X04">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" data-page-node-id="WcahFQL2UTWCnH3pW63AM2">
+<title>《从北京到伦敦》精读笔记 · 跨文化迁徙摘要卡</title>
+<meta name="description" content="吴凌凌《从北京到伦敦：一个金融白领的移民生活纪实》精读笔记：22 篇随笔、双城对照、身份重建曲线与"把生活好好继续"的笃定。" data-page-node-id="zYt2RxOkKq13gplJkcZZig">
+<style>
+  :root{
+    --paper:#f4f2ed;
+    --paper-2:#faf9f5;
+    --ink:#252a2e;
+    --ink-soft:#535b62;
+    --ink-faint:#848d94;
+    --line:#dde0dd;
+    --accent:#4F6A83;      /* 伦敦雾蓝 */
+    --accent-2:#8FA8BF;    /* 副色 · 雾青 */
+    --accent-deep:#2E4458; /* s1 深色 */
+    --warm:#B8853F;        /* 对比麦芽金 */
+    --shadow:0 12px 40px rgba(37,42,46,.10);
+    --shadow-sm:0 4px 18px rgba(37,42,46,.08);
+    --serif:"Songti SC","Source Han Serif SC","Noto Serif SC",Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--sans);color:var(--ink);background:var(--paper);
+    background-image:
+      radial-gradient(circle at 18% 8%, rgba(143,168,191,.10), transparent 42%),
+      radial-gradient(circle at 84% 88%, rgba(79,106,131,.07), transparent 46%);
+    line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.035'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  body>*{position:relative;z-index:1;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
+  h1,h2,h3,.serif{font-family:var(--serif);}
+  ::selection{background:rgba(79,106,131,.18);}
+
+  #progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:99;
+    background:linear-gradient(90deg,var(--accent-2),var(--accent));transition:width .1s linear;}
+
+  .hero{
+    position:relative;min-height:clamp(480px,72vh,640px);
+    display:flex;align-items:flex-end;
+    background-size:cover;background-position:center 55%;
+    color:#f5f7f8;overflow:hidden;
+  }
+  .hero::after{
+    content:"";position:absolute;inset:0;
+    background:
+      linear-gradient(180deg, rgba(16,22,30,.30) 0%, rgba(16,22,30,.42) 42%, rgba(10,16,22,.92) 100%),
+      linear-gradient(90deg, rgba(10,16,22,.58) 0%, rgba(10,16,22,0) 58%);
+  }
+  .hero-inner{position:relative;z-index:2;width:100%;max-width:1080px;margin:0 auto;padding:88px 28px 54px;}
+  .hero .kicker{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:13px;letter-spacing:.22em;text-transform:uppercase;
+    color:#cad7e3;border:1px solid rgba(202,215,227,.45);
+    padding:6px 15px;border-radius:30px;margin-bottom:22px;backdrop-filter:blur(2px);
+  }
+  .hero h1{font-size:clamp(34px,6vw,62px);line-height:1.12;font-weight:700;letter-spacing:.01em;text-shadow:0 2px 24px rgba(0,0,0,.45);margin-bottom:10px;}
+  .hero .sub-en{font-family:var(--serif);font-style:italic;font-size:clamp(15px,2.4vw,22px);color:#b8c9d6;opacity:.92;margin-bottom:20px;}
+  .hero .lead{max-width:640px;font-size:clamp(15px,2vw,18px);color:#e0e8ef;}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:24px 34px;margin-top:30px;}
+  .hero-meta .m{display:flex;flex-direction:column;}
+  .hero-meta .m b{font-family:var(--serif);font-size:20px;color:#fff;}
+  .hero-meta .m span{font-size:12.5px;letter-spacing:.08em;color:#a8bccd;}
+
+  .ribbon{position:absolute;top:0;right:clamp(16px,5vw,52px);z-index:3;width:44px;
+    background:var(--accent);color:#fff;text-align:center;
+    padding:15px 0 24px;font-family:var(--serif);font-size:13px;letter-spacing:.14em;
+    box-shadow:0 6px 16px rgba(0,0,0,.32);}
+  .ribbon::after{content:"";position:absolute;left:0;bottom:-13px;border-width:0 22px 14px;border-style:solid;border-color:var(--accent) var(--accent) transparent;}
+  .ribbon span{writing-mode:vertical-rl;}
+
+  .toc-bar{background:var(--paper-2);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50;box-shadow:0 2px 14px rgba(37,42,46,.06);}
+  .toc-in{max-width:1080px;margin:0 auto;padding:10px 28px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .toc-in .lab{font-family:var(--serif);font-size:13px;color:var(--accent);letter-spacing:.1em;margin-right:6px;}
+  .toc-in a{font-size:12.5px;color:var(--ink-soft);text-decoration:none;padding:4px 11px;border-radius:20px;border:1px solid transparent;transition:all .18s;white-space:nowrap;}
+  .toc-in a:hover{color:var(--accent);border-color:rgba(79,106,131,.35);background:rgba(79,106,131,.05);}
+
+  section{padding:60px 0 56px;scroll-margin-top:64px;}
+  .sec-head{display:flex;align-items:center;gap:14px;margin-bottom:8px;}
+  .sec-no{font-family:var(--serif);font-size:14px;color:var(--accent);border:1px solid var(--accent);border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;flex:none;}
+  .sec-head h2{font-size:clamp(23px,3.4vw,31px);color:var(--ink);}
+  .sec-sub{color:var(--ink-faint);font-size:14.5px;margin-bottom:32px;padding-left:48px;}
+  @media(max-width:880px){.sec-sub{padding-left:0;}}
+
+  .divider{height:1px;background:linear-gradient(90deg,transparent,var(--line) 18%,var(--line) 82%,transparent);}
+
+  .bookcard{
+    display:grid;grid-template-columns:1.1fr 1fr;gap:34px;align-items:center;
+    background:var(--paper-2);border:1px solid var(--line);border-radius:18px;
+    padding:38px;box-shadow:var(--shadow);position:relative;overflow:hidden;
+  }
+  .bookcard::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:linear-gradient(var(--accent),var(--accent-2));}
+  .one-liner{font-family:var(--serif);font-size:clamp(19px,2.9vw,26px);line-height:1.55;color:var(--ink);}
+  .one-liner em{color:var(--accent);font-style:normal;}
+  .one-liner .rule{width:52px;height:3px;background:var(--accent);border-radius:2px;margin-top:18px;opacity:.85;}
+  .meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 22px;}
+  .meta-grid .cell span{display:block;font-size:12px;letter-spacing:.1em;color:var(--ink-faint);text-transform:uppercase;margin-bottom:3px;}
+  .meta-grid .cell b{font-family:var(--serif);font-size:16.5px;color:var(--ink);font-weight:600;line-height:1.45;}
+  @media(max-width:880px){.bookcard{grid-template-columns:1fr;padding:28px;gap:26px;}}
+
+  /* 双城对照（替代双驱力 grid） */
+  .sys-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .sys{border-radius:16px;padding:30px 28px;color:#fff;position:relative;overflow:hidden;box-shadow:var(--shadow);}
+  .sys.s1{background:linear-gradient(150deg,#5C7891,#2E4458);}
+  .sys.s2{background:linear-gradient(150deg,#A07F4E,#7A5E36);}
+  .sys .tag{font-size:12px;letter-spacing:.16em;opacity:.85;text-transform:uppercase;}
+  .sys h3{font-size:26px;margin:6px 0 4px;}
+  .sys .tagline{font-family:var(--serif);font-style:italic;font-size:16px;opacity:.92;margin-bottom:18px;}
+  .sys ul{list-style:none;display:flex;flex-direction:column;gap:11px;}
+  .sys li{display:flex;gap:10px;font-size:14.5px;line-height:1.55;align-items:flex-start;}
+  .sys li svg{flex:none;margin-top:4px;}
+  .sys .speed{display:inline-flex;align-items:baseline;gap:8px;margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.22);}
+  .sys .speed b{font-size:26px;font-family:var(--serif);}
+  .sys .speed span{font-size:12.5px;opacity:.82;}
+  @media(max-width:880px){.sys-grid{grid-template-columns:1fr;}}
+
+  /* SVG 容器 */
+  .spectrum{
+    margin-top:26px;background:var(--paper-2);border:1px solid var(--line);border-radius:16px;
+    padding:30px 30px 24px;box-shadow:var(--shadow);
+  }
+  .spectrum h3{font-size:19px;margin-bottom:4px;}
+  .spectrum .en{font-size:12.5px;letter-spacing:.06em;color:var(--ink-faint);margin-bottom:18px;}
+  .spectrum svg{width:100%;height:auto;display:block;}
+  .spectrum .cap{margin-top:14px;font-size:13.5px;color:var(--ink-soft);line-height:1.7;}
+  .spectrum .cap b{color:var(--accent);font-family:var(--serif);}
+
+  .sys-note{margin-top:22px;background:var(--paper-2);border:1px dashed var(--accent-2);border-radius:12px;padding:18px 22px;font-size:14.5px;color:var(--ink-soft);}
+  .sys-note b{color:var(--accent);font-family:var(--serif);}
+
+  /* 概念卡片 */
+  .fx-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+  .fx{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:24px;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s;}
+  .fx:hover{transform:translateY(-3px);box-shadow:var(--shadow);}
+  .fx .ic{width:42px;height:42px;border-radius:11px;background:rgba(79,106,131,.10);display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+  .fx h3{font-size:18px;margin-bottom:3px;}
+  .fx .en{font-size:12px;letter-spacing:.06em;color:var(--ink-faint);margin-bottom:11px;}
+  .fx p{font-size:14px;color:var(--ink-soft);line-height:1.65;}
+  .fx .eg{margin-top:12px;font-size:13px;color:var(--accent);background:rgba(79,106,131,.07);border-radius:8px;padding:8px 11px;}
+  .fx .eg b{font-weight:600;}
+  @media(max-width:880px){.fx-grid{grid-template-columns:1fr;}}
+
+  .flow{position:relative;padding-left:8px;}
+  .flow .step{display:grid;grid-template-columns:64px 1fr;gap:20px;position:relative;padding-bottom:28px;}
+  .flow .step:not(:last-child)::before{content:"";position:absolute;left:31px;top:48px;bottom:0;width:2px;background:linear-gradient(var(--accent-2),var(--line));}
+  .flow .node{width:64px;height:64px;border-radius:50%;background:var(--paper-2);border:2px solid var(--accent-2);display:flex;flex-direction:column;align-items:center;justify-content:center;flex:none;position:relative;z-index:2;box-shadow:0 3px 10px rgba(37,42,46,.08);}
+  .flow .node b{font-family:var(--serif);font-size:17px;color:var(--accent);line-height:1.15;}
+  .flow .node span{font-size:10px;color:var(--ink-faint);letter-spacing:.05em;}
+  .flow .body{padding-top:6px;}
+  .flow .body h3{font-size:18px;margin-bottom:5px;}
+  .flow .body h3 small{font-size:12.5px;color:var(--ink-faint);font-family:var(--sans);font-weight:400;margin-left:8px;}
+  .flow .body p{font-size:14px;color:var(--ink-soft);}
+  .flow .body .pill{display:inline-block;margin-top:8px;font-size:12px;color:#8A5E1E;background:rgba(184,133,63,.10);padding:3px 11px;border-radius:20px;}
+
+  .quotes{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
+  .quote{background:linear-gradient(160deg,#faf9f5,#eef0ef);border:1px solid var(--line);border-radius:16px;padding:30px 28px 26px;position:relative;box-shadow:var(--shadow);}
+  .quote .mark{font-family:Georgia,serif;font-size:64px;line-height:.4;color:var(--accent);opacity:.35;height:30px;}
+  .quote p{font-family:var(--serif);font-size:17.5px;line-height:1.6;color:var(--ink);margin-bottom:14px;}
+  .quote .src{font-size:13px;color:var(--ink-faint);letter-spacing:.04em;}
+  .quote.span2{grid-column:1/-1;background:linear-gradient(110deg,#1c2733,#2e3e4e);border-color:#141d27;}
+  .quote.span2 p{color:#e3ecf2;font-size:20.5px;}
+  .quote.span2 .src{color:var(--accent-2);}
+  .quote.span2 .mark{color:var(--accent-2);}
+  @media(max-width:880px){.quotes{grid-template-columns:1fr;}}
+
+  .act-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+  .act{display:grid;grid-template-columns:46px 1fr;gap:16px;background:var(--paper-2);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:22px;transition:transform .2s,box-shadow .2s;}
+  .act:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm);}
+  .act .num{font-family:var(--serif);font-size:26px;color:var(--accent);line-height:1.1;}
+  .act h3{font-size:16.5px;margin-bottom:5px;}
+  .act p{font-size:13.5px;color:var(--ink-soft);line-height:1.65;}
+  @media(max-width:880px){.act-grid{grid-template-columns:1fr;}}
+
+  .split{display:grid;grid-template-columns:1fr 1.15fr;gap:30px;align-items:stretch;}
+  .split .imgcol{border-radius:16px;overflow:hidden;min-height:320px;background-size:cover;background-position:center;box-shadow:var(--shadow);position:relative;}
+  .split .imgcol::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,22,30,0) 42%,rgba(10,16,22,.58));}
+  .split .imgcol .cap{position:absolute;left:22px;bottom:18px;z-index:2;color:#dbe5ed;font-family:var(--serif);font-size:15px;}
+  .fit-list{display:flex;flex-direction:column;gap:14px;}
+  .fit{display:flex;gap:13px;background:var(--paper-2);border:1px solid var(--line);border-radius:12px;padding:16px 18px;align-items:flex-start;}
+  .fit svg{flex:none;margin-top:3px;}
+  .fit b{font-family:var(--serif);font-size:15.5px;display:block;margin-bottom:2px;}
+  .fit span{font-size:13.5px;color:var(--ink-soft);}
+  @media(max-width:880px){.split{grid-template-columns:1fr;}}
+
+  footer{padding:46px 28px 60px;text-align:center;color:var(--ink-faint);font-size:13px;}
+  footer .line{width:60px;height:3px;background:var(--accent);margin:0 auto 20px;border-radius:3px;}
+  footer b{font-family:var(--serif);color:var(--ink-soft);}
+  .disclaim{margin-top:10px;font-size:12px;color:var(--ink-faint);max-width:680px;margin-left:auto;margin-right:auto;line-height:1.7;}
+
+  @media print{
+    #progress,.toc-bar,.ribbon{display:none;}
+    body::before{display:none;}
+    section{padding:28px 0;}
+    .fx,.act,.quote,.sys{break-inside:avoid;}
+  }
+</style>
+</head>
+<body data-page-node-id="cDxGm0oEJwQxme20Rhl41l">
+
+<div id="progress" data-page-node-id="8eMnWtHABXCYkuKo2iPPQF"></div>
+
+<header class="hero" id="hero" data-page-node-id="haLVkXrSNRKn9cR6BPAceU">
+  <div class="ribbon" data-page-node-id="QGRJeHntXNlKGsBp4mEPNH"><span data-page-node-id="LQ213bGECJQTCl8uoXRJna">读书笔记</span></div>
+  <div class="hero-inner" data-page-node-id="FnweTPeonoGp1V98Yalys6">
+    <span class="kicker" data-page-node-id="eK8ObmCkxwErLZ8JqzB4La">精读笔记 · 移民纪实</span>
+    <h1 data-page-node-id="xdzItSer31XH6wYhMxL3RG">《从北京到伦敦》</h1>
+    <div class="sub-en" data-page-node-id="wfbNI3QEqBia7kUN06wakL">From Beijing to London · 一个金融白领的移民生活纪实 &nbsp;·&nbsp; 吴凌凌</div>
+    <p class="lead" data-page-node-id="yWPZVCJruswxsplwFV2Psm">从金融街写字楼的格子间，到伦敦清晨的雾。一位放弃银行高管职位的女性，把跨文化生活的每一道褶皱写成 22 篇冷静随笔——身份重启、职场归零、"把生活好好继续"的笃定，全在字里行间。</p>
+    <div class="hero-meta" data-page-node-id="AWttWODYo1tU2lWqbvlmqa">
+      <div class="m" data-page-node-id="XRmpTCUJhZsKgY79loXNl1"><b data-page-node-id="ugwXiHPytm77xawwhg8lmT">22 篇</b><span data-page-node-id="vq5xRqDTl4Me8uHLsYZdLB">随笔 + 自序</span></div>
+      <div class="m" data-page-node-id="lZ62gWjbuYkNuQCRHH4Ei3"><b data-page-node-id="TdjD1fvjHcJSOSwVlrCxIK">2 座城</b><span data-page-node-id="RqGfWmp638UslUJ1rTBdw8">金融街 ↔ 金融城</span></div>
+      <div class="m" data-page-node-id="aXP3ukZtvkuHdHrRsWBkkw"><b data-page-node-id="0363DX1OeZj6b9IXTrVv00">1 条线</b><span data-page-node-id="zV6vdonTdMOPFbIwdo9bAQ">剑桥 MBA · 志奋领</span></div>
+      <div class="m" data-page-node-id="Tnh4WZkr3eFiPkWPGSZCKm"><b data-page-node-id="n063WeIq196XyK6C9vTGjs">去浪漫化</b><span data-page-node-id="bYBNdYa2dEr9BglvAWNCCK">金融视角拆解异国</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="toc-bar" aria-label="页面目录" data-page-node-id="70j45dnt38CYex8TDBO75k">
+  <div class="toc-in" data-page-node-id="8ZBySlSZMmegxTZg5I5ks7">
+    <span class="lab" data-page-node-id="Tv4w9u1rtyqP5dSNZzeZtB">目录</span>
+    <a href="#info" data-page-node-id="qZawVXYN1A2tzRlHAHHKCh">书籍信息</a>
+    <a href="#duo" data-page-node-id="vW2idipXFMiDnXZ6NJC50c">双城对照</a>
+    <a href="#curve" data-page-node-id="JC5zf4TaKBiG4vs4vXD1CL">身份曲线</a>
+    <a href="#fx" data-page-node-id="MrcBbYUlA7WbcgyGP2wO4t">六个关键篇目</a>
+    <a href="#flow" data-page-node-id="4HsgwGxcc1uEtWxLM8aJdT">22 篇脉络</a>
+    <a href="#quotes" data-page-node-id="EZMEXKrDC1a9l7wqYamETF">金句</a>
+    <a href="#actions" data-page-node-id="tYpKQF8Ba93dMIceu3kWKi">行动启发</a>
+    <a href="#who" data-page-node-id="9weAoGbSLhWGAszHPkrKsA">适合谁读</a>
+  </div>
+</nav>
+
+<div class="wrap" data-page-node-id="8iI2N9EwUqHovyKSQl1pOe">
+
+  <section id="info" data-page-node-id="2BnG6k4bRNz58HfVdTqgwm">
+    <div class="sec-head" data-page-node-id="JfhZTFdgDizSmpaFGJ9p1b"><div class="sec-no" data-page-node-id="QWYc9exGa0ps7UDslu7MyF">01</div><h2 data-page-node-id="xqFwk405bFvAOmsaBBSTEA">这本书讲了什么</h2></div>
+    <p class="sec-sub" data-page-node-id="OMoRTHZRPMyWCJngdix0B7">一本去浪漫化、去悲情化的跨文化迁徙观察</p>
+    <div class="bookcard" data-page-node-id="XiGUC6cgaQ5pkHPxycGZ4g">
+      <div data-page-node-id="gYEnURyqov1Yj99IHu1usP">
+        <div class="one-liner" data-page-node-id="tG5ODULwjm7HnshwtJZctg">
+          别人移民是为了<em data-page-node-id="qPOh5f8k4dw4X9J4FPAPZz">更好的生活</em>，<br data-page-node-id="vVNt9ptHK4PLLNaAMn9rbz">
+          作者反其道<em data-page-node-id="KA8LcPKaWH65yNHcJFwAxZ">放弃一切重新开始</em>。<br data-page-node-id="GEHxwCCan2bBejcFYrwFzl">
+          移民的真正课题不是"搬去哪"，<br data-page-node-id="QpPk37DGNc7TevX64ZCA9Q">
+          而是如何在流动中<em data-page-node-id="2shAzEfLxkyK8Bt2dDKZyB">重建职业、家庭与自我认同</em>。
+        </div>
+        <div class="rule" data-page-node-id="fvaudkLNe6RdyEYwbkZOru"></div>
+      </div>
+      <div class="meta-grid" data-page-node-id="n3lhg9oEGLz3Cd3upngxdZ">
+        <div class="cell" data-page-node-id="Ajhe5imfTP46c3nAEuF4Rb"><span data-page-node-id="o93z0mqZaKHak04QJpDuHa">作者</span><b data-page-node-id="8zkuKlsG3hHXzinNM6YZ63">吴凌凌</b></div>
+        <div class="cell" data-page-node-id="e3gDIbaFzcOAvN4yntdORC"><span data-page-node-id="aXEBOOiH06AqdGtgcrkNv6">出版社</span><b data-page-node-id="VM5ccgMKR4G2M9yDy4CUT2">机械工业出版社（2016）</b></div>
+        <div class="cell" data-page-node-id="VWDiFloaU4D1bRUjbZBGIi"><span data-page-node-id="S7djEUVQJXe44zcBhAc5b8">类型</span><b data-page-node-id="yStN06E6U9uUlYWc3iSxH8">移民纪实 · 跨文化随笔</b></div>
+        <div class="cell" data-page-node-id="ki2Ztak5Q3RkfmbAMqO9lW"><span data-page-node-id="JfLL65qUHgygHiofM0Tj6h">篇幅</span><b data-page-node-id="UdcFvJJMWX9iGW4YzDnGC9">自序 + 22 篇</b></div>
+        <div class="cell" data-page-node-id="954tcUDA4UGi91heDvGrrU"><span data-page-node-id="BttwZ4Bjnc0z7T6HPyTMnn">作者背景</span><b data-page-node-id="FcidBPnTHcUOzgxyn5AwrI">剑桥 MBA · 志奋领学者 · 商业银行北京分行前高管</b></div>
+        <div class="cell" data-page-node-id="HZkGJBu7FdlWKYC67HT30x"><span data-page-node-id="v6SaRsZCUVYWxBrs1WADRJ">核心命题</span><b data-page-node-id="pG8esgMFpCXoQ65zskmICs">流动时代的归属感重建</b></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" data-page-node-id="U2DHVtsL70p18oBt9lJnFQ"></div>
+
+  <section id="duo" data-page-node-id="oszJSXfWVDLKBOeV4j5GnI">
+    <div class="sec-head" data-page-node-id="0JgD3Mzk1zKgv2UZxsScvc"><div class="sec-no" data-page-node-id="LNL1tnAoSIISxf5qakY48u">02</div><h2 data-page-node-id="Z4zfzKHus2JprGBOxWGFh5">核心框架：金融街 ↔ 金融城</h2></div>
+    <p class="sec-sub" data-page-node-id="CYpXTy6qyec3mkmfaUrv10">两座城市、两套逻辑——作者用金融分析师的眼光，把生活并置成一张对照表</p>
+    <div class="sys-grid" data-page-node-id="7Cgy3fjjn1E88Q8SCcVMIV">
+      <div class="sys s1" data-page-node-id="6CDc0zrmCZAvZjxWeDtzQR">
+        <div class="tag" data-page-node-id="Viag1DfwBG1UtKmiibluFI">Beijing · 出发地</div>
+        <h3 data-page-node-id="1VFmFNKzjOCoWzNFdR8c3S">北京 · 金融街</h3>
+        <div class="tagline" data-page-node-id="DlVjOyYYTEY7O406sFCuQH">"高效、热烈、嵌入——一切都有组织。"</div>
+        <ul data-page-node-id="YeWbLH6991LHnbqTI9lqhf">
+          <li data-page-node-id="yfc1NUd726E9Y4d8bGDLa5"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" data-page-node-id="mk8TxP6IfWRlCg7tg334uH"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5" data-page-node-id="s9O0LEHTKSPWFQlzWNRVav"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="M53FCF4pR92E3ceeBycvXv"/></svg>身份已定：银行高管、博士、家里最小的女儿</li>
+          <li data-page-node-id="h1WBlh56muQEi0y6hVzkXV"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" data-page-node-id="UeOmC4qGU9zBnroZYc6zHO"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5" data-page-node-id="gNuzRVOCdYe3aKhEE97Mmc"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="TdFTpK7fTjhHLonz4Rs3Fw"/></svg>家庭是一体化的网络：父母嵌入儿孙生活</li>
+          <li data-page-node-id="sfllDnhWoGiOAEbmAQ30mD"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" data-page-node-id="0oMfUeCovzmGGxCNishQdw"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5" data-page-node-id="HzdHR1ANleYUZFUX6P3fG8"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="YIqjTHeizx3sLsOFGSdJS2"/></svg>用制度效率换成长速度：一切为结果让路</li>
+          <li data-page-node-id="2esK3xHH8xdNwX4WXnXL2z"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" data-page-node-id="GwnGmW1S5Z3k2a3OHo8JfK"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5" data-page-node-id="1ZNOF46ezhtWeoGGZ86DYC"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="X6ZilEf67fKdGjNVZOPoMC"/></svg>职业安全感来自"被看见"——头衔与组织背书</li>
+        </ul>
+        <div class="speed" data-page-node-id="fdZBo3WFEpTA03mmdNc8bP"><b data-page-node-id="a4QEtbduEt3XvjcphGUD6L">出发前</b><span data-page-node-id="9apNgsEMst05aX6uaZECne">确定性 · 头衔 · 一体化</span></div>
+      </div>
+      <div class="sys s2" data-page-node-id="ZrFrHvKc4IxeqxjTuBlwzR">
+        <div class="tag" data-page-node-id="GtcdslvZsG6J9yHfDS3HGs">London · 抵达地</div>
+        <h3 data-page-node-id="EH5zuzK4JWXWU3QBdCsy4E">伦敦 · 金融城</h3>
+        <div class="tagline" data-page-node-id="Njs3HVsJMPBSH7TCNCVLhh">"克制、独立、契约——关系里藏着看不见的边界。"</div>
+        <ul data-page-node-id="SEyqXnNr7nG6A98PvbyHhp">
+          <li data-page-node-id="pCQwLfLsxejBR0K0Fjbg1G"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" data-page-node-id="5FAfifbP0wEC2ZFgflYZyn"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5" data-page-node-id="y2rdKCoyb3aSKgJSUHiOeV"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="xSFTRE27iYwxQrZCzGyr7h"/></svg>身份清零：MBA 学生、主妇、烘焙新手、创业者</li>
+          <li data-page-node-id="kQnwhA12aMEMRzdUZcsZmO"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" data-page-node-id="KuADdcBPfN1vW5qDEXTXkd"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5" data-page-node-id="BOMzFkl2yDIuhnOk5oMRMh"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="PyDWko62dKgqudP0XNyPKg"/></svg>家庭是独立单元：成年子女与父母各有边界</li>
+          <li data-page-node-id="gF2FtvibuhXf5DwcCrWg7B"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" data-page-node-id="tUBT2pAmkJr5TMZQ6Jqjq4"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5" data-page-node-id="SJjNFBlMJuVMwSQPM5y74V"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="HAw6o19DgEyjwwK6LzEjKq"/></svg>用 NHS / 购房 / 大选读懂"制度即文化"</li>
+          <li data-page-node-id="msWzd6OgVPh5eRh6IPaapN"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" data-page-node-id="oOagF3WXh2XnlRtdf5h6k5"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5" data-page-node-id="v889Ahxmy6UhCUPG0btvv0"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="ObHMGRukXwOOb6Ej6ZDSBG"/></svg>职业安全感来自"做得到"——效能感与可胜任的项目</li>
+        </ul>
+        <div class="speed" data-page-node-id="U9CMWsNRRH2EjWfdONSbfY"><b data-page-node-id="sIvbpRkDjutSyh6F7te9lp">抵达后</b><span data-page-node-id="qJCxCLhixSIQvcEXbFBQ8t">流动性 · 动词 · 重建</span></div>
+      </div>
+    </div>
+
+    <div class="sys-note" data-page-node-id="zx4ijGoTHHEWE1wO6n0FH0">
+      <b data-page-node-id="f7zj9g6QFjboBsAgAw8CT6">核心张力 —</b> 北京给你的"安全感"是<b data-page-node-id="7zedN6ZOT7PEYIJAI6PGDx">被看见</b>，伦敦给你的"安全感"是<b data-page-node-id="3IT1CBRlJp0aK7qxOStkZG">做得到</b>。两种安全感的逻辑完全不同——前者依赖组织与头衔，后者依赖自我效能与可胜任的小项目。把这两套逻辑同时看懂，才算真的在两座城市之间"通了电"。
+    </div>
+  </section>
+
+  <div class="divider" data-page-node-id="GKylntEEECBSswvNfsASPC"></div>
+
+  <section id="curve" data-page-node-id="fDZF17Wn8BQWInzAL7VDKa">
+    <div class="sec-head" data-page-node-id="HJ7Z7euD4AWyZ2a0PJBSql"><div class="sec-no" data-page-node-id="n70c0xrlgZi3aRn8leGqZS">03</div><h2 data-page-node-id="tZkqMRiLzfWHfrP9YjIHrM">全书最深的一张图：身份重建曲线</h2></div>
+    <p class="sec-sub" data-page-node-id="nKPiwpTHxZ4xEgJbUVSKBp">从"高管身份清零"的剧烈波动，到"把生活好好继续"的稳态——22 篇随笔串成一条 U 形弧</p>
+    <div class="spectrum" data-page-node-id="Dfslgq2vn6Uwq78fnyuDlE">
+      <h3 data-page-node-id="4EL5nk1we4IcwGlwvHwO4T">身份认同曲线 · The Reset Curve</h3>
+      <div class="en" data-page-node-id="DFSbsvhN3lwIX7GpOApiVb">从剑桥到伦敦 · 一条从波动到平稳的重建曲线</div>
+      <svg viewBox="0 0 900 240" role="img" aria-label="身份重建曲线，从波动到平稳" data-page-node-id="N8iqGqRetXKiYY4Bs2zNbJ">
+        <rect x="0" y="0" width="900" height="240" fill="#faf9f5" rx="12" data-page-node-id="mR7HHa5bD3KqjKQDiCpbHK"/>
+        <defs data-page-node-id="caRXYyv66rQGJAxIrJ4RMv">
+          <linearGradient id="curveGrad" x1="0" y1="0" x2="1" y2="0" data-page-node-id="iHqxYt5fdl5sUoMCJPJZXW">
+            <stop offset="0" stop-color="#8FA8BF" data-page-node-id="EthDISgoCBtK3LrCpZk7DS"/>
+            <stop offset="0.5" stop-color="#4F6A83" data-page-node-id="FAttygKnMXp8OLqohqyMcY"/>
+            <stop offset="1" stop-color="#2E4458" data-page-node-id="qCcJYonIUElOBkuRaUeeKq"/>
+          </linearGradient>
+          <linearGradient id="fillGrad" x1="0" y1="0" x2="0" y2="1" data-page-node-id="xUQCz5L35diy195SEraVto">
+            <stop offset="0" stop-color="#4F6A83" stop-opacity="0.20" data-page-node-id="cj7vUL7y96EDcnWdkMEyQz"/>
+            <stop offset="1" stop-color="#4F6A83" stop-opacity="0.02" data-page-node-id="2JsrxX9nvjkyDiRp7sPY4C"/>
+          </linearGradient>
+        </defs>
+        <!-- 基准线 -->
+        <line x1="60" y1="150" x2="840" y2="150" stroke="#dde0dd" stroke-width="1" stroke-dasharray="4 4" data-page-node-id="dFGILxGqmT3RvA4k3FqlMB"/>
+        <text x="50" y="155" text-anchor="end" font-size="11" fill="#848d94" data-page-node-id="QtDcGem90IkS2R2LltEZ2J">稳态</text>
+
+        <!-- 曲线：从高位急速下降到谷底，再回升到中位线略上方 -->
+        <path d="M 80,80 Q 180,75 240,95 Q 300,125 360,170 Q 420,195 480,180 Q 560,160 660,150 Q 760,140 840,138"
+              fill="none" stroke="url(#curveGrad)" stroke-width="3" stroke-linecap="round" data-page-node-id="8fNjfJTh8a4tZWf3gBerxa"/>
+        <!-- 填充区域 -->
+        <path d="M 80,80 Q 180,75 240,95 Q 300,125 360,170 Q 420,195 480,180 Q 560,160 660,150 Q 760,140 840,138 L 840,200 L 80,200 Z"
+              fill="url(#fillGrad)" data-page-node-id="kC5tmHTns2YAIsNJGPzE63"/>
+
+        <!-- 关键节点标注 -->
+        <circle cx="240" cy="95" r="6" fill="#B8853F" stroke="#faf9f5" stroke-width="2" data-page-node-id="Yazkq48IcfHCSs8nJRxZcv"/>
+        <text x="240" y="78" text-anchor="middle" font-size="12" font-weight="600" fill="#B8853F" data-page-node-id="b9WBg3TjEUnS3v2kqUgSQT">剑桥 MBA</text>
+        <text x="240" y="65" text-anchor="middle" font-size="10.5" fill="#848d94" data-page-node-id="ITEnslPdZXotRHbdDMtftj">"学并快乐着"</text>
+
+        <circle cx="360" cy="170" r="6" fill="#A05050" stroke="#faf9f5" stroke-width="2" data-page-node-id="MBFluikFb9vHEXlB89awlp"/>
+        <text x="360" y="194" text-anchor="middle" font-size="12" font-weight="600" fill="#A05050" data-page-node-id="lZBGW9RFx5qT99mtElxxEa">NHS · 大选 · 求职</text>
+        <text x="360" y="208" text-anchor="middle" font-size="10.5" fill="#848d94" data-page-node-id="vHerBASE55pCnGfryEoBoe">谷底：制度与身份双重冲击</text>
+
+        <circle cx="480" cy="180" r="6" fill="#8B6A3F" stroke="#faf9f5" stroke-width="2" data-page-node-id="UQbrQGzI9XIf9w0YCiXf1A"/>
+        <text x="480" y="204" text-anchor="middle" font-size="12" font-weight="600" fill="#8B6A3F" data-page-node-id="YDuuO2PZ5KX8UFTFXSze0J">半个家庭主妇 · 烘焙</text>
+
+        <circle cx="660" cy="150" r="6" fill="#4F6A83" stroke="#faf9f5" stroke-width="2" data-page-node-id="itY0voCGOIOFNkUtepqQ1O"/>
+        <text x="660" y="134" text-anchor="middle" font-size="12" font-weight="600" fill="#4F6A83" data-page-node-id="x6aWEXqGFuxT3zlLEjDKF6">小鬼养成 · 家庭边界</text>
+
+        <circle cx="840" cy="138" r="7" fill="#2E4458" stroke="#faf9f5" stroke-width="2" data-page-node-id="lE7CcDW79EY71ffziM6qTd"/>
+        <text x="840" y="120" text-anchor="end" font-size="12.5" font-weight="600" fill="#2E4458" data-page-node-id="i5Mv17JOiervF7awXRl3X5">"把生活好好继续"</text>
+
+        <!-- 阶段分隔 -->
+        <text x="160" y="40" text-anchor="middle" font-size="11.5" letter-spacing="0.18em" fill="#8FA8BF" data-page-node-id="LmkyBmfElcmyaxKbH15WLv">离开</text>
+        <text x="450" y="40" text-anchor="middle" font-size="11.5" letter-spacing="0.18em" fill="#8FA8BF" data-page-node-id="DnnmQrDWtBDHMR0gbhc6me">抵达</text>
+        <text x="760" y="40" text-anchor="middle" font-size="11.5" letter-spacing="0.18em" fill="#8FA8BF" data-page-node-id="osD4hCCC0RVLjLrLOaEVUF">重建</text>
+      </svg>
+      <div class="cap" data-page-node-id="sHevAxN5sftBLj8hZW1Tvu">
+        <b data-page-node-id="nG6mmpHQOt3PN6Bl3Q2FQM">怎么读这张图 —</b> 这条曲线不是"励志曲线"——它<b data-page-node-id="4psxRPa5DhWJhNYjmfYl7u">先下行再回升</b>，谷底在"NHS + 大选 + 求职"那一段（身份被多重制度同时重置）。<b data-page-node-id="GD730YizAzjuADqfcAwq5p">回升的支点不是大成就</b>，而是烘焙、学德语、给娃讲睡前故事这些"必赢的小项目"——它们是身份归零后重建自我效能的最小单元。读懂了这条线，就读懂了作者为什么说"安顿也只是短暂逗留"。
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" data-page-node-id="JcGgWC7Z0OKCfLHjA5ssd4"></div>
+
+  <section id="fx" data-page-node-id="bUFnI1DloLBCu0CNEMDvR9">
+    <div class="sec-head" data-page-node-id="czDZmcCt6v5i4gOm0JdOlf"><div class="sec-no" data-page-node-id="IgHbQSGoC1mc8w5OS1ZA6z">04</div><h2 data-page-node-id="TSNYMnKhoouFscbKBvadmH">六个关键篇目卡片</h2></div>
+    <p class="sec-sub" data-page-node-id="x4jpS1p3cCL3D411QH7lEN">从 22 篇随笔里挑出最值得反复读的 6 个——每个篇目背后都藏着一类跨文化课题</p>
+    <div class="fx-grid" data-page-node-id="6ZbV7B214uDkxiXKJbvNqZ">
+      <div class="fx" data-page-node-id="fY21HuikAEn3khuk4dx9Q9">
+        <div class="ic" data-page-node-id="HaFDYbjDiKEDCesqflCFKe"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" data-page-node-id="YRd0YRGig1tjgrZP2BbD7Y"><path d="M4 4h16v4H4zM4 12h16v4H4zM4 20h10" stroke="#4F6A83" stroke-width="1.8" stroke-linejoin="round" data-page-node-id="NjfS70mnBKZW8eVqdvqL9P"/></svg></div>
+        <h3 data-page-node-id="6pyiwxRJmVu6U7zEfbn4p1">从零开始的身份重启</h3>
+        <div class="en" data-page-node-id="OWk5LaIC3rodGueKEJ8srA">Identity Reset</div>
+        <p data-page-node-id="XPIKnEBFA8GQUo45pJQA07">放弃高位与既得轨迹后，在异国以学生、主妇、创业者等新身份重新自我定义的过程。</p>
+        <div class="eg" data-page-node-id="BvDE1hqoVhuqOFclurBDF4"><b data-page-node-id="95Eg8mwfj0gwT7twFbFjTf">例：</b>从管理他人的银行高管变成被教授点名的 MBA 学生——名片清零，"我是谁"必须重写。</div>
+      </div>
+      <div class="fx" data-page-node-id="DAEeKKEu7txv5yjZccD7o0">
+        <div class="ic" data-page-node-id="9oIp9dVr5wDOqVRBeZhaNI"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" data-page-node-id="hGjy6WFe45zMw41WdMQl5Q"><path d="M3 12h6M15 12h6M9 6l3-3 3 3M9 18l3 3 3-3" stroke="#4F6A83" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="tMHHgyMLKhMWEAt7qVDDbQ"/></svg></div>
+        <h3 data-page-node-id="7AphgIloEjQsSDmnqTRcUf">东风与西风</h3>
+        <div class="en" data-page-node-id="eTvfMYOT0xDNVPC8En21dy">East Wind, West Wind</div>
+        <p data-page-node-id="13k0W14OsNp7Y38WAOvoUT">两种文化在日常细节处的系统性差异——没有优劣，只有并置；比较的目的不是选边而是理解。</p>
+        <div class="eg" data-page-node-id="Qn2rLCsDmmzUXvDHfvJGAw"><b data-page-node-id="L9TnxY2j8QbJ8zO1NtJR06">例：</b>英式排队、寒暄与"贵族精神"背后是一整套社会契约，用中式直觉去解读必然误判。</div>
+      </div>
+      <div class="fx" data-page-node-id="0bq8mRQNLmr46SENDa7iqI">
+        <div class="ic" data-page-node-id="ntqtyJfUzKAlNe75a2cyx8"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" data-page-node-id="hjhCDv9DLnWzASEzKIfSbE"><path d="M5 9c0-2 2-4 4-4s4 2 4 4v2c0 4-3 7-6 7s-6-3-6-7V9z" stroke="#4F6A83" stroke-width="1.8" stroke-linejoin="round" data-page-node-id="1CU5UuwpTyqKxZ2QGH2dX2"/><path d="M9 18v3" stroke="#4F6A83" stroke-width="1.8" stroke-linecap="round" data-page-node-id="eAuqyrlCf8qRCnjT2ZImWh"/></svg></div>
+        <h3 data-page-node-id="ajkRCMwvinqCj7krdGftip">半个家庭主妇</h3>
+        <div class="en" data-page-node-id="EISTqgBv9HV9uSn3QfF0Bw">From Career Woman to Half Housewife</div>
+        <p data-page-node-id="annS17eHOSdUIBp5zylBls">从职业女性到承担大量家务的"半个主妇"，性别角色的落差是女性移民者最隐秘的阵痛。</p>
+        <div class="eg" data-page-node-id="PCQ6MJp2vgYamCGnQ1J0z2"><b data-page-node-id="1ODN9GOplHOEUSnUjmfMFx">例：</b>谈判桌上的干练与烤箱前的挫败同框——烘焙不只是爱好，是重新获得"把事情做好"体感的方式。</div>
+      </div>
+      <div class="fx" data-page-node-id="xOUeg6IZQ9G3FYxEhROHWo">
+        <div class="ic" data-page-node-id="br0UoAM9ADipqx5KBLl6DG"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" data-page-node-id="dskSXH0dVWGWeFYIMn97di"><path d="M3 20l4-8 4 4 4-6 6 10" stroke="#4F6A83" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="LREw9CeNNjgPtykFdBKwCI"/><path d="M3 20h18" stroke="#4F6A83" stroke-width="1.6" stroke-linecap="round" opacity=".5" data-page-node-id="J5XFRwPYMexqyWj5AkWEQF"/></svg></div>
+        <h3 data-page-node-id="rZnE7Y9Qs9A65Qu5aQcCTz">"我家"的概念差</h3>
+        <div class="en" data-page-node-id="F6lyP2m2Kza3bsVZ17WxQi">What Counts as "Family"</div>
+        <p data-page-node-id="uO8vo7RohPAmQcvAINBhvh">英国家庭观里成年子女与父母是独立单元——亲密但不同住、互助但不绑定，与中国家庭的一体化逻辑根本不同。</p>
+        <div class="eg" data-page-node-id="Omd2KsLLVcWK26qls792dr"><b data-page-node-id="Ctgb9XdXamG5Sthj5JJGpU">例：</b>英国老人不帮子女带娃也毫无愧疚；中国父母把退休生活完全嵌入儿孙——两套系统各有代价。</div>
+      </div>
+      <div class="fx" data-page-node-id="A61kkpMtrCEGBS5Rf7FvPQ">
+        <div class="ic" data-page-node-id="cZ0lAifuG7yXqPp5oBtSzv"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" data-page-node-id="J8oy7QPJgyyTbDAHqLzI63"><path d="M4 6h16v12H4z" stroke="#4F6A83" stroke-width="1.8" data-page-node-id="IczVX3e52vCjriASBUTztI"/><path d="M4 10h16M9 14h2M14 14h3" stroke="#4F6A83" stroke-width="1.6" stroke-linecap="round" data-page-node-id="DiOVpBJ7BkZMwb136LKNJB"/></svg></div>
+        <h3 data-page-node-id="m68fE7EypJAwZu4HhbXVfF">制度化生活的观察者视角</h3>
+        <div class="en" data-page-node-id="rl6Y6gdUqnfBVibBdmsej4">NHS, Elections & Systems</div>
+        <p data-page-node-id="46OBIq6BVSlfrrts7XnDij">用金融分析师的眼光拆解 NHS、大选、买地等公共制度——体验移民生活的另一面是体验一整套治理系统。</p>
+        <div class="eg" data-page-node-id="myWAss3BuUiGGOvsFtsODR"><b data-page-node-id="YIQpTk7gYEFDTbb7MbvtIP">例：</b>NHS 的慢与免费同源；英国买地的产权规则与中国直觉迥异——制度是文化最深的一层。</div>
+      </div>
+      <div class="fx" data-page-node-id="3pHJElMizLkYVOH4MWvtXs">
+        <div class="ic" data-page-node-id="x6rrkR1SLBdBc47ivXIi2c"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" data-page-node-id="3nYbYe2d788VYW2LKsqmWF"><circle cx="12" cy="12" r="9" stroke="#4F6A83" stroke-width="1.8" data-page-node-id="y5BcRgLpcLtJpicq7oldN3"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18" stroke="#4F6A83" stroke-width="1.6" opacity=".55" data-page-node-id="GOm6tSC9oOUaQFOfZuUo1I"/></svg></div>
+        <h3 data-page-node-id="9vDkJBhpIK7pMreUqYbw5D">流动的归属感</h3>
+        <div class="en" data-page-node-id="73PrzBtsq9Yxx4aCJDWfGW">Belonging in Flux</div>
+        <p data-page-node-id="Wpw1GT0MD1bkFfczHQbOvC">作者自况"安顿也只是短暂逗留，将来不知飘向哪里"——现代移民的归属不再是单一坐标，而是随时可重建的能力。</p>
+        <div class="eg" data-page-node-id="BMRxjzrLyZjWDZBFnmnlzx"><b data-page-node-id="06GmPqUiYIX3JxN5OCoQZc">例：</b>自序里母亲从握筷子姿势预言"这是个不安分的"——不安分被活成了方法论而非缺陷。</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" data-page-node-id="LrWfXG0gQr4fesnIUANoUz"></div>
+
+  <section id="flow" data-page-node-id="FdSCT7yRYNQGLVaWtwJN4K">
+    <div class="sec-head" data-page-node-id="aH3m5ZyaFxOSynNKXHIjtP"><div class="sec-no" data-page-node-id="6sMVI1FMouv3jzfAmumgUp">05</div><h2 data-page-node-id="vpnnMEfEyHOjtTpXVZCvq6">全书脉络：22 篇归并为 6 段</h2></div>
+    <p class="sec-sub" data-page-node-id="HRIxu8SuIpo9lCLI3qx5BE">从自序到收尾——按主题串成的 6 段心路</p>
+    <div class="flow" data-page-node-id="sTJwvGjtakmQUo9XyWufcV">
+      <div class="step" data-page-node-id="e74V7etEv5Al8aU0Pn8tQS">
+        <div class="node" data-page-node-id="iueVwjO0AR8BZtIVlbqLh7"><b data-page-node-id="aHyNP0cBWOv5SH0My7Qrjk">序</b><span data-page-node-id="LzQEx6B5XYmAfL76QtITZN">PRO.</span></div>
+        <div class="body" data-page-node-id="7G4tL65vNZiRXql1mIqaD7">
+          <h3 data-page-node-id="WH3wlBakr8vE2qZLCCMS8u">自序 + 学并快乐着<small data-page-node-id="9P2UqzbJfKD0xB2DRjCSUG">—— 我的剑桥生活</small></h3>
+          <p data-page-node-id="IEjbwCY36Oyq4Q83wD5Ux2">筷子握得最上端的女孩，从银行高管到剑桥学生——用学习本身重启人生，"学并快乐着"是全书基调。</p>
+          <span class="pill" data-page-node-id="bFHtQWDCaMjVtQTiMHEh3V">人生换轨期，先回到学生心态</span>
+        </div>
+      </div>
+      <div class="step" data-page-node-id="4ZDz41bn26MkJgZMsQeTFn">
+        <div class="node" data-page-node-id="jWXj8PuYUr7r3Ly5BbVTO6"><b data-page-node-id="ZSUyirVOBCrgOuGytWh2qR">1</b><span data-page-node-id="A7V5AXaQjQXxTnAveF3JRV">PART</span></div>
+        <div class="body" data-page-node-id="QR4KtgiFZV4PQmhkpWdJg1">
+          <h3 data-page-node-id="sRZ1LjbAnz6O4eeXxWGelS">英式传统<small data-page-node-id="Nwd85Cm1GfQ5GAN3PEySrz">—— 社交礼仪与贵族精神</small></h3>
+          <p data-page-node-id="KXLke6tAs8ElWQwbqBpHVd">解码英式社交的潜规则与"贵族精神"的实际含义——礼仪不是繁文缛节，是社会信任的操作界面。</p>
+          <span class="pill" data-page-node-id="QvWYtGBUo1OwWZQg3m5kw4">入乡先学礼，礼是文化的源代码</span>
+        </div>
+      </div>
+      <div class="step" data-page-node-id="MhAHcmLVM8zrzfqDk6cAxb">
+        <div class="node" data-page-node-id="9dBBrAqy3YuIrS1KpHA6HD"><b data-page-node-id="V5ZvKPcoFPAeGMY6VGuVZn">2</b><span data-page-node-id="TSDhT9CZGAel3XU7lCbECn">PART</span></div>
+        <div class="body" data-page-node-id="RgYMY6wLLApakO9OCRWj6Y">
+          <h3 data-page-node-id="CjLsJpClHctQl4sE6Kjl0l">买房那点事儿 + NHS + 英国大选<small data-page-node-id="KC0G6eUnQNwbBhf0VhAQfV">—— 制度即文化</small></h3>
+          <p data-page-node-id="DDtJkoEyQ3EKFvWZXlQUKv">金融白领的看家本领派上用场——用分析框架拆解英国购房、公费医疗与选举制度，制度即最深的文化。</p>
+          <span class="pill" data-page-node-id="iHiNPkspBRhXIwp93q0vIE">换国家先读它的制度说明书</span>
+        </div>
+      </div>
+      <div class="step" data-page-node-id="GMSZaxxn01VZ0dWvMhuuQM">
+        <div class="node" data-page-node-id="NDYGMSg7pCVEDbknn9D0HR"><b data-page-node-id="YbyAqJOa1eIsCN3eFelxS6">3</b><span data-page-node-id="OyKu5EmRwQTRvt0D6aBamb">PART</span></div>
+        <div class="body" data-page-node-id="5e8lAcFlpvOSucDDtCyCwC">
+          <h3 data-page-node-id="anGHf7WLSPqk3EkhMC4wus">东风与西风 + 英国无夏天 + 复活节 + 第一个圣诞<small data-page-node-id="AR9ZGIAsRHBLNXP2Rsd6yR">—— 体感差异</small></h3>
+          <p data-page-node-id="bs7jv97cFqnw0iLs05GjHR">气候、节庆与日常习惯的差异铺陈开"东风与西风"的并置——文化比较不带评判，只有体感。</p>
+          <span class="pill" data-page-node-id="wGkfHxQGZB7OCPPeR8Uy5R">差异先记录，判断缓三天</span>
+        </div>
+      </div>
+      <div class="step" data-page-node-id="nxsjNn7J6PRKoDub5viSeH">
+        <div class="node" data-page-node-id="3Ezujx1HTvNBI0qsQfNo0L"><b data-page-node-id="d13P8XU8L2QE1Lylc0qAPF">4</b><span data-page-node-id="ygsDKvrADMtEh3YHCWIXIu">PART</span></div>
+        <div class="body" data-page-node-id="4M5o7hKjnZvtHK5IMkP6h2">
+          <h3 data-page-node-id="PozRlvv478TDt6mdnnZSP7">我的烘焙人生 + 学德语 + 从职业女性到半个家庭主妇<small data-page-node-id="arc0ooEtEwNHQdH9mggCvq">—— 角色落差</small></h3>
+          <p data-page-node-id="HvzIeUzsWNJ7JEK1REYPYF">角色落差最痛的一段——用烘焙、德语这些"可胜任的小项目"重建自我效能，接受半个主妇的新常态。</p>
+          <span class="pill" data-page-node-id="D42h7lTb2BknB0Fi5XyMZ7">低谷期给自己一个必赢的小项目</span>
+        </div>
+      </div>
+      <div class="step" data-page-node-id="e0NhLzClRGg1gAFrfgqG5D">
+        <div class="node" data-page-node-id="3E4yAPExtbyLLoDTTHv4fU"><b data-page-node-id="bXMEesPjiep11B3kxQ9be9">5</b><span data-page-node-id="QeBJ6hakzyVXvyEOw2iSE2">PART</span></div>
+        <div class="body" data-page-node-id="bpnKTpE7Xfgc8g2LBzjzGz">
+          <h3 data-page-node-id="hvMJ3T1Sm9nsAHRfCI4a5b">小鬼养成记 + "我家"的概念 + 股市与生活 + 英国买地记<small data-page-node-id="GJVVtmLzUexrupgYOL8NGt">—— 落地生根</small></h3>
+          <p data-page-node-id="sCy0K7iNw1RADGwrIyxZ15">跨国家庭的养育与边界、成年子女与父母的关系，再到亲自下场买地投资——生活与资产在异国双双落地生根。</p>
+          <span class="pill" data-page-node-id="790YN81EsiIE8FfCkGWTfA">家的边界，要跟家人明说</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" data-page-node-id="JzsM1k7FWc2oSjmVwWlFnK"></div>
+
+  <section id="quotes" data-page-node-id="m0COpuG7JYpIhhHeaMObiQ">
+    <div class="sec-head" data-page-node-id="ssUB1UaMBjSTpA1tXxAbGu"><div class="sec-no" data-page-node-id="CRYi2ZSmIXxoPoS3nC7vnv">06</div><h2 data-page-node-id="EsvOjXQ5YCYu82vGJvYG52">金句摘录</h2></div>
+    <p class="sec-sub" data-page-node-id="eZprIWpPHCS7gtJsY9kLDq">22 篇里最克制也最有力的句子——每一句都是情绪崩溃后的"再起之心"</p>
+    <div class="quotes" data-page-node-id="TN0YYdjsK3biK4L9w954D4">
+      <div class="quote" data-page-node-id="Tl95hBY3bPONulDVXqSKhB">
+        <div class="mark" data-page-node-id="jI5MBVLIu4yZGeKF2GQelt">&ldquo;</div>
+        <p data-page-node-id="t89fDQk66PE2K6iFl9yEYq">失败了，伤心一阵；成功了，欣喜一场——人生的换轨，本就该这么轻装。</p>
+        <div class="src" data-page-node-id="YlZGtD5diTDCrBphmBErRi">—— 全书基调</div>
+      </div>
+      <div class="quote" data-page-node-id="Z3rSRVy2oprgfsyP411NZy">
+        <div class="mark" data-page-node-id="9JCxOBAA2tlw8TB9wILoNW">&ldquo;</div>
+        <p data-page-node-id="jfpjy6nX6HH7dGVfNnswwD">别人移民是为了更好的生活，我是放弃了"更好的生活"去重新开始。</p>
+        <div class="src" data-page-node-id="FwfPt7nvlQUIGt8QHAyl8E">—— 记自序的反向选择</div>
+      </div>
+      <div class="quote" data-page-node-id="kJDLY8150TZ2nTSUDXjXWr">
+        <div class="mark" data-page-node-id="seT56oEQcYcquKb1iGT1ez">&ldquo;</div>
+        <p data-page-node-id="fRcqrNMwMAH5VDB4SOMHZa">筷子握得最上端的那个孩子，注定要把家安在路上。</p>
+        <div class="src" data-page-node-id="AefHWHSvNcQPWspt6HDZEE">—— 记母亲的一句预言</div>
+      </div>
+      <div class="quote" data-page-node-id="tXYX6G8dipoz94Tg3vNiTq">
+        <div class="mark" data-page-node-id="xDp47dXe3WQ5oOGazttEjp">&ldquo;</div>
+        <p data-page-node-id="OjEcFChDxSxKwHzUUBOI4m">东风与西风没有对错，只有不同；看见差异的那一刻，理解才开始。</p>
+        <div class="src" data-page-node-id="If0n4BsKVnO0vQVysoGJ8N">—— 论文化比较的边界</div>
+      </div>
+      <div class="quote" data-page-node-id="aDYjtZHhH8Y3kdt0CxsOlj">
+        <div class="mark" data-page-node-id="jpmjKpYTxtsoVAPqDG37sg">&ldquo;</div>
+        <p data-page-node-id="i0cDDWdUeUGlTNnm7aTnat">"我家"的边界，是每个跨文化家庭必须重新谈判的隐形合同。</p>
+        <div class="src" data-page-node-id="bGEGydmZyTvbMyxy7Jatst">—— 论家庭边界</div>
+      </div>
+      <div class="quote span2" data-page-node-id="CaLcLZ788WwIk0KZzxXEnv">
+        <div class="mark" data-page-node-id="lIssB2RVhmCZ5XqbY1VJ2k">&ldquo;</div>
+        <p data-page-node-id="xPqVuhxhTrvW7a7nJi8GCB">烤箱里每一次成功的蛋糕，都是身份归零后重新攒下的自我效能。</p>
+        <div class="src" data-page-node-id="Baob0qQmQjIwUkBzctZMiY">—— 记烘焙系列最扎心的一句</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" data-page-node-id="HkCkO1CxjDE3CGBG0nnjRz"></div>
+
+  <section id="actions" data-page-node-id="0jIrizMqIB7qWi6RouCiVe">
+    <div class="sec-head" data-page-node-id="xPgQmKW8H6XSNZDOPCAkTd"><div class="sec-no" data-page-node-id="ZetTjn7C6ZNEMotct50KC1">07</div><h2 data-page-node-id="2NBupitF1BbBUbstBMf8jb">读完能带走的 6 条行动启发</h2></div>
+    <p class="sec-sub" data-page-node-id="3WfwbrEt0z4ppGf8CKur14">把"金融白领的克制"翻译成自己可以照做的清单</p>
+    <div class="act-grid" data-page-node-id="NL0HSH919MoUviHsRIizUM">
+      <div class="act" data-page-node-id="6Hzm06tFXqSoTNh1WcjEKK"><div class="num" data-page-node-id="L6728fByFATALiTM6fHDUD">1</div><div data-page-node-id="XN73c2EnzXK8JtCuxD6yvm"><h3 data-page-node-id="yxopYMFwXE6zcW3dSnz6Az">差异观察日记</h3><p data-page-node-id="KqZAZb9CpC6rVPLZodU6FO">进入新文化前三个月，每天记一条"这不同"而不写"这不对"，季度末再统一复盘判断。</p></div></div>
+      <div class="act" data-page-node-id="AyzJiAtGyTuUWCCDzbrL2l"><div class="num" data-page-node-id="NEXxUV4cRYILEJYM9HXCGC">2</div><div data-page-node-id="HVJnmcxhMUB0p52xAIwFFs"><h3 data-page-node-id="id2sPsiB8VAEtqRphEAHP4">制度说明书</h3><p data-page-node-id="CxVhwyyLdiPWFcb1RF71Y1">换城市/国家时，把医疗、税务、购房、选举四大制度各读一份官方指南——省下的是真金白银的试错。</p></div></div>
+      <div class="act" data-page-node-id="bOWElTpgkOYYpkSab0XfAv"><div class="num" data-page-node-id="PK4rAtDuBUhO3tdmVHVFrL">3</div><div data-page-node-id="MtcuKLf4bh2XYZGU4tind6"><h3 data-page-node-id="u2qQ4iJjEJhw1Vo7vo4YFU">身份动词化</h3><p data-page-node-id="VTkjT33eJHADNb5hVYyGek">简历断档期把"我曾任……"改写为"我正在学会……"，把头衔焦虑换成技能清单。</p></div></div>
+      <div class="act" data-page-node-id="2632BUWyRtbVPAQIPySGYE"><div class="num" data-page-node-id="31t1TZ0DhEV8x4NruspYsA">4</div><div data-page-node-id="n40GBx0WMqGlMqN6WRwDJO"><h3 data-page-node-id="BEUse7LMcuRdHwD9qjR7uU">低谷小项目</h3><p data-page-node-id="hUwue6wPJbBOEFoBuw56uY">职业或角色转换期，设一个 30 天必见成效的小目标（烘焙一门/口语一阶），锚住自我效能。</p></div></div>
+      <div class="act" data-page-node-id="5JZdOupzW0KSq2GEuFX9m7"><div class="num" data-page-node-id="w1ro5jPkIwqTQ8Ob9pdk45">5</div><div data-page-node-id="jXE0XHyCqwLaz9EyhCsQRD"><h3 data-page-node-id="33ZS4mFIT5FNJtCvubnFld">家庭边界会谈</h3><p data-page-node-id="T8DhjujRFzrGAIl0hpB9en">与伴侣或父母开一次"边界会议"——财务、同住、育儿分工逐条显式约定，混合文化家庭尤其必要。</p></div></div>
+      <div class="act" data-page-node-id="r8gsIkOzIffrM4ggtav9aw"><div class="num" data-page-node-id="eqhyEEIjIwYmXUCNo3CgQQ">6</div><div data-page-node-id="ZFFKGzAANH7DIPIhCACpik"><h3 data-page-node-id="CKYhcPo3mB42X1DSosG54n">年度"重启演练"</h3><p data-page-node-id="Jtdl0xUQpj4QKSXiuWybE7">每年做一次"如果一切归零我会怎么办"的思想实验，让流动成为一种可管理的常态而非恐慌。</p></div></div>
+    </div>
+  </section>
+
+  <div class="divider" data-page-node-id="9pljDZHPLPPMALi8LGZxph"></div>
+
+  <section id="who" data-page-node-id="r8oK8oos8FPuwx2CHuliuE">
+    <div class="sec-head" data-page-node-id="D3BtLE7Hk6Uh6nNxiheZpH"><div class="sec-no" data-page-node-id="jdfqjHDO1OjPFfKFAGiiJE">08</div><h2 data-page-node-id="BtMcrDakyBT3twkaCHSycg">这本书适合谁读</h2></div>
+    <p class="sec-sub" data-page-node-id="3G7yoEcPkN0WoeFffUcB16">如果你在下列任何一种身份里，这本小书都能让你少走一些弯路</p>
+    <div class="split" data-page-node-id="FCxjmpch8ET1Mwo0acxZ3S">
+      <div class="imgcol" id="who-img" data-page-node-id="rfAJAUl1loj5fRnLxJ6bE0">
+        <div class="cap" data-page-node-id="jqP0CaYIHOd9icuEw2uwY0">从泰晤士河清晨的雾，到"把生活好好继续"</div>
+      </div>
+      <div class="fit-list" data-page-node-id="3rtpp6lbBWWXCJ0ghDlrxa">
+        <div class="fit" data-page-node-id="kUykLvSDBWpoxLubMuYpYr"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" data-page-node-id="CmlJCsN50n3AQRgE7t7jxH"><path d="M2 9l4 4 10-10" stroke="#4F6A83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="PUCA1Fsn91NCbcEzO2jDZm"/></svg><div data-page-node-id="Jtz7oaOP60gnKv4tJtGMT9"><b data-page-node-id="eOTcqtoqU1XEbHgm7cvs0F">计划中年留学或职业换轨的职场人</b><span data-page-node-id="8i0tx7lEHGvHCQpNVlkLzC">想知道"放弃一切重新开始"具体长什么样——而不是仅有决心和鸡汤。</span></div></div>
+        <div class="fit" data-page-node-id="1nHYhra2Z2CODw5iWDjwVY"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" data-page-node-id="9pW5JZFE8YxnQ40aYVHlQk"><path d="M2 9l4 4 10-10" stroke="#4F6A83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="aMPAbZLwJ4hJ5MEIinIHGf"/></svg><div data-page-node-id="WxMjKduP5z3dmzYa58JAGr"><b data-page-node-id="1gC1OU3sE5j5TlfICDvCTX">移民 / 陪读 / 外派家庭</b><span data-page-node-id="cBCBIaq32FNwDcgpyrJlVz">需要一本去浪漫化、去悲情化的英国落地生活参照——NHS、买房、孩子上学都有"过来人话术"。</span></div></div>
+        <div class="fit" data-page-node-id="ganFkksW9dKUwCDCuzDMBX"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" data-page-node-id="vH3Rk0hAsZs6JBrIRcPTFn"><path d="M2 9l4 4 10-10" stroke="#4F6A83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="WU0vDIv5kz8l4Z2Iw9m9gc"/></svg><div data-page-node-id="8jZEkeikz22pBnCGjImkA1"><b data-page-node-id="wfqGj6Gl0PKmg4IpQnSO9i">跨文化婚姻与混合家庭的伴侣</b><span data-page-node-id="ibplEhtqjOlc1AKgIIC4BU">想厘清"我家"的边界与两种家庭观的差异——边界不是疏远，是显式约定。</span></div></div>
+        <div class="fit" data-page-node-id="Ngw4tkPUQspACx89NdDuCd"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" data-page-node-id="vbRAURygihN3GCmIAeEBB6"><path d="M9 2v4M9 12v4M2 9h4M12 9h4" stroke="#8FA8BF" stroke-width="2" stroke-linecap="round" data-page-node-id="kZcCtkkDqhL7Bj2lowFq3g"/></svg><div data-page-node-id="gw8Fzwq5kF5EvJ46kU3yru"><b data-page-node-id="cTnwDkJP4Tyy62imDcHXcl">读前提示</b><span data-page-node-id="4DhJmnyLBvN2UOH4QlajBF">作者笔法冷静克制，几乎没有移民文学常见的浪漫化——这是优点也是门槛：你要愿意读"分析"而不是"抒情"。</span></div></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer data-page-node-id="kPFHFts2FCaDzudu3Zij4F">
+  <div class="line" data-page-node-id="uKha2vbGuhUE3MRX0PldYE"></div>
+  <b data-page-node-id="O0VHw77prlhULDYT10RND7">《从北京到伦敦》精读笔记 · 跨文化迁徙摘要卡</b>
+  <p class="disclaim" data-page-node-id="3itc5jsux536MzVv4ylbJa">本页为基于该书公开内容整理的精读笔记，用于知识科普与个人学习参考，非原文逐字转载。书名、观点与案例版权归原作者吴凌凌及机械工业出版社所有。头图为英国伦敦塔桥薄雾清晨景致，来自 Wikimedia Commons。</p>
+</footer>
+
+<script>
+  var DOC_ARCHIVE = "../assets/hero/h30.jpg";
+  document.getElementById('hero').style.backgroundImage = "url('" + DOC_ARCHIVE + "')";
+  document.getElementById('who-img').style.backgroundImage = "url('" + DOC_ARCHIVE + "')";
+
+  (function(){
+    var bar = document.getElementById('progress');
+    function upd(){
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.width = (max > 0 ? (h.scrollTop / max * 100) : 0) + '%';
+    }
+    window.addEventListener('scroll', upd, {passive:true});
+    window.addEventListener('resize', upd);
+    upd();
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《叔本华：在意志的风暴与安宁之间（轻哲学）》精读笔记 · 读书摘要卡</title>
+<meta name="description" content="他一生与时代唱反调：世界不是理性的舞台，而是一头盲目的意志在奔突。看清这一点不是终点——叔本华还留下几条从风暴里暂时退场的退路。">
+<style>
+  :root{
+    --paper:#f4f2ed;
+    --paper-2:#faf9f5;
+    --ink:#252a2e;
+    --ink-soft:#535b62;
+    --ink-faint:#848d94;
+    --line:#dde0dd;
+    --accent:#2e5a77;
+    --accent-2:#6f93ab;
+    --warm:#7e4f30;
+    --shadow:0 12px 40px rgba(37,42,46,.10);
+    --shadow-sm:0 4px 18px rgba(37,42,46,.08);
+    --serif:"Songti SC","Source Han Serif SC","Noto Serif SC",Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--sans);color:var(--ink);background:var(--paper);
+    background-image:
+      radial-gradient(circle at 18% 8%, rgba(111,147,171,0.08), transparent 42%),
+      radial-gradient(circle at 84% 88%, rgba(46,90,119,0.06), transparent 46%);
+    line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.035'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  body>*{position:relative;z-index:1;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
+  h1,h2,h3,.serif{font-family:var(--serif);}
+  ::selection{background:rgba(46,90,119,0.18);}
+
+  #progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:99;
+    background:linear-gradient(90deg,var(--accent-2),var(--accent));transition:width .1s linear;}
+
+  .hero{
+    position:relative;min-height:clamp(480px,72vh,640px);
+    display:flex;align-items:flex-end;
+    background-size:cover;background-position:center 45%;
+    color:#f5f7f8;overflow:hidden;
+  }
+  .hero::after{
+    content:"";position:absolute;inset:0;
+    background:
+      linear-gradient(180deg, rgba(23,44,59,0.3) 0%, rgba(23,44,59,0.42) 42%, rgba(14,28,38,0.9) 100%),
+      linear-gradient(90deg, rgba(14,28,38,0.58) 0%, rgba(14,28,38,0) 58%);
+  }
+  .hero-inner{position:relative;z-index:2;width:100%;max-width:1080px;margin:0 auto;padding:88px 28px 54px;}
+  .hero .kicker{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:13px;letter-spacing:.22em;text-transform:uppercase;
+    color:#6f93ab;border:1px solid rgba(111,147,171,0.45);
+    padding:6px 15px;border-radius:30px;margin-bottom:22px;backdrop-filter:blur(2px);
+  }
+  .hero h1{font-size:clamp(34px,6vw,62px);line-height:1.12;font-weight:700;letter-spacing:.01em;text-shadow:0 2px 24px rgba(0,0,0,.45);margin-bottom:10px;}
+  .hero .sub-en{font-family:var(--serif);font-style:italic;font-size:clamp(15px,2.4vw,22px);color:#6f93ab;opacity:.92;margin-bottom:20px;}
+  .hero .lead{max-width:640px;font-size:clamp(15px,2vw,18px);color:#e8edf1;}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:24px 34px;margin-top:30px;}
+  .hero-meta .m{display:flex;flex-direction:column;}
+  .hero-meta .m b{font-family:var(--serif);font-size:20px;color:#fff;}
+  .hero-meta .m span{font-size:12.5px;letter-spacing:.08em;color:#6f93ab;}
+
+  .ribbon{position:absolute;top:0;right:clamp(16px,5vw,52px);z-index:3;width:44px;
+    background:var(--accent);color:#fff;text-align:center;
+    padding:15px 0 24px;font-family:var(--serif);font-size:13px;letter-spacing:.14em;
+    box-shadow:0 6px 16px rgba(0,0,0,.32);}
+  .ribbon::after{content:"";position:absolute;left:0;bottom:-13px;border-width:0 22px 14px;border-style:solid;border-color:var(--accent) var(--accent) transparent;}
+  .ribbon span{writing-mode:vertical-rl;}
+
+  .toc-bar{background:var(--paper-2);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50;box-shadow:0 2px 14px rgba(37,42,46,.06);}
+  .toc-in{max-width:1080px;margin:0 auto;padding:10px 28px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .toc-in .lab{font-family:var(--serif);font-size:13px;color:var(--accent);letter-spacing:.1em;margin-right:6px;}
+  .toc-in a{font-size:12.5px;color:var(--ink-soft);text-decoration:none;padding:4px 11px;border-radius:20px;border:1px solid transparent;transition:all .18s;white-space:nowrap;}
+  .toc-in a:hover{color:var(--accent);border-color:rgba(46,90,119,0.35);background:rgba(46,90,119,0.05);}
+
+  section{padding:60px 0 56px;scroll-margin-top:64px;}
+  .sec-head{display:flex;align-items:center;gap:14px;margin-bottom:8px;}
+  .sec-no{font-family:var(--serif);font-size:14px;color:var(--accent);border:1px solid var(--accent);border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;flex:none;}
+  .sec-head h2{font-size:clamp(23px,3.4vw,31px);color:var(--ink);}
+  .sec-sub{color:var(--ink-faint);font-size:14.5px;margin-bottom:32px;padding-left:48px;}
+  @media(max-width:880px){.sec-sub{padding-left:0;}}
+
+  .divider{height:1px;background:linear-gradient(90deg,transparent,var(--line) 18%,var(--line) 82%,transparent);}
+
+  .bookcard{
+    display:grid;grid-template-columns:1.1fr 1fr;gap:34px;align-items:center;
+    background:var(--paper-2);border:1px solid var(--line);border-radius:18px;
+    padding:38px;box-shadow:var(--shadow);position:relative;overflow:hidden;
+  }
+  .bookcard::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:linear-gradient(var(--accent),var(--accent-2));}
+  .one-liner{font-family:var(--serif);font-size:clamp(19px,2.9vw,26px);line-height:1.55;color:var(--ink);}
+  .one-liner em{color:var(--accent);font-style:normal;}
+  .one-liner .rule{width:52px;height:3px;background:var(--accent);border-radius:2px;margin-top:18px;opacity:.85;}
+  .meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 22px;}
+  .meta-grid .cell span{display:block;font-size:12px;letter-spacing:.1em;color:var(--ink-faint);text-transform:uppercase;margin-bottom:3px;}
+  .meta-grid .cell b{font-family:var(--serif);font-size:16.5px;color:var(--ink);font-weight:600;line-height:1.45;}
+  @media(max-width:880px){.bookcard{grid-template-columns:1fr;padding:28px;gap:26px;}}
+
+  .sys-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .sys{border-radius:16px;padding:30px 28px;color:#fff;position:relative;overflow:hidden;box-shadow:var(--shadow);}
+  .sys.s1{background:linear-gradient(150deg,#2e5a77,#214055);}
+  .sys.s2{background:linear-gradient(150deg,#7e4f30,#5d3a23);}
+  .sys.s3{background:linear-gradient(150deg,#6f93ab,#2e5a77);}
+  .sys.s4{background:linear-gradient(150deg,#1b3547,#142735);}
+  .sys .tag{font-size:12px;letter-spacing:.16em;opacity:.88;text-transform:uppercase;}
+  .sys h3{font-size:25px;margin:6px 0 4px;}
+  .sys .tagline{font-family:var(--serif);font-style:italic;font-size:15.5px;opacity:.92;margin-bottom:16px;}
+  .sys ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+  .sys li{display:flex;gap:10px;font-size:14px;line-height:1.55;align-items:flex-start;}
+  .sys li svg{flex:none;margin-top:4px;}
+  .sys .speed{display:inline-flex;align-items:baseline;gap:8px;margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.22);}
+  .sys .speed b{font-size:24px;font-family:var(--serif);}
+  .sys .speed span{font-size:12.5px;opacity:.82;}
+  @media(max-width:880px){.sys-grid{grid-template-columns:1fr;}}
+
+  .stage-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;}
+  .stage{border-radius:16px;padding:26px 22px;color:#fff;position:relative;overflow:hidden;box-shadow:var(--shadow);}
+  .stage .no{font-family:var(--serif);font-size:15px;opacity:.85;letter-spacing:.12em;}
+  .stage h3{font-size:21px;margin:5px 0 3px;}
+  .stage .tagline{font-family:var(--serif);font-style:italic;font-size:13.5px;opacity:.9;margin-bottom:13px;}
+  .stage ul{list-style:none;display:flex;flex-direction:column;gap:9px;}
+  .stage li{display:flex;gap:9px;font-size:13.5px;line-height:1.55;align-items:flex-start;}
+  .stage li svg{flex:none;margin-top:3px;}
+  .stage::after{content:"→";position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:26px;opacity:.55;color:#fff;}
+  .stage:last-child::after{content:"";}
+
+  .vs-wrap{margin-top:26px;background:var(--paper-2);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .vs-head{display:grid;grid-template-columns:1.1fr 1fr 1fr;background:linear-gradient(90deg,rgba(46,90,119,0.1),rgba(126,79,48,0.1));border-bottom:1px solid var(--line);}
+  .vs-head div{padding:14px 18px;font-family:var(--serif);font-size:15px;}
+  .vs-head .h1c{color:var(--accent);}
+  .vs-head .h2c{color:var(--warm);}
+  .vs-row{display:grid;grid-template-columns:1.1fr 1fr 1fr;border-bottom:1px solid var(--line);}
+  .vs-row:last-child{border-bottom:none;}
+  .vs-row:nth-child(odd){background:rgba(244,242,237,.55);}
+  .vs-row .dim{padding:12px 18px;font-size:13px;color:var(--ink-faint);letter-spacing:.04em;display:flex;align-items:center;}
+  .vs-row .v1{padding:12px 18px;font-size:13.5px;color:var(--ink-soft);border-left:1px dashed var(--line);display:flex;align-items:center;}
+  .vs-row .v2{padding:12px 18px;font-size:13.5px;color:var(--ink-soft);border-left:1px dashed var(--line);display:flex;align-items:center;}
+  @media(max-width:680px){
+    .vs-head.v3{grid-template-columns:1fr 1fr;} .vs-head.v3 .h0{display:none;}
+    .vs-row.v3{grid-template-columns:1fr;padding:10px 0;}
+    .vs-row.v3 .dim{grid-column:1/-1;padding:4px 18px 2px;font-family:var(--serif);color:var(--accent);font-size:13.5px;}
+    .vs-row.v3 .v1,.vs-row.v3 .v2{border-left:none;padding:2px 18px;}
+    .vs-row.v3 .v1::before{content:"甲面　";color:var(--accent);font-weight:600;}
+    .vs-row.v3 .v2::before{content:"乙面　";color:var(--warm);font-weight:600;}
+  }
+
+  .sys-note{margin-top:22px;background:var(--paper-2);border:1px dashed var(--accent-2);border-radius:12px;padding:18px 22px;font-size:14.5px;color:var(--ink-soft);}
+  .sys-note b{color:var(--accent);font-family:var(--serif);}
+
+  .spectrum{margin-top:26px;background:var(--paper-2);border:1px solid var(--line);border-radius:16px;
+    padding:30px 30px 24px;box-shadow:var(--shadow);}
+  .spectrum h3{font-size:19px;margin-bottom:4px;}
+  .spectrum .en{font-size:12.5px;letter-spacing:.06em;color:var(--ink-faint);margin-bottom:18px;}
+  .spectrum svg{width:100%;height:auto;display:block;}
+  .spectrum .cap{margin-top:14px;font-size:13.5px;color:var(--ink-soft);line-height:1.7;}
+  .spectrum .cap b{color:var(--accent);font-family:var(--serif);}
+
+  .fx-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+  .fx{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:24px;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s;}
+  .fx:hover{transform:translateY(-3px);box-shadow:var(--shadow);}
+  .fx .ic{width:42px;height:42px;border-radius:11px;background:rgba(46,90,119,0.09);display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+  .fx h3{font-size:18px;margin-bottom:3px;}
+  .fx .en{font-size:12px;letter-spacing:.06em;color:var(--ink-faint);margin-bottom:11px;}
+  .fx p{font-size:14px;color:var(--ink-soft);line-height:1.65;}
+  .fx .eg{margin-top:12px;font-size:13px;color:var(--accent);background:rgba(46,90,119,0.06);border-radius:8px;padding:8px 11px;}
+  .fx .eg b{font-weight:600;}
+  @media(max-width:880px){.fx-grid{grid-template-columns:1fr;}}
+
+  .flow{position:relative;padding-left:8px;}
+  .flow .step{display:grid;grid-template-columns:64px 1fr;gap:20px;position:relative;padding-bottom:28px;}
+  .flow .step:not(:last-child)::before{content:"";position:absolute;left:31px;top:48px;bottom:0;width:2px;background:linear-gradient(var(--accent-2),var(--line));}
+  .flow .node{width:64px;height:64px;border-radius:50%;background:var(--paper-2);border:2px solid var(--accent-2);display:flex;flex-direction:column;align-items:center;justify-content:center;flex:none;position:relative;z-index:2;box-shadow:0 3px 10px rgba(37,42,46,.08);}
+  .flow .node b{font-family:var(--serif);font-size:17px;color:var(--accent);line-height:1.15;}
+  .flow .node span{font-size:10px;color:var(--ink-faint);letter-spacing:.05em;}
+  .flow .body{padding-top:6px;}
+  .flow .body h3{font-size:18px;margin-bottom:5px;}
+  .flow .body h3 small{font-size:12.5px;color:var(--ink-faint);font-family:var(--sans);font-weight:400;margin-left:8px;}
+  .flow .body p{font-size:14px;color:var(--ink-soft);}
+  .flow .body .pill{display:inline-block;margin-top:8px;font-size:12px;color:var(--warm);background:rgba(126,79,48,0.1);padding:3px 11px;border-radius:20px;}
+
+  .quotes{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
+  .quote{background:linear-gradient(160deg,#faf9f5,#eef0ef);border:1px solid var(--line);border-radius:16px;padding:30px 28px 26px;position:relative;box-shadow:var(--shadow);}
+  .quote .mark{font-family:Georgia,serif;font-size:64px;line-height:.4;color:var(--accent);opacity:.35;height:30px;}
+  .quote p{font-family:var(--serif);font-size:17.5px;line-height:1.6;color:var(--ink);margin-bottom:14px;}
+  .quote .src{font-size:13px;color:var(--ink-faint);letter-spacing:.04em;}
+  .quote.span2{grid-column:1/-1;background:linear-gradient(110deg,#172c3b,#0e1c26);border-color:#12232f;}
+  .quote.span2 p{color:#e9eef2;font-size:20.5px;}
+  .quote.span2 .src{color:var(--accent-2);}
+  .quote.span2 .mark{color:var(--accent-2);}
+  @media(max-width:880px){.quotes{grid-template-columns:1fr;}}
+
+  .act-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+  .act{display:grid;grid-template-columns:46px 1fr;gap:16px;background:var(--paper-2);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:22px;transition:transform .2s,box-shadow .2s;}
+  .act:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm);}
+  .act .num{font-family:var(--serif);font-size:26px;color:var(--accent);line-height:1.1;}
+  .act h3{font-size:16.5px;margin-bottom:5px;}
+  .act p{font-size:13.5px;color:var(--ink-soft);line-height:1.65;}
+  @media(max-width:880px){.act-grid{grid-template-columns:1fr;}}
+
+  .split{display:grid;grid-template-columns:1fr 1.15fr;gap:30px;align-items:stretch;}
+  .split .imgcol{border-radius:16px;overflow:hidden;min-height:320px;background-size:cover;background-position:center;box-shadow:var(--shadow);position:relative;}
+  .split .imgcol::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,26,34,0) 42%,rgba(14,28,38,0.62));}
+  .split .imgcol .cap{position:absolute;left:22px;bottom:18px;z-index:2;color:#e5ebf0;font-family:var(--serif);font-size:15px;}
+  .fit-list{display:flex;flex-direction:column;gap:14px;}
+  .fit{display:flex;gap:13px;background:var(--paper-2);border:1px solid var(--line);border-radius:12px;padding:16px 18px;align-items:flex-start;}
+  .fit svg{flex:none;margin-top:3px;}
+  .fit b{font-family:var(--serif);font-size:15.5px;display:block;margin-bottom:2px;}
+  .fit span{font-size:13.5px;color:var(--ink-soft);}
+  @media(max-width:880px){.split{grid-template-columns:1fr;}}
+
+  footer{padding:46px 28px 60px;text-align:center;color:var(--ink-faint);font-size:13px;}
+  footer .line{width:60px;height:3px;background:var(--accent);margin:0 auto 20px;border-radius:3px;}
+  footer b{font-family:var(--serif);color:var(--ink-soft);}
+  .disclaim{margin-top:10px;font-size:12px;color:var(--ink-faint);max-width:680px;margin-left:auto;margin-right:auto;line-height:1.7;}
+
+  @media print{
+    #progress,.toc-bar,.ribbon{display:none;}
+    body::before{display:none;}
+    section{padding:28px 0;}
+    .fx,.act,.quote,.sys{break-inside:avoid;}
+  }
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<header class="hero" id="hero">
+  <div class="ribbon"><span>读书笔记</span></div>
+  <div class="hero-inner">
+    <span class="kicker">精读笔记 · 哲学导读</span>
+    <h1>《叔本华：在意志的风暴与安宁之间（轻哲学）》</h1>
+    
+    <p class="lead">他一生与时代唱反调：世界不是理性的舞台，而是一头盲目的意志在奔突。看清这一点不是终点——叔本华还留下几条从风暴里暂时退场的退路。</p>
+    <div class="hero-meta"><div class="m"><b>2 个世界</b><span>表象与意志</span></div><div class="m"><b>2 端钟摆</b><span>痛苦与无聊</span></div><div class="m"><b>3 条退路</b><span>静观 · 音乐 · 同情</span></div><div class="m"><b>10 分钟</b><span>就能练的凝视</span></div></div>
+  </div>
+</header>
+
+<nav class="toc-bar" aria-label="页面目录"><div class="toc-in"><span class="lab">目录</span><a href="#info">书籍信息</a><a href="#duo">核心框架</a><a href="#chart">一张图</a><a href="#fx">关键概念</a><a href="#flow">章节脉络</a><a href="#quotes">金句</a><a href="#actions">行动启发</a><a href="#who">适合谁读</a></div></nav>
+
+<div class="wrap">
+<section id="info">
+  <div class="sec-head"><div class="sec-no">01</div><h2>这本书讲了什么</h2></div>
+  <p class="sec-sub">一句话总览 + 核心信息卡</p>
+  <div class="bookcard">
+    <div><div class="one-liner">人生像钟摆，在<em>痛苦</em>与<em>无聊</em>之间摆动；而审美静观、音乐与适度的孤独，是这位悲观主义者留下的几扇透气的窗。</div><div class="rule"></div></div>
+    <div class="meta-grid"><div class="cell"><span>作者</span><b>边江</b></div><div class="cell"><span>领域</span><b>西方哲学 · 叔本华思想导读</b></div><div class="cell"><span>核心命题</span><b>意志是世界的底色，看清它才能获得片刻安宁</b></div><div class="cell"><span>出版</span><b>轻哲学系列 · 思想人物小传</b></div><div class="cell"><span>系列/方法</span><b>以叔本华文本为纲的思想随笔</b></div><div class="cell"><span>关键概念</span><b>意志 · 表象 · 人生钟摆 · 审美静观 · 同情</b></div></div>
+  </div>
+</section>
+<div class="divider"></div>
+<section id="duo">
+  <div class="sec-head"><div class="sec-no">02</div><h2>核心框架：从意志风暴到片刻安宁</h2></div>
+  <p class="sec-sub">叔本华的哲学走的是一条下行再折返的路线：先拆掉理性的王座，再寻找退场之路。</p>
+  <div class="stage-grid">
+<div class="stage" style="background:linear-gradient(150deg,#2e5977,#214055)"><div class="no">STAGE 1</div>
+<h3>看破</h3><div class="tagline">世界是我的表象：我们所见的一切，都经过意识这道滤镜。</div><ul><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>身体给出一把钥匙：我既是认识的主体，也是意志本身</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>世界底层的驱动不是理性，而是盲目、不息的求生意志</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>智力只是意志的仆人，理性常在为欲望写辩护词</li></ul></div>
+<div class="stage" style="background:linear-gradient(150deg,#355889,#1f3d50)"><div class="no">STAGE 2</div>
+<h3>诊断</h3><div class="tagline">欲望没有满足时是痛苦，满足了就成了无聊。</div><ul><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>人生钟摆：痛苦与无聊交替，满足只是间隙而非终点</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>意志的本质是匮乏，欲壑难平是结构而非意外</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>把苦难当作噪音的乐观主义，在叔本华看来是自欺</li></ul></div>
+<div class="stage" style="background:linear-gradient(150deg,#3c539b,#1d394c)"><div class="no">STAGE 3</div>
+<h3>退路</h3><div class="tagline">风暴停不下来，但可以暂时站到风眼之外。</div><ul><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>审美静观：在纯粹观照里，主体暂时从意志中挣脱</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>音乐是意志的直接复写，因此也是最深的安慰</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>同情是道德的起点：看破你我之间的墙本就虚设</li></ul></div>
+</div>
+</section>
+<div class="divider"></div>
+<section id="chart">
+  <div class="sec-head"><div class="sec-no">03</div><h2>全书最深的一张图</h2></div>
+  <p class="sec-sub">在痛苦与无聊的钟摆之间，审美静观提供了第三个位置。</p>
+  <div class="spectrum">
+    <h3>人生钟摆与静观 — 静观只是中场休息，不是终局解脱——这正是它诚实的地方。</h3>
+    <div class="en">The Pendulum of Life</div>
+    <svg viewBox="0 0 900 230" role="img" aria-label="人生钟摆与静观">
+<rect x="0" y="0" width="900" height="230" fill="#faf9f5" rx="12"/>
+<defs><linearGradient id="g_b200_curve" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2e5a77"/><stop offset="0.5" stop-color="#3f57a3"/><stop offset="1" stop-color="#7e4f30"/></linearGradient></defs>
+<path d="M60 40 C 220 150, 380 190, 450 190 S 700 140, 820 50" fill="none" stroke="#2e5a77" stroke-width="3.5" stroke-linecap="round"/>
+<line x1="450" y1="185" x2="450" y2="30" stroke="#6f93ab" stroke-width="1.6" stroke-dasharray="4 4"/>
+<circle cx="450" cy="178" r="7" fill="#2e5a77"/>
+<text x="450" y="160" text-anchor="middle" font-size="13.5" font-weight="600" fill="#2e5a77">审美静观</text>
+<text x="150" y="215" text-anchor="middle" font-size="12" fill="#7e4f30">意志驱赶下的匮乏与挣扎</text>
+<text x="720" y="215" text-anchor="middle" font-size="12" fill="#2e5a77">暂时抽身后的平静与清明</text>
+<text x="450" y="228" text-anchor="middle" font-size="11" fill="#848d94">静观只是中场休息，不是终局解脱——这正是它诚实的地方。</text>
+</svg>
+    <div class="cap"><b>怎么用 —</b> 用法：被欲望烧得难受时，选一件不需要回报的事做十分钟：听一段音乐、发呆看云，练习无所求地看。</div>
+  </div>
+</section>
+<div class="divider"></div>
+<section id="fx">
+  <div class="sec-head"><div class="sec-no">04</div><h2>关键概念卡片</h2></div>
+  <p class="sec-sub">本书围绕的叔本华核心概念</p>
+  <div class="fx-grid"><div class="fx"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2e5a77" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12c2.5-3 5-3 7.5 0s5 3 7.5 0 3-2 5 0M2 17c2.5-3 5-3 7.5 0s5 3 7.5 0 3-2 5 0M2 7c2.5-3 5-3 7.5 0"/></svg></div>
+<h3>作为意志的世界</h3><div class="en">The World as Will</div><p>本书围绕叔本华的核心命题展开：世界的外表是可认识的表象，底层却是盲目的求生意志。它不知疲倦地驱使万物，也驱使每一个“想要”的你。</p><div class="eg"><b>例：</b>深夜刷手机停不下来，正是意志在借你之手行事。</div></div><div class="fx"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2e5a77" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"/><circle cx="12" cy="12" r="2.6"/></svg></div>
+<h3>表象</h3><div class="en">Representation</div><p>本书围绕认识的滤镜展开：时间、空间与因果是意识组织世界的方式，我们永远无法绕开它们直接抵达“物自体”。看清滤镜，才算睁开第一只哲学的眼睛。</p><div class="eg"><b>例：</b>同一片风景，在赶路人与闲逛者眼里是两个世界。</div></div><div class="fx"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2e5a77" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></div>
+<h3>人生钟摆</h3><div class="en">Pendulum of Life</div><p>本书围绕痛苦与无聊的摆动展开：欲望未满足是匮乏的痛，满足了便落入空转的无聊。幸福不是终点站，只是摆动途中偶尔的平稳。</p><div class="eg"><b>例：</b>考试前盼解脱，考完两周后又开始焦虑下一个目标。</div></div><div class="fx"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2e5a77" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 00-4 10.5c.7.6 1 1.5 1 2.5h6c0-1 .3-1.9 1-2.5A6 6 0 0012 3z"/></svg></div>
+<h3>审美静观</h3><div class="en">Aesthetic Contemplation</div><p>本书围绕暂时的解脱之道展开：当人不再问“这对我有什么用”，纯粹地观照对象，主体就从意志的驱赶里松绑片刻。艺术因此有了救赎的位置。</p><div class="eg"><b>例：</b>被工作追赶的午后，一段音乐让你忘了自己是谁。</div></div><div class="fx"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2e5a77" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7.5-4.6-9.3-9A5.2 5.2 0 0112 6.2 5.2 5.2 0 0121.3 11c-1.8 4.4-9.3 9-9.3 9z"/></svg></div>
+<h3>同情伦理</h3><div class="en">Ethics of Compassion</div><p>本书围绕道德的根基展开：叔本华认为道德不来自命令与说教，而来自看破个体化之后自然生出的同情——他人的苦，与我的苦并无本质不同。</p><div class="eg"><b>例：</b>见到陌生人受难时那一下心头收紧，就是道德的种子。</div></div></div>
+</section>
+<div class="divider"></div>
+<section id="flow">
+  <div class="sec-head"><div class="sec-no">05</div><h2>全书脉络图</h2></div>
+  <p class="sec-sub">思想旅程主题线：从根本提问到可生活的结论</p>
+  <div class="flow"><div class="step"><div class="node"><b>01</b><span>CH.</span></div>
+<div class="body"><h3>入场<small>The Question</small></h3><p>从“世界是什么”这一根本提问开始，交代叔本华与他的时代如何互相看不惯。</p><span class="pill">提问</span></div></div><div class="step"><div class="node"><b>02</b><span>CH.</span></div>
+<div class="body"><h3>拆解<small>World as Will</small></h3><p>走进“意志与表象”的主命题，看理性如何被降格为意志的管家。</p><span class="pill">看破</span></div></div><div class="step"><div class="node"><b>03</b><span>CH.</span></div>
+<div class="body"><h3>诊断<small>The Pain</small></h3><p>直面悲观主义的推论：钟摆、匮乏与无聊，为何满足从不兑现幸福。</p><span class="pill">钟摆</span></div></div><div class="step"><div class="node"><b>04</b><span>CH.</span></div>
+<div class="body"><h3>退路<small>Art as Exit</small></h3><p>展开审美静观与音乐的独特地位，寻找从风暴里暂时退场的方法。</p><span class="pill">静观</span></div></div><div class="step"><div class="node"><b>05</b><span>CH.</span></div>
+<div class="body"><h3>落脚<small>Compassion</small></h3><p>从审美走向伦理：同情、孤独与日常的节制，给出可生活的结论。</p><span class="pill">安顿</span></div></div></div>
+</section>
+<div class="divider"></div>
+<section id="quotes">
+  <div class="sec-head"><div class="sec-no">06</div><h2>金句摘录</h2></div>
+  <p class="sec-sub">值得抄进笔记本的句子（据核心观点转述）</p>
+  <div class="quotes"><div class="quote"><div class="mark">&ldquo;</div><p>人生像钟摆，在痛苦与无聊之间来回，从不长驻幸福。</p><div class="src">—— 据主题归纳</div></div><div class="quote"><div class="mark">&ldquo;</div><p>理性常是欲望的辩护律师，而非它的审判官。</p><div class="src">—— 据主题归纳</div></div><div class="quote"><div class="mark">&ldquo;</div><p>无所求的凝视，是普通人花最小代价能买到的自由。</p><div class="src">—— 据主题归纳</div></div><div class="quote"><div class="mark">&ldquo;</div><p>音乐不描摹世界，它直接就是意志本身的声音。</p><div class="src">—— 据主题归纳</div></div><div class="quote span2"><div class="mark">&ldquo;</div><p>对他人苦难的触动，比一切道德说教更接近道德。</p><div class="src">—— 据主题归纳</div></div></div>
+</section>
+<div class="divider"></div>
+<section id="actions">
+  <div class="sec-head"><div class="sec-no">07</div><h2>对工作与决策的行动启发</h2></div>
+  <p class="sec-sub">读完就能上手的方法</p>
+  <div class="act-grid"><div class="act"><div class="num">1</div><div><h3>十分钟无目的凝视</h3><p>今天选窗外一处景或一件物，不拍照、不发消息，纯粹看十分钟，体会观而不取。</p></div></div><div class="act"><div class="num">2</div><div><h3>给欲望记账</h3><p>写下最近三个“特别想要”，标注得到之后会怎样，练习区分真需要与意志的驱赶。</p></div></div><div class="act"><div class="num">3</div><div><h3>听一段纯音乐</h3><p>不带歌词地听五分钟纯音乐，只留意情绪的流动，把它当作意志的直录。</p></div></div><div class="act"><div class="num">4</div><div><h3>做一次同情练习</h3><p>遇到让你烦躁的人，默想“TA 此刻也正被自己的苦推着走”，再看怒气是否松动。</p></div></div><div class="act"><div class="num">5</div><div><h3>削减一项表演</h3><p>挑一个为“别人怎么看我”而维持的习惯，本周停掉，观察失去后的实际后果。</p></div></div><div class="act"><div class="num">6</div><div><h3>读一篇不合时宜</h3><p>读一段与主流意见相反的严肃文字，练习叔本华式的独立判断：先想清楚再站队。</p></div></div></div>
+</section>
+<div class="divider"></div>
+<section id="who">
+  <div class="sec-head"><div class="sec-no">08</div><h2>这本书适合谁读</h2></div>
+  <p class="sec-sub">如果你符合其中一条，它都值得放进书单</p>
+  <div class="split">
+    <div class="imgcol" id="who-img"><div class="cap">在意志的风暴里练习安静的凝视</div></div>
+    <div class="fit-list"><div class="fit"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 9l4 4 10-10" stroke="#2e5a77" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>哲学入门读者</b><span>想读懂叔本华主线思想，又被原著大部头劝退的普通读者。</span></div></div><div class="fit"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 9l4 4 10-10" stroke="#2e5a77" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>意义追问者</b><span>常在深夜想“人生到底图什么”，需要一个诚实而不灌鸡汤的回答。</span></div></div><div class="fit"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 9l4 4 10-10" stroke="#2e5a77" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>艺术与音乐爱好者</b><span>想理解艺术为何能安慰人，从哲学上给这种体验找到依据的人。</span></div></div><div class="fit"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2v4M9 12v4M2 9h4M12 9h4" stroke="#6f93ab" stroke-width="2" stroke-linecap="round"/></svg><div><b>tip：读前提示</b><span>悲观是本书的出发点而非终点：先接受诊断，才谈得上那几条退路。</span></div></div></div>
+  </div>
+</section>
+</div>
+
+<footer>
+  <div class="line"></div>
+  <b>《叔本华：在意志的风暴与安宁之间（轻哲学）》精读笔记 · 读书摘要卡</b>
+  <p class="disclaim">本页为基于该书公开核心观点整理的读书笔记，用于知识科普与个人学习参考，非原文逐字转载。书名、理论与观点版权归原作者及出版方所有。头图为哲学沉思主题配图（Wikimedia Commons，许可）。</p>
+</footer>
+
+<script>
+  var DOC_ARCHIVE = "../assets/hero/h08.jpg";
+  document.getElementById('hero').style.backgroundImage = "url('" + DOC_ARCHIVE + "')";
+  var wi = document.getElementById('who-img');
+  if (wi) wi.style.backgroundImage = "url('" + DOC_ARCHIVE + "')";
+
+  (function(){
+    var bar = document.getElementById('progress');
+    function upd(){
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.width = (max > 0 ? (h.scrollTop / max * 100) : 0) + '%';
+    }
+    window.addEventListener('scroll', upd, {passive:true});
+    window.addEventListener('resize', upd);
+    upd();
+  })();
+</script>
+
+</body>
+</html>

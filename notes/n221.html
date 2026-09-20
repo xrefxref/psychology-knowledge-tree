@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《积极心理学之父塞利格曼幸福启示录（套装6册）》精读笔记 · 读书摘要卡</title>
+<meta name="description" content="幸福不是运气砸中，而是一套可训练的技能：把悲观解释改写成乐观解释，把快乐升级为投入与意义。塞利格曼用三十年研究，把活得好拆成了可练习的步骤。">
+<style>
+  :root{
+    --paper:#f4f2ed;
+    --paper-2:#faf9f5;
+    --ink:#252a2e;
+    --ink-soft:#535b62;
+    --ink-faint:#848d94;
+    --line:#dde0dd;
+    --accent:#b04a68;
+    --accent-2:#d394a8;
+    --warm:#4fb597;
+    --shadow:0 12px 40px rgba(37,42,46,.10);
+    --shadow-sm:0 4px 18px rgba(37,42,46,.08);
+    --serif:"Songti SC","Source Han Serif SC","Noto Serif SC",Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--sans);color:var(--ink);background:var(--paper);
+    background-image:
+      radial-gradient(circle at 18% 8%, rgba(211,148,168,0.08), transparent 42%),
+      radial-gradient(circle at 84% 88%, rgba(176,74,104,0.06), transparent 46%);
+    line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.035'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  body>*{position:relative;z-index:1;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
+  h1,h2,h3,.serif{font-family:var(--serif);}
+  ::selection{background:rgba(176,74,104,0.18);}
+
+  #progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:99;
+    background:linear-gradient(90deg,var(--accent-2),var(--accent));transition:width .1s linear;}
+
+  .hero{
+    position:relative;min-height:clamp(480px,72vh,640px);
+    display:flex;align-items:flex-end;
+    background-size:cover;background-position:center 45%;
+    color:#f5f7f8;overflow:hidden;
+  }
+  .hero::after{
+    content:"";position:absolute;inset:0;
+    background:
+      linear-gradient(180deg, rgba(88,37,51,0.3) 0%, rgba(88,37,51,0.42) 42%, rgba(56,23,33,0.9) 100%),
+      linear-gradient(90deg, rgba(56,23,33,0.58) 0%, rgba(56,23,33,0) 58%);
+  }
+  .hero-inner{position:relative;z-index:2;width:100%;max-width:1080px;margin:0 auto;padding:88px 28px 54px;}
+  .hero .kicker{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:13px;letter-spacing:.22em;text-transform:uppercase;
+    color:#d394a8;border:1px solid rgba(211,148,168,0.45);
+    padding:6px 15px;border-radius:30px;margin-bottom:22px;backdrop-filter:blur(2px);
+  }
+  .hero h1{font-size:clamp(34px,6vw,62px);line-height:1.12;font-weight:700;letter-spacing:.01em;text-shadow:0 2px 24px rgba(0,0,0,.45);margin-bottom:10px;}
+  .hero .sub-en{font-family:var(--serif);font-style:italic;font-size:clamp(15px,2.4vw,22px);color:#d394a8;opacity:.92;margin-bottom:20px;}
+  .hero .lead{max-width:640px;font-size:clamp(15px,2vw,18px);color:#e8edf1;}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:24px 34px;margin-top:30px;}
+  .hero-meta .m{display:flex;flex-direction:column;}
+  .hero-meta .m b{font-family:var(--serif);font-size:20px;color:#fff;}
+  .hero-meta .m span{font-size:12.5px;letter-spacing:.08em;color:#d394a8;}
+
+  .ribbon{position:absolute;top:0;right:clamp(16px,5vw,52px);z-index:3;width:44px;
+    background:var(--accent);color:#fff;text-align:center;
+    padding:15px 0 24px;font-family:var(--serif);font-size:13px;letter-spacing:.14em;
+    box-shadow:0 6px 16px rgba(0,0,0,.32);}
+  .ribbon::after{content:"";position:absolute;left:0;bottom:-13px;border-width:0 22px 14px;border-style:solid;border-color:var(--accent) var(--accent) transparent;}
+  .ribbon span{writing-mode:vertical-rl;}
+
+  .toc-bar{background:var(--paper-2);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50;box-shadow:0 2px 14px rgba(37,42,46,.06);}
+  .toc-in{max-width:1080px;margin:0 auto;padding:10px 28px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .toc-in .lab{font-family:var(--serif);font-size:13px;color:var(--accent);letter-spacing:.1em;margin-right:6px;}
+  .toc-in a{font-size:12.5px;color:var(--ink-soft);text-decoration:none;padding:4px 11px;border-radius:20px;border:1px solid transparent;transition:all .18s;white-space:nowrap;}
+  .toc-in a:hover{color:var(--accent);border-color:rgba(176,74,104,0.35);background:rgba(176,74,104,0.05);}
+
+  section{padding:60px 0 56px;scroll-margin-top:64px;}
+  .sec-head{display:flex;align-items:center;gap:14px;margin-bottom:8px;}
+  .sec-no{font-family:var(--serif);font-size:14px;color:var(--accent);border:1px solid var(--accent);border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;flex:none;}
+  .sec-head h2{font-size:clamp(23px,3.4vw,31px);color:var(--ink);}
+  .sec-sub{color:var(--ink-faint);font-size:14.5px;margin-bottom:32px;padding-left:48px;}
+  @media(max-width:880px){.sec-sub{padding-left:0;}}
+
+  .divider{height:1px;background:linear-gradient(90deg,transparent,var(--line) 18%,var(--line) 82%,transparent);}
+
+  .bookcard{
+    display:grid;grid-template-columns:1.1fr 1fr;gap:34px;align-items:center;
+    background:var(--paper-2);border:1px solid var(--line);border-radius:18px;
+    padding:38px;box-shadow:var(--shadow);position:relative;overflow:hidden;
+  }
+  .bookcard::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:linear-gradient(var(--accent),var(--accent-2));}
+  .one-liner{font-family:var(--serif);font-size:clamp(19px,2.9vw,26px);line-height:1.55;color:var(--ink);}
+  .one-liner em{color:var(--accent);font-style:normal;}
+  .one-liner .rule{width:52px;height:3px;background:var(--accent);border-radius:2px;margin-top:18px;opacity:.85;}
+  .meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 22px;}
+  .meta-grid .cell span{display:block;font-size:12px;letter-spacing:.1em;color:var(--ink-faint);text-transform:uppercase;margin-bottom:3px;}
+  .meta-grid .cell b{font-family:var(--serif);font-size:16.5px;color:var(--ink);font-weight:600;line-height:1.45;}
+  @media(max-width:880px){.bookcard{grid-template-columns:1fr;padding:28px;gap:26px;}}
+
+  .sys-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .sys{border-radius:16px;padding:30px 28px;color:#fff;position:relative;overflow:hidden;box-shadow:var(--shadow);}
+  .sys.s1{background:linear-gradient(150deg,#b04a68,#7e354a);}
+  .sys.s2{background:linear-gradient(150deg,#4fb597,#388770);}
+  .sys.s3{background:linear-gradient(150deg,#d394a8,#b04a68);}
+  .sys.s4{background:linear-gradient(150deg,#692c3e,#4f212d);}
+  .sys .tag{font-size:12px;letter-spacing:.16em;opacity:.88;text-transform:uppercase;}
+  .sys h3{font-size:25px;margin:6px 0 4px;}
+  .sys .tagline{font-family:var(--serif);font-style:italic;font-size:15.5px;opacity:.92;margin-bottom:16px;}
+  .sys ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+  .sys li{display:flex;gap:10px;font-size:14px;line-height:1.55;align-items:flex-start;}
+  .sys li svg{flex:none;margin-top:4px;}
+  .sys .speed{display:inline-flex;align-items:baseline;gap:8px;margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.22);}
+  .sys .speed b{font-size:24px;font-family:var(--serif);}
+  .sys .speed span{font-size:12.5px;opacity:.82;}
+  @media(max-width:880px){.sys-grid{grid-template-columns:1fr;}}
+
+  .stage-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;}
+  .stage{border-radius:16px;padding:26px 22px;color:#fff;position:relative;overflow:hidden;box-shadow:var(--shadow);}
+  .stage .no{font-family:var(--serif);font-size:15px;opacity:.85;letter-spacing:.12em;}
+  .stage h3{font-size:21px;margin:5px 0 3px;}
+  .stage .tagline{font-family:var(--serif);font-style:italic;font-size:13.5px;opacity:.9;margin-bottom:13px;}
+  .stage ul{list-style:none;display:flex;flex-direction:column;gap:9px;}
+  .stage li{display:flex;gap:9px;font-size:13.5px;line-height:1.55;align-items:flex-start;}
+  .stage li svg{flex:none;margin-top:3px;}
+  .stage::after{content:"→";position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:26px;opacity:.55;color:#fff;}
+  .stage:last-child::after{content:"";}
+
+  .vs-wrap{margin-top:26px;background:var(--paper-2);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .vs-head{display:grid;grid-template-columns:1.1fr 1fr 1fr;background:linear-gradient(90deg,rgba(176,74,104,0.1),rgba(79,181,151,0.1));border-bottom:1px solid var(--line);}
+  .vs-head div{padding:14px 18px;font-family:var(--serif);font-size:15px;}
+  .vs-head .h1c{color:var(--accent);}
+  .vs-head .h2c{color:var(--warm);}
+  .vs-row{display:grid;grid-template-columns:1.1fr 1fr 1fr;border-bottom:1px solid var(--line);}
+  .vs-row:last-child{border-bottom:none;}
+  .vs-row:nth-child(odd){background:rgba(244,242,237,.55);}
+  .vs-row .dim{padding:12px 18px;font-size:13px;color:var(--ink-faint);letter-spacing:.04em;display:flex;align-items:center;}
+  .vs-row .v1{padding:12px 18px;font-size:13.5px;color:var(--ink-soft);border-left:1px dashed var(--line);display:flex;align-items:center;}
+  .vs-row .v2{padding:12px 18px;font-size:13.5px;color:var(--ink-soft);border-left:1px dashed var(--line);display:flex;align-items:center;}
+  @media(max-width:680px){
+    .vs-head.v3{grid-template-columns:1fr 1fr;} .vs-head.v3 .h0{display:none;}
+    .vs-row.v3{grid-template-columns:1fr;padding:10px 0;}
+    .vs-row.v3 .dim{grid-column:1/-1;padding:4px 18px 2px;font-family:var(--serif);color:var(--accent);font-size:13.5px;}
+    .vs-row.v3 .v1,.vs-row.v3 .v2{border-left:none;padding:2px 18px;}
+    .vs-row.v3 .v1::before{content:"甲面　";color:var(--accent);font-weight:600;}
+    .vs-row.v3 .v2::before{content:"乙面　";color:var(--warm);font-weight:600;}
+  }
+
+  .sys-note{margin-top:22px;background:var(--paper-2);border:1px dashed var(--accent-2);border-radius:12px;padding:18px 22px;font-size:14.5px;color:var(--ink-soft);}
+  .sys-note b{color:var(--accent);font-family:var(--serif);}
+
+  .spectrum{margin-top:26px;background:var(--paper-2);border:1px solid var(--line);border-radius:16px;
+    padding:30px 30px 24px;box-shadow:var(--shadow);}
+  .spectrum h3{font-size:19px;margin-bottom:4px;}
+  .spectrum .en{font-size:12.5px;letter-spacing:.06em;color:var(--ink-faint);margin-bottom:18px;}
+  .spectrum svg{width:100%;height:auto;display:block;}
+  .spectrum .cap{margin-top:14px;font-size:13.5px;color:var(--ink-soft);line-height:1.7;}
+  .spectrum .cap b{color:var(--accent);font-family:var(--serif);}
+
+  .fx-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+  .fx{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:24px;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s;}
+  .fx:hover{transform:translateY(-3px);box-shadow:var(--shadow);}
+  .fx .ic{width:42px;height:42px;border-radius:11px;background:rgba(176,74,104,0.09);display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+  .fx h3{font-size:18px;margin-bottom:3px;}
+  .fx .en{font-size:12px;letter-spacing:.06em;color:var(--ink-faint);margin-bottom:11px;}
+  .fx p{font-size:14px;color:var(--ink-soft);line-height:1.65;}
+  .fx .eg{margin-top:12px;font-size:13px;color:var(--accent);background:rgba(176,74,104,0.06);border-radius:8px;padding:8px 11px;}
+  .fx .eg b{font-weight:600;}
+  @media(max-width:880px){.fx-grid{grid-template-columns:1fr;}}
+
+  .flow{position:relative;padding-left:8px;}
+  .flow .step{display:grid;grid-template-columns:64px 1fr;gap:20px;position:relative;padding-bottom:28px;}
+  .flow .step:not(:last-child)::before{content:"";position:absolute;left:31px;top:48px;bottom:0;width:2px;background:linear-gradient(var(--accent-2),var(--line));}
+  .flow .node{width:64px;height:64px;border-radius:50%;background:var(--paper-2);border:2px solid var(--accent-2);display:flex;flex-direction:column;align-items:center;justify-content:center;flex:none;position:relative;z-index:2;box-shadow:0 3px 10px rgba(37,42,46,.08);}
+  .flow .node b{font-family:var(--serif);font-size:17px;color:var(--accent);line-height:1.15;}
+  .flow .node span{font-size:10px;color:var(--ink-faint);letter-spacing:.05em;}
+  .flow .body{padding-top:6px;}
+  .flow .body h3{font-size:18px;margin-bottom:5px;}
+  .flow .body h3 small{font-size:12.5px;color:var(--ink-faint);font-family:var(--sans);font-weight:400;margin-left:8px;}
+  .flow .body p{font-size:14px;color:var(--ink-soft);}
+  .flow .body .pill{display:inline-block;margin-top:8px;font-size:12px;color:var(--warm);background:rgba(79,181,151,0.1);padding:3px 11px;border-radius:20px;}
+
+  .quotes{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
+  .quote{background:linear-gradient(160deg,#faf9f5,#eef0ef);border:1px solid var(--line);border-radius:16px;padding:30px 28px 26px;position:relative;box-shadow:var(--shadow);}
+  .quote .mark{font-family:Georgia,serif;font-size:64px;line-height:.4;color:var(--accent);opacity:.35;height:30px;}
+  .quote p{font-family:var(--serif);font-size:17.5px;line-height:1.6;color:var(--ink);margin-bottom:14px;}
+  .quote .src{font-size:13px;color:var(--ink-faint);letter-spacing:.04em;}
+  .quote.span2{grid-column:1/-1;background:linear-gradient(110deg,#582533,#381721);border-color:#461d28;}
+  .quote.span2 p{color:#e9eef2;font-size:20.5px;}
+  .quote.span2 .src{color:var(--accent-2);}
+  .quote.span2 .mark{color:var(--accent-2);}
+  @media(max-width:880px){.quotes{grid-template-columns:1fr;}}
+
+  .act-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+  .act{display:grid;grid-template-columns:46px 1fr;gap:16px;background:var(--paper-2);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:22px;transition:transform .2s,box-shadow .2s;}
+  .act:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm);}
+  .act .num{font-family:var(--serif);font-size:26px;color:var(--accent);line-height:1.1;}
+  .act h3{font-size:16.5px;margin-bottom:5px;}
+  .act p{font-size:13.5px;color:var(--ink-soft);line-height:1.65;}
+  @media(max-width:880px){.act-grid{grid-template-columns:1fr;}}
+
+  .split{display:grid;grid-template-columns:1fr 1.15fr;gap:30px;align-items:stretch;}
+  .split .imgcol{border-radius:16px;overflow:hidden;min-height:320px;background-size:cover;background-position:center;box-shadow:var(--shadow);position:relative;}
+  .split .imgcol::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,26,34,0) 42%,rgba(56,23,33,0.62));}
+  .split .imgcol .cap{position:absolute;left:22px;bottom:18px;z-index:2;color:#e5ebf0;font-family:var(--serif);font-size:15px;}
+  .fit-list{display:flex;flex-direction:column;gap:14px;}
+  .fit{display:flex;gap:13px;background:var(--paper-2);border:1px solid var(--line);border-radius:12px;padding:16px 18px;align-items:flex-start;}
+  .fit svg{flex:none;margin-top:3px;}
+  .fit b{font-family:var(--serif);font-size:15.5px;display:block;margin-bottom:2px;}
+  .fit span{font-size:13.5px;color:var(--ink-soft);}
+  @media(max-width:880px){.split{grid-template-columns:1fr;}}
+
+  footer{padding:46px 28px 60px;text-align:center;color:var(--ink-faint);font-size:13px;}
+  footer .line{width:60px;height:3px;background:var(--accent);margin:0 auto 20px;border-radius:3px;}
+  footer b{font-family:var(--serif);color:var(--ink-soft);}
+  .disclaim{margin-top:10px;font-size:12px;color:var(--ink-faint);max-width:680px;margin-left:auto;margin-right:auto;line-height:1.7;}
+
+  @media print{
+    #progress,.toc-bar,.ribbon{display:none;}
+    body::before{display:none;}
+    section{padding:28px 0;}
+    .fx,.act,.quote,.sys{break-inside:avoid;}
+  }
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<header class="hero" id="hero">
+  <div class="ribbon"><span>读书笔记</span></div>
+  <div class="hero-inner">
+    <span class="kicker">精读笔记 · 积极心理学</span>
+    <h1>《积极心理学之父塞利格曼幸福启示录（套装6册）》</h1>
+    <div class="sub-en">Martin Seligman — Six Essential Works on Positive Psychology</div>
+    <p class="lead">幸福不是运气砸中，而是一套可训练的技能：把悲观解释改写成乐观解释，把快乐升级为投入与意义。塞利格曼用三十年研究，把活得好拆成了可练习的步骤。</p>
+    <div class="hero-meta"><div class="m"><b>6 部代表作</b><span>一册一套方法</span></div><div class="m"><b>3 大解释维度</b><span>永久·普遍·人格化</span></div><div class="m"><b>5 根柱子</b><span>PERMA 幸福模型</span></div><div class="m"><b>40% 幸福</b><span>取决于自主活动</span></div></div>
+  </div>
+</header>
+
+<nav class="toc-bar" aria-label="页面目录"><div class="toc-in"><span class="lab">目录</span><a href="#info">书籍信息</a><a href="#duo">核心框架</a><a href="#chart">一张图</a><a href="#fx">关键概念</a><a href="#flow">章节脉络</a><a href="#quotes">金句</a><a href="#actions">行动启发</a><a href="#who">适合谁读</a></div></nav>
+
+<div class="wrap">
+<section id="info">
+  <div class="sec-head"><div class="sec-no">01</div><h2>这本书讲了什么</h2></div>
+  <p class="sec-sub">一句话总览 + 核心信息卡</p>
+  <div class="bookcard">
+    <div><div class="one-liner">幸福不是情绪的偶然降临，而是<em>解释风格</em>、<em>刻意练习</em>与人生意义的乘积：你能改写对坏事的归因，也能在投入与关系中把日子过成蓬勃。</div><div class="rule"></div></div>
+    <div class="meta-grid"><div class="cell"><span>作者</span><b>马丁·塞利格曼，积极心理学之父，前美国心理学会主席</b></div><div class="cell"><span>领域</span><b>积极心理学 · 临床心理学</b></div><div class="cell"><span>核心命题</span><b>乐观可以习得，幸福可以训练</b></div><div class="cell"><span>出版</span><b>代表作横跨1990至2011年，本套为六册合集</b></div><div class="cell"><span>系列/方法</span><b>解释风格理论、ABC反驳法、PERMA模型</b></div><div class="cell"><span>关键概念</span><b>习得性无助、习得性乐观、签名优势、蓬勃人生</b></div></div>
+  </div>
+</section>
+<div class="divider"></div>
+<section id="duo">
+  <div class="sec-head"><div class="sec-no">02</div><h2>核心框架：从悲观到蓬勃的三段旅程</h2></div>
+  <p class="sec-sub">塞利格曼三十年研究的主线：先改写解释，再积累快乐，最后走向意义</p>
+  <div class="stage-grid">
+<div class="stage" style="background:linear-gradient(150deg,#b04a67,#7e354a)"><div class="no">STAGE 1</div>
+<h3>打败悲观</h3><div class="tagline">无助可以学会，也可以戒除。</div><ul><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>不可控挫折的实验揭示：放弃是学来的信念</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>坏事发生时，先捕捉头脑里冒出的自动解释</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>从永久性、普遍性、人格化三问拆解悲观</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>用反驳与转移注意，为悲观解释翻案</li></ul></div>
+<div class="stage" style="background:linear-gradient(150deg,#b95964,#773246)"><div class="no">STAGE 2</div>
+<h3>积累真实快乐</h3><div class="tagline">快感是感官的，满足来自运用优势。</div><ul><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>环境对幸福的影响有限，自主活动贡献更大份额</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>识别自己的签名优势，并高频使用它们</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>每晚记下三件好事及其原因，坚持即见效</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>写感恩信并当面读给恩人，效果最持久</li></ul></div>
+<div class="stage" style="background:linear-gradient(150deg,#c1716b,#702f42)"><div class="no">STAGE 3</div>
+<h3>走向蓬勃</h3><div class="tagline">幸福论被修正为蓬勃论。</div><ul><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>五根柱子：积极情绪、投入、关系、意义、成就</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>投入来自优势与挑战的匹配，即心流体验</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>意义是为大于自己的东西服务</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>教孩子乐观，等于给人生装上心理免疫</li></ul></div>
+</div>
+</section>
+<div class="divider"></div>
+<section id="chart">
+  <div class="sec-head"><div class="sec-no">03</div><h2>全书最深的一张图</h2></div>
+  <p class="sec-sub">幸福是循环练习的产物，不是顿悟的奖品</p>
+  <div class="spectrum">
+    <h3>幸福练习循环</h3>
+    <div class="en">The Happiness Loop</div>
+    <svg viewBox="0 0 900 230" role="img" aria-label="幸福练习循环">
+<rect x="0" y="0" width="900" height="230" fill="#faf9f5" rx="12"/>
+<defs><linearGradient id="g_b227_loop" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#b04a68"/><stop offset="0.5" stop-color="#c47873"/><stop offset="1" stop-color="#4fb597"/></linearGradient></defs>
+<circle cx="450" cy="112" r="78" fill="none" stroke="#d394a8" stroke-width="2.2" stroke-dasharray="6 6" opacity=".8"/>
+<circle cx="450" cy="34" r="26" fill="#b04a68" opacity="0.95"/>
+<text x="450" y="39" text-anchor="middle" font-size="13.5" font-weight="600" fill="#fff">觉察</text>
+<text x="450" y="-6" text-anchor="middle" font-size="12.5" fill="#535b62">捕捉对坏事的即时自动解释</text>
+<circle cx="524" cy="88" r="26" fill="#b04a68" opacity="0.87"/>
+<text x="524" y="93" text-anchor="middle" font-size="13.5" font-weight="600" fill="#fff">反驳</text>
+<text x="568" y="76" text-anchor="start" font-size="12.5" fill="#535b62">追问这个解释有没有事实支撑</text>
+<circle cx="496" cy="175" r="26" fill="#b04a68" opacity="0.79"/>
+<text x="496" y="180" text-anchor="middle" font-size="13.5" font-weight="600" fill="#fff">行动</text>
+<text x="523" y="207" text-anchor="start" font-size="12.5" fill="#535b62">每周用新方式运用一次性格优势</text>
+<circle cx="404" cy="175" r="26" fill="#b04a68" opacity="0.71"/>
+<text x="404" y="180" text-anchor="middle" font-size="13.5" font-weight="600" fill="#fff">记录</text>
+<text x="377" y="207" text-anchor="end" font-size="12.5" fill="#535b62">睡前写下三件好事并注明原因</text>
+<circle cx="376" cy="88" r="26" fill="#b04a68" opacity="0.63"/>
+<text x="376" y="93" text-anchor="middle" font-size="13.5" font-weight="600" fill="#fff">升级</text>
+<text x="332" y="76" text-anchor="end" font-size="12.5" fill="#535b62">让快乐积累为投入与意义感</text>
+<text x="450" y="117" text-anchor="middle" font-size="15" font-weight="700" fill="#b04a68">幸福练习</text>
+<text x="450" y="222" text-anchor="middle" font-size="11.5" fill="#848d94">循环转得越久，乐观越像出厂设置。</text>
+</svg>
+    <div class="cap"><b>怎么用 —</b> 从任一节点进入皆可：先练反驳最见效，先记好事最容易坚持，两周起测。</div>
+  </div>
+</section>
+<div class="divider"></div>
+<section id="fx">
+  <div class="sec-head"><div class="sec-no">04</div><h2>关键概念卡片</h2></div>
+  <p class="sec-sub">主要概念、方法与实验</p>
+  <div class="fx-grid"><div class="fx"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#b04a68" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="14" r="4"/><path d="M11 11l9-9M17 5l2.5 2.5M14 8l2 2"/></svg></div>
+<h3>习得性无助</h3><div class="en">Learned Helplessness</div><p>塞利格曼早期的动物实验发现：反复遭受不可控挫折后，有机体会放弃本可逃脱的尝试，把努力没用内化成信念。这一发现后来被反转为乐观可以习得。</p><div class="eg"><b>例：</b>连续三次方案被否后，你没有提出第四次，尽管这次条件其实有利。</div></div><div class="fx"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#b04a68" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4v7a6 6 0 0012 0V4M6 4h4v7M14 4h4v7"/></svg></div>
+<h3>解释风格</h3><div class="en">Explanatory Style</div><p>挫折来临时，每个人都在三把尺子上打分：坏事是永久的还是暂时的，是普遍的还是特定的，是我的错还是环境的错。乐观者把坏事解释得暂时、特定、外归因。</p><div class="eg"><b>例：</b>我这次没考好（乐观）与 我永远学不好（悲观），导向截然不同的行动。</div></div><div class="fx"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#b04a68" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 00-4 10.5c.7.6 1 1.5 1 2.5h6c0-1 .3-1.9 1-2.5A6 6 0 0012 3z"/></svg></div>
+<h3>习得性乐观</h3><div class="en">Learned Optimism</div><p>通过捕捉自动思维、检验证据、给出替代解释，人可以有意识地反驳灾难化念头。乐观不靠自我欺骗，而靠更准确的归因训练，效果能迁移到业绩、健康与情绪。</p><div class="eg"><b>例：</b>销售团队学会反驳技巧后，被拒绝不再等于我不行，留存与业绩随之改善。</div></div><div class="fx"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#b04a68" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.7 5.8 6.3.8-4.6 4.4 1.2 6.2L12 17.2 6.4 20.2l1.2-6.2L3 9.6l6.3-.8z"/></svg></div>
+<h3>真实的幸福</h3><div class="en">Authentic Happiness</div><p>快感是感官层面的，满足来自把性格优势用在与目标匹配的事上。塞利格曼主张幸福不等同于感觉良好，而在于识别自己的签名优势并高频使用它。</p><div class="eg"><b>例：</b>内向者回避热闹聚会，转而用好学的优势写深度长文，反而更满足。</div></div><div class="fx"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#b04a68" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2.2 5-5 2.2 2.2-5z"/></svg></div>
+<h3>PERMA 模型</h3><div class="en">The PERMA Model</div><p>蓬勃人生的五根柱子：积极情绪、投入、关系、意义、成就。任何一项单独都不等于幸福，但每一项都可独立培养、可测量、可提升，构成幸福1.0到2.0的修正。</p><div class="eg"><b>例：</b>有人为带团队忍受琐碎事务，因意义一项高分，仍觉得人生蓬勃。</div></div><div class="fx"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#b04a68" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7.5-4.6-9.3-9A5.2 5.2 0 0112 6.2 5.2 5.2 0 0121.3 11c-1.8 4.4-9.3 9-9.3 9z"/></svg></div>
+<h3>三件好事</h3><div class="en">Three Good Things</div><p>睡前写下今天的三件好事，并回答它们为什么会发生。这个看似简单的练习能持续提高积极情绪并降低抑郁水平，是积极心理学被引用最多的干预之一。</p><div class="eg"><b>例：</b>坚持两周后，你开始注意到平时被忽略的善意：同事递来的咖啡、准点的班车。</div></div></div>
+</section>
+<div class="divider"></div>
+<section id="flow">
+  <div class="sec-head"><div class="sec-no">05</div><h2>全书脉络图</h2></div>
+  <p class="sec-sub">套装六册的主题线：从治疗悲观，到定义幸福，再到培育蓬勃并传给下一代</p>
+  <div class="flow"><div class="step"><div class="node"><b>01</b><span>CH.</span></div>
+<div class="body"><h3>乐观的来历<small>Learned Optimism</small></h3><p>从习得性无助实验出发，论证悲观是可以改写的信念而非固定性格。</p><span class="pill">改写归因</span></div></div><div class="step"><div class="node"><b>02</b><span>CH.</span></div>
+<div class="body"><h3>改变的边界<small>What You Can Change</small></h3><p>区分能改的情绪问题与难改的性格底色，把力气花在可改变之处。</p><span class="pill">先分边界</span></div></div><div class="step"><div class="node"><b>03</b><span>CH.</span></div>
+<div class="body"><h3>真实的幸福<small>Authentic Happiness</small></h3><p>提出签名优势概念，把快感升级为投入与满足。</p><span class="pill">优势定位</span></div></div><div class="step"><div class="node"><b>04</b><span>CH.</span></div>
+<div class="body"><h3>持续的幸福<small>Flourish</small></h3><p>以PERMA修正早期幸福论，强调意义与成就的独立价值。</p><span class="pill">五柱模型</span></div></div><div class="step"><div class="node"><b>05</b><span>CH.</span></div>
+<div class="body"><h3>教出乐观的孩子<small>The Optimistic Child</small></h3><p>把解释风格训练带进家庭与课堂，为孩子建立心理免疫。</p><span class="pill">代际传递</span></div></div><div class="step"><div class="node"><b>06</b><span>CH.</span></div>
+<div class="body"><h3>蓬勃的日常<small>Daily Practice</small></h3><p>把前面几册的方法压缩为两周内见效的日常练习清单。</p><span class="pill">落地工具</span></div></div></div>
+</section>
+<div class="divider"></div>
+<section id="quotes">
+  <div class="sec-head"><div class="sec-no">06</div><h2>金句摘录</h2></div>
+  <p class="sec-sub">值得抄进笔记本的句子（据核心观点转述）</p>
+  <div class="quotes"><div class="quote"><div class="mark">&ldquo;</div><p>悲观不是性格判决书，而是一种可以通过反驳训练改掉的解释习惯。</p><div class="src">—— 论习得性乐观</div></div><div class="quote"><div class="mark">&ldquo;</div><p>让你痛苦的不是坏事本身，而是你对坏事为什么发生的解释。</p><div class="src">—— 论解释风格</div></div><div class="quote"><div class="mark">&ldquo;</div><p>快感是吃冰淇淋，满足是做你擅长且在乎的事。</p><div class="src">—— 论真实的幸福</div></div><div class="quote"><div class="mark">&ldquo;</div><p>孩子的乐观，是从父母如何谈论倒霉事里学来的。</p><div class="src">—— 论教出乐观的孩子</div></div><div class="quote"><div class="mark">&ldquo;</div><p>积极情绪只是幸福五分之一；没有投入、关系与意义，快乐会很快用完。</p><div class="src">—— 论PERMA模型</div></div><div class="quote span2"><div class="mark">&ldquo;</div><p>幸福不是等你到达的地方，而是一组每天都可以练习的动作。</p><div class="src">—— 论蓬勃人生</div></div></div>
+</section>
+<div class="divider"></div>
+<section id="actions">
+  <div class="sec-head"><div class="sec-no">07</div><h2>对工作与决策的行动启发</h2></div>
+  <p class="sec-sub">读完就能上手的方法</p>
+  <div class="act-grid"><div class="act"><div class="num">1</div><div><h3>记录三件好事</h3><p>今晚睡前写下今天的三件好事，并分别为每件注明它为什么会发生；坚持两周后回看，观察积极情绪有没有整体抬升。</p></div></div><div class="act"><div class="num">2</div><div><h3>拆解一次解释</h3><p>挑一件最近的挫折，用永久性、普遍性、人格化三把尺子给自动解释打分，再写一个更准确的替代版本。</p></div></div><div class="act"><div class="num">3</div><div><h3>做一次反驳练习</h3><p>下次灾难化念头冒出来时，问自己：证据是什么？最坏结果的概率多大？然后写下更可能的剧本。</p></div></div><div class="act"><div class="num">4</div><div><h3>找到签名优势</h3><p>从好奇心、勇敢、幽默等性格优势中选出三项最像自己的，本周至少用一种新方式运用其中一项。</p></div></div><div class="act"><div class="num">5</div><div><h3>写一封感谢信</h3><p>给帮助过你的人写一封三百字的感谢信，最好当面读给对方听，这是效果最持久的积极心理学练习之一。</p></div></div><div class="act"><div class="num">6</div><div><h3>给孩子示范归因</h3><p>这周在孩子面前讲述一件倒霉事时，刻意使用暂时、特定、外归因的说法，让他们听到乐观的解释样本。</p></div></div></div>
+</section>
+<div class="divider"></div>
+<section id="who">
+  <div class="sec-head"><div class="sec-no">08</div><h2>这本书适合谁读</h2></div>
+  <p class="sec-sub">如果你符合其中一条，它都值得放进书单</p>
+  <div class="split">
+    <div class="imgcol" id="who-img"><div class="cap">先练两周，再谈幸福</div></div>
+    <div class="fit-list"><div class="fit"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 9l4 4 10-10" stroke="#b04a68" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>长期自我怀疑的人</b><span>反复把挫折解释成我不行，想要一套可操作的归因改写工具。</span></div></div><div class="fit"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 9l4 4 10-10" stroke="#b04a68" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>心理自助书疲劳者</b><span>厌倦鸡汤，想要有实验数据与可测量效果支撑的方法论。</span></div></div><div class="fit"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 9l4 4 10-10" stroke="#b04a68" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>家长与教育者</b><span>希望把乐观作为礼物传给下一代，减少孩子的无助与内耗。</span></div></div><div class="fit"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2v4M9 12v4M2 9h4M12 9h4" stroke="#d394a8" stroke-width="2" stroke-linecap="round"/></svg><div><b>带团队的人</b><span>想把归因训练用在复盘与激励里，提升韧性而不灌迷魂汤。</span></div></div></div>
+  </div>
+</section>
+</div>
+
+<footer>
+  <div class="line"></div>
+  <b>《积极心理学之父塞利格曼幸福启示录（套装6册）》精读笔记 · 读书摘要卡</b>
+  <p class="disclaim">本页为基于该书公开核心观点整理的读书笔记，用于知识科普与个人学习参考，非原文逐字转载。书名、理论与观点版权归原作者及出版方所有。头图为积极心理学主题图（Wikimedia Commons，许可）。</p>
+</footer>
+
+<script>
+  var DOC_ARCHIVE = "../assets/hero/h16.jpg";
+  document.getElementById('hero').style.backgroundImage = "url('" + DOC_ARCHIVE + "')";
+  var wi = document.getElementById('who-img');
+  if (wi) wi.style.backgroundImage = "url('" + DOC_ARCHIVE + "')";
+
+  (function(){
+    var bar = document.getElementById('progress');
+    function upd(){
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.width = (max > 0 ? (h.scrollTop / max * 100) : 0) + '%';
+    }
+    window.addEventListener('scroll', upd, {passive:true});
+    window.addEventListener('resize', upd);
+    upd();
+  })();
+</script>
+
+</body>
+</html>

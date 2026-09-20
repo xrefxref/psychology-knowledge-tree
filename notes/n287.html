@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page-node-id="Pgphd1lBHKGqJQ8eBhn9Rb">
+<head data-page-node-id="3bE3NKdQtsQES9Kk3fdMKd">
+<meta charset="UTF-8" data-page-node-id="Cu8hRGwTKTkFiQ8SWdpLuF">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" data-page-node-id="xEtuNbwF2BbcN11qyk3fvX">
+<title>《性、谋杀及生命的意义》精读笔记 · 进化动机的真实形状</title>
+<meta name="description" content="肯里克《性、谋杀及生命的意义》读书笔记：深度理性、次级自我、重构马斯洛金字塔、信号博弈与行动启发。" data-page-node-id="Pepq4bN2DrdYvsCeLGT3WE">
+<style>
+  :root{
+    --paper:#f1ebec;
+    --paper-2:#f6f0f2;
+    --ink:#25191c;
+    --ink-soft:#52454a;
+    --ink-faint:#837479;
+    --line:#ddd0d4;
+    --accent:#8E2A46;      /* 深绯红 */
+    --accent-2:#A8555E;    /* 副色绯 */
+    --accent-cool:#3B3A5A; /* 暮夜蓝紫 */
+    --warm:#C9A227;
+    --shadow:0 12px 40px rgba(86,18,40,.12);
+    --shadow-sm:0 4px 18px rgba(86,18,40,.08);
+    --serif:"Songti SC","Source Han Serif SC","Noto Serif SC",Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--sans);color:var(--ink);background:var(--paper);
+    background-image:
+      radial-gradient(circle at 18% 8%, rgba(59,58,90,.10), transparent 42%),
+      radial-gradient(circle at 84% 88%, rgba(142,42,70,.12), transparent 46%);
+    line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.035'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  body>*{position:relative;z-index:1;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
+  h1,h2,h3,.serif{font-family:var(--serif);}
+  ::selection{background:rgba(142,42,70,.22);}
+
+  #progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:99;
+    background:linear-gradient(90deg,var(--accent-cool),var(--accent));transition:width .1s linear;}
+
+  .hero{
+    position:relative;min-height:clamp(480px,72vh,640px);
+    display:flex;align-items:flex-end;
+    background-size:cover;background-position:center 55%;
+    color:#fbe8ed;overflow:hidden;
+  }
+  .hero::after{
+    content:"";position:absolute;inset:0;
+    background:
+      linear-gradient(180deg, rgba(30,12,18,.30) 0%, rgba(30,12,18,.48) 42%, rgba(20,8,14,.95) 100%),
+      linear-gradient(90deg, rgba(20,8,14,.65) 0%, rgba(20,8,14,0) 58%);
+  }
+  .hero-inner{position:relative;z-index:2;width:100%;max-width:1080px;margin:0 auto;padding:88px 28px 54px;}
+  .hero .kicker{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:13px;letter-spacing:.22em;text-transform:uppercase;
+    color:#f0c6d2;border:1px solid rgba(240,198,210,.50);
+    padding:6px 15px;border-radius:30px;margin-bottom:22px;backdrop-filter:blur(2px);
+  }
+  .hero h1{font-size:clamp(32px,5.6vw,58px);line-height:1.12;font-weight:700;letter-spacing:.01em;text-shadow:0 2px 24px rgba(0,0,0,.55);margin-bottom:10px;}
+  .hero .sub-en{font-family:var(--serif);font-style:italic;font-size:clamp(15px,2.4vw,22px);color:#e6b8c4;opacity:.92;margin-bottom:20px;}
+  .hero .lead{max-width:640px;font-size:clamp(15px,2vw,18px);color:#f3dde3;}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:24px 34px;margin-top:30px;}
+  .hero-meta .m{display:flex;flex-direction:column;}
+  .hero-meta .m b{font-family:var(--serif);font-size:20px;color:#fff;}
+  .hero-meta .m span{font-size:12.5px;letter-spacing:.08em;color:#e6b8c4;}
+
+  .ribbon{position:absolute;top:0;right:clamp(16px,5vw,52px);z-index:3;width:44px;
+    background:var(--accent);color:#fff;text-align:center;
+    padding:15px 0 24px;font-family:var(--serif);font-size:13px;letter-spacing:.14em;
+    box-shadow:0 6px 16px rgba(0,0,0,.32);}
+  .ribbon::after{content:"";position:absolute;left:0;bottom:-13px;border-width:0 22px 14px;border-style:solid;border-color:var(--accent) var(--accent) transparent;}
+  .ribbon span{writing-mode:vertical-rl;}
+
+  .toc-bar{background:var(--paper-2);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50;box-shadow:0 2px 14px rgba(86,18,40,.08);}
+  .toc-in{max-width:1080px;margin:0 auto;padding:10px 28px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .toc-in .lab{font-family:var(--serif);font-size:13px;color:var(--accent);letter-spacing:.1em;margin-right:6px;}
+  .toc-in a{font-size:12.5px;color:var(--ink-soft);text-decoration:none;padding:4px 11px;border-radius:20px;border:1px solid transparent;transition:all .18s;white-space:nowrap;}
+  .toc-in a:hover{color:var(--accent);border-color:rgba(142,42,70,.35);background:rgba(142,42,70,.05);}
+
+  section{padding:60px 0 56px;scroll-margin-top:64px;}
+  .sec-head{display:flex;align-items:center;gap:14px;margin-bottom:8px;}
+  .sec-no{font-family:var(--serif);font-size:14px;color:var(--accent);border:1px solid var(--accent);border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;flex:none;}
+  .sec-head h2{font-size:clamp(23px,3.4vw,31px);color:var(--ink);}
+  .sec-sub{color:var(--ink-faint);font-size:14.5px;margin-bottom:32px;padding-left:48px;}
+  @media(max-width:880px){.sec-sub{padding-left:0;}}
+
+  .divider{height:1px;background:linear-gradient(90deg,transparent,var(--line) 18%,var(--line) 82%,transparent);}
+
+  .bookcard{
+    display:grid;grid-template-columns:1.1fr 1fr;gap:34px;align-items:center;
+    background:var(--paper-2);border:1px solid var(--line);border-radius:18px;
+    padding:38px;box-shadow:var(--shadow);position:relative;overflow:hidden;
+  }
+  .bookcard::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:linear-gradient(var(--accent-cool),var(--accent));}
+  .one-liner{font-family:var(--serif);font-size:clamp(18px,2.7vw,24px);line-height:1.55;color:var(--ink);}
+  .one-liner em{color:var(--accent);font-style:normal;}
+  .one-liner .rule{width:52px;height:3px;background:var(--accent);border-radius:2px;margin-top:18px;opacity:.85;}
+  .meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 22px;}
+  .meta-grid .cell span{display:block;font-size:12px;letter-spacing:.1em;color:var(--ink-faint);text-transform:uppercase;margin-bottom:3px;}
+  .meta-grid .cell b{font-family:var(--serif);font-size:16.5px;color:var(--ink);font-weight:600;line-height:1.45;}
+  @media(max-width:880px){.bookcard{grid-template-columns:1fr;padding:28px;gap:26px;}}
+
+  /* 双金字塔 */
+  .pyramid-wrap{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:8px;}
+  .pyr{background:var(--paper-2);border:1px solid var(--line);border-radius:16px;padding:28px 22px;box-shadow:var(--shadow-sm);}
+  .pyr h3{font-size:18px;color:var(--ink);margin-bottom:4px;}
+  .pyr .en{font-size:11.5px;letter-spacing:.06em;color:var(--ink-faint);text-transform:uppercase;margin-bottom:18px;}
+  .pyr ol{list-style:none;display:flex;flex-direction:column-reverse;gap:0;counter-reset:pyr;}
+  .pyr li{counter-increment:pyr;display:flex;align-items:center;gap:10px;padding:9px 12px;color:#fff;font-size:13.5px;font-family:var(--sans);}
+  .pyr.legacy li:nth-child(1){background:#3B3A5A;}
+  .pyr.legacy li:nth-child(2){background:#5a3a6a;}
+  .pyr.legacy li:nth-child(3){background:#7a3a66;}
+  .pyr.legacy li:nth-child(4){background:#9c4660;}
+  .pyr.legacy li:nth-child(5){background:#8E2A46;}
+  .pyr.evo li:nth-child(1){background:#1f2a44;}
+  .pyr.evo li:nth-child(2){background:#3B3A5A;}
+  .pyr.evo li:nth-child(3){background:#5b3a5e;}
+  .pyr.evo li:nth-child(4){background:#7a3a66;}
+  .pyr.evo li:nth-child(5){background:#8E2A46;}
+  .pyr.evo li:nth-child(6){background:#a64a64;}
+  .pyr.evo li:nth-child(7){background:#c66880;}
+  .pyr li::before{content:counter(pyr);font-family:var(--serif);font-size:14px;width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.18);display:inline-flex;align-items:center;justify-content:center;flex:none;}
+  .pyr li:last-child{margin-bottom:0;}
+  .pyr li{width:100%;text-align:left;justify-content:flex-start;border-bottom:1px solid rgba(255,255,255,.15);}
+  .pyr li small{font-family:var(--serif);font-style:italic;opacity:.85;margin-left:6px;font-size:12px;}
+  /* 把楔形宽度从底到顶缩窄 */
+  .pyr.legacy li:nth-child(1){width:100%;}
+  .pyr.legacy li:nth-child(2){width:86%;}
+  .pyr.legacy li:nth-child(3){width:72%;}
+  .pyr.legacy li:nth-child(4){width:56%;}
+  .pyr.legacy li:nth-child(5){width:42%;margin-left:auto;margin-right:auto;}
+  .pyr.evo li:nth-child(1){width:100%;}
+  .pyr.evo li:nth-child(2){width:94%;}
+  .pyr.evo li:nth-child(3){width:86%;}
+  .pyr.evo li:nth-child(4){width:78%;}
+  .pyr.evo li:nth-child(5){width:68%;}
+  .pyr.evo li:nth-child(6){width:58%;}
+  .pyr.evo li:nth-child(7){width:48%;margin-left:auto;margin-right:auto;}
+  .pyr .caption{margin-top:16px;font-size:12.5px;color:var(--ink-faint);font-style:italic;text-align:center;}
+  @media(max-width:880px){.pyramid-wrap{grid-template-columns:1fr;}}
+
+  .pyramid-legend{margin-top:22px;background:var(--paper-2);border:1px dashed var(--accent-cool);border-radius:12px;padding:18px 22px;font-size:14.5px;color:var(--ink-soft);display:flex;gap:18px;align-items:flex-start;}
+  .pyramid-legend .arrow{font-family:var(--serif);font-size:22px;color:var(--accent);line-height:1;}
+  .pyramid-legend b{color:var(--accent);font-family:var(--serif);}
+
+  /* 概念卡片 */
+  .fx-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+  .fx{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:24px;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s;}
+  .fx:hover{transform:translateY(-3px);box-shadow:var(--shadow);}
+  .fx .ic{width:42px;height:42px;border-radius:11px;background:rgba(142,42,70,.10);display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+  .fx h3{font-size:18px;margin-bottom:3px;}
+  .fx .en{font-size:12px;letter-spacing:.06em;color:var(--ink-faint);margin-bottom:11px;}
+  .fx p{font-size:14px;color:var(--ink-soft);line-height:1.65;}
+  .fx .eg{margin-top:12px;font-size:13px;color:var(--accent);background:rgba(142,42,70,.07);border-radius:8px;padding:8px 11px;}
+  .fx .eg b{font-weight:600;}
+  @media(max-width:880px){.fx-grid{grid-template-columns:1fr;}}
+
+  .flow{position:relative;padding-left:8px;}
+  .flow .step{display:grid;grid-template-columns:64px 1fr;gap:20px;position:relative;padding-bottom:28px;}
+  .flow .step:not(:last-child)::before{content:"";position:absolute;left:31px;top:48px;bottom:0;width:2px;background:linear-gradient(var(--accent-2),var(--line));}
+  .flow .node{width:64px;height:64px;border-radius:50%;background:var(--paper-2);border:2px solid var(--accent-2);display:flex;flex-direction:column;align-items:center;justify-content:center;flex:none;position:relative;z-index:2;box-shadow:0 3px 10px rgba(86,18,40,.08);}
+  .flow .node b{font-family:var(--serif);font-size:17px;color:var(--accent);line-height:1.15;}
+  .flow .node span{font-size:10px;color:var(--ink-faint);letter-spacing:.05em;}
+  .flow .body{padding-top:6px;}
+  .flow .body h3{font-size:18px;margin-bottom:5px;}
+  .flow .body h3 small{font-size:12.5px;color:var(--ink-faint);font-family:var(--sans);font-weight:400;margin-left:8px;}
+  .flow .body p{font-size:14px;color:var(--ink-soft);}
+  .flow .body .pill{display:inline-block;margin-top:8px;font-size:12px;color:#7D5C0E;background:rgba(201,162,39,.12);padding:3px 11px;border-radius:20px;}
+
+  .quotes{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
+  .quote{background:linear-gradient(160deg,#f6f0f2,#e7dade);border:1px solid var(--line);border-radius:16px;padding:30px 28px 26px;position:relative;box-shadow:var(--shadow);}
+  .quote .mark{font-family:Georgia,serif;font-size:64px;line-height:.4;color:var(--accent);opacity:.35;height:30px;}
+  .quote p{font-family:var(--serif);font-size:17.5px;line-height:1.6;color:var(--ink);margin-bottom:14px;}
+  .quote .src{font-size:13px;color:var(--ink-faint);letter-spacing:.04em;}
+  .quote.span2{grid-column:1/-1;background:linear-gradient(110deg,#1f1018,#3a1822);border-color:#16080e;}
+  .quote.span2 p{color:#f3dde3;font-size:20.5px;}
+  .quote.span2 .src{color:#e6b8c4;}
+  .quote.span2 .mark{color:#e6b8c4;}
+  @media(max-width:880px){.quotes{grid-template-columns:1fr;}}
+
+  .act-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+  .act{display:grid;grid-template-columns:46px 1fr;gap:16px;background:var(--paper-2);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:22px;transition:transform .2s,box-shadow .2s;}
+  .act:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm);}
+  .act .num{font-family:var(--serif);font-size:26px;color:var(--accent);line-height:1.1;}
+  .act h3{font-size:16.5px;margin-bottom:5px;}
+  .act p{font-size:13.5px;color:var(--ink-soft);line-height:1.65;}
+  @media(max-width:880px){.act-grid{grid-template-columns:1fr;}}
+
+  .split{display:grid;grid-template-columns:1fr 1.15fr;gap:30px;align-items:stretch;}
+  .split .imgcol{border-radius:16px;overflow:hidden;min-height:320px;background-size:cover;background-position:center;box-shadow:var(--shadow);position:relative;}
+  .split .imgcol::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,8,14,0) 42%,rgba(20,8,14,.62));}
+  .split .imgcol .cap{position:absolute;left:22px;bottom:18px;z-index:2;color:#f3dde3;font-family:var(--serif);font-size:15px;}
+  .fit-list{display:flex;flex-direction:column;gap:14px;}
+  .fit{display:flex;gap:13px;background:var(--paper-2);border:1px solid var(--line);border-radius:12px;padding:16px 18px;align-items:flex-start;}
+  .fit svg{flex:none;margin-top:3px;}
+  .fit b{font-family:var(--serif);font-size:15.5px;display:block;margin-bottom:2px;}
+  .fit span{font-size:13.5px;color:var(--ink-soft);}
+  @media(max-width:880px){.split{grid-template-columns:1fr;}}
+
+  footer{padding:46px 28px 60px;text-align:center;color:var(--ink-faint);font-size:13px;}
+  footer .line{width:60px;height:3px;background:var(--accent);margin:0 auto 20px;border-radius:3px;}
+  footer b{font-family:var(--serif);color:var(--ink-soft);}
+  .disclaim{margin-top:10px;font-size:12px;color:var(--ink-faint);max-width:680px;margin-left:auto;margin-right:auto;line-height:1.7;}
+
+  @media print{
+    #progress,.toc-bar,.ribbon{display:none;}
+    body::before{display:none;}
+    section{padding:28px 0;}
+    .fx,.act,.quote,.pyr{break-inside:avoid;}
+  }
+</style>
+</head>
+<body data-page-node-id="UyRzMdwPxY8mnvjYb4c7Pg">
+
+<div id="progress" data-page-node-id="Zj6lIyLmBQWkEfroISrng0"></div>
+
+<header class="hero" id="hero" data-page-node-id="l7SdQmt5rc63EySvzwlqmG">
+  <div class="ribbon" data-page-node-id="Y5DPPJAQ9GDVMLfZ4CIGnD"><span data-page-node-id="LEY71StMZFoZGRvfAbNxRD">读书笔记</span></div>
+  <div class="hero-inner" data-page-node-id="cGAZjrslG85hW96ta6rQVp">
+    <span class="kicker" data-page-node-id="d4tQOIdQwNHp5n5hjMUjKe">精读笔记 · 摘要卡</span>
+    <h1 data-page-node-id="FgG4dEK9IRGaEsXvBVpaq3">《性、谋杀及生命的意义》</h1>
+    <div class="sub-en" data-page-node-id="4qiQyiNDp8kPpDyXBuUh4O">Sex, Murder, and the Meaning of Life &nbsp;·&nbsp; Douglas T. Kenrick</div>
+    <p class="lead" data-page-node-id="8EOmy52w0n9LLZjqEkZHNr">一位演化心理学家，用三十余年研究告诉你：欲望、偏见、炫耀消费甚至杀人幻想，都是进化留下的"深度理性"——看懂这套古老机制，才能理解人为何这样活。</p>
+    <div class="hero-meta" data-page-node-id="pEbDqlyW0tcdwFImFLgwhG">
+      <div class="m" data-page-node-id="V1SZYqlg15ogAQfN7mW2t8"><b data-page-node-id="TI86pebCkXSglrfSaQPyek">7 层动机</b><span data-page-node-id="DZmyhLUqwuw5JPsAV8Smxl">重构马斯洛金字塔</span></div>
+      <div class="m" data-page-node-id="6zQltrADXgapxOZdcUp78b"><b data-page-node-id="I3hQoTyiFEeHWCHhXDKOn8">1 个套装</b><span data-page-node-id="Bxm1RpwvNnKxiG2xAXhR1S">次级自我轮班</span></div>
+      <div class="m" data-page-node-id="IKVl8MVgJwMwBg9o6aRSSF"><b data-page-node-id="CoX6mWDSjTHmtyi8JuDuye">3 项 taboos</b><span data-page-node-id="6fVLy5BTrU3USiuf8anHOK">性 · 仇杀 · 偏见</span></div>
+      <div class="m" data-page-node-id="bl8m9rSE1Cy03bm0sLWgco"><b data-page-node-id="xbILknn99i7OuEJEE2xxkq">1 套理论</b><span data-page-node-id="D7dCRd7D24lyFHqoUPuMoh">深度理性 / 昂贵信号</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="toc-bar" aria-label="页面目录" data-page-node-id="jb2HHH1kPXfvHb6cNvMFwz">
+  <div class="toc-in" data-page-node-id="G7UzlsaIlREFBtC06axhNd">
+    <span class="lab" data-page-node-id="gI5fHjmN6ayHdIGMnKt9FF">目录</span>
+    <a href="#info" data-page-node-id="3to7ZlogtsEBCno9gfCh7E">书籍信息</a>
+    <a href="#pyramid" data-page-node-id="4UvkwBIPJAsvk6UyxWayiz">重构金字塔</a>
+    <a href="#wheel" data-page-node-id="eGXEJXPBCco19VZFZWGV61">次级自我</a>
+    <a href="#fx" data-page-node-id="uhRUtsz7m2FbN6J4lRuPu9">核心概念</a>
+    <a href="#flow" data-page-node-id="WGoUwxEhIKZH0X9rQEVpfO">章节脉络</a>
+    <a href="#quotes" data-page-node-id="GGvIK7LBOUhD6bVmOEyI0i">金句</a>
+    <a href="#actions" data-page-node-id="PG7Cg8F36VBTrFyi5deCiR">行动启发</a>
+    <a href="#who" data-page-node-id="zP2I7GfTrBICzJCswE4Xov">适合谁读</a>
+  </div>
+</nav>
+
+<div class="wrap" data-page-node-id="CYzkD2DNr3QSpsni6Q0Sio">
+
+  <section id="info" data-page-node-id="VOi5LR2rwOg6k7cPz5sOI8">
+    <div class="sec-head" data-page-node-id="1NAG00SlE5rOojkWhZzfX5"><div class="sec-no" data-page-node-id="5lfSoEfeFWv4bjTz1pdGoC">01</div><h2 data-page-node-id="uWsumvTfqKXrRbA5ra7Dah">这本书讲了什么</h2></div>
+    <p class="sec-sub" data-page-node-id="GVBaBYsLTTf43rXmGiv6R5">一句话总览 + 核心信息卡</p>
+    <div class="bookcard" data-page-node-id="IIRTFs23LPOxMoLsNDHp4a">
+      <div data-page-node-id="mb5LNUtwJEMQlrIyEAAD0Y">
+        <div class="one-liner" data-page-node-id="HoWFJ2Gfni6jm4W4wiMbR8">
+          人脑中充满"简单自私的偏见"，它们帮祖先活下来；这些旧机制非但没有让我们沦为野人，反而<em data-page-node-id="C6tRaTOY3YEQbfuX5e40lH">衍生</em>出慷慨、艺术、爱与家族纽带——简单规则生成复杂人性。
+        </div>
+        <div class="rule" data-page-node-id="JwT74419N9KAuzP2G0gJZi"></div>
+      </div>
+      <div class="meta-grid" data-page-node-id="K4nAnNEIfTV0Kv8iXIoOU5">
+        <div class="cell" data-page-node-id="bAnvtdXZ4JFPGoE2LLX0FO"><span data-page-node-id="OPpQ6EsvGH6ZdEOEJYf3Fi">作者</span><b data-page-node-id="MBoe83GXDBU8Rr1ir8AMNo">[美] 道格拉斯·肯里克</b></div>
+        <div class="cell" data-page-node-id="HSi9d2WYJB8TUowRxS5QFa"><span data-page-node-id="5B5sI9SOzYlcGdHc7GGSj6">副标题</span><b data-page-node-id="MuZ3Ray7sLEQf6qzpLOhvy">演化 · 认知 · 复杂性如何革新人性观</b></div>
+        <div class="cell" data-page-node-id="Zk6XBlvfhBNY6jPiUisuQk"><span data-page-node-id="JW5vGQN0vPUqBbkOJsw52P">领域</span><b data-page-node-id="CipuFHZyoFsxIh9LotTajm">演化心理学 · 认知科学 · 复杂性</b></div>
+        <div class="cell" data-page-node-id="hgTtR9ZRE3mTPd66sFkS4F"><span data-page-node-id="MvLHoUL3Zr7Ne06lpD8hxd">核心命题</span><b data-page-node-id="nVvC9D5tVniroYzOZIVUMv">简单规则生成复杂人性 · 深度理性为非理性翻案</b></div>
+        <div class="cell" data-page-node-id="DS3dEshooZSISWuijGoIMB"><span data-page-node-id="qP4GKEGQUx9GgP7GyAKReu">系列定位</span><b data-page-node-id="kUDnr5ycGpGRGJGLASznkL">大众演化心理学 · 不回避不光彩动机</b></div>
+        <div class="cell" data-page-node-id="fqoqDeLDgUQ5Glu5uXB6cl"><span data-page-node-id="YcXMvE4YwCj52xV9fIkITW">中译本</span><b data-page-node-id="JhGrEQrYdQhqUs0jLfN4ic">中信出版社 2013 · 朱邦芊 译</b></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" data-page-node-id="hwxv1BIcG3cFsvjVz7I7RH"></div>
+
+  <section id="pyramid" data-page-node-id="qQHKcYTEg7lEoX1AHsx3Gj">
+    <div class="sec-head" data-page-node-id="nlu6vu5ZAY9NkDwfFoi3WY"><div class="sec-no" data-page-node-id="ewMrHjy2cmPY8H28xe9JE6">02</div><h2 data-page-node-id="Lnqp13fxgf4BI9HzEv0Yu6">核心框架：重构马斯洛金字塔</h2></div>
+    <p class="sec-sub" data-page-node-id="t6VbjrCupQyGc55mwfkP2W">传统版本的塔尖是"自我实现"；肯里克把它换成求偶、守偶与养育，并把底层夯成 7 层动机</p>
+    <div class="pyramid-wrap" data-page-node-id="dcDdBuLeWb2nUlK9tsgPlF">
+      <div class="pyr legacy" data-page-node-id="1qs3FHawkyRxbrNRWXa7Vd">
+        <h3 data-page-node-id="dq0Ae2XfXD3e37X8ZeMQOW">传统马斯洛金字塔</h3>
+        <div class="en" data-page-node-id="rfOeAWyQqDo5jXDKX4UlaA">Legacy Maslow · 5 层 · 自我实现位于塔尖</div>
+        <ol data-page-node-id="fhk0BaLyevIzADCkUyZfO3">
+          <li data-page-node-id="xFXOAIbRlG79dEbJ8UIGI5">自我实现 <small data-page-node-id="GsI4JZ5kt3rmUDuxfWq6xm">Self-actualization</small></li>
+          <li data-page-node-id="F3gcJO2DgJJaTUJ4fLkQMH">尊重需求 <small data-page-node-id="Cez65Fc9ruutiIhXmkAwd9">Esteem</small></li>
+          <li data-page-node-id="r37fw7kjxEBfLUPgEZFsmM">归属与爱 <small data-page-node-id="JdfIVwTWPGyQ32cqnovADN">Love / Belonging</small></li>
+          <li data-page-node-id="oigwrMOgh6yzLmuWGOI1K7">安全需求 <small data-page-node-id="fQbPRH1fbDsgL7ODWs09wx">Safety</small></li>
+          <li data-page-node-id="QzraUQBtU775FELnyKoTHk">生理需求 <small data-page-node-id="dnIf44BgucOi8JDX6flLVZ">Physiological</small></li>
+        </ol>
+        <div class="caption" data-page-node-id="6n7EWUmt40XAHk2Q2sGs8C">暗示：低层一旦满足即"毕业退休"，人最终走向"超脱"。</div>
+      </div>
+      <div class="pyr evo" data-page-node-id="JF6Y65rJmsDGRlsrow2KzG">
+        <h3 data-page-node-id="8W2ymGy9zID2Toav4yOYqr">肯里克的进化动机金字塔</h3>
+        <div class="en" data-page-node-id="3aJ0wVDCfDAxPIC6taDAUl">Evolutionary Motivational Pyramid · 7 层 · 共存重叠</div>
+        <ol data-page-node-id="cwMavOiaObTWIN3VpvRQK9">
+          <li data-page-node-id="qZYyGENwGBHcB1InjeEQll">疾病防御 <small data-page-node-id="MzBwU11KtPxolHX0UuHvmR">Disease avoidance</small></li>
+          <li data-page-node-id="lk3J82DiOagG36C8YUADRG">自我保护 <small data-page-node-id="ANN8yLafI4Bi2BaksR953f">Self-protection</small></li>
+          <li data-page-node-id="klpbA30jef0X3ZyN88inFY">联盟 / 联盟经营 <small data-page-node-id="YEcW5OArVYI700szLpMjLF">Affiliation / Alliance</small></li>
+          <li data-page-node-id="1xbr6T1ezllgRTzx47tzyP">地位 / 名望 <small data-page-node-id="liJWmraQQLaQjBl92QgKVx">Status</small></li>
+          <li data-page-node-id="ZYVxiqGLKb7dyLoPgmloLv">守偶 / 长择伴侣 <small data-page-node-id="iblroc3OF1X4sCFwEpJqJQ">Mate retention</small></li>
+          <li data-page-node-id="9aftklRIbw2S6lC3P6SCeQ">求偶 / 短择伴侣 <small data-page-node-id="6poQAuTPpt1PfT88HXxJk1">Mate seeking</small></li>
+          <li data-page-node-id="blrcCNU6mK553AWyOaCVzU">养育后代 <small data-page-node-id="V5c3W490lftAnprozliYJR">Parenting</small></li>
+        </ol>
+        <div class="caption" data-page-node-id="kS7IDt7bXozOtmszc3Ac9R">暗示：高层出现后低层并不退休——七大动机终生重叠共存。</div>
+      </div>
+    </div>
+
+    <div class="pyramid-legend" data-page-node-id="JZBLS3lwi1AGdsHOBvBnND">
+      <div class="arrow" data-page-node-id="37QetPfhKfsvIZRtUmFczV">↔</div>
+      <div data-page-node-id="sbFLEt5iscpR9nMLbyB2dX"><b data-page-node-id="K0nSPQyMeb8v9uOpWG6YYS">关键洞察 —</b> 传统版暗示"功成超脱"，但肯里克用研究证明：哪怕名利双收、儿女成群，依然为求偶、为地位、为偏见焦虑。承认需求<b data-page-node-id="UYEw8veUDMa9ZvsI498WpT">重叠</b>，反而能与之共处；想等低层需求"退休"再去爱，结果是永远到不了。</div>
+    </div>
+  </section>
+
+  <div class="divider" data-page-node-id="22JWVR0yw5NlOAg5MMilFx"></div>
+
+  <section id="wheel" data-page-node-id="8cAfvkiC3hwg4oiEyLLdcw">
+    <div class="sec-head" data-page-node-id="0cJRb1p5SzoCGh4C2UIagR"><div class="sec-no" data-page-node-id="efSjAImJKIfCfPSxFR5vps">03</div><h2 data-page-node-id="DMdLFoMmpEo0efXevGlAYK">全书最深的一张图：次级自我轮盘</h2></div>
+    <p class="sec-sub" data-page-node-id="CR7E87DQewk8sA6V6dpeKN">"我"不是一个人——而是一套按场景轮岗的心理模块</p>
+    <div class="spectrum" style="margin-top:0;" data-page-node-id="fpnll8iKIgM0SRcmbjMZVa">
+      <h3 data-page-node-id="wfZRvDmq1cLNg7Ho2pe6Ni">次级自我轮盘 · 七大模块按情境轮班</h3>
+      <div class="en" data-page-node-id="aIRPgGpLshCWDzZMt4Xq3C">Subselves Wheel · 中心"我"在外围 7 个模块间轮换出牌</div>
+      <svg viewBox="0 0 900 480" role="img" aria-label="次级自我轮盘，中心是"我"，外围环绕 7 个次级自我模块" data-page-node-id="8KAwOQ1VGVeSwApZcv3Fqs">
+        <rect x="0" y="0" width="900" height="480" fill="#f6f0f2" rx="12" data-page-node-id="ULUcDE60KrWsEgUsWNinfG"/>
+
+        <!-- 同心圆与连接线 -->
+        <circle cx="450" cy="240" r="170" fill="none" stroke="#A8555E" stroke-width="1" stroke-dasharray="3 5" opacity=".5" data-page-node-id="n432reFNI4iNugakcOy7L8"/>
+        <circle cx="450" cy="240" r="120" fill="none" stroke="#A8555E" stroke-width="1" stroke-dasharray="3 5" opacity=".35" data-page-node-id="IPpIBa3BAN44wWEaL2yifP"/>
+        <circle cx="450" cy="240" r="70" fill="#3B3A5A" data-page-node-id="xw7dqzy0MbMpAQxOxckZ2G"/>
+        <circle cx="450" cy="240" r="62" fill="none" stroke="#8E2A46" stroke-width="1.5" opacity=".7" data-page-node-id="wEVf8DyshC6G1AGkLUcoVQ"/>
+        <text x="450" y="234" text-anchor="middle" font-size="22" font-weight="700" fill="#fbe8ed" font-family="serif" data-page-node-id="z2CigjgfJqJJSbhjMGOUyK">「我」</text>
+        <text x="450" y="258" text-anchor="middle" font-size="12" fill="#e6b8c4" font-family="serif" data-page-node-id="Isq6RCBnQHrZcf2Bf5kJ4R">轮班调度中心</text>
+
+        <!-- 七个次级自我节点位置 -->
+        <defs data-page-node-id="ePHgL8AXSflfVbhxxC7Y1H">
+          <marker id="arr3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto" data-page-node-id="A3mZLs5lM6WJd3Lsf8mrot">
+            <path d="M0 0 L10 5 L0 10 z" fill="#A8555E" data-page-node-id="fZYi2jjBGgF0YN5DFO5PdR"/>
+          </marker>
+        </defs>
+
+        <!-- 1 顶：求偶我  -->
+        <g data-page-node-id="KqDOpGs1vRdiGICgV1Ll4O">
+          <circle cx="450" cy="80" r="48" fill="#8E2A46" data-page-node-id="pCLkS6SxlYBvDwNivHWOiK"/>
+          <text x="450" y="78" text-anchor="middle" font-size="14" font-weight="700" fill="#fff" font-family="serif" data-page-node-id="d7rSRG1gDx6JcBhmHJ1zEl">求偶我</text>
+          <text x="450" y="96" text-anchor="middle" font-size="11" fill="#f3dde3" font-style="italic" data-page-node-id="0DQd5ByF94qDCnwaLCVCbS">Mate-seeking</text>
+          <path d="M 450 128 L 450 162" stroke="#A8555E" stroke-width="1.4" stroke-dasharray="3 4" marker-end="url(#arr3)" data-page-node-id="cgQDiOwhfr3Zykd6wDtDUp"/>
+        </g>
+        <!-- 右上：地位我 -->
+        <g data-page-node-id="VUtOAAk2ThSpO2OX9T57s7">
+          <circle cx="680" cy="170" r="48" fill="#7a3a66" data-page-node-id="xTPElOQRPqkJdJB7Iwm1Db"/>
+          <text x="680" y="168" text-anchor="middle" font-size="14" font-weight="700" fill="#fff" font-family="serif" data-page-node-id="rg6urFAkBPVoYyqvlREF7m">地位我</text>
+          <text x="680" y="186" text-anchor="middle" font-size="11" fill="#f3dde3" font-style="italic" data-page-node-id="uThPRXahUZxzPIJtmpdiHh">Status</text>
+          <path d="M 640 200 L 500 232" stroke="#A8555E" stroke-width="1.4" stroke-dasharray="3 4" marker-end="url(#arr3)" data-page-node-id="Ru1I0pTy852vJ8zDrbhq5y"/>
+        </g>
+        <!-- 右下：联盟我 -->
+        <g data-page-node-id="XW0k2g3dHt1uWUGwccNlGF">
+          <circle cx="660" cy="350" r="48" fill="#5b3a5e" data-page-node-id="ocSpkMB1iaRE39ojkrVu2H"/>
+          <text x="660" y="348" text-anchor="middle" font-size="14" font-weight="700" fill="#fff" font-family="serif" data-page-node-id="1ky9GJiniKHzvQ6j2gA3jh">联盟我</text>
+          <text x="660" y="366" text-anchor="middle" font-size="11" fill="#f3dde3" font-style="italic" data-page-node-id="o3e8kIpG5opzL7Q8xIbZaZ">Alliance</text>
+          <path d="M 618 340 L 502 282" stroke="#A8555E" stroke-width="1.4" stroke-dasharray="3 4" marker-end="url(#arr3)" data-page-node-id="MaEisJVnhKJeiyE1Bmowf2"/>
+        </g>
+        <!-- 底：养育我 -->
+        <g data-page-node-id="EcGLsu0r64LyxDRHRYYyGm">
+          <circle cx="450" cy="420" r="48" fill="#a64a64" data-page-node-id="omdu0j8wymizbyD2EfF3Up"/>
+          <text x="450" y="418" text-anchor="middle" font-size="14" font-weight="700" fill="#fff" font-family="serif" data-page-node-id="dSXpcIzjJYfqbp2LlxfEAQ">养育我</text>
+          <text x="450" y="436" text-anchor="middle" font-size="11" fill="#f3dde3" font-style="italic" data-page-node-id="YEtRG6GNVmV74ATQAWN4Zm">Parenting</text>
+          <path d="M 450 370 L 450 308" stroke="#A8555E" stroke-width="1.4" stroke-dasharray="3 4" marker-end="url(#arr3)" data-page-node-id="ZcQZxHcx7VojEgzOwBSalL"/>
+        </g>
+        <!-- 左下：自保我 -->
+        <g data-page-node-id="0ZPx7da8McLQDNBxnGHlxH">
+          <circle cx="240" cy="350" r="48" fill="#3B3A5A" data-page-node-id="kFCFkMH5iv58WecuNljGf8"/>
+          <text x="240" y="348" text-anchor="middle" font-size="14" font-weight="700" fill="#fff" font-family="serif" data-page-node-id="jxK2NpIlN1392RutmfYFq1">自保我</text>
+          <text x="240" y="366" text-anchor="middle" font-size="11" fill="#dcd6ea" font-style="italic" data-page-node-id="yu5AZMqV5ll7NqbPo9VWnm">Self-Protect</text>
+          <path d="M 282 340 L 398 282" stroke="#A8555E" stroke-width="1.4" stroke-dasharray="3 4" marker-end="url(#arr3)" data-page-node-id="Lo4J3H2JtTyFZawIMB9Izn"/>
+        </g>
+        <!-- 左上：求偶守偶我 简化用 -->
+        <g data-page-node-id="BYFTbBHXYuS5HFQMBszJYE">
+          <circle cx="220" cy="170" r="48" fill="#c66880" data-page-node-id="mvlQKOuNRIElYVvuraHrb3"/>
+          <text x="220" y="168" text-anchor="middle" font-size="13" font-weight="700" fill="#fff" font-family="serif" data-page-node-id="p0RSYCo3BpjBnu31WAAvBS">守偶我</text>
+          <text x="220" y="186" text-anchor="middle" font-size="11" fill="#fff" font-style="italic" data-page-node-id="ZJ5RwP8w362ipkWdnbzYTF">Mate-keep</text>
+          <path d="M 260 200 L 400 232" stroke="#A8555E" stroke-width="1.4" stroke-dasharray="3 4" marker-end="url(#arr3)" data-page-node-id="X15RFyji5RowVec4qYfCHm"/>
+        </g>
+
+        <!-- 七大触发情境标签（外圈） -->
+        <g font-size="11.5" fill="#52454a" font-family="sans-serif" data-page-node-id="67AxKimifhgxt9sGXFxdIz">
+          <text x="450" y="36" text-anchor="middle" data-page-node-id="7gnholphpzHfAYwmj5ruEa">← 触发：新恋情/酒吧/好感对象</text>
+          <text x="780" y="100" text-anchor="middle" data-page-node-id="iAKEc7nvLfZPpCxi47oI65">← 触发：升职/职场/被比较</text>
+          <text x="820" y="310" text-anchor="middle" data-page-node-id="DQyz1KAvRaEZuEqXRjlXSU">← 触发：抱团/合作/请求帮忙</text>
+          <text x="450" y="465" text-anchor="middle" data-page-node-id="fHbyEnWFYCxN9bk0Rd5Ay5">← 触发：孩子哭/家人病/夜醒</text>
+          <text x="80" y="310" text-anchor="middle" data-page-node-id="DWfynQLaUl5iy9AwAqDJfZ">触发：夜路/打架/被威胁 →</text>
+          <text x="120" y="100" text-anchor="middle" data-page-node-id="aPkxLEwiOZbitE4CeyPpby">触发：伴侣冷落/被插足 →</text>
+        </g>
+
+        <!-- 中心说明 -->
+        <text x="450" y="448" text-anchor="middle" font-size="13" font-style="italic" fill="#52454a" data-page-node-id="X4QPEn5HXu7zxWvngDtQEa">情境切换 ⇒ 换"我"上班 · 同一副身体，不同决策逻辑</text>
+      </svg>
+      <div class="cap" style="margin-top:18px;" data-page-node-id="2HNzkHg8K57LW2y3fT24GV"><b data-page-node-id="sUs5jwm0YCz5HrLwL5HRCS">怎么用 —</b> 同一个你，站在不同情境里被不同的"模块"接管：谈恋爱时是<b data-page-node-id="kYTrwNF7dskuGvjoVc70CK">求偶我</b>，升职竞聘是<b data-page-node-id="hW7MXbGLau0XpJOof8UEMZ">地位我</b>，为孩子失眠时是<b data-page-node-id="gfXXNJV6WP50SAsqyVKSvC">养育我</b>，夜路遇险是<b data-page-node-id="HESJVMcafqo69CHFJijLnd">自保我</b>——不是人格分裂，是<b data-page-node-id="06eonjCWdhFnNFHwSRPgb8">轮班上岗</b>。<b data-page-node-id="TmbwVThllSqWEjLBrs3wIC">决策前点名</b>，别让错位的模块替你签下不可逆的合同。</div>
+    </div>
+  </section>
+
+  <div class="divider" data-page-node-id="4Svyd0Iu4r91U7zIso8s7p"></div>
+
+  <section id="fx" data-page-node-id="tS0MQSMZyCxRQyUrleOODn">
+    <div class="sec-head" data-page-node-id="h3CUU8O7E1CelWF0pjAfwK"><div class="sec-no" data-page-node-id="kEhV1GiQHexGdaqyjxMnaX">04</div><h2 data-page-node-id="yIQSBkDIjQ3ugeDW1lE7R6">七张关键概念卡片</h2></div>
+    <p class="sec-sub" data-page-node-id="wrMep441sWhJHYarTyVTUX">演化心理学的七张药方——看懂它们，就能与自己更温柔地相处</p>
+    <div class="fx-grid" data-page-node-id="Fw8HkRQTRClMGh1EbDDacC">
+      <div class="fx" data-page-node-id="mCZICrqSysMNEVnFEL0J60">
+        <div class="ic" data-page-node-id="1nXCpoCLqJbnFtvGtpr7uu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" data-page-node-id="9zgFryxIUEfsf0jx18CYOD"><path d="M4 18c2-2 4-2 8-2s6 0 8 2" stroke="#8E2A46" stroke-width="1.8" stroke-linecap="round" data-page-node-id="J4z0Syuy828mEqYTsBPN91"/><circle cx="12" cy="9" r="3.5" stroke="#8E2A46" stroke-width="1.8" data-page-node-id="Dq7D4L6dJif1Bjeq42Dgc6"/></svg></div>
+        <h3 data-page-node-id="37o35jLDmgWw4JprCeYiYF">深度理性</h3>
+        <div class="en" data-page-node-id="pUFrj90bgbFTPbw4HEuoZU">Deep Rationality</div>
+        <p data-page-node-id="P2Tu3rEBy24rbqcqKKhHlG">行为经济学眼中的"非理性"（冲动消费、冒险、偏见），在进化收益的账本上往往是最优解——理性分表层与深层两层。</p>
+        <div class="eg" data-page-node-id="MkifJfYB9sBcsCCAFfnXta"><b data-page-node-id="FIALHh8QxoHCCuEFXJsnvY">例：</b>男人为炫耀消费负债，乍看愚蠢；在求偶市场却是向潜在伴侣展示资源的"广告预算"。</div>
+      </div>
+      <div class="fx" data-page-node-id="fMcXluNOWoOjEPWulHqZ2r">
+        <div class="ic" data-page-node-id="sA6lromtyoB36lMux28atc"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" data-page-node-id="KcbI47g6ZNC9fFrZAL3eca"><circle cx="12" cy="12" r="9" stroke="#8E2A46" stroke-width="1.8" data-page-node-id="V6HUdjUijzU6qySJDHlbB0"/><path d="M12 3v9l6 3" stroke="#8E2A46" stroke-width="1.8" stroke-linecap="round" data-page-node-id="OZK30ra544PCQ5swEVgsc8"/></svg></div>
+        <h3 data-page-node-id="6HEec9621C4y46gksKeDgg">次级自我</h3>
+        <div class="en" data-page-node-id="bLDsQAukdTebPYvXrzcXPL">Subselves</div>
+        <p data-page-node-id="JUHfWTDtHNk9YXEmLwRdg8">你不是统一的"一个我"，而是一套按场景轮岗的心理模块——避危险的我、求偶的我、争地位的我、当家长的我，各有一套决策逻辑。</p>
+        <div class="eg" data-page-node-id="CXq03MyxLB2QcCzxdPGdMN"><b data-page-node-id="kV4vipt7b1qX331F5HDgRi">例：</b>同一人面试时谨慎、酒吧里冒险、孩子面前无私——不是人格分裂，是模块在值班。</div>
+      </div>
+      <div class="fx" data-page-node-id="EwtxBt6wE76TST1fbAkKkk">
+        <div class="ic" data-page-node-id="sUjNpIUNEeMN5KJH00vhiF"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" data-page-node-id="DwmvQKIp2MkS4dUb8VFQUA"><path d="M5 18h14L12 4z" stroke="#8E2A46" stroke-width="1.8" stroke-linejoin="round" data-page-node-id="6T4FA4OMSZr4mNXNJAPRge"/><path d="M12 10v3M12 16h.01" stroke="#8E2A46" stroke-width="2" stroke-linecap="round" data-page-node-id="Bld26ZDhsZAMfSTuhtV9R8"/></svg></div>
+        <h3 data-page-node-id="jlqGph578jTtJGW71jjN0D">重构马斯洛金字塔</h3>
+        <div class="en" data-page-node-id="0ZeWtOEBGrQAK12ITBbnCV">Rewriting Maslow's Pyramid</div>
+        <p data-page-node-id="n377nFZGrUCjZJEAeZBU9O">肯里克把塔尖的"自我实现"换成求偶、守偶与养育三块砖，且各层需求重叠共存——高层次出现后低层次并不退休。</p>
+        <div class="eg" data-page-node-id="FA700nN1aCP8tk7tIhzwoD"><b data-page-node-id="i2BJnDUSn0D1rn02Np9aBy">例：</b>功成名就者照样为地位焦虑、为爱情失态——别等"超脱"。</div>
+      </div>
+      <div class="fx" data-page-node-id="pE0zf29eWVoRI6jTUCR5ho">
+        <div class="ic" data-page-node-id="LSUWjDHLZ1DCaxXPjLxTZx"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" data-page-node-id="j6P2C96Cs7ErTzOJwQEuTn"><path d="M5 18l7-14 7 14H5z" stroke="#8E2A46" stroke-width="1.8" stroke-linejoin="round" data-page-node-id="XzrTHBf8xx3xDufBe6Y6Ah"/><path d="M12 9v4M12 16h.01" stroke="#8E2A46" stroke-width="2" stroke-linecap="round" data-page-node-id="6ZQWPQAQ4lSkyY1qYsc7u2"/></svg></div>
+        <h3 data-page-node-id="YDxMG2tzHbt77t6LVK9xGu">杀人幻想</h3>
+        <div class="en" data-page-node-id="dv8ZU8tv6fglTEEqXqbNfj">Homicidal Fantasies</div>
+        <p data-page-node-id="CLyzMwtyMTW1sq4IGtWkod">研究显示大多数普通人至少有过一次杀人幻想——它是进化留给攻击模块的常态输出，拥有念头不等于执行。</p>
+        <div class="eg" data-page-node-id="RlngJF1Ew0LrKL0OaTOIhf"><b data-page-node-id="F2oQQoe7AnRd2jHIUCCFFc">例：</b>肯里克自述年轻时险些真动手——理解普遍性，把"闪过的恶念"当数据而非人格判决。</div>
+      </div>
+      <div class="fx" data-page-node-id="J5Pix8iQhFi2n2NS6djAbN">
+        <div class="ic" data-page-node-id="zc1VaPZQu0HVfeHgVoZMhT"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" data-page-node-id="ABMQktpeNIw8P5yAkDYuOg"><path d="M3 12c2-5 6-7 9-7s7 2 9 7c-2 5-6 7-9 7s-7-2-9-7z" stroke="#8E2A46" stroke-width="1.8" data-page-node-id="LFoIWDsKaf1RD6WeVvKOrZ"/><circle cx="12" cy="12" r="2.5" stroke="#8E2A46" stroke-width="1.8" data-page-node-id="mdfc553JT6db4H9ljrHnPs"/></svg></div>
+        <h3 data-page-node-id="ERzlTdV3BbxdKKqDdwuhjK">眨眼间的外群体敌意</h3>
+        <div class="en" data-page-node-id="8D4mLw86EORxw9mEUNhlpX">Outgroup Hatred in a Blink</div>
+        <p data-page-node-id="JgBBdu2Ltffz3AwXAkg847">对"外人"的警惕在毫秒级自动触发——偏见不是道德败坏，是部落时代的安全默认设置。给第一反应加一道缓冲程序。</p>
+        <div class="eg" data-page-node-id="6UBBPh2Bssp2a6PdSJlG2X"><b data-page-node-id="dBhw9HrgC40ZTjEqudeSNE">例：</b>实验里人对陌生外群体面孔的威胁判断显著更快——哪怕事后自认毫无偏见。</div>
+      </div>
+      <div class="fx" data-page-node-id="Jok2OuN3TJzgxmkJCGEVSz">
+        <div class="ic" data-page-node-id="2ZuiLUH7weMJBGwaDOVNV8"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" data-page-node-id="Pnh6kENZAZNR68Ddb9RJb3"><path d="M12 4l3 6 6 1-4.5 4.5L18 21l-6-3-6 3 1.5-6.5L3 11l6-1z" stroke="#8E2A46" stroke-width="1.8" stroke-linejoin="round" data-page-node-id="3FG24A7ShuDRcGHGhxvudM"/></svg></div>
+        <h3 data-page-node-id="3tHGb1slnFgoqhNaipNqgE">孔雀、保时捷与毕加索</h3>
+        <div class="en" data-page-node-id="P0ERUZzZygg8DaVg3EZheM">Peacocks, Porsches &amp; Picasso</div>
+        <p data-page-node-id="NpyBTbdadsIrecRR4LmbIt">男性炫耀性消费与艺术创作的心理底层同源——都是代价高昂、难以造假的求偶展示（昂贵信号理论）。</p>
+        <div class="eg" data-page-node-id="jazBw86z55MlJ67bSjf6JU"><b data-page-node-id="cj8EaEuSyfhFpOTIXOiKqB">例：</b>男人绕开"性价比第一"去买跑车；毕加索画价跟着情史数量攀升——创造力也有性动机假说。</div>
+      </div>
+      <div class="fx" data-page-node-id="eaI9SNLAs0FEyHcGnXFuW3">
+        <div class="ic" data-page-node-id="R9h8HwneAN49BLxOy9wJLK"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" data-page-node-id="hBBC1OcJqUQBvjMcTmPxkA"><circle cx="7" cy="9" r="2.5" stroke="#8E2A46" stroke-width="1.8" data-page-node-id="Tchsku37DuV7i9uTNLZ7gr"/><circle cx="17" cy="9" r="2.5" stroke="#8E2A46" stroke-width="1.8" data-page-node-id="rQNqaGAtu7285NpxIovd0j"/><circle cx="12" cy="16" r="3" stroke="#8E2A46" stroke-width="1.8" data-page-node-id="ZtGTsg4zfDSBCkYhfvIqfq"/><path d="M7 9l5 7M17 9l-5 7" stroke="#8E2A46" stroke-width="1.5" stroke-dasharray="2 2" data-page-node-id="4DxgTmfbd2b4NGl4uPBZZf"/></svg></div>
+        <h3 data-page-node-id="zwj5bfQ7BabZ3cXtI46REz">坏同伴与混沌吸引子</h3>
+        <div class="en" data-page-node-id="9cDLr6fuMCRMB7eAtDbwYG">Bad Crowds, Chaotic Attractors</div>
+        <p data-page-node-id="5AAVtCUl0gi6IftV17yHFu">父母说"别跟坏孩子混"是复杂性科学——个体被群体动力场吸走，简单规则在群体层面涌现出难以预测的行为模式。</p>
+        <div class="eg" data-page-node-id="ALWWr2ErUzqwaLyex3Mjeb"><b data-page-node-id="AgYvWeW8SoRDpe5nWTLBeg">例：</b>好学生进入败坏的小团体后行为断崖式下滑——换环境远胜于换意志力。</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" data-page-node-id="bBSue8CpDm6g1fR35oEcDG"></div>
+
+  <section id="flow" data-page-node-id="EAdso3C8d1zIZIzbUNBFTd">
+    <div class="sec-head" data-page-node-id="kjGBMgw3VoZGcGq4yobt9y"><div class="sec-no" data-page-node-id="UrEfvOEPX74ZRxcsoqGnVA">05</div><h2 data-page-node-id="iQWSima6HJVxCPsPgGcjRm">全书脉络图</h2></div>
+    <p class="sec-sub" data-page-node-id="5jubxLKX0WaC77MFZnajmx">自传开场，三块 taboo 拼图揭盖，心智模型重塑，闭环至演化的人性观</p>
+    <div class="flow" data-page-node-id="FYCcoyNErEA3tF343lCcLX">
+      <div class="step" data-page-node-id="o5bKHQIei9MbX8qU4uVfKI">
+        <div class="node" data-page-node-id="0m9Ibr52SkrWFjeGY90A2G"><b data-page-node-id="4NPnF3ILTXDAMS3Fnpp3rP">序</b><span data-page-node-id="lSQPbD1skQ7ztbH70MoCtz">CH.0</span></div>
+        <div class="body" data-page-node-id="eTVMpgtDeoEQ2ugosXzbTC">
+          <h3 data-page-node-id="K9EM50tLhDvvli3O0O37CP">站在街沟里的少年与达尔文<small data-page-node-id="2dZD1jGfUBB0dR8I3KRCaE">Standing in the Gutter</small></h3>
+          <p data-page-node-id="cXUNfDPUyjRKeWkBHTwgxL">一个屡被开除的街区少年误入演化心理学革命者阵营——用自传记开场立誓：讲人性不回避不光彩的部分。</p>
+          <span class="pill" data-page-node-id="XQXHPLYBV5CRdYWlh0wfns">立志 · 研究人性先看自己</span>
+        </div>
+      </div>
+      <div class="step" data-page-node-id="AIAILBTBXmA8ZmMOj2mFxi">
+        <div class="node" data-page-node-id="ftkdQafoQo0Mf2oE3DJGIq"><b data-page-node-id="52PzVGVu6gAJPo62ieYFBX">壹</b><span data-page-node-id="tKYEoQ4oXtsir1pQvAR76h">CH.2-4</span></div>
+        <div class="body" data-page-node-id="1iHuyljUs76SFKumGgdraQ">
+          <h3 data-page-node-id="H8Jbw2vACiSXjk8cCCNBTl">三块 taboo 拼图<small data-page-node-id="TmBMRrFsmpny35qAFHSAwI">Playboy · Homicidal Fantasies · Outgroup</small></h3>
+          <p data-page-node-id="qIFOnOiFMzIkyku0HwFoIs">过度美丽的代价、杀人幻想的普遍性、毫秒级偏见——三块"下流话题"拼图证明：里面藏着硬科学。把冲动当数据记录，别当罪名自判。</p>
+          <span class="pill" data-page-node-id="uxSCvrgl1XrJQvBxqjGBdS">拆盒 · 三个大禁忌</span>
+        </div>
+      </div>
+      <div class="step" data-page-node-id="QO0Gcud8HUm0I3UFnKbFNE">
+        <div class="node" data-page-node-id="IYJSJJ7gs6QfAaowKDWTe2"><b data-page-node-id="cL98Sa73EyVwu5Ur2SJJsn">贰</b><span data-page-node-id="Ry5IVf72S3if5Tw2pjnPC7">CH.5-6</span></div>
+        <div class="body" data-page-node-id="gvIWOU5DFZhG2ejhiKwOqB">
+          <h3 data-page-node-id="6KBV9FTy3DRGlb9qxprsvV">心智不是白纸，是涂色书<small data-page-node-id="UciCPwgheOZF72njNZG9tE">The Mind as Coloring Book · Subselves</small></h3>
+          <p data-page-node-id="oeAkF8ttP0ChaWEuScM2Qa">心智轮廓由进化画好——每个"我"其实是轮班的一群次级自我。决策前点名，现在值班的是哪个我。</p>
+          <span class="pill" data-page-node-id="CmpgoSRo2CixQKNnd6qCuS">塑形 · 模块化心智</span>
+        </div>
+      </div>
+      <div class="step" data-page-node-id="pMis71zi7a1HMeWns35VC7">
+        <div class="node" data-page-node-id="mj7b4EThfdYmOqVElXucPM"><b data-page-node-id="VHdUTBq1ODEwR1kfZIBMTq">叁</b><span data-page-node-id="BSZdc9hERhrlF2NwLJnbFQ">CH.7-8</span></div>
+        <div class="body" data-page-node-id="ZcrpAex7Hv9kd8XsjRZvZc">
+          <h3 data-page-node-id="a1WujqE8lNQGO3lcl7HHYs">重构马斯洛金字塔<small data-page-node-id="yMP0xGJthF4QGD40DqIehF">Reconstructing Maslow's Pyramid</small></h3>
+          <p data-page-node-id="LnMTMoLz6Dsa3KGeXIFKQK">拆掉自我实现的塔尖，换上求偶—守偶—养育三块砖；两性在记忆、遗憾上的系统性差异由此展开。承认需求终身重叠。</p>
+          <span class="pill" data-page-node-id="exxJqhkhvl1cEELCQFMCDT">重写 · 7 层动机并存</span>
+        </div>
+      </div>
+      <div class="step" data-page-node-id="nsQQWdI4M8TiFaualUfcqr">
+        <div class="node" data-page-node-id="zv0tvvHkNzb2tzF5zihYV7"><b data-page-node-id="KHZmPErnPUm0RKqCj7ruXB">肆</b><span data-page-node-id="sSKVDkBOtqA6AzfaOORtGP">CH.9-10</span></div>
+        <div class="body" data-page-node-id="ne2DbObDY3477F9G9iaeIX">
+          <h3 data-page-node-id="Wn9jADDPyRNGkKqgtYj5KK">孔雀、保时捷与毕加索 / 性、宗教<small data-page-node-id="X6CN2IPhEsEEfV06fZihbq">Peacocks &amp; Picasso · Sex &amp; Religion</small></h3>
+          <p data-page-node-id="YaqhtY1ZhECrovoVhym8B4">炫耀消费与艺术创作同属求偶信号；宗教虔诚亦可用求偶策略部分解释——性动机渗透进文明的橱窗。看到昂贵信号，先问向谁广播。</p>
+          <span class="pill" data-page-node-id="tyu5wQ0HmULD9OyxYIzs99">解码 · 昂贵信号理论</span>
+        </div>
+      </div>
+      <div class="step" data-page-node-id="mVICyJ6KVRmsvLzKQDUviF">
+        <div class="node" data-page-node-id="VfdxLbMAGVnWFJAK1PTGvH"><b data-page-node-id="LFwAEyiRxgfMykN6rDKFYT">伍</b><span data-page-node-id="pyko2HGj4uzjZUorJ1KkIE">CH.11-12 + 结</span></div>
+        <div class="body" data-page-node-id="seGHf9l0q8JGq0nJS0aTCB">
+          <h3 data-page-node-id="Kouq9uNmddSzjCFWQFEA5S">深度理性 · 坏同伴 · 仰头望星<small data-page-node-id="PJ9Jz7NcHPHwHv4GfmzoJu">Deep Rationality · Bad Crowds · Stars</small></h3>
+          <p data-page-node-id="DFBWHgFuPgrJ0m8MLL5m1a">深度理性为"非理性"翻案；群体动力解释环境魔力；结语抬头望星——理解祖先的影子之后，生命的意义在复杂性中浮现。换环境优于换意志。</p>
+          <span class="pill" data-page-node-id="94reBNEZcBTVT9bXYBtO6y">整合 · 欲望里找意义</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" data-page-node-id="IeMx7fLt4q1aJV1aIgfUbM"></div>
+
+  <section id="quotes" data-page-node-id="yY5s3gXawFsHcuXDemPZOc">
+    <div class="sec-head" data-page-node-id="g0a7MJya3MF5oZqlMn4Ycr"><div class="sec-no" data-page-node-id="6bAiKHhHIO5F7eEMigBqjX">06</div><h2 data-page-node-id="N9D3swFLHnZ16NtKrmSDM2">金句摘录</h2></div>
+    <p class="sec-sub" data-page-node-id="9Mf6Oi544CIbFbCQu93EVl">值得抄进笔记本、贴在书桌前的句子</p>
+    <div class="quotes" data-page-node-id="vIwFkC5JXedXNWM9oo3tGZ">
+      <div class="quote" data-page-node-id="OmxKtDgtC00G5fGYgGgJB8">
+        <div class="mark" data-page-node-id="mnpyiCwrQ9Au6H1Eopfg33">"</div>
+        <p data-page-node-id="7N6ka4HFhn1KglyiuWIr6u">性与谋杀和生命的意义有什么关系？关系大得很——它们是同一台古老机器的不同档位。</p>
+        <div class="src" data-page-node-id="nT5eTyaH7rCBMYGoXA5Dvl">—— 论三者同源</div>
+      </div>
+      <div class="quote" data-page-node-id="D7kdfMh50AUFN2RvuF1rZV">
+        <div class="mark" data-page-node-id="Tg8b1y6unRfD3DBFtrIgVS">"</div>
+        <p data-page-node-id="VRh5rDsy8OvVJucy6lMWEn">我们头颅里装着一套嚎叫的鬣狗，但也正是这套装置，长出了爱、艺术与慷慨。</p>
+        <div class="src" data-page-node-id="ETVGRtDsLIW0YWHfRvJddk">—— 论双刃进化</div>
+      </div>
+      <div class="quote" data-page-node-id="ubzqPkNy0jw5ZKuhY3CC2Y">
+        <div class="mark" data-page-node-id="LUWHLg9aBG8m8CcWS37qQs">"</div>
+        <p data-page-node-id="QAVFepFr6fNFcDd4RUOS0W">所谓非理性，常常只是理性在为另一个进化目标服务。</p>
+        <div class="src" data-page-node-id="zabBxKFZlPNYU8CuFWXwQ7">—— 论深度理性</div>
+      </div>
+      <div class="quote" data-page-node-id="fH2J2wLkG6hcwYnHs8Njkc">
+        <div class="mark" data-page-node-id="6DVimATxEigH1fI7iHxFyJ">"</div>
+        <p data-page-node-id="qkNrcGvFuOesYcRCg4Ck0n">你不是"一个你"——不同的次级自我在不同场景轮班上岗，各自记账。</p>
+        <div class="src" data-page-node-id="NWXfPBISSGEfcHggpWpR0L">—— 论次级自我</div>
+      </div>
+      <div class="quote" data-page-node-id="OCCTz7pcw9BfIBHb35H34l">
+        <div class="mark" data-page-node-id="59e0CZ6Yf4XQFs7Nzi4yHd">"</div>
+        <p data-page-node-id="7pzROdNl8fodqBs24C4ZwJ">偏见不是品德的漏洞，而是部落时代的出厂设置——第一反应必然偏，所以才需要第二反应。</p>
+        <div class="src" data-page-node-id="yJ4SF5vbzOS5dKQJDSpC8I">—— 论偏见的来源</div>
+      </div>
+      <div class="quote span2" data-page-node-id="iVZigoiHAQAnCCASxl0LMv">
+        <div class="mark" data-page-node-id="0kUa2uOtH3fOEmvHgJ3Pyz">"</div>
+        <p data-page-node-id="pAHMndbxC59mnlq5pZFaQO">别跟坏孩子混——这句父母的唠叨，居然是复杂性科学。</p>
+        <div class="src" data-page-node-id="8zrkOE6tZi7ZAvgAcKTCdA">—— 全书最轻的一句、最重的洞察</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" data-page-node-id="RGEdCv086bdJPPEOHol4i4"></div>
+
+  <section id="actions" data-page-node-id="qZGToEfwJO5IzpptRzCiNP">
+    <div class="sec-head" data-page-node-id="BiAFzh6qAsY4r7OHR9Q9AA"><div class="sec-no" data-page-node-id="s44bjII4Zjfxf9JI90cw9b">07</div><h2 data-page-node-id="1vrOoKMtylyxXQ7jbieXA8">对日常判断与自我相处的行动启发</h2></div>
+    <p class="sec-sub" data-page-node-id="KBV18s89x3RpvxLnotJVXA">把演化心理学的红处方，落地为 6 个日常动作</p>
+    <div class="act-grid" data-page-node-id="DMy69c5oxkcaiHQv1N7uI0">
+      <div class="act" data-page-node-id="6NXrF21L8xv8oKXVfaHA21"><div class="num" data-page-node-id="E0gObZ4n2bjAIdCzoEasPt">1</div><div data-page-node-id="rzyjiZige0yGKpAt6F0pn3"><h3 data-page-node-id="LAKrpGTO4XWMkLnLSuKlB1">次级自我点名法</h3><p data-page-node-id="D20FyJM5GCosecbrLHkLoH">重大决定前写下"此刻值班的是求偶 / 地位 / 安全 / 养育中的哪个我"，把决策权交还给最适合的模块——别让求偶模块替你签工作合同。</p></div></div>
+      <div class="act" data-page-node-id="w3NQvrs2DEqC7Cet6sunAq"><div class="num" data-page-node-id="yPt6NwWeWWPEmEKFXSG7nG">2</div><div data-page-node-id="Me3bVlSjgaIl7zWjX2bC1C"><h3 data-page-node-id="tAsUrwl72nq2bD0rjKWVbN">冲动观察日志</h3><p data-page-node-id="fv3Nnsx8Y0damINvjWyo2R">一周内如实记录自己闪过的敌意、嫉妒与消费冲动，只记不判——你会发现它们比你以为的普遍，也消退得更快。数据不需要被审判。</p></div></div>
+      <div class="act" data-page-node-id="bmFrQTbqq1Bxn4A2dc1R2e"><div class="num" data-page-node-id="OsckdL2CgOo6arMU8JjsEe">3</div><div data-page-node-id="Fz2j2V1XK9v5le7JoeIeiJ"><h3 data-page-node-id="O2j8mAHxRuULGgGl4BF7Zt">慢思考缓冲</h3><p data-page-node-id="MPPLvNHO5IYeOavzG1MBm0">对陌生人、新群体的第一印象，强制延迟 24 小时再下结论——给毫秒级偏见一个缓冲程序，第二反应才属于你自己。</p></div></div>
+      <div class="act" data-page-node-id="zg4LpHeudpbdX72cisAlL8"><div class="num" data-page-node-id="kfXxPJ6DqsdSC1ajd2XPGf">4</div><div data-page-node-id="Nsq3u5ZoAD69vegP6mjUw7"><h3 data-page-node-id="bMYiw2DnLtrOLbGM35ocuW">信号解码练习</h3><p data-page-node-id="ApUcEQZZhLokNVIlFDqeDK">看到昂贵消费或炫技式慷慨时问三个问题：这信号给谁看、代价多大、可否造假——再决定要不要接收这条信息。</p></div></div>
+      <div class="act" data-page-node-id="I7KSGS9Y8Ccj3QBBdOEsxA"><div class="num" data-page-node-id="K5FRKnPnmSAfvQWPRSK9GT">5</div><div data-page-node-id="FHlJ3t8QfWj3waTs7SiQP4"><h3 data-page-node-id="NG7Xk7WISWShjgOxyX0VpC">环境杠杆优先</h3><p data-page-node-id="yS6QlpKimLl2YHrqOnE78D">想改掉的习惯先试着换场景（换工位、换社群、换路线），再谈意志力——人是复杂性吸引子的俘虏，不是孤立的个体。</p></div></div>
+      <div class="act" data-page-node-id="AodUeplB2g8LC0iNIDujyJ"><div class="num" data-page-node-id="S6wnXuq2YvwdBQIaCHhqCN">6</div><div data-page-node-id="HcvGEz8WkkhCUVwEHaQuEL"><h3 data-page-node-id="ajpHf35qvzC3hia5F65KZJ">欲望的预算制</h3><p data-page-node-id="6K2eA4l8pEzOrJDwLB3kta">不压抑进化动机，而是给它设预算——把"争地位"的开销限定在特定渠道，其余目标免受其害。承认欲望，再为它定边界。</p></div></div>
+    </div>
+  </section>
+
+  <div class="divider" data-page-node-id="KIhxfjriqBaLNs6BtyR4ws"></div>
+
+  <section id="who" data-page-node-id="hH2nTebZHaMqp8oxLcFOhZ">
+    <div class="sec-head" data-page-node-id="auiS7BaK0EFYwzob184QT3"><div class="sec-no" data-page-node-id="KrcYqIWY5jhBlKgf8AAwqm">08</div><h2 data-page-node-id="3gr0W4992wlzpbSVBwe3Yf">这本书适合谁读</h2></div>
+    <p class="sec-sub" data-page-node-id="lFvd1zOAigeOs19lAAQdxn">如果你符合其中一条，它都值得放进书单</p>
+    <div class="split" data-page-node-id="uJSjATpxP3HesAa31F68sA">
+      <div class="imgcol" id="who-img" data-page-node-id="Wu6PvLS7tGNlSIzR2urqFd">
+        <div class="cap" data-page-node-id="8e2hGc7zoEIfL6E2hy8NXy">古老的体内装着不古的灵魂——理解阴影之后，爱才更接近真</div>
+      </div>
+      <div class="fit-list" data-page-node-id="iglSEnERk7gmXlbbtivZQF">
+        <div class="fit" data-page-node-id="QlGAFkPUnzWybD5eaTmIeF"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" data-page-node-id="4IaGKkJsvuHQ7tp3lT2yoA"><path d="M2 9l4 4 10-10" stroke="#8E2A46" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="MI4unYghoQwi7aEhYSEeW4"/></svg><div data-page-node-id="L1nm5pzXpAnPJZ59YKZDdb"><b data-page-node-id="YD6SJuFekeUAfUyqAufwnd">对"人为什么会这样"着迷的读者</b><span data-page-node-id="EAkF6Se4VsgLFPtCy8fT5a">想用演化心理学解释消费、恋爱与偏见——让"为什么"成科学问题而非道德审判。</span></div></div>
+        <div class="fit" data-page-node-id="fMEZSVVW5D2VTWyD0HrOOE"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" data-page-node-id="tud55B9mWHVWJVP1Y7CLiX"><path d="M2 9l4 4 10-10" stroke="#8E2A46" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="C5QvwhhaOTAapGJA5hPHcb"/></svg><div data-page-node-id="UhQ7jaz2ARFOXImZSeDOCt"><b data-page-node-id="daEmKToFUNjsvO2uROvdEw">行为经济学与决策科学的爱好者</b><span data-page-node-id="dv9LSaJmzdadCIn5ON7NPY">想为"非理性"补上深度理性的另一半拼图——动机与场景。</span></div></div>
+        <div class="fit" data-page-node-id="SsDciazTqzzmK4KqiU9fPU"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" data-page-node-id="nVbSQuhYkl3mrpgSry5svT"><path d="M2 9l4 4 10-10" stroke="#8E2A46" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="IRAzGKvoFTgugQ0CJTDmBC"/></svg><div data-page-node-id="QeQMCEycKBeBpLb34RbbSG"><b data-page-node-id="wpSvMoQ8HuqV0ecFZqBIGa">被冲动、嫉妒、黑暗念头困扰的自责者</b><span data-page-node-id="QaxRkUcT7A8DpUtqth835J">把念头当数据，不当罪名——科学是宽慰。</span></div></div>
+        <div class="fit" data-page-node-id="0emF55sthplOp0DZsSNvE3"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" data-page-node-id="lqVvoX2RH2eRblVAuVc0YG"><path d="M9 2v4M9 12v4M2 9h4M12 9h4" stroke="#A8555E" stroke-width="2" stroke-linecap="round" data-page-node-id="Po5YMKmGngTdse9qQukMpE"/></svg><div data-page-node-id="au4aIxbAXg0EjmdnujzQfX"><b data-page-node-id="gJ1lJBxCTrIBguwFoR6EZj">读前提示</b><span data-page-node-id="NmWp9LymxSdXz8dJIcpfZy">与《欲望的演化》《社会心理学》连读最佳——前者科普人格底色，后两者补足具体场景。</span></div></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer data-page-node-id="MBXgfywFWafQGbm9wnh9XD">
+  <div class="line" data-page-node-id="Gcuhg1zfasBrc3fHCoS5W0"></div>
+  <b data-page-node-id="BUKHPluIeiVE7c4BF23JYq">《性、谋杀及生命的意义》精读笔记 · 读书摘要卡</b>
+  <p class="disclaim" data-page-node-id="wRUW8XUnINjKlHpPPidqWG">本页为基于该书公开核心观点整理的读书笔记，用于知识科普与个人学习参考，非原文逐字转载。书名、理论与观点版权归原作者及出版方所有。头图来自 Wikimedia Commons，描绘暗背景中一根发光的孔雀翎特写，呼应书名中关于"进化、欲望与暗面"的意象。</p>
+</footer>
+
+<script>
+  var DOC_ARCHIVE = "../assets/hero/h36.jpg";
+  document.getElementById('hero').style.backgroundImage = "url('" + DOC_ARCHIVE + "')";
+  document.getElementById('who-img').style.backgroundImage = "url('" + DOC_ARCHIVE + "')";
+
+  (function(){
+    var bar = document.getElementById('progress');
+    function upd(){
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.width = (max > 0 ? (h.scrollTop / max * 100) : 0) + '%';
+    }
+    window.addEventListener('scroll', upd, {passive:true});
+    window.addEventListener('resize', upd);
+    upd();
+  })();
+</script>
+
+</body>
+</html>

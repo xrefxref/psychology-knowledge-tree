@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《波士顿咨询工作法：精准预测答案》精读笔记 · 读书摘要卡</title>
+<meta name="description" content="咨询顾问的秘诀不是分析得更多，而是先猜一个答案。内田和成把BCG的假说思考拆开给你看：用最少的信息，最快逼近正确答案。">
+<style>
+  :root{
+    --paper:#f4f2ed;
+    --paper-2:#faf9f5;
+    --ink:#252a2e;
+    --ink-soft:#535b62;
+    --ink-faint:#848d94;
+    --line:#dde0dd;
+    --accent:#2f6b4f;
+    --accent-2:#6fa088;
+    --warm:#72324f;
+    --shadow:0 12px 40px rgba(37,42,46,.10);
+    --shadow-sm:0 4px 18px rgba(37,42,46,.08);
+    --serif:"Songti SC","Source Han Serif SC","Noto Serif SC",Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--sans);color:var(--ink);background:var(--paper);
+    background-image:
+      radial-gradient(circle at 18% 8%, rgba(111,160,136,0.08), transparent 42%),
+      radial-gradient(circle at 84% 88%, rgba(47,107,79,0.06), transparent 46%);
+    line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.035'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  body>*{position:relative;z-index:1;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
+  h1,h2,h3,.serif{font-family:var(--serif);}
+  ::selection{background:rgba(47,107,79,0.18);}
+
+  #progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:99;
+    background:linear-gradient(90deg,var(--accent-2),var(--accent));transition:width .1s linear;}
+
+  .hero{
+    position:relative;min-height:clamp(480px,72vh,640px);
+    display:flex;align-items:flex-end;
+    background-size:cover;background-position:center 45%;
+    color:#f5f7f8;overflow:hidden;
+  }
+  .hero::after{
+    content:"";position:absolute;inset:0;
+    background:
+      linear-gradient(180deg, rgba(23,53,39,0.3) 0%, rgba(23,53,39,0.42) 42%, rgba(15,34,25,0.9) 100%),
+      linear-gradient(90deg, rgba(15,34,25,0.58) 0%, rgba(15,34,25,0) 58%);
+  }
+  .hero-inner{position:relative;z-index:2;width:100%;max-width:1080px;margin:0 auto;padding:88px 28px 54px;}
+  .hero .kicker{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:13px;letter-spacing:.22em;text-transform:uppercase;
+    color:#6fa088;border:1px solid rgba(111,160,136,0.45);
+    padding:6px 15px;border-radius:30px;margin-bottom:22px;backdrop-filter:blur(2px);
+  }
+  .hero h1{font-size:clamp(34px,6vw,62px);line-height:1.12;font-weight:700;letter-spacing:.01em;text-shadow:0 2px 24px rgba(0,0,0,.45);margin-bottom:10px;}
+  .hero .sub-en{font-family:var(--serif);font-style:italic;font-size:clamp(15px,2.4vw,22px);color:#6fa088;opacity:.92;margin-bottom:20px;}
+  .hero .lead{max-width:640px;font-size:clamp(15px,2vw,18px);color:#e8edf1;}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:24px 34px;margin-top:30px;}
+  .hero-meta .m{display:flex;flex-direction:column;}
+  .hero-meta .m b{font-family:var(--serif);font-size:20px;color:#fff;}
+  .hero-meta .m span{font-size:12.5px;letter-spacing:.08em;color:#6fa088;}
+
+  .ribbon{position:absolute;top:0;right:clamp(16px,5vw,52px);z-index:3;width:44px;
+    background:var(--accent);color:#fff;text-align:center;
+    padding:15px 0 24px;font-family:var(--serif);font-size:13px;letter-spacing:.14em;
+    box-shadow:0 6px 16px rgba(0,0,0,.32);}
+  .ribbon::after{content:"";position:absolute;left:0;bottom:-13px;border-width:0 22px 14px;border-style:solid;border-color:var(--accent) var(--accent) transparent;}
+  .ribbon span{writing-mode:vertical-rl;}
+
+  .toc-bar{background:var(--paper-2);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50;box-shadow:0 2px 14px rgba(37,42,46,.06);}
+  .toc-in{max-width:1080px;margin:0 auto;padding:10px 28px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .toc-in .lab{font-family:var(--serif);font-size:13px;color:var(--accent);letter-spacing:.1em;margin-right:6px;}
+  .toc-in a{font-size:12.5px;color:var(--ink-soft);text-decoration:none;padding:4px 11px;border-radius:20px;border:1px solid transparent;transition:all .18s;white-space:nowrap;}
+  .toc-in a:hover{color:var(--accent);border-color:rgba(47,107,79,0.35);background:rgba(47,107,79,0.05);}
+
+  section{padding:60px 0 56px;scroll-margin-top:64px;}
+  .sec-head{display:flex;align-items:center;gap:14px;margin-bottom:8px;}
+  .sec-no{font-family:var(--serif);font-size:14px;color:var(--accent);border:1px solid var(--accent);border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;flex:none;}
+  .sec-head h2{font-size:clamp(23px,3.4vw,31px);color:var(--ink);}
+  .sec-sub{color:var(--ink-faint);font-size:14.5px;margin-bottom:32px;padding-left:48px;}
+  @media(max-width:880px){.sec-sub{padding-left:0;}}
+
+  .divider{height:1px;background:linear-gradient(90deg,transparent,var(--line) 18%,var(--line) 82%,transparent);}
+
+  .bookcard{
+    display:grid;grid-template-columns:1.1fr 1fr;gap:34px;align-items:center;
+    background:var(--paper-2);border:1px solid var(--line);border-radius:18px;
+    padding:38px;box-shadow:var(--shadow);position:relative;overflow:hidden;
+  }
+  .bookcard::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:linear-gradient(var(--accent),var(--accent-2));}
+  .one-liner{font-family:var(--serif);font-size:clamp(19px,2.9vw,26px);line-height:1.55;color:var(--ink);}
+  .one-liner em{color:var(--accent);font-style:normal;}
+  .one-liner .rule{width:52px;height:3px;background:var(--accent);border-radius:2px;margin-top:18px;opacity:.85;}
+  .meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 22px;}
+  .meta-grid .cell span{display:block;font-size:12px;letter-spacing:.1em;color:var(--ink-faint);text-transform:uppercase;margin-bottom:3px;}
+  .meta-grid .cell b{font-family:var(--serif);font-size:16.5px;color:var(--ink);font-weight:600;line-height:1.45;}
+  @media(max-width:880px){.bookcard{grid-template-columns:1fr;padding:28px;gap:26px;}}
+
+  .sys-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .sys{border-radius:16px;padding:30px 28px;color:#fff;position:relative;overflow:hidden;box-shadow:var(--shadow);}
+  .sys.s1{background:linear-gradient(150deg,#2f6b4f,#214d38);}
+  .sys.s2{background:linear-gradient(150deg,#72324f,#54253a);}
+  .sys.s3{background:linear-gradient(150deg,#6fa088,#2f6b4f);}
+  .sys.s4{background:linear-gradient(150deg,#1c402f,#142f23);}
+  .sys .tag{font-size:12px;letter-spacing:.16em;opacity:.88;text-transform:uppercase;}
+  .sys h3{font-size:25px;margin:6px 0 4px;}
+  .sys .tagline{font-family:var(--serif);font-style:italic;font-size:15.5px;opacity:.92;margin-bottom:16px;}
+  .sys ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+  .sys li{display:flex;gap:10px;font-size:14px;line-height:1.55;align-items:flex-start;}
+  .sys li svg{flex:none;margin-top:4px;}
+  .sys .speed{display:inline-flex;align-items:baseline;gap:8px;margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.22);}
+  .sys .speed b{font-size:24px;font-family:var(--serif);}
+  .sys .speed span{font-size:12.5px;opacity:.82;}
+  @media(max-width:880px){.sys-grid{grid-template-columns:1fr;}}
+
+  .stage-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;}
+  .stage{border-radius:16px;padding:26px 22px;color:#fff;position:relative;overflow:hidden;box-shadow:var(--shadow);}
+  .stage .no{font-family:var(--serif);font-size:15px;opacity:.85;letter-spacing:.12em;}
+  .stage h3{font-size:21px;margin:5px 0 3px;}
+  .stage .tagline{font-family:var(--serif);font-style:italic;font-size:13.5px;opacity:.9;margin-bottom:13px;}
+  .stage ul{list-style:none;display:flex;flex-direction:column;gap:9px;}
+  .stage li{display:flex;gap:9px;font-size:13.5px;line-height:1.55;align-items:flex-start;}
+  .stage li svg{flex:none;margin-top:3px;}
+  .stage::after{content:"→";position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:26px;opacity:.55;color:#fff;}
+  .stage:last-child::after{content:"";}
+
+  .vs-wrap{margin-top:26px;background:var(--paper-2);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .vs-head{display:grid;grid-template-columns:1.1fr 1fr 1fr;background:linear-gradient(90deg,rgba(47,107,79,0.1),rgba(114,50,79,0.1));border-bottom:1px solid var(--line);}
+  .vs-head div{padding:14px 18px;font-family:var(--serif);font-size:15px;}
+  .vs-head .h1c{color:var(--accent);}
+  .vs-head .h2c{color:var(--warm);}
+  .vs-row{display:grid;grid-template-columns:1.1fr 1fr 1fr;border-bottom:1px solid var(--line);}
+  .vs-row:last-child{border-bottom:none;}
+  .vs-row:nth-child(odd){background:rgba(244,242,237,.55);}
+  .vs-row .dim{padding:12px 18px;font-size:13px;color:var(--ink-faint);letter-spacing:.04em;display:flex;align-items:center;}
+  .vs-row .v1{padding:12px 18px;font-size:13.5px;color:var(--ink-soft);border-left:1px dashed var(--line);display:flex;align-items:center;}
+  .vs-row .v2{padding:12px 18px;font-size:13.5px;color:var(--ink-soft);border-left:1px dashed var(--line);display:flex;align-items:center;}
+  @media(max-width:680px){
+    .vs-head.v3{grid-template-columns:1fr 1fr;} .vs-head.v3 .h0{display:none;}
+    .vs-row.v3{grid-template-columns:1fr;padding:10px 0;}
+    .vs-row.v3 .dim{grid-column:1/-1;padding:4px 18px 2px;font-family:var(--serif);color:var(--accent);font-size:13.5px;}
+    .vs-row.v3 .v1,.vs-row.v3 .v2{border-left:none;padding:2px 18px;}
+    .vs-row.v3 .v1::before{content:"甲面　";color:var(--accent);font-weight:600;}
+    .vs-row.v3 .v2::before{content:"乙面　";color:var(--warm);font-weight:600;}
+  }
+
+  .sys-note{margin-top:22px;background:var(--paper-2);border:1px dashed var(--accent-2);border-radius:12px;padding:18px 22px;font-size:14.5px;color:var(--ink-soft);}
+  .sys-note b{color:var(--accent);font-family:var(--serif);}
+
+  .spectrum{margin-top:26px;background:var(--paper-2);border:1px solid var(--line);border-radius:16px;
+    padding:30px 30px 24px;box-shadow:var(--shadow);}
+  .spectrum h3{font-size:19px;margin-bottom:4px;}
+  .spectrum .en{font-size:12.5px;letter-spacing:.06em;color:var(--ink-faint);margin-bottom:18px;}
+  .spectrum svg{width:100%;height:auto;display:block;}
+  .spectrum .cap{margin-top:14px;font-size:13.5px;color:var(--ink-soft);line-height:1.7;}
+  .spectrum .cap b{color:var(--accent);font-family:var(--serif);}
+
+  .fx-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+  .fx{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:24px;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s;}
+  .fx:hover{transform:translateY(-3px);box-shadow:var(--shadow);}
+  .fx .ic{width:42px;height:42px;border-radius:11px;background:rgba(47,107,79,0.09);display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+  .fx h3{font-size:18px;margin-bottom:3px;}
+  .fx .en{font-size:12px;letter-spacing:.06em;color:var(--ink-faint);margin-bottom:11px;}
+  .fx p{font-size:14px;color:var(--ink-soft);line-height:1.65;}
+  .fx .eg{margin-top:12px;font-size:13px;color:var(--accent);background:rgba(47,107,79,0.06);border-radius:8px;padding:8px 11px;}
+  .fx .eg b{font-weight:600;}
+  @media(max-width:880px){.fx-grid{grid-template-columns:1fr;}}
+
+  .flow{position:relative;padding-left:8px;}
+  .flow .step{display:grid;grid-template-columns:64px 1fr;gap:20px;position:relative;padding-bottom:28px;}
+  .flow .step:not(:last-child)::before{content:"";position:absolute;left:31px;top:48px;bottom:0;width:2px;background:linear-gradient(var(--accent-2),var(--line));}
+  .flow .node{width:64px;height:64px;border-radius:50%;background:var(--paper-2);border:2px solid var(--accent-2);display:flex;flex-direction:column;align-items:center;justify-content:center;flex:none;position:relative;z-index:2;box-shadow:0 3px 10px rgba(37,42,46,.08);}
+  .flow .node b{font-family:var(--serif);font-size:17px;color:var(--accent);line-height:1.15;}
+  .flow .node span{font-size:10px;color:var(--ink-faint);letter-spacing:.05em;}
+  .flow .body{padding-top:6px;}
+  .flow .body h3{font-size:18px;margin-bottom:5px;}
+  .flow .body h3 small{font-size:12.5px;color:var(--ink-faint);font-family:var(--sans);font-weight:400;margin-left:8px;}
+  .flow .body p{font-size:14px;color:var(--ink-soft);}
+  .flow .body .pill{display:inline-block;margin-top:8px;font-size:12px;color:var(--warm);background:rgba(114,50,79,0.1);padding:3px 11px;border-radius:20px;}
+
+  .quotes{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
+  .quote{background:linear-gradient(160deg,#faf9f5,#eef0ef);border:1px solid var(--line);border-radius:16px;padding:30px 28px 26px;position:relative;box-shadow:var(--shadow);}
+  .quote .mark{font-family:Georgia,serif;font-size:64px;line-height:.4;color:var(--accent);opacity:.35;height:30px;}
+  .quote p{font-family:var(--serif);font-size:17.5px;line-height:1.6;color:var(--ink);margin-bottom:14px;}
+  .quote .src{font-size:13px;color:var(--ink-faint);letter-spacing:.04em;}
+  .quote.span2{grid-column:1/-1;background:linear-gradient(110deg,#173527,#0f2219);border-color:#122a1f;}
+  .quote.span2 p{color:#e9eef2;font-size:20.5px;}
+  .quote.span2 .src{color:var(--accent-2);}
+  .quote.span2 .mark{color:var(--accent-2);}
+  @media(max-width:880px){.quotes{grid-template-columns:1fr;}}
+
+  .act-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+  .act{display:grid;grid-template-columns:46px 1fr;gap:16px;background:var(--paper-2);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:22px;transition:transform .2s,box-shadow .2s;}
+  .act:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm);}
+  .act .num{font-family:var(--serif);font-size:26px;color:var(--accent);line-height:1.1;}
+  .act h3{font-size:16.5px;margin-bottom:5px;}
+  .act p{font-size:13.5px;color:var(--ink-soft);line-height:1.65;}
+  @media(max-width:880px){.act-grid{grid-template-columns:1fr;}}
+
+  .split{display:grid;grid-template-columns:1fr 1.15fr;gap:30px;align-items:stretch;}
+  .split .imgcol{border-radius:16px;overflow:hidden;min-height:320px;background-size:cover;background-position:center;box-shadow:var(--shadow);position:relative;}
+  .split .imgcol::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,26,34,0) 42%,rgba(15,34,25,0.62));}
+  .split .imgcol .cap{position:absolute;left:22px;bottom:18px;z-index:2;color:#e5ebf0;font-family:var(--serif);font-size:15px;}
+  .fit-list{display:flex;flex-direction:column;gap:14px;}
+  .fit{display:flex;gap:13px;background:var(--paper-2);border:1px solid var(--line);border-radius:12px;padding:16px 18px;align-items:flex-start;}
+  .fit svg{flex:none;margin-top:3px;}
+  .fit b{font-family:var(--serif);font-size:15.5px;display:block;margin-bottom:2px;}
+  .fit span{font-size:13.5px;color:var(--ink-soft);}
+  @media(max-width:880px){.split{grid-template-columns:1fr;}}
+
+  footer{padding:46px 28px 60px;text-align:center;color:var(--ink-faint);font-size:13px;}
+  footer .line{width:60px;height:3px;background:var(--accent);margin:0 auto 20px;border-radius:3px;}
+  footer b{font-family:var(--serif);color:var(--ink-soft);}
+  .disclaim{margin-top:10px;font-size:12px;color:var(--ink-faint);max-width:680px;margin-left:auto;margin-right:auto;line-height:1.7;}
+
+  @media print{
+    #progress,.toc-bar,.ribbon{display:none;}
+    body::before{display:none;}
+    section{padding:28px 0;}
+    .fx,.act,.quote,.sys{break-inside:avoid;}
+  }
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<header class="hero" id="hero">
+  <div class="ribbon"><span>读书笔记</span></div>
+  <div class="hero-inner">
+    <span class="kicker">精读笔记 · 咨询方法</span>
+    <h1>《波士顿咨询工作法：精准预测答案》</h1>
+    <div class="sub-en">Hypothesis Thinking at BCG</div>
+    <p class="lead">咨询顾问的秘诀不是分析得更多，而是先猜一个答案。内田和成把BCG的假说思考拆开给你看：用最少的信息，最快逼近正确答案。</p>
+    <div class="hero-meta"><div class="m"><b>1 个</b><span>反转：先答后验</span></div><div class="m"><b>80/20</b><span>只取关键信息</span></div><div class="m"><b>4 步</b><span>假设·验证·修正·收敛</span></div><div class="m"><b>0 分钟</b><span>浪费在无用收集</span></div></div>
+  </div>
+</header>
+
+<nav class="toc-bar" aria-label="页面目录"><div class="toc-in"><span class="lab">目录</span><a href="#info">书籍信息</a><a href="#duo">核心框架</a><a href="#chart">一张图</a><a href="#fx">关键概念</a><a href="#flow">章节脉络</a><a href="#quotes">金句</a><a href="#actions">行动启发</a><a href="#who">适合谁读</a></div></nav>
+
+<div class="wrap">
+<section id="info">
+  <div class="sec-head"><div class="sec-no">01</div><h2>这本书讲了什么</h2></div>
+  <p class="sec-sub">一句话总览 + 核心信息卡</p>
+  <div class="bookcard">
+    <div><div class="one-liner">假说思考的反常识之处：先给出答案，再用最小信息验证它。本书教你把精力从<em>收集全部数据</em>转向<em>设计可检验的答案</em>，速度与准确率同时提升。</div><div class="rule"></div></div>
+    <div class="meta-grid"><div class="cell"><span>作者</span><b>内田和成（波士顿咨询公司资深合伙人）</b></div><div class="cell"><span>领域</span><b>商业分析 · 思维方法</b></div><div class="cell"><span>核心命题</span><b>在信息不完备时敢于建立假说，比穷尽分析更快逼近真相</b></div><div class="cell"><span>出版</span><b>原典《假说思考》2006年出版，中文为BCG工作法系列</b></div><div class="cell"><span>系列/方法</span><b>假说思考：建立—验证—修正的循环</b></div><div class="cell"><span>关键概念</span><b>假说思考、论点、先答后验</b></div></div>
+  </div>
+</section>
+<div class="divider"></div>
+<section id="duo">
+  <div class="sec-head"><div class="sec-no">02</div><h2>核心框架：假说思考 与 求全式分析</h2></div>
+  <p class="sec-sub">同样的时间，两种用法的产出差距惊人</p>
+  <div class="sys-grid">
+<div class="sys s1"><div class="tag">甲面 · 假说思考 Hypothesis Thinking</div>
+<h3>先给答案，再验证</h3><div class="tagline">从可能的答案出发，反向收集信息</div>
+<ul><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>开工前先写下我认为的答案</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>只收集能检验假说的关键信息</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>分析为判断服务，不做无用功</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>错了就快速修正，迭代逼近</li></ul><div class="speed"><b>快而准</b><span>以最小代价试错</span></div></div>
+<div class="sys s2"><div class="tag">乙面 · 求全式分析 Exhaustive Analysis</div>
+<h3>先收集，再结论</h3><div class="tagline">等信息齐了，答案自然浮现</div>
+<ul><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>追求数据齐全之后再动手分析</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>所有资料一视同仁地处理</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>把大量时间花在整理与核对</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>结论常常姗姗来迟</li></ul><div class="speed"><b>慢而重</b><span>用勤奋掩盖方向感的缺失</span></div></div>
+</div>
+<div class="vs-wrap"><div class="vs-head v3"><div class="h0">对比维度</div><div class="h1c">假说思考</div><div class="h2c">求全式分析</div></div>
+<div class="vs-row v3"><div class="dim">起点</div><div class="v1">先给暂定答案</div><div class="v2">先收集全部信息</div></div>
+<div class="vs-row v3"><div class="dim">信息观</div><div class="v1">只取必要的关键数据</div><div class="v2">多多益善</div></div>
+<div class="vs-row v3"><div class="dim">时间分配</div><div class="v1">七成验证三成整理</div><div class="v2">几乎全部用于收集</div></div>
+<div class="vs-row v3"><div class="dim">交付节奏</div><div class="v1">快速给出方向再迭代</div><div class="v2">迟迟不敢表态</div></div>
+</div>
+<div class="sys-note"><b>关键洞察 —</b> 假说不是拍脑袋，而是一次可被证伪的赌注。它的价值不在于一次就对，而在于让每一份新信息都变成修正方向的坐标，而不是堆积如山的原石。</div>
+</section>
+<div class="divider"></div>
+<section id="chart">
+  <div class="sec-head"><div class="sec-no">03</div><h2>全书最深的一张图</h2></div>
+  <p class="sec-sub">假说思考不是一次定论，而是一个循环</p>
+  <div class="spectrum">
+    <h3>假说思考四步循环</h3>
+    <div class="en">The Hypothesis Loop</div>
+    <svg viewBox="0 0 900 230" role="img" aria-label="假说思考四步循环">
+<rect x="0" y="0" width="900" height="230" fill="#faf9f5" rx="12"/>
+<defs><linearGradient id="g_b98_steps" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2f6b4f"/><stop offset="0.5" stop-color="#41958c"/><stop offset="1" stop-color="#72324f"/></linearGradient></defs>
+<rect x="60" y="165" width="181" height="30" fill="url(#g_b98_steps)" opacity="0.62" rx="4"/>
+<text x="150" y="189" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">建立假说</text>
+<text x="150" y="213" text-anchor="middle" font-size="11.5" fill="#848d94">基于经验与结构给出暂定答案</text>
+<rect x="255" y="131" width="181" height="64" fill="url(#g_b98_steps)" opacity="0.75" rx="4"/>
+<text x="346" y="155" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">排序取舍</text>
+<text x="346" y="213" text-anchor="middle" font-size="11.5" fill="#848d94">选出信息价值最高的验证点</text>
+<rect x="450" y="97" width="181" height="98" fill="url(#g_b98_steps)" opacity="0.88" rx="4"/>
+<text x="540" y="121" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">定向验证</text>
+<text x="540" y="213" text-anchor="middle" font-size="11.5" fill="#848d94">用最小证据支持或推翻</text>
+<rect x="645" y="63" width="181" height="132" fill="url(#g_b98_steps)" opacity="1.00" rx="4"/>
+<text x="736" y="87" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">修正收敛</text>
+<text x="736" y="213" text-anchor="middle" font-size="11.5" fill="#848d94">改写假说，循环至结论稳固</text>
+<text x="450" y="228" text-anchor="middle" font-size="11" fill="#848d94">循环转得越快，逼近真相的代价越小</text>
+</svg>
+    <div class="cap"><b>怎么用 —</b> 怎么用：把当前任务套进四步，检查自己是否卡在无止境的收集阶段，立刻写下第一版答案。</div>
+  </div>
+</section>
+<div class="divider"></div>
+<section id="fx">
+  <div class="sec-head"><div class="sec-no">04</div><h2>关键概念卡片</h2></div>
+  <p class="sec-sub">核心方法与实战要点</p>
+  <div class="fx-grid"><div class="fx"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2f6b4f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 00-4 10.5c.7.6 1 1.5 1 2.5h6c0-1 .3-1.9 1-2.5A6 6 0 0012 3z"/></svg></div>
+<h3>假说思考</h3><div class="en">Hypothesis Thinking</div><p>本书核心方法：在信息不完备时先建立暂定答案，再带着答案去验证。它把分析从大海捞针变成按图索骥。</p><div class="eg"><b>例：</b>接到议题先写一页我认为的结论，再列出需要什么证据来推翻它。</div></div><div class="fx"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2f6b4f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18L20 6M20 6h-7M20 6v7"/></svg></div>
+<h3>先答后验</h3><div class="en">Answer First</div><p>本书围绕的关键反转：答案先行的价值在于暴露分歧——假说错了立刻知道，没有假说则永远在原地打转。</p><div class="eg"><b>例：</b>开会不再汇报研究进展，而是直接亮出判断，用提问挑战它。</div></div><div class="fx"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2f6b4f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="14" r="4"/><path d="M11 11l9-9M17 5l2.5 2.5M14 8l2 2"/></svg></div>
+<h3>必要最小信息</h3><div class="en">Minimal Necessary Data</div><p>本书围绕的信息观：足以检验假说的信息就够，多余的收集是成本。信息不是越多越好，而是越关键越好。</p><div class="eg"><b>例：</b>三个关键访谈推翻假说，胜过三个月的案头汇总。</div></div><div class="fx"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2f6b4f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4M5 4h12l-2.5 3.5L17 11H5"/></svg></div>
+<h3>论点力</h3><div class="en">Issue Setting</div><p>找对值得回答的问题。本书围绕它强调：方向错了，假说再精致也是白费，定义论点是分析之前的头等大事。</p><div class="eg"><b>例：</b>把市占率下滑的泛问收窄成：对手新品抢走了哪类客户。</div></div><div class="fx"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2f6b4f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"/><circle cx="12" cy="12" r="2.6"/></svg></div>
+<h3>错假说的价值</h3><div class="en">Value of Being Wrong</div><p>被推翻的假说不是失败，而是把搜索范围砍掉一半的收获。本书围绕它重塑对错误的态度。</p><div class="eg"><b>例：</b>验证发现新品并未分流客户，转而锁定渠道铺货不足的问题。</div></div><div class="fx"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2f6b4f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.2"/><circle cx="5" cy="17" r="2.2"/><circle cx="19" cy="17" r="2.2"/><path d="M12 7.2L6 15M12 7.2L18 15M7.2 17h9.6"/></svg></div>
+<h3>故事线</h3><div class="en">Storyline</div><p>本书围绕的交付方法：假说成熟后按结论先行的结构组织成有说服力的叙事，让证据随后展开。</p><div class="eg"><b>例：</b>一页讲清结论，三页支撑理由，附录才放完整数据。</div></div></div>
+</section>
+<div class="divider"></div>
+<section id="flow">
+  <div class="sec-head"><div class="sec-no">05</div><h2>全书脉络图</h2></div>
+  <p class="sec-sub">按方法的养成顺序展开：从敢猜到会验，再到讲出来</p>
+  <div class="flow"><div class="step"><div class="node"><b>01</b><span>CH.</span></div>
+<div class="body"><h3>破除信息迷信<small>Beyond Data Hoarding</small></h3><p>先诊断通病：为什么收集越多越难下结论。</p><span class="pill">敢于暂定</span></div></div><div class="step"><div class="node"><b>02</b><span>CH.</span></div>
+<div class="body"><h3>建立假说<small>Build the Hypothesis</small></h3><p>借经验与框架快速给出暂定答案，写成可检验的表达。</p><span class="pill">先给答案</span></div></div><div class="step"><div class="node"><b>03</b><span>CH.</span></div>
+<div class="body"><h3>定向收集<small>Targeted Evidence</small></h3><p>围绕假说筛选关键信息，把八成的力气花在两成的数据上。</p><span class="pill">最小信息</span></div></div><div class="step"><div class="node"><b>04</b><span>CH.</span></div>
+<div class="body"><h3>验证与修正<small>Test and Iterate</small></h3><p>用访谈、数据与试验快速证伪，错了就改写再出发。</p><span class="pill">快速迭代</span></div></div><div class="step"><div class="node"><b>05</b><span>CH.</span></div>
+<div class="body"><h3>提炼论点<small>Sharpen the Issue</small></h3><p>在迭代中收窄问题，确保答案指向真正值得解决的冲突。</p><span class="pill">找准问题</span></div></div><div class="step"><div class="node"><b>06</b><span>CH.</span></div>
+<div class="body"><h3>组织故事线<small>Craft the Storyline</small></h3><p>把结论与证据编排成说服结构，交付清晰有力的建议。</p><span class="pill">结论先行</span></div></div></div>
+</section>
+<div class="divider"></div>
+<section id="quotes">
+  <div class="sec-head"><div class="sec-no">06</div><h2>金句摘录</h2></div>
+  <p class="sec-sub">值得抄进笔记本的句子（据核心观点转述）</p>
+  <div class="quotes"><div class="quote"><div class="mark">&ldquo;</div><p>先有答案，信息才开始有意义；没有假说，数据只是堆山。</p><div class="src">—— 论假说</div></div><div class="quote"><div class="mark">&ldquo;</div><p>被推翻的假说不亏，它替你砍掉了一半的错误方向。</p><div class="src">—— 论验证</div></div><div class="quote"><div class="mark">&ldquo;</div><p>与其在报告里写还在分析，不如亮出判断请大家来打脸。</p><div class="src">—— 论勇气</div></div><div class="quote"><div class="mark">&ldquo;</div><p>信息的关键不在多，在于它能否改变你的判断。</p><div class="src">—— 论取舍</div></div><div class="quote span2"><div class="mark">&ldquo;</div><p>问题找错了，再漂亮的分析也只是精确地跑偏。</p><div class="src">—— 论论点</div></div></div>
+</section>
+<div class="divider"></div>
+<section id="actions">
+  <div class="sec-head"><div class="sec-no">07</div><h2>对工作与决策的行动启发</h2></div>
+  <p class="sec-sub">读完就能上手的方法</p>
+  <div class="act-grid"><div class="act"><div class="num">1</div><div><h3>写一页暂定答案</h3><p>接到任务的第一个小时，强迫自己写下我认为的结论与三条理由，哪怕日后推翻，也让后续收集有的放矢。</p></div></div><div class="act"><div class="num">2</div><div><h3>列出证伪清单</h3><p>为你的假说写下三条最能推翻它的证据，本周只去找这三条，其余信息一律先放一边。</p></div></div><div class="act"><div class="num">3</div><div><h3>砍一半收集清单</h3><p>检查手头的数据需求，删掉与验证无关的一半，把省下的时间用于一次关键访谈。</p></div></div><div class="act"><div class="num">4</div><div><h3>开会先亮判断</h3><p>下次汇报不再讲进展，先给结论再接受质疑，用提问暴露假说的薄弱处。</p></div></div><div class="act"><div class="num">5</div><div><h3>重述一次问题</h3><p>把当前任务的问题改写三遍，每次更具体，选出最值得回答的那个版本再动手。</p></div></div><div class="act"><div class="num">6</div><div><h3>做一次复盘对照</h3><p>月末对照最初的假说与最终结论，记录三次关键修正，体会信息如何真正改变了判断。</p></div></div></div>
+</section>
+<div class="divider"></div>
+<section id="who">
+  <div class="sec-head"><div class="sec-no">08</div><h2>这本书适合谁读</h2></div>
+  <p class="sec-sub">如果你符合其中一条，它都值得放进书单</p>
+  <div class="split">
+    <div class="imgcol" id="who-img"><div class="cap">咨询顾问的思维武器库</div></div>
+    <div class="fit-list"><div class="fit"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 9l4 4 10-10" stroke="#2f6b4f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>频繁出方案的职场人</b><span>想在时间紧信息少时快速给出有质量的方向判断。</span></div></div><div class="fit"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 9l4 4 10-10" stroke="#2f6b4f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>咨询与分析从业者</b><span>想系统学习BCG一线的分析纪律与交付方法。</span></div></div><div class="fit"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 9l4 4 10-10" stroke="#2f6b4f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>做研究的学生</b><span>论文开题与调研设计同样需要假说驱动的思维。</span></div></div><div class="fit"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2v4M9 12v4M2 9h4M12 9h4" stroke="#6fa088" stroke-width="2" stroke-linecap="round"/></svg><div><b>完美主义读者</b><span>提示：本书会颠覆先收集后结论的习惯，请边读边用真实任务练手。</span></div></div></div>
+  </div>
+</section>
+</div>
+
+<footer>
+  <div class="line"></div>
+  <b>《波士顿咨询工作法：精准预测答案》精读笔记 · 读书摘要卡</b>
+  <p class="disclaim">本页为基于该书公开核心观点整理的读书笔记，用于知识科普与个人学习参考，非原文逐字转载。书名、理论与观点版权归原作者及出版方所有。头图为商业咨询图（Wikimedia Commons，许可）。</p>
+</footer>
+
+<script>
+  var DOC_ARCHIVE = "../assets/hero/h13.jpg";
+  document.getElementById('hero').style.backgroundImage = "url('" + DOC_ARCHIVE + "')";
+  var wi = document.getElementById('who-img');
+  if (wi) wi.style.backgroundImage = "url('" + DOC_ARCHIVE + "')";
+
+  (function(){
+    var bar = document.getElementById('progress');
+    function upd(){
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.width = (max > 0 ? (h.scrollTop / max * 100) : 0) + '%';
+    }
+    window.addEventListener('scroll', upd, {passive:true});
+    window.addEventListener('resize', upd);
+    upd();
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《我所相信的生活》精读笔记 · 读书摘要卡</title>
+<meta name="description" content="一位年近百岁仍在写作与抗争的哲学家，早年就把信仰写成清单：不靠神、不靠来世、不靠权威。罗素交出的答案朴素得惊人——快乐是一种可以练习的能力。">
+<style>
+  :root{
+    --paper:#f4f2ed;
+    --paper-2:#faf9f5;
+    --ink:#252a2e;
+    --ink-soft:#535b62;
+    --ink-faint:#848d94;
+    --line:#dde0dd;
+    --accent:#6b4a8a;
+    --accent-2:#a58ac0;
+    --warm:#6e904d;
+    --shadow:0 12px 40px rgba(37,42,46,.10);
+    --shadow-sm:0 4px 18px rgba(37,42,46,.08);
+    --serif:"Songti SC","Source Han Serif SC","Noto Serif SC",Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--sans);color:var(--ink);background:var(--paper);
+    background-image:
+      radial-gradient(circle at 18% 8%, rgba(165,138,192,0.08), transparent 42%),
+      radial-gradient(circle at 84% 88%, rgba(107,74,138,0.06), transparent 46%);
+    line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.035'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  body>*{position:relative;z-index:1;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
+  h1,h2,h3,.serif{font-family:var(--serif);}
+  ::selection{background:rgba(107,74,138,0.18);}
+
+  #progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:99;
+    background:linear-gradient(90deg,var(--accent-2),var(--accent));transition:width .1s linear;}
+
+  .hero{
+    position:relative;min-height:clamp(480px,72vh,640px);
+    display:flex;align-items:flex-end;
+    background-size:cover;background-position:center 45%;
+    color:#f5f7f8;overflow:hidden;
+  }
+  .hero::after{
+    content:"";position:absolute;inset:0;
+    background:
+      linear-gradient(180deg, rgba(53,36,69,0.3) 0%, rgba(53,36,69,0.42) 42%, rgba(34,23,44,0.9) 100%),
+      linear-gradient(90deg, rgba(34,23,44,0.58) 0%, rgba(34,23,44,0) 58%);
+  }
+  .hero-inner{position:relative;z-index:2;width:100%;max-width:1080px;margin:0 auto;padding:88px 28px 54px;}
+  .hero .kicker{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:13px;letter-spacing:.22em;text-transform:uppercase;
+    color:#a58ac0;border:1px solid rgba(165,138,192,0.45);
+    padding:6px 15px;border-radius:30px;margin-bottom:22px;backdrop-filter:blur(2px);
+  }
+  .hero h1{font-size:clamp(34px,6vw,62px);line-height:1.12;font-weight:700;letter-spacing:.01em;text-shadow:0 2px 24px rgba(0,0,0,.45);margin-bottom:10px;}
+  .hero .sub-en{font-family:var(--serif);font-style:italic;font-size:clamp(15px,2.4vw,22px);color:#a58ac0;opacity:.92;margin-bottom:20px;}
+  .hero .lead{max-width:640px;font-size:clamp(15px,2vw,18px);color:#e8edf1;}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:24px 34px;margin-top:30px;}
+  .hero-meta .m{display:flex;flex-direction:column;}
+  .hero-meta .m b{font-family:var(--serif);font-size:20px;color:#fff;}
+  .hero-meta .m span{font-size:12.5px;letter-spacing:.08em;color:#a58ac0;}
+
+  .ribbon{position:absolute;top:0;right:clamp(16px,5vw,52px);z-index:3;width:44px;
+    background:var(--accent);color:#fff;text-align:center;
+    padding:15px 0 24px;font-family:var(--serif);font-size:13px;letter-spacing:.14em;
+    box-shadow:0 6px 16px rgba(0,0,0,.32);}
+  .ribbon::after{content:"";position:absolute;left:0;bottom:-13px;border-width:0 22px 14px;border-style:solid;border-color:var(--accent) var(--accent) transparent;}
+  .ribbon span{writing-mode:vertical-rl;}
+
+  .toc-bar{background:var(--paper-2);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50;box-shadow:0 2px 14px rgba(37,42,46,.06);}
+  .toc-in{max-width:1080px;margin:0 auto;padding:10px 28px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .toc-in .lab{font-family:var(--serif);font-size:13px;color:var(--accent);letter-spacing:.1em;margin-right:6px;}
+  .toc-in a{font-size:12.5px;color:var(--ink-soft);text-decoration:none;padding:4px 11px;border-radius:20px;border:1px solid transparent;transition:all .18s;white-space:nowrap;}
+  .toc-in a:hover{color:var(--accent);border-color:rgba(107,74,138,0.35);background:rgba(107,74,138,0.05);}
+
+  section{padding:60px 0 56px;scroll-margin-top:64px;}
+  .sec-head{display:flex;align-items:center;gap:14px;margin-bottom:8px;}
+  .sec-no{font-family:var(--serif);font-size:14px;color:var(--accent);border:1px solid var(--accent);border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;flex:none;}
+  .sec-head h2{font-size:clamp(23px,3.4vw,31px);color:var(--ink);}
+  .sec-sub{color:var(--ink-faint);font-size:14.5px;margin-bottom:32px;padding-left:48px;}
+  @media(max-width:880px){.sec-sub{padding-left:0;}}
+
+  .divider{height:1px;background:linear-gradient(90deg,transparent,var(--line) 18%,var(--line) 82%,transparent);}
+
+  .bookcard{
+    display:grid;grid-template-columns:1.1fr 1fr;gap:34px;align-items:center;
+    background:var(--paper-2);border:1px solid var(--line);border-radius:18px;
+    padding:38px;box-shadow:var(--shadow);position:relative;overflow:hidden;
+  }
+  .bookcard::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:linear-gradient(var(--accent),var(--accent-2));}
+  .one-liner{font-family:var(--serif);font-size:clamp(19px,2.9vw,26px);line-height:1.55;color:var(--ink);}
+  .one-liner em{color:var(--accent);font-style:normal;}
+  .one-liner .rule{width:52px;height:3px;background:var(--accent);border-radius:2px;margin-top:18px;opacity:.85;}
+  .meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 22px;}
+  .meta-grid .cell span{display:block;font-size:12px;letter-spacing:.1em;color:var(--ink-faint);text-transform:uppercase;margin-bottom:3px;}
+  .meta-grid .cell b{font-family:var(--serif);font-size:16.5px;color:var(--ink);font-weight:600;line-height:1.45;}
+  @media(max-width:880px){.bookcard{grid-template-columns:1fr;padding:28px;gap:26px;}}
+
+  .sys-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .sys{border-radius:16px;padding:30px 28px;color:#fff;position:relative;overflow:hidden;box-shadow:var(--shadow);}
+  .sys.s1{background:linear-gradient(150deg,#6b4a8a,#4d3563);}
+  .sys.s2{background:linear-gradient(150deg,#6e904d,#516a38);}
+  .sys.s3{background:linear-gradient(150deg,#a58ac0,#6b4a8a);}
+  .sys.s4{background:linear-gradient(150deg,#402c52,#2f203e);}
+  .sys .tag{font-size:12px;letter-spacing:.16em;opacity:.88;text-transform:uppercase;}
+  .sys h3{font-size:25px;margin:6px 0 4px;}
+  .sys .tagline{font-family:var(--serif);font-style:italic;font-size:15.5px;opacity:.92;margin-bottom:16px;}
+  .sys ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+  .sys li{display:flex;gap:10px;font-size:14px;line-height:1.55;align-items:flex-start;}
+  .sys li svg{flex:none;margin-top:4px;}
+  .sys .speed{display:inline-flex;align-items:baseline;gap:8px;margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.22);}
+  .sys .speed b{font-size:24px;font-family:var(--serif);}
+  .sys .speed span{font-size:12.5px;opacity:.82;}
+  @media(max-width:880px){.sys-grid{grid-template-columns:1fr;}}
+
+  .stage-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;}
+  .stage{border-radius:16px;padding:26px 22px;color:#fff;position:relative;overflow:hidden;box-shadow:var(--shadow);}
+  .stage .no{font-family:var(--serif);font-size:15px;opacity:.85;letter-spacing:.12em;}
+  .stage h3{font-size:21px;margin:5px 0 3px;}
+  .stage .tagline{font-family:var(--serif);font-style:italic;font-size:13.5px;opacity:.9;margin-bottom:13px;}
+  .stage ul{list-style:none;display:flex;flex-direction:column;gap:9px;}
+  .stage li{display:flex;gap:9px;font-size:13.5px;line-height:1.55;align-items:flex-start;}
+  .stage li svg{flex:none;margin-top:3px;}
+  .stage::after{content:"→";position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:26px;opacity:.55;color:#fff;}
+  .stage:last-child::after{content:"";}
+
+  .vs-wrap{margin-top:26px;background:var(--paper-2);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .vs-head{display:grid;grid-template-columns:1.1fr 1fr 1fr;background:linear-gradient(90deg,rgba(107,74,138,0.1),rgba(110,144,77,0.1));border-bottom:1px solid var(--line);}
+  .vs-head div{padding:14px 18px;font-family:var(--serif);font-size:15px;}
+  .vs-head .h1c{color:var(--accent);}
+  .vs-head .h2c{color:var(--warm);}
+  .vs-row{display:grid;grid-template-columns:1.1fr 1fr 1fr;border-bottom:1px solid var(--line);}
+  .vs-row:last-child{border-bottom:none;}
+  .vs-row:nth-child(odd){background:rgba(244,242,237,.55);}
+  .vs-row .dim{padding:12px 18px;font-size:13px;color:var(--ink-faint);letter-spacing:.04em;display:flex;align-items:center;}
+  .vs-row .v1{padding:12px 18px;font-size:13.5px;color:var(--ink-soft);border-left:1px dashed var(--line);display:flex;align-items:center;}
+  .vs-row .v2{padding:12px 18px;font-size:13.5px;color:var(--ink-soft);border-left:1px dashed var(--line);display:flex;align-items:center;}
+  @media(max-width:680px){
+    .vs-head.v3{grid-template-columns:1fr 1fr;} .vs-head.v3 .h0{display:none;}
+    .vs-row.v3{grid-template-columns:1fr;padding:10px 0;}
+    .vs-row.v3 .dim{grid-column:1/-1;padding:4px 18px 2px;font-family:var(--serif);color:var(--accent);font-size:13.5px;}
+    .vs-row.v3 .v1,.vs-row.v3 .v2{border-left:none;padding:2px 18px;}
+    .vs-row.v3 .v1::before{content:"甲面　";color:var(--accent);font-weight:600;}
+    .vs-row.v3 .v2::before{content:"乙面　";color:var(--warm);font-weight:600;}
+  }
+
+  .sys-note{margin-top:22px;background:var(--paper-2);border:1px dashed var(--accent-2);border-radius:12px;padding:18px 22px;font-size:14.5px;color:var(--ink-soft);}
+  .sys-note b{color:var(--accent);font-family:var(--serif);}
+
+  .spectrum{margin-top:26px;background:var(--paper-2);border:1px solid var(--line);border-radius:16px;
+    padding:30px 30px 24px;box-shadow:var(--shadow);}
+  .spectrum h3{font-size:19px;margin-bottom:4px;}
+  .spectrum .en{font-size:12.5px;letter-spacing:.06em;color:var(--ink-faint);margin-bottom:18px;}
+  .spectrum svg{width:100%;height:auto;display:block;}
+  .spectrum .cap{margin-top:14px;font-size:13.5px;color:var(--ink-soft);line-height:1.7;}
+  .spectrum .cap b{color:var(--accent);font-family:var(--serif);}
+
+  .fx-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+  .fx{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:24px;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s;}
+  .fx:hover{transform:translateY(-3px);box-shadow:var(--shadow);}
+  .fx .ic{width:42px;height:42px;border-radius:11px;background:rgba(107,74,138,0.09);display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+  .fx h3{font-size:18px;margin-bottom:3px;}
+  .fx .en{font-size:12px;letter-spacing:.06em;color:var(--ink-faint);margin-bottom:11px;}
+  .fx p{font-size:14px;color:var(--ink-soft);line-height:1.65;}
+  .fx .eg{margin-top:12px;font-size:13px;color:var(--accent);background:rgba(107,74,138,0.06);border-radius:8px;padding:8px 11px;}
+  .fx .eg b{font-weight:600;}
+  @media(max-width:880px){.fx-grid{grid-template-columns:1fr;}}
+
+  .flow{position:relative;padding-left:8px;}
+  .flow .step{display:grid;grid-template-columns:64px 1fr;gap:20px;position:relative;padding-bottom:28px;}
+  .flow .step:not(:last-child)::before{content:"";position:absolute;left:31px;top:48px;bottom:0;width:2px;background:linear-gradient(var(--accent-2),var(--line));}
+  .flow .node{width:64px;height:64px;border-radius:50%;background:var(--paper-2);border:2px solid var(--accent-2);display:flex;flex-direction:column;align-items:center;justify-content:center;flex:none;position:relative;z-index:2;box-shadow:0 3px 10px rgba(37,42,46,.08);}
+  .flow .node b{font-family:var(--serif);font-size:17px;color:var(--accent);line-height:1.15;}
+  .flow .node span{font-size:10px;color:var(--ink-faint);letter-spacing:.05em;}
+  .flow .body{padding-top:6px;}
+  .flow .body h3{font-size:18px;margin-bottom:5px;}
+  .flow .body h3 small{font-size:12.5px;color:var(--ink-faint);font-family:var(--sans);font-weight:400;margin-left:8px;}
+  .flow .body p{font-size:14px;color:var(--ink-soft);}
+  .flow .body .pill{display:inline-block;margin-top:8px;font-size:12px;color:var(--warm);background:rgba(110,144,77,0.1);padding:3px 11px;border-radius:20px;}
+
+  .quotes{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
+  .quote{background:linear-gradient(160deg,#faf9f5,#eef0ef);border:1px solid var(--line);border-radius:16px;padding:30px 28px 26px;position:relative;box-shadow:var(--shadow);}
+  .quote .mark{font-family:Georgia,serif;font-size:64px;line-height:.4;color:var(--accent);opacity:.35;height:30px;}
+  .quote p{font-family:var(--serif);font-size:17.5px;line-height:1.6;color:var(--ink);margin-bottom:14px;}
+  .quote .src{font-size:13px;color:var(--ink-faint);letter-spacing:.04em;}
+  .quote.span2{grid-column:1/-1;background:linear-gradient(110deg,#352445,#22172c);border-color:#2a1c37;}
+  .quote.span2 p{color:#e9eef2;font-size:20.5px;}
+  .quote.span2 .src{color:var(--accent-2);}
+  .quote.span2 .mark{color:var(--accent-2);}
+  @media(max-width:880px){.quotes{grid-template-columns:1fr;}}
+
+  .act-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+  .act{display:grid;grid-template-columns:46px 1fr;gap:16px;background:var(--paper-2);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:22px;transition:transform .2s,box-shadow .2s;}
+  .act:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm);}
+  .act .num{font-family:var(--serif);font-size:26px;color:var(--accent);line-height:1.1;}
+  .act h3{font-size:16.5px;margin-bottom:5px;}
+  .act p{font-size:13.5px;color:var(--ink-soft);line-height:1.65;}
+  @media(max-width:880px){.act-grid{grid-template-columns:1fr;}}
+
+  .split{display:grid;grid-template-columns:1fr 1.15fr;gap:30px;align-items:stretch;}
+  .split .imgcol{border-radius:16px;overflow:hidden;min-height:320px;background-size:cover;background-position:center;box-shadow:var(--shadow);position:relative;}
+  .split .imgcol::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,26,34,0) 42%,rgba(34,23,44,0.62));}
+  .split .imgcol .cap{position:absolute;left:22px;bottom:18px;z-index:2;color:#e5ebf0;font-family:var(--serif);font-size:15px;}
+  .fit-list{display:flex;flex-direction:column;gap:14px;}
+  .fit{display:flex;gap:13px;background:var(--paper-2);border:1px solid var(--line);border-radius:12px;padding:16px 18px;align-items:flex-start;}
+  .fit svg{flex:none;margin-top:3px;}
+  .fit b{font-family:var(--serif);font-size:15.5px;display:block;margin-bottom:2px;}
+  .fit span{font-size:13.5px;color:var(--ink-soft);}
+  @media(max-width:880px){.split{grid-template-columns:1fr;}}
+
+  footer{padding:46px 28px 60px;text-align:center;color:var(--ink-faint);font-size:13px;}
+  footer .line{width:60px;height:3px;background:var(--accent);margin:0 auto 20px;border-radius:3px;}
+  footer b{font-family:var(--serif);color:var(--ink-soft);}
+  .disclaim{margin-top:10px;font-size:12px;color:var(--ink-faint);max-width:680px;margin-left:auto;margin-right:auto;line-height:1.7;}
+
+  @media print{
+    #progress,.toc-bar,.ribbon{display:none;}
+    body::before{display:none;}
+    section{padding:28px 0;}
+    .fx,.act,.quote,.sys{break-inside:avoid;}
+  }
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<header class="hero" id="hero">
+  <div class="ribbon"><span>读书笔记</span></div>
+  <div class="hero-inner">
+    <span class="kicker">精读笔记 · 哲学随笔</span>
+    <h1>《我所相信的生活》</h1>
+    <div class="sub-en">What I Believe</div>
+    <p class="lead">一位年近百岁仍在写作与抗争的哲学家，早年就把信仰写成清单：不靠神、不靠来世、不靠权威。罗素交出的答案朴素得惊人——快乐是一种可以练习的能力。</p>
+    <div class="hero-meta"><div class="m"><b>3 种</b><span>支配性激情</span></div><div class="m"><b>1 份</b><span>无神信仰清单</span></div><div class="m"><b>0 处</b><span>诉诸天国慰藉</span></div><div class="m"><b>98 岁</b><span>仍在写作与抗争</span></div></div>
+  </div>
+</header>
+
+<nav class="toc-bar" aria-label="页面目录"><div class="toc-in"><span class="lab">目录</span><a href="#info">书籍信息</a><a href="#duo">核心框架</a><a href="#chart">一张图</a><a href="#fx">关键概念</a><a href="#flow">章节脉络</a><a href="#quotes">金句</a><a href="#actions">行动启发</a><a href="#who">适合谁读</a></div></nav>
+
+<div class="wrap">
+<section id="info">
+  <div class="sec-head"><div class="sec-no">01</div><h2>这本书讲了什么</h2></div>
+  <p class="sec-sub">一句话总览 + 核心信息卡</p>
+  <div class="bookcard">
+    <div><div class="one-liner">罗素把自己相信的生活摊开给你看：<em>不依赖神的安慰</em>，也能过得笃定；快乐不靠命运垂青，而靠<em>把兴趣铺向外部世界</em>。</div><div class="rule"></div></div>
+    <div class="meta-grid"><div class="cell"><span>作者</span><b>[英] 伯特兰·罗素</b></div><div class="cell"><span>领域</span><b>人生哲学与伦理随笔</b></div><div class="cell"><span>核心命题</span><b>无需宗教支撑的自由人信仰</b></div><div class="cell"><span>出版</span><b>1925 年前后英文成篇的代表性随笔</b></div><div class="cell"><span>方法</span><b>思想实验式的清晰论证</b></div><div class="cell"><span>关键概念</span><b>自由人、兴趣、爱</b></div></div>
+  </div>
+</section>
+<div class="divider"></div>
+<section id="duo">
+  <div class="sec-head"><div class="sec-no">02</div><h2>核心框架：恐惧的信仰 与 自由的信仰</h2></div>
+  <p class="sec-sub">两种安身立命的方式，决定了两种完全不同的快乐</p>
+  <div class="sys-grid">
+<div class="sys s1"><div class="tag">恐惧之路 · Fear</div>
+<h3>向想象中的力量求饶</h3><div class="tagline">把不确定性包装成天意，把焦虑供奉成仪式</div>
+<ul><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>以神明与来世安置对死亡的恐惧</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>道德靠赏罚威慑维持，离开监督即松动</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>自我被恐惧围困，兴趣收缩回自身</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>群体因共同的恐惧而排他、而狂热</li></ul><div class="speed"><b>求庇</b><span>安慰是真实的，代价是真实世界的让渡</span></div></div>
+<div class="sys s2"><div class="tag">自由之路 · Freedom</div>
+<h3>把目光转向世界本身</h3><div class="tagline">接受宇宙的无目的，然后在其中建造意义</div>
+<ul><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>承认自然的非人格，放弃向天意索要公道</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>道德不必神授，源于对他人苦难的想象</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>兴趣向外生长，自我变小而快乐变大</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>爱、知识与同情，是不依赖救赎的支点</li></ul><div class="speed"><b>建造</b><span>自由人靠欣赏与创造对抗虚无</span></div></div>
+</div>
+<div class="vs-wrap"><div class="vs-head v3"><div class="h0">对比维度</div><div class="h1c">恐惧的信仰</div><div class="h2c">自由的信仰</div></div>
+<div class="vs-row v3"><div class="dim">运作方式</div><div class="v1">求庇护、求赏罚</div><div class="v2">观察、爱、创造</div></div>
+<div class="vs-row v3"><div class="dim">道德根基</div><div class="v1">外部威慑</div><div class="v2">对人苦乐的感同身受</div></div>
+<div class="vs-row v3"><div class="dim">快乐来源</div><div class="v1">安全感</div><div class="v2">对外部世界的兴趣</div></div>
+<div class="vs-row v3"><div class="dim">面对死亡</div><div class="v1">寄望来世</div><div class="v2">让此生配得上自己的怀念</div></div>
+</div>
+<div class="sys-note"><b>关键洞察 —</b> 罗素的赌注是：拿走天堂，人不会垮掉。恐惧产生的道德脆弱而排他，唯有把兴趣投向他人与世界，快乐才不依赖运气与来世。</div>
+</section>
+<div class="divider"></div>
+<section id="chart">
+  <div class="sec-head"><div class="sec-no">03</div><h2>全书最深的一张图</h2></div>
+  <p class="sec-sub">快乐的支点取决于注意力的方向</p>
+  <div class="spectrum">
+    <h3>快乐的支点在哪里 — 罗素式快乐是注意力的问题，不是运气的问题</h3>
+    <div class="en">Where Happiness Anchors</div>
+    <svg viewBox="0 0 900 230" role="img" aria-label="快乐的支点在哪里">
+<rect x="0" y="0" width="900" height="230" fill="#faf9f5" rx="12"/>
+<defs><linearGradient id="g_b77_spectrum" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#6b4a8a"/><stop offset="0.5" stop-color="#a364ac"/><stop offset="1" stop-color="#6e904d"/></linearGradient></defs>
+<rect x="60" y="98" width="780" height="26" rx="13" fill="url(#g_b77_spectrum)" opacity="0.85"/>
+<circle cx="450" cy="111" r="17" fill="#faf9f5" stroke="#6b4a8a" stroke-width="4"/>
+<circle cx="450" cy="111" r="6" fill="#6b4a8a"/>
+<text x="450" y="70" text-anchor="middle" font-size="16" font-weight="600" fill="#6b4a8a">自由人</text>
+<text x="450" y="155" text-anchor="middle" font-size="12.5" fill="#535b62">清醒地知道宇宙无意，仍选择热爱</text>
+<text x="150" y="70" text-anchor="middle" font-size="14" fill="#6b4a8a" font-weight="600">向内收缩</text>
+<text x="150" y="155" text-anchor="middle" font-size="12" fill="#848d94">恐惧、自恋、罪恶感把注意力锁死在自己身上</text>
+<text x="750" y="70" text-anchor="middle" font-size="14" fill="#6e904d" font-weight="600">向外伸展</text>
+<text x="750" y="155" text-anchor="middle" font-size="12" fill="#848d94">兴趣、爱与工作把自我溶解进世界</text>
+<text x="450" y="205" text-anchor="middle" font-size="11.5" fill="#848d94">罗素式快乐是注意力的问题，不是运气的问题</text>
+</svg>
+    <div class="cap"><b>怎么用 —</b> 怎么用：盘点一天里注意力的去向——多少在担心自己，多少在真实地对外物感兴趣，再决定明天把注意力挪到哪里。</div>
+  </div>
+</section>
+<div class="divider"></div>
+<section id="fx">
+  <div class="sec-head"><div class="sec-no">04</div><h2>关键概念卡片</h2></div>
+  <p class="sec-sub">主要概念、方法与案例</p>
+  <div class="fx-grid"><div class="fx"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6b4a8a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7.5-4.6-9.3-9A5.2 5.2 0 0112 6.2 5.2 5.2 0 0121.3 11c-1.8 4.4-9.3 9-9.3 9z"/></svg></div>
+<h3>三大激情</h3><div class="en">Three Passions</div><p>本书围绕罗素自述的人生动力展开：对爱的渴望、对知识的追求、对人类苦难的同情，像飓风一样把他吹来吹去。三者都不是教条，而是可辨认的生命体验。</p><div class="eg"><b>例：</b>写自传序言时，他已把一生归因于这三者。</div></div><div class="fx"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6b4a8a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"/><circle cx="12" cy="12" r="2.6"/></svg></div>
+<h3>自由人的信仰</h3><div class="en">A Free Man's Worship</div><p>本书围绕罗素早期名篇的立场展开：宇宙并不为人类而设，崇拜不必指向神。人可以在承认世界的冷漠之后，依然选择尊崇真、美与创造，不向命运摇尾乞怜。</p><div class="eg"><b>例：</b>他说人生如戏，戏终人散也要演好自己的角色。</div></div><div class="fx"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6b4a8a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4v7a6 6 0 0012 0V4M6 4h4v7M14 4h4v7"/></svg></div>
+<h3>兴趣向外</h3><div class="en">Outward Interest</div><p>本书围绕快乐的方法论展开：抑郁多因自我关注过剩。把兴趣真诚地铺向人、物、观念，自我被稀释，快乐随之而来。这不是劝慰，而是一种注意力技术。</p><div class="eg"><b>例：</b>沉溺者先被要求去认真关注一件事，而非先被开导。</div></div><div class="fx"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6b4a8a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M4 7h16M6 7l-3 6a3 3 0 006 0zM18 7l-3 6a3 3 0 006 0z"/></svg></div>
+<h3>无神道德</h3><div class="en">Morality without God</div><p>本书围绕伦理的世俗基础展开：行为的对错不靠天罚裁决，而看它增进还是损害人的幸福。道德教育的目标是培养对他人苦乐的敏感，而非恐惧。</p><div class="eg"><b>例：</b>孩子诚实，应因共情他人，而非怕被发现。</div></div><div class="fx"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6b4a8a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4M5 4h12l-2.5 3.5L17 11H5"/></svg></div>
+<h3>反对服从权威</h3><div class="en">Against Authority</div><p>本书围绕罗素的怀疑精神展开：一切主张都应接受证据检验，包括他自己的。他不提供终极答案，只示范如何清晰地问问题、诚实地修正结论。</p><div class="eg"><b>例：</b>他晚年立场多有改变，并公开承认早年的错。</div></div><div class="fx"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6b4a8a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12c2.5-3 5-3 7.5 0s5 3 7.5 0 3-2 5 0M2 17c2.5-3 5-3 7.5 0s5 3 7.5 0 3-2 5 0M2 7c2.5-3 5-3 7.5 0"/></svg></div>
+<h3>苦难与同情</h3><div class="en">Sympathy for Suffering</div><p>本书围绕快乐的边界展开：罗素不鼓吹廉价乐观。个人幸福与对世间苦难的清醒认知并存，同情不是负担，而是让生活有分量的压舱石。</p><div class="eg"><b>例：</b>他一生介入公共事务，从和平运动到教育实验。</div></div></div>
+</section>
+<div class="divider"></div>
+<section id="flow">
+  <div class="sec-head"><div class="sec-no">05</div><h2>全书脉络图</h2></div>
+  <p class="sec-sub">按主题线展开：从怀疑出发，抵达一种可以过日子的信念</p>
+  <div class="flow"><div class="step"><div class="node"><b>01</b><span>CH.</span></div>
+<div class="body"><h3>拆除偶像<small>Dismantling Idols</small></h3><p>先检验那些靠恐惧维持的信念，把安慰与真理分开。</p><span class="pill">怀疑</span></div></div><div class="step"><div class="node"><b>02</b><span>CH.</span></div>
+<div class="body"><h3>宇宙的沉默<small>A Purposeless Universe</small></h3><p>承认自然不关心人类，这是信仰必须站立的地面。</p><span class="pill">直面</span></div></div><div class="step"><div class="node"><b>03</b><span>CH.</span></div>
+<div class="body"><h3>重建支点<small>New Anchors</small></h3><p>爱、知识与创造，替代救赎成为生活的支撑。</p><span class="pill">建造</span></div></div><div class="step"><div class="node"><b>04</b><span>CH.</span></div>
+<div class="body"><h3>快乐的技艺<small>The Craft of Joy</small></h3><p>把注意力向外铺展，快乐成为可练习的能力。</p><span class="pill">练习</span></div></div><div class="step"><div class="node"><b>05</b><span>CH.</span></div>
+<div class="body"><h3>道德的世俗化<small>Secular Ethics</small></h3><p>对错以人的苦乐衡量，敏感取代恐惧成为德性之源。</p><span class="pill">重估</span></div></div><div class="step"><div class="node"><b>06</b><span>CH.</span></div>
+<div class="body"><h3>信而践行<small>Living It Out</small></h3><p>信仰要落到婚姻、教育、和平等具体公共事务上。</p><span class="pill">践行</span></div></div></div>
+</section>
+<div class="divider"></div>
+<section id="quotes">
+  <div class="sec-head"><div class="sec-no">06</div><h2>金句摘录</h2></div>
+  <p class="sec-sub">值得抄进笔记本的句子（据核心观点转述）</p>
+  <div class="quotes"><div class="quote"><div class="mark">&ldquo;</div><p>对爱情的渴望，对知识的追求，对人类苦难痛彻肺腑的怜悯，支配了我的一生。</p><div class="src">—— 自传序言</div></div><div class="quote"><div class="mark">&ldquo;</div><p>美好的人生是由爱所激发、由知识所引导的人生。</p><div class="src">—— 论美好人生</div></div><div class="quote"><div class="mark">&ldquo;</div><p>不快乐的根源，多半是把注意力全押在自己身上。</p><div class="src">—— 论快乐</div></div><div class="quote"><div class="mark">&ldquo;</div><p>道德不是威慑的产物，而是对他人苦乐的敏感。</p><div class="src">—— 论道德</div></div><div class="quote span2"><div class="mark">&ldquo;</div><p>永远不要让自己的结论，逃脱自己提出的怀疑。</p><div class="src">—— 论怀疑</div></div></div>
+</section>
+<div class="divider"></div>
+<section id="actions">
+  <div class="sec-head"><div class="sec-no">07</div><h2>对工作与决策的行动启发</h2></div>
+  <p class="sec-sub">读完就能上手的方法</p>
+  <div class="act-grid"><div class="act"><div class="num">1</div><div><h3>盘点注意力</h3><p>今晚记录一天里注意力花在担心自己与对外物感兴趣的比例，明日据此调整一项安排。</p></div></div><div class="act"><div class="num">2</div><div><h3>做一次无神推理</h3><p>写下一个你靠天意或运气解释的结论，改用三个可验证的事实重新解释一遍。</p></div></div><div class="act"><div class="num">3</div><div><h3>找一件向外兴趣</h3><p>本周认认真真投入一件与己无关的兴趣：观鸟、看云、读史，规则是只观察不评价自己。</p></div></div><div class="act"><div class="num">4</div><div><h3>练一次证据怀疑</h3><p>对今天最坚定的一个观点，写下它最需要的反例，存进笔记，一月后回来核对。</p></div></div><div class="act"><div class="num">5</div><div><h3>做一次同情练习</h3><p>读到一则他人苦难的新闻时，写两句具体的共情与一个可做的小动作，并当天做掉。</p></div></div><div class="act"><div class="num">6</div><div><h3>重写人生动力</h3><p>仿照三大激情，写下支配自己的三种动力，并检查它们带来的是收缩还是伸展。</p></div></div></div>
+</section>
+<div class="divider"></div>
+<section id="who">
+  <div class="sec-head"><div class="sec-no">08</div><h2>这本书适合谁读</h2></div>
+  <p class="sec-sub">如果你符合其中一条，它都值得放进书单</p>
+  <div class="split">
+    <div class="imgcol" id="who-img"><div class="cap">清晰即美德：罗素式写作的底色</div></div>
+    <div class="fit-list"><div class="fit"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 9l4 4 10-10" stroke="#6b4a8a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>爱追问意义的人</b><span>想知道没有宗教支撑的人如何活得笃定，这里有清晰的论证示范。</span></div></div><div class="fit"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 9l4 4 10-10" stroke="#6b4a8a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>随笔与思想散文爱好者</b><span>罗素的文字是清晰写作的范本，论证与文采兼备。</span></div></div><div class="fit"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 9l4 4 10-10" stroke="#6b4a8a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>情绪低耗电的都市读者</b><span>快乐方法部分可直接当注意力练习手册使用。</span></div></div><div class="fit"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2v4M9 12v4M2 9h4M12 9h4" stroke="#a58ac0" stroke-width="2" stroke-linecap="round"/></svg><div><b>读前提示</b><span>把书里的信仰读作生活立场而非教义，并接受他随时自我修正的写法。</span></div></div></div>
+  </div>
+</section>
+</div>
+
+<footer>
+  <div class="line"></div>
+  <b>《我所相信的生活》精读笔记 · 读书摘要卡</b>
+  <p class="disclaim">本页为基于该书公开核心观点整理的读书笔记，用于知识科普与个人学习参考，非原文逐字转载。书名、理论与观点版权归原作者及出版方所有。头图为哲学家书房主题配图（Wikimedia Commons，公有领域）。</p>
+</footer>
+
+<script>
+  var DOC_ARCHIVE = "../assets/hero/h08.jpg";
+  document.getElementById('hero').style.backgroundImage = "url('" + DOC_ARCHIVE + "')";
+  var wi = document.getElementById('who-img');
+  if (wi) wi.style.backgroundImage = "url('" + DOC_ARCHIVE + "')";
+
+  (function(){
+    var bar = document.getElementById('progress');
+    function upd(){
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.width = (max > 0 ? (h.scrollTop / max * 100) : 0) + '%';
+    }
+    window.addEventListener('scroll', upd, {passive:true});
+    window.addEventListener('resize', upd);
+    upd();
+  })();
+</script>
+
+</body>
+</html>

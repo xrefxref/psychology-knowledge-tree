@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page-node-id="0DBPYeYaAJFEHBCB0S0l78">
+<head data-page-node-id="5YEGp73trngTHdqeSuF3Iz">
+<meta charset="UTF-8" data-page-node-id="JzTQH2R74LoPEPHPS7P2Af">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" data-page-node-id="DWqfHsa5vMhjUyV6rIrjzY">
+<title>《思考，快与慢》精读笔记 · 读书摘要卡</title>
+<meta name="description" content="丹尼尔·卡尼曼《思考，快与慢》读书笔记：双系统框架、认知偏误卡片、前景理论、全书脉络与行动启发。" data-page-node-id="vrjF3eAu0KHzqRFNauLR6l">
+<style>
+  :root{
+    --paper:#f6f1e7;
+    --paper-2:#fbf8f1;
+    --paper-3:#f1e9d8;
+    --ink:#2b2722;
+    --ink-soft:#5c554b;
+    --ink-faint:#8a8074;
+    --line:#e3dac8;
+    --accent:#9a3b2e;      /* 书签朱红 */
+    --accent-2:#b8794a;    /* 棕金 */
+    --sys1:#c2683f;        /* 系统1 暖 */
+    --sys2:#3f6b8c;        /* 系统2 冷 */
+    --gold:#a9852f;
+    --shadow:0 12px 40px rgba(43,39,34,.10);
+    --shadow-sm:0 4px 18px rgba(43,39,34,.08);
+    --serif:"Songti SC","Source Han Serif SC","Noto Serif SC",Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--sans);
+    color:var(--ink);
+    background:var(--paper);
+    background-image:
+      radial-gradient(circle at 18% 8%, rgba(184,121,74,.055), transparent 42%),
+      radial-gradient(circle at 84% 88%, rgba(154,59,46,.045), transparent 46%);
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  /* 纸张噪点肌理 */
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.035'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  body>*{position:relative;z-index:1;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
+  h1,h2,h3,.serif{font-family:var(--serif);}
+  ::selection{background:rgba(154,59,46,.18);}
+
+  /* ===== 阅读进度条 ===== */
+  #progress{
+    position:fixed;top:0;left:0;height:3px;width:0;z-index:99;
+    background:linear-gradient(90deg,var(--accent-2),var(--accent));
+    transition:width .1s linear;
+  }
+
+  /* ============ HERO ============ */
+  .hero{
+    position:relative;
+    min-height:clamp(480px,72vh,640px);
+    display:flex;align-items:flex-end;
+    background-size:cover;background-position:center 30%;
+    color:#fdf8ee;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";position:absolute;inset:0;
+    background:
+      linear-gradient(180deg, rgba(26,20,14,.24) 0%, rgba(26,20,14,.34) 42%, rgba(22,17,11,.88) 100%),
+      linear-gradient(90deg, rgba(22,17,11,.58) 0%, rgba(22,17,11,0) 58%);
+  }
+  .hero-inner{position:relative;z-index:2;width:100%;max-width:1080px;margin:0 auto;padding:88px 28px 54px;}
+  .hero .kicker{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:13px;letter-spacing:.22em;text-transform:uppercase;
+    color:#f0d9b8;border:1px solid rgba(240,217,184,.45);
+    padding:6px 15px;border-radius:30px;margin-bottom:22px;backdrop-filter:blur(2px);
+  }
+  .hero h1{
+    font-size:clamp(34px,6vw,62px);line-height:1.12;font-weight:700;
+    letter-spacing:.01em;text-shadow:0 2px 24px rgba(0,0,0,.45);
+    margin-bottom:10px;
+  }
+  .hero .sub-en{font-family:var(--serif);font-style:italic;font-size:clamp(15px,2.4vw,22px);color:#e9d4b4;opacity:.92;margin-bottom:20px;}
+  .hero .lead{max-width:640px;font-size:clamp(15px,2vw,18px);color:#f3e8d6;}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:24px 34px;margin-top:30px;}
+  .hero-meta .m{display:flex;flex-direction:column;}
+  .hero-meta .m b{font-family:var(--serif);font-size:20px;color:#fff;}
+  .hero-meta .m span{font-size:12.5px;letter-spacing:.08em;color:#d9c4a4;}
+
+  /* 书签色带 */
+  .ribbon{
+    position:absolute;top:0;right:clamp(16px,5vw,52px);z-index:3;width:44px;
+    background:var(--accent);color:#fff;text-align:center;
+    padding:15px 0 24px;font-family:var(--serif);font-size:13px;letter-spacing:.14em;
+    box-shadow:0 6px 16px rgba(0,0,0,.32);
+  }
+  .ribbon::after{content:"";position:absolute;left:0;bottom:-13px;border-width:0 22px 14px;border-style:solid;border-color:var(--accent) var(--accent) transparent;}
+  .ribbon span{writing-mode:vertical-rl;}
+
+  /* ===== 目录跳转条 ===== */
+  .toc-bar{
+    background:var(--paper-2);border-bottom:1px solid var(--line);
+    position:sticky;top:0;z-index:50;
+    box-shadow:0 2px 14px rgba(43,39,34,.06);
+  }
+  .toc-in{max-width:1080px;margin:0 auto;padding:10px 28px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .toc-in .lab{font-family:var(--serif);font-size:13px;color:var(--accent);letter-spacing:.1em;margin-right:6px;}
+  .toc-in a{
+    font-size:12.5px;color:var(--ink-soft);text-decoration:none;
+    padding:4px 11px;border-radius:20px;border:1px solid transparent;
+    transition:all .18s;white-space:nowrap;
+  }
+  .toc-in a:hover{color:var(--accent);border-color:rgba(154,59,46,.35);background:rgba(154,59,46,.05);}
+
+  /* ============ SECTION SCAFFOLD ============ */
+  section{padding:60px 0 56px;scroll-margin-top:64px;}
+  .sec-head{display:flex;align-items:center;gap:14px;margin-bottom:8px;}
+  .sec-no{
+    font-family:var(--serif);font-size:14px;color:var(--accent);
+    border:1px solid var(--accent);border-radius:50%;
+    width:34px;height:34px;display:flex;align-items:center;justify-content:center;flex:none;
+  }
+  .sec-head h2{font-size:clamp(23px,3.4vw,31px);color:var(--ink);}
+  .sec-sub{color:var(--ink-faint);font-size:14.5px;margin-bottom:32px;padding-left:48px;}
+  @media(max-width:880px){.sec-sub{padding-left:0;}}
+
+  .divider{height:1px;background:linear-gradient(90deg,transparent,var(--line) 18%,var(--line) 82%,transparent);}
+
+  /* ===== 01 书籍信息卡 ===== */
+  .bookcard{
+    display:grid;grid-template-columns:1.1fr 1fr;gap:34px;align-items:center;
+    background:var(--paper-2);border:1px solid var(--line);border-radius:18px;
+    padding:38px;box-shadow:var(--shadow);position:relative;overflow:hidden;
+  }
+  .bookcard::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:linear-gradient(var(--accent),var(--accent-2));}
+  .one-liner{font-family:var(--serif);font-size:clamp(19px,2.9vw,26px);line-height:1.55;color:var(--ink);}
+  .one-liner em{color:var(--accent);font-style:normal;}
+  .one-liner .rule{width:52px;height:3px;background:var(--accent);border-radius:2px;margin:18px 0 0;opacity:.85;}
+  .meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 22px;}
+  .meta-grid .cell span{display:block;font-size:12px;letter-spacing:.1em;color:var(--ink-faint);text-transform:uppercase;margin-bottom:3px;}
+  .meta-grid .cell b{font-family:var(--serif);font-size:16.5px;color:var(--ink);font-weight:600;line-height:1.45;}
+  @media(max-width:880px){.bookcard{grid-template-columns:1fr;padding:28px;gap:26px;}}
+
+  /* ===== 02 双系统 ===== */
+  .sys-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .sys{border-radius:16px;padding:30px 28px;color:#fff;position:relative;overflow:hidden;box-shadow:var(--shadow);}
+  .sys.s1{background:linear-gradient(150deg,#c2683f,#9c4a28);}
+  .sys.s2{background:linear-gradient(150deg,#3f6b8c,#2c4f6b);}
+  .sys .tag{font-size:12px;letter-spacing:.16em;opacity:.85;text-transform:uppercase;}
+  .sys h3{font-size:26px;margin:6px 0 4px;}
+  .sys .tagline{font-family:var(--serif);font-style:italic;font-size:16px;opacity:.92;margin-bottom:18px;}
+  .sys ul{list-style:none;display:flex;flex-direction:column;gap:11px;}
+  .sys li{display:flex;gap:10px;font-size:14.5px;line-height:1.55;align-items:flex-start;}
+  .sys li svg{flex:none;margin-top:4px;}
+  .sys .speed{display:inline-flex;align-items:baseline;gap:8px;margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.22);}
+  .sys .speed b{font-size:30px;font-family:var(--serif);}
+  .sys .speed span{font-size:12.5px;opacity:.82;}
+  @media(max-width:880px){.sys-grid{grid-template-columns:1fr;}}
+
+  .sys-note{
+    margin-top:22px;background:var(--paper-2);border:1px dashed var(--accent-2);
+    border-radius:12px;padding:18px 22px;font-size:14.5px;color:var(--ink-soft);
+  }
+  .sys-note b{color:var(--accent);font-family:var(--serif);}
+
+  /* 双系统对比表 */
+  .vs-wrap{margin-top:26px;background:var(--paper-2);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .vs-head{
+    display:grid;grid-template-columns:1.1fr 1fr 1fr;
+    background:linear-gradient(90deg,rgba(194,104,63,.10),rgba(63,107,140,.10));
+    border-bottom:1px solid var(--line);
+  }
+  .vs-head div{padding:14px 18px;font-family:var(--serif);font-size:15px;}
+  .vs-head .h1c{color:var(--sys1);}
+  .vs-head .h2c{color:var(--sys2);}
+  .vs-row{display:grid;grid-template-columns:1.1fr 1fr 1fr;border-bottom:1px solid var(--line);}
+  .vs-row:last-child{border-bottom:none;}
+  .vs-row:nth-child(odd){background:rgba(246,241,231,.55);}
+  .vs-row .dim{padding:12px 18px;font-size:13px;color:var(--ink-faint);letter-spacing:.04em;display:flex;align-items:center;}
+  .vs-row .v1{padding:12px 18px;font-size:13.5px;color:var(--ink-soft);border-left:1px dashed var(--line);display:flex;align-items:center;}
+  .vs-row .v2{padding:12px 18px;font-size:13.5px;color:var(--ink-soft);border-left:1px dashed var(--line);display:flex;align-items:center;}
+  @media(max-width:680px){
+    .vs-head{grid-template-columns:1fr 1fr;}
+    .vs-head .h0{display:none;}
+    .vs-row{grid-template-columns:1fr;padding:10px 0;}
+    .vs-row .dim{
+      grid-column:1/-1;padding:4px 18px 2px;
+      font-family:var(--serif);color:var(--accent);font-size:13.5px;
+    }
+    .vs-row .v1,.vs-row .v2{border-left:none;padding:2px 18px;}
+    .vs-row .v1::before{content:"系统1　";color:var(--sys1);font-weight:600;}
+    .vs-row .v2::before{content:"系统2　";color:var(--sys2);font-weight:600;}
+  }
+
+  /* ===== 03 偏误卡片 ===== */
+  .bias-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+  .bias{
+    background:var(--paper-2);border:1px solid var(--line);border-radius:14px;
+    padding:24px 24px 22px;position:relative;overflow:hidden;
+    transition:transform .2s,box-shadow .2s;
+  }
+  .bias:hover{transform:translateY(-3px);box-shadow:var(--shadow);}
+  .bias .ic{
+    width:42px;height:42px;border-radius:11px;background:rgba(154,59,46,.08);
+    display:flex;align-items:center;justify-content:center;margin-bottom:14px;
+  }
+  .bias h3{font-size:18px;margin-bottom:3px;color:var(--ink);}
+  .bias .en{font-size:12px;letter-spacing:.06em;color:var(--ink-faint);margin-bottom:11px;}
+  .bias p{font-size:14px;color:var(--ink-soft);line-height:1.65;}
+  .bias .eg{margin-top:12px;font-size:13px;color:var(--accent);background:rgba(154,59,46,.06);border-radius:8px;padding:8px 11px;}
+  .bias .eg b{font-weight:600;}
+  @media(max-width:880px){.bias-grid{grid-template-columns:1fr;}}
+
+  /* ===== 04 前景理论 ===== */
+  .prospect{
+    display:grid;grid-template-columns:1.25fr 1fr;gap:30px;align-items:center;
+    background:var(--paper-2);border:1px solid var(--line);border-radius:18px;
+    padding:34px;box-shadow:var(--shadow);
+  }
+  .prospect h3{font-size:21px;margin-bottom:4px;}
+  .prospect .en{font-size:12.5px;letter-spacing:.06em;color:var(--ink-faint);margin-bottom:14px;}
+  .prospect p{font-size:14.5px;color:var(--ink-soft);line-height:1.75;}
+  .prospect .key{margin-top:14px;font-size:13.5px;color:var(--accent);background:rgba(154,59,46,.06);border-radius:8px;padding:9px 12px;}
+  .chart{width:100%;height:auto;display:block;}
+  @media(max-width:880px){.prospect{grid-template-columns:1fr;padding:26px;}}
+
+  /* ===== 05 章节脉络 ===== */
+  .flow{position:relative;padding-left:8px;}
+  .flow .step{display:grid;grid-template-columns:64px 1fr;gap:20px;position:relative;padding-bottom:28px;}
+  .flow .step:not(:last-child)::before{
+    content:"";position:absolute;left:31px;top:48px;bottom:0;width:2px;
+    background:linear-gradient(var(--accent-2),var(--line));
+  }
+  .flow .node{
+    width:64px;height:64px;border-radius:50%;background:var(--paper-2);
+    border:2px solid var(--accent-2);display:flex;flex-direction:column;
+    align-items:center;justify-content:center;flex:none;position:relative;z-index:2;
+    box-shadow:0 3px 10px rgba(43,39,34,.08);
+  }
+  .flow .node b{font-family:var(--serif);font-size:20px;color:var(--accent);line-height:1.1;}
+  .flow .node span{font-size:10px;color:var(--ink-faint);letter-spacing:.05em;}
+  .flow .body{padding-top:6px;}
+  .flow .body h3{font-size:18px;margin-bottom:5px;}
+  .flow .body h3 small{font-size:12.5px;color:var(--ink-faint);font-family:var(--sans);font-weight:400;margin-left:8px;}
+  .flow .body p{font-size:14px;color:var(--ink-soft);}
+  .flow .body .pill{
+    display:inline-block;margin-top:8px;font-size:12px;color:var(--sys2);
+    background:rgba(63,107,140,.1);padding:3px 11px;border-radius:20px;
+  }
+
+  /* ===== 06 金句 ===== */
+  .quotes{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
+  .quote{
+    background:linear-gradient(160deg,#fbf8f1,#f3ecdd);border:1px solid var(--line);
+    border-radius:16px;padding:30px 28px 26px;position:relative;box-shadow:var(--shadow);
+  }
+  .quote .mark{font-family:Georgia,serif;font-size:64px;line-height:.4;color:var(--accent);opacity:.35;height:30px;}
+  .quote p{font-family:var(--serif);font-size:17.5px;line-height:1.6;color:var(--ink);margin-bottom:14px;}
+  .quote .src{font-size:13px;color:var(--ink-faint);letter-spacing:.04em;}
+  .quote.span2{
+    grid-column:1/-1;background:linear-gradient(110deg,#2b2722,#3a342c);
+    border-color:#241f1a;
+  }
+  .quote.span2 p{color:#f6ecd9;font-size:20.5px;}
+  .quote.span2 .src{color:var(--accent-2);}
+  .quote.span2 .mark{color:var(--accent-2);}
+  @media(max-width:880px){.quotes{grid-template-columns:1fr;}}
+
+  /* ===== 07 行动启发 ===== */
+  .act-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+  .act{
+    display:grid;grid-template-columns:46px 1fr;gap:16px;
+    background:var(--paper-2);border:1px solid var(--line);
+    border-left:4px solid var(--accent);border-radius:12px;padding:22px;
+    transition:transform .2s,box-shadow .2s;
+  }
+  .act:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm);}
+  .act .num{font-family:var(--serif);font-size:26px;color:var(--accent);line-height:1.1;}
+  .act h3{font-size:16.5px;margin-bottom:5px;}
+  .act p{font-size:13.5px;color:var(--ink-soft);line-height:1.65;}
+  @media(max-width:880px){.act-grid{grid-template-columns:1fr;}}
+
+  /* ===== 08 适合谁读 ===== */
+  .split{display:grid;grid-template-columns:1fr 1.15fr;gap:30px;align-items:stretch;}
+  .split .imgcol{
+    border-radius:16px;overflow:hidden;min-height:320px;
+    background-size:cover;background-position:center;
+    box-shadow:var(--shadow);position:relative;
+  }
+  .split .imgcol::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,22,16,0) 42%,rgba(28,22,16,.58));}
+  .split .imgcol .cap{position:absolute;left:22px;bottom:18px;z-index:2;color:#f3e8d6;font-family:var(--serif);font-size:15px;}
+  .fit-list{display:flex;flex-direction:column;gap:14px;}
+  .fit{
+    display:flex;gap:13px;background:var(--paper-2);border:1px solid var(--line);
+    border-radius:12px;padding:16px 18px;align-items:flex-start;
+  }
+  .fit svg{flex:none;margin-top:3px;}
+  .fit b{font-family:var(--serif);font-size:15.5px;display:block;margin-bottom:2px;}
+  .fit span{font-size:13.5px;color:var(--ink-soft);}
+  @media(max-width:880px){.split{grid-template-columns:1fr;}}
+
+  /* footer */
+  footer{padding:46px 28px 60px;text-align:center;color:var(--ink-faint);font-size:13px;}
+  footer .line{width:60px;height:3px;background:var(--accent);margin:0 auto 20px;border-radius:3px;}
+  footer b{font-family:var(--serif);color:var(--ink-soft);}
+  .disclaim{margin-top:10px;font-size:12px;color:var(--ink-faint);max-width:640px;margin-left:auto;margin-right:auto;line-height:1.7;}
+
+  @media print{
+    #progress,.toc-bar,.ribbon{display:none;}
+    body::before{display:none;}
+    section{padding:28px 0;}
+    .bias,.act,.quote,.sys{break-inside:avoid;}
+  }
+
+  /* ===== 系列互链 ===== */
+  .more-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .more{
+    display:flex;flex-direction:column;gap:3px;background:var(--paper-2);
+    border:1px solid var(--line);border-left:4px solid var(--mc);border-radius:12px;
+    padding:16px 18px;text-decoration:none;color:inherit;
+  }
+  a.more:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm,0 4px 18px rgba(43,39,34,.08));}
+  .more b{font-family:var(--serif);font-size:15.5px;}
+  .more i{font-style:normal;font-size:12.5px;color:var(--ink-faint);}
+  .more.current{opacity:.75;background:var(--paper);}
+  .more.current i{color:var(--accent);}
+  .more-all{display:inline-flex;margin-top:18px;font-size:13.5px;color:var(--accent);
+    border:1px solid var(--line);background:var(--paper-2);padding:9px 18px;border-radius:24px;text-decoration:none;transition:all .18s;}
+  .more-all:hover{border-color:var(--accent);background:rgba(154,59,46,.05);}
+  @media(max-width:880px){.more-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body data-page-node-id="W6mTsj39YV0AOLKVz16uE3">
+
+<div id="progress" data-page-node-id="wMupD6V60kXBydWnuK1ThV"></div>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="hero" data-page-node-id="aJu6RnoMakcnv4F6kINBCN">
+  <div class="ribbon" data-page-node-id="zhdXF0naSeitJA7GKilYYI"><span data-page-node-id="L3jEySGXFGuRmHAThSXY7g">读书笔记</span></div>
+  <div class="hero-inner" data-page-node-id="BbDkJRezNrg7cAoYyCqiAg">
+    <span class="kicker" data-page-node-id="lPBCFFz5h21QM7idUVND3R">精读笔记 · 摘要卡</span>
+    <h1 data-page-node-id="1qc1oJNXy79yxClTPW4BRM">《思考，快与慢》</h1>
+    <div class="sub-en" data-page-node-id="nwDhOQUYP78XlnpZ7Ma2A4">Thinking, Fast and Slow &nbsp;·&nbsp; Daniel Kahneman</div>
+    <p class="lead" data-page-node-id="lQ9nzbI70Rkkfmhn0oPeDT">一本关于"我们如何思考、又为何常常想错"的认知心理学经典。两套思维系统，解释判断、决策与偏误背后的全部机制——并整理成可以随时翻阅的知识卡片。</p>
+    <div class="hero-meta" data-page-node-id="GHh0ATJuNDwTgx8yxc0UeJ">
+      <div class="m" data-page-node-id="nqs6ulabq5IIpAZTyfnJ9p"><b data-page-node-id="y42FYW5wkMkUMDQV37kCUG">诺贝尔经济学奖</b><span data-page-node-id="Jzw3uhREcvFyFownxFgRz0">作者学术背景</span></div>
+      <div class="m" data-page-node-id="GuO2vECJx4x75HGTacX8ED"><b data-page-node-id="UHSmidpk9UMoH2qcw0BzBj">2 套系统</b><span data-page-node-id="hOVMCaPWSHrU42McaFBxNk">核心思维框架</span></div>
+      <div class="m" data-page-node-id="f75kXgmUqh18cxw3TLA2kP"><b data-page-node-id="dpzWbs3pcnsWyIZ1At4fqM">8 类偏误</b><span data-page-node-id="ZmMUqKcZW6GHRBmBx7TOC7">重点认知陷阱</span></div>
+      <div class="m" data-page-node-id="TSActIfrskAJIaJFAelyZs"><b data-page-node-id="jfquZCoODNVp5Xc4NiEoAF">5 部分 · 38 章</b><span data-page-node-id="6Egs7cBrAXpFisnFuCnBpU">全书结构</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- 目录跳转条 -->
+<nav class="toc-bar" aria-label="页面目录" data-page-node-id="dneXhUTZeZ6hRwuI89NPeK">
+  <div class="toc-in" data-page-node-id="eYXvn0qY1RcSj8BdECYoID">
+    <span class="lab" data-page-node-id="FEm41DY5CyKIcloZlILZCG">目录</span>
+    <a href="#info" data-page-node-id="4UOFhFTe8kDDm8JqG3vdVX">书籍信息</a>
+    <a href="#systems" data-page-node-id="9nMV4AKIBNEaRnxxQWYdAk">双系统</a>
+    <a href="#biases" data-page-node-id="8QGhzXG1HIiQQxJcJzhzLD">认知偏误</a>
+    <a href="#prospect" data-page-node-id="jR4G7h01uPIbx3TjSEBeNn">前景理论</a>
+    <a href="#flow" data-page-node-id="VTpphajIvhkKLfWMuzySbT">章节脉络</a>
+    <a href="#quotes" data-page-node-id="k3S7hJbBApG4pdGDwn9vTQ">金句</a>
+    <a href="#actions" data-page-node-id="gKpZrDJ0dsdA1pszLhjMhS">行动启发</a>
+    <a href="#who" data-page-node-id="loyXWMtleNWGNeBYQq3F0E">适合谁读</a>
+  </div>
+</nav>
+
+<div class="wrap" data-page-node-id="weYBIYm0QCh2VTyHeMpXul">
+
+  <!-- ===== 01 书籍信息 ===== -->
+  <section id="info" data-page-node-id="1h7izPgDEhRUuhn7tTmyJP">
+    <div class="sec-head" data-page-node-id="3mvAGGtAhWXz9vDy2FCzEF"><div class="sec-no" data-page-node-id="C53cinVlAiLWZbLhFb9OCq">01</div><h2 data-page-node-id="TMHadhRdN2zi0R0uFGsDTp">这本书讲了什么</h2></div>
+    <p class="sec-sub" data-page-node-id="8p4vJDlOCYumO3VAr9i0IN">一句话总览 + 核心信息卡</p>
+    <div class="bookcard" data-page-node-id="rhVNwVC1T5vSTFZehrRdQR">
+      <div data-page-node-id="APAdrekZDLwyfbwLBTO68n">
+        <div class="one-liner" data-page-node-id="HZoSexUNReCTMWFUkDavKt">
+          我们的大脑里住着<em data-page-node-id="r479lYjLFMAjI0JjoKmRok">两个"我"</em>：一个快、靠直觉，一个慢、靠推理。<br data-page-node-id="g4TuNANYTh6gvr4qOIFnKz">
+          生活中的大部分判断由"快"的那个做主——这既是高效，也是<em data-page-node-id="SZ3QAGVNgA0W7byAZSagJw">系统性犯错</em>的根源。<br data-page-node-id="LGWNxSPa1e6IALoDBBuQja">
+          好消息是：偏误可以被<em data-page-node-id="YABWpO6zPATp8QSi9Enf04">认出来</em>，而认出来，就是防住它的第一步。
+        </div>
+        <div class="rule" data-page-node-id="VHTToXNpp9LLlV8njBZpTt"></div>
+      </div>
+      <div class="meta-grid" data-page-node-id="0g5ZUXSWmpGQboSmzcBVCk">
+        <div class="cell" data-page-node-id="WZ1SA9n419T4fO389aIEwh"><span data-page-node-id="J1lDSf1KTkYRBvE5UwtrHp">作者</span><b data-page-node-id="WiCKCtcB8m2h4eWeVbqXDv">丹尼尔·卡尼曼（1934–2024）</b></div>
+        <div class="cell" data-page-node-id="rcK3gH7EwGFSdi8cBFWdrl"><span data-page-node-id="Lh6XhTmvalMKulGnCcPfVQ">领域</span><b data-page-node-id="OwnejVQUO3KJIdCq82qoPs">认知心理学 / 行为经济学</b></div>
+        <div class="cell" data-page-node-id="xtg2AmAQwTnCtDQ3wUfM4F"><span data-page-node-id="61k4qWDBlY3KN9bLdUBPjf">核心命题</span><b data-page-node-id="XA64N4YffDTFXYyB4EF1N3">直觉判断的系统性偏差</b></div>
+        <div class="cell" data-page-node-id="sb6NAbUm6L9XXbTBzSjAyk"><span data-page-node-id="F04S6AAJpOUyOjODaeM5rr">首次出版</span><b data-page-node-id="8fjELuHi8CyOJIQ8W792Si">2011 年</b></div>
+        <div class="cell" data-page-node-id="T1C0LzLc6oo95gNkbVy47l"><span data-page-node-id="dvi9saR88f5BJepd09SzST">理论伙伴</span><b data-page-node-id="tdnBpEyYjvhRKmROHalYNQ">阿莫斯·特沃斯基</b></div>
+        <div class="cell" data-page-node-id="2FaIbdaOqYrVtt4NTAsHSo"><span data-page-node-id="uj3mRX6WUpq9BgI8cwpzzk">代表贡献</span><b data-page-node-id="LwUsknIN6Xni7Lt2PGT6FS">前景理论（2002 年诺贝尔经济学奖）</b></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" data-page-node-id="rGpArphbi4e3f56LxZbSih"></div>
+
+  <!-- ===== 02 双系统 ===== -->
+  <section id="systems" data-page-node-id="gtsaajJYs2JnBZ03OsIlNr">
+    <div class="sec-head" data-page-node-id="EeLzZIp8nQrbFjK8gj6uCb"><div class="sec-no" data-page-node-id="nwk85zX91QHLmEqNgnzn3W">02</div><h2 data-page-node-id="IjOtABHNRZH07JukKCVpsA">核心框架：系统 1 vs 系统 2</h2></div>
+    <p class="sec-sub" data-page-node-id="oEmxP8Qu3Q1I0HycED2e4G">全书的地基——理解了这两套系统，就理解了大半本书</p>
+    <div class="sys-grid" data-page-node-id="qtJs3VR9tskIVqcpwDTFYj">
+      <div class="sys s1" data-page-node-id="74MnM6a7gHnDTaHIghCggl">
+        <div class="tag" data-page-node-id="GYDolAtmAALAz2wQZCA6y1">System 1 · 快思考</div>
+        <h3 data-page-node-id="koAXeCyz3kszhTpu6oxRR7">直觉系统</h3>
+        <div class="tagline" data-page-node-id="xx3GxQnJaW0aniHm2G5Mdj">"自动、无需努力、随时在线"</div>
+        <ul data-page-node-id="4NDGqEAG8XFpLDs1E7q9qg">
+          <li data-page-node-id="ey3g728nGF9saR5a3dDFVX"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" data-page-node-id="IEHvIeJifGABJftIhoHJ7A"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5" data-page-node-id="FWPAaoXEq12rVK92TLPZkK"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="WRoyJxIqFH0JALNsY8OzrV"/></svg>瞬间识别情绪、距离、熟悉的脸</li>
+          <li data-page-node-id="r83g8QIbJBIkRwtra1JEzy"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" data-page-node-id="Zfkf8e9nFzoAqcRPHbzkyM"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5" data-page-node-id="VCeNxbedTWG0QvhAtkFoVZ"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="uqBPIZqmntNJIMZ9oJpL5p"/></svg>脱口而出 2+2，自动补全联想</li>
+          <li data-page-node-id="0XJXXJIi06rdPYfrQsdy5H"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" data-page-node-id="w0ByzvJyFnkrOmHKSZeL5m"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5" data-page-node-id="uRH9xmEh7hdOwJpAEyW3Jt"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="VaaJz8oIWXs0FhJ6m1KYJo"/></svg>用联想编出连贯的故事，感觉"显然如此"</li>
+          <li data-page-node-id="5Wig1beyw72H1f1LPOtplf"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" data-page-node-id="JZhiRauFRUPfDmxSEc4viP"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5" data-page-node-id="S00tcbr3uMnxULemPk58LC"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="GcRuyshQqwkeoMilGKIICN"/></svg>省力高效，但容易被表象带偏</li>
+        </ul>
+        <div class="speed" data-page-node-id="HkVNFX4rKI0WtnGYW6lwYI"><b data-page-node-id="kDpQGGRsmaoZPGFCwXslOA">快</b><span data-page-node-id="0ZtFUxjHm4Gvw1lU2Bie0a">毫秒级 · 并行 · 无意识</span></div>
+      </div>
+      <div class="sys s2" data-page-node-id="q9ASIHsjXGBBBx4v3ZZTPg">
+        <div class="tag" data-page-node-id="HlEl0QcB2MBtgzutfSSZak">System 2 · 慢思考</div>
+        <h3 data-page-node-id="vBtvcw6PUMkyNEg45jjBar">理性系统</h3>
+        <div class="tagline" data-page-node-id="7A5Q3gDhqTB43jbdxJ9KpU">"刻意、耗费精力、需要专注"</div>
+        <ul data-page-node-id="QoCk4W4R8JRII9UFz6jw0e">
+          <li data-page-node-id="2xre7wc5g5sz5aVOj4hA0M"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" data-page-node-id="3FV4JVaXhYn8FtGQuSWa69"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5" data-page-node-id="j64IM1642Bw7BuyB4u32My"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="qAty3c7GDIucjx1nmvImci"/></svg>计算 17×24、填写复杂表格</li>
+          <li data-page-node-id="oCaNiWyEZrYGlGXfuqzwPi"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" data-page-node-id="6Ow5TB5G0QlUHNnW6cRYRd"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5" data-page-node-id="4qINAen6ZzFpX7ql4bzccu"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="rfbXPiVcz8Xdzw8FGt6GSs"/></svg>核查直觉、权衡证据、控制冲动</li>
+          <li data-page-node-id="EC0iXbvMEgEC1qDWSJxG5N"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" data-page-node-id="7F0cw0GHE5F4QOtIkcprDW"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5" data-page-node-id="WDxD4mKGNUyGcMdbEot4o6"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="tO5mFr3JKEk8rF1JizdgFY"/></svg>保持标准不放松、多任务切换</li>
+          <li data-page-node-id="XfCjkYPNnMXowMEbJJu9QM"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" data-page-node-id="EocR2qfa4y5fHHUFUmtDfU"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5" data-page-node-id="fa4Sd3eclJjcrPDBN4tvK4"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="xxHo0yDIxNaLbz6urGzW9u"/></svg>容量有限、容易疲惫，常"偷懒"</li>
+        </ul>
+        <div class="speed" data-page-node-id="LxavX6Q0Eh6JJUWe2VYieY"><b data-page-node-id="0rX6cyOTWTkIRkdOy11qwm">慢</b><span data-page-node-id="ShxDUUcbiQqvTRNqBAuIFv">秒级 · 串行 · 有意识</span></div>
+      </div>
+    </div>
+
+    <div class="vs-wrap" data-page-node-id="HvCZh7CGAz9fBNM2sANNq3">
+      <div class="vs-head" data-page-node-id="9tsFOPvWGbkXQ8MdXUJSw1">
+        <div class="h0" style="color:var(--ink-faint);font-size:13px;" data-page-node-id="P8paCyItAFDIJGo6mIy2Hu">对比维度</div>
+        <div class="h1c" data-page-node-id="MhYPFqXQUrOril410rHV5o">系统 1 · 快思考</div>
+        <div class="h2c" data-page-node-id="pYFrqBvM56oO4MKh8rFbaw">系统 2 · 慢思考</div>
+      </div>
+      <div class="vs-row" data-page-node-id="nvQm1MMEJLRYLVCCK27NDJ"><div class="dim" data-page-node-id="A4MoPT1YT7iAAkdNJGeGNj">运行方式</div><div class="v1" data-page-node-id="n887CJc2niYftPExkajSrO">自动发生，不受意志控制</div><div class="v2" data-page-node-id="DedPZ3j79JMEd6t89SZQKT">刻意启动，需要主动调用</div></div>
+      <div class="vs-row" data-page-node-id="oEr3nnC6kYXsgDaYRl4Oxp"><div class="dim" data-page-node-id="34UR91J6Eh2HZ5NDqnZSat">意识参与</div><div class="v1" data-page-node-id="GRrTJUiAhLTgGQT9KtLarD">无意识，感觉是"直觉"</div><div class="v2" data-page-node-id="zu00zjc5nn1N2gGG0HTvch">有意识，能被自己察觉</div></div>
+      <div class="vs-row" data-page-node-id="kjo6ZdhoWXMBlOKAiWSKxX"><div class="dim" data-page-node-id="fJhqnRxw2ujkVKiou1rMIs">认知消耗</div><div class="v1" data-page-node-id="zyQvvhNLuf2JB1dSOCLNfX">几乎不耗费精力</div><div class="v2" data-page-node-id="6WFA7TFvBb6SGvLtCfZDRr">高耗能，会疲劳与"糖税"</div></div>
+      <div class="vs-row" data-page-node-id="8CQF0mjXpNf3RU4R1NXm0X"><div class="dim" data-page-node-id="GQTjvDBdhznbNCHdrfrnd5">典型任务</div><div class="v1" data-page-node-id="NWAKeTDgPBtKrlbBiqBL0H">读大字标语、察言观色、2+2</div><div class="v2" data-page-node-id="ZzknP3HHdP3FPNplwk7zfb">心算 17×24、比较两款手机</div></div>
+      <div class="vs-row" data-page-node-id="ur17uWnKgtPLUEB42QEAZw"><div class="dim" data-page-node-id="FB4ppSQhgOyddXBmDfKq6r">出错模式</div><div class="v1" data-page-node-id="OKfV0tcyrp1ttIFgk9BOcf">系统性偏误，稳定可预测</div><div class="v2" data-page-node-id="xCwVXU0D1PQdR3aDSSScSC">懒得核查，为直觉背书</div></div>
+      <div class="vs-row" data-page-node-id="0BHjMaKtmKKPMCjtPryVB0"><div class="dim" data-page-node-id="fBVfGgxvnTjMvJjBMfhBNP">可否训练</div><div class="v1" data-page-node-id="VpWNBJKmCi3Tr8WsgqtMRZ">靠大量练习形成"习得的直觉"</div><div class="v2" data-page-node-id="3PtoIkVHSREkiRduS0lWGG">靠流程与清单外部辅助</div></div>
+    </div>
+
+    <div class="sys-note" data-page-node-id="CU4DTnCiDsnwa0d2wjiCEC">
+      <b data-page-node-id="uCtmOlu4NhKW5MoNfAHJEE">关键洞察 —</b> 系统 2 自以为是主角，实际上大多数时候只是为系统 1 的直觉"背书"。真正的认知功夫，是在该慢的时候<b data-page-node-id="M1epNYtnaXDDj9ou9pD3vV">愿意</b>慢下来，调动系统 2 去复核那个看似显而易见的答案。
+    </div>
+  </section>
+
+  <div class="divider" data-page-node-id="b67hQVGgCX106QNbQX0DFH"></div>
+
+  <!-- ===== 03 偏误卡片 ===== -->
+  <section id="biases" data-page-node-id="YAkA3prYCSWZ9nL7XMRAyn">
+    <div class="sec-head" data-page-node-id="cdRgTv8ygNlHlTWCFd96Kj"><div class="sec-no" data-page-node-id="d7O7HDoCkW818pqH7TJU77">03</div><h2 data-page-node-id="KeCBHJjHpyFDEgFyuHTvfB">关键认知偏误卡片</h2></div>
+    <p class="sec-sub" data-page-node-id="iOOw92H1nHF9zAjw7FfojU">系统 1 走捷径时最常踩的 8 个坑——认出它们，就赢了一半</p>
+    <div class="bias-grid" data-page-node-id="PQEgfPoxnzeJ2Q5Nm3vjJw">
+      <div class="bias" data-page-node-id="5xEWBBHxYQHPGNadv49eDk">
+        <div class="ic" data-page-node-id="mVjn0D0x8ksSc0MKzlcdZM"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" data-page-node-id="6IcOefcN9mbLwJSoCfVpkF"><path d="M12 3v18M5 8h14" stroke="#9a3b2e" stroke-width="1.8" stroke-linecap="round" data-page-node-id="khef4m1dIW0iyhNxtXWqFn"/><circle cx="12" cy="8" r="3" stroke="#9a3b2e" stroke-width="1.8" data-page-node-id="89P3QD5Kyp9XA0yHmTtvAz"/></svg></div>
+        <h3 data-page-node-id="wMzOiifl16Hsa9LjfmKg8o">锚定效应</h3>
+        <div class="en" data-page-node-id="I6dHqv2zk5Cz1i2HbnaXp7">Anchoring Effect</div>
+        <p data-page-node-id="p8MG0Ap0xzVAD6LXhl1x3m">第一个出现的数字会成为"锚"，悄悄拉着后续判断向它靠拢——哪怕这个数字与问题毫无关联。</p>
+        <div class="eg" data-page-node-id="Dao3zLpvHa8NHWAcoDf7t4"><b data-page-node-id="Z41yF5jgnsp8tEcbmVP8LA">例：</b>先看到标价 ¥1999 再打五折，比直接标 ¥999 更显划算。</div>
+      </div>
+      <div class="bias" data-page-node-id="1zG72CWnBWoXTdAoqaiQJ0">
+        <div class="ic" data-page-node-id="HqpL0ALi0X7Y05gMRrs8uJ"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" data-page-node-id="ZxR7S92Dsln2VuA83bK6Dz"><circle cx="12" cy="12" r="9" stroke="#9a3b2e" stroke-width="1.8" data-page-node-id="8qPl0Sdweyhh4OZ7DUWiqv"/><path d="M12 7v5l3 2" stroke="#9a3b2e" stroke-width="1.8" stroke-linecap="round" data-page-node-id="ho7GTprxup3FhkQIgyYyvy"/></svg></div>
+        <h3 data-page-node-id="nIP5h7HucTnq0pjs1ii8GV">可得性启发</h3>
+        <div class="en" data-page-node-id="Nfc5oCGNsG8Ih1QW9vlG9c">Availability Heuristic</div>
+        <p data-page-node-id="Z8Cr8Ghk8vMsq8eCg987U2">越容易想起的事，越觉得它常发生。生动、近期、被反复报道的事件，概率会被系统性高估。</p>
+        <div class="eg" data-page-node-id="IvPKd3jhUyUV5G0EfPPHMR"><b data-page-node-id="HM6Fu5aKabECcrFzdwpPBm">例：</b>空难新闻看多了，便高估坐飞机的风险，却低估车祸。</div>
+      </div>
+      <div class="bias" data-page-node-id="LmzroE9oX5I76zAB2B0SRX">
+        <div class="ic" data-page-node-id="zEidCTfzjFtrL943FsDZLA"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" data-page-node-id="UFFGgFPJynf6XViUeLtXRW"><path d="M4 13l5 5 11-13" stroke="#9a3b2e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="5MsLAYXSYyUmmp966vlHJt"/><path d="M4 7l4 4" stroke="#9a3b2e" stroke-width="1.8" stroke-linecap="round" opacity=".5" data-page-node-id="uHF7D0XRjLxVE9mg7rdFgD"/></svg></div>
+        <h3 data-page-node-id="wdBsi8R3litoAzsRcovN2I">损失厌恶</h3>
+        <div class="en" data-page-node-id="PEW3VoXtKtlcMEuddrAqr6">Loss Aversion</div>
+        <p data-page-node-id="rzLObiJSB9CKDQ8ws4cdNb">失去 100 元的痛，约是得到 100 元快乐的两倍。"不亏"对我们的驱动力远大于"赚到"。</p>
+        <div class="eg" data-page-node-id="eCBBmnboyUqoGC8APE9LVL"><b data-page-node-id="DlqXV9nICBLPdlb6wsSSpA">例：</b>明知该止损，却死守亏损的股票不肯卖。</div>
+      </div>
+      <div class="bias" data-page-node-id="nhQPGU18FAFbA3SVr5vXns">
+        <div class="ic" data-page-node-id="sGmLiYwahmtb9IjeX0Jj92"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" data-page-node-id="ITpnFF1Re2E9VLqXKBq7DF"><rect x="3" y="5" width="18" height="14" rx="2" stroke="#9a3b2e" stroke-width="1.8" data-page-node-id="267J5b2HXbomoBFAl9Tb3j"/><path d="M3 10h18" stroke="#9a3b2e" stroke-width="1.8" data-page-node-id="7xzBoa3EDXnpJ6vuGVEeUn"/></svg></div>
+        <h3 data-page-node-id="pavtLDBY7I8ZLEu8VKtoW0">框架效应</h3>
+        <div class="en" data-page-node-id="qbECNnx9XzDA9JAEnkK8VG">Framing Effect</div>
+        <p data-page-node-id="cpJIGDFqn6RFNvEsTbDYO3">同一事实，换种说法就改变选择。"九成存活"与"一成死亡"在数学上相同，感受却天差地别。</p>
+        <div class="eg" data-page-node-id="2gaiclc9EQu3R4glzMG35J"><b data-page-node-id="IOf2e1Fm1F6wwqaGs4KNHT">例：</b>"95% 脱脂"比"含 5% 脂肪"更好卖。</div>
+      </div>
+      <div class="bias" data-page-node-id="vHLDwl4wejO2C90uBoJCr2">
+        <div class="ic" data-page-node-id="x1yBvQIoAwd8h9NWUK6peV"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" data-page-node-id="EpVhWybC7NoctbnGK0ZsVC"><circle cx="9" cy="9" r="5" stroke="#9a3b2e" stroke-width="1.8" data-page-node-id="ktMyKi4KOn1iKdLQMnOmM9"/><path d="M14 14l6 6" stroke="#9a3b2e" stroke-width="1.8" stroke-linecap="round" data-page-node-id="BgBaqBV6vUC3Rmj5Yc4dTF"/><path d="M17 4a8 8 0 013 5" stroke="#9a3b2e" stroke-width="1.4" stroke-linecap="round" opacity=".55" data-page-node-id="wbs6FzhZAh4cPcJ1YcCFVF"/></svg></div>
+        <h3 data-page-node-id="8edvjk2MHYxai7VJFk53A2">所见即全部</h3>
+        <div class="en" data-page-node-id="ZxFVxeF5mP30CgLGEY2h2j">WYSIATI</div>
+        <p data-page-node-id="69q2hGNcCANhrDDYyL9J8l">系统 1 只拿手头的信息下结论，对"我不知道什么"视而不见——信息越少，反而越自信。</p>
+        <div class="eg" data-page-node-id="6MZktPrxclO2zF84V31HG5"><b data-page-node-id="v1Hwj2vrXkmIK2WSyYjpeO">例：</b>只听一面之词，就笃定地判断对错。</div>
+      </div>
+      <div class="bias" data-page-node-id="WbConEVt8mos1Vu0SeLCcj">
+        <div class="ic" data-page-node-id="WRweA9QaKTewQGCdq1T2Bv"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" data-page-node-id="Z2AnOAvX5n7E3vQuW1RbKD"><path d="M12 5c4 0 7 1 7 1s-1 10-3 13c-1.2 1.6-2.6 2-4 2s-2.8-.4-4-2C6 16 5 6 5 6s3-1 7-1z" stroke="#9a3b2e" stroke-width="1.7" stroke-linejoin="round" data-page-node-id="ZomIXlbanWN3XeZYBHZlBt"/><path d="M9 11l2 2 4-4" stroke="#9a3b2e" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="RSZzgOCQFbIQRxMGYTejsB"/></svg></div>
+        <h3 data-page-node-id="NVK9zwkNbwZQuMD3dgBs9t">后见之明偏误</h3>
+        <div class="en" data-page-node-id="hjlWd14XLohISFogwFma4Y">Hindsight Bias</div>
+        <p data-page-node-id="dty3KETUTRoZFCBI4met6t">结果揭晓后，我们觉得"早就注定"。它制造了世界可信的错觉，让我们苛责决策者、高估自己。</p>
+        <div class="eg" data-page-node-id="2n6WBFtrvLJhPd5berIAmx"><b data-page-node-id="gvlw6H3BQxCfLj1FckWuIU">例：</b>涨跌之后人人都说"我早看出来了"。</div>
+      </div>
+      <div class="bias" data-page-node-id="f8bdFvnz9SFWXbKWQ9BGBO">
+        <div class="ic" data-page-node-id="qjpvhrpqHzsKdLYS9WqVtS"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" data-page-node-id="oQrJZZioCziW6hOg4xli4O"><path d="M5 19V9l7-5 7 5v10" stroke="#9a3b2e" stroke-width="1.8" stroke-linejoin="round" data-page-node-id="LYsTBYbNl3jvCOkopbiZD9"/><path d="M9 19v-6h6v6" stroke="#9a3b2e" stroke-width="1.8" stroke-linejoin="round" data-page-node-id="BwxMdjvEDtiAcmgDjAnLoG"/><path d="M3 21h18" stroke="#9a3b2e" stroke-width="1.6" stroke-linecap="round" opacity=".55" data-page-node-id="l7ZagVj6cCkpBqml3Ozypv"/></svg></div>
+        <h3 data-page-node-id="YNchuv8X1BrQyi3Bu1PrrB">规划谬误</h3>
+        <div class="en" data-page-node-id="1a0RxqHMblPzpNXTKapgzz">Planning Fallacy</div>
+        <p data-page-node-id="CXaH3LVxITgc21NVlbjrKU">过度自信的近亲：制定计划时只看自己的美好愿景，无视同类项目普遍超支超期的"基础比率"。</p>
+        <div class="eg" data-page-node-id="Hmgm72QWEiHbmvbZVgr5RC"><b data-page-node-id="UdW0RaD4mcgd3TjzdbscoS">例：</b>装修"三个月完工"，几乎从不按期交付。</div>
+      </div>
+      <div class="bias" data-page-node-id="8i9vd2CvuM1N40yEhOaPl9">
+        <div class="ic" data-page-node-id="2TgLouezFeJ8HEdWbq1qZH"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" data-page-node-id="cRpGwksWxfMXVNPsHED8zd"><path d="M3 18c3 0 3-11 6-11s3 8 6 8 3-5 6-5" stroke="#9a3b2e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="Cx6vpKytjWnMeiCoNMxcxF"/><path d="M3 21h18" stroke="#9a3b2e" stroke-width="1.6" stroke-linecap="round" opacity=".55" data-page-node-id="xKxXMD477v2TJxdJXjHyIW"/><circle cx="9" cy="7" r="2" stroke="#9a3b2e" stroke-width="1.6" data-page-node-id="ILTZbH4704AsCgnl0dEHcw"/></svg></div>
+        <h3 data-page-node-id="64wjDzNuiSeuME6ZRevLVl">峰终定律</h3>
+        <div class="en" data-page-node-id="wPDx1RSfD0vYlGxgqrv3B8">Peak-End Rule</div>
+        <p data-page-node-id="l9GhkhyUju77EC3PqDXS2c">记忆自我只保留"峰值感受"与"结尾感受"，几乎无视时长——我们记住的，并非真实经历的总和。</p>
+        <div class="eg" data-page-node-id="cXHSD2fFc4UqsOgUL4FQAr"><b data-page-node-id="z0AtwDVsaWvwB95hdMlKAV">例：</b>疼痛实验中更长但结尾温和的，被评价为"更不痛"。</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" data-page-node-id="iP3bvPG7Ohau5ZdsfEmNvH"></div>
+
+  <!-- ===== 04 前景理论 ===== -->
+  <section id="prospect" data-page-node-id="YB1E24OBqZWt1B3s8P4pxU">
+    <div class="sec-head" data-page-node-id="DWB7c2TXFr1x4K6UDbxB1D"><div class="sec-no" data-page-node-id="RJYfdMgWnbII8AYVfD7jOl">04</div><h2 data-page-node-id="fGNxukFkzYRpkN9oi58mDE">全书的心脏：前景理论</h2></div>
+    <p class="sec-sub" data-page-node-id="NMlSp8TbAD7NobSGnRUs0t">让卡尼曼拿下诺贝尔经济学奖的价值函数——人如何衡量得与失</p>
+    <div class="prospect" data-page-node-id="aEP4gulWgFPHgLrwPcTkcO">
+      <div data-page-node-id="eb9dOJcgiYcI2Dhy8MYOiY">
+        <h3 data-page-node-id="S1r7ADfkxjTDhc5h0kAkfX">价值函数曲线</h3>
+        <div class="en" data-page-node-id="tCTIAA9q8XiBCpvXVXKEf6">Value Function · Kahneman &amp; Tversky (1979)</div>
+        <p data-page-node-id="AklFp7jK3x69xHCvkFFzuD">人不是衡量绝对的财富，而是衡量<b data-page-node-id="EMaxGtfJnoBty3GErOrvTH">相对某个参照点的得与失</b>。收益一侧曲线是凹的（递减的快乐），损失一侧是凸的且明显更陡——跌下去的痛，远比涨上来的乐更强烈。</p>
+        <div class="key" data-page-node-id="IEzU54MBR54mKsDS7N2yff"><b data-page-node-id="a9qV2S6YHGCVMCzTS99Z6e">三个要点：</b>① 参照点决定感受；② 损失斜率约为收益的 2 倍；③ 小概率常被高估、大概率常被低估。</div>
+      </div>
+      <svg class="chart" viewBox="0 0 620 400" role="img" aria-label="前景理论价值函数曲线：损失一侧斜率明显陡于收益一侧" data-page-node-id="uCKD2Fixn59Sn2XoDe2Ugm">
+        <!-- 纸面 -->
+        <rect x="0" y="0" width="620" height="400" fill="#fbf8f1" rx="12" data-page-node-id="CZC30kLt31FBoSrbfJywp9"/>
+        <!-- 参照区标色 -->
+        <rect x="40" y="20" width="270" height="220" fill="rgba(63,107,140,.05)" data-page-node-id="EjKYed86gv621L1wExXeyQ"/>
+        <rect x="310" y="20" width="270" height="220" fill="rgba(154,59,46,.05)" data-page-node-id="5IhYnlaGFA1466Gao4lvKW"/>
+        <!-- 坐标轴 -->
+        <line x1="40" y1="240" x2="590" y2="240" stroke="#c9bfa9" stroke-width="1.5" data-page-node-id="aklwB6ovxLpRE9fY1HBs6O"/>
+        <line x1="310" y1="20" x2="310" y2="330" stroke="#c9bfa9" stroke-width="1.5" data-page-node-id="clPESfUkY6V6GVOh3JOgaP"/>
+        <!-- 参照点 -->
+        <circle cx="310" cy="240" r="4.5" fill="#2b2722" data-page-node-id="saZoLhraClPmWP1imkpQRm"/>
+        <text x="310" y="262" text-anchor="middle" font-size="12" fill="#8a8074" data-page-node-id="fHTJ777Gu5Hp7cvMVu3Efq">参照点</text>
+        <text x="310" y="280" text-anchor="middle" font-size="11" fill="#8a8074" data-page-node-id="KalifikOAC2mr5V1NWGGyz">（现状 / 期望）</text>
+        <!-- 曲线：收益（凹，缓） -->
+        <path d="M312 238 Q 420 168 560 118" fill="none" stroke="#3f6b8c" stroke-width="3.5" stroke-linecap="round" data-page-node-id="BmDAn2HTTuubIRnxK3S4VG"/>
+        <!-- 曲线：损失（凸，陡） -->
+        <path d="M308 242 Q 205 300 65 352" fill="none" stroke="#9a3b2e" stroke-width="3.5" stroke-linecap="round" data-page-node-id="LvrG6JIgA9jQ5yn5P9gDNf"/>
+        <!-- 斜率对比标注 -->
+        <path d="M312 238 L 340 226" stroke="#3f6b8c" stroke-width="1.6" stroke-dasharray="3 3" data-page-node-id="ionXiAzy8Baaphr8kkiow5"/>
+        <path d="M308 242 L 278 258" stroke="#9a3b2e" stroke-width="1.6" stroke-dasharray="3 3" data-page-node-id="H7LGEzmesbRUvVGzLFve6v"/>
+        <text x="470" y="100" text-anchor="middle" font-size="13" fill="#3f6b8c" font-weight="600" data-page-node-id="b3aOsFLpbJKHYoHqtOObex">收益区：快乐的斜率较缓</text>
+        <text x="150" y="330" text-anchor="middle" font-size="13" fill="#9a3b2e" font-weight="600" data-page-node-id="o22QMhdjFUwHt9WbDgNmhV">损失区：痛感斜率更陡 ≈ 2×</text>
+        <!-- 轴标签 -->
+        <text x="596" y="234" text-anchor="end" font-size="12" fill="#8a8074" data-page-node-id="xKuP5KFK6E0rjbNcY4RUB1">客观收益 →</text>
+        <text x="46" y="234" font-size="12" fill="#8a8074" data-page-node-id="HnGLRUuHlnO8iO4SjEcJHH">← 客观损失</text>
+        <text x="322" y="30" font-size="12" fill="#8a8074" data-page-node-id="6KOTJ8UV5QUo7700dYTye3">↑ 心理价值</text>
+        <!-- 脚注 -->
+        <text x="310" y="384" text-anchor="middle" font-size="11.5" fill="#8a8074" data-page-node-id="cbtKW5mvbHFmrDwn4cTG6b">同一客观变化，在损失一侧被放大约两倍 —— 这就是损失厌恶的几何形状</text>
+      </svg>
+    </div>
+  </section>
+
+  <div class="divider" data-page-node-id="oaqRNvZRNKHj6PTUG1IXlg"></div>
+
+  <!-- ===== 05 章节脉络 ===== -->
+  <section id="flow" data-page-node-id="NbL7MYts8BhiDYyUt8kQtB">
+    <div class="sec-head" data-page-node-id="RYtfuCDDBF1VXI6Vj3F685"><div class="sec-no" data-page-node-id="BpRjZdGFwUdcKjF2MQx1XH">05</div><h2 data-page-node-id="kkirGcc8hMiPX8SE28vf7X">全书脉络图</h2></div>
+    <p class="sec-sub" data-page-node-id="mHjVdKB08oQx9efeM1nfLA">五个部分，层层递进——从"两个系统"到"两个自我"</p>
+    <div class="flow" data-page-node-id="d0EaWXeciDfbisGdNKqPhd">
+      <div class="step" data-page-node-id="i6zQ27dJJWTABVKhxE9jG6">
+        <div class="node" data-page-node-id="O9AoojwY7cylpzGFeX8Yh0"><b data-page-node-id="VOSuAwD4FSiDXYFNY0tR3E">Ⅰ</b><span data-page-node-id="2oL77WriV4sBNipvmvc2yx">PART</span></div>
+        <div class="body" data-page-node-id="DS5Nf0WkUpCBNHjwgaRTlQ">
+          <h3 data-page-node-id="HSQQ8ORGPFHgswowIDagAS">两个系统<small data-page-node-id="dCSaqt4AC5xWZwcSnG3Yvo">第 1–9 章</small></h3>
+          <p data-page-node-id="bCdIZNDglDkgcX0ynmAv2K">引入系统 1 与系统 2：注意力、认知放松、"懒惰的控制者"如何分工与偷懒。</p>
+          <span class="pill" data-page-node-id="Gs7zizjSLIJGVU4nreOJx3">地基 · 双系统模型</span>
+        </div>
+      </div>
+      <div class="step" data-page-node-id="A11ygjFsrdtgBuUxNlMPNz">
+        <div class="node" data-page-node-id="IqAQzFMkYZ5HOMUCJPlRw2"><b data-page-node-id="0SWvGx2fDT9UcCCyANAa0H">Ⅱ</b><span data-page-node-id="2h6HSF7496rWBpATvsVyoD">PART</span></div>
+        <div class="body" data-page-node-id="HLCvOnOBL5km2lCDpC6oT4">
+          <h3 data-page-node-id="MuaCD51KFPE93LGnBKjbvI">启发法与偏误<small data-page-node-id="TvXt61ib1W2Ev8uQJEC7xN">第 10–18 章</small></h3>
+          <p data-page-node-id="FOjdBVODcKl7yxwUZVw7QE">锚定、可得性、代表性等心理捷径，为何高效却系统性地把我们带偏。</p>
+          <span class="pill" data-page-node-id="0uy9EPZDvJpnMk1Jz9CP3i">捷径 · 偏误来源</span>
+        </div>
+      </div>
+      <div class="step" data-page-node-id="4CcN7Ky5JmiprDYTzmxtDA">
+        <div class="node" data-page-node-id="qz0pFqcviDidE9aMHpzDPv"><b data-page-node-id="hgtrCReSGHWii6HxrxweCF">Ⅲ</b><span data-page-node-id="gdm2qD3cmD5saU9NJNeoUf">PART</span></div>
+        <div class="body" data-page-node-id="zL7yIjAyUCdMYzfJTnGnU6">
+          <h3 data-page-node-id="ZOOS9D1rM0LskYzu9C0tld">过度自信<small data-page-node-id="DI49t0MkU67bCGt5V5xREH">第 19–24 章</small></h3>
+          <p data-page-node-id="xBLUjujcVQEEdQzDdhQrf1">后见之明、有效性错觉与规划谬误：确定性幻觉如何制造，又如何被检验。</p>
+          <span class="pill" data-page-node-id="mW4TEP9RistixLKJQsXjQw">认知 · 确定性幻觉</span>
+        </div>
+      </div>
+      <div class="step" data-page-node-id="4bQsVSL46tM4PwmkC0b1WD">
+        <div class="node" data-page-node-id="kSAPp1I4tu8OX8rkmH2Vvk"><b data-page-node-id="0J9Cjuzec1DsMUXWya489D">Ⅳ</b><span data-page-node-id="VkQzpmWR2kkzWrDETUReCj">PART</span></div>
+        <div class="body" data-page-node-id="le1DRtGxC0SdRgluVPphLm">
+          <h3 data-page-node-id="wLmhCDlXtEpLuHHu4KWQO9">选择与风险<small data-page-node-id="SipB2qT3QclnCemLdPIIGL">第 25–34 章</small></h3>
+          <p data-page-node-id="9jYPqCPXTHxsqgqa0MZYgF">前景理论登场：参照点、损失厌恶、框架效应与禀赋效应，重塑我们对得失的衡量。</p>
+          <span class="pill" data-page-node-id="RUwIsAFKC5ErQIVmB89T0N">决策 · 前景理论</span>
+        </div>
+      </div>
+      <div class="step" data-page-node-id="OTD2Na7YveR4D7qHJ1DItO">
+        <div class="node" data-page-node-id="QGJWzqhzto2HEvExvwR44q"><b data-page-node-id="gBq6U80pxCmbGRxFNICErA">Ⅴ</b><span data-page-node-id="oSAnUyrYWRA6qrDZkSk6WR">PART</span></div>
+        <div class="body" data-page-node-id="jNB4Z3xE3bgOTAknHROgoE">
+          <h3 data-page-node-id="My9hf9mbruvsleS5Dw3oqx">两个自我<small data-page-node-id="BktlLoGlbJ87eNDSTTJdcT">第 35–38 章</small></h3>
+          <p data-page-node-id="rtC7FpCFIhLPup2UIim5V8">"体验自我"与"记忆自我"的分裂：峰终定律揭示，我们记住的并非真实的体验。</p>
+          <span class="pill" data-page-node-id="HnDna4nJ34TLh2vQsdSJR9">幸福 · 峰终定律</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" data-page-node-id="fEtPum8eJaDmDqFRtplZxH"></div>
+
+  <!-- ===== 06 金句 ===== -->
+  <section id="quotes" data-page-node-id="YBkqOrtw6BhMbCDS2BQfCt">
+    <div class="sec-head" data-page-node-id="wUjXqoF1ouRLvHyDI7hZtD"><div class="sec-no" data-page-node-id="vUiwQuVUrWuXUiyNLbfY9C">06</div><h2 data-page-node-id="uBj1iFsaerJHOR36xCHJpf">金句摘录</h2></div>
+    <p class="sec-sub" data-page-node-id="aq9ydlmesc0T05ieNbqrPT">值得抄进笔记本、贴在书桌前的句子（据核心观点转述）</p>
+    <div class="quotes" data-page-node-id="1G8phTDT4sJW5iC3sKBnmO">
+      <div class="quote" data-page-node-id="PV6WwHocwLJ7fHo3IsFxov">
+        <div class="mark" data-page-node-id="u683os9aVzMgyaCKzbtuyw">&ldquo;</div>
+        <p data-page-node-id="OYOykWmfXKsXBUMrKfVv2H">没有什么比你以为自己已经理解的事，更容易让你犯错。</p>
+        <div class="src" data-page-node-id="4A8725hxEoHRB52KNyuJVq">—— 论"所见即全部"与过度自信</div>
+      </div>
+      <div class="quote" data-page-node-id="9h6PQMZqHpl3OPjAt8lFDi">
+        <div class="mark" data-page-node-id="J5C0jIUcTs7XoJcdykJRTT">&ldquo;</div>
+        <p data-page-node-id="Wj1PwEf0B3vUFD2AzleiAI">我们对自己理解世界的能力，抱有近乎无限的盲目自信。</p>
+        <div class="src" data-page-node-id="FPqoXamgSf7HFryFcqdWFX">—— 论直觉的确定性幻觉</div>
+      </div>
+      <div class="quote" data-page-node-id="VlJJpxbJh2GlMaVxsT1DLQ">
+        <div class="mark" data-page-node-id="2lnyoDB3XuLwhbn9PPKEJA">&ldquo;</div>
+        <p data-page-node-id="AukCCnixOrILfGgZips4Xu">失去所带来的痛，大约是获得同等收益所带来的快乐的两倍。</p>
+        <div class="src" data-page-node-id="RMugFKNnFUFDmlywhyB0Ga">—— 论损失厌恶与前景理论</div>
+      </div>
+      <div class="quote" data-page-node-id="uqIBxEVvOrotgtRKBLlYVr">
+        <div class="mark" data-page-node-id="5I4lgd6Bu8eWG4yxOZ1IJ8">&ldquo;</div>
+        <p data-page-node-id="CDlD1Uj1Cfaapdx4znHlbB">可靠的专家直觉，诞生于一个规律、有反馈、可预测的环境。</p>
+        <div class="src" data-page-node-id="XWnS4jIbMlf8spVGqmsB6e">—— 论专家直觉成立的边界条件</div>
+      </div>
+      <div class="quote span2" data-page-node-id="CdldMrzGuDgEyknwUmseey">
+        <div class="mark" data-page-node-id="6hRX6ZxVmmduOqqOSa7CQq">&ldquo;</div>
+        <p data-page-node-id="1EIeZ3qd0VIBCTnYydub3G">认识到自己正处在认知雷区，是放慢脚步、请系统 2 出场援助的第一步。</p>
+        <div class="src" data-page-node-id="ULJzHn10cgInPeqGvmZVe8">—— 全书方法论的核心</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" data-page-node-id="QSJk6Wge0Shuo6b5s7dWbJ"></div>
+
+  <!-- ===== 07 行动启发 ===== -->
+  <section id="actions" data-page-node-id="u02ky1oMRBnHERdhpbp4jY">
+    <div class="sec-head" data-page-node-id="0lxsB9h2bqk8YDDDWoJGzY"><div class="sec-no" data-page-node-id="Kuo36F0NhL96iVFA1ncTCz">07</div><h2 data-page-node-id="fRyoSioPLafE7VuYzaSMDq">对工作与决策的行动启发</h2></div>
+    <p class="sec-sub" data-page-node-id="Jw2QZUSEx32FfXEFgOflHw">把认知科学变成可执行的工作习惯</p>
+    <div class="act-grid" data-page-node-id="riVHsMMzer5SJlye0xUiHK">
+      <div class="act" data-page-node-id="1eKPdl5pA8mTiWMTlYLcJO"><div class="num" data-page-node-id="wUeyfbzpElFQJNkW0MrJtu">1</div><div data-page-node-id="TjWig0UEzhQzqKy6cCutfc"><h3 data-page-node-id="Z3zu416GNfbS7v0nl6zFxU">重大决策，强制"过夜"</h3><p data-page-node-id="WS6PfJKyfzVaxSWRe7ATBE">给系统 2 留出时间。重要选择不在情绪与第一直觉的高峰期拍板，隔一天再复核一遍。</p></div></div>
+      <div class="act" data-page-node-id="QFomQRLjRSUFrteY2gWM0Y"><div class="num" data-page-node-id="OX7VwZKuTMyn6kpCwBnFFh">2</div><div data-page-node-id="6apQBbzjPSru6qwmIQl3l7"><h3 data-page-node-id="oorDzlNvCrIKUhdCh9ALda">先独立写、再开会</h3><p data-page-node-id="fzfJKILBKWNtjRx4DxBX0t">评审或评估前，让每个人先各自匿名记录判断，避免锚定与从众，再汇总讨论。</p></div></div>
+      <div class="act" data-page-node-id="2YNF3mveTACdU4PKEKMRJS"><div class="num" data-page-node-id="U2UF3V4CLtcvwtgqeQWT3i">3</div><div data-page-node-id="9hVQIwTcnMNxpuEmZA7AWM"><h3 data-page-node-id="1UjLS9hN9QmOmQRraav6B3">做"事前验尸"</h3><p data-page-node-id="mLvjfLf0kZl8hNzUo8uXbj">启动项目前先假设它一年后已失败，倒推最可能的原因——对冲过度乐观与规划谬误。</p></div></div>
+      <div class="act" data-page-node-id="RYLsR0VOoBH5Lr9BrXGroA"><div class="num" data-page-node-id="14WJsBcVm26adQmqKHw8jt">4</div><div data-page-node-id="GDmjB0YruZhEGMl79GJYpV"><h3 data-page-node-id="a9njsiAeTQZ2hYAc9g2Sbi">警惕被"框定"的选项</h3><p data-page-node-id="I5wNPs2iMQJxLXEVj1cWHG">遇到 A/B 选择，主动换种说法重述一遍——看看你的偏好会不会因措辞而翻转。</p></div></div>
+      <div class="act" data-page-node-id="6u22zzxcRQFvBhnprImmSn"><div class="num" data-page-node-id="W17BKwU7hmfWKeNnA7IDDx">5</div><div data-page-node-id="8SLhUuowFYWywyJTkHQl1m"><h3 data-page-node-id="jiB6c3z5Lqk3PCXkR9s4Dn">用基础比率校准直觉</h3><p data-page-node-id="BuJOEoqChEaWvYEZ5kc9zC">判断概率前先问"同类情况通常的发生率是多少"，别被生动的个例牵着走。</p></div></div>
+      <div class="act" data-page-node-id="o2CxXBrqHo0wApBArlsWZl"><div class="num" data-page-node-id="Y1MGXNGq0n3S5C26Thap0Y">6</div><div data-page-node-id="w6VpqHjQFw6N8trMjcpEIJ"><h3 data-page-node-id="nPm1Vm70OdysID9jqs05Qk">写决策日志</h3><p data-page-node-id="cnnnIOsn3o0u50crlWhvhC">把当时的判断与理由记下来，事后对照结果——这是对抗后见之明与过度自信的唯一定期练习。</p></div></div>
+    </div>
+  </section>
+
+  <div class="divider" data-page-node-id="DrXXyIBE0it1AyN56BsGFu"></div>
+
+  <!-- ===== 08 适合谁读 ===== -->
+  <section id="who" data-page-node-id="fbwaKAr5vDFefRyRz7o3o8">
+    <div class="sec-head" data-page-node-id="UOMGhbtPqyZL7ThMhyf9Sl"><div class="sec-no" data-page-node-id="sQ4HYSCjS6zhApTf9IgF0U">08</div><h2 data-page-node-id="b6YgZV3HRTNXOYDLFQnSI6">这本书适合谁读</h2></div>
+    <p class="sec-sub" data-page-node-id="PWKs99NGqHUKqJVQ0pvYAS">如果你符合其中一条，它都值得放进书单</p>
+    <div class="split" data-page-node-id="lCqhariQJrzINqJ5Smi81k">
+      <div class="imgcol" id="who-img" data-page-node-id="58d6CrhQYgDJnhkqkCfApA">
+        <div class="cap" data-page-node-id="gR9qzznOupyAlZWrI2nMDN">慢下来，给思考留一点空间</div>
+      </div>
+      <div class="fit-list" data-page-node-id="Gcc0wlgf69ll5oE2znSMWk">
+        <div class="fit" data-page-node-id="wcbraj48fgZIv2wJqE7QpP"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" data-page-node-id="SHgFazLLZ8cFQvUgulxuqs"><path d="M2 9l4 4 10-10" stroke="#9a3b2e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="sZ0HvjppVG1wurXhS7cXry"/></svg><div data-page-node-id="FEImvadl4IzD8GQdm9i41s"><b data-page-node-id="se2xr4Gnseaxv48YZkhZ3P">需要做判断与决策的人</b><span data-page-node-id="OiD8AoAY5QbVLFCLySn6Pa">管理者、投资者、产品与运营——任何要在不确定中下注的角色。</span></div></div>
+        <div class="fit" data-page-node-id="KADtcEJJK0bPDNFt3GT0aM"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" data-page-node-id="X8FE8aXY0Hy56RbPwAnMsG"><path d="M2 9l4 4 10-10" stroke="#9a3b2e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="15DtQGKZM3h61A84B5XUAt"/></svg><div data-page-node-id="sR8qW2s17cPDws5FJCS2qk"><b data-page-node-id="msTQkM4AVvFKKhMMFTR8PT">想读懂"人为何非理性"的人</b><span data-page-node-id="F1wSkQ1nnaf08SGnRpXEjF">行为经济学、营销、用户研究的入门与系统化读本。</span></div></div>
+        <div class="fit" data-page-node-id="FdostNMaj0Gr9KAPAI2xy1"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" data-page-node-id="fX5AFgf6URpUhx4mK3TsPW"><path d="M2 9l4 4 10-10" stroke="#9a3b2e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="OtEOClA0iHgrgPvivHHM3E"/></svg><div data-page-node-id="g9aft8Ky6PIeBW25wZqJ1H"><b data-page-node-id="PuiYM3smBwAuGy2UE0irz8">追求自我认知升级的人</b><span data-page-node-id="xKPIpBWqq5ZuQE7wvQRBSb">愿意承认"我也会系统性犯错"，并想为此装上一套刹车的人。</span></div></div>
+        <div class="fit" data-page-node-id="c34yLOpufaorkuRHoKRaxQ"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" data-page-node-id="GKDb0XKVxblqDOMBIo3eiZ"><path d="M9 2v4M9 12v4M2 9h4M12 9h4" stroke="#b8794a" stroke-width="2" stroke-linecap="round" data-page-node-id="mqWVdPgzgfO5VK72CmWBHP"/></svg><div data-page-node-id="ktwc2DBNmUSnAdlRpSC6Nb"><b data-page-node-id="RUItFf9NgQt92hFPcg5Yd2">读前提示</b><span data-page-node-id="mMdJmvOaTxFgXq1nJnGeyl">内容扎实、篇幅较长，建议分章慢读、配合本卡片做笔记，效果更佳。</span></div></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+
+  <div class="divider" data-page-node-id="8lVBA9RRA3BAzLitIFhltE"></div>
+
+  <section id="more" data-page-node-id="PwPCw5rXHHHC4Ha5VrokQk">
+    <div class="sec-head" data-page-node-id="fbcBjupadPU3wynNGBvzCb"><div class="sec-no" data-page-node-id="MrBfD8cxkOZNcK5LCcvUAS">&rarr;</div><h2 data-page-node-id="T9DrurSLhmIUGwnYnqwvFt">读书笔记系列</h2></div>
+    <p class="sec-sub" data-page-node-id="p4rCaXJz8WvtzNZpyP2htd">同一系列的精读摘要卡，可继续翻阅</p>
+    <div class="more-grid" data-page-node-id="8IdvGYSjgZXy5pqRp5Gi1O">
+    <span class="more current" style="--mc:#9a3b2e" data-page-node-id="egJvhlDzeKo15yJwNNU9Fe"><b data-page-node-id="YKABOpKHfV2pg0F5wcRjBq">《思考，快与慢》</b><i data-page-node-id="e5k8TCKXbq9Vm97WLnmNpX">双系统 · 认知偏误 · 当前阅读</i></span>
+    <a class="more" href="疯传.html" style="--mc:#a15c1c" data-page-node-id="JpBRki8OkAtI9T5tQpqEoB"><b data-page-node-id="nPqzC9v3n0yF2nNmvRxkAs">《疯传》</b><i data-page-node-id="XV1sEW62oEHRBJf1A6xTzy">STEPPS 六原则</i></a>
+    <a class="more" href="传染.html" style="--mc:#2e5a77" data-page-node-id="qmKbvGB464jCNiCzb9RzDs"><b data-page-node-id="4eC36klOjhPRNM0q59XBNZ">《传染》</b><i data-page-node-id="nw6LRObZx70F6gAjNUoXvC">社会影响 · 最优差异化</i></a>
+    </div>
+    <a class="more-all" href="book-notes.html" data-page-node-id="EJB87kHLiY7HAXB9GxcXnl">查看全部读书笔记 &rarr;</a>
+  </section>
+
+<footer data-page-node-id="WLREp0C2JxdvEb90xrIKvu">
+  <div class="line" data-page-node-id="h24CYGOUHYMDKFDrbeZrdl"></div>
+  <b data-page-node-id="IJs7Pul1SzKZ3WatF845IZ">《思考，快与慢》精读笔记 · 读书摘要卡</b>
+  <p class="disclaim" data-page-node-id="me14ZRX3GSeym967xwM9Z9">本页为基于该书公开核心观点整理的读书笔记，用于知识科普与个人学习参考，非原文逐字转载。书名、理论与观点版权归原作者及出版方所有。</p>
+</footer>
+
+<script>
+  // 内联 hero 与配图（图书馆穹顶书架摄影图，base64 内联、离线可用）
+  var DOC_ARCHIVE = "../assets/hero/h35.jpg";
+  document.getElementById('hero').style.backgroundImage = "url('" + DOC_ARCHIVE + "')";
+  document.getElementById('who-img').style.backgroundImage = "url('" + DOC_ARCHIVE + "')";
+
+  // 阅读进度条
+  (function(){
+    var bar = document.getElementById('progress');
+    function upd(){
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.width = (max > 0 ? (h.scrollTop / max * 100) : 0) + '%';
+    }
+    window.addEventListener('scroll', upd, {passive:true});
+    window.addEventListener('resize', upd);
+    upd();
+  })();
+</script>
+
+
+    <script src="js/page-counter.js?v=20260908b" defer></script>
+</body>
+</html>

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《培养高情商的孩子》精读笔记 · 读书摘要卡</title>
+<meta name="description" content="孩子哭闹时，大多数家长急着止哭，戈特曼却看到了一堂正课：情绪不是要扑灭的火，而是要接住的球。这本书给出五步情绪教练法，把每次崩溃现场都变成亲子联结的练习场。">
+<style>
+  :root{
+    --paper:#f4f2ed;
+    --paper-2:#faf9f5;
+    --ink:#252a2e;
+    --ink-soft:#535b62;
+    --ink-faint:#848d94;
+    --line:#dde0dd;
+    --accent:#355e3b;
+    --accent-2:#7ba07e;
+    --warm:#64385e;
+    --shadow:0 12px 40px rgba(37,42,46,.10);
+    --shadow-sm:0 4px 18px rgba(37,42,46,.08);
+    --serif:"Songti SC","Source Han Serif SC","Noto Serif SC",Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--sans);color:var(--ink);background:var(--paper);
+    background-image:
+      radial-gradient(circle at 18% 8%, rgba(123,160,126,0.08), transparent 42%),
+      radial-gradient(circle at 84% 88%, rgba(53,94,59,0.06), transparent 46%);
+    line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.035'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  body>*{position:relative;z-index:1;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
+  h1,h2,h3,.serif{font-family:var(--serif);}
+  ::selection{background:rgba(53,94,59,0.18);}
+
+  #progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:99;
+    background:linear-gradient(90deg,var(--accent-2),var(--accent));transition:width .1s linear;}
+
+  .hero{
+    position:relative;min-height:clamp(480px,72vh,640px);
+    display:flex;align-items:flex-end;
+    background-size:cover;background-position:center 45%;
+    color:#f5f7f8;overflow:hidden;
+  }
+  .hero::after{
+    content:"";position:absolute;inset:0;
+    background:
+      linear-gradient(180deg, rgba(26,47,29,0.3) 0%, rgba(26,47,29,0.42) 42%, rgba(16,30,18,0.9) 100%),
+      linear-gradient(90deg, rgba(16,30,18,0.58) 0%, rgba(16,30,18,0) 58%);
+  }
+  .hero-inner{position:relative;z-index:2;width:100%;max-width:1080px;margin:0 auto;padding:88px 28px 54px;}
+  .hero .kicker{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:13px;letter-spacing:.22em;text-transform:uppercase;
+    color:#7ba07e;border:1px solid rgba(123,160,126,0.45);
+    padding:6px 15px;border-radius:30px;margin-bottom:22px;backdrop-filter:blur(2px);
+  }
+  .hero h1{font-size:clamp(34px,6vw,62px);line-height:1.12;font-weight:700;letter-spacing:.01em;text-shadow:0 2px 24px rgba(0,0,0,.45);margin-bottom:10px;}
+  .hero .sub-en{font-family:var(--serif);font-style:italic;font-size:clamp(15px,2.4vw,22px);color:#7ba07e;opacity:.92;margin-bottom:20px;}
+  .hero .lead{max-width:640px;font-size:clamp(15px,2vw,18px);color:#e8edf1;}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:24px 34px;margin-top:30px;}
+  .hero-meta .m{display:flex;flex-direction:column;}
+  .hero-meta .m b{font-family:var(--serif);font-size:20px;color:#fff;}
+  .hero-meta .m span{font-size:12.5px;letter-spacing:.08em;color:#7ba07e;}
+
+  .ribbon{position:absolute;top:0;right:clamp(16px,5vw,52px);z-index:3;width:44px;
+    background:var(--accent);color:#fff;text-align:center;
+    padding:15px 0 24px;font-family:var(--serif);font-size:13px;letter-spacing:.14em;
+    box-shadow:0 6px 16px rgba(0,0,0,.32);}
+  .ribbon::after{content:"";position:absolute;left:0;bottom:-13px;border-width:0 22px 14px;border-style:solid;border-color:var(--accent) var(--accent) transparent;}
+  .ribbon span{writing-mode:vertical-rl;}
+
+  .toc-bar{background:var(--paper-2);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50;box-shadow:0 2px 14px rgba(37,42,46,.06);}
+  .toc-in{max-width:1080px;margin:0 auto;padding:10px 28px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .toc-in .lab{font-family:var(--serif);font-size:13px;color:var(--accent);letter-spacing:.1em;margin-right:6px;}
+  .toc-in a{font-size:12.5px;color:var(--ink-soft);text-decoration:none;padding:4px 11px;border-radius:20px;border:1px solid transparent;transition:all .18s;white-space:nowrap;}
+  .toc-in a:hover{color:var(--accent);border-color:rgba(53,94,59,0.35);background:rgba(53,94,59,0.05);}
+
+  section{padding:60px 0 56px;scroll-margin-top:64px;}
+  .sec-head{display:flex;align-items:center;gap:14px;margin-bottom:8px;}
+  .sec-no{font-family:var(--serif);font-size:14px;color:var(--accent);border:1px solid var(--accent);border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;flex:none;}
+  .sec-head h2{font-size:clamp(23px,3.4vw,31px);color:var(--ink);}
+  .sec-sub{color:var(--ink-faint);font-size:14.5px;margin-bottom:32px;padding-left:48px;}
+  @media(max-width:880px){.sec-sub{padding-left:0;}}
+
+  .divider{height:1px;background:linear-gradient(90deg,transparent,var(--line) 18%,var(--line) 82%,transparent);}
+
+  .bookcard{
+    display:grid;grid-template-columns:1.1fr 1fr;gap:34px;align-items:center;
+    background:var(--paper-2);border:1px solid var(--line);border-radius:18px;
+    padding:38px;box-shadow:var(--shadow);position:relative;overflow:hidden;
+  }
+  .bookcard::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:linear-gradient(var(--accent),var(--accent-2));}
+  .one-liner{font-family:var(--serif);font-size:clamp(19px,2.9vw,26px);line-height:1.55;color:var(--ink);}
+  .one-liner em{color:var(--accent);font-style:normal;}
+  .one-liner .rule{width:52px;height:3px;background:var(--accent);border-radius:2px;margin-top:18px;opacity:.85;}
+  .meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 22px;}
+  .meta-grid .cell span{display:block;font-size:12px;letter-spacing:.1em;color:var(--ink-faint);text-transform:uppercase;margin-bottom:3px;}
+  .meta-grid .cell b{font-family:var(--serif);font-size:16.5px;color:var(--ink);font-weight:600;line-height:1.45;}
+  @media(max-width:880px){.bookcard{grid-template-columns:1fr;padding:28px;gap:26px;}}
+
+  .sys-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .sys{border-radius:16px;padding:30px 28px;color:#fff;position:relative;overflow:hidden;box-shadow:var(--shadow);}
+  .sys.s1{background:linear-gradient(150deg,#355e3b,#26432a);}
+  .sys.s2{background:linear-gradient(150deg,#64385e,#492945);}
+  .sys.s3{background:linear-gradient(150deg,#7ba07e,#355e3b);}
+  .sys.s4{background:linear-gradient(150deg,#1f3823,#172a1a);}
+  .sys .tag{font-size:12px;letter-spacing:.16em;opacity:.88;text-transform:uppercase;}
+  .sys h3{font-size:25px;margin:6px 0 4px;}
+  .sys .tagline{font-family:var(--serif);font-style:italic;font-size:15.5px;opacity:.92;margin-bottom:16px;}
+  .sys ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+  .sys li{display:flex;gap:10px;font-size:14px;line-height:1.55;align-items:flex-start;}
+  .sys li svg{flex:none;margin-top:4px;}
+  .sys .speed{display:inline-flex;align-items:baseline;gap:8px;margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.22);}
+  .sys .speed b{font-size:24px;font-family:var(--serif);}
+  .sys .speed span{font-size:12.5px;opacity:.82;}
+  @media(max-width:880px){.sys-grid{grid-template-columns:1fr;}}
+
+  .stage-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;}
+  .stage{border-radius:16px;padding:26px 22px;color:#fff;position:relative;overflow:hidden;box-shadow:var(--shadow);}
+  .stage .no{font-family:var(--serif);font-size:15px;opacity:.85;letter-spacing:.12em;}
+  .stage h3{font-size:21px;margin:5px 0 3px;}
+  .stage .tagline{font-family:var(--serif);font-style:italic;font-size:13.5px;opacity:.9;margin-bottom:13px;}
+  .stage ul{list-style:none;display:flex;flex-direction:column;gap:9px;}
+  .stage li{display:flex;gap:9px;font-size:13.5px;line-height:1.55;align-items:flex-start;}
+  .stage li svg{flex:none;margin-top:3px;}
+  .stage::after{content:"→";position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:26px;opacity:.55;color:#fff;}
+  .stage:last-child::after{content:"";}
+
+  .vs-wrap{margin-top:26px;background:var(--paper-2);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .vs-head{display:grid;grid-template-columns:1.1fr 1fr 1fr;background:linear-gradient(90deg,rgba(53,94,59,0.1),rgba(100,56,94,0.1));border-bottom:1px solid var(--line);}
+  .vs-head div{padding:14px 18px;font-family:var(--serif);font-size:15px;}
+  .vs-head .h1c{color:var(--accent);}
+  .vs-head .h2c{color:var(--warm);}
+  .vs-row{display:grid;grid-template-columns:1.1fr 1fr 1fr;border-bottom:1px solid var(--line);}
+  .vs-row:last-child{border-bottom:none;}
+  .vs-row:nth-child(odd){background:rgba(244,242,237,.55);}
+  .vs-row .dim{padding:12px 18px;font-size:13px;color:var(--ink-faint);letter-spacing:.04em;display:flex;align-items:center;}
+  .vs-row .v1{padding:12px 18px;font-size:13.5px;color:var(--ink-soft);border-left:1px dashed var(--line);display:flex;align-items:center;}
+  .vs-row .v2{padding:12px 18px;font-size:13.5px;color:var(--ink-soft);border-left:1px dashed var(--line);display:flex;align-items:center;}
+  @media(max-width:680px){
+    .vs-head.v3{grid-template-columns:1fr 1fr;} .vs-head.v3 .h0{display:none;}
+    .vs-row.v3{grid-template-columns:1fr;padding:10px 0;}
+    .vs-row.v3 .dim{grid-column:1/-1;padding:4px 18px 2px;font-family:var(--serif);color:var(--accent);font-size:13.5px;}
+    .vs-row.v3 .v1,.vs-row.v3 .v2{border-left:none;padding:2px 18px;}
+    .vs-row.v3 .v1::before{content:"甲面　";color:var(--accent);font-weight:600;}
+    .vs-row.v3 .v2::before{content:"乙面　";color:var(--warm);font-weight:600;}
+  }
+
+  .sys-note{margin-top:22px;background:var(--paper-2);border:1px dashed var(--accent-2);border-radius:12px;padding:18px 22px;font-size:14.5px;color:var(--ink-soft);}
+  .sys-note b{color:var(--accent);font-family:var(--serif);}
+
+  .spectrum{margin-top:26px;background:var(--paper-2);border:1px solid var(--line);border-radius:16px;
+    padding:30px 30px 24px;box-shadow:var(--shadow);}
+  .spectrum h3{font-size:19px;margin-bottom:4px;}
+  .spectrum .en{font-size:12.5px;letter-spacing:.06em;color:var(--ink-faint);margin-bottom:18px;}
+  .spectrum svg{width:100%;height:auto;display:block;}
+  .spectrum .cap{margin-top:14px;font-size:13.5px;color:var(--ink-soft);line-height:1.7;}
+  .spectrum .cap b{color:var(--accent);font-family:var(--serif);}
+
+  .fx-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+  .fx{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:24px;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s;}
+  .fx:hover{transform:translateY(-3px);box-shadow:var(--shadow);}
+  .fx .ic{width:42px;height:42px;border-radius:11px;background:rgba(53,94,59,0.09);display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+  .fx h3{font-size:18px;margin-bottom:3px;}
+  .fx .en{font-size:12px;letter-spacing:.06em;color:var(--ink-faint);margin-bottom:11px;}
+  .fx p{font-size:14px;color:var(--ink-soft);line-height:1.65;}
+  .fx .eg{margin-top:12px;font-size:13px;color:var(--accent);background:rgba(53,94,59,0.06);border-radius:8px;padding:8px 11px;}
+  .fx .eg b{font-weight:600;}
+  @media(max-width:880px){.fx-grid{grid-template-columns:1fr;}}
+
+  .flow{position:relative;padding-left:8px;}
+  .flow .step{display:grid;grid-template-columns:64px 1fr;gap:20px;position:relative;padding-bottom:28px;}
+  .flow .step:not(:last-child)::before{content:"";position:absolute;left:31px;top:48px;bottom:0;width:2px;background:linear-gradient(var(--accent-2),var(--line));}
+  .flow .node{width:64px;height:64px;border-radius:50%;background:var(--paper-2);border:2px solid var(--accent-2);display:flex;flex-direction:column;align-items:center;justify-content:center;flex:none;position:relative;z-index:2;box-shadow:0 3px 10px rgba(37,42,46,.08);}
+  .flow .node b{font-family:var(--serif);font-size:17px;color:var(--accent);line-height:1.15;}
+  .flow .node span{font-size:10px;color:var(--ink-faint);letter-spacing:.05em;}
+  .flow .body{padding-top:6px;}
+  .flow .body h3{font-size:18px;margin-bottom:5px;}
+  .flow .body h3 small{font-size:12.5px;color:var(--ink-faint);font-family:var(--sans);font-weight:400;margin-left:8px;}
+  .flow .body p{font-size:14px;color:var(--ink-soft);}
+  .flow .body .pill{display:inline-block;margin-top:8px;font-size:12px;color:var(--warm);background:rgba(100,56,94,0.1);padding:3px 11px;border-radius:20px;}
+
+  .quotes{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
+  .quote{background:linear-gradient(160deg,#faf9f5,#eef0ef);border:1px solid var(--line);border-radius:16px;padding:30px 28px 26px;position:relative;box-shadow:var(--shadow);}
+  .quote .mark{font-family:Georgia,serif;font-size:64px;line-height:.4;color:var(--accent);opacity:.35;height:30px;}
+  .quote p{font-family:var(--serif);font-size:17.5px;line-height:1.6;color:var(--ink);margin-bottom:14px;}
+  .quote .src{font-size:13px;color:var(--ink-faint);letter-spacing:.04em;}
+  .quote.span2{grid-column:1/-1;background:linear-gradient(110deg,#1a2f1d,#101e12);border-color:#142517;}
+  .quote.span2 p{color:#e9eef2;font-size:20.5px;}
+  .quote.span2 .src{color:var(--accent-2);}
+  .quote.span2 .mark{color:var(--accent-2);}
+  @media(max-width:880px){.quotes{grid-template-columns:1fr;}}
+
+  .act-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+  .act{display:grid;grid-template-columns:46px 1fr;gap:16px;background:var(--paper-2);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:22px;transition:transform .2s,box-shadow .2s;}
+  .act:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm);}
+  .act .num{font-family:var(--serif);font-size:26px;color:var(--accent);line-height:1.1;}
+  .act h3{font-size:16.5px;margin-bottom:5px;}
+  .act p{font-size:13.5px;color:var(--ink-soft);line-height:1.65;}
+  @media(max-width:880px){.act-grid{grid-template-columns:1fr;}}
+
+  .split{display:grid;grid-template-columns:1fr 1.15fr;gap:30px;align-items:stretch;}
+  .split .imgcol{border-radius:16px;overflow:hidden;min-height:320px;background-size:cover;background-position:center;box-shadow:var(--shadow);position:relative;}
+  .split .imgcol::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,26,34,0) 42%,rgba(16,30,18,0.62));}
+  .split .imgcol .cap{position:absolute;left:22px;bottom:18px;z-index:2;color:#e5ebf0;font-family:var(--serif);font-size:15px;}
+  .fit-list{display:flex;flex-direction:column;gap:14px;}
+  .fit{display:flex;gap:13px;background:var(--paper-2);border:1px solid var(--line);border-radius:12px;padding:16px 18px;align-items:flex-start;}
+  .fit svg{flex:none;margin-top:3px;}
+  .fit b{font-family:var(--serif);font-size:15.5px;display:block;margin-bottom:2px;}
+  .fit span{font-size:13.5px;color:var(--ink-soft);}
+  @media(max-width:880px){.split{grid-template-columns:1fr;}}
+
+  footer{padding:46px 28px 60px;text-align:center;color:var(--ink-faint);font-size:13px;}
+  footer .line{width:60px;height:3px;background:var(--accent);margin:0 auto 20px;border-radius:3px;}
+  footer b{font-family:var(--serif);color:var(--ink-soft);}
+  .disclaim{margin-top:10px;font-size:12px;color:var(--ink-faint);max-width:680px;margin-left:auto;margin-right:auto;line-height:1.7;}
+
+  @media print{
+    #progress,.toc-bar,.ribbon{display:none;}
+    body::before{display:none;}
+    section{padding:28px 0;}
+    .fx,.act,.quote,.sys{break-inside:avoid;}
+  }
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<header class="hero" id="hero">
+  <div class="ribbon"><span>读书笔记</span></div>
+  <div class="hero-inner">
+    <span class="kicker">精读笔记 · 家庭教育</span>
+    <h1>《培养高情商的孩子》</h1>
+    <div class="sub-en">Raising an Emotionally Intelligent Child</div>
+    <p class="lead">孩子哭闹时，大多数家长急着止哭，戈特曼却看到了一堂正课：情绪不是要扑灭的火，而是要接住的球。这本书给出五步情绪教练法，把每次崩溃现场都变成亲子联结的练习场。</p>
+    <div class="hero-meta"><div class="m"><b>5 个步骤</b><span>情绪教练的标准动作</span></div><div class="m"><b>2 种家长</b><span>情绪消除与情绪教练</span></div><div class="m"><b>30 余年</b><span>家庭观察研究打底</span></div><div class="m"><b>1 个时机</b><span>崩溃恰是最好的教机</span></div></div>
+  </div>
+</header>
+
+<nav class="toc-bar" aria-label="页面目录"><div class="toc-in"><span class="lab">目录</span><a href="#info">书籍信息</a><a href="#duo">核心框架</a><a href="#chart">一张图</a><a href="#fx">关键概念</a><a href="#flow">章节脉络</a><a href="#quotes">金句</a><a href="#actions">行动启发</a><a href="#who">适合谁读</a></div></nav>
+
+<div class="wrap">
+<section id="info">
+  <div class="sec-head"><div class="sec-no">01</div><h2>这本书讲了什么</h2></div>
+  <p class="sec-sub">一句话总览 + 核心信息卡</p>
+  <div class="bookcard">
+    <div><div class="one-liner">这本书的底层判断很冷静：孩子的情商不靠说教学出来，而靠被<em>一次次共情地对待</em>长出来。家长能做的不是消灭坏情绪，而是借每次发作示范如何<em>与情绪相处</em>。</div><div class="rule"></div></div>
+    <div class="meta-grid"><div class="cell"><span>作者</span><b>约翰·戈特曼，美国心理学家；合著者琼·德克莱尔</b></div><div class="cell"><span>领域</span><b>家庭教育 · 儿童情绪发展</b></div><div class="cell"><span>核心命题</span><b>父母对情绪的回应方式，决定孩子情绪能力的高低</b></div><div class="cell"><span>出版</span><b>英文原版 1997 年前后出版，中文版多次再版</b></div><div class="cell"><span>方法</span><b>基于家庭互动观察研究，提炼出可操作的情绪教练五步骤</b></div><div class="cell"><span>关键概念</span><b>情绪教练、元情绪、共情式倾听、界限与解决</b></div></div>
+  </div>
+</section>
+<div class="divider"></div>
+<section id="duo">
+  <div class="sec-head"><div class="sec-no">02</div><h2>核心框架：情绪消除型 与 情绪教练型</h2></div>
+  <p class="sec-sub">面对同一个哭闹的孩子，两种父母的分岔路</p>
+  <div class="sys-grid">
+<div class="sys s1"><div class="tag">甲面 · Emotion Dismissing</div>
+<h3>把情绪当麻烦处理</h3><div class="tagline">别哭了，这有什么好难过的</div>
+<ul><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>把负面情绪视为需要尽快清除的干扰项</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>常用转移、否决与训斥：这有什么、再哭就如何</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>孩子学到的是情绪可耻，且最好藏起来</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>短期见效快，代价是孩子不再向父母求助</li></ul><div class="speed"><b>灭火</b><span>灭火式回应在研究样本中占多数</span></div></div>
+<div class="sys s2"><div class="tag">乙面 · Emotion Coaching</div>
+<h3>把情绪当教材使用</h3><div class="tagline">你看起来很难过，愿意说说吗</div>
+<ul><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>把孩子的悲伤与愤怒看作建立亲密与教学的机会</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>先共情确认情绪，再讨论行为界限与解决办法</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>帮孩子给感受命名，让模糊的难受变成可谈的话题</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>研究显示这类孩子更能自安抚，同伴关系与成绩更好</li></ul><div class="speed"><b>借力</b><span>教练不替孩子处理情绪，陪他学会处理</span></div></div>
+</div>
+<div class="vs-wrap"><div class="vs-head v3"><div class="h0">对比维度</div><div class="h1c">情绪消除型</div><div class="h2c">情绪教练型</div></div>
+<div class="vs-row v3"><div class="dim">运作方式</div><div class="v1">压制、转移、尽快平息</div><div class="v2">接纳、命名、再引导解决</div></div>
+<div class="vs-row v3"><div class="dim">衡量标准</div><div class="v1">多快不哭了</div><div class="v2">孩子学会了吗</div></div>
+<div class="vs-row v3"><div class="dim">代表话术</div><div class="v1">这点小事至于吗</div><div class="v2">你很难过，因为积木塌了对吗</div></div>
+<div class="vs-row v3"><div class="dim">能否持续</div><div class="v1">关系随次数递减</div><div class="v2">信任随次数累积</div></div>
+</div>
+<div class="sys-note"><b>关键洞察 —</b> 书里反复强调：情绪教练的关键不是永远温和，而是先处理心情、再处理事情。界限照设、规则照讲，只是顺序变了——这一调换几乎决定所有育儿技巧的成败。</div>
+</section>
+<div class="divider"></div>
+<section id="chart">
+  <div class="sec-head"><div class="sec-no">03</div><h2>全书最深的一张图</h2></div>
+  <p class="sec-sub">情绪教练的五步，可背下来照做的动作序列</p>
+  <div class="spectrum">
+    <h3>情绪教练五步</h3>
+    <div class="en">Five Steps</div>
+    <svg viewBox="0 0 900 230" role="img" aria-label="情绪教练五步">
+<rect x="0" y="0" width="900" height="230" fill="#faf9f5" rx="12"/>
+<defs><linearGradient id="g_b112_steps" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#355e3b"/><stop offset="0.5" stop-color="#4b8568"/><stop offset="1" stop-color="#64385e"/></linearGradient></defs>
+<rect x="60" y="165" width="142" height="30" fill="url(#g_b112_steps)" opacity="0.60" rx="4"/>
+<text x="131" y="189" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">觉察情绪</text>
+<text x="131" y="213" text-anchor="middle" font-size="11.5" fill="#848d94">留意孩子的细微信号，也留意自己的</text>
+<rect x="216" y="131" width="142" height="64" fill="url(#g_b112_steps)" opacity="0.70" rx="4"/>
+<text x="287" y="155" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">把握契机</text>
+<text x="287" y="213" text-anchor="middle" font-size="11.5" fill="#848d94">把情绪化时刻当成联结与教学的机会</text>
+<rect x="372" y="97" width="142" height="98" fill="url(#g_b112_steps)" opacity="0.80" rx="4"/>
+<text x="443" y="121" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">倾听认可</text>
+<text x="443" y="213" text-anchor="middle" font-size="11.5" fill="#848d94">共情式倾听，确认感受而不是纠正感受</text>
+<rect x="528" y="63" width="142" height="132" fill="url(#g_b112_steps)" opacity="0.90" rx="4"/>
+<text x="599" y="87" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">命名情绪</text>
+<text x="599" y="213" text-anchor="middle" font-size="11.5" fill="#848d94">帮孩子说出它：愤怒、委屈还是失望</text>
+<rect x="684" y="29" width="142" height="166" fill="url(#g_b112_steps)" opacity="1.00" rx="4"/>
+<text x="755" y="53" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">设限解决</text>
+<text x="755" y="213" text-anchor="middle" font-size="11.5" fill="#848d94">行为可以有界限，情绪一律被接纳</text>
+<text x="450" y="228" text-anchor="middle" font-size="11" fill="#848d94">顺序重要：先四步共情，第五步才谈规矩</text>
+</svg>
+    <div class="cap"><b>怎么用 —</b> 用法：下次孩子崩溃时按序走一遍，重点是别在第三步之前跳到讲道理。顺序一乱，后面所有话都会被听成指责。</div>
+  </div>
+</section>
+<div class="divider"></div>
+<section id="fx">
+  <div class="sec-head"><div class="sec-no">04</div><h2>关键概念卡片</h2></div>
+  <p class="sec-sub">从研究中提炼的情绪养育工具</p>
+  <div class="fx-grid"><div class="fx"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#355e3b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7.5-4.6-9.3-9A5.2 5.2 0 0112 6.2 5.2 5.2 0 0121.3 11c-1.8 4.4-9.3 9-9.3 9z"/></svg></div>
+<h3>情绪教练</h3><div class="en">Emotion Coaching</div><p>把孩子的情绪事件转化为教育机会的养育方式：先接纳与共情，再给行为设限，最后引导孩子自己想办法。</p><div class="eg"><b>例：</b>孩子因输棋摔子，教练型父母先说输棋真让人恼火，再谈摔东西的界限，最后一起想下次怎么办。</div></div><div class="fx"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#355e3b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"/><circle cx="12" cy="12" r="2.6"/></svg></div>
+<h3>元情绪</h3><div class="en">Meta-Emotion</div><p>我们对情绪的情绪：对孩子愤怒这件事，你自己是容忍还是反感。父母的元情绪哲学在童年形成，常在育儿现场自动重播。</p><div class="eg"><b>例：</b>一听见孩子哭就莫名烦躁的家长，多半是自己的哭曾被禁止，这一觉察就是改变的起点。</div></div><div class="fx"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#355e3b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12c2.5-3 5-3 7.5 0s5 3 7.5 0 3-2 5 0M2 17c2.5-3 5-3 7.5 0s5 3 7.5 0 3-2 5 0M2 7c2.5-3 5-3 7.5 0"/></svg></div>
+<h3>共情式倾听</h3><div class="en">Empathic Listening</div><p>不急于评判或纠正的听：复述孩子的感受，确认它的合理性。被确认的情绪会降温，被否定的情绪会加倍反扑。</p><div class="eg"><b>例：</b>弟弟弄坏画作，先说你一定很心疼这幅画，比一句他又不是故意的有效十倍。</div></div><div class="fx"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#355e3b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="14" r="4"/><path d="M11 11l9-9M17 5l2.5 2.5M14 8l2 2"/></svg></div>
+<h3>情绪命名</h3><div class="en">Labeling</div><p>帮孩子把模糊的难受翻译成具体词汇。研究表明情绪命名本身就能降低唤起水平，词汇越准，自控越容易。</p><div class="eg"><b>例：</b>把我不高兴细分为失望、嫉妒或害怕后，孩子往往自己就找到了应对办法。</div></div><div class="fx"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#355e3b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M4 7h16M6 7l-3 6a3 3 0 006 0zM18 7l-3 6a3 3 0 006 0z"/></svg></div>
+<h3>界限与解决</h3><div class="en">Limits and Problem-Solving</div><p>情绪全部接纳，行为另有边界：可以生气，不能伤人毁物。在此基础上邀请孩子参与找方案，自拟才易执行。</p><div class="eg"><b>例：</b>生气可以捶枕头，五步走完后让孩子自己列出三个可选项。</div></div><div class="fx"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#355e3b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.2"/><circle cx="5" cy="17" r="2.2"/><circle cx="19" cy="17" r="2.2"/><path d="M12 7.2L6 15M12 7.2L18 15M7.2 17h9.6"/></svg></div>
+<h3>父亲的参与</h3><div class="en">Father Involvement</div><p>书中专章指出：父亲的情绪参与度与孩子的社交能力和学业表现高度相关，日常陪伴难以替代。</p><div class="eg"><b>例：</b>每天二十分钟由孩子主导内容的游戏，胜过周末两小时的补课式陪伴。</div></div></div>
+</section>
+<div class="divider"></div>
+<section id="flow">
+  <div class="sec-head"><div class="sec-no">05</div><h2>全书脉络图</h2></div>
+  <p class="sec-sub">按原书推进线：从理念分岔到五步实操</p>
+  <div class="flow"><div class="step"><div class="node"><b>01</b><span>CH.</span></div>
+<div class="body"><h3>情绪是什么<small>Basics</small></h3><p>情绪不是敌人而是信号，父母的回应决定了孩子与情绪的关系。</p><span class="pill">正名</span></div></div><div class="step"><div class="node"><b>02</b><span>CH.</span></div>
+<div class="body"><h3>两种父母<small>Two Styles</small></h3><p>情绪消除与情绪教练的分岔：同一场景，两种截然不同的未来。</p><span class="pill">自检</span></div></div><div class="step"><div class="node"><b>03</b><span>CH.</span></div>
+<div class="body"><h3>五步实操<small>The Five Steps</small></h3><p>从觉察到设限解决的完整动作序列，逐条给出话术示范。</p><span class="pill">实操</span></div></div><div class="step"><div class="node"><b>04</b><span>CH.</span></div>
+<div class="body"><h3>高难场景<small>Hard Cases</small></h3><p>愤怒、悲伤、恐惧各有特殊处理；离婚、丧亲等重大时刻的应对。</p><span class="pill">进阶</span></div></div><div class="step"><div class="node"><b>05</b><span>CH.</span></div>
+<div class="body"><h3>父母自己的功课<small>Inner Work</small></h3><p>先照见自己的元情绪与婚姻质量，再谈孩子的情绪教育。</p><span class="pill">向内</span></div></div></div>
+</section>
+<div class="divider"></div>
+<section id="quotes">
+  <div class="sec-head"><div class="sec-no">06</div><h2>金句摘录</h2></div>
+  <p class="sec-sub">值得抄进笔记本的句子（据核心观点转述）</p>
+  <div class="quotes"><div class="quote"><div class="mark">&ldquo;</div><p>孩子的情绪不是需要扑灭的警报，而是需要拆开的信件。</p><div class="src">—— 论情绪</div></div><div class="quote"><div class="mark">&ldquo;</div><p>被父母确认过的感受，才有可能被孩子自己安放。</p><div class="src">—— 论接纳</div></div><div class="quote"><div class="mark">&ldquo;</div><p>共情放在讲道理之前，顺序错了，一切努力都会白费。</p><div class="src">—— 论顺序</div></div><div class="quote"><div class="mark">&ldquo;</div><p>行为的界限可以寸步不让，情绪的接纳也要寸步不让。</p><div class="src">—— 论界限</div></div><div class="quote span2"><div class="mark">&ldquo;</div><p>孩子不是听你怎么说，而是看你哭闹时你怎么对他。</p><div class="src">—— 论示范</div></div></div>
+</section>
+<div class="divider"></div>
+<section id="actions">
+  <div class="sec-head"><div class="sec-no">07</div><h2>对工作与决策的行动启发</h2></div>
+  <p class="sec-sub">读完就能上手的方法</p>
+  <div class="act-grid"><div class="act"><div class="num">1</div><div><h3>自测你的元情绪</h3><p>写下孩子哪种情绪最让你烦躁，再回忆你童年时这种情绪被如何对待。今晚只完成这两行字。</p></div></div><div class="act"><div class="num">2</div><div><h3>改一句口头禅</h3><p>把家里最常用的一句这有什么好哭的，改成你看起来很难过。从下一次哭闹开始用。</p></div></div><div class="act"><div class="num">3</div><div><h3>练一次命名</h3><p>孩子情绪上来时，用三个候选词帮他命名：是生气、委屈还是害怕。观察命名后音量的变化。</p></div></div><div class="act"><div class="num">4</div><div><h3>把规矩移到后面</h3><p>今天起约定：任何说教都在孩子平静之后进行。用手机备忘录提醒自己先共情后讲理。</p></div></div><div class="act"><div class="num">5</div><div><h3>开一场解决方案会</h3><p>针对一个反复冲突点，邀请孩子提出两个办法，你也提两个，让他选。方案贴在冰箱上。</p></div></div><div class="act"><div class="num">6</div><div><h3>安排二十分钟</h3><p>每天留二十分钟由孩子主导的游戏，不纠正、不指导、不看手机。连续执行一周再看变化。</p></div></div></div>
+</section>
+<div class="divider"></div>
+<section id="who">
+  <div class="sec-head"><div class="sec-no">08</div><h2>这本书适合谁读</h2></div>
+  <p class="sec-sub">如果你符合其中一条，它都值得放进书单</p>
+  <div class="split">
+    <div class="imgcol" id="who-img"><div class="cap">地板上平视的对话</div></div>
+    <div class="fit-list"><div class="fit"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 9l4 4 10-10" stroke="#355e3b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>幼儿与学龄期父母</b><span>每天面对哭闹与顶撞的家庭，需要一套当天就能上手的回应脚本。</span></div></div><div class="fit"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 9l4 4 10-10" stroke="#355e3b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>教育者</b><span>幼儿园与小学教师可将五步法迁移到课堂的情绪事件处理。</span></div></div><div class="fit"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 9l4 4 10-10" stroke="#355e3b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>原生家庭议题关注者</b><span>想理解自己为何不会处理情绪的成年人，可借本书完成一次回溯。</span></div></div><div class="fit"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2v4M9 12v4M2 9h4M12 9h4" stroke="#7ba07e" stroke-width="2" stroke-linecap="round"/></svg><div><b>期待速效药方的家长</b><span>提示：五步法需要反复练习而非一次见效，请从改写一句口头禅开始积累。</span></div></div></div>
+  </div>
+</section>
+</div>
+
+<footer>
+  <div class="line"></div>
+  <b>《培养高情商的孩子》精读笔记 · 读书摘要卡</b>
+  <p class="disclaim">本页为基于该书公开核心观点整理的读书笔记，用于知识科普与个人学习参考，非原文逐字转载。书名、理论与观点版权归原作者及出版方所有。头图为亲子共读场景图（Wikimedia Commons，许可）。</p>
+</footer>
+
+<script>
+  var DOC_ARCHIVE = "../assets/hero/h20.jpg";
+  document.getElementById('hero').style.backgroundImage = "url('" + DOC_ARCHIVE + "')";
+  var wi = document.getElementById('who-img');
+  if (wi) wi.style.backgroundImage = "url('" + DOC_ARCHIVE + "')";
+
+  (function(){
+    var bar = document.getElementById('progress');
+    function upd(){
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.width = (max > 0 ? (h.scrollTop / max * 100) : 0) + '%';
+    }
+    window.addEventListener('scroll', upd, {passive:true});
+    window.addEventListener('resize', upd);
+    upd();
+  })();
+</script>
+
+</body>
+</html>

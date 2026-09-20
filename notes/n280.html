@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《亲密关系》精读笔记 · 通往灵魂的桥梁</title>
+<meta name="description" content="克里斯多福·孟《亲密关系》读书笔记：四阶段旅程、月晕与幻灭、受害者监牢、穿墙而过与灵魂关系，附行动启发。">
+<style>
+  :root{
+    --paper:#f6f0ee;
+    --paper-2:#fbf6f4;
+    --ink:#2a2026;
+    --ink-soft:#5c4a52;
+    --ink-faint:#8a7682;
+    --line:#e5d6da;
+    --accent:#C25E7A;      /* 玫瑰红 */
+    --accent-2:#E8B4C0;    /* 浅雾粉 */
+    --warm:#a15c3a;
+    --shadow:0 12px 40px rgba(120,52,72,.10);
+    --shadow-sm:0 4px 18px rgba(120,52,72,.08);
+    --serif:"Songti SC","Source Han Serif SC","Noto Serif SC",Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--sans);color:var(--ink);background:var(--paper);
+    background-image:
+      radial-gradient(circle at 18% 8%, rgba(232,180,192,.18), transparent 42%),
+      radial-gradient(circle at 84% 88%, rgba(194,94,122,.10), transparent 46%);
+    line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.035'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  body>*{position:relative;z-index:1;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
+  h1,h2,h3,.serif{font-family:var(--serif);}
+  ::selection{background:rgba(194,94,122,.20);}
+
+  #progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:99;
+    background:linear-gradient(90deg,var(--accent-2),var(--accent));transition:width .1s linear;}
+
+  .hero{
+    position:relative;min-height:clamp(480px,72vh,640px);
+    display:flex;align-items:flex-end;
+    background-size:cover;background-position:center 55%;
+    color:#fdf2f5;overflow:hidden;
+  }
+  .hero::after{
+    content:"";position:absolute;inset:0;
+    background:
+      linear-gradient(180deg, rgba(60,28,38,.30) 0%, rgba(60,28,38,.42) 42%, rgba(40,18,26,.92) 100%),
+      linear-gradient(90deg, rgba(40,18,26,.60) 0%, rgba(40,18,26,0) 58%);
+  }
+  .hero-inner{position:relative;z-index:2;width:100%;max-width:1080px;margin:0 auto;padding:88px 28px 54px;}
+  .hero .kicker{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:13px;letter-spacing:.22em;text-transform:uppercase;
+    color:#f4d5dd;border:1px solid rgba(244,213,221,.50);
+    padding:6px 15px;border-radius:30px;margin-bottom:22px;backdrop-filter:blur(2px);
+  }
+  .hero h1{font-size:clamp(34px,6vw,62px);line-height:1.12;font-weight:700;letter-spacing:.01em;text-shadow:0 2px 24px rgba(0,0,0,.45);margin-bottom:10px;}
+  .hero .sub-en{font-family:var(--serif);font-style:italic;font-size:clamp(15px,2.4vw,22px);color:#f0c4cf;opacity:.92;margin-bottom:20px;}
+  .hero .lead{max-width:640px;font-size:clamp(15px,2vw,18px);color:#f7e1e7;}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:24px 34px;margin-top:30px;}
+  .hero-meta .m{display:flex;flex-direction:column;}
+  .hero-meta .m b{font-family:var(--serif);font-size:20px;color:#fff;}
+  .hero-meta .m span{font-size:12.5px;letter-spacing:.08em;color:#e9c0cb;}
+
+  .ribbon{position:absolute;top:0;right:clamp(16px,5vw,52px);z-index:3;width:44px;
+    background:var(--accent);color:#fff;text-align:center;
+    padding:15px 0 24px;font-family:var(--serif);font-size:13px;letter-spacing:.14em;
+    box-shadow:0 6px 16px rgba(0,0,0,.32);}
+  .ribbon::after{content:"";position:absolute;left:0;bottom:-13px;border-width:0 22px 14px;border-style:solid;border-color:var(--accent) var(--accent) transparent;}
+  .ribbon span{writing-mode:vertical-rl;}
+
+  .toc-bar{background:var(--paper-2);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50;box-shadow:0 2px 14px rgba(120,52,72,.06);}
+  .toc-in{max-width:1080px;margin:0 auto;padding:10px 28px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .toc-in .lab{font-family:var(--serif);font-size:13px;color:var(--accent);letter-spacing:.1em;margin-right:6px;}
+  .toc-in a{font-size:12.5px;color:var(--ink-soft);text-decoration:none;padding:4px 11px;border-radius:20px;border:1px solid transparent;transition:all .18s;white-space:nowrap;}
+  .toc-in a:hover{color:var(--accent);border-color:rgba(194,94,122,.35);background:rgba(194,94,122,.05);}
+
+  section{padding:60px 0 56px;scroll-margin-top:64px;}
+  .sec-head{display:flex;align-items:center;gap:14px;margin-bottom:8px;}
+  .sec-no{font-family:var(--serif);font-size:14px;color:var(--accent);border:1px solid var(--accent);border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;flex:none;}
+  .sec-head h2{font-size:clamp(23px,3.4vw,31px);color:var(--ink);}
+  .sec-sub{color:var(--ink-faint);font-size:14.5px;margin-bottom:32px;padding-left:48px;}
+  @media(max-width:880px){.sec-sub{padding-left:0;}}
+
+  .divider{height:1px;background:linear-gradient(90deg,transparent,var(--line) 18%,var(--line) 82%,transparent);}
+
+  .bookcard{
+    display:grid;grid-template-columns:1.1fr 1fr;gap:34px;align-items:center;
+    background:var(--paper-2);border:1px solid var(--line);border-radius:18px;
+    padding:38px;box-shadow:var(--shadow);position:relative;overflow:hidden;
+  }
+  .bookcard::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:linear-gradient(var(--accent),var(--accent-2));}
+  .one-liner{font-family:var(--serif);font-size:clamp(19px,2.9vw,26px);line-height:1.55;color:var(--ink);}
+  .one-liner em{color:var(--accent);font-style:normal;}
+  .one-liner .rule{width:52px;height:3px;background:var(--accent);border-radius:2px;margin-top:18px;opacity:.85;}
+  .meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 22px;}
+  .meta-grid .cell span{display:block;font-size:12px;letter-spacing:.1em;color:var(--ink-faint);text-transform:uppercase;margin-bottom:3px;}
+  .meta-grid .cell b{font-family:var(--serif);font-size:16.5px;color:var(--ink);font-weight:600;line-height:1.45;}
+  @media(max-width:880px){.bookcard{grid-template-columns:1fr;padding:28px;gap:26px;}}
+
+  /* 四阶段横向卡片 */
+  .stage-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:8px;}
+  .stage{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:24px 20px;position:relative;transition:transform .2s,box-shadow .2s;}
+  .stage:hover{transform:translateY(-3px);box-shadow:var(--shadow);}
+  .stage .no{font-family:var(--serif);font-size:14px;color:var(--accent);letter-spacing:.1em;}
+  .stage h3{font-size:19px;margin:8px 0 4px;color:var(--ink);}
+  .stage .en{font-size:11.5px;letter-spacing:.06em;color:var(--ink-faint);text-transform:uppercase;margin-bottom:14px;}
+  .stage p{font-size:13.5px;color:var(--ink-soft);line-height:1.65;}
+  .stage .pill{display:inline-block;margin-top:14px;font-size:11.5px;color:var(--accent);background:rgba(194,94,122,.10);padding:3px 9px;border-radius:20px;}
+  .stage::after{content:"";position:absolute;right:-12px;top:50%;width:18px;height:2px;background:linear-gradient(90deg,var(--accent-2),transparent);}
+  .stage:last-child::after{display:none;}
+  @media(max-width:880px){
+    .stage-grid{grid-template-columns:1fr 1fr;}
+    .stage::after{display:none;}
+  }
+  @media(max-width:520px){.stage-grid{grid-template-columns:1fr;}}
+
+  .stage-note{margin-top:22px;background:var(--paper-2);border:1px dashed var(--accent-2);border-radius:12px;padding:18px 22px;font-size:14.5px;color:var(--ink-soft);}
+  .stage-note b{color:var(--accent);font-family:var(--serif);}
+
+  /* 通用 .sys / .vs / .spectrum 等保留以备复用（不在本页使用） */
+  .fx-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+  .fx{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:24px;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s;}
+  .fx:hover{transform:translateY(-3px);box-shadow:var(--shadow);}
+  .fx .ic{width:42px;height:42px;border-radius:11px;background:rgba(194,94,122,.10);display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+  .fx h3{font-size:18px;margin-bottom:3px;}
+  .fx .en{font-size:12px;letter-spacing:.06em;color:var(--ink-faint);margin-bottom:11px;}
+  .fx p{font-size:14px;color:var(--ink-soft);line-height:1.65;}
+  .fx .eg{margin-top:12px;font-size:13px;color:var(--accent);background:rgba(194,94,122,.07);border-radius:8px;padding:8px 11px;}
+  .fx .eg b{font-weight:600;}
+  @media(max-width:880px){.fx-grid{grid-template-columns:1fr;}}
+
+  .flow{position:relative;padding-left:8px;}
+  .flow .step{display:grid;grid-template-columns:64px 1fr;gap:20px;position:relative;padding-bottom:28px;}
+  .flow .step:not(:last-child)::before{content:"";position:absolute;left:31px;top:48px;bottom:0;width:2px;background:linear-gradient(var(--accent-2),var(--line));}
+  .flow .node{width:64px;height:64px;border-radius:50%;background:var(--paper-2);border:2px solid var(--accent-2);display:flex;flex-direction:column;align-items:center;justify-content:center;flex:none;position:relative;z-index:2;box-shadow:0 3px 10px rgba(120,52,72,.08);}
+  .flow .node b{font-family:var(--serif);font-size:17px;color:var(--accent);line-height:1.15;}
+  .flow .node span{font-size:10px;color:var(--ink-faint);letter-spacing:.05em;}
+  .flow .body{padding-top:6px;}
+  .flow .body h3{font-size:18px;margin-bottom:5px;}
+  .flow .body h3 small{font-size:12.5px;color:var(--ink-faint);font-family:var(--sans);font-weight:400;margin-left:8px;}
+  .flow .body p{font-size:14px;color:var(--ink-soft);}
+  .flow .body .pill{display:inline-block;margin-top:8px;font-size:12px;color:var(--warm);background:rgba(161,92,58,.09);padding:3px 11px;border-radius:20px;}
+
+  .quotes{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
+  .quote{background:linear-gradient(160deg,#fbf6f4,#f1e7ea);border:1px solid var(--line);border-radius:16px;padding:30px 28px 26px;position:relative;box-shadow:var(--shadow);}
+  .quote .mark{font-family:Georgia,serif;font-size:64px;line-height:.4;color:var(--accent);opacity:.35;height:30px;}
+  .quote p{font-family:var(--serif);font-size:17.5px;line-height:1.6;color:var(--ink);margin-bottom:14px;}
+  .quote .src{font-size:13px;color:var(--ink-faint);letter-spacing:.04em;}
+  .quote.span2{grid-column:1/-1;background:linear-gradient(110deg,#3a1a26,#5b2a3a);border-color:#2c121c;}
+  .quote.span2 p{color:#f7e1e7;font-size:20.5px;}
+  .quote.span2 .src{color:#f0c4cf;}
+  .quote.span2 .mark{color:#f0c4cf;}
+  @media(max-width:880px){.quotes{grid-template-columns:1fr;}}
+
+  .act-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+  .act{display:grid;grid-template-columns:46px 1fr;gap:16px;background:var(--paper-2);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:22px;transition:transform .2s,box-shadow .2s;}
+  .act:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm);}
+  .act .num{font-family:var(--serif);font-size:26px;color:var(--accent);line-height:1.1;}
+  .act h3{font-size:16.5px;margin-bottom:5px;}
+  .act p{font-size:13.5px;color:var(--ink-soft);line-height:1.65;}
+  @media(max-width:880px){.act-grid{grid-template-columns:1fr;}}
+
+  .split{display:grid;grid-template-columns:1fr 1.15fr;gap:30px;align-items:stretch;}
+  .split .imgcol{border-radius:16px;overflow:hidden;min-height:320px;background-size:cover;background-position:center;box-shadow:var(--shadow);position:relative;}
+  .split .imgcol::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(40,18,26,0) 42%,rgba(40,18,26,.58));}
+  .split .imgcol .cap{position:absolute;left:22px;bottom:18px;z-index:2;color:#f7e1e7;font-family:var(--serif);font-size:15px;}
+  .fit-list{display:flex;flex-direction:column;gap:14px;}
+  .fit{display:flex;gap:13px;background:var(--paper-2);border:1px solid var(--line);border-radius:12px;padding:16px 18px;align-items:flex-start;}
+  .fit svg{flex:none;margin-top:3px;}
+  .fit b{font-family:var(--serif);font-size:15.5px;display:block;margin-bottom:2px;}
+  .fit span{font-size:13.5px;color:var(--ink-soft);}
+  @media(max-width:880px){.split{grid-template-columns:1fr;}}
+
+  footer{padding:46px 28px 60px;text-align:center;color:var(--ink-faint);font-size:13px;}
+  footer .line{width:60px;height:3px;background:var(--accent);margin:0 auto 20px;border-radius:3px;}
+  footer b{font-family:var(--serif);color:var(--ink-soft);}
+  .disclaim{margin-top:10px;font-size:12px;color:var(--ink-faint);max-width:680px;margin-left:auto;margin-right:auto;line-height:1.7;}
+
+  @media print{
+    #progress,.toc-bar,.ribbon{display:none;}
+    body::before{display:none;}
+    section{padding:28px 0;}
+    .fx,.act,.quote,.stage{break-inside:avoid;}
+  }
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<header class="hero" id="hero">
+  <div class="ribbon"><span>读书笔记</span></div>
+  <div class="hero-inner">
+    <span class="kicker">精读笔记 · 摘要卡</span>
+    <h1>《亲密关系》</h1>
+    <div class="sub-en">The Bridge to the Soul &nbsp;·&nbsp; Christopher Moon</div>
+    <p class="lead">一本不教沟通技巧的关系书。它不让你学会赢过伴侣，而是让你看清：争吵背后站着的从来不是对方，是你童年那个等待被看见的孩子——伴侣只是那面镜子。</p>
+    <div class="hero-meta">
+      <div class="m"><b>4 个阶段</b><span>月晕 → 启示</span></div>
+      <div class="m"><b>1 座监牢</b><span>凯普曼三角</span></div>
+      <div class="m"><b>7 张药方</b><span>从投射到允许</span></div>
+      <div class="m"><b>1 个终点</b><span>灵魂关系</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="toc-bar" aria-label="页面目录">
+  <div class="toc-in">
+    <span class="lab">目录</span>
+    <a href="#info">书籍信息</a>
+    <a href="#stage">四阶段旅程</a>
+    <a href="#mirror">受害者监牢</a>
+    <a href="#fx">核心概念</a>
+    <a href="#flow">章节脉络</a>
+    <a href="#quotes">金句</a>
+    <a href="#actions">行动启发</a>
+    <a href="#who">适合谁读</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <section id="info">
+    <div class="sec-head"><div class="sec-no">01</div><h2>这本书讲了什么</h2></div>
+    <p class="sec-sub">一句话总览 + 核心信息卡</p>
+    <div class="bookcard">
+      <div>
+        <div class="one-liner">
+          一本不教沟通技巧的亲密关系书：它把伴侣当作照见自己内心伤口的<em>镜子</em>，教你看清争吵背后的童年需求，用爱穿越关系的四个阶段。
+        </div>
+        <div class="rule"></div>
+      </div>
+      <div class="meta-grid">
+        <div class="cell"><span>作者</span><b>[加] 克里斯多福·孟</b></div>
+        <div class="cell"><span>副标题</span><b>通往灵魂的桥梁</b></div>
+        <div class="cell"><span>领域</span><b>关系心理学 / 生命教练</b></div>
+        <div class="cell"><span>核心命题</span><b>痛苦不是来自关系本身，而是来自未被满足的童年期待</b></div>
+        <div class="cell"><span>学派</span><b>向内看派（绕开沟通技巧、直指需求根源）</b></div>
+        <div class="cell"><span>阅读量</span><b>全球数十万家庭工作坊指定教程</b></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="stage">
+    <div class="sec-head"><div class="sec-no">02</div><h2>核心框架：亲密关系的四阶段旅程</h2></div>
+    <p class="sec-sub">关系不是静态的，而是一场螺旋上升的旅程——四个阶段都在教会同一件事</p>
+    <div class="stage-grid">
+      <div class="stage">
+        <div class="no">STAGE · 一</div>
+        <h3>月晕</h3>
+        <div class="en">Halo · 投射之爱</div>
+        <p>热恋期对方"浑身发光"——那是童年未被满足的归属感与重要性，撞上了一个"看起来能填满空洞"的人。光芒不在对方身上，在你的投射里。</p>
+        <span class="pill">看见 · 投射</span>
+      </div>
+      <div class="stage">
+        <div class="no">STAGE · 二</div>
+        <h3>幻灭</h3>
+        <div class="en">Disillusionment</div>
+        <p>投射的泡沫破裂，期望落空点燃权力斗争。议题从洗碗漂移到童年，争吵本质是两个受伤的小孩在争"被爱的证据"。不是你遇错了人，是旧伤找到出口。</p>
+        <span class="pill">承受 · 看见旧伤</span>
+      </div>
+      <div class="stage">
+        <div class="no">STAGE · 三</div>
+        <h3>内省</h3>
+        <div class="en">Reflection · 镜中人</div>
+        <p>穿墙而过、直面镜中人。问题从来不在伴侣身上，而在那个被投射掩盖的"内我"——受害者监牢的钥匙，藏在你愿意回看的那个角落。</p>
+        <span class="pill">穿墙 · 自我负责</span>
+      </div>
+      <div class="stage">
+        <div class="no">STAGE · 四</div>
+        <h3>启示</h3>
+        <div class="en">Enlightenment &amp; Soul</div>
+        <p>放弃改变、评判与拯救，只留下"允许"——爱在此刻自然流动，两个完整的人成为彼此灵魂的伙伴。需求没有被填满，却被超越了。</p>
+        <span class="pill">允许 · 灵魂相遇</span>
+      </div>
+    </div>
+
+    <div class="stage-note">
+      <b>关键洞察 —</b> 四个阶段不是"过关升级"，而是一场不断重复的螺旋。<b>每对伴侣</b>都会反复回到月晕与幻灭——区别在于：愿不愿意在每次冲突里多停留一秒，向内看旧伤，而非向外索取答案。
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="mirror">
+    <div class="sec-head"><div class="sec-no">03</div><h2>全书最深的一张图：凯普曼三角</h2></div>
+    <p class="sec-sub">受害者监牢——三个角色轮班上演，谁也出不去</p>
+    <div class="spectrum" style="margin-top:0;">
+      <h3>凯普曼三角循环图</h3>
+      <div class="en">The Karpman Drama Triangle · 受害者 · 迫害者 · 拯救者</div>
+      <svg viewBox="0 0 900 380" role="img" aria-label="凯普曼三角循环图，三个角色相互转换形成闭环">
+        <rect x="0" y="0" width="900" height="380" fill="#fbf6f4" rx="12"/>
+
+        <!-- 三角连线（带箭头） -->
+        <defs>
+          <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0 0 L10 5 L0 10 z" fill="#C25E7A"/>
+          </marker>
+        </defs>
+        <!-- 三角 -->
+        <path d="M 450 70 L 220 300 L 680 300 Z" fill="none" stroke="#E8B4C0" stroke-width="2" stroke-dasharray="6 6"/>
+        <!-- 三条有箭头的边 -->
+        <path d="M 450 70 L 220 300" stroke="#C25E7A" stroke-width="2" marker-end="url(#arr)" opacity=".85"/>
+        <path d="M 220 300 L 680 300" stroke="#C25E7A" stroke-width="2" marker-end="url(#arr)" opacity=".85"/>
+        <path d="M 680 300 L 450 70" stroke="#C25E7A" stroke-width="2" marker-end="url(#arr)" opacity=".85"/>
+
+        <!-- 中心：监牢 -->
+        <circle cx="450" cy="200" r="44" fill="#fff" stroke="#C25E7A" stroke-width="3"/>
+        <circle cx="450" cy="200" r="36" fill="none" stroke="#C25E7A" stroke-width="1" stroke-dasharray="3 3" opacity=".5"/>
+        <text x="450" y="195" text-anchor="middle" font-size="14" font-weight="700" fill="#C25E7A" font-family="serif">受害者</text>
+        <text x="450" y="213" text-anchor="middle" font-size="13" fill="#C25E7A" font-family="serif">监牢</text>
+        <text x="450" y="231" text-anchor="middle" font-size="11" fill="#8a7682">戏剧回环</text>
+
+        <!-- 三个角：角色圆 -->
+        <!-- 受害者（顶） -->
+        <circle cx="450" cy="80" r="42" fill="#C25E7A"/>
+        <text x="450" y="78" text-anchor="middle" font-size="16" font-weight="700" fill="#fff" font-family="serif">受害者</text>
+        <text x="450" y="96" text-anchor="middle" font-size="11" fill="#fbe3eb">Victim</text>
+
+        <!-- 迫害者（左） -->
+        <circle cx="200" cy="300" r="42" fill="#8E2A46"/>
+        <text x="200" y="298" text-anchor="middle" font-size="16" font-weight="700" fill="#fff" font-family="serif">迫害者</text>
+        <text x="200" y="316" text-anchor="middle" font-size="11" fill="#f3c7d2">Persecutor</text>
+
+        <!-- 拯救者（右） -->
+        <circle cx="700" cy="300" r="42" fill="#A8555E"/>
+        <text x="700" y="298" text-anchor="middle" font-size="16" font-weight="700" fill="#fff" font-family="serif">拯救者</text>
+        <text x="700" y="316" text-anchor="middle" font-size="11" fill="#f3c7d2">Rescuer</text>
+
+        <!-- 角标台词 -->
+        <text x="450" y="155" text-anchor="middle" font-size="12" fill="#5c4a52" font-style="italic">"我好可怜"</text>
+        <text x="120" y="260" text-anchor="middle" font-size="12" fill="#5c4a52" font-style="italic">"都是你的错"</text>
+        <text x="780" y="260" text-anchor="middle" font-size="12" fill="#5c4a52" font-style="italic">"我来救你"</text>
+
+        <!-- 箭头说明：角色互换 -->
+        <text x="335" y="180" text-anchor="middle" font-size="11" fill="#C25E7A">愤怒 ←</text>
+        <text x="565" y="180" text-anchor="middle" font-size="11" fill="#C25E7A">→ 感激</text>
+        <text x="320" y="335" text-anchor="middle" font-size="11" fill="#C25E7A">失望 ←</text>
+        <text x="450" y="362" text-anchor="middle" font-size="13" font-weight="700" fill="#5c4a52" font-family="serif">受害者 ←→ 迫害者 ←→ 拯救者 ←→ 受害者 ……</text>
+      </svg>
+      <div class="cap" style="margin-top:18px;"><b>怎么读 —</b> 三个角色是同一出戏的三张面孔：演<b>受害者</b>时把责任推给对方，演<b>迫害者</b>时把愤怒发泄给对方，演<b>拯救者</b>时以"我为你好"的名义压制对方——三个方向都出不去。<b>穿墙方法</b>：用"现在的我"取代任何一个角色，说出真实感受（脆弱、需求、界限），牢门不在别人手里。</div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="fx">
+    <div class="sec-head"><div class="sec-no">04</div><h2>七张关键概念卡片</h2></div>
+    <p class="sec-sub">关系之路上，每个名词都对应一段需要走过的里程</p>
+    <div class="fx-grid">
+      <div class="fx">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3l2.5 5.5 6 .8-4.4 4 1.1 6L12 16.5 6.8 19.3l1.1-6-4.4-4 6-.8z" stroke="#C25E7A" stroke-width="1.8" stroke-linejoin="round"/></svg></div>
+        <h3>月晕现象</h3>
+        <div class="en">Halo Effect</div>
+        <p>热恋期把"理想父母/伴侣"投射到对方身上，看 TA 哪儿都好——发光的不是对方，是你的童年需求。</p>
+        <div class="eg"><b>例：</b>同居半年后连挤牙膏方式都成争吵导火索——泡泡破了，人才露出来。</div>
+      </div>
+      <div class="fx">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M9 6l-4 6 4 6M15 6l4 6-4 6" stroke="#C25E7A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>期望与愤恨</h3>
+        <div class="en">Expectation → Resentment</div>
+        <p>未被满足的期望会产生压力、失望，最终变成愤恨——三级火箭。一旦期望落空，关系会自动滑向争吵。</p>
+        <div class="eg"><b>例：</b>"如果你爱我，你就该知道我要什么"——以沉默绑架对方，必然失望。</div>
+      </div>
+      <div class="fx">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M5 19l4-6 4 3 7-9" stroke="#C25E7A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 7h6v6" stroke="#C25E7A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>权力斗争</h3>
+        <div class="en">Power Struggle</div>
+        <p>用争吵、冷战、讲道理争夺"谁对谁错"——实质是两个童年受伤的小孩在争被爱的证明，议题早已漂移。</p>
+        <div class="eg"><b>例：</b>从"谁来洗碗"吵到"你跟你妈一样"——争的从来不是碗。</div>
+      </div>
+      <div class="fx">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="#C25E7A" stroke-width="1.8"/><path d="M12 8v4M12 16v.5" stroke="#C25E7A" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <h3>受害者监牢</h3>
+        <div class="en">Victim's Prison</div>
+        <p>在受害者—迫害者—拯救者三角中轮班演出，无论演哪个都出不了牢笼。牢门的钥匙，从不在对方手里。</p>
+        <div class="eg"><b>例：</b>"我为这个家牺牲这么多"→"你自私冷漠"→"算了我来"，一天三角色全包。</div>
+      </div>
+      <div class="fx">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 4h16v10H4z" stroke="#C25E7A" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 14l-2 6 5-3 5 3-2-6" stroke="#C25E7A" stroke-width="1.8" stroke-linejoin="round"/></svg></div>
+        <h3>穿墙而过</h3>
+        <div class="en">Breaking Through</div>
+        <p>"和平的冷漠"不是关系变好，只是墙被粉刷——对伴侣突升的排斥与倦怠处，正是墙所在的位置，也埋着你最需要面对的自己。</p>
+        <div class="eg"><b>例：</b>不吵了，是因为懒得吵了——停滞不等于和解。</div>
+      </div>
+      <div class="fx">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.5-7-11a5 5 0 019-3 5 5 0 019 3c0 6.5-7 11-7 11z" stroke="#C25E7A" stroke-width="1.8" stroke-linejoin="round"/></svg></div>
+        <h3>允许</h3>
+        <div class="en">Allowing</div>
+        <p>启示阶段的核心态度——不再急于改变、评判或拯救对方，而是允许一切如实存在，爱在此刻自然流动。</p>
+        <div class="eg"><b>例：</b>吵到一半，一方放下防御说出真实感受，火药味瞬间融化。</div>
+      </div>
+      <div class="fx">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3" stroke="#C25E7A" stroke-width="1.8"/><path d="M12 14v6M8 18l4-3 4 3" stroke="#C25E7A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>灵魂关系</h3>
+        <div class="en">Soul Relationship</div>
+        <p>脱去"你必须满足我需求"的壳之后，两个完整的人之间以无私之爱相连的伙伴关系——需求在把爱放首位时反而得到最极致的满足。</p>
+        <div class="eg"><b>例：</b>许多关系死在了"壳"里（需求与期待），而非死于爱消失。</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="flow">
+    <div class="sec-head"><div class="sec-no">05</div><h2>全书脉络图</h2></div>
+    <p class="sec-sub">六章，一段从投射到允许的旅程——每章都对应一种"出戏方式"</p>
+    <div class="flow">
+      <div class="step">
+        <div class="node"><b>序</b><span>INTRO</span></div>
+        <div class="body">
+          <h3>关系的圣杯<small>The Holy Grail of Intimacy</small></h3>
+          <p>立论：寻找真挚永恒的亲密关系，其实就是寻找自我——关系是通往灵魂的桥梁，不是满足需求的工具。</p>
+          <span class="pill">立论 · 关系即道场</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="node"><b>壹</b><span>CH.1</span></div>
+        <div class="body">
+          <h3>月晕现象<small>Halo Effect</small></h3>
+          <p>热恋的"闪闪发光"是投射，我们在对方身上寻找童年未被满足的归属感与重要性。迷恋时多问一句。</p>
+          <span class="pill">看见 · 投射的本质</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="node"><b>贰</b><span>CH.2</span></div>
+        <div class="body">
+          <h3>幻灭<small>Disillusionment</small></h3>
+          <p>期望落空引发权力斗争、偏差行为与愤怒。吵架时选快乐别选对——议题早漂移，争的不再是议题本身。</p>
+          <span class="pill">承受 · 吵架重新选</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="node"><b>叁</b><span>CH.3</span></div>
+        <div class="body">
+          <h3>内省<small>Reflection · Looking Within</small></h3>
+          <p>穿过受害者监牢、牺牲、依附、怀疑等关卡，直面"镜中人"——情绪失控时先照镜子，处理伤口再处理事情。</p>
+          <span class="pill">穿墙 · 自我负责</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="node"><b>肆</b><span>CH.4</span></div>
+        <div class="body">
+          <h3>启示<small>Enlightenment</small></h3>
+          <p>量子隧道般的瞬间顿悟：选择爱而非恐惧，从"做事"转向"允许"。积少成多的小选择，最终累积成关系的大转弯。</p>
+          <span class="pill">允许 · 从做事到允许</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="node"><b>伍</b><span>CH.5</span></div>
+        <div class="body">
+          <h3>灵魂关系<small>The Soul Relationship</small></h3>
+          <p>脱去需求的壳，关系升华为无私的爱。把伴侣当队友，不当补给站——满足感从"被填满"变成"在爱中存在"。</p>
+          <span class="pill">升华 · 灵魂的伙伴</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="quotes">
+    <div class="sec-head"><div class="sec-no">06</div><h2>金句摘录</h2></div>
+    <p class="sec-sub">值得抄进笔记本、贴在书桌前的句子</p>
+    <div class="quotes">
+      <div class="quote">
+        <div class="mark">"</div>
+        <p>寻找真挚永恒的亲密关系，其实就是寻找自我。</p>
+        <div class="src">—— 论关系的本质</div>
+      </div>
+      <div class="quote">
+        <div class="mark">"</div>
+        <p>你的痛苦不是来自关系本身，而是来自你期望对方去填补的那个童年空洞。</p>
+        <div class="src">—— 论痛苦的来源</div>
+      </div>
+      <div class="quote">
+        <div class="mark">"</div>
+        <p>期望，是通往地狱之路——愤恨是它唯一的路标。</p>
+        <div class="src">—— 论期望的代价</div>
+      </div>
+      <div class="quote">
+        <div class="mark">"</div>
+        <p>吵架时你可以选"对"，也可以选"快乐"——但你几乎不可能同时两者兼得。</p>
+        <div class="src">—— 论权力斗争</div>
+      </div>
+      <div class="quote">
+        <div class="mark">"</div>
+        <p>亲密关系是一面镜子：你对伴侣的每一次强烈情绪反应，都是一份指向自己旧伤的地图。</p>
+        <div class="src">—— 论关系即镜子</div>
+      </div>
+      <div class="quote span2">
+        <div class="mark">"</div>
+        <p>恐惧与无知是亲密关系失败的两大原因；看清楚陷阱的那一刻，陷阱就失去了一半的力量。</p>
+        <div class="src">—— 全书的方法论核心</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="actions">
+    <div class="sec-head"><div class="sec-no">07</div><h2>对关系的行动启发</h2></div>
+    <p class="sec-sub">把书里的话落成日常可执行的六个动作</p>
+    <div class="act-grid">
+      <div class="act"><div class="num">1</div><div><h3>优点练习</h3><p>写下伴侣的 5 个具体优点和平凡日子里的闪光点（不是笼统的"很好"），情绪低谷时拿出来重读——月晕褪去后，主动重建那束光。</p></div></div>
+      <div class="act"><div class="num">2</div><div><h3>期望清单外化</h3><p>把"我以为你该懂"的隐性期待全部写下来，逐条改成可说出口的请求或主动放下——期望只在你心里，不会自动翻译成对方的行为。</p></div></div>
+      <div class="act"><div class="num">3</div><div><h3>吵架喊停机制</h3><p>与伴侣约定一个暂停暗号（一句暗语或一个手势），情绪上头时先停 20 分钟，各自问"这感觉我小时候熟悉吗"再回来谈。</p></div></div>
+      <div class="act"><div class="num">4</div><div><h3>三角角色自查</h3><p>冲突后复盘自己刚才演的是受害者、迫害者还是拯救者——然后下次冲突里用"真实感受"替代"演出"，把对方当人而不是角色。</p></div></div>
+      <div class="act"><div class="num">5</div><div><h3>换位翻译练习</h3><p>把伴侣的攻击性语言翻译成"TA 此刻的受伤需求是什么"，先回应需求，再讨论事实——议题与情绪是两条不同的轨道。</p></div></div>
+      <div class="act"><div class="num">6</div><div><h3>建立"允许"时刻</h3><p>每天选一件想纠正对方的小事，练习不纠正、不评判地允许它存在 24 小时——观察关系氛围如何因一个"不动的我"而改变。</p></div></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="who">
+    <div class="sec-head"><div class="sec-no">08</div><h2>这本书适合谁读</h2></div>
+    <p class="sec-sub">如果你符合其中一条，它都值得放进书单</p>
+    <div class="split">
+      <div class="imgcol" id="who-img">
+        <div class="cap">伴侣是镜子，映出最真实的自己</div>
+      </div>
+      <div class="fit-list">
+        <div class="fit"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 9l4 4 10-10" stroke="#C25E7A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>反复陷入"同一种吵架"的人</b><span>想看清冲突的底层逻辑、跳出"两年后再吵一次"的循环。</span></div></div>
+        <div class="fit"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 9l4 4 10-10" stroke="#C25E7A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>分手或婚姻危机后的复盘者</b><span>怀疑"是不是自己命不好"——先看清自己，再看对方。</span></div></div>
+        <div class="fit"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 9l4 4 10-10" stroke="#C25E7A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>原生家庭议题反复影响亲密关系的人</b><span>愿意做"向内探索"，把心理学爱好落实到关系改进。</span></div></div>
+        <div class="fit"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2v4M9 12v4M2 9h4M12 9h4" stroke="#E8B4C0" stroke-width="2" stroke-linecap="round"/></svg><div><b>读前提示</b><span>与《非暴力沟通》是互补关系：前者教你"向内看需求"，后者教你"用语言温柔地说出来"。连读效果最佳。</span></div></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="line"></div>
+  <b>《亲密关系》精读笔记 · 读书摘要卡</b>
+  <p class="disclaim">本页为基于该书公开核心观点整理的读书笔记，用于知识科普与个人学习参考，非原文逐字转载。书名、理论与观点版权归原作者及出版方所有。头图来自 Wikimedia Commons，描绘傍晚一对剪影相依的画面，呼应"关系即镜子"的意象。</p>
+</footer>
+
+<script>
+  var DOC_ARCHIVE = "../assets/hero/h29.jpg";
+  document.getElementById('hero').style.backgroundImage = "url('" + DOC_ARCHIVE + "')";
+  document.getElementById('who-img').style.backgroundImage = "url('" + DOC_ARCHIVE + "')";
+
+  (function(){
+    var bar = document.getElementById('progress');
+    function upd(){
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.width = (max > 0 ? (h.scrollTop / max * 100) : 0) + '%';
+    }
+    window.addEventListener('scroll', upd, {passive:true});
+    window.addEventListener('resize', upd);
+    upd();
+  })();
+</script>
+
+</body>
+</html>

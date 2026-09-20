@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《半小时掌握维特根斯坦思想精华》精读笔记 · 读书摘要卡</title>
+<meta name="description" content="语言划定了思想的边界：可说的要说清，不可说的就沉默。本书用一次清晰的推演，带你看维特根斯坦如何先建起一座体系，再亲手把它拆掉。">
+<style>
+  :root{
+    --paper:#f4f2ed;
+    --paper-2:#faf9f5;
+    --ink:#252a2e;
+    --ink-soft:#535b62;
+    --ink-faint:#848d94;
+    --line:#dde0dd;
+    --accent:#2e5a77;
+    --accent-2:#6f93ab;
+    --warm:#7e4f30;
+    --shadow:0 12px 40px rgba(37,42,46,.10);
+    --shadow-sm:0 4px 18px rgba(37,42,46,.08);
+    --serif:"Songti SC","Source Han Serif SC","Noto Serif SC",Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--sans);color:var(--ink);background:var(--paper);
+    background-image:
+      radial-gradient(circle at 18% 8%, rgba(111,147,171,0.08), transparent 42%),
+      radial-gradient(circle at 84% 88%, rgba(46,90,119,0.06), transparent 46%);
+    line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.035'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  body>*{position:relative;z-index:1;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
+  h1,h2,h3,.serif{font-family:var(--serif);}
+  ::selection{background:rgba(46,90,119,0.18);}
+
+  #progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:99;
+    background:linear-gradient(90deg,var(--accent-2),var(--accent));transition:width .1s linear;}
+
+  .hero{
+    position:relative;min-height:clamp(480px,72vh,640px);
+    display:flex;align-items:flex-end;
+    background-size:cover;background-position:center 45%;
+    color:#f5f7f8;overflow:hidden;
+  }
+  .hero::after{
+    content:"";position:absolute;inset:0;
+    background:
+      linear-gradient(180deg, rgba(23,44,59,0.3) 0%, rgba(23,44,59,0.42) 42%, rgba(14,28,38,0.9) 100%),
+      linear-gradient(90deg, rgba(14,28,38,0.58) 0%, rgba(14,28,38,0) 58%);
+  }
+  .hero-inner{position:relative;z-index:2;width:100%;max-width:1080px;margin:0 auto;padding:88px 28px 54px;}
+  .hero .kicker{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:13px;letter-spacing:.22em;text-transform:uppercase;
+    color:#6f93ab;border:1px solid rgba(111,147,171,0.45);
+    padding:6px 15px;border-radius:30px;margin-bottom:22px;backdrop-filter:blur(2px);
+  }
+  .hero h1{font-size:clamp(34px,6vw,62px);line-height:1.12;font-weight:700;letter-spacing:.01em;text-shadow:0 2px 24px rgba(0,0,0,.45);margin-bottom:10px;}
+  .hero .sub-en{font-family:var(--serif);font-style:italic;font-size:clamp(15px,2.4vw,22px);color:#6f93ab;opacity:.92;margin-bottom:20px;}
+  .hero .lead{max-width:640px;font-size:clamp(15px,2vw,18px);color:#e8edf1;}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:24px 34px;margin-top:30px;}
+  .hero-meta .m{display:flex;flex-direction:column;}
+  .hero-meta .m b{font-family:var(--serif);font-size:20px;color:#fff;}
+  .hero-meta .m span{font-size:12.5px;letter-spacing:.08em;color:#6f93ab;}
+
+  .ribbon{position:absolute;top:0;right:clamp(16px,5vw,52px);z-index:3;width:44px;
+    background:var(--accent);color:#fff;text-align:center;
+    padding:15px 0 24px;font-family:var(--serif);font-size:13px;letter-spacing:.14em;
+    box-shadow:0 6px 16px rgba(0,0,0,.32);}
+  .ribbon::after{content:"";position:absolute;left:0;bottom:-13px;border-width:0 22px 14px;border-style:solid;border-color:var(--accent) var(--accent) transparent;}
+  .ribbon span{writing-mode:vertical-rl;}
+
+  .toc-bar{background:var(--paper-2);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50;box-shadow:0 2px 14px rgba(37,42,46,.06);}
+  .toc-in{max-width:1080px;margin:0 auto;padding:10px 28px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .toc-in .lab{font-family:var(--serif);font-size:13px;color:var(--accent);letter-spacing:.1em;margin-right:6px;}
+  .toc-in a{font-size:12.5px;color:var(--ink-soft);text-decoration:none;padding:4px 11px;border-radius:20px;border:1px solid transparent;transition:all .18s;white-space:nowrap;}
+  .toc-in a:hover{color:var(--accent);border-color:rgba(46,90,119,0.35);background:rgba(46,90,119,0.05);}
+
+  section{padding:60px 0 56px;scroll-margin-top:64px;}
+  .sec-head{display:flex;align-items:center;gap:14px;margin-bottom:8px;}
+  .sec-no{font-family:var(--serif);font-size:14px;color:var(--accent);border:1px solid var(--accent);border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;flex:none;}
+  .sec-head h2{font-size:clamp(23px,3.4vw,31px);color:var(--ink);}
+  .sec-sub{color:var(--ink-faint);font-size:14.5px;margin-bottom:32px;padding-left:48px;}
+  @media(max-width:880px){.sec-sub{padding-left:0;}}
+
+  .divider{height:1px;background:linear-gradient(90deg,transparent,var(--line) 18%,var(--line) 82%,transparent);}
+
+  .bookcard{
+    display:grid;grid-template-columns:1.1fr 1fr;gap:34px;align-items:center;
+    background:var(--paper-2);border:1px solid var(--line);border-radius:18px;
+    padding:38px;box-shadow:var(--shadow);position:relative;overflow:hidden;
+  }
+  .bookcard::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:linear-gradient(var(--accent),var(--accent-2));}
+  .one-liner{font-family:var(--serif);font-size:clamp(19px,2.9vw,26px);line-height:1.55;color:var(--ink);}
+  .one-liner em{color:var(--accent);font-style:normal;}
+  .one-liner .rule{width:52px;height:3px;background:var(--accent);border-radius:2px;margin-top:18px;opacity:.85;}
+  .meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 22px;}
+  .meta-grid .cell span{display:block;font-size:12px;letter-spacing:.1em;color:var(--ink-faint);text-transform:uppercase;margin-bottom:3px;}
+  .meta-grid .cell b{font-family:var(--serif);font-size:16.5px;color:var(--ink);font-weight:600;line-height:1.45;}
+  @media(max-width:880px){.bookcard{grid-template-columns:1fr;padding:28px;gap:26px;}}
+
+  .sys-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .sys{border-radius:16px;padding:30px 28px;color:#fff;position:relative;overflow:hidden;box-shadow:var(--shadow);}
+  .sys.s1{background:linear-gradient(150deg,#2e5a77,#214055);}
+  .sys.s2{background:linear-gradient(150deg,#7e4f30,#5d3a23);}
+  .sys.s3{background:linear-gradient(150deg,#6f93ab,#2e5a77);}
+  .sys.s4{background:linear-gradient(150deg,#1b3547,#142735);}
+  .sys .tag{font-size:12px;letter-spacing:.16em;opacity:.88;text-transform:uppercase;}
+  .sys h3{font-size:25px;margin:6px 0 4px;}
+  .sys .tagline{font-family:var(--serif);font-style:italic;font-size:15.5px;opacity:.92;margin-bottom:16px;}
+  .sys ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+  .sys li{display:flex;gap:10px;font-size:14px;line-height:1.55;align-items:flex-start;}
+  .sys li svg{flex:none;margin-top:4px;}
+  .sys .speed{display:inline-flex;align-items:baseline;gap:8px;margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.22);}
+  .sys .speed b{font-size:24px;font-family:var(--serif);}
+  .sys .speed span{font-size:12.5px;opacity:.82;}
+  @media(max-width:880px){.sys-grid{grid-template-columns:1fr;}}
+
+  .stage-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;}
+  .stage{border-radius:16px;padding:26px 22px;color:#fff;position:relative;overflow:hidden;box-shadow:var(--shadow);}
+  .stage .no{font-family:var(--serif);font-size:15px;opacity:.85;letter-spacing:.12em;}
+  .stage h3{font-size:21px;margin:5px 0 3px;}
+  .stage .tagline{font-family:var(--serif);font-style:italic;font-size:13.5px;opacity:.9;margin-bottom:13px;}
+  .stage ul{list-style:none;display:flex;flex-direction:column;gap:9px;}
+  .stage li{display:flex;gap:9px;font-size:13.5px;line-height:1.55;align-items:flex-start;}
+  .stage li svg{flex:none;margin-top:3px;}
+  .stage::after{content:"→";position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:26px;opacity:.55;color:#fff;}
+  .stage:last-child::after{content:"";}
+
+  .vs-wrap{margin-top:26px;background:var(--paper-2);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .vs-head{display:grid;grid-template-columns:1.1fr 1fr 1fr;background:linear-gradient(90deg,rgba(46,90,119,0.1),rgba(126,79,48,0.1));border-bottom:1px solid var(--line);}
+  .vs-head div{padding:14px 18px;font-family:var(--serif);font-size:15px;}
+  .vs-head .h1c{color:var(--accent);}
+  .vs-head .h2c{color:var(--warm);}
+  .vs-row{display:grid;grid-template-columns:1.1fr 1fr 1fr;border-bottom:1px solid var(--line);}
+  .vs-row:last-child{border-bottom:none;}
+  .vs-row:nth-child(odd){background:rgba(244,242,237,.55);}
+  .vs-row .dim{padding:12px 18px;font-size:13px;color:var(--ink-faint);letter-spacing:.04em;display:flex;align-items:center;}
+  .vs-row .v1{padding:12px 18px;font-size:13.5px;color:var(--ink-soft);border-left:1px dashed var(--line);display:flex;align-items:center;}
+  .vs-row .v2{padding:12px 18px;font-size:13.5px;color:var(--ink-soft);border-left:1px dashed var(--line);display:flex;align-items:center;}
+  @media(max-width:680px){
+    .vs-head.v3{grid-template-columns:1fr 1fr;} .vs-head.v3 .h0{display:none;}
+    .vs-row.v3{grid-template-columns:1fr;padding:10px 0;}
+    .vs-row.v3 .dim{grid-column:1/-1;padding:4px 18px 2px;font-family:var(--serif);color:var(--accent);font-size:13.5px;}
+    .vs-row.v3 .v1,.vs-row.v3 .v2{border-left:none;padding:2px 18px;}
+    .vs-row.v3 .v1::before{content:"甲面　";color:var(--accent);font-weight:600;}
+    .vs-row.v3 .v2::before{content:"乙面　";color:var(--warm);font-weight:600;}
+  }
+
+  .sys-note{margin-top:22px;background:var(--paper-2);border:1px dashed var(--accent-2);border-radius:12px;padding:18px 22px;font-size:14.5px;color:var(--ink-soft);}
+  .sys-note b{color:var(--accent);font-family:var(--serif);}
+
+  .spectrum{margin-top:26px;background:var(--paper-2);border:1px solid var(--line);border-radius:16px;
+    padding:30px 30px 24px;box-shadow:var(--shadow);}
+  .spectrum h3{font-size:19px;margin-bottom:4px;}
+  .spectrum .en{font-size:12.5px;letter-spacing:.06em;color:var(--ink-faint);margin-bottom:18px;}
+  .spectrum svg{width:100%;height:auto;display:block;}
+  .spectrum .cap{margin-top:14px;font-size:13.5px;color:var(--ink-soft);line-height:1.7;}
+  .spectrum .cap b{color:var(--accent);font-family:var(--serif);}
+
+  .fx-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+  .fx{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:24px;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s;}
+  .fx:hover{transform:translateY(-3px);box-shadow:var(--shadow);}
+  .fx .ic{width:42px;height:42px;border-radius:11px;background:rgba(46,90,119,0.09);display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+  .fx h3{font-size:18px;margin-bottom:3px;}
+  .fx .en{font-size:12px;letter-spacing:.06em;color:var(--ink-faint);margin-bottom:11px;}
+  .fx p{font-size:14px;color:var(--ink-soft);line-height:1.65;}
+  .fx .eg{margin-top:12px;font-size:13px;color:var(--accent);background:rgba(46,90,119,0.06);border-radius:8px;padding:8px 11px;}
+  .fx .eg b{font-weight:600;}
+  @media(max-width:880px){.fx-grid{grid-template-columns:1fr;}}
+
+  .flow{position:relative;padding-left:8px;}
+  .flow .step{display:grid;grid-template-columns:64px 1fr;gap:20px;position:relative;padding-bottom:28px;}
+  .flow .step:not(:last-child)::before{content:"";position:absolute;left:31px;top:48px;bottom:0;width:2px;background:linear-gradient(var(--accent-2),var(--line));}
+  .flow .node{width:64px;height:64px;border-radius:50%;background:var(--paper-2);border:2px solid var(--accent-2);display:flex;flex-direction:column;align-items:center;justify-content:center;flex:none;position:relative;z-index:2;box-shadow:0 3px 10px rgba(37,42,46,.08);}
+  .flow .node b{font-family:var(--serif);font-size:17px;color:var(--accent);line-height:1.15;}
+  .flow .node span{font-size:10px;color:var(--ink-faint);letter-spacing:.05em;}
+  .flow .body{padding-top:6px;}
+  .flow .body h3{font-size:18px;margin-bottom:5px;}
+  .flow .body h3 small{font-size:12.5px;color:var(--ink-faint);font-family:var(--sans);font-weight:400;margin-left:8px;}
+  .flow .body p{font-size:14px;color:var(--ink-soft);}
+  .flow .body .pill{display:inline-block;margin-top:8px;font-size:12px;color:var(--warm);background:rgba(126,79,48,0.1);padding:3px 11px;border-radius:20px;}
+
+  .quotes{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
+  .quote{background:linear-gradient(160deg,#faf9f5,#eef0ef);border:1px solid var(--line);border-radius:16px;padding:30px 28px 26px;position:relative;box-shadow:var(--shadow);}
+  .quote .mark{font-family:Georgia,serif;font-size:64px;line-height:.4;color:var(--accent);opacity:.35;height:30px;}
+  .quote p{font-family:var(--serif);font-size:17.5px;line-height:1.6;color:var(--ink);margin-bottom:14px;}
+  .quote .src{font-size:13px;color:var(--ink-faint);letter-spacing:.04em;}
+  .quote.span2{grid-column:1/-1;background:linear-gradient(110deg,#172c3b,#0e1c26);border-color:#12232f;}
+  .quote.span2 p{color:#e9eef2;font-size:20.5px;}
+  .quote.span2 .src{color:var(--accent-2);}
+  .quote.span2 .mark{color:var(--accent-2);}
+  @media(max-width:880px){.quotes{grid-template-columns:1fr;}}
+
+  .act-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+  .act{display:grid;grid-template-columns:46px 1fr;gap:16px;background:var(--paper-2);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:22px;transition:transform .2s,box-shadow .2s;}
+  .act:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm);}
+  .act .num{font-family:var(--serif);font-size:26px;color:var(--accent);line-height:1.1;}
+  .act h3{font-size:16.5px;margin-bottom:5px;}
+  .act p{font-size:13.5px;color:var(--ink-soft);line-height:1.65;}
+  @media(max-width:880px){.act-grid{grid-template-columns:1fr;}}
+
+  .split{display:grid;grid-template-columns:1fr 1.15fr;gap:30px;align-items:stretch;}
+  .split .imgcol{border-radius:16px;overflow:hidden;min-height:320px;background-size:cover;background-position:center;box-shadow:var(--shadow);position:relative;}
+  .split .imgcol::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,26,34,0) 42%,rgba(14,28,38,0.62));}
+  .split .imgcol .cap{position:absolute;left:22px;bottom:18px;z-index:2;color:#e5ebf0;font-family:var(--serif);font-size:15px;}
+  .fit-list{display:flex;flex-direction:column;gap:14px;}
+  .fit{display:flex;gap:13px;background:var(--paper-2);border:1px solid var(--line);border-radius:12px;padding:16px 18px;align-items:flex-start;}
+  .fit svg{flex:none;margin-top:3px;}
+  .fit b{font-family:var(--serif);font-size:15.5px;display:block;margin-bottom:2px;}
+  .fit span{font-size:13.5px;color:var(--ink-soft);}
+  @media(max-width:880px){.split{grid-template-columns:1fr;}}
+
+  footer{padding:46px 28px 60px;text-align:center;color:var(--ink-faint);font-size:13px;}
+  footer .line{width:60px;height:3px;background:var(--accent);margin:0 auto 20px;border-radius:3px;}
+  footer b{font-family:var(--serif);color:var(--ink-soft);}
+  .disclaim{margin-top:10px;font-size:12px;color:var(--ink-faint);max-width:680px;margin-left:auto;margin-right:auto;line-height:1.7;}
+
+  @media print{
+    #progress,.toc-bar,.ribbon{display:none;}
+    body::before{display:none;}
+    section{padding:28px 0;}
+    .fx,.act,.quote,.sys{break-inside:avoid;}
+  }
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<header class="hero" id="hero">
+  <div class="ribbon"><span>读书笔记</span></div>
+  <div class="hero-inner">
+    <span class="kicker">精读笔记 · 哲学导读</span>
+    <h1>《半小时掌握维特根斯坦思想精华》</h1>
+    
+    <p class="lead">语言划定了思想的边界：可说的要说清，不可说的就沉默。本书用一次清晰的推演，带你看维特根斯坦如何先建起一座体系，再亲手把它拆掉。</p>
+    <div class="hero-meta"><div class="m"><b>2 个阶段</b><span>前后期哲学</span></div><div class="m"><b>1 句纲领</b><span>凡不可说</span></div><div class="m"><b>1 场转向</b><span>从逻辑到语言</span></div><div class="m"><b>7 个命题</b><span>《逻辑哲学论》骨架</span></div></div>
+  </div>
+</header>
+
+<nav class="toc-bar" aria-label="页面目录"><div class="toc-in"><span class="lab">目录</span><a href="#info">书籍信息</a><a href="#duo">核心框架</a><a href="#chart">一张图</a><a href="#fx">关键概念</a><a href="#flow">章节脉络</a><a href="#quotes">金句</a><a href="#actions">行动启发</a><a href="#who">适合谁读</a></div></nav>
+
+<div class="wrap">
+<section id="info">
+  <div class="sec-head"><div class="sec-no">01</div><h2>这本书讲了什么</h2></div>
+  <p class="sec-sub">一句话总览 + 核心信息卡</p>
+  <div class="bookcard">
+    <div><div class="one-liner">哲学问题多半源于对语言的误解。本书围绕<em>前期图像论与后期语言游戏</em>两大命题，用层层递进的论证带你看他如何换个角度看世界。</div><div class="rule"></div></div>
+    <div class="meta-grid"><div class="cell"><span>作者</span><b>柯申</b></div><div class="cell"><span>领域</span><b>西方哲学 · 语言哲学</b></div><div class="cell"><span>核心命题</span><b>哲学问题源于对语言用法的误解</b></div><div class="cell"><span>出版</span><b>哲学普及导读读物</b></div><div class="cell"><span>系列/方法</span><b>思想实验与递进式论证</b></div><div class="cell"><span>关键概念</span><b>图像论、语言游戏、不可说</b></div></div>
+  </div>
+</section>
+<div class="divider"></div>
+<section id="duo">
+  <div class="sec-head"><div class="sec-no">02</div><h2>核心框架：前期图像论与后期语言游戏</h2></div>
+  <p class="sec-sub">同一个哲学家，两次推翻自己：意义的位置从世界搬进了用法</p>
+  <div class="sys-grid">
+<div class="sys s1"><div class="tag">早期 · Picture Theory</div>
+<h3>语言是世界的图像</h3><div class="tagline">凡能说的，就说得清；说不清的，须沉默</div>
+<ul><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>命题与事实一一对应，语言像世界的逻辑图</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>《逻辑哲学论》以编号命题层层递进</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>逻辑是语言与世界共享的骨架</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>不可说者不是错的，是越界的</li></ul><div class="speed"><b>界限</b><span>界限之外，留给沉默</span></div></div>
+<div class="sys s2"><div class="tag">晚期 · Language Games</div>
+<h3>意义即用法</h3><div class="tagline">词的意义不在指称，而在生活形式的用法里</div>
+<ul><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>《哲学研究》推翻前期，视语言为多副工具</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>语言游戏：说话如下棋，规则内嵌于活动</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>家族相似：概念没有本质，只有交叉重叠</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>私人语言论证：纯私人的命名无法成立</li></ul><div class="speed"><b>用法</b><span>哲学的任务是治疗</span></div></div>
+</div>
+<div class="vs-wrap"><div class="vs-head v3"><div class="h0">对比维度</div><div class="h1c">前期图像论</div><div class="h2c">后期语言游戏</div></div>
+<div class="vs-row v3"><div class="dim">意义来自</div><div class="v1">与事实的对应</div><div class="v2">在生活形式中的用法</div></div>
+<div class="vs-row v3"><div class="dim">语言形态</div><div class="v1">单一逻辑结构</div><div class="v2">家族相似的多重游戏</div></div>
+<div class="vs-row v3"><div class="dim">哲学任务</div><div class="v1">划清可说与不可说</div><div class="v2">治疗误用语言的眩晕</div></div>
+<div class="vs-row v3"><div class="dim">代表文本</div><div class="v1">《逻辑哲学论》</div><div class="v2">《哲学研究》</div></div>
+</div>
+<div class="sys-note"><b>关键洞察 —</b> 看懂这次转向，就看懂了二十世纪哲学的转身：先别急着问世界是什么，先问这句话是在哪种游戏里说的。</div>
+</section>
+<div class="divider"></div>
+<section id="chart">
+  <div class="sec-head"><div class="sec-no">03</div><h2>全书最深的一张图</h2></div>
+  <p class="sec-sub">两条思路，串起一位哲人的一生</p>
+  <div class="spectrum">
+    <h3>维特根斯坦的两段哲学生涯 — 前期给语言划界，后期给用法纠偏，两次转身是同一种清醒。</h3>
+    <div class="en">Two Phases of Wittgenstein</div>
+    <svg viewBox="0 0 900 230" role="img" aria-label="维特根斯坦的两段哲学生涯">
+<rect x="0" y="0" width="900" height="230" fill="#faf9f5" rx="12"/>
+<defs><linearGradient id="g_b137_timeline" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2e5a77"/><stop offset="0.5" stop-color="#3f57a3"/><stop offset="1" stop-color="#7e4f30"/></linearGradient></defs>
+<line x1="70" y1="111" x2="830" y2="111" stroke="#6f93ab" stroke-width="4" stroke-linecap="round"/>
+<circle cx="70" cy="111" r="9" fill="#2e5a77"/>
+<text x="64" y="79" text-anchor="start" font-size="14.5" font-weight="600" fill="#2e5a77">1889 生于维也纳</text>
+<text x="64" y="99" text-anchor="start" font-size="11.5" fill="#848d94">钢铁世家，早年转向航空与数理</text>
+<circle cx="323" cy="111" r="9" fill="#2e5a77"/>
+<text x="323" y="151" text-anchor="middle" font-size="14.5" font-weight="600" fill="#2e5a77">1918《逻辑哲学论》</text>
+<text x="323" y="171" text-anchor="middle" font-size="11.5" fill="#848d94">战时写就，一条命题一个台阶</text>
+<circle cx="577" cy="111" r="9" fill="#2e5a77"/>
+<text x="577" y="79" text-anchor="middle" font-size="14.5" font-weight="600" fill="#2e5a77">1929 重返哲学</text>
+<text x="577" y="99" text-anchor="middle" font-size="11.5" fill="#848d94">自认早期体系有误，另起炉灶</text>
+<circle cx="830" cy="111" r="9" fill="#2e5a77"/>
+<text x="836" y="151" text-anchor="end" font-size="14.5" font-weight="600" fill="#2e5a77">1953《哲学研究》</text>
+<text x="836" y="171" text-anchor="end" font-size="11.5" fill="#848d94">身后出版，语言游戏成为新起点</text>
+<text x="450" y="205" text-anchor="middle" font-size="11.5" fill="#848d94">前期给语言划界，后期给用法纠偏，两次转身是同一种清醒。</text>
+</svg>
+    <div class="cap"><b>怎么用 —</b> 用法：把两阶段当两场思想实验，先随前期把逻辑走到尽头，再看后期如何亲手拆掉它。</div>
+  </div>
+</section>
+<div class="divider"></div>
+<section id="fx">
+  <div class="sec-head"><div class="sec-no">04</div><h2>关键概念卡片</h2></div>
+  <p class="sec-sub">本书围绕的核心哲学概念与论证</p>
+  <div class="fx-grid"><div class="fx"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2e5a77" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="14" r="4"/><path d="M11 11l9-9M17 5l2.5 2.5M14 8l2 2"/></svg></div>
+<h3>图像论</h3><div class="en">Picture Theory</div><p>本书围绕维特根斯坦早期的核心主张展开：一个命题之所以有意义，是因为它与事实共享同一种逻辑结构，像地图与地形同构，说出即画出。</p><div class="eg"><b>例：</b>杯子在桌上这句话之所以成立，是因为词的排列复制了桌上各物的排列关系。</div></div><div class="fx"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2e5a77" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 00-4 10.5c.7.6 1 1.5 1 2.5h6c0-1 .3-1.9 1-2.5A6 6 0 0012 3z"/></svg></div>
+<h3>语言游戏</h3><div class="en">Language Games</div><p>本书沿后期思路把说话比作游戏：命令、祈祷、玩笑各有规则，意义不在词本身而在这一局怎么用，脱离用法的词只是空壳。</p><div class="eg"><b>例：</b>同样喊一声水，可以是请求、警报或课堂练习，取决于说它的场景与规则。</div></div><div class="fx"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2e5a77" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.2"/><circle cx="5" cy="17" r="2.2"/><circle cx="19" cy="17" r="2.2"/><path d="M12 7.2L6 15M12 7.2L18 15M7.2 17h9.6"/></svg></div>
+<h3>家族相似</h3><div class="en">Family Resemblance</div><p>本书借游戏一词示范概念的真实结构：棋类、球类、牌类没有共同本质，只有交叉重叠的相似，像一家人的眉眼，找唯一定义注定失败。</p><div class="eg"><b>例：</b>你写不出游戏的边界定义，却从不会用错这个词：理解靠重叠，不靠本质。</div></div><div class="fx"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2e5a77" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"/><circle cx="12" cy="12" r="2.6"/></svg></div>
+<h3>私人语言论证</h3><div class="en">Private Language</div><p>本书呈现后期最著名的论证：一种只有自己能懂、用来指称内在感受的语言无法自校验，也就无所谓对错，词的意义需要公共规则。</p><div class="eg"><b>例：</b>给某种无可名状的痛起一个私人代号，一周后你已无法确认指的还是不是它。</div></div><div class="fx"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2e5a77" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2.2 5-5 2.2 2.2-5z"/></svg></div>
+<h3>哲学治疗</h3><div class="en">Philosophical Therapy</div><p>本书把哲学问题比作语言放假时的晕船：名词逼我们去找对应物，问题因此显得像真问题，治疗不是答题，而是展示问题如何被问歪。</p><div class="eg"><b>例：</b>时间是什么带来的眩晕，在看清这个词的多种用法之后，往往自行消散。</div></div></div>
+</section>
+<div class="divider"></div>
+<section id="flow">
+  <div class="sec-head"><div class="sec-no">05</div><h2>全书脉络图</h2></div>
+  <p class="sec-sub">按思想转向的先后顺序展开</p>
+  <div class="flow"><div class="step"><div class="node"><b>01</b><span>CH.</span></div>
+<div class="body"><h3>划界<small>Tractatus</small></h3><p>随前期走一遍：从事实与逻辑出发，抵达对不可说的保持沉默，看体系如何建到极致。</p><span class="pill">体系建构</span></div></div><div class="step"><div class="node"><b>02</b><span>CH.</span></div>
+<div class="body"><h3>转身<small>Turn</small></h3><p>多年后作者自认误诊了语言：意义的图像论在命令、玩笑与祈祷面前失灵。</p><span class="pill">自我推翻</span></div></div><div class="step"><div class="node"><b>03</b><span>CH.</span></div>
+<div class="body"><h3>游戏<small>Games</small></h3><p>语言不是一面镜子而是千百种活动：用法给出意义，规则内嵌于生活形式。</p><span class="pill">用法至上</span></div></div><div class="step"><div class="node"><b>04</b><span>CH.</span></div>
+<div class="body"><h3>治疗<small>Therapy</small></h3><p>私人语言与家族相似两路夹击，哲学问题被还原为语言的误用。</p><span class="pill">问题消解</span></div></div><div class="step"><div class="node"><b>05</b><span>CH.</span></div>
+<div class="body"><h3>沉默<small>Silence</small></h3><p>可说的说清，不可说的保留：界限两侧各归其位，看世界的方式随之改变。</p><span class="pill">各归其位</span></div></div></div>
+</section>
+<div class="divider"></div>
+<section id="quotes">
+  <div class="sec-head"><div class="sec-no">06</div><h2>金句摘录</h2></div>
+  <p class="sec-sub">值得抄进笔记本的句子（据核心观点转述）</p>
+  <div class="quotes"><div class="quote"><div class="mark">&ldquo;</div><p>凡能够说的，都能够说清楚；凡不能谈论的，就应该保持沉默。</p><div class="src">—— 《逻辑哲学论》序言转述</div></div><div class="quote"><div class="mark">&ldquo;</div><p>一个词的意义，是它在语言中的用法。</p><div class="src">—— 据后期哲学归纳</div></div><div class="quote"><div class="mark">&ldquo;</div><p>语言的界限，就是世界的界限。</p><div class="src">—— 《逻辑哲学论》命题转述</div></div><div class="quote"><div class="mark">&ldquo;</div><p>哲学的成果，是让某个问题连同答案一起消失。</p><div class="src">—— 据主题归纳</div></div><div class="quote span2"><div class="mark">&ldquo;</div><p>如果狮子会说话，我们也无法理解它。</p><div class="src">—— 据维特根斯坦语转述</div></div></div>
+</section>
+<div class="divider"></div>
+<section id="actions">
+  <div class="sec-head"><div class="sec-no">07</div><h2>对工作与决策的行动启发</h2></div>
+  <p class="sec-sub">读完就能上手的方法</p>
+  <div class="act-grid"><div class="act"><div class="num">1</div><div><h3>写一个用途清单</h3><p>今天挑一个常用词如好，记下你一周里用它做过的五件事：评价、请求、安慰，看清用法即意义。</p></div></div><div class="act"><div class="num">2</div><div><h3>翻译一次争吵</h3><p>复述上次争执中的三句话，把结论句改写成我在哪种游戏里说这句话，冲突常会自动降级。</p></div></div><div class="act"><div class="num">3</div><div><h3>找家族相似</h3><p>给运动列五个例子，划掉共同点再找重叠项，体验定义失效而理解仍在的奇妙状态。</p></div></div><div class="act"><div class="num">4</div><div><h3>做沉默练习</h3><p>对今天某个价值判断停止论证，改为只描述事实部分，感受可说与不可说的边界。</p></div></div><div class="act"><div class="num">5</div><div><h3>验一次私人语言</h3><p>给一种模糊情绪起个私人代号，三天后回看是否还能确认所指，体会公共规则的必要。</p></div></div><div class="act"><div class="num">6</div><div><h3>读慢一页</h3><p>今晚只读一个论证，用自己的话写成三句，卡住的地方就是思想实验的真正入口。</p></div></div></div>
+</section>
+<div class="divider"></div>
+<section id="who">
+  <div class="sec-head"><div class="sec-no">08</div><h2>这本书适合谁读</h2></div>
+  <p class="sec-sub">如果你符合其中一条，它都值得放进书单</p>
+  <div class="split">
+    <div class="imgcol" id="who-img"><div class="cap">在可说与不可说之间踱步的人</div></div>
+    <div class="fit-list"><div class="fit"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 9l4 4 10-10" stroke="#2e5a77" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>爱追问意义的人</b><span>对理解世界的根据有长期困惑，想看一次从头到尾的严密推演。</span></div></div><div class="fit"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 9l4 4 10-10" stroke="#2e5a77" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>逻辑与语言爱好者</b><span>喜欢概念分析、对什么是好定义敏感的读者，会在家族相似处过瘾。</span></div></div><div class="fit"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 9l4 4 10-10" stroke="#2e5a77" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>被大部头劝退过的人</b><span>本书以半小时为承诺做导读，是进入维特根斯坦的门厅而非替代品。</span></div></div><div class="fit"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2v4M9 12v4M2 9h4M12 9h4" stroke="#6f93ab" stroke-width="2" stroke-linecap="round"/></svg><div><b>期待速成的读者</b><span>半小时能走完路线，走不出深度；请把它当作地图，而非终点。</span></div></div></div>
+  </div>
+</section>
+</div>
+
+<footer>
+  <div class="line"></div>
+  <b>《半小时掌握维特根斯坦思想精华》精读笔记 · 读书摘要卡</b>
+  <p class="disclaim">本页为基于该书公开核心观点整理的读书笔记，用于知识科普与个人学习参考，非原文逐字转载。书名、理论与观点版权归原作者及出版方所有。头图为语言哲学主题配图（Wikimedia Commons，许可）。</p>
+</footer>
+
+<script>
+  var DOC_ARCHIVE = "../assets/hero/h08.jpg";
+  document.getElementById('hero').style.backgroundImage = "url('" + DOC_ARCHIVE + "')";
+  var wi = document.getElementById('who-img');
+  if (wi) wi.style.backgroundImage = "url('" + DOC_ARCHIVE + "')";
+
+  (function(){
+    var bar = document.getElementById('progress');
+    function upd(){
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.width = (max > 0 ? (h.scrollTop / max * 100) : 0) + '%';
+    }
+    window.addEventListener('scroll', upd, {passive:true});
+    window.addEventListener('resize', upd);
+    upd();
+  })();
+</script>
+
+</body>
+</html>

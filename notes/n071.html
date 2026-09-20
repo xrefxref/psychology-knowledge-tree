@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《朱熹》精读笔记 · 读书摘要卡</title>
+<meta name="description" content="他不是庙里的泥像，而是一个在南宋党争里反复起落的读书人。读懂朱熹的抉择，才算读懂理学如何从一介书生的讲台，走进此后七百年的科举与人心。">
+<style>
+  :root{
+    --paper:#f4f2ed;
+    --paper-2:#faf9f5;
+    --ink:#252a2e;
+    --ink-soft:#535b62;
+    --ink-faint:#848d94;
+    --line:#dde0dd;
+    --accent:#6e4a34;
+    --accent-2:#a8836b;
+    --warm:#375d74;
+    --shadow:0 12px 40px rgba(37,42,46,.10);
+    --shadow-sm:0 4px 18px rgba(37,42,46,.08);
+    --serif:"Songti SC","Source Han Serif SC","Noto Serif SC",Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--sans);color:var(--ink);background:var(--paper);
+    background-image:
+      radial-gradient(circle at 18% 8%, rgba(168,131,107,0.08), transparent 42%),
+      radial-gradient(circle at 84% 88%, rgba(110,74,52,0.06), transparent 46%);
+    line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.035'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  body>*{position:relative;z-index:1;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
+  h1,h2,h3,.serif{font-family:var(--serif);}
+  ::selection{background:rgba(110,74,52,0.18);}
+
+  #progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:99;
+    background:linear-gradient(90deg,var(--accent-2),var(--accent));transition:width .1s linear;}
+
+  .hero{
+    position:relative;min-height:clamp(480px,72vh,640px);
+    display:flex;align-items:flex-end;
+    background-size:cover;background-position:center 45%;
+    color:#f5f7f8;overflow:hidden;
+  }
+  .hero::after{
+    content:"";position:absolute;inset:0;
+    background:
+      linear-gradient(180deg, rgba(54,37,26,0.3) 0%, rgba(54,37,26,0.42) 42%, rgba(35,23,16,0.9) 100%),
+      linear-gradient(90deg, rgba(35,23,16,0.58) 0%, rgba(35,23,16,0) 58%);
+  }
+  .hero-inner{position:relative;z-index:2;width:100%;max-width:1080px;margin:0 auto;padding:88px 28px 54px;}
+  .hero .kicker{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:13px;letter-spacing:.22em;text-transform:uppercase;
+    color:#a8836b;border:1px solid rgba(168,131,107,0.45);
+    padding:6px 15px;border-radius:30px;margin-bottom:22px;backdrop-filter:blur(2px);
+  }
+  .hero h1{font-size:clamp(34px,6vw,62px);line-height:1.12;font-weight:700;letter-spacing:.01em;text-shadow:0 2px 24px rgba(0,0,0,.45);margin-bottom:10px;}
+  .hero .sub-en{font-family:var(--serif);font-style:italic;font-size:clamp(15px,2.4vw,22px);color:#a8836b;opacity:.92;margin-bottom:20px;}
+  .hero .lead{max-width:640px;font-size:clamp(15px,2vw,18px);color:#e8edf1;}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:24px 34px;margin-top:30px;}
+  .hero-meta .m{display:flex;flex-direction:column;}
+  .hero-meta .m b{font-family:var(--serif);font-size:20px;color:#fff;}
+  .hero-meta .m span{font-size:12.5px;letter-spacing:.08em;color:#a8836b;}
+
+  .ribbon{position:absolute;top:0;right:clamp(16px,5vw,52px);z-index:3;width:44px;
+    background:var(--accent);color:#fff;text-align:center;
+    padding:15px 0 24px;font-family:var(--serif);font-size:13px;letter-spacing:.14em;
+    box-shadow:0 6px 16px rgba(0,0,0,.32);}
+  .ribbon::after{content:"";position:absolute;left:0;bottom:-13px;border-width:0 22px 14px;border-style:solid;border-color:var(--accent) var(--accent) transparent;}
+  .ribbon span{writing-mode:vertical-rl;}
+
+  .toc-bar{background:var(--paper-2);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50;box-shadow:0 2px 14px rgba(37,42,46,.06);}
+  .toc-in{max-width:1080px;margin:0 auto;padding:10px 28px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .toc-in .lab{font-family:var(--serif);font-size:13px;color:var(--accent);letter-spacing:.1em;margin-right:6px;}
+  .toc-in a{font-size:12.5px;color:var(--ink-soft);text-decoration:none;padding:4px 11px;border-radius:20px;border:1px solid transparent;transition:all .18s;white-space:nowrap;}
+  .toc-in a:hover{color:var(--accent);border-color:rgba(110,74,52,0.35);background:rgba(110,74,52,0.05);}
+
+  section{padding:60px 0 56px;scroll-margin-top:64px;}
+  .sec-head{display:flex;align-items:center;gap:14px;margin-bottom:8px;}
+  .sec-no{font-family:var(--serif);font-size:14px;color:var(--accent);border:1px solid var(--accent);border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;flex:none;}
+  .sec-head h2{font-size:clamp(23px,3.4vw,31px);color:var(--ink);}
+  .sec-sub{color:var(--ink-faint);font-size:14.5px;margin-bottom:32px;padding-left:48px;}
+  @media(max-width:880px){.sec-sub{padding-left:0;}}
+
+  .divider{height:1px;background:linear-gradient(90deg,transparent,var(--line) 18%,var(--line) 82%,transparent);}
+
+  .bookcard{
+    display:grid;grid-template-columns:1.1fr 1fr;gap:34px;align-items:center;
+    background:var(--paper-2);border:1px solid var(--line);border-radius:18px;
+    padding:38px;box-shadow:var(--shadow);position:relative;overflow:hidden;
+  }
+  .bookcard::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:linear-gradient(var(--accent),var(--accent-2));}
+  .one-liner{font-family:var(--serif);font-size:clamp(19px,2.9vw,26px);line-height:1.55;color:var(--ink);}
+  .one-liner em{color:var(--accent);font-style:normal;}
+  .one-liner .rule{width:52px;height:3px;background:var(--accent);border-radius:2px;margin-top:18px;opacity:.85;}
+  .meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 22px;}
+  .meta-grid .cell span{display:block;font-size:12px;letter-spacing:.1em;color:var(--ink-faint);text-transform:uppercase;margin-bottom:3px;}
+  .meta-grid .cell b{font-family:var(--serif);font-size:16.5px;color:var(--ink);font-weight:600;line-height:1.45;}
+  @media(max-width:880px){.bookcard{grid-template-columns:1fr;padding:28px;gap:26px;}}
+
+  .sys-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .sys{border-radius:16px;padding:30px 28px;color:#fff;position:relative;overflow:hidden;box-shadow:var(--shadow);}
+  .sys.s1{background:linear-gradient(150deg,#6e4a34,#4f3525);}
+  .sys.s2{background:linear-gradient(150deg,#375d74,#284455);}
+  .sys.s3{background:linear-gradient(150deg,#a8836b,#6e4a34);}
+  .sys.s4{background:linear-gradient(150deg,#422c1f,#302117);}
+  .sys .tag{font-size:12px;letter-spacing:.16em;opacity:.88;text-transform:uppercase;}
+  .sys h3{font-size:25px;margin:6px 0 4px;}
+  .sys .tagline{font-family:var(--serif);font-style:italic;font-size:15.5px;opacity:.92;margin-bottom:16px;}
+  .sys ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+  .sys li{display:flex;gap:10px;font-size:14px;line-height:1.55;align-items:flex-start;}
+  .sys li svg{flex:none;margin-top:4px;}
+  .sys .speed{display:inline-flex;align-items:baseline;gap:8px;margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.22);}
+  .sys .speed b{font-size:24px;font-family:var(--serif);}
+  .sys .speed span{font-size:12.5px;opacity:.82;}
+  @media(max-width:880px){.sys-grid{grid-template-columns:1fr;}}
+
+  .stage-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;}
+  .stage{border-radius:16px;padding:26px 22px;color:#fff;position:relative;overflow:hidden;box-shadow:var(--shadow);}
+  .stage .no{font-family:var(--serif);font-size:15px;opacity:.85;letter-spacing:.12em;}
+  .stage h3{font-size:21px;margin:5px 0 3px;}
+  .stage .tagline{font-family:var(--serif);font-style:italic;font-size:13.5px;opacity:.9;margin-bottom:13px;}
+  .stage ul{list-style:none;display:flex;flex-direction:column;gap:9px;}
+  .stage li{display:flex;gap:9px;font-size:13.5px;line-height:1.55;align-items:flex-start;}
+  .stage li svg{flex:none;margin-top:3px;}
+  .stage::after{content:"→";position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:26px;opacity:.55;color:#fff;}
+  .stage:last-child::after{content:"";}
+
+  .vs-wrap{margin-top:26px;background:var(--paper-2);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .vs-head{display:grid;grid-template-columns:1.1fr 1fr 1fr;background:linear-gradient(90deg,rgba(110,74,52,0.1),rgba(55,93,116,0.1));border-bottom:1px solid var(--line);}
+  .vs-head div{padding:14px 18px;font-family:var(--serif);font-size:15px;}
+  .vs-head .h1c{color:var(--accent);}
+  .vs-head .h2c{color:var(--warm);}
+  .vs-row{display:grid;grid-template-columns:1.1fr 1fr 1fr;border-bottom:1px solid var(--line);}
+  .vs-row:last-child{border-bottom:none;}
+  .vs-row:nth-child(odd){background:rgba(244,242,237,.55);}
+  .vs-row .dim{padding:12px 18px;font-size:13px;color:var(--ink-faint);letter-spacing:.04em;display:flex;align-items:center;}
+  .vs-row .v1{padding:12px 18px;font-size:13.5px;color:var(--ink-soft);border-left:1px dashed var(--line);display:flex;align-items:center;}
+  .vs-row .v2{padding:12px 18px;font-size:13.5px;color:var(--ink-soft);border-left:1px dashed var(--line);display:flex;align-items:center;}
+  @media(max-width:680px){
+    .vs-head.v3{grid-template-columns:1fr 1fr;} .vs-head.v3 .h0{display:none;}
+    .vs-row.v3{grid-template-columns:1fr;padding:10px 0;}
+    .vs-row.v3 .dim{grid-column:1/-1;padding:4px 18px 2px;font-family:var(--serif);color:var(--accent);font-size:13.5px;}
+    .vs-row.v3 .v1,.vs-row.v3 .v2{border-left:none;padding:2px 18px;}
+    .vs-row.v3 .v1::before{content:"甲面　";color:var(--accent);font-weight:600;}
+    .vs-row.v3 .v2::before{content:"乙面　";color:var(--warm);font-weight:600;}
+  }
+
+  .sys-note{margin-top:22px;background:var(--paper-2);border:1px dashed var(--accent-2);border-radius:12px;padding:18px 22px;font-size:14.5px;color:var(--ink-soft);}
+  .sys-note b{color:var(--accent);font-family:var(--serif);}
+
+  .spectrum{margin-top:26px;background:var(--paper-2);border:1px solid var(--line);border-radius:16px;
+    padding:30px 30px 24px;box-shadow:var(--shadow);}
+  .spectrum h3{font-size:19px;margin-bottom:4px;}
+  .spectrum .en{font-size:12.5px;letter-spacing:.06em;color:var(--ink-faint);margin-bottom:18px;}
+  .spectrum svg{width:100%;height:auto;display:block;}
+  .spectrum .cap{margin-top:14px;font-size:13.5px;color:var(--ink-soft);line-height:1.7;}
+  .spectrum .cap b{color:var(--accent);font-family:var(--serif);}
+
+  .fx-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+  .fx{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:24px;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s;}
+  .fx:hover{transform:translateY(-3px);box-shadow:var(--shadow);}
+  .fx .ic{width:42px;height:42px;border-radius:11px;background:rgba(110,74,52,0.09);display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+  .fx h3{font-size:18px;margin-bottom:3px;}
+  .fx .en{font-size:12px;letter-spacing:.06em;color:var(--ink-faint);margin-bottom:11px;}
+  .fx p{font-size:14px;color:var(--ink-soft);line-height:1.65;}
+  .fx .eg{margin-top:12px;font-size:13px;color:var(--accent);background:rgba(110,74,52,0.06);border-radius:8px;padding:8px 11px;}
+  .fx .eg b{font-weight:600;}
+  @media(max-width:880px){.fx-grid{grid-template-columns:1fr;}}
+
+  .flow{position:relative;padding-left:8px;}
+  .flow .step{display:grid;grid-template-columns:64px 1fr;gap:20px;position:relative;padding-bottom:28px;}
+  .flow .step:not(:last-child)::before{content:"";position:absolute;left:31px;top:48px;bottom:0;width:2px;background:linear-gradient(var(--accent-2),var(--line));}
+  .flow .node{width:64px;height:64px;border-radius:50%;background:var(--paper-2);border:2px solid var(--accent-2);display:flex;flex-direction:column;align-items:center;justify-content:center;flex:none;position:relative;z-index:2;box-shadow:0 3px 10px rgba(37,42,46,.08);}
+  .flow .node b{font-family:var(--serif);font-size:17px;color:var(--accent);line-height:1.15;}
+  .flow .node span{font-size:10px;color:var(--ink-faint);letter-spacing:.05em;}
+  .flow .body{padding-top:6px;}
+  .flow .body h3{font-size:18px;margin-bottom:5px;}
+  .flow .body h3 small{font-size:12.5px;color:var(--ink-faint);font-family:var(--sans);font-weight:400;margin-left:8px;}
+  .flow .body p{font-size:14px;color:var(--ink-soft);}
+  .flow .body .pill{display:inline-block;margin-top:8px;font-size:12px;color:var(--warm);background:rgba(55,93,116,0.1);padding:3px 11px;border-radius:20px;}
+
+  .quotes{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
+  .quote{background:linear-gradient(160deg,#faf9f5,#eef0ef);border:1px solid var(--line);border-radius:16px;padding:30px 28px 26px;position:relative;box-shadow:var(--shadow);}
+  .quote .mark{font-family:Georgia,serif;font-size:64px;line-height:.4;color:var(--accent);opacity:.35;height:30px;}
+  .quote p{font-family:var(--serif);font-size:17.5px;line-height:1.6;color:var(--ink);margin-bottom:14px;}
+  .quote .src{font-size:13px;color:var(--ink-faint);letter-spacing:.04em;}
+  .quote.span2{grid-column:1/-1;background:linear-gradient(110deg,#36251a,#231710);border-color:#2b1d14;}
+  .quote.span2 p{color:#e9eef2;font-size:20.5px;}
+  .quote.span2 .src{color:var(--accent-2);}
+  .quote.span2 .mark{color:var(--accent-2);}
+  @media(max-width:880px){.quotes{grid-template-columns:1fr;}}
+
+  .act-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+  .act{display:grid;grid-template-columns:46px 1fr;gap:16px;background:var(--paper-2);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:22px;transition:transform .2s,box-shadow .2s;}
+  .act:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm);}
+  .act .num{font-family:var(--serif);font-size:26px;color:var(--accent);line-height:1.1;}
+  .act h3{font-size:16.5px;margin-bottom:5px;}
+  .act p{font-size:13.5px;color:var(--ink-soft);line-height:1.65;}
+  @media(max-width:880px){.act-grid{grid-template-columns:1fr;}}
+
+  .split{display:grid;grid-template-columns:1fr 1.15fr;gap:30px;align-items:stretch;}
+  .split .imgcol{border-radius:16px;overflow:hidden;min-height:320px;background-size:cover;background-position:center;box-shadow:var(--shadow);position:relative;}
+  .split .imgcol::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,26,34,0) 42%,rgba(35,23,16,0.62));}
+  .split .imgcol .cap{position:absolute;left:22px;bottom:18px;z-index:2;color:#e5ebf0;font-family:var(--serif);font-size:15px;}
+  .fit-list{display:flex;flex-direction:column;gap:14px;}
+  .fit{display:flex;gap:13px;background:var(--paper-2);border:1px solid var(--line);border-radius:12px;padding:16px 18px;align-items:flex-start;}
+  .fit svg{flex:none;margin-top:3px;}
+  .fit b{font-family:var(--serif);font-size:15.5px;display:block;margin-bottom:2px;}
+  .fit span{font-size:13.5px;color:var(--ink-soft);}
+  @media(max-width:880px){.split{grid-template-columns:1fr;}}
+
+  footer{padding:46px 28px 60px;text-align:center;color:var(--ink-faint);font-size:13px;}
+  footer .line{width:60px;height:3px;background:var(--accent);margin:0 auto 20px;border-radius:3px;}
+  footer b{font-family:var(--serif);color:var(--ink-soft);}
+  .disclaim{margin-top:10px;font-size:12px;color:var(--ink-faint);max-width:680px;margin-left:auto;margin-right:auto;line-height:1.7;}
+
+  @media print{
+    #progress,.toc-bar,.ribbon{display:none;}
+    body::before{display:none;}
+    section{padding:28px 0;}
+    .fx,.act,.quote,.sys{break-inside:avoid;}
+  }
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<header class="hero" id="hero">
+  <div class="ribbon"><span>读书笔记</span></div>
+  <div class="hero-inner">
+    <span class="kicker">精读笔记 · 人物传记</span>
+    <h1>《朱熹》</h1>
+    <div class="sub-en">A Biography of Zhu Xi</div>
+    <p class="lead">他不是庙里的泥像，而是一个在南宋党争里反复起落的读书人。读懂朱熹的抉择，才算读懂理学如何从一介书生的讲台，走进此后七百年的科举与人心。</p>
+    <div class="hero-meta"><div class="m"><b>70 年</b><span>跌宕人生</span></div><div class="m"><b>4 卷</b><span>四书集注</span></div><div class="m"><b>1 场</b><span>鹅湖之辩</span></div><div class="m"><b>7 百年</b><span>科举影响</span></div></div>
+  </div>
+</header>
+
+<nav class="toc-bar" aria-label="页面目录"><div class="toc-in"><span class="lab">目录</span><a href="#info">书籍信息</a><a href="#duo">核心框架</a><a href="#chart">一张图</a><a href="#fx">关键概念</a><a href="#flow">章节脉络</a><a href="#quotes">金句</a><a href="#actions">行动启发</a><a href="#who">适合谁读</a></div></nav>
+
+<div class="wrap">
+<section id="info">
+  <div class="sec-head"><div class="sec-no">01</div><h2>这本书讲了什么</h2></div>
+  <p class="sec-sub">一句话总览 + 核心信息卡</p>
+  <div class="bookcard">
+    <div><div class="one-liner">本书围绕南宋大儒朱熹的一生展开，看他如何用<em>格物致知</em>重建儒学体系，又如何在党禁与贬抑之中，把学问熬成一种<em>可传七百年</em>的精神秩序。</div><div class="rule"></div></div>
+    <div class="meta-grid"><div class="cell"><span>作者</span><b>梁新宇</b></div><div class="cell"><span>领域</span><b>宋代理学与思想史</b></div><div class="cell"><span>核心命题</span><b>把个人命运放进更大的时代背景里读</b></div><div class="cell"><span>出版</span><b>人物传记综合类作品</b></div><div class="cell"><span>方法</span><b>关键抉择与转折处切入</b></div><div class="cell"><span>关键概念</span><b>理学、道统、格物致知</b></div></div>
+  </div>
+</section>
+<div class="divider"></div>
+<section id="duo">
+  <div class="sec-head"><div class="sec-no">02</div><h2>核心框架：天理 与 人欲</h2></div>
+  <p class="sec-sub">朱熹哲学的全部张力，都在这对命题之间展开</p>
+  <div class="sys-grid">
+<div class="sys s1"><div class="tag">天理 · Principle</div>
+<h3>世界的应然秩序</h3><div class="tagline">万物皆有其所以然与其所当然</div>
+<ul><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>理是万物的根据，在人为性，在物为理</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>心与理不是两物，须靠功夫一层层打通</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>天理落实为人伦：仁、义、礼、智的次序</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>格物致知是上达天理的门径</li></ul><div class="speed"><b>敬</b><span>主敬涵养是日常功夫的底色</span></div></div>
+<div class="sys s2"><div class="tag">人欲 · Desire</div>
+<h3>需要被治理的心</h3><div class="tagline">不是消灭欲望，而是不让私欲遮蔽天理</div>
+<ul><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>饮食是天理，要求美味才是人欲</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>欲不必屏除，只问当与不当、过与不过</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>修养是把心的领导权从私欲手里夺回</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>存养省察，须在事上反复磨练</li></ul><div class="speed"><b>察</b><span>省察克治要在念头发动处用力</span></div></div>
+</div>
+<div class="vs-wrap"><div class="vs-head v3"><div class="h0">对比维度</div><div class="h1c">天理</div><div class="h2c">人欲</div></div>
+<div class="vs-row v3"><div class="dim">运作方式</div><div class="v1">通过格物穷理被认识</div><div class="v2">借情绪与私念自动发动</div></div>
+<div class="vs-row v3"><div class="dim">衡量标准</div><div class="v1">公、正、当</div><div class="v2">私、偏、过</div></div>
+<div class="vs-row v3"><div class="dim">代表场景</div><div class="v1">书院讲学、注经立说</div><div class="v2">利禄之诱、意气之争</div></div>
+<div class="vs-row v3"><div class="dim">能否共存</div><div class="v1">是修养的目标与尺度</div><div class="v2">可被节制而不可放纵</div></div>
+</div>
+<div class="sys-note"><b>关键洞察 —</b> 朱熹并非要人做无情之人。他区分的是公共之理与一己之私：天理给欲望划界，人也正是在这一紧一松之间，日复一日地修养自己。</div>
+</section>
+<div class="divider"></div>
+<section id="chart">
+  <div class="sec-head"><div class="sec-no">03</div><h2>全书最深的一张图</h2></div>
+  <p class="sec-sub">把一生放进南宋的时代坐标里读</p>
+  <div class="spectrum">
+    <h3>朱熹生平六节点 — 生死荣辱皆与时代大势同频</h3>
+    <div class="en">Timeline of Zhu Xi</div>
+    <svg viewBox="0 0 900 230" role="img" aria-label="朱熹生平六节点">
+<rect x="0" y="0" width="900" height="230" fill="#faf9f5" rx="12"/>
+<defs><linearGradient id="g_b76_timeline" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#6e4a34"/><stop offset="0.5" stop-color="#978247"/><stop offset="1" stop-color="#375d74"/></linearGradient></defs>
+<line x1="70" y1="111" x2="830" y2="111" stroke="#a8836b" stroke-width="4" stroke-linecap="round"/>
+<circle cx="70" cy="111" r="9" fill="#6e4a34"/>
+<text x="64" y="79" text-anchor="start" font-size="14.5" font-weight="600" fill="#6e4a34">1130 · 生于尤溪</text>
+<text x="64" y="99" text-anchor="start" font-size="11.5" fill="#848d94">少年丧父，受学于武夷诸先生</text>
+<circle cx="222" cy="111" r="9" fill="#6e4a34"/>
+<text x="222" y="151" text-anchor="middle" font-size="14.5" font-weight="600" fill="#6e4a34">青年 · 同安主簿</text>
+<text x="222" y="171" text-anchor="middle" font-size="11.5" fill="#848d94">首任官职，遍访延平问学</text>
+<circle cx="374" cy="111" r="9" fill="#6e4a34"/>
+<text x="374" y="79" text-anchor="middle" font-size="14.5" font-weight="600" fill="#6e4a34">1175 · 鹅湖之会</text>
+<text x="374" y="99" text-anchor="middle" font-size="11.5" fill="#848d94">与陆九渊兄弟论辩为学之方</text>
+<circle cx="526" cy="111" r="9" fill="#6e4a34"/>
+<text x="526" y="151" text-anchor="middle" font-size="14.5" font-weight="600" fill="#6e4a34">中年 · 集注四书</text>
+<text x="526" y="171" text-anchor="middle" font-size="11.5" fill="#848d94">重构儒家经典次第，奠定道统</text>
+<circle cx="678" cy="111" r="9" fill="#6e4a34"/>
+<text x="678" y="79" text-anchor="middle" font-size="14.5" font-weight="600" fill="#6e4a34">1196 · 庆元党禁</text>
+<text x="678" y="99" text-anchor="middle" font-size="11.5" fill="#848d94">理学被斥为伪学，门人遭贬</text>
+<circle cx="830" cy="111" r="9" fill="#6e4a34"/>
+<text x="836" y="151" text-anchor="end" font-size="14.5" font-weight="600" fill="#6e4a34">1200 · 卒于建阳</text>
+<text x="836" y="171" text-anchor="end" font-size="11.5" fill="#848d94">身后地位渐隆，影响此后七百年</text>
+<text x="450" y="205" text-anchor="middle" font-size="11.5" fill="#848d94">生死荣辱皆与时代大势同频</text>
+</svg>
+    <div class="cap"><b>怎么用 —</b> 怎么用：读传记先画时间线，把每次贬抑与著述放回对应年份，再看哪些抉择是被时势推着走，哪些是他主动选的。</div>
+  </div>
+</section>
+<div class="divider"></div>
+<section id="fx">
+  <div class="sec-head"><div class="sec-no">04</div><h2>关键概念卡片</h2></div>
+  <p class="sec-sub">主要概念、方法与案例</p>
+  <div class="fx-grid"><div class="fx"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6e4a34" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="14" r="4"/><path d="M11 11l9-9M17 5l2.5 2.5M14 8l2 2"/></svg></div>
+<h3>理一分殊</h3><div class="en">One Principle, Many Forms</div><p>本书围绕宋代理学的核心命题展开：万物共有一个太极，而每事每物又各得其理。月亮印在千江水中，江江不同而月只一个。这一结构让普遍规范能落地为具体情境的判断。</p><div class="eg"><b>例：</b>判案既要守法条之理，也要体人情之分。</div></div><div class="fx"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6e4a34" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 00-4 10.5c.7.6 1 1.5 1 2.5h6c0-1 .3-1.9 1-2.5A6 6 0 0012 3z"/></svg></div>
+<h3>格物致知</h3><div class="en">Investigating Things</div><p>本书围绕修养方法展开：知识要从一件件事物上穷究，积日累月后豁然贯通。它把道德修养改造成一场可操作的认知工程，读书、处事、观物都在格物之列。</p><div class="eg"><b>例：</b>读史不是背年表，而是穷人事成败之理。</div></div><div class="fx"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6e4a34" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M4 7h16M6 7l-3 6a3 3 0 006 0zM18 7l-3 6a3 3 0 006 0z"/></svg></div>
+<h3>存天理去人欲</h3><div class="en">Taming Desire</div><p>本书围绕最易被误解的命题展开：天理并非禁欲，而是给欲望划定公共边界。饮食男女是天理，纵口腹、溺声色才是人欲。关键在当与不当，而非有与无。</p><div class="eg"><b>例：</b>节俭是理，吝啬到废义便是欲。</div></div><div class="fx"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6e4a34" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 012-2h6v16H6a2 2 0 00-2 2V5zM12 3h6a2 2 0 012 2v14a2 2 0 00-2-2h-6"/></svg></div>
+<h3>四书体系</h3><div class="en">The Four Books</div><p>本书围绕朱熹的经典工程展开：他把《大学》《中庸》《论语》《孟子》编成进学次第，以集注形式重写儒门入门路径，此后数百年科举以此为准绳。</p><div class="eg"><b>例：</b>读书先读四书，是朱熹排定的学制。</div></div><div class="fx"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6e4a34" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2.2 5-5 2.2 2.2-5z"/></svg></div>
+<h3>道统意识</h3><div class="en">Confucian Orthodoxy</div><p>本书围绕宋儒的自我定位展开：从尧舜到孔孟，再到周敦颐、二程，学问有一脉相承的正统。朱熹以注疏者身份自认接续此统，赋予理学以历史合法性。</p><div class="eg"><b>例：</b>道统说让讲学者自居为文明守夜人。</div></div><div class="fx"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6e4a34" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.8v3M12 18.2v3M2.8 12h3M18.2 12h3M5.5 5.5l2.1 2.1M16.4 16.4l2.1 2.1M18.5 5.5l-2.1 2.1M7.6 16.4l-2.1 2.1"/></svg></div>
+<h3>主敬涵养</h3><div class="en">Reverence and Focus</div><p>本书围绕日常功夫展开：收拾放心、整齐严肃，把散乱的心收回来。主敬不是紧张，而是一种随时在线的清醒，与格物的穷理互为里表。</p><div class="eg"><b>例：</b>写字端正、坐姿安稳，都是敬的练习。</div></div></div>
+</section>
+<div class="divider"></div>
+<section id="flow">
+  <div class="sec-head"><div class="sec-no">05</div><h2>全书脉络图</h2></div>
+  <p class="sec-sub">按主题线展开，从个人到时代收束</p>
+  <div class="flow"><div class="step"><div class="node"><b>01</b><span>CH.</span></div>
+<div class="body"><h3>入圣之志<small>The Calling</small></h3><p>少年立志于学，师从武夷诸儒，把人生钉在求道上。</p><span class="pill">立志</span></div></div><div class="step"><div class="node"><b>02</b><span>CH.</span></div>
+<div class="body"><h3>宦海初仕<small>First Post</small></h3><p>同安主簿任上兼问学延平，见识官场的治理难题。</p><span class="pill">问学</span></div></div><div class="step"><div class="node"><b>03</b><span>CH.</span></div>
+<div class="body"><h3>鹅湖论辩<small>The Goose Lake Debate</small></h3><p>与陆氏兄弟当面交锋，为学由博返约还是先立本心。</p><span class="pill">论辩</span></div></div><div class="step"><div class="node"><b>04</b><span>CH.</span></div>
+<div class="body"><h3>著述立统<small>Building the Canon</small></h3><p>集注四书、复兴书院，把学问制度化、次第化。</p><span class="pill">立言</span></div></div><div class="step"><div class="node"><b>05</b><span>CH.</span></div>
+<div class="body"><h3>党禁风暴<small>The Purge</small></h3><p>庆元年间理学被判为伪学，晚年困顿仍笔耕不辍。</p><span class="pill">守道</span></div></div><div class="step"><div class="node"><b>06</b><span>CH.</span></div>
+<div class="body"><h3>身后之理<small>Afterlife</small></h3><p>从伪学到官学，个人的成败让位于思想的长时段。</p><span class="pill">回响</span></div></div></div>
+</section>
+<div class="divider"></div>
+<section id="quotes">
+  <div class="sec-head"><div class="sec-no">06</div><h2>金句摘录</h2></div>
+  <p class="sec-sub">值得抄进笔记本的句子（据核心观点转述）</p>
+  <div class="quotes"><div class="quote"><div class="mark">&ldquo;</div><p>问渠那得清如许？为有源头活水来。</p><div class="src">—— 观书有感</div></div><div class="quote"><div class="mark">&ldquo;</div><p>读书之法，在循序而渐进，熟读而精思。</p><div class="src">—— 论读书</div></div><div class="quote"><div class="mark">&ldquo;</div><p>圣贤千言万语，只是要人存天理、去人欲。</p><div class="src">—— 论天理人欲</div></div><div class="quote"><div class="mark">&ldquo;</div><p>为学之道，莫先于穷理；穷理之要，必在于读书。</p><div class="src">—— 论为学</div></div><div class="quote span2"><div class="mark">&ldquo;</div><p>立志不坚，终不济事。</p><div class="src">—— 论立志</div></div></div>
+</section>
+<div class="divider"></div>
+<section id="actions">
+  <div class="sec-head"><div class="sec-no">07</div><h2>对工作与决策的行动启发</h2></div>
+  <p class="sec-sub">读完就能上手的方法</p>
+  <div class="act-grid"><div class="act"><div class="num">1</div><div><h3>建一条时间线</h3><p>把自己近十年的大事画成一条轴，标出转折点，再看哪些是环境所迫、哪些是自己选择。</p></div></div><div class="act"><div class="num">2</div><div><h3>做一次格物练习</h3><p>挑一件本周反复纠缠的小事，写下事实、判断与情绪三栏，分清三者再下结论。</p></div></div><div class="act"><div class="num">3</div><div><h3>立一条欲望边界</h3><p>为一个具体欲望（消费、拖延、饮食）写下当与不当的界限，只管这一条，试满一周。</p></div></div><div class="act"><div class="num">4</div><div><h3>选一门进学次第</h3><p>仿照四书思路，为自己的领域排定三五本由浅入深的书单，按序读完，不跳跃。</p></div></div><div class="act"><div class="num">5</div><div><h3>写一段省察记录</h3><p>每晚用三行字记下当日一个情绪化反应：何事触发、如何发动、下次如何接住。</p></div></div><div class="act"><div class="num">6</div><div><h3>做一次主敬练习</h3><p>选一件例行小事（晨起、伏案、写邮件），把它做得端正完整，用形式收束散乱的心。</p></div></div></div>
+</section>
+<div class="divider"></div>
+<section id="who">
+  <div class="sec-head"><div class="sec-no">08</div><h2>这本书适合谁读</h2></div>
+  <p class="sec-sub">如果你符合其中一条，它都值得放进书单</p>
+  <div class="split">
+    <div class="imgcol" id="who-img"><div class="cap">书院讲学：理学日常的一面</div></div>
+    <div class="fit-list"><div class="fit"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 9l4 4 10-10" stroke="#6e4a34" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>对宋史与儒学好奇的人</b><span>想绕开标签化叙事，看理学如何被一个具体的人在具体时局中做出来。</span></div></div><div class="fit"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 9l4 4 10-10" stroke="#6e4a34" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>被人物命运吸引的传记读者</b><span>关心的不是结论式的圣人像，而是抉择现场的犹豫、孤注与坚持。</span></div></div><div class="fit"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 9l4 4 10-10" stroke="#6e4a34" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>教师与内容创作者</b><span>四书体系、书院与道统是绝佳的叙事素材，可直接转化为课程与文章。</span></div></div><div class="fit"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2v4M9 12v4M2 9h4M12 9h4" stroke="#a8836b" stroke-width="2" stroke-linecap="round"/></svg><div><b>读前建议</b><span>先备一张南宋年表在手边，边读边对年份，体验会完全不同。</span></div></div></div>
+  </div>
+</section>
+</div>
+
+<footer>
+  <div class="line"></div>
+  <b>《朱熹》精读笔记 · 读书摘要卡</b>
+  <p class="disclaim">本页为基于该书公开核心观点整理的读书笔记，用于知识科普与个人学习参考，非原文逐字转载。书名、理论与观点版权归原作者及出版方所有。头图为南宋书院主题配图（Wikimedia Commons，公有领域）。</p>
+</footer>
+
+<script>
+  var DOC_ARCHIVE = "../assets/hero/h16.jpg";
+  document.getElementById('hero').style.backgroundImage = "url('" + DOC_ARCHIVE + "')";
+  var wi = document.getElementById('who-img');
+  if (wi) wi.style.backgroundImage = "url('" + DOC_ARCHIVE + "')";
+
+  (function(){
+    var bar = document.getElementById('progress');
+    function upd(){
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.width = (max > 0 ? (h.scrollTop / max * 100) : 0) + '%';
+    }
+    window.addEventListener('scroll', upd, {passive:true});
+    window.addEventListener('resize', upd);
+    upd();
+  })();
+</script>
+
+</body>
+</html>

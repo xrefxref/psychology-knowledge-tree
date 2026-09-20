@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《向上生长》精读笔记 · 读书摘要卡</title>
+<meta name="description" content="九边《向上生长》读书笔记：熵增定律、复利曲线、数量堆死质量、舒适区边缘——把成长改造成可计算的系统工程，反鸡汤的模型派成长指南。">
+<style>
+  :root{
+    --paper:#f4f2ed;
+    --paper-2:#faf9f5;
+    --ink:#252a2e;
+    --ink-soft:#535b62;
+    --ink-faint:#848d94;
+    --line:#dde0dd;
+    --accent:#355E3B;      /* 向上生长的叶绿 */
+    --accent-2:#7BA07E;    /* 新芽青绿 */
+    --warm:#a15c3a;        /* 对比暖赭 */
+    --shadow:0 12px 40px rgba(37,42,46,.10);
+    --shadow-sm:0 4px 18px rgba(37,42,46,.08);
+    --serif:"Songti SC","Source Han Serif SC","Noto Serif SC",Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--sans);color:var(--ink);background:var(--paper);
+    background-image:
+      radial-gradient(circle at 18% 8%, rgba(123,160,126,.10), transparent 42%),
+      radial-gradient(circle at 84% 88%, rgba(53,94,59,.07), transparent 46%);
+    line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.035'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  body>*{position:relative;z-index:1;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
+  h1,h2,h3,.serif{font-family:var(--serif);}
+  ::selection{background:rgba(53,94,59,.18);}
+
+  #progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:99;
+    background:linear-gradient(90deg,var(--accent-2),var(--accent));transition:width .1s linear;}
+
+  .hero{
+    position:relative;min-height:clamp(480px,72vh,640px);
+    display:flex;align-items:flex-end;
+    background-size:cover;background-position:center 55%;
+    color:#f5f7f8;overflow:hidden;
+  }
+  .hero::after{
+    content:"";position:absolute;inset:0;
+    background:
+      linear-gradient(180deg, rgba(20,36,24,.32) 0%, rgba(20,36,24,.44) 42%, rgba(12,24,16,.92) 100%),
+      linear-gradient(90deg, rgba(12,24,16,.62) 0%, rgba(12,24,16,0) 58%);
+  }
+  .hero-inner{position:relative;z-index:2;width:100%;max-width:1080px;margin:0 auto;padding:88px 28px 54px;}
+  .hero .kicker{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:13px;letter-spacing:.22em;text-transform:uppercase;
+    color:#d3e0d6;border:1px solid rgba(211,224,214,.45);
+    padding:6px 15px;border-radius:30px;margin-bottom:22px;backdrop-filter:blur(2px);
+  }
+  .hero h1{font-size:clamp(34px,6vw,62px);line-height:1.12;font-weight:700;letter-spacing:.01em;text-shadow:0 2px 24px rgba(0,0,0,.45);margin-bottom:10px;}
+  .hero .sub-en{font-family:var(--serif);font-style:italic;font-size:clamp(15px,2.4vw,22px);color:#b3d2b9;opacity:.92;margin-bottom:20px;}
+  .hero .lead{max-width:640px;font-size:clamp(15px,2vw,18px);color:#e6efe8;}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:24px 34px;margin-top:30px;}
+  .hero-meta .m{display:flex;flex-direction:column;}
+  .hero-meta .m b{font-family:var(--serif);font-size:20px;color:#fff;}
+  .hero-meta .m span{font-size:12.5px;letter-spacing:.08em;color:#a8c4ad;}
+
+  .ribbon{position:absolute;top:0;right:clamp(16px,5vw,52px);z-index:3;width:44px;
+    background:var(--accent);color:#fff;text-align:center;
+    padding:15px 0 24px;font-family:var(--serif);font-size:13px;letter-spacing:.14em;
+    box-shadow:0 6px 16px rgba(0,0,0,.32);}
+  .ribbon::after{content:"";position:absolute;left:0;bottom:-13px;border-width:0 22px 14px;border-style:solid;border-color:var(--accent) var(--accent) transparent;}
+  .ribbon span{writing-mode:vertical-rl;}
+
+  .toc-bar{background:var(--paper-2);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50;box-shadow:0 2px 14px rgba(37,42,46,.06);}
+  .toc-in{max-width:1080px;margin:0 auto;padding:10px 28px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .toc-in .lab{font-family:var(--serif);font-size:13px;color:var(--accent);letter-spacing:.1em;margin-right:6px;}
+  .toc-in a{font-size:12.5px;color:var(--ink-soft);text-decoration:none;padding:4px 11px;border-radius:20px;border:1px solid transparent;transition:all .18s;white-space:nowrap;}
+  .toc-in a:hover{color:var(--accent);border-color:rgba(53,94,59,.35);background:rgba(53,94,59,.05);}
+
+  section{padding:60px 0 56px;scroll-margin-top:64px;}
+  .sec-head{display:flex;align-items:center;gap:14px;margin-bottom:8px;}
+  .sec-no{font-family:var(--serif);font-size:14px;color:var(--accent);border:1px solid var(--accent);border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;flex:none;}
+  .sec-head h2{font-size:clamp(23px,3.4vw,31px);color:var(--ink);}
+  .sec-sub{color:var(--ink-faint);font-size:14.5px;margin-bottom:32px;padding-left:48px;}
+  @media(max-width:880px){.sec-sub{padding-left:0;}}
+
+  .divider{height:1px;background:linear-gradient(90deg,transparent,var(--line) 18%,var(--line) 82%,transparent);}
+
+  .bookcard{
+    display:grid;grid-template-columns:1.1fr 1fr;gap:34px;align-items:center;
+    background:var(--paper-2);border:1px solid var(--line);border-radius:18px;
+    padding:38px;box-shadow:var(--shadow);position:relative;overflow:hidden;
+  }
+  .bookcard::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:linear-gradient(var(--accent),var(--accent-2));}
+  .one-liner{font-family:var(--serif);font-size:clamp(19px,2.9vw,26px);line-height:1.55;color:var(--ink);}
+  .one-liner em{color:var(--accent);font-style:normal;}
+  .one-liner .rule{width:52px;height:3px;background:var(--accent);border-radius:2px;margin-top:18px;opacity:.85;}
+  .meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 22px;}
+  .meta-grid .cell span{display:block;font-size:12px;letter-spacing:.1em;color:var(--ink-faint);text-transform:uppercase;margin-bottom:3px;}
+  .meta-grid .cell b{font-family:var(--serif);font-size:16.5px;color:var(--ink);font-weight:600;line-height:1.45;}
+  @media(max-width:880px){.bookcard{grid-template-columns:1fr;padding:28px;gap:26px;}}
+
+  /* 双驱力 */
+  .sys-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .sys{border-radius:16px;padding:30px 28px;color:#fff;position:relative;overflow:hidden;box-shadow:var(--shadow);}
+  .sys.s1{background:linear-gradient(150deg,#4a7a5b,#2c5239);}
+  .sys.s2{background:linear-gradient(150deg,#a15c3a,#7c4127);}
+  .sys .tag{font-size:12px;letter-spacing:.16em;opacity:.85;text-transform:uppercase;}
+  .sys h3{font-size:26px;margin:6px 0 4px;}
+  .sys .tagline{font-family:var(--serif);font-style:italic;font-size:16px;opacity:.92;margin-bottom:18px;}
+  .sys ul{list-style:none;display:flex;flex-direction:column;gap:11px;}
+  .sys li{display:flex;gap:10px;font-size:14.5px;line-height:1.55;align-items:flex-start;}
+  .sys li svg{flex:none;margin-top:4px;}
+  .sys .speed{display:inline-flex;align-items:baseline;gap:8px;margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.22);}
+  .sys .speed b{font-size:26px;font-family:var(--serif);}
+  .sys .speed span{font-size:12.5px;opacity:.82;}
+  @media(max-width:880px){.sys-grid{grid-template-columns:1fr;}}
+
+  .vs-wrap{margin-top:26px;background:var(--paper-2);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .vs-head{display:grid;grid-template-columns:1.1fr 1fr 1fr;background:linear-gradient(90deg,rgba(74,122,91,.12),rgba(161,92,58,.12));border-bottom:1px solid var(--line);}
+  .vs-head div{padding:14px 18px;font-family:var(--serif);font-size:15px;}
+  .vs-head .h1c{color:var(--accent);}
+  .vs-head .h2c{color:var(--warm);}
+  .vs-row{display:grid;grid-template-columns:1.1fr 1fr 1fr;border-bottom:1px solid var(--line);}
+  .vs-row:last-child{border-bottom:none;}
+  .vs-row:nth-child(odd){background:rgba(244,242,237,.55);}
+  .vs-row .dim{padding:12px 18px;font-size:13px;color:var(--ink-faint);letter-spacing:.04em;display:flex;align-items:center;}
+  .vs-row .v1{padding:12px 18px;font-size:13.5px;color:var(--ink-soft);border-left:1px dashed var(--line);display:flex;align-items:center;}
+  .vs-row .v2{padding:12px 18px;font-size:13.5px;color:var(--ink-soft);border-left:1px dashed var(--line);display:flex;align-items:center;}
+  @media(max-width:680px){
+    .vs-head{grid-template-columns:1fr 1fr;}
+    .vs-head .h0{display:none;}
+    .vs-row{grid-template-columns:1fr;padding:10px 0;}
+    .vs-row .dim{grid-column:1/-1;padding:4px 18px 2px;font-family:var(--serif);color:var(--accent);font-size:13.5px;}
+    .vs-row .v1,.vs-row .v2{border-left:none;padding:2px 18px;}
+    .vs-row .v1::before{content:"熵减　";color:var(--accent);font-weight:600;}
+    .vs-row .v2::before{content:"熵增　";color:var(--warm);font-weight:600;}
+  }
+
+  /* 光谱图 */
+  .spectrum{
+    margin-top:26px;background:var(--paper-2);border:1px solid var(--line);border-radius:16px;
+    padding:30px 30px 24px;box-shadow:var(--shadow);
+  }
+  .spectrum h3{font-size:19px;margin-bottom:4px;}
+  .spectrum .en{font-size:12.5px;letter-spacing:.06em;color:var(--ink-faint);margin-bottom:18px;}
+  .spectrum svg{width:100%;height:auto;display:block;}
+  .spectrum .cap{margin-top:14px;font-size:13.5px;color:var(--ink-soft);line-height:1.7;}
+  .spectrum .cap b{color:var(--accent);font-family:var(--serif);}
+
+  .sys-note{margin-top:22px;background:var(--paper-2);border:1px dashed var(--accent-2);border-radius:12px;padding:18px 22px;font-size:14.5px;color:var(--ink-soft);}
+  .sys-note b{color:var(--accent);font-family:var(--serif);}
+
+  /* 效应卡片 */
+  .fx-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+  .fx{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:24px;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s;}
+  .fx:hover{transform:translateY(-3px);box-shadow:var(--shadow);}
+  .fx .ic{width:42px;height:42px;border-radius:11px;background:rgba(53,94,59,.10);display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+  .fx h3{font-size:18px;margin-bottom:3px;}
+  .fx .en{font-size:12px;letter-spacing:.06em;color:var(--ink-faint);margin-bottom:11px;}
+  .fx p{font-size:14px;color:var(--ink-soft);line-height:1.65;}
+  .fx .eg{margin-top:12px;font-size:13px;color:var(--accent);background:rgba(53,94,59,.07);border-radius:8px;padding:8px 11px;}
+  .fx .eg b{font-weight:600;}
+  @media(max-width:880px){.fx-grid{grid-template-columns:1fr;}}
+
+  .flow{position:relative;padding-left:8px;}
+  .flow .step{display:grid;grid-template-columns:64px 1fr;gap:20px;position:relative;padding-bottom:28px;}
+  .flow .step:not(:last-child)::before{content:"";position:absolute;left:31px;top:48px;bottom:0;width:2px;background:linear-gradient(var(--accent-2),var(--line));}
+  .flow .node{width:64px;height:64px;border-radius:50%;background:var(--paper-2);border:2px solid var(--accent-2);display:flex;flex-direction:column;align-items:center;justify-content:center;flex:none;position:relative;z-index:2;box-shadow:0 3px 10px rgba(37,42,46,.08);}
+  .flow .node b{font-family:var(--serif);font-size:17px;color:var(--accent);line-height:1.15;}
+  .flow .node span{font-size:10px;color:var(--ink-faint);letter-spacing:.05em;}
+  .flow .body{padding-top:6px;}
+  .flow .body h3{font-size:18px;margin-bottom:5px;}
+  .flow .body h3 small{font-size:12.5px;color:var(--ink-faint);font-family:var(--sans);font-weight:400;margin-left:8px;}
+  .flow .body p{font-size:14px;color:var(--ink-soft);}
+  .flow .body .pill{display:inline-block;margin-top:8px;font-size:12px;color:var(--warm);background:rgba(161,92,58,.09);padding:3px 11px;border-radius:20px;}
+
+  .quotes{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
+  .quote{background:linear-gradient(160deg,#faf9f5,#eef0ef);border:1px solid var(--line);border-radius:16px;padding:30px 28px 26px;position:relative;box-shadow:var(--shadow);}
+  .quote .mark{font-family:Georgia,serif;font-size:64px;line-height:.4;color:var(--accent);opacity:.35;height:30px;}
+  .quote p{font-family:var(--serif);font-size:17.5px;line-height:1.6;color:var(--ink);margin-bottom:14px;}
+  .quote .src{font-size:13px;color:var(--ink-faint);letter-spacing:.04em;}
+  .quote.span2{grid-column:1/-1;background:linear-gradient(110deg,#1d2e21,#2b3d30);border-color:#142019;}
+  .quote.span2 p{color:#e9efe7;font-size:20.5px;}
+  .quote.span2 .src{color:var(--accent-2);}
+  .quote.span2 .mark{color:var(--accent-2);}
+  @media(max-width:880px){.quotes{grid-template-columns:1fr;}}
+
+  .act-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+  .act{display:grid;grid-template-columns:46px 1fr;gap:16px;background:var(--paper-2);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:22px;transition:transform .2s,box-shadow .2s;}
+  .act:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm);}
+  .act .num{font-family:var(--serif);font-size:26px;color:var(--accent);line-height:1.1;}
+  .act h3{font-size:16.5px;margin-bottom:5px;}
+  .act p{font-size:13.5px;color:var(--ink-soft);line-height:1.65;}
+  @media(max-width:880px){.act-grid{grid-template-columns:1fr;}}
+
+  .split{display:grid;grid-template-columns:1fr 1.15fr;gap:30px;align-items:stretch;}
+  .split .imgcol{border-radius:16px;overflow:hidden;min-height:320px;background-size:cover;background-position:center;box-shadow:var(--shadow);position:relative;}
+  .split .imgcol::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,26,34,0) 42%,rgba(16,26,34,.58));}
+  .split .imgcol .cap{position:absolute;left:22px;bottom:18px;z-index:2;color:#dfe8ee;font-family:var(--serif);font-size:15px;}
+  .fit-list{display:flex;flex-direction:column;gap:14px;}
+  .fit{display:flex;gap:13px;background:var(--paper-2);border:1px solid var(--line);border-radius:12px;padding:16px 18px;align-items:flex-start;}
+  .fit svg{flex:none;margin-top:3px;}
+  .fit b{font-family:var(--serif);font-size:15.5px;display:block;margin-bottom:2px;}
+  .fit span{font-size:13.5px;color:var(--ink-soft);}
+  @media(max-width:880px){.split{grid-template-columns:1fr;}}
+
+  footer{padding:46px 28px 60px;text-align:center;color:var(--ink-faint);font-size:13px;}
+  footer .line{width:60px;height:3px;background:var(--accent);margin:0 auto 20px;border-radius:3px;}
+  footer b{font-family:var(--serif);color:var(--ink-soft);}
+  .disclaim{margin-top:10px;font-size:12px;color:var(--ink-faint);max-width:680px;margin-left:auto;margin-right:auto;line-height:1.7;}
+
+  @media print{
+    #progress,.toc-bar,.ribbon{display:none;}
+    body::before{display:none;}
+    section{padding:28px 0;}
+    .fx,.act,.quote,.sys{break-inside:avoid;}
+  }
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<header class="hero" id="hero">
+  <div class="ribbon"><span>读书笔记</span></div>
+  <div class="hero-inner">
+    <span class="kicker">精读笔记 · 摘要卡</span>
+    <h1>《向上生长》</h1>
+    <div class="sub-en">Nine Edges · 2019 · 把成长改造成可计算的系统工程</div>
+    <p class="lead">它不谈鸡汤，只谈模型——熵增、复利、内卷化、舒适区边缘。努力却原地踏步不是你不够拼，是你的"成长系统"没装对零件。这本书给出那批零件的图纸。</p>
+    <div class="hero-meta">
+      <div class="m"><b>6 大主题</b><span>学习·财富·认知·心态·选择·趋势</span></div>
+      <div class="m"><b>7 个底层模型</b><span>熵减·复利·数量堆死质量</span></div>
+      <div class="m"><b>1 个核心洞察</b><span>成长不是道德问题，是工程问题</span></div>
+      <div class="m"><b>6 条系统动作</b><span>不靠意志力，靠最小目标系统</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="toc-bar" aria-label="页面目录">
+  <div class="toc-in">
+    <span class="lab">目录</span>
+    <a href="#info">书籍信息</a>
+    <a href="#duo">熵增 vs 熵减</a>
+    <a href="#curve">复利曲线</a>
+    <a href="#fx">六大模型</a>
+    <a href="#flow">章节脉络</a>
+    <a href="#quotes">金句</a>
+    <a href="#actions">行动启发</a>
+    <a href="#who">适合谁读</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <section id="info">
+    <div class="sec-head"><div class="sec-no">01</div><h2>这本书讲了什么</h2></div>
+    <p class="sec-sub">一句话总览 + 核心信息卡</p>
+    <div class="bookcard">
+      <div>
+        <div class="one-liner">
+          一本<em>反鸡汤的成长工程书</em>——用熵增、复利、内卷化等跨学科模型解释"为什么努力会原地踏步"，并给出<em>数量堆死质量</em>、<em>舒适区边缘</em>、<em>微习惯</em>等可执行的向上路径。
+        </div>
+        <div class="rule"></div>
+      </div>
+      <div class="meta-grid">
+        <div class="cell"><span>作者</span><b>九边（公众号作者，前程序员）</b></div>
+        <div class="cell"><span>领域</span><b>个人成长 × 系统思维</b></div>
+        <div class="cell"><span>核心命题</span><b>不进则退是物理定律，不是口号</b></div>
+        <div class="cell"><span>原书出版</span><b>2019 年（中文互联网成长畅销）</b></div>
+        <div class="cell"><span>系列定位</span><b>中文"模型派"成长代表作</b></div>
+        <div class="cell"><span>核心概念</span><b>熵减·复利曲线·数量堆死质量</b></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="duo">
+    <div class="sec-head"><div class="sec-no">02</div><h2>核心框架：熵增 vs 熵减</h2></div>
+    <p class="sec-sub">普通人所有的"卡住"与"突破"，都发生在与熵增的拔河中</p>
+    <div class="sys-grid">
+      <div class="sys s1">
+        <div class="tag">Entropy Decreasing · 向上走的力气</div>
+        <h3>熵减：主动输入</h3>
+        <div class="tagline">"每天做一点负熵的事，曲线才有可能抬头。"</div>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>数量堆死质量：先把量做到位，质量才有资格登场</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>复利曲线：拐点前沉默，拐点后指数级爆发</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>舒适区边缘：把目标调到"小到不可能失败"</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>链接即财富：把每周一次高价值连接当定投</li>
+        </ul>
+        <div class="speed"><b>积累</b><span>复利曲线 · 拐点之后回报陡升</span></div>
+      </div>
+      <div class="sys s2">
+        <div class="tag">Entropy Increasing · 自然滑落的力</div>
+        <h3>熵增：躺平陷阱</h3>
+        <div class="tagline">"越不动，越难动——孤立系统只往一个方向走。"</div>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>越忙越穷：皮质醇升高 → 决策变差 → 更穷的死循环</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>内卷化：低水平重复精细化，但无实质增长</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>即时反馈偏好：大脑还在草原时代，长期坚持难</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>闭门努力：信息差与机会风口同时错过</li>
+        </ul>
+        <div class="speed"><b>衰退</b><span>舒适区缩小 · 抗风险能力同步下降</span></div>
+      </div>
+    </div>
+
+    <div class="vs-wrap">
+      <div class="vs-head">
+        <div class="h0" style="color:var(--ink-faint);font-size:13px;">对比维度</div>
+        <div class="h1c">熵减（向上做功）</div>
+        <div class="h2c">熵增（自然滑落）</div>
+      </div>
+      <div class="vs-row"><div class="dim">体力支出</div><div class="v1">持续做功，先累后甜</div><div class="v2">暂时省力，长期失能</div></div>
+      <div class="vs-row"><div class="dim">心理体验</div><div class="v1">延迟满足，有掌控感</div><div class="v2">即时舒服，伴随无助感</div></div>
+      <div class="vs-row"><div class="dim">典型动作</div><div class="v1">每天 15 分钟输入、每周一次链接</div><div class="v2">刷短视频、熬夜、躺平式休息</div></div>
+      <div class="vs-row"><div class="dim">回报曲线</div><div class="v1">早期近乎水平，后段指数陡升</div><div class="v2">前期省力，后期断崖式衰减</div></div>
+      <div class="vs-row"><div class="dim">破局关键</div><div class="v1">把目标调到"小到不可能失败"</div><div class="v2">注入系统外的新变量打破闭环</div></div>
+    </div>
+
+    <div class="sys-note">
+      <b>关键洞察 —</b> 你不需要"变成更好的人"，你只需要<em>持续输入负熵流</em>。自律不是道德问题，是工程问题——把动作设计得足够小、足够稳定，曲线就交给时间。
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="curve">
+    <div class="sec-head"><div class="sec-no">03</div><h2>复利曲线与拐点</h2></div>
+    <p class="sec-sub">全书最值得画下来的一张图——多数人死在沉默期</p>
+    <div class="spectrum">
+      <h3>复利 ⇄ 线性：两种增长观</h3>
+      <div class="en">The Compound Curve · 拐点前的耐心 = 拐点后的奖赏</div>
+      <svg viewBox="0 0 900 220" role="img" aria-label="复利曲线与拐点示意图">
+        <rect x="0" y="0" width="900" height="220" fill="#faf9f5" rx="12"/>
+        <defs>
+          <linearGradient id="grass" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#7BA07E" stop-opacity="0.4"/>
+            <stop offset="1" stop-color="#355E3B"/>
+          </linearGradient>
+        </defs>
+        <!-- 网格线 -->
+        <line x1="60" y1="180" x2="840" y2="180" stroke="#c5cbc8" stroke-width="1"/>
+        <line x1="60" y1="180" x2="60" y2="30" stroke="#c5cbc8" stroke-width="1"/>
+        <line x1="60" y1="140" x2="840" y2="140" stroke="#e3e6e2" stroke-dasharray="3 4" stroke-width="1"/>
+        <line x1="60" y1="90" x2="840" y2="90" stroke="#e3e6e2" stroke-dasharray="3 4" stroke-width="1"/>
+        <text x="50" y="184" text-anchor="end" font-size="10.5" fill="#848d94">0</text>
+        <text x="50" y="144" text-anchor="end" font-size="10.5" fill="#848d94">1×</text>
+        <text x="50" y="94" text-anchor="end" font-size="10.5" fill="#848d94">10×</text>
+        <text x="50" y="44" text-anchor="end" font-size="10.5" fill="#848d94">37×</text>
+        <!-- 线性对照线 -->
+        <line x1="60" y1="170" x2="840" y2="80" stroke="#c5cbc8" stroke-width="2" stroke-dasharray="6 5"/>
+        <text x="845" y="78" font-size="11.5" fill="#848d94">线性增长</text>
+        <!-- 复利曲线 -->
+        <path d="M 60 172 C 180 171 320 170 420 166 C 520 161 600 152 660 132 C 720 110 760 78 790 56 C 810 42 825 36 840 30"
+              fill="none" stroke="url(#grass)" stroke-width="4" stroke-linecap="round"/>
+        <!-- 拐点垂直虚线 -->
+        <line x1="580" y1="30" x2="580" y2="180" stroke="#355E3B" stroke-width="1.2" stroke-dasharray="4 5" opacity="0.6"/>
+        <!-- 拐点圆点 -->
+        <circle cx="580" cy="146" r="6" fill="#355E3B" stroke="#faf9f5" stroke-width="2.5"/>
+        <!-- 拐点标注 -->
+        <text x="580" y="22" text-anchor="middle" font-size="13" font-weight="600" fill="#355E3B">拐点 · Compound Knee</text>
+        <text x="580" y="200" text-anchor="middle" font-size="11.5" fill="#535b62">多数人在此放弃</text>
+        <!-- 拐点前 -->
+        <text x="240" y="158" font-size="12.5" fill="#7BA07E" font-weight="600">拐点前：数量堆死质量</text>
+        <text x="240" y="175" font-size="11" fill="#848d94">每天 1%，看似原地踏步</text>
+        <!-- 拐点后 -->
+        <text x="700" y="80" font-size="12.5" fill="#355E3B" font-weight="600">拐点后：指数回报</text>
+        <text x="700" y="97" font-size="11" fill="#848d94">一年 37.8 倍，三根效应</text>
+        <!-- x 轴标注 -->
+        <text x="450" y="214" text-anchor="middle" font-size="11" fill="#848d94">时间（年 / 月 / 日累计）</text>
+      </svg>
+      <div class="cap"><b>怎么用 —</b> 给任何想精进的事设两条对照线：一条线性（努力立刻有回报，多数人是这种幻觉），一条复利（前期近乎水平，拐点后陡升）。当你处于"沉默期"感到没进展时，对照这张图告诉自己——这是<em>还没到拐点</em>，不是没在走。</div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="fx">
+    <div class="sec-head"><div class="sec-no">04</div><h2>六大关键模型卡片</h2></div>
+    <p class="sec-sub">把"努力却原地踏步"翻译成可操作的底层概念</p>
+    <div class="fx-grid">
+      <div class="fx">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 6l4 4 4-4M20 18l-4-4-4 4" stroke="#355E3B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 10v6M16 14V8" stroke="#355E3B" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <h3>对抗熵增</h3>
+        <div class="en">Fighting Entropy</div>
+        <p>孤立系统必然从有序滑向无序——房间会乱、技能会废、关系会淡。维持现状本身就需要持续做功。</p>
+        <div class="eg"><b>例：</b>"什么都没做却越来越累"正是熵增的体感。</div>
+      </div>
+      <div class="fx">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 19c4-1 8-1 16 0" stroke="#355E3B" stroke-width="1.8" stroke-linecap="round"/><path d="M4 14c3-.5 6-.5 10 .0 2 .3 4 .3 6-.0" stroke="#355E3B" stroke-width="1.6" stroke-linecap="round" opacity=".7"/><path d="M4 9c3-.3 6-.3 9 .0" stroke="#355E3B" stroke-width="1.4" stroke-linecap="round" opacity=".4"/></svg></div>
+        <h3>复利曲线与拐点</h3>
+        <div class="en">The Compound Curve</div>
+        <p>每天进步 1%，一年后是 37.8 倍；曲线前段极平缓，拐点前的沉默期淘汰了绝大多数人。</p>
+        <div class="eg"><b>例：</b>竹子前 4 年只长 3 厘米，第 5 年每天窜几十厘米。</div>
+      </div>
+      <div class="fx">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="4" height="4" stroke="#355E3B" stroke-width="1.6"/><rect x="10" y="4" width="4" height="4" stroke="#355E3B" stroke-width="1.6"/><rect x="16" y="4" width="4" height="4" stroke="#355E3B" stroke-width="1.6"/><rect x="4" y="10" width="4" height="4" stroke="#355E3B" stroke-width="1.6"/><rect x="10" y="10" width="4" height="4" stroke="#355E3B" stroke-width="1.6"/><rect x="16" y="10" width="4" height="4" stroke="#355E3B" stroke-width="1.6"/><rect x="4" y="16" width="4" height="4" stroke="#355E3B" stroke-width="1.6"/><rect x="10" y="16" width="4" height="4" stroke="#355E3B" stroke-width="1.6"/><rect x="16" y="16" width="4" height="4" stroke="#355E3B" stroke-width="1.6"/></svg></div>
+        <h3>数量堆死质量</h3>
+        <div class="en">Quantity Beats Quality (For Now)</div>
+        <p>任何技能在积累期都应先把数量做到位（千次级重复），质量是数量的副产品而非前提。</p>
+        <div class="eg"><b>例：</b>先写满 30 万字烂文字，自然知道好文章长什么样。</div>
+      </div>
+      <div class="fx">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#355E3B" stroke-width="1.8"/><circle cx="12" cy="12" r="5" stroke="#355E3B" stroke-width="1.6" opacity=".5"/><circle cx="12" cy="12" r="1.5" fill="#355E3B"/></svg></div>
+        <h3>舒适区边缘</h3>
+        <div class="en">Edge of the Comfort Zone</div>
+        <p>成长发生在"努力一下够得着"的最近发展区——挑战太大收益为负，挑战太小收益趋零。</p>
+        <div class="eg"><b>例：</b>一上来跑 10 公里三天受伤；从每天 1 公里起步走得更远。</div>
+      </div>
+      <div class="fx">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M5 8a7 7 0 0 1 14 0M9 14a4 4 0 0 1 6 0M11 18a3 3 0 0 1 2 0" stroke="#355E3B" stroke-width="1.8" stroke-linecap="round"/><path d="M3 5l3 3M21 5l-3 3" stroke="#355E3B" stroke-width="1.5" stroke-linecap="round" opacity=".6"/></svg></div>
+        <h3>内卷化与负反馈循环</h3>
+        <div class="en">Involution & Negative Loops</div>
+        <p>系统在低水平上无限精细化却无实质增长；"皮质醇升高→决策变差→更穷"的闭环靠自身难以打破。</p>
+        <div class="eg"><b>例：</b>越忙越穷、越穷越忙——破局靠外力注入新变量。</div>
+      </div>
+      <div class="fx">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="4" y="6" width="16" height="12" rx="2" stroke="#355E3B" stroke-width="1.8"/><path d="M9 11l3 3 3-3" stroke="#355E3B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>即时反馈偏好</h3>
+        <div class="en">The Dopamine Trap</div>
+        <p>大脑硬件停留在草原时代，只认即时回报——短视频立刻爽、学习回报在三年后，所以坚持难不是人品差，是对手太古老。</p>
+        <div class="eg"><b>例：</b>用"打卡可视化 + 小奖励"给长期任务伪造即时反馈。</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="flow">
+    <div class="sec-head"><div class="sec-no">05</div><h2>全书脉络图</h2></div>
+    <p class="sec-sub">六大主题章，每章围绕一个底层模型展开</p>
+    <div class="flow">
+      <div class="step">
+        <div class="node"><b>01</b><span>CH.</span></div>
+        <div class="body">
+          <h3>成为一个很厉害的人<small>为什么必须终身学习</small></h3>
+          <p>熵增定律解释不学则退；工作后重启学习的方法——设奖励、用工具、难度适中、保持运动。</p>
+          <span class="pill">起点 · 反熵增从 15 分钟开始</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="node"><b>02</b><span>CH.</span></div>
+        <div class="body">
+          <h3>财富的本质<small>贫穷的根源与复利习惯</small></h3>
+          <p>贫穷的根源在传承、圈层、消费主义与无助感；破局从"为自己做决定"起，建立复利型习惯。</p>
+          <span class="pill">拆解 · 先减少皮质醇，再谈搞钱</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="node"><b>03</b><span>CH.</span></div>
+        <div class="body">
+          <h3>认知突围<small>承认平庸，才能正确发力</small></h3>
+          <p>承认平庸才能正确发力；主动尝试不确定的事，对冲 30 岁后职业曲线放缓的风险。</p>
+          <span class="pill">突围 · 做不普通的事，从承认普通起</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="node"><b>04</b><span>CH.</span></div>
+        <div class="body">
+          <h3>积极才是硬道理<small>痛苦是成长的信号</small></h3>
+          <p>面对外部环境与"僵尸文化"，保持积极、持续锻炼抓住机会的能力——轻松意味着原地踏步。</p>
+          <span class="pill">心态 · 把目标放进舒适区边缘</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="node"><b>05</b><span>CH.</span></div>
+        <div class="body">
+          <h3>年轻的时候如何选择<small>选"越用越值钱"的技能</small></h3>
+          <p>你以为的"天赋问题"多半是没熬过量变积累期；要选"越用越值钱"的资产型技能持续打磨。</p>
+          <span class="pill">选择 · 十年后它更值钱吗？</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="node"><b>06</b><span>CH.</span></div>
+        <div class="body">
+          <h3>看懂趋势，掌控未来<small>马太效应的信息差根源</small></h3>
+          <p>经济周期与阶层现实下，富人与普通人对同一机会看到不同信号——信息渠道、风险控制、试错成本的差异构成马太效应。</p>
+          <span class="pill">趋势 · 先消信息差，再提执行力</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="quotes">
+    <div class="sec-head"><div class="sec-no">06</div><h2>金句摘录</h2></div>
+    <p class="sec-sub">值得抄进笔记本、贴在书桌前的句子（据核心观点转述）</p>
+    <div class="quotes">
+      <div class="quote">
+        <div class="mark">&ldquo;</div>
+        <p>不进则退不是道德劝诫，是物理定律——你与熵增之间没有休战。</p>
+        <div class="src">—— 论熵增定律</div>
+      </div>
+      <div class="quote">
+        <div class="mark">&ldquo;</div>
+        <p>大部分人不是死于挫折，而是死在复利拐点前的沉默期。</p>
+        <div class="src">—— 论复利曲线</div>
+      </div>
+      <div class="quote">
+        <div class="mark">&ldquo;</div>
+        <p>数量堆死质量：先把量做到位，质量才有资格登场。</p>
+        <div class="src">—— 论数量与质量</div>
+      </div>
+      <div class="quote">
+        <div class="mark">&ldquo;</div>
+        <p>坚持不下去不是你人品差，是你的大脑还在草原时代讨生活。</p>
+        <div class="src">—— 论即时反馈偏好</div>
+      </div>
+      <div class="quote">
+        <div class="mark">&ldquo;</div>
+        <p>痛苦是成长的信号——如果你觉得轻松，多半在原地踏步。</p>
+        <div class="src">—— 论痛苦与成长</div>
+      </div>
+      <div class="quote">
+        <div class="mark">&ldquo;</div>
+        <p>简单的欲望只需放纵即可满足，高级的欲望需要自律与煎熬。</p>
+        <div class="src">—— 论欲望分层</div>
+      </div>
+      <div class="quote span2">
+        <div class="mark">&ldquo;</div>
+        <p>所谓阶层跨越，本质是信息差的消除和执行力的比拼。</p>
+        <div class="src">—— 全书最清醒的一句</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="actions">
+    <div class="sec-head"><div class="sec-no">07</div><h2>六条系统化行动启发</h2></div>
+    <p class="sec-sub">把"努力"从口号变成可计算、可验收的工程动作</p>
+    <div class="act-grid">
+      <div class="act"><div class="num">1</div><div><h3>最小目标系统</h3><p>把年度目标拆成"小到不可能失败"的日动作（每天 500 字 / 15 分钟 / 1 公里），完成后允许超额，靠完成感续命。</p></div></div>
+      <div class="act"><div class="num">2</div><div><h3>反熵增晨间例程</h3><p>每天起床先做一件"负熵输入"（读书 / 运动 / 复盘）再碰手机，保护一天的能量基线不被短视频抽干。</p></div></div>
+      <div class="act"><div class="num">3</div><div><h3>数量 KPI 法</h3><p>给任何新技能先立数量里程碑（写满 100 篇、做满 50 个视频），在达成前禁止自己评价质量。</p></div></div>
+      <div class="act"><div class="num">4</div><div><h3>即时反馈改造</h3><p>为长期任务装上进度条——打卡表、里程碑奖励、公开承诺，替大脑伪造多巴胺，把"三年后才见效"拆成"今天就有反馈"。</p></div></div>
+      <div class="act"><div class="num">5</div><div><h3>每周一次高价值链接</h3><p>约一次跨圈聊天、投一次稿、参加一次社群活动，把"链接"当理财定投执行——环境比意志力更能裹挟你前进。</p></div></div>
+      <div class="act"><div class="num">6</div><div><h3>信息差清除计划</h3><p>每月研究一个"富人视角"的题（资产配置、周期、杠杆），写三行结论发出去，一年攒下 12 个新认知。</p></div></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="who">
+    <div class="sec-head"><div class="sec-no">08</div><h2>这本书适合谁读</h2></div>
+    <p class="sec-sub">如果你符合其中一条，它都值得放进书单</p>
+    <div class="split">
+      <div class="imgcol" id="who-img">
+        <div class="cap">沉默扎根，向上生长</div>
+      </div>
+      <div class="fit-list">
+        <div class="fit"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 9l4 4 10-10" stroke="#355E3B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>努力多年却原地踏步的职场人</b><span>想知道"努力为何不见效"的底层原因——答案往往不是你不够拼，而是成长系统没装对零件。</span></div></div>
+        <div class="fit"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 9l4 4 10-10" stroke="#355E3B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>容易放弃、自责"不自律"的人</b><span>需要一套不依赖意志力、靠系统驱动的小目标方案——把"自律"从道德问题改判为工程问题。</span></div></div>
+        <div class="fit"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 9l4 4 10-10" stroke="#355E3B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>迷茫期的年轻毕业生与转行者</b><span>要在不确定中做技能与方向选择——书里第六章专门谈了富人与普通人看同一机会的视角差。</span></div></div>
+        <div class="fit"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2v4M9 12v4M2 9h4M12 9h4" stroke="#7BA07E" stroke-width="2" stroke-linecap="round"/></svg><div><b>读前提示</b><span>与"励志派"读物互补：如果你已经读过《刻意练习》《心流》，本书给出更冷静的工程化版本。</span></div></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="line"></div>
+  <b>《向上生长》精读笔记 · 读书摘要卡</b>
+  <p class="disclaim">本页为基于该书公开核心观点整理的读书笔记，用于知识科普与个人学习参考，非原文逐字转载。书名、理论与观点版权归原作者及出版方所有。头图为清晨阳光斜射的竹林光束——"沉默扎根、向上生长"意象，来自 Wikimedia Commons。</p>
+</footer>
+
+<script>
+  var DOC_ARCHIVE = "../assets/hero/h32.jpg";
+  document.getElementById('hero').style.backgroundImage = "url('" + DOC_ARCHIVE + "')";
+  document.getElementById('who-img').style.backgroundImage = "url('" + DOC_ARCHIVE + "')";
+
+  (function(){
+    var bar = document.getElementById('progress');
+    function upd(){
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.width = (max > 0 ? (h.scrollTop / max * 100) : 0) + '%';
+    }
+    window.addEventListener('scroll', upd, {passive:true});
+    window.addEventListener('resize', upd);
+    upd();
+  })();
+</script>
+
+</body>
+</html>

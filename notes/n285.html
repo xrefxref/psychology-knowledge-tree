@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《如何成为一个有趣的人》精读笔记 · 读书摘要卡</title>
+<meta name="description" content="王小圈《如何成为一个有趣的人》读书笔记：interesting 与 interested 双重定义、信息储备与管理、五项能力栈——把有趣从玄学改造成可习得的技能。">
+<style>
+  :root{
+    --paper:#f4f2ed;
+    --paper-2:#faf9f5;
+    --ink:#252a2e;
+    --ink-soft:#535b62;
+    --ink-faint:#848d94;
+    --line:#dde0dd;
+    --accent:#C2751F;      /* 暖橙 柑橘 */
+    --accent-2:#E0A44E;    /* 蜂蜜黄 */
+    --warm:#8a5a3a;        /* 深棕 同色系内功 */
+    --shadow:0 12px 40px rgba(37,42,46,.10);
+    --shadow-sm:0 4px 18px rgba(37,42,46,.08);
+    --serif:"Songti SC","Source Han Serif SC","Noto Serif SC",Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--sans);color:var(--ink);background:var(--paper);
+    background-image:
+      radial-gradient(circle at 18% 8%, rgba(224,164,78,.10), transparent 42%),
+      radial-gradient(circle at 84% 88%, rgba(194,117,31,.07), transparent 46%);
+    line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.035'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  body>*{position:relative;z-index:1;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
+  h1,h2,h3,.serif{font-family:var(--serif);}
+  ::selection{background:rgba(194,117,31,.18);}
+
+  #progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:99;
+    background:linear-gradient(90deg,var(--accent-2),var(--accent));transition:width .1s linear;}
+
+  .hero{
+    position:relative;min-height:clamp(480px,72vh,640px);
+    display:flex;align-items:flex-end;
+    background-size:cover;background-position:center 55%;
+    color:#f5f7f8;overflow:hidden;
+  }
+  .hero::after{
+    content:"";position:absolute;inset:0;
+    background:
+      linear-gradient(180deg, rgba(38,22,12,.32) 0%, rgba(38,22,12,.44) 42%, rgba(28,16,8,.92) 100%),
+      linear-gradient(90deg, rgba(28,16,8,.62) 0%, rgba(28,16,8,0) 58%);
+  }
+  .hero-inner{position:relative;z-index:2;width:100%;max-width:1080px;margin:0 auto;padding:88px 28px 54px;}
+  .hero .kicker{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:13px;letter-spacing:.22em;text-transform:uppercase;
+    color:#e8d5b8;border:1px solid rgba(232,213,184,.45);
+    padding:6px 15px;border-radius:30px;margin-bottom:22px;backdrop-filter:blur(2px);
+  }
+  .hero h1{font-size:clamp(34px,6vw,62px);line-height:1.12;font-weight:700;letter-spacing:.01em;text-shadow:0 2px 24px rgba(0,0,0,.45);margin-bottom:10px;}
+  .hero .sub-en{font-family:var(--serif);font-style:italic;font-size:clamp(15px,2.4vw,22px);color:#eccfa3;opacity:.92;margin-bottom:20px;}
+  .hero .lead{max-width:640px;font-size:clamp(15px,2vw,18px);color:#f0e4d0;}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:24px 34px;margin-top:30px;}
+  .hero-meta .m{display:flex;flex-direction:column;}
+  .hero-meta .m b{font-family:var(--serif);font-size:20px;color:#fff;}
+  .hero-meta .m span{font-size:12.5px;letter-spacing:.08em;color:#d6c0a0;}
+
+  .ribbon{position:absolute;top:0;right:clamp(16px,5vw,52px);z-index:3;width:44px;
+    background:var(--accent);color:#fff;text-align:center;
+    padding:15px 0 24px;font-family:var(--serif);font-size:13px;letter-spacing:.14em;
+    box-shadow:0 6px 16px rgba(0,0,0,.32);}
+  .ribbon::after{content:"";position:absolute;left:0;bottom:-13px;border-width:0 22px 14px;border-style:solid;border-color:var(--accent) var(--accent) transparent;}
+  .ribbon span{writing-mode:vertical-rl;}
+
+  .toc-bar{background:var(--paper-2);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50;box-shadow:0 2px 14px rgba(37,42,46,.06);}
+  .toc-in{max-width:1080px;margin:0 auto;padding:10px 28px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .toc-in .lab{font-family:var(--serif);font-size:13px;color:var(--accent);letter-spacing:.1em;margin-right:6px;}
+  .toc-in a{font-size:12.5px;color:var(--ink-soft);text-decoration:none;padding:4px 11px;border-radius:20px;border:1px solid transparent;transition:all .18s;white-space:nowrap;}
+  .toc-in a:hover{color:var(--accent);border-color:rgba(194,117,31,.35);background:rgba(194,117,31,.05);}
+
+  section{padding:60px 0 56px;scroll-margin-top:64px;}
+  .sec-head{display:flex;align-items:center;gap:14px;margin-bottom:8px;}
+  .sec-no{font-family:var(--serif);font-size:14px;color:var(--accent);border:1px solid var(--accent);border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;flex:none;}
+  .sec-head h2{font-size:clamp(23px,3.4vw,31px);color:var(--ink);}
+  .sec-sub{color:var(--ink-faint);font-size:14.5px;margin-bottom:32px;padding-left:48px;}
+  @media(max-width:880px){.sec-sub{padding-left:0;}}
+
+  .divider{height:1px;background:linear-gradient(90deg,transparent,var(--line) 18%,var(--line) 82%,transparent);}
+
+  .bookcard{
+    display:grid;grid-template-columns:1.1fr 1fr;gap:34px;align-items:center;
+    background:var(--paper-2);border:1px solid var(--line);border-radius:18px;
+    padding:38px;box-shadow:var(--shadow);position:relative;overflow:hidden;
+  }
+  .bookcard::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:linear-gradient(var(--accent),var(--accent-2));}
+  .one-liner{font-family:var(--serif);font-size:clamp(19px,2.9vw,26px);line-height:1.55;color:var(--ink);}
+  .one-liner em{color:var(--accent);font-style:normal;}
+  .one-liner .rule{width:52px;height:3px;background:var(--accent);border-radius:2px;margin-top:18px;opacity:.85;}
+  .meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 22px;}
+  .meta-grid .cell span{display:block;font-size:12px;letter-spacing:.1em;color:var(--ink-faint);text-transform:uppercase;margin-bottom:3px;}
+  .meta-grid .cell b{font-family:var(--serif);font-size:16.5px;color:var(--ink);font-weight:600;line-height:1.45;}
+  @media(max-width:880px){.bookcard{grid-template-columns:1fr;padding:28px;gap:26px;}}
+
+  /* 双驱力 */
+  .sys-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .sys{border-radius:16px;padding:30px 28px;color:#fff;position:relative;overflow:hidden;box-shadow:var(--shadow);}
+  .sys.s1{background:linear-gradient(150deg,#E0A44E,#A66018);}
+  .sys.s2{background:linear-gradient(150deg,#8a5a3a,#52331f);}
+  .sys .tag{font-size:12px;letter-spacing:.16em;opacity:.85;text-transform:uppercase;}
+  .sys h3{font-size:26px;margin:6px 0 4px;}
+  .sys .tagline{font-family:var(--serif);font-style:italic;font-size:16px;opacity:.92;margin-bottom:18px;}
+  .sys ul{list-style:none;display:flex;flex-direction:column;gap:11px;}
+  .sys li{display:flex;gap:10px;font-size:14.5px;line-height:1.55;align-items:flex-start;}
+  .sys li svg{flex:none;margin-top:4px;}
+  .sys .speed{display:inline-flex;align-items:baseline;gap:8px;margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.22);}
+  .sys .speed b{font-size:26px;font-family:var(--serif);}
+  .sys .speed span{font-size:12.5px;opacity:.82;}
+  @media(max-width:880px){.sys-grid{grid-template-columns:1fr;}}
+
+  .vs-wrap{margin-top:26px;background:var(--paper-2);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .vs-head{display:grid;grid-template-columns:1.1fr 1fr 1fr;background:linear-gradient(90deg,rgba(224,164,78,.14),rgba(138,90,58,.14));border-bottom:1px solid var(--line);}
+  .vs-head div{padding:14px 18px;font-family:var(--serif);font-size:15px;}
+  .vs-head .h1c{color:var(--accent);}
+  .vs-head .h2c{color:var(--warm);}
+  .vs-row{display:grid;grid-template-columns:1.1fr 1fr 1fr;border-bottom:1px solid var(--line);}
+  .vs-row:last-child{border-bottom:none;}
+  .vs-row:nth-child(odd){background:rgba(244,242,237,.55);}
+  .vs-row .dim{padding:12px 18px;font-size:13px;color:var(--ink-faint);letter-spacing:.04em;display:flex;align-items:center;}
+  .vs-row .v1{padding:12px 18px;font-size:13.5px;color:var(--ink-soft);border-left:1px dashed var(--line);display:flex;align-items:center;}
+  .vs-row .v2{padding:12px 18px;font-size:13.5px;color:var(--ink-soft);border-left:1px dashed var(--line);display:flex;align-items:center;}
+  @media(max-width:680px){
+    .vs-head{grid-template-columns:1fr 1fr;}
+    .vs-head .h0{display:none;}
+    .vs-row{grid-template-columns:1fr;padding:10px 0;}
+    .vs-row .dim{grid-column:1/-1;padding:4px 18px 2px;font-family:var(--serif);color:var(--accent);font-size:13.5px;}
+    .vs-row .v1,.vs-row .v2{border-left:none;padding:2px 18px;}
+    .vs-row .v1::before{content:"有趣　";color:var(--accent);font-weight:600;}
+    .vs-row .v2::before{content:"好奇　";color:var(--warm);font-weight:600;}
+  }
+
+  /* 光谱图 */
+  .spectrum{
+    margin-top:26px;background:var(--paper-2);border:1px solid var(--line);border-radius:16px;
+    padding:30px 30px 24px;box-shadow:var(--shadow);
+  }
+  .spectrum h3{font-size:19px;margin-bottom:4px;}
+  .spectrum .en{font-size:12.5px;letter-spacing:.06em;color:var(--ink-faint);margin-bottom:18px;}
+  .spectrum svg{width:100%;height:auto;display:block;}
+  .spectrum .cap{margin-top:14px;font-size:13.5px;color:var(--ink-soft);line-height:1.7;}
+  .spectrum .cap b{color:var(--accent);font-family:var(--serif);}
+
+  .sys-note{margin-top:22px;background:var(--paper-2);border:1px dashed var(--accent-2);border-radius:12px;padding:18px 22px;font-size:14.5px;color:var(--ink-soft);}
+  .sys-note b{color:var(--accent);font-family:var(--serif);}
+
+  /* 效应卡片 */
+  .fx-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+  .fx{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:24px;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s;}
+  .fx:hover{transform:translateY(-3px);box-shadow:var(--shadow);}
+  .fx .ic{width:42px;height:42px;border-radius:11px;background:rgba(194,117,31,.10);display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+  .fx h3{font-size:18px;margin-bottom:3px;}
+  .fx .en{font-size:12px;letter-spacing:.06em;color:var(--ink-faint);margin-bottom:11px;}
+  .fx p{font-size:14px;color:var(--ink-soft);line-height:1.65;}
+  .fx .eg{margin-top:12px;font-size:13px;color:var(--accent);background:rgba(194,117,31,.07);border-radius:8px;padding:8px 11px;}
+  .fx .eg b{font-weight:600;}
+  @media(max-width:880px){.fx-grid{grid-template-columns:1fr;}}
+
+  .flow{position:relative;padding-left:8px;}
+  .flow .step{display:grid;grid-template-columns:64px 1fr;gap:20px;position:relative;padding-bottom:28px;}
+  .flow .step:not(:last-child)::before{content:"";position:absolute;left:31px;top:48px;bottom:0;width:2px;background:linear-gradient(var(--accent-2),var(--line));}
+  .flow .node{width:64px;height:64px;border-radius:50%;background:var(--paper-2);border:2px solid var(--accent-2);display:flex;flex-direction:column;align-items:center;justify-content:center;flex:none;position:relative;z-index:2;box-shadow:0 3px 10px rgba(37,42,46,.08);}
+  .flow .node b{font-family:var(--serif);font-size:17px;color:var(--accent);line-height:1.15;}
+  .flow .node span{font-size:10px;color:var(--ink-faint);letter-spacing:.05em;}
+  .flow .body{padding-top:6px;}
+  .flow .body h3{font-size:18px;margin-bottom:5px;}
+  .flow .body h3 small{font-size:12.5px;color:var(--ink-faint);font-family:var(--sans);font-weight:400;margin-left:8px;}
+  .flow .body p{font-size:14px;color:var(--ink-soft);}
+  .flow .body .pill{display:inline-block;margin-top:8px;font-size:12px;color:var(--warm);background:rgba(138,90,58,.10);padding:3px 11px;border-radius:20px;}
+
+  .quotes{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
+  .quote{background:linear-gradient(160deg,#faf9f5,#eef0ef);border:1px solid var(--line);border-radius:16px;padding:30px 28px 26px;position:relative;box-shadow:var(--shadow);}
+  .quote .mark{font-family:Georgia,serif;font-size:64px;line-height:.4;color:var(--accent);opacity:.35;height:30px;}
+  .quote p{font-family:var(--serif);font-size:17.5px;line-height:1.6;color:var(--ink);margin-bottom:14px;}
+  .quote .src{font-size:13px;color:var(--ink-faint);letter-spacing:.04em;}
+  .quote.span2{grid-column:1/-1;background:linear-gradient(110deg,#2e1f12,#3d2a1a);border-color:#1a1208;}
+  .quote.span2 p{color:#f0e4d0;font-size:20.5px;}
+  .quote.span2 .src{color:var(--accent-2);}
+  .quote.span2 .mark{color:var(--accent-2);}
+  @media(max-width:880px){.quotes{grid-template-columns:1fr;}}
+
+  .act-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+  .act{display:grid;grid-template-columns:46px 1fr;gap:16px;background:var(--paper-2);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:22px;transition:transform .2s,box-shadow .2s;}
+  .act:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm);}
+  .act .num{font-family:var(--serif);font-size:26px;color:var(--accent);line-height:1.1;}
+  .act h3{font-size:16.5px;margin-bottom:5px;}
+  .act p{font-size:13.5px;color:var(--ink-soft);line-height:1.65;}
+  @media(max-width:880px){.act-grid{grid-template-columns:1fr;}}
+
+  .split{display:grid;grid-template-columns:1fr 1.15fr;gap:30px;align-items:stretch;}
+  .split .imgcol{border-radius:16px;overflow:hidden;min-height:320px;background-size:cover;background-position:center;box-shadow:var(--shadow);position:relative;}
+  .split .imgcol::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,26,34,0) 42%,rgba(16,26,34,.58));}
+  .split .imgcol .cap{position:absolute;left:22px;bottom:18px;z-index:2;color:#dfe8ee;font-family:var(--serif);font-size:15px;}
+  .fit-list{display:flex;flex-direction:column;gap:14px;}
+  .fit{display:flex;gap:13px;background:var(--paper-2);border:1px solid var(--line);border-radius:12px;padding:16px 18px;align-items:flex-start;}
+  .fit svg{flex:none;margin-top:3px;}
+  .fit b{font-family:var(--serif);font-size:15.5px;display:block;margin-bottom:2px;}
+  .fit span{font-size:13.5px;color:var(--ink-soft);}
+  @media(max-width:880px){.split{grid-template-columns:1fr;}}
+
+  footer{padding:46px 28px 60px;text-align:center;color:var(--ink-faint);font-size:13px;}
+  footer .line{width:60px;height:3px;background:var(--accent);margin:0 auto 20px;border-radius:3px;}
+  footer b{font-family:var(--serif);color:var(--ink-soft);}
+  .disclaim{margin-top:10px;font-size:12px;color:var(--ink-faint);max-width:680px;margin-left:auto;margin-right:auto;line-height:1.7;}
+
+  @media print{
+    #progress,.toc-bar,.ribbon{display:none;}
+    body::before{display:none;}
+    section{padding:28px 0;}
+    .fx,.act,.quote,.sys{break-inside:avoid;}
+  }
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<header class="hero" id="hero">
+  <div class="ribbon"><span>读书笔记</span></div>
+  <div class="hero-inner">
+    <span class="kicker">精读笔记 · 摘要卡</span>
+    <h1>《如何成为一个有趣的人》</h1>
+    <div class="sub-en">Interesting &amp; Interested · 2017 · 把有趣从玄学改造成可习得的技能</div>
+    <p class="lead">有趣不是天生的性格，而是一场<em>令人愉悦的意外</em>——它可以被拆解为信息储备、感知、鉴赏、想象、表达等可练习的能力栈。聊什么只能接"哈哈哈"，不是性格无趣，是弹药库空了。</p>
+    <div class="hero-meta">
+      <div class="m"><b>2 重定义</b><span>interesting × interested</span></div>
+      <div class="m"><b>5 项能力</b><span>储备·管理·感知·鉴赏·想象</span></div>
+      <div class="m"><b>7 章节</b><span>从认知到精神世界的搭建</span></div>
+      <div class="m"><b>6 条系统练习</b><span>输入先于表达，弹药库先行</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="toc-bar" aria-label="页面目录">
+  <div class="toc-in">
+    <span class="lab">目录</span>
+    <a href="#info">书籍信息</a>
+    <a href="#duo">有趣 × 好奇</a>
+    <a href="#rings">五项能力</a>
+    <a href="#fx">七大概念</a>
+    <a href="#flow">章节脉络</a>
+    <a href="#quotes">金句</a>
+    <a href="#actions">行动启发</a>
+    <a href="#who">适合谁读</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <section id="info">
+    <div class="sec-head"><div class="sec-no">01</div><h2>这本书讲了什么</h2></div>
+    <p class="sec-sub">一句话总览 + 核心信息卡</p>
+    <div class="bookcard">
+      <div>
+        <div class="one-liner">
+          把"有趣"从玄学改造成<em>可习得的技能</em>——通过信息储备、感知力、视角陌生化与情绪沟通的系统训练，让生活有趣（interested），也让人觉得你有趣（interesting）。
+        </div>
+        <div class="rule"></div>
+      </div>
+      <div class="meta-grid">
+        <div class="cell"><span>作者</span><b>王小圈（知乎知名答主·台大 MBA）</b></div>
+        <div class="cell"><span>领域</span><b>个人成长 × 沟通表达</b></div>
+        <div class="cell"><span>核心命题</span><b>有趣是一场令人愉悦的意外</b></div>
+        <div class="cell"><span>原书出版</span><b>2017 年（电子工业出版社）</b></div>
+        <div class="cell"><span>系列定位</span><b>轻学术路线的认知流读物</b></div>
+        <div class="cell"><span>核心概念</span><b>interesting + interested 双重定义</b></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="duo">
+    <div class="sec-head"><div class="sec-no">02</div><h2>核心框架：interesting × interested</h2></div>
+    <p class="sec-sub">"有趣"两个方向缺一不可——外显的表达，与内功的好奇</p>
+    <div class="sys-grid">
+      <div class="sys s1">
+        <div class="tag">Interesting · 外显有趣</div>
+        <h3>被人觉得有趣</h3>
+        <div class="tagline">"意料之外，情理之中——让人愿意继续听。"</div>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>表达：把想的说出来，还让人愿意听</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>视角：陌生化日常，给出反常识的描述</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>谈资：聊天中有可被记住的认知增量</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>幽默：自嘲是最低成本的破冰方式</li>
+        </ul>
+        <div class="speed"><b>外显</b><span>让别人对我产生兴趣</span></div>
+      </div>
+      <div class="sys s2">
+        <div class="tag">Interested · 内功好奇</div>
+        <h3>对世界保持好奇</h3>
+        <div class="tagline">"让生活有趣，先让自己对生活有感觉。"</div>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>感知：玻璃钢心，细腻但摔不碎</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>鉴赏：在日常中识别美与价值</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>想象：严谨的想象力，把熟悉重新看"生"</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>同理：对抗知识诅咒，从对方的语言重新讲</li>
+        </ul>
+        <div class="speed"><b>内功</b><span>让生活本身对我有吸引力</span></div>
+      </div>
+    </div>
+
+    <div class="vs-wrap">
+      <div class="vs-head">
+        <div class="h0" style="color:var(--ink-faint);font-size:13px;">对比维度</div>
+        <div class="h1c">有趣（interesting）</div>
+        <div class="h2c">好奇（interested）</div>
+      </div>
+      <div class="vs-row"><div class="dim">方向</div><div class="v1">外显 · 向外的输出</div><div class="v2">内功 · 向内的输入</div></div>
+      <div class="vs-row"><div class="dim">动作</div><div class="v1">表达、谈资、视角、幽默</div><div class="v2">感知、鉴赏、想象、同理</div></div>
+      <div class="vs-row"><div class="dim">短板表现</div><div class="v1">表达空泛、聊天只能接"哈哈哈"</div><div class="v2">对什么都提不起劲，麻木无聊</div></div>
+      <div class="vs-row"><div class="dim">培养路径</div><div class="v1">练表达、练视角、练自嘲</div><div class="v2">保敏感、断知识诅咒、留观察力</div></div>
+      <div class="vs-row"><div class="dim">两者关系</div><div class="v1">弹药库空了，再多技巧也无效</div><div class="v2">没有表达，再多感受也无人知</div></div>
+    </div>
+
+    <div class="sys-note">
+      <b>关键洞察 —</b> 大多数人只补外显那一半（话术、表情包、段子），却不知道有趣的地基是<em>对生活感兴趣</em>。一个真正有趣的成年人，是<em>interesting 与 interested 同时在线</em>。
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="rings">
+    <div class="sec-head"><div class="sec-no">03</div><h2>有趣的五项能力</h2></div>
+    <p class="sec-sub">全书方法核心——五项能力彼此咬合，少一个都不算"够有趣"</p>
+    <div class="spectrum">
+      <h3>有趣的五环图</h3>
+      <div class="en">The Five Capacities of Being Interesting · 储备 · 管理 · 感知 · 鉴赏 · 想象</div>
+      <svg viewBox="0 0 900 220" role="img" aria-label="有趣的五项能力雷达图">
+        <rect x="0" y="0" width="900" height="220" fill="#faf9f5" rx="12"/>
+        <defs>
+          <radialGradient id="rg" cx="0.5" cy="0.5" r="0.5">
+            <stop offset="0" stop-color="#E0A44E" stop-opacity="0.32"/>
+            <stop offset="1" stop-color="#C2751F" stop-opacity="0.04"/>
+          </radialGradient>
+        </defs>
+        <!-- 中心光晕 -->
+        <circle cx="450" cy="115" r="98" fill="url(#rg)"/>
+        <!-- 五边形主体 -->
+        <polygon points="450,35 526,90 497,180 403,180 374,90" fill="rgba(194,117,31,0.10)" stroke="#E0A44E" stroke-width="1.8"/>
+        <!-- 中心到五顶点的虚线 -->
+        <line x1="450" y1="115" x2="450" y2="35" stroke="#E0A44E" stroke-width="0.9" stroke-dasharray="3 3" opacity="0.55"/>
+        <line x1="450" y1="115" x2="526" y2="90" stroke="#E0A44E" stroke-width="0.9" stroke-dasharray="3 3" opacity="0.55"/>
+        <line x1="450" y1="115" x2="497" y2="180" stroke="#E0A44E" stroke-width="0.9" stroke-dasharray="3 3" opacity="0.55"/>
+        <line x1="450" y1="115" x2="403" y2="180" stroke="#E0A44E" stroke-width="0.9" stroke-dasharray="3 3" opacity="0.55"/>
+        <line x1="450" y1="115" x2="374" y2="90" stroke="#E0A44E" stroke-width="0.9" stroke-dasharray="3 3" opacity="0.55"/>
+        <!-- 中心点 -->
+        <circle cx="450" cy="115" r="15" fill="#C2751F"/>
+        <text x="450" y="119" text-anchor="middle" font-size="11.5" fill="#fff" font-weight="600">有趣</text>
+        <!-- 1 储备 上方 -->
+        <circle cx="450" cy="35" r="11" fill="#faf9f5" stroke="#C2751F" stroke-width="2.5"/>
+        <text x="450" y="22" text-anchor="middle" font-size="13.5" font-weight="600" fill="#C2751F">储备</text>
+        <text x="450" y="9" text-anchor="middle" font-size="10.5" fill="#848d94">经历·阅读·交友 三管道输入</text>
+        <!-- 2 管理 右上 -->
+        <circle cx="526" cy="90" r="11" fill="#faf9f5" stroke="#C2751F" stroke-width="2.5"/>
+        <text x="546" y="78" font-size="13.5" font-weight="600" fill="#C2751F">管理</text>
+        <text x="546" y="92" font-size="10.5" fill="#848d94">织网·跨域连接</text>
+        <!-- 3 感知 右下 -->
+        <circle cx="497" cy="180" r="11" fill="#faf9f5" stroke="#C2751F" stroke-width="2.5"/>
+        <text x="516" y="198" font-size="13.5" font-weight="600" fill="#C2751F">感知</text>
+        <text x="516" y="212" font-size="10.5" fill="#848d94">玻璃钢心·细腻而韧</text>
+        <!-- 4 鉴赏 左下 -->
+        <circle cx="403" cy="180" r="11" fill="#faf9f5" stroke="#C2751F" stroke-width="2.5"/>
+        <text x="384" y="198" text-anchor="end" font-size="13.5" font-weight="600" fill="#C2751F">鉴赏</text>
+        <text x="384" y="212" text-anchor="end" font-size="10.5" fill="#848d94">审美·品味·判断力</text>
+        <!-- 5 想象 左上 -->
+        <circle cx="374" cy="90" r="11" fill="#faf9f5" stroke="#C2751F" stroke-width="2.5"/>
+        <text x="354" y="78" text-anchor="end" font-size="13.5" font-weight="600" fill="#C2751F">想象</text>
+        <text x="354" y="92" text-anchor="end" font-size="10.5" fill="#848d94">严谨发散·陌生化视角</text>
+      </svg>
+      <div class="cap"><b>怎么用 —</b> 自评时按这五项分别打分，找出最弱的一项重点练：写作者多补<em>感知</em>，话多的人多补<em>管理</em>，内向的人多补<em>表达</em>——五项不平均的人，最容易在某场景"有趣失灵"。</div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="fx">
+    <div class="sec-head"><div class="sec-no">04</div><h2>七大关键概念卡片</h2></div>
+    <p class="sec-sub">把"有趣"翻译成可以单独打磨的具体能力</p>
+    <div class="fx-grid">
+      <div class="fx">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 4l1.5 4.5L18 10l-4.5 1.5L12 16l-1.5-4.5L6 10l4.5-1.5z" stroke="#C2751F" stroke-width="1.6" stroke-linejoin="round"/><circle cx="19" cy="5" r="1.2" fill="#C2751F"/><circle cx="5" cy="18" r="1.2" fill="#C2751F"/></svg></div>
+        <h3>有趣 = 令人愉悦的意外</h3>
+        <div class="en">A Pleasant Surprise</div>
+        <p>有趣不是逗笑，而是在对方预期之外提供恰到好处的认知增量——意料之外，情理之中。</p>
+        <div class="eg"><b>例：</b>"逗比"是意外但不愉悦，无聊是愉悦但无意外——有趣卡在两者窄缝里。</div>
+      </div>
+      <div class="fx">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#C2751F" stroke-width="1.8"/><path d="M3 12c4-2 8-2 18 0" stroke="#C2751F" stroke-width="1.6"/><path d="M12 3c2 3 2 6 0 9s-2 6 0 9" stroke="#C2751F" stroke-width="1.6"/></svg></div>
+        <h3>视角陌生化</h3>
+        <div class="en">Defamiliarization</div>
+        <p>像哲学家或外星人一样把熟悉事物重新看"生"——换角度换框架，让日常变成谈资。</p>
+        <div class="eg"><b>例：</b>"披萨到底是不是大饼"——用小吃摊逻辑审视意大利国菜。</div>
+      </div>
+      <div class="fx">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="6" height="16" rx="1" stroke="#C2751F" stroke-width="1.6"/><rect x="14" y="8" width="6" height="12" rx="1" stroke="#C2751F" stroke-width="1.6"/><path d="M7 9h0M17 13h0" stroke="#C2751F" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <h3>信息储备能力</h3>
+        <div class="en">Knowledge Reserve</div>
+        <p>无知是最大的不自由——有趣的地基是历练、阅读、交友三条输入管道不断填充的素材库。</p>
+        <div class="eg"><b>例：</b>聊什么只能接"哈哈哈"的人，不是性格无趣，是弹药库空了。</div>
+      </div>
+      <div class="fx">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="6" cy="6" r="2.5" stroke="#C2751F" stroke-width="1.6"/><circle cx="18" cy="6" r="2.5" stroke="#C2751F" stroke-width="1.6"/><circle cx="12" cy="13" r="2.5" stroke="#C2751F" stroke-width="1.6"/><circle cx="6" cy="18" r="2.5" stroke="#C2751F" stroke-width="1.6"/><circle cx="18" cy="18" r="2.5" stroke="#C2751F" stroke-width="1.6"/><path d="M8 7l3 5M16 7l-3 5M8 17l3-3M16 17l-3-3" stroke="#C2751F" stroke-width="1.4" opacity=".7"/></svg></div>
+        <h3>信息管理能力</h3>
+        <div class="en">Knowledge Management</div>
+        <p>世界不是平的——把零散信息组织成有广度有深度的知识结构，才能随时调用、跨域连接。</p>
+        <div class="eg"><b>例：</b>同样刷十年网，有人形成网状知识图，有人只剩碎片噪音。</div>
+      </div>
+      <div class="fx">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 4c4 4 6 7 6 10a6 6 0 11-12 0c0-3 2-6 6-10z" stroke="#C2751F" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 14c1.5 1.5 4.5 1.5 6 0" stroke="#C2751F" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+        <h3>玻璃钢心（感知能力）</h3>
+        <div class="en">The Resilient Sensor</div>
+        <p>敏感但摔不碎——对外保持感官、情绪、语言的敏锐感知，对内不被评价击穿。</p>
+        <div class="eg"><b>例：</b>玻璃心一碰就裂、钢铁心感知不到微妙——有趣的人需要"玻璃钢"。</div>
+      </div>
+      <div class="fx">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="9" cy="9" r="5" stroke="#C2751F" stroke-width="1.8"/><path d="M9 14v5M9 19l-3-2M9 19l3-2" stroke="#C2751F" stroke-width="1.6" stroke-linecap="round"/><circle cx="16" cy="14" r="2" stroke="#C2751F" stroke-width="1.4" opacity=".6"/></svg></div>
+        <h3>知识诅咒</h3>
+        <div class="en">The Curse of Knowledge</div>
+        <p>一旦知道了某事，就很难想象不知道它的状态——专家说话没人懂、父母辅导作业崩溃皆源于此。</p>
+        <div class="eg"><b>例：</b>专业术语脱口而出让对方失语——不是对方蠢，是你忘了自己也曾不懂。</div>
+      </div>
+      <div class="fx">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="9" r="4" stroke="#C2751F" stroke-width="1.8"/><path d="M6 19c2-3 4-4 6-4s4 1 6 4" stroke="#C2751F" stroke-width="1.6" stroke-linecap="round"/><path d="M9 8l2 2 4-4" stroke="#C2751F" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>自嘲与个人特质</h3>
+        <div class="en">Self-Mockery & Personal Traits</div>
+        <p>自嘲是最高性价比的幽默；个人特质是"有选择地不一样"——不是随机的怪，是自洽的选。</p>
+        <div class="eg"><b>例：</b>刻意搞笑人设崩塌快；"我就喜欢把通勤路线走成城市观察"反而让人记住你。</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="flow">
+    <div class="sec-head"><div class="sec-no">05</div><h2>全书脉络图</h2></div>
+    <p class="sec-sub">七章从定义到精神世界，由浅入深、由外到内</p>
+    <div class="flow">
+      <div class="step">
+        <div class="node"><b>01</b><span>CH.</span></div>
+        <div class="body">
+          <h3>有趣是一场令人愉悦的意外<small>问题定义</small></h3>
+          <p>无聊是现代瘟疫，有趣≠逗比，有趣与否取决于观察者与被观察者的视角分裂。</p>
+          <span class="pill">起点 · 说每句话前问：对方猜得到吗</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="node"><b>02</b><span>CH.</span></div>
+        <div class="body">
+          <h3>在柴米油盐中守护诗和远方<small>日常审美的可能</small></h3>
+          <p>披萨与大饼、审美的本质、"城会玩"玩什么——把生活半径变成审美现场。</p>
+          <span class="pill">练眼 · 给日常加一层观察滤镜</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="node"><b>03</b><span>CH.</span></div>
+        <div class="body">
+          <h3>兴趣是天生的，无聊是被逼的<small>好奇心可重塑</small></h3>
+          <p>神经元剪切让成年人越长大越无聊，解药是视角陌生化的刻意练习。</p>
+          <span class="pill">陌生化 · 每周练一件熟视无睹的事</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="node"><b>04</b><span>CH.</span></div>
+        <div class="body">
+          <h3>"有趣"是一种技能<small>五项能力的方法核心</small></h3>
+          <p>信息储备、信息管理、感知、鉴赏、严谨想象力五项能力的刻意训练清单——全书方法论落地点。</p>
+          <span class="pill">核心 · 先补弹药库，再练表达</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="node"><b>05</b><span>CH.</span></div>
+        <div class="body">
+          <h3>有趣是一种态度<small>同理心与情绪沟通</small></h3>
+          <p>同理心（对抗知识诅咒）、个人特质、自嘲与情绪沟通（赞美、倾听、反驳）构成态度层。</p>
+          <span class="pill">态度 · 用自嘲开场，用倾听接住</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="node"><b>06</b><span>CH.</span></div>
+        <div class="body">
+          <h3>有趣需要变现<small>内向者也能被感知为有趣</small></h3>
+          <p>内向不等于不善表达；"炫"的技术、表达的多样化形式——有趣最终要在真实社交与职业场景中兑现。</p>
+          <span class="pill">变现 · 内向者选书面与一对一的输出赛道</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="node"><b>07</b><span>CH.</span></div>
+        <div class="body">
+          <h3>终极有趣——精神世界的创造与维护<small>三观如何被建构</small></h3>
+          <p>从"一只随波逐流的帆水母"到"吸引力相对论"——有趣最终指向独立而自洽的精神世界。</p>
+          <span class="pill">终极 · 审一遍自己的三观，哪些是借来的</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="quotes">
+    <div class="sec-head"><div class="sec-no">06</div><h2>金句摘录</h2></div>
+    <p class="sec-sub">值得抄进笔记本、贴在书桌前的句子（据核心观点转述）</p>
+    <div class="quotes">
+      <div class="quote">
+        <div class="mark">&ldquo;</div>
+        <p>有趣是一场令人愉悦的意外：意料之外，情理之中。</p>
+        <div class="src">—— 论有趣的定义</div>
+      </div>
+      <div class="quote">
+        <div class="mark">&ldquo;</div>
+        <p>无聊不是性格缺陷，是一场悄悄袭来的现代瘟疫——而疫苗是好奇心。</p>
+        <div class="src">—— 论无聊与好奇心</div>
+      </div>
+      <div class="quote">
+        <div class="mark">&ldquo;</div>
+        <p>无知是最大的不自由；所有妙语连珠，背后都是弹药库的富余。</p>
+        <div class="src">—— 论信息储备</div>
+      </div>
+      <div class="quote">
+        <div class="mark">&ldquo;</div>
+        <p>越长大越无聊不是宿命，是你默认关闭了陌生化的视角。</p>
+        <div class="src">—— 论视角陌生化</div>
+      </div>
+      <div class="quote">
+        <div class="mark">&ldquo;</div>
+        <p>自嘲是最便宜的幽默，玻璃钢心是最贵的修养——敏感，但摔不碎。</p>
+        <div class="src">—— 论幽默与感知</div>
+      </div>
+      <div class="quote">
+        <div class="mark">&ldquo;</div>
+        <p>做一个"有选择地不一样"的人：不是随机的怪，是自洽的选。</p>
+        <div class="src">—— 论个人特质</div>
+      </div>
+      <div class="quote span2">
+        <div class="mark">&ldquo;</div>
+        <p>终极的有趣，是拥有一个自己亲手搭建、随时可以请人参观的精神世界。</p>
+        <div class="src">—— 全书最高目标</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="actions">
+    <div class="sec-head"><div class="sec-no">07</div><h2>六条系统化行动启发</h2></div>
+    <p class="sec-sub">把"有趣"从天赋论改造成日课清单</p>
+    <div class="act-grid">
+      <div class="act"><div class="num">1</div><div><h3>谈资存款制</h3><p>每天存一件"新知"进笔记（冷知识 / 经历 / 观点），每周挑三件在聊天中用出来——输入先于表达。</p></div></div>
+      <div class="act"><div class="num">2</div><div><h3>陌生化周练</h3><p>每周选一件最平常的事物（通勤、外卖、天气），写一段"外星人视角"的描述，练习打破自动化的认知。</p></div></div>
+      <div class="act"><div class="num">3</div><div><h3>知识连线法</h3><p>每学一个新概念，强制写出它与已有知识的一个连接点（"这让我想起……"），把信息织成网。</p></div></div>
+      <div class="act"><div class="num">4</div><div><h3>感知复盘三问</h3><p>每次情绪波动后问——事实是什么、我感知到什么、哪部分是我的过度解读。练到只放大信号、不放大噪音。</p></div></div>
+      <div class="act"><div class="num">5</div><div><h3>知识诅咒翻译练习</h3><p>向非专业者解释你的工作时，禁止使用任何术语，只能用生活类比——先讲"我当年是怎么弄懂的"。</p></div></div>
+      <div class="act"><div class="num">6</div><div><h3>自洽怪癖签名</h3><p>找到并公开一个你与多数人不同的自洽选择（路线、习惯、审美），让它成为你的社交记忆点。</p></div></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="who">
+    <div class="sec-head"><div class="sec-no">08</div><h2>这本书适合谁读</h2></div>
+    <p class="sec-sub">如果你符合其中一条，它都值得放进书单</p>
+    <div class="split">
+      <div class="imgcol" id="who-img">
+        <div class="cap">灰街里那把彩色伞，就是有趣的样子</div>
+      </div>
+      <div class="fit-list">
+        <div class="fit"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 9l4 4 10-10" stroke="#C2751F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>自觉"没什么意思"的人</b><span>聊天只能接"哈哈哈"的社交焦虑者——多半是弹药库空了，不是性格差。</span></div></div>
+        <div class="fit"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 9l4 4 10-10" stroke="#C2751F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>总把天聊死的直男 / 直女型选手</b><span>表达欲不缺但缺同理心与情绪沟通训练——书里有具体的对话结构可学。</span></div></div>
+        <div class="fit"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 9l4 4 10-10" stroke="#C2751F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>内向者</b><span>想知道不变成外向人也能被感知为"有趣"的路径——第 6 章专门谈了内向者的输出赛道。</span></div></div>
+        <div class="fit"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2v4M9 12v4M2 9h4M12 9h4" stroke="#E0A44E" stroke-width="2" stroke-linecap="round"/></svg><div><b>读前提示</b><span>这是本轻学术书，不是段子合集——读时备好笔记本，第 4 章的五项能力清单是直接可练的。</span></div></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="line"></div>
+  <b>《如何成为一个有趣的人》精读笔记 · 读书摘要卡</b>
+  <p class="disclaim">本页为基于该书公开核心观点整理的读书笔记，用于知识科普与个人学习参考，非原文逐字转载。书名、理论与观点版权归原作者及出版方所有。头图为灰色单调街道上一把彩色雨伞——"平凡中的意外惊喜"意象，来自 Wikimedia Commons。</p>
+</footer>
+
+<script>
+  var DOC_ARCHIVE = "../assets/hero/h34.jpg";
+  document.getElementById('hero').style.backgroundImage = "url('" + DOC_ARCHIVE + "')";
+  document.getElementById('who-img').style.backgroundImage = "url('" + DOC_ARCHIVE + "')";
+
+  (function(){
+    var bar = document.getElementById('progress');
+    function upd(){
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.width = (max > 0 ? (h.scrollTop / max * 100) : 0) + '%';
+    }
+    window.addEventListener('scroll', upd, {passive:true});
+    window.addEventListener('resize', upd);
+    upd();
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page-node-id="h3eMLvQ2DdKHHWERMDyXpr">
+<head data-page-node-id="Wnlzhi40dnHRc98nJMfluL">
+<meta charset="UTF-8" data-page-node-id="01h20GTmEPFcZZz5BgnOyA">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" data-page-node-id="HFLoTixbHUj7mvST67QFBq">
+<title>《万历十五年（精装版）》精读笔记 · 读书摘要卡</title>
+<meta name="description" content="1587 年，无大事发生，帝国却在此间定型了结局。皇帝怠政、清官碰壁、名将自困——没人做错事，可所有人都无路可走。" data-page-node-id="f9AzeDGHgC8lKoZZf9lwdz">
+<style>
+  :root{
+    --paper:#f4f2ed;
+    --paper-2:#faf9f5;
+    --ink:#252a2e;
+    --ink-soft:#535b62;
+    --ink-faint:#848d94;
+    --line:#dde0dd;
+    --accent:#8a2530;
+    --accent-2:#bd6a73;
+    --warm:#279286;
+    --shadow:0 12px 40px rgba(37,42,46,.10);
+    --shadow-sm:0 4px 18px rgba(37,42,46,.08);
+    --serif:"Songti SC","Source Han Serif SC","Noto Serif SC",Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--sans);color:var(--ink);background:var(--paper);
+    background-image:
+      radial-gradient(circle at 18% 8%, rgba(189,106,115,0.08), transparent 42%),
+      radial-gradient(circle at 84% 88%, rgba(138,37,48,0.06), transparent 46%);
+    line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.035'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  body>*{position:relative;z-index:1;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
+  h1,h2,h3,.serif{font-family:var(--serif);}
+  ::selection{background:rgba(138,37,48,0.18);}
+
+  #progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:99;
+    background:linear-gradient(90deg,var(--accent-2),var(--accent));transition:width .1s linear;}
+
+  .hero{
+    position:relative;min-height:clamp(480px,72vh,640px);
+    display:flex;align-items:flex-end;
+    background-size:cover;background-position:center 45%;
+    color:#f5f7f8;overflow:hidden;
+  }
+  .hero::after{
+    content:"";position:absolute;inset:0;
+    background:
+      linear-gradient(180deg, rgba(69,18,23,0.3) 0%, rgba(69,18,23,0.42) 42%, rgba(44,11,15,0.9) 100%),
+      linear-gradient(90deg, rgba(44,11,15,0.58) 0%, rgba(44,11,15,0) 58%);
+  }
+  .hero-inner{position:relative;z-index:2;width:100%;max-width:1080px;margin:0 auto;padding:88px 28px 54px;}
+  .hero .kicker{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:13px;letter-spacing:.22em;text-transform:uppercase;
+    color:#bd6a73;border:1px solid rgba(189,106,115,0.45);
+    padding:6px 15px;border-radius:30px;margin-bottom:22px;backdrop-filter:blur(2px);
+  }
+  .hero h1{font-size:clamp(34px,6vw,62px);line-height:1.12;font-weight:700;letter-spacing:.01em;text-shadow:0 2px 24px rgba(0,0,0,.45);margin-bottom:10px;}
+  .hero .sub-en{font-family:var(--serif);font-style:italic;font-size:clamp(15px,2.4vw,22px);color:#bd6a73;opacity:.92;margin-bottom:20px;}
+  .hero .lead{max-width:640px;font-size:clamp(15px,2vw,18px);color:#e8edf1;}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:24px 34px;margin-top:30px;}
+  .hero-meta .m{display:flex;flex-direction:column;}
+  .hero-meta .m b{font-family:var(--serif);font-size:20px;color:#fff;}
+  .hero-meta .m span{font-size:12.5px;letter-spacing:.08em;color:#bd6a73;}
+
+  .ribbon{position:absolute;top:0;right:clamp(16px,5vw,52px);z-index:3;width:44px;
+    background:var(--accent);color:#fff;text-align:center;
+    padding:15px 0 24px;font-family:var(--serif);font-size:13px;letter-spacing:.14em;
+    box-shadow:0 6px 16px rgba(0,0,0,.32);}
+  .ribbon::after{content:"";position:absolute;left:0;bottom:-13px;border-width:0 22px 14px;border-style:solid;border-color:var(--accent) var(--accent) transparent;}
+  .ribbon span{writing-mode:vertical-rl;}
+
+  .toc-bar{background:var(--paper-2);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50;box-shadow:0 2px 14px rgba(37,42,46,.06);}
+  .toc-in{max-width:1080px;margin:0 auto;padding:10px 28px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .toc-in .lab{font-family:var(--serif);font-size:13px;color:var(--accent);letter-spacing:.1em;margin-right:6px;}
+  .toc-in a{font-size:12.5px;color:var(--ink-soft);text-decoration:none;padding:4px 11px;border-radius:20px;border:1px solid transparent;transition:all .18s;white-space:nowrap;}
+  .toc-in a:hover{color:var(--accent);border-color:rgba(138,37,48,0.35);background:rgba(138,37,48,0.05);}
+
+  section{padding:60px 0 56px;scroll-margin-top:64px;}
+  .sec-head{display:flex;align-items:center;gap:14px;margin-bottom:8px;}
+  .sec-no{font-family:var(--serif);font-size:14px;color:var(--accent);border:1px solid var(--accent);border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;flex:none;}
+  .sec-head h2{font-size:clamp(23px,3.4vw,31px);color:var(--ink);}
+  .sec-sub{color:var(--ink-faint);font-size:14.5px;margin-bottom:32px;padding-left:48px;}
+  @media(max-width:880px){.sec-sub{padding-left:0;}}
+
+  .divider{height:1px;background:linear-gradient(90deg,transparent,var(--line) 18%,var(--line) 82%,transparent);}
+
+  .bookcard{
+    display:grid;grid-template-columns:1.1fr 1fr;gap:34px;align-items:center;
+    background:var(--paper-2);border:1px solid var(--line);border-radius:18px;
+    padding:38px;box-shadow:var(--shadow);position:relative;overflow:hidden;
+  }
+  .bookcard::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:linear-gradient(var(--accent),var(--accent-2));}
+  .one-liner{font-family:var(--serif);font-size:clamp(19px,2.9vw,26px);line-height:1.55;color:var(--ink);}
+  .one-liner em{color:var(--accent);font-style:normal;}
+  .one-liner .rule{width:52px;height:3px;background:var(--accent);border-radius:2px;margin-top:18px;opacity:.85;}
+  .meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 22px;}
+  .meta-grid .cell span{display:block;font-size:12px;letter-spacing:.1em;color:var(--ink-faint);text-transform:uppercase;margin-bottom:3px;}
+  .meta-grid .cell b{font-family:var(--serif);font-size:16.5px;color:var(--ink);font-weight:600;line-height:1.45;}
+  @media(max-width:880px){.bookcard{grid-template-columns:1fr;padding:28px;gap:26px;}}
+
+  .sys-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .sys{border-radius:16px;padding:30px 28px;color:#fff;position:relative;overflow:hidden;box-shadow:var(--shadow);}
+  .sys.s1{background:linear-gradient(150deg,#8a2530,#631a22);}
+  .sys.s2{background:linear-gradient(150deg,#279286,#1c6c63);}
+  .sys.s3{background:linear-gradient(150deg,#bd6a73,#8a2530);}
+  .sys.s4{background:linear-gradient(150deg,#52161c,#3e1014);}
+  .sys .tag{font-size:12px;letter-spacing:.16em;opacity:.88;text-transform:uppercase;}
+  .sys h3{font-size:25px;margin:6px 0 4px;}
+  .sys .tagline{font-family:var(--serif);font-style:italic;font-size:15.5px;opacity:.92;margin-bottom:16px;}
+  .sys ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+  .sys li{display:flex;gap:10px;font-size:14px;line-height:1.55;align-items:flex-start;}
+  .sys li svg{flex:none;margin-top:4px;}
+  .sys .speed{display:inline-flex;align-items:baseline;gap:8px;margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.22);}
+  .sys .speed b{font-size:24px;font-family:var(--serif);}
+  .sys .speed span{font-size:12.5px;opacity:.82;}
+  @media(max-width:880px){.sys-grid{grid-template-columns:1fr;}}
+
+  .stage-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;}
+  .stage{border-radius:16px;padding:26px 22px;color:#fff;position:relative;overflow:hidden;box-shadow:var(--shadow);}
+  .stage .no{font-family:var(--serif);font-size:15px;opacity:.85;letter-spacing:.12em;}
+  .stage h3{font-size:21px;margin:5px 0 3px;}
+  .stage .tagline{font-family:var(--serif);font-style:italic;font-size:13.5px;opacity:.9;margin-bottom:13px;}
+  .stage ul{list-style:none;display:flex;flex-direction:column;gap:9px;}
+  .stage li{display:flex;gap:9px;font-size:13.5px;line-height:1.55;align-items:flex-start;}
+  .stage li svg{flex:none;margin-top:3px;}
+  .stage::after{content:"→";position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:26px;opacity:.55;color:#fff;}
+  .stage:last-child::after{content:"";}
+
+  .vs-wrap{margin-top:26px;background:var(--paper-2);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .vs-head{display:grid;grid-template-columns:1.1fr 1fr 1fr;background:linear-gradient(90deg,rgba(138,37,48,0.1),rgba(39,146,134,0.1));border-bottom:1px solid var(--line);}
+  .vs-head div{padding:14px 18px;font-family:var(--serif);font-size:15px;}
+  .vs-head .h1c{color:var(--accent);}
+  .vs-head .h2c{color:var(--warm);}
+  .vs-row{display:grid;grid-template-columns:1.1fr 1fr 1fr;border-bottom:1px solid var(--line);}
+  .vs-row:last-child{border-bottom:none;}
+  .vs-row:nth-child(odd){background:rgba(244,242,237,.55);}
+  .vs-row .dim{padding:12px 18px;font-size:13px;color:var(--ink-faint);letter-spacing:.04em;display:flex;align-items:center;}
+  .vs-row .v1{padding:12px 18px;font-size:13.5px;color:var(--ink-soft);border-left:1px dashed var(--line);display:flex;align-items:center;}
+  .vs-row .v2{padding:12px 18px;font-size:13.5px;color:var(--ink-soft);border-left:1px dashed var(--line);display:flex;align-items:center;}
+  @media(max-width:680px){
+    .vs-head.v3{grid-template-columns:1fr 1fr;} .vs-head.v3 .h0{display:none;}
+    .vs-row.v3{grid-template-columns:1fr;padding:10px 0;}
+    .vs-row.v3 .dim{grid-column:1/-1;padding:4px 18px 2px;font-family:var(--serif);color:var(--accent);font-size:13.5px;}
+    .vs-row.v3 .v1,.vs-row.v3 .v2{border-left:none;padding:2px 18px;}
+    .vs-row.v3 .v1::before{content:"甲面　";color:var(--accent);font-weight:600;}
+    .vs-row.v3 .v2::before{content:"乙面　";color:var(--warm);font-weight:600;}
+  }
+
+  .sys-note{margin-top:22px;background:var(--paper-2);border:1px dashed var(--accent-2);border-radius:12px;padding:18px 22px;font-size:14.5px;color:var(--ink-soft);}
+  .sys-note b{color:var(--accent);font-family:var(--serif);}
+
+  .spectrum{margin-top:26px;background:var(--paper-2);border:1px solid var(--line);border-radius:16px;
+    padding:30px 30px 24px;box-shadow:var(--shadow);}
+  .spectrum h3{font-size:19px;margin-bottom:4px;}
+  .spectrum .en{font-size:12.5px;letter-spacing:.06em;color:var(--ink-faint);margin-bottom:18px;}
+  .spectrum svg{width:100%;height:auto;display:block;}
+  .spectrum .cap{margin-top:14px;font-size:13.5px;color:var(--ink-soft);line-height:1.7;}
+  .spectrum .cap b{color:var(--accent);font-family:var(--serif);}
+
+  .fx-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+  .fx{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:24px;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s;}
+  .fx:hover{transform:translateY(-3px);box-shadow:var(--shadow);}
+  .fx .ic{width:42px;height:42px;border-radius:11px;background:rgba(138,37,48,0.09);display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+  .fx h3{font-size:18px;margin-bottom:3px;}
+  .fx .en{font-size:12px;letter-spacing:.06em;color:var(--ink-faint);margin-bottom:11px;}
+  .fx p{font-size:14px;color:var(--ink-soft);line-height:1.65;}
+  .fx .eg{margin-top:12px;font-size:13px;color:var(--accent);background:rgba(138,37,48,0.06);border-radius:8px;padding:8px 11px;}
+  .fx .eg b{font-weight:600;}
+  @media(max-width:880px){.fx-grid{grid-template-columns:1fr;}}
+
+  .flow{position:relative;padding-left:8px;}
+  .flow .step{display:grid;grid-template-columns:64px 1fr;gap:20px;position:relative;padding-bottom:28px;}
+  .flow .step:not(:last-child)::before{content:"";position:absolute;left:31px;top:48px;bottom:0;width:2px;background:linear-gradient(var(--accent-2),var(--line));}
+  .flow .node{width:64px;height:64px;border-radius:50%;background:var(--paper-2);border:2px solid var(--accent-2);display:flex;flex-direction:column;align-items:center;justify-content:center;flex:none;position:relative;z-index:2;box-shadow:0 3px 10px rgba(37,42,46,.08);}
+  .flow .node b{font-family:var(--serif);font-size:17px;color:var(--accent);line-height:1.15;}
+  .flow .node span{font-size:10px;color:var(--ink-faint);letter-spacing:.05em;}
+  .flow .body{padding-top:6px;}
+  .flow .body h3{font-size:18px;margin-bottom:5px;}
+  .flow .body h3 small{font-size:12.5px;color:var(--ink-faint);font-family:var(--sans);font-weight:400;margin-left:8px;}
+  .flow .body p{font-size:14px;color:var(--ink-soft);}
+  .flow .body .pill{display:inline-block;margin-top:8px;font-size:12px;color:var(--warm);background:rgba(39,146,134,0.1);padding:3px 11px;border-radius:20px;}
+
+  .quotes{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
+  .quote{background:linear-gradient(160deg,#faf9f5,#eef0ef);border:1px solid var(--line);border-radius:16px;padding:30px 28px 26px;position:relative;box-shadow:var(--shadow);}
+  .quote .mark{font-family:Georgia,serif;font-size:64px;line-height:.4;color:var(--accent);opacity:.35;height:30px;}
+  .quote p{font-family:var(--serif);font-size:17.5px;line-height:1.6;color:var(--ink);margin-bottom:14px;}
+  .quote .src{font-size:13px;color:var(--ink-faint);letter-spacing:.04em;}
+  .quote.span2{grid-column:1/-1;background:linear-gradient(110deg,#451217,#2c0b0f);border-color:#370e12;}
+  .quote.span2 p{color:#e9eef2;font-size:20.5px;}
+  .quote.span2 .src{color:var(--accent-2);}
+  .quote.span2 .mark{color:var(--accent-2);}
+  @media(max-width:880px){.quotes{grid-template-columns:1fr;}}
+
+  .act-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+  .act{display:grid;grid-template-columns:46px 1fr;gap:16px;background:var(--paper-2);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:22px;transition:transform .2s,box-shadow .2s;}
+  .act:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm);}
+  .act .num{font-family:var(--serif);font-size:26px;color:var(--accent);line-height:1.1;}
+  .act h3{font-size:16.5px;margin-bottom:5px;}
+  .act p{font-size:13.5px;color:var(--ink-soft);line-height:1.65;}
+  @media(max-width:880px){.act-grid{grid-template-columns:1fr;}}
+
+  .split{display:grid;grid-template-columns:1fr 1.15fr;gap:30px;align-items:stretch;}
+  .split .imgcol{border-radius:16px;overflow:hidden;min-height:320px;background-size:cover;background-position:center;box-shadow:var(--shadow);position:relative;}
+  .split .imgcol::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,26,34,0) 42%,rgba(44,11,15,0.62));}
+  .split .imgcol .cap{position:absolute;left:22px;bottom:18px;z-index:2;color:#e5ebf0;font-family:var(--serif);font-size:15px;}
+  .fit-list{display:flex;flex-direction:column;gap:14px;}
+  .fit{display:flex;gap:13px;background:var(--paper-2);border:1px solid var(--line);border-radius:12px;padding:16px 18px;align-items:flex-start;}
+  .fit svg{flex:none;margin-top:3px;}
+  .fit b{font-family:var(--serif);font-size:15.5px;display:block;margin-bottom:2px;}
+  .fit span{font-size:13.5px;color:var(--ink-soft);}
+  @media(max-width:880px){.split{grid-template-columns:1fr;}}
+
+  footer{padding:46px 28px 60px;text-align:center;color:var(--ink-faint);font-size:13px;}
+  footer .line{width:60px;height:3px;background:var(--accent);margin:0 auto 20px;border-radius:3px;}
+  footer b{font-family:var(--serif);color:var(--ink-soft);}
+  .disclaim{margin-top:10px;font-size:12px;color:var(--ink-faint);max-width:680px;margin-left:auto;margin-right:auto;line-height:1.7;}
+
+  @media print{
+    #progress,.toc-bar,.ribbon{display:none;}
+    body::before{display:none;}
+    section{padding:28px 0;}
+    .fx,.act,.quote,.sys{break-inside:avoid;}
+  }
+</style>
+</head>
+<body data-page-node-id="nUC8EElBDMvUOldN7POVHk">
+
+<div id="progress" data-page-node-id="w9qYjNhd7PbyVhsp4GPxqU"></div>
+
+<header class="hero" id="hero" data-page-node-id="7bklz3qTpmI5kZl6PemyAR">
+  <div class="ribbon" data-page-node-id="5a7r4fYmy9KZBRZn9vXhq8"><span data-page-node-id="VZp6sD26URuGnIIaO8RWKy">读书笔记</span></div>
+  <div class="hero-inner" data-page-node-id="BjprCINUW6UZF4NDJ2sdju">
+    <span class="kicker" data-page-node-id="hljujjfwnRhuBrEnIUp41g">精读笔记 · 明史经典</span>
+    <h1 data-page-node-id="gzhTKPRbYzzwAHU270geVy">《万历十五年（精装版）》</h1>
+    <div class="sub-en" data-page-node-id="B4eBHdX1BT8a8Pby5ufdci">1587, A Year of No Significance</div>
+    <p class="lead" data-page-node-id="LxHo7l1szaJdHcHtVPKPCq">1587 年，无大事发生，帝国却在此间定型了结局。皇帝怠政、清官碰壁、名将自困——没人做错事，可所有人都无路可走。</p>
+    <div class="hero-meta" data-page-node-id="bTAhUWUVuhZ61R1NMFlfIz"><div class="m" data-page-node-id="6BKD6rTnHRMOfY4Sw7Lq76"><b data-page-node-id="TwIaMlyMGOuWIhI9AoI50q">1 个年份</b><span data-page-node-id="CNUNSLeStw4xtphHz1diQR">1587</span></div><div class="m" data-page-node-id="aQ0yJdpINlGDn44qT1n55F"><b data-page-node-id="7QmPxd6kzW1YdqWyC1r77Z">7 章切片</b><span data-page-node-id="NE2J4PGuTzhGF6YhYWbEtr">人物群像</span></div><div class="m" data-page-node-id="0FGBhf3tLrEnDdHlswsS1Y"><b data-page-node-id="CHvqwvhxNHDP3CaCR5BzgT">2 套逻辑</b><span data-page-node-id="Fdl0mI35GWnHaZdyPdBAjB">道德 vs 数字</span></div><div class="m" data-page-node-id="KK0Ono14FU95EpYnnPHinK"><b data-page-node-id="kKgTcWAllJ0cqXD1VO6cDG">1 种方法</b><span data-page-node-id="2QboRN1mG5EnmpLiI2zdYL">大历史观</span></div></div>
+  </div>
+</header>
+
+<nav class="toc-bar" aria-label="页面目录" data-page-node-id="ZREW2iYBSIlwSX99HVzFDe"><div class="toc-in" data-page-node-id="wnSpXJOcDYgeXuPanOmiGd"><span class="lab" data-page-node-id="tWFObAVTu8sODqr1kf8H29">目录</span><a href="#info" data-page-node-id="Y3GYP8A2H6wf5b3yKnAxBT">书籍信息</a><a href="#duo" data-page-node-id="2VDbhFUzGFYpeCBFOljS5q">核心框架</a><a href="#chart" data-page-node-id="aA8GmRuPaGqEjwg4dCGECQ">一张图</a><a href="#fx" data-page-node-id="aSDDJYCDzCcO53jIXBMKe9">关键概念</a><a href="#flow" data-page-node-id="SA2sXUks7zE4hn4Hs116Bl">章节脉络</a><a href="#quotes" data-page-node-id="AnSRXjRbSp9gpDph0BG1WF">金句</a><a href="#actions" data-page-node-id="Fk68ZT3CUFFgJNopHUG2rM">行动启发</a><a href="#who" data-page-node-id="8oUBoRy4HkKYqWbW1si0tr">适合谁读</a></div></nav>
+
+<div class="wrap" data-page-node-id="AbIKWoqDTrqQB1zMojVnZC">
+<section id="info" data-page-node-id="vHfMpsYS29cIg1gNlvxYx5">
+  <div class="sec-head" data-page-node-id="OSh2uGslETw3kgIGKfn2EY"><div class="sec-no" data-page-node-id="dTMJh9Fp5WWDF3B6pHXkuN">01</div><h2 data-page-node-id="Dv061oEMsVYNqx9RGBG7zW">这本书讲了什么</h2></div>
+  <p class="sec-sub" data-page-node-id="9ZUx6qhvYctNYRrlw7zLRG">一句话总览 + 核心信息卡</p>
+  <div class="bookcard" data-page-node-id="jSGmkZGQy87u3qEFlwz26L">
+    <div data-page-node-id="G9fECW2CD8DaSCLH7wHMYW"><div class="one-liner" data-page-node-id="yd740UC4Xn5ZKck9juGsOD">万历十五年的关键不是谁做错了事，而是一套<em data-page-node-id="auwGcfVIAzdIjMNXmjc0NT">以道德代替法律</em>的组织技术走到尽头。没有人能挣脱系统，也没有人能<em data-page-node-id="rV2mHZZ4HPPZNCIxzwPFYB">修复系统</em>。</div><div class="rule" data-page-node-id="cqmJu1uPQqJMOLR6CBnmf4"></div></div>
+    <div class="meta-grid" data-page-node-id="lrGGNdCJlI7dwSJDFu9ESP"><div class="cell" data-page-node-id="eINcmqxK0AIjywEbuqDKEx"><span data-page-node-id="v4NYCUH3KJBdgURL7EpZtU">作者</span><b data-page-node-id="cczKF6lCn699E78cfbCmUc">黄仁宇（历史学家，大历史观提出者）</b></div><div class="cell" data-page-node-id="98gNd7dGyYZKW4tNWGLtGO"><span data-page-node-id="4DUcRFV20PUd9RAiFEmRdK">领域</span><b data-page-node-id="o8pzvEoWLM75QjFaHBlf82">明史 · 制度史</b></div><div class="cell" data-page-node-id="Nx1ub9lbmliQBbkPdW288i"><span data-page-node-id="XAyB3A0kG0ZkT8v4Yoy3Fg">核心命题</span><b data-page-node-id="hm6pzsGvYhzq2kjdUABKVL">以道德代替法律的帝国无法实现数目字管理</b></div><div class="cell" data-page-node-id="uEgnmOHFVNqghWvyXLhU1c"><span data-page-node-id="5ed7vDJDWVNOFO0GOA8iVy">出版</span><b data-page-node-id="1It7ESTiGooHi1TNo4ZoJK">中华书局 1982 年首版，精装通行</b></div><div class="cell" data-page-node-id="6yxQQHe3tRuS8go9OWdasa"><span data-page-node-id="Kmb8Icj7CwpnIb0TYohL8g">系列/方法</span><b data-page-node-id="ljWHodRyfqxBNnTGDf1jSD">大历史观（Macro-History）</b></div><div class="cell" data-page-node-id="PmLCWCMBIxz6BKWloogzjZ"><span data-page-node-id="SznReJAgncwUAytGitrokA">关键概念</span><b data-page-node-id="dOBdfFZcBoGrZF9SHm1CTj">数目字管理 · 阴阳 · 文官集团</b></div></div>
+  </div>
+</section>
+<div class="divider" data-page-node-id="nDyjyuRuVHKIlF6cmkCTvv"></div>
+<section id="duo" data-page-node-id="2ihyGcoW4LuNwnJIVSQrLa">
+  <div class="sec-head" data-page-node-id="dGD3dmxAp2JmBkhPsmfq7t"><div class="sec-no" data-page-node-id="rAEwz3lFWCppFJwcfFxtPT">02</div><h2 data-page-node-id="BYeoGtnbHfSuVnmB5dDuhK">核心框架：道德治理与数目字管理</h2></div>
+  <p class="sec-sub" data-page-node-id="We18ljilAdvxfNgvPFWxrK">明代帝国的两套操作系统，只有一套在运行</p>
+  <div class="sys-grid" data-page-node-id="N4ZoC7fAF3jPIVzArKxvFo">
+<div class="sys s1" data-page-node-id="wOeBjrqB3zhbfEdozdCBcj"><div class="tag" data-page-node-id="pME3DHnADeos8OENl4zceD">甲面 · Rule by Morality</div>
+<h3 data-page-node-id="4ULa50LtKmU61JiAJWsHp4">道德治理</h3><div class="tagline" data-page-node-id="VW946dhUqCoWHcUHjeYrLs">技术问题一律翻译成道德问题来处理</div>
+<ul data-page-node-id="IIsBPeGngXVV3cO5BEodFy"><li data-page-node-id="pFAERQruNkMScMEnvop0Pm"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" data-page-node-id="qfaUblsV0owY42uZia8tnf"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5" data-page-node-id="wqlXt1VjVN2wiyhNokYCXY"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="YZCqpSlumQUlhtsaD5Q1vo"/></svg>文官集团以儒家伦理为共同语言</li><li data-page-node-id="syOIBCbGpUkHjdMcComUjG"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" data-page-node-id="uB6CabRxlXYvXcBCKtZ941"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5" data-page-node-id="CmBmeIZauMFmkXo9lQ3I5v"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="KHS5ifJBWBBdY8hbRtDhY2"/></svg>财政与军务多按惯例与操守评价</li><li data-page-node-id="XzbeJB7nzKF3Wk9O9nyc5e"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" data-page-node-id="U8NrRJqFqCFQwL8JHbpMJ8"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5" data-page-node-id="Cl2KUK0MFJGIwrEGWVj7IG"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="Of69Vf90jugyRjgxKI3qvN"/></svg>皇帝本人也被礼仪规训成制度符号</li><li data-page-node-id="8HGrOnZzH0SsAYQY6fwIoX"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" data-page-node-id="oFbX2MOBgMrrAcwWiF2DGN"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5" data-page-node-id="1Fdcn23FVnAzp2GwFrCxJi"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="Oll69iKLTLUNB2gNltTh38"/></svg>人事调停代替制度改革，缝缝补补</li></ul><div class="speed" data-page-node-id="H3bz9euoU0Ec6ztGEgpjBK"><b data-page-node-id="fbkK6nKa0RAVrk8TcZfIB7">1587</b><span data-page-node-id="et2XVswycVb0oV5SIYOuQp">表面四海升平，内里无路可走</span></div></div>
+<div class="sys s2" data-page-node-id="69FV05L3qgH9io4f6dIqNC"><div class="tag" data-page-node-id="Ye3tKpN6vtuN0Tz41rmSz6">乙面 · Mathematically Manageable</div>
+<h3 data-page-node-id="jUG4GJT9umP6LyzB4opIfP">数目字管理</h3><div class="tagline" data-page-node-id="1jjcjKv2hGLN4de7LTdOeO">国家治理须落到可统计、可核算的层面</div>
+<ul data-page-node-id="avHkkPATucR7LenlNwyVFU"><li data-page-node-id="2HeeqAL9lwPQSKRDnAz7tU"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" data-page-node-id="2FbCJ3IKIGV1n0OQsLzV8C"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5" data-page-node-id="vS8B6bYQfFP3e38HOea849"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="NI2Vf6EOlolcaPd8ywt2fs"/></svg>黄仁宇主张财政经济须以数字统驭</li><li data-page-node-id="aOTgOWDJJdZo2CimMrHXOB"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" data-page-node-id="iNWdGNsnoKztJGEH4Pjije"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5" data-page-node-id="4s6NshuzO3OAkJfg8Kx88k"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="xCcY38OEEuKLdp4f3zY1ja"/></svg>明代缺乏中层技术组织与统一核算</li><li data-page-node-id="lp2wCfauQm1Gz8ySmlNHo9"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" data-page-node-id="2UTGrM85vIjODND91wFpBT"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5" data-page-node-id="oFxj3k8x0ClPUEKlrtFTGm"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="mzfx0mDjopyeP8BgNHkrX6"/></svg>法律与商业组织长期跟不上规模</li><li data-page-node-id="5W7GGZ7kz2F4AxvH9r4Ajg"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" data-page-node-id="8z9ZGMaPzTBwRIvGEAul7A"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5" data-page-node-id="t2DhuORIuuY4M0qi9v9M1m"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="BhOys3Mqto676L2rFLs3ql"/></svg>大历史观要求从技术条件看制度成败</li></ul><div class="speed" data-page-node-id="JpGCZoKiBxMTYpMRLtcNMm"><b data-page-node-id="bD7yLu6ZCS24yW9y5EosSE">缺位</b><span data-page-node-id="YrdY2qE9PKJBFL4GR7IcAs">当时条件难以建立</span></div></div>
+</div>
+<div class="vs-wrap" data-page-node-id="Wm4aDn2CWumSgfViBs3aAn"><div class="vs-head v3" data-page-node-id="Bp9l7zeSOplLNNhmItCl5v"><div class="h0" data-page-node-id="i6PBQOiuBeA62r1QJNEUBK">对比维度</div><div class="h1c" data-page-node-id="2hlScWJNpkGnrvx5HRkf9Z">道德治理</div><div class="h2c" data-page-node-id="oKblmwNE14wxiNTdUU1GMe">数目字管理</div></div>
+<div class="vs-row v3" data-page-node-id="HlcK4lEtSq199NyrIyvoxK"><div class="dim" data-page-node-id="fsXCweuqmbQwEFEnoZRRNn">运作方式</div><div class="v1" data-page-node-id="ZxlX3hFvvV3cpPsPfsMOOG">伦理教化加人事调停</div><div class="v2" data-page-node-id="JUiXgVMnTtzEJDlg60EXDu">数字核算加法律框架</div></div>
+<div class="vs-row v3" data-page-node-id="jVDoeGZ5pfr3o7yC6XiDxr"><div class="dim" data-page-node-id="gfQAzlyfQmQYEvAg9LXGFQ">衡量标准</div><div class="v1" data-page-node-id="6kSzjcVT0pOfVwUytY26Cp">官员操守与舆论清议</div><div class="v2" data-page-node-id="VHjzaILHVo4FrENL1opAxS">财政效率与契约执行</div></div>
+<div class="vs-row v3" data-page-node-id="NPRnRLqBQgHRD8i5BZz0U9"><div class="dim" data-page-node-id="0dxaBJ1656WsZZG3z8JV2a">代表人物</div><div class="v1" data-page-node-id="GV9Om7g6nxXI2PU95EIFqu">申时行式的调停者</div><div class="v2" data-page-node-id="R6Bb2QgmEsOSMizjt3dfpH">张居正式的技术官僚</div></div>
+<div class="vs-row v3" data-page-node-id="T9XaUeHPcJOk34ukBjIl8e"><div class="dim" data-page-node-id="BvtCzQNCkQTqyL715gOlDo">能否持续</div><div class="v1" data-page-node-id="B5jFBm0Ix7I2LCmwngEONR">靠惯性维持表面稳定</div><div class="v2" data-page-node-id="ie9EBG9BCpboNXaLo2Onqp">明代条件下无法建立</div></div>
+</div>
+<div class="sys-note" data-page-node-id="dMACMx87Q5CitWBxu9jkXC"><b data-page-node-id="qMMNdNYwGMf37GtfMWwQOB">关键洞察 —</b> 全书人物都失败在同一处：海瑞太合乎道德以致无法任事，张居正太想改革以致身后被清算。道德治理的框架里，每个“正确的人”都会撞上系统的墙。</div>
+</section>
+<div class="divider" data-page-node-id="xAACmA8O98wQRSK7R2vwYN"></div>
+<section id="chart" data-page-node-id="T77q8sk33RC9Geo5ukAdpn">
+  <div class="sec-head" data-page-node-id="g47UDhg760TVwE5BSlnzgP"><div class="sec-no" data-page-node-id="BAk72M3ymwwPQ3jjIHWeX0">03</div><h2 data-page-node-id="fy5o3BJeEGWY6ZaDUd9Tky">全书最深的一张图</h2></div>
+  <p class="sec-sub" data-page-node-id="BB05KiHxHYQ1OmgQVItThv">1587 年：两套逻辑同时失灵的一年</p>
+  <div class="spectrum" data-page-node-id="NkJpJWsHViyTlgEpCNH0Fp">
+    <h3 data-page-node-id="mg7wBwvxR2CV5fCC5FSqCj">从道德理想到技术理性 — 体制内所有人都合乎道德，体制本身却无路可走。</h3>
+    <div class="en" data-page-node-id="ujKPFLG8pX9U09H0L6HwMx">From Moral Ideal to Technical Rationality</div>
+    <svg viewBox="0 0 900 230" role="img" aria-label="从道德理想到技术理性" data-page-node-id="2T3DUEAeaKjj3sF1hF6HXA">
+<rect x="0" y="0" width="900" height="230" fill="#faf9f5" rx="12" data-page-node-id="5DtR4h7KZtpUYeu8UIDQPz"/>
+<defs data-page-node-id="HkrsDrzmnlBAO9Qp8yaNqv"><linearGradient id="g_b23_spectrum" x1="0" y1="0" x2="1" y2="0" data-page-node-id="S05prZFWotYLO0F4BYinwS"><stop offset="0" stop-color="#8a2530" data-page-node-id="j4fggfakge3AU92HpGFV98"/><stop offset="0.5" stop-color="#ba5431" data-page-node-id="8O8Cwd8Oa7wXL3GGxJBQ4G"/><stop offset="1" stop-color="#279286" data-page-node-id="4tt7EU6TTYSxW1ROY15lGj"/></linearGradient></defs>
+<rect x="60" y="98" width="780" height="26" rx="13" fill="url(#g_b23_spectrum)" opacity="0.85" data-page-node-id="XYwk1LtiBMouElGE7q8lno"/>
+<circle cx="460" cy="111" r="17" fill="#faf9f5" stroke="#8a2530" stroke-width="4" data-page-node-id="SaRljYfBabKXfL1fRlbVWo"/>
+<circle cx="460" cy="111" r="6" fill="#8a2530" data-page-node-id="QiLfpFfYQQ3sevGxKlR4Gv"/>
+<text x="460" y="70" text-anchor="middle" font-size="16" font-weight="600" fill="#8a2530" data-page-node-id="FsRAiXSprJpYl266exz1wR">1587：双向失灵</text>
+<text x="460" y="155" text-anchor="middle" font-size="12.5" fill="#535b62" data-page-node-id="2LP1eCfOcPxSVWs9NKosKj">帝国卡在中间动弹不得</text>
+<text x="150" y="70" text-anchor="middle" font-size="14" fill="#8a2530" font-weight="600" data-page-node-id="IXaxlAX64CbcMB5vJLM1SX">道德理想</text>
+<text x="150" y="155" text-anchor="middle" font-size="12" fill="#848d94" data-page-node-id="hlu4d4j3iG626yHXtDP5rk">礼法 · 伦理 · 清议</text>
+<text x="750" y="70" text-anchor="middle" font-size="14" fill="#279286" font-weight="600" data-page-node-id="z4Uye8qPe4C6m5jUa0PMa2">技术理性</text>
+<text x="750" y="155" text-anchor="middle" font-size="12" fill="#848d94" data-page-node-id="KWU6StyYgUjXlMBEkHdIyE">数字 · 法律 · 核算</text>
+<text x="450" y="205" text-anchor="middle" font-size="11.5" fill="#848d94" data-page-node-id="n2DD443oVoJx6XHfhK00ll">体制内所有人都合乎道德，体制本身却无路可走。</text>
+</svg>
+    <div class="cap" data-page-node-id="6EQuxjJFCbLhgW4XewyvDL"><b data-page-node-id="GnBMdnbOgDABCv8Aqdnu4D">怎么用 —</b> 用法：审视任何组织争论时，判断它在道德语言与技术语言之间反复横跳的哪一段，往往问题就出在横跳处。</div>
+  </div>
+</section>
+<div class="divider" data-page-node-id="ODITJG9UjEg6LFLgMHfOkx"></div>
+<section id="fx" data-page-node-id="j3F1hYzICN4l7xzvlW8lD8">
+  <div class="sec-head" data-page-node-id="mtn6dC6NEDotenhGAEPL1u"><div class="sec-no" data-page-node-id="UH2hZLwcvG9g45HD6WEXGS">04</div><h2 data-page-node-id="fjZLYpiYRfdFs2TxhuubLc">关键概念卡片</h2></div>
+  <p class="sec-sub" data-page-node-id="5OZobGLNpgH2Bz3FJAKSQ0">主要概念、方法与案例</p>
+  <div class="fx-grid" data-page-node-id="IPjcJN6EPSjLFONj99lAXZ"><div class="fx" data-page-node-id="4l2Lj5tq2bfhDTS7bV9VY7"><div class="ic" data-page-node-id="kCzllYwaZhabnFLuEv91ep"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8a2530" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="7vTJpbm53urk9UwoqS58Xr"><path d="M12 3v18M4 7h16M6 7l-3 6a3 3 0 006 0zM18 7l-3 6a3 3 0 006 0z" data-page-node-id="uhTsG13dmsgpALHiQWFnwF"/></svg></div>
+<h3 data-page-node-id="WdsG7qLK4DNH7gS73ADGzc">大历史观</h3><div class="en" data-page-node-id="gQFBsiLvRxR29hqfRJIFkA">Macro-History</div><p data-page-node-id="6GsMcgAnrl6dVRgE58yjhA">黄仁宇的方法主张：跳出个人道德评判，从长时段的技术与财政条件解释制度成败，把明朝困境放进世界史比较。</p><div class="eg" data-page-node-id="MALeEbqEdGYVGMuVufPL4a"><b data-page-node-id="GFDjdsjgvF5J4P71an2jhO">例：</b>书中反复以同期欧洲与日本为参照系。</div></div><div class="fx" data-page-node-id="0ABqZyLHUlBt96e7PRUr7K"><div class="ic" data-page-node-id="ILTjAtRy5GGDPpTinLmn7n"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8a2530" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="wXBXQHUsaosNUGXj0WSibT"><circle cx="12" cy="12" r="3.2" data-page-node-id="Mf8iiPL9dQJPQTfX42iAV9"/><path d="M12 2.8v3M12 18.2v3M2.8 12h3M18.2 12h3M5.5 5.5l2.1 2.1M16.4 16.4l2.1 2.1M18.5 5.5l-2.1 2.1M7.6 16.4l-2.1 2.1" data-page-node-id="ADxogJ2J0Ox3hXcT2L3sL0"/></svg></div>
+<h3 data-page-node-id="OduLkqkutbdGuQSFOg8GTm">数目字管理</h3><div class="en" data-page-node-id="IgjE27tAsDD9CA9qcvK8cr">Mathematically Manageable</div><p data-page-node-id="J6abjFZnVeeDQHklMqhBfT">国家以数字方式管理财政与经济的程度。黄仁宇认为明代从未实现，这是理解近代中国落后于西方的关键技术视角。</p><div class="eg" data-page-node-id="dTMqCqVK4rM4sja0dRU97N"><b data-page-node-id="G46LXNDCFOxfyjjzJQdH2g">例：</b>明代税赋多按惯例征收，缺乏统一核算。</div></div><div class="fx" data-page-node-id="BslDFbMy20Qkj6S1E4LlQu"><div class="ic" data-page-node-id="bpJHZgTgTPH9SazPa0VZie"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8a2530" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="H86yDmLF2oTvIHrWEQux6y"><path d="M12 3l2.7 5.8 6.3.8-4.6 4.4 1.2 6.2L12 17.2 6.4 20.2l1.2-6.2L3 9.6l6.3-.8z" data-page-node-id="VHVh4BMSTFuruNhDbTOBzl"/></svg></div>
+<h3 data-page-node-id="1bAz7xdDBdXiTnGLs9v7qW">文官集团</h3><div class="en" data-page-node-id="6HG5MO7hRGkC3P3PWMWrfs">The Civil Bureaucracy</div><p data-page-node-id="RSgnOrieR7aj3UAM7kKYWr">帝国实际的运营者：以儒家伦理为共识、以京察与清议为武器的士大夫群体，连皇帝也受其规制。</p><div class="eg" data-page-node-id="NDX7hXg6WSGfgM1aMDXPE8"><b data-page-node-id="HZ0L98xAw9ijar3JkVBW6g">例：</b>万历想立爱子为储，与群臣僵持十余年。</div></div><div class="fx" data-page-node-id="EAko7HAX9TATbSu3uoySFP"><div class="ic" data-page-node-id="bmITZihbqdqcsE4s9cIFDx"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8a2530" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="uGiz9lsp8xIXCQYD9UpUfE"><circle cx="8" cy="14" r="4" data-page-node-id="RWaCZkp2ajjvdgvwzsLFxg"/><path d="M11 11l9-9M17 5l2.5 2.5M14 8l2 2" data-page-node-id="WerFappaYr1QBkHcuC95xb"/></svg></div>
+<h3 data-page-node-id="NFa1sYNNqDMHZ8VEwY9h4G">阴阳体制</h3><div class="en" data-page-node-id="C7xMJybq4lRBSTGGTFPudK">Yin and Yang</div><p data-page-node-id="qwtepfQr9tVEepWPil9e8A">黄仁宇以阴阳解释文官的双重性格：阳面是公开的道德原则，阴面是私下的利益与欲念，体制默认两者并存。</p><div class="eg" data-page-node-id="oPT8O3C6aHBzvvJ40mn1WQ"><b data-page-node-id="YFifvYtz8HgbGLbYwx4YVd">例：</b>清官海瑞反而成为体制容不下的例外。</div></div><div class="fx" data-page-node-id="i7ngKvU38NDGt62ycphnGl"><div class="ic" data-page-node-id="Hvnln3m1y4HJEK18v6XaHe"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8a2530" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="VOPgBiqyUCQwODYT9rw8IF"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z" data-page-node-id="uE8lVcsm4Akp3U28VAloUt"/><circle cx="12" cy="12" r="2.6" data-page-node-id="o5ssO9oLmk4YR41o88R4Xz"/></svg></div>
+<h3 data-page-node-id="42qugni8m9UbEachJX2ewi">礼仪国家</h3><div class="en" data-page-node-id="wK4Ba165zlSEgx7IAj7xAk">Ritual State</div><p data-page-node-id="vBXEyIYsSrqdN25TkEjSdX">明帝国靠大量礼仪维系合法性，皇帝的日常更多是符号展演而非行政决策，角色感与真实自我长期分裂。</p><div class="eg" data-page-node-id="elNmTPA3Ej8IR9WGKXDyTk"><b data-page-node-id="zfIHq2mEZ3qhenh5sQXIuD">例：</b>万历以长期怠政回应角色的不满。</div></div></div>
+</section>
+<div class="divider" data-page-node-id="Mh4t59PekIkTezxfkk76uq"></div>
+<section id="flow" data-page-node-id="hjVo3BZdGP6f891vwmRAwH">
+  <div class="sec-head" data-page-node-id="b6EgJskisqfDG0sJ86SWRz"><div class="sec-no" data-page-node-id="O1P6R9IgOeUz7TFcrkBiQ3">05</div><h2 data-page-node-id="BIOpS6AoL51jWIvH0LGA5Z">全书脉络图</h2></div>
+  <p class="sec-sub" data-page-node-id="9vNKkHMtQnKRT1KhF7QNTd">按原书七章的人物线索推进</p>
+  <div class="flow" data-page-node-id="NLzlAUTo1Us3Mt361lsKG1"><div class="step" data-page-node-id="i8HCNRpk5XwTkGSFCcbZgR"><div class="node" data-page-node-id="4HihLJC2dzQZHLnzxmjssm"><b data-page-node-id="bLccsEv9JojREUQfTNoMrs">01</b><span data-page-node-id="g5CSoGGxy2WKEdnNUkmpGp">CH.</span></div>
+<div class="body" data-page-node-id="iazX2p1boSPHECNN4b91yS"><h3 data-page-node-id="27pZchNQbmgZ7hgVB5JahC">万历皇帝<small data-page-node-id="yrwSgQIPHFmVEZ7DLHYC7y">The Emperor</small></h3><p data-page-node-id="VZqJBg9ZSavvuAWv9teqr1">从勤政少年到怠政中年：皇帝如何被礼仪与文官规训成符号。</p><span class="pill" data-page-node-id="XAGQGiAJ0b77tgpVE82dyq">活着的符号</span></div></div><div class="step" data-page-node-id="dbH52Dr2yOilt2nBO5egyu"><div class="node" data-page-node-id="1lUv9KFs8FApc8BKo8pEaB"><b data-page-node-id="nVeSD620OCp4mD1dUd90V9">02</b><span data-page-node-id="4gFwhGXuI5XQ7zD9ziKumi">CH.</span></div>
+<div class="body" data-page-node-id="eS1khaVXu7VAII6ynxtJgQ"><h3 data-page-node-id="JhydZdattGGUQ5wfBActsE">首辅申时行<small data-page-node-id="uTRNrY80z4lAKVkmUQ4zRk">Shen Shixing</small></h3><p data-page-node-id="20gcclie8YIALopwYGp7yZ">深谙体制的和事佬，靠调停阴阳两端维持运转。</p><span class="pill" data-page-node-id="cAY7afUEc5IiPptezZHTOi">调停的艺术</span></div></div><div class="step" data-page-node-id="9vj1J85xWWhJs8O1TpuCXI"><div class="node" data-page-node-id="B03D3wmzVkQGVEAjqE7slb"><b data-page-node-id="rwJ4IXPwDnpyhXZCN4sST5">03</b><span data-page-node-id="YRGAA6Os9arsNR9NMMjJyR">CH.</span></div>
+<div class="body" data-page-node-id="jFGjpxtpiPyUFwufZ1D8SP"><h3 data-page-node-id="xgwgp2lCFQ6sBCiyBWXBeE">世间已无张居正<small data-page-node-id="iCXaLtKDc2naLnkH3ROjdy">Zhang Juzheng</small></h3><p data-page-node-id="3UZ3UZS735uvBSx1gE7Sul">技术官僚的改革与身后的清算：动体制者必被体制清算。</p><span class="pill" data-page-node-id="fuJ5rUgWZUIgbWWcVfPwKT">改革者的结局</span></div></div><div class="step" data-page-node-id="pJWeqrzrqOFa1mEofEPOzW"><div class="node" data-page-node-id="zEK7DcZ3CR8O8OaHmPHwzp"><b data-page-node-id="2RaQCglwhoTEqHKMLZ8EkB">04</b><span data-page-node-id="EPA8RglGj3jFrseq70Zx3X">CH.</span></div>
+<div class="body" data-page-node-id="daf4OFgEokyTBqOAFubXvJ"><h3 data-page-node-id="FWYdtk1YRQGK8exAqoheZk">海瑞<small data-page-node-id="lpEAJNWlaxIV7f6CSGhhYe">Hai Rui</small></h3><p data-page-node-id="SFRZFr99wWtBoBAXqtavII">古怪的模范官僚：道德太彻底，反而无处容身。</p><span class="pill" data-page-node-id="PTWg9FxN2BypKN2MroSQ2u">清官的困境</span></div></div><div class="step" data-page-node-id="NSs0lyjOfTPsokBKAV5vr3"><div class="node" data-page-node-id="9hylGVlzIPkbFnTQ0m4G13"><b data-page-node-id="5fX1evEmIlptNPX3WIHgvX">05</b><span data-page-node-id="sHU99D9rw1Bk0Np4fmf104">CH.</span></div>
+<div class="body" data-page-node-id="Mt0OSIYFVJjOjUU6Hy4I16"><h3 data-page-node-id="vkCvq5Gbl39YAZEALlNGyN">戚继光<small data-page-node-id="8fnE4eRQi2db7uCqHuwO63">Qi Jiguang</small></h3><p data-page-node-id="stYOHIa2Phlg6GoRqbXwuO">孤独的将领：在文官体制的缝隙里把军事做到极限。</p><span class="pill" data-page-node-id="EzPOnpj2snzO3g2wGY9fIs">务实的名将</span></div></div><div class="step" data-page-node-id="3ESnL7jsyEgvtJuiy8lwU5"><div class="node" data-page-node-id="iXpPve4RpG1K8rrzyOCX5v"><b data-page-node-id="hzsYZCHxdA4xoGVClko44Q">06</b><span data-page-node-id="B4fjGtPUKBdydRqQYGX1Zh">CH.</span></div>
+<div class="body" data-page-node-id="3oJzufW1hmhicXAPNNaIZk"><h3 data-page-node-id="oFbyCOFn224rs7M61cFfmi">李贽<small data-page-node-id="xTjgE8QDVbIdyAyh9PSHMV">Li Zhi</small></h3><p data-page-node-id="epDKwHPwmtyRC3WjjIdiLm">自相冲突的哲学家：思想超前，处境无解。</p><span class="pill" data-page-node-id="WvPp6mxhYBbTOhp37DEmGl">思想的困局</span></div></div></div>
+</section>
+<div class="divider" data-page-node-id="ukgXC8cXMu0yLAOxDPQEW5"></div>
+<section id="quotes" data-page-node-id="h3j3VucoPA1uhaYhVZUerl">
+  <div class="sec-head" data-page-node-id="79yootqYV9NJuHoV5J05g7"><div class="sec-no" data-page-node-id="9wDDUSEIPwGvzLK0uq5GKP">06</div><h2 data-page-node-id="N6xvBmdGuDY8DxWzTmKMPz">金句摘录</h2></div>
+  <p class="sec-sub" data-page-node-id="TOU1Gi28tD9ekKXMQUfyaj">值得抄进笔记本的句子（据核心观点转述）</p>
+  <div class="quotes" data-page-node-id="LQuqiLZmsoN9xjcbk45Px1"><div class="quote" data-page-node-id="9ZoA2Jq7dZgjqX1e1x9OWV"><div class="mark" data-page-node-id="OWNHqJz6udBsYIUu4A4OBY">&ldquo;</div><p data-page-node-id="H495hArs1g363EKlPCGFt8">皇帝是一种制度，而不是一个职业。</p><div class="src" data-page-node-id="DhJpdcctSTP18HfveKVrQh">—— 论文官政治</div></div><div class="quote" data-page-node-id="9FANAArCQbZoGkEmx5aynO"><div class="mark" data-page-node-id="2PiSNPDEXW8FCFLCHCbBUu">&ldquo;</div><p data-page-node-id="tp0EcohUjYeliAYzPQXkU9">以道德代替法律，是一切技术问题的总病根。</p><div class="src" data-page-node-id="Q1wMEhzQViO4cZghAAtD1U">—— 论制度困境</div></div><div class="quote" data-page-node-id="lB7K7DCBtsKkGdxS0SSaxQ"><div class="mark" data-page-node-id="2oFiveQ1z7vftjWy71joCE">&ldquo;</div><p data-page-node-id="oDilTZd8f0Ohzm2u2LThTn">海瑞的清廉是真的，海瑞的失败也是真的。</p><div class="src" data-page-node-id="WmC56s6oG1wqgpqzx2fDki">—— 论模范官僚</div></div><div class="quote" data-page-node-id="tKBRAjMW0FI0PHhWcWDaHk"><div class="mark" data-page-node-id="9TCKDFh5r7PbLS1PwubDDv">&ldquo;</div><p data-page-node-id="1UeTQqGKgmudEYGSX7jQE7">戚继光的天才，在于看清体制边界后仍能做事。</p><div class="src" data-page-node-id="tZC1aWhXTfcUwuhDPFiW4i">—— 论务实者</div></div><div class="quote span2" data-page-node-id="9kp5HhKsioxykVoPGQbaSd"><div class="mark" data-page-node-id="DHoaCXgRyBHU6KyEXkYP8E">&ldquo;</div><p data-page-node-id="cCk2lK2HmD9t5kazLsNDfU">1587 年表面四海升平，帝国的命运却已在此间决定。</p><div class="src" data-page-node-id="cinytlAm9Zt9iwqB4lxBRS">—— 论 1587</div></div></div>
+</section>
+<div class="divider" data-page-node-id="PW6nzsTxHHeYDoYYrzPRVP"></div>
+<section id="actions" data-page-node-id="6FuQ3I2yv2NU0sGpU0sHGU">
+  <div class="sec-head" data-page-node-id="r8lOy4b0Umu52IH59XP2cC"><div class="sec-no" data-page-node-id="p2CRkNr3xK5JrgdyX33OAW">07</div><h2 data-page-node-id="3os9whpcuz4vfsaCx9Qezo">对工作与决策的行动启发</h2></div>
+  <p class="sec-sub" data-page-node-id="TM2NApWlZp55tsakYyiaE3">读完就能上手的方法</p>
+  <div class="act-grid" data-page-node-id="u9ksugEEyCPOCf9BrwvLUL"><div class="act" data-page-node-id="h5LZ6PVyLQMbvBz3QatDp2"><div class="num" data-page-node-id="FwfpfBlQbjuzxSHZrN9iKd">1</div><div data-page-node-id="swETT7QuafHHq5Hr81Ejmg"><h3 data-page-node-id="WGcnxi7clMdKR6VoZzsCLa">把态度换成数字</h3><p data-page-node-id="FW8oqAGxe3T0bSPhpDRgBQ">挑一件卡在“态度问题”上的事，改写成可量化的问题陈述，发给同事。</p></div></div><div class="act" data-page-node-id="pRKw9qEdHi6yZ4eeJqXNhN"><div class="num" data-page-node-id="eDk2IUBDncGuDoKTHwfJaK">2</div><div data-page-node-id="d0EJS632GE0Bts1sTPRvxk"><h3 data-page-node-id="ZheMbdKU9CYG7UkvUIv0yK">警惕道德化讨论</h3><p data-page-node-id="JkNPEosnP4TIGk3HhNA8Id">团队争论时，把“他不负责”换成“哪个环节缺了数字与规则”，练一次。</p></div></div><div class="act" data-page-node-id="lKfVpiqkHLNqVIlLD2ZQoS"><div class="num" data-page-node-id="mnIAcnPOP09WS1ApExAsSF">3</div><div data-page-node-id="EISXE8VCaCgP83AvhCrmuX"><h3 data-page-node-id="w4z2Grvez35yLuNFmTNh0X">做阴阳自查</h3><p data-page-node-id="Me7q00x3vEgCyCFVMBC5MF">写下组织公开宣称的原则与私下实际的运行规则，各三条，对照看。</p></div></div><div class="act" data-page-node-id="g0mXUFP6iezoYcnLr1oBF6"><div class="num" data-page-node-id="e5HRBMNJwDkK0dv8SFS1m0">4</div><div data-page-node-id="YO5Mecb7Y8XishPPFjwMEG"><h3 data-page-node-id="SoAuSBrzB4FQk2ntdBTh5n">读一章问一问</h3><p data-page-node-id="DGxuNGDjP29ljHo0jU1HJj">今晚读第一章只问：皇帝的一天里有多少自由？找三处证据。</p></div></div><div class="act" data-page-node-id="IWiwhAipHJFu5obbEQRcf2"><div class="num" data-page-node-id="3KHxbGC40z405hrwZtBMIJ">5</div><div data-page-node-id="7eSSMzTQicLAcBLsbkbseW"><h3 data-page-node-id="l2yGsrbDsuKzWC5C9YUSDq">给惯性画时刻表</h3><p data-page-node-id="8aZBg5LvQHkTDU1vhcDTxd">找一个长期无解的组织问题，判断它是个人问题还是制度惯性。</p></div></div><div class="act" data-page-node-id="I1C11XqgWnF729iKvImHeh"><div class="num" data-page-node-id="u4dGtMlntbZe08G9k1cuNV">6</div><div data-page-node-id="0xRHuu8P4BtJYPMbvEXVpa"><h3 data-page-node-id="NOiocpBWLxuDFY3mHJq2Jv">用小事追大账</h3><p data-page-node-id="k6e76UBeQTmbqdNgCQ310z">回看机构里一次小摩擦，追问它五年后的连锁后果，练长时段眼光。</p></div></div></div>
+</section>
+<div class="divider" data-page-node-id="IY2GkckEmd10hfbEvDMDnC"></div>
+<section id="who" data-page-node-id="IdDThO3HxVa9TMyf79Hz3U">
+  <div class="sec-head" data-page-node-id="a6cUZzaJjnODZJCLTIjliI"><div class="sec-no" data-page-node-id="D1EkyGQKDrQrHAR4gRKXNh">08</div><h2 data-page-node-id="TkEZADx5DUWFWynQIJsQ9G">这本书适合谁读</h2></div>
+  <p class="sec-sub" data-page-node-id="3RnRj1YaUP0d7WgI0YHiCQ">如果你符合其中一条，它都值得放进书单</p>
+  <div class="split" data-page-node-id="3MiHwihQt7HF9hlAypVBEr">
+    <div class="imgcol" id="who-img" data-page-node-id="jBPiGOpIfQoq3TfD2S941l"><div class="cap" data-page-node-id="ONSlb4CicU1mCHGKjxpBA3">四海升平之下的裂缝</div></div>
+    <div class="fit-list" data-page-node-id="Jgfz0YoN79LmosJco6Wj1g"><div class="fit" data-page-node-id="GL0PsBlFy7emMsJDe2W9XA"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" data-page-node-id="4DJPOzr3rVKBcuSYyEWlHv"><path d="M2 9l4 4 10-10" stroke="#8a2530" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="yHJjQqkCA9MMLYDcHDPEtR"/></svg><div data-page-node-id="e6yZSYURICzlusOm9kflgX"><b data-page-node-id="lDXZ3vOgIEAcPtKybRK3Nw">制度与历史读者</b><span data-page-node-id="GytmERMl3hGCDtDlMNQTOU">想理解帝国体制如何自我锁死的人，此书是中文写作的巅峰样本。</span></div></div><div class="fit" data-page-node-id="gT0Y6ELcfz8CiT2X8WyxES"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" data-page-node-id="Ani4d3eI0msc0dbqcU4AWn"><path d="M2 9l4 4 10-10" stroke="#8a2530" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="7k7mF5HxDMnTFj8c1HClBn"/></svg><div data-page-node-id="5BJx9Q7ehmAjGg6A2M1j83"><b data-page-node-id="0sJoFwHny7mXtJ3lcUwOea">管理者</b><span data-page-node-id="CBUNKZyzyqXmMe2RLDdzu0">组织为何在人人努力时仍然失灵，此书提供了最深的制度病理。</span></div></div><div class="fit" data-page-node-id="2S8ofYapLtdSmZyo7TA3Cs"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" data-page-node-id="tfQGmT9bEKI23OETqrcxos"><path d="M2 9l4 4 10-10" stroke="#8a2530" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="rbpVLltvMNGOdghM4yhMx5"/></svg><div data-page-node-id="PPAPzoBpTSyrxSd0OB2sRA"><b data-page-node-id="ISe2dGJ0FsBZ7BQNVV7UCe">学生与通识读者</b><span data-page-node-id="o7jERjHUJMjkhZXHnkmfrX">篇幅短、文风好，是进入严肃历史阅读的经典第一站。</span></div></div><div class="fit" data-page-node-id="vLHyXhnSSduCClP8gqOK6S"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" data-page-node-id="hzy4cn5350VyypaiD6PEN8"><path d="M9 2v4M9 12v4M2 9h4M12 9h4" stroke="#bd6a73" stroke-width="2" stroke-linecap="round" data-page-node-id="gaCrNsFxFUfthNadxrAHfY"/></svg><div data-page-node-id="Roaqo6ipUKpTLBoH4SzUKj"><b data-page-node-id="kCdQNmbUSv0D7gKEFHTab8">所有读者</b><span data-page-node-id="xYNE93b0dmiIdGF9EZz5Ak">随笔体七章各自独立，可跳读；先读张居正或海瑞章节，最容易进入。</span></div></div></div>
+  </div>
+</section>
+</div>
+
+<footer data-page-node-id="NEH282KdXyziYCGnDEktOE">
+  <div class="line" data-page-node-id="lvtUTO0JDzqRBxUwXCoYFR"></div>
+  <b data-page-node-id="4DmdzBFOFD5R8cqYnrDwbK">《万历十五年（精装版）》精读笔记 · 读书摘要卡</b>
+  <p class="disclaim" data-page-node-id="V6hXCYbllX687YaOmlk30j">本页为基于该书公开核心观点整理的读书笔记，用于知识科普与个人学习参考，非原文逐字转载。书名、理论与观点版权归原作者及出版方所有。头图为明史专题配图（Wikimedia Commons，许可）。</p>
+</footer>
+
+<script>
+  var DOC_ARCHIVE = "../assets/hero/h15.jpg";
+  document.getElementById('hero').style.backgroundImage = "url('" + DOC_ARCHIVE + "')";
+  var wi = document.getElementById('who-img');
+  if (wi) wi.style.backgroundImage = "url('" + DOC_ARCHIVE + "')";
+
+  (function(){
+    var bar = document.getElementById('progress');
+    function upd(){
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.width = (max > 0 ? (h.scrollTop / max * 100) : 0) + '%';
+    }
+    window.addEventListener('scroll', upd, {passive:true});
+    window.addEventListener('resize', upd);
+    upd();
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《疯传》精读笔记 · 读书摘要卡</title>
+<meta name="description" content="乔纳·伯杰《疯传》读书笔记：STEPPS 六原则、口碑传播的科学、全书脉络与行动启发。">
+<style>
+  :root{
+    --paper:#f6f1e7;
+    --paper-2:#fbf8f1;
+    --ink:#2b2722;
+    --ink-soft:#5c554b;
+    --ink-faint:#8a8074;
+    --line:#e3dac8;
+    --accent:#a15c1c;      /* 琥珀赭 */
+    --accent-2:#c08a3e;    /* 亮琥珀 */
+    --gold:#a9852f;
+    --shadow:0 12px 40px rgba(43,39,34,.10);
+    --shadow-sm:0 4px 18px rgba(43,39,34,.08);
+    --serif:"Songti SC","Source Han Serif SC","Noto Serif SC",Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--sans);color:var(--ink);background:var(--paper);
+    background-image:
+      radial-gradient(circle at 18% 8%, rgba(192,138,62,.06), transparent 42%),
+      radial-gradient(circle at 84% 88%, rgba(161,92,28,.05), transparent 46%);
+    line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.035'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  body>*{position:relative;z-index:1;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
+  h1,h2,h3,.serif{font-family:var(--serif);}
+  ::selection{background:rgba(161,92,28,.18);}
+
+  #progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:99;
+    background:linear-gradient(90deg,var(--accent-2),var(--accent));transition:width .1s linear;}
+
+  /* ============ HERO ============ */
+  .hero{
+    position:relative;min-height:clamp(480px,72vh,640px);
+    display:flex;align-items:flex-end;
+    background-size:cover;background-position:center 40%;
+    color:#fdf8ee;overflow:hidden;
+  }
+  .hero::after{
+    content:"";position:absolute;inset:0;
+    background:
+      linear-gradient(180deg, rgba(30,22,12,.26) 0%, rgba(30,22,12,.36) 42%, rgba(24,17,9,.88) 100%),
+      linear-gradient(90deg, rgba(24,17,9,.58) 0%, rgba(24,17,9,0) 58%);
+  }
+  .hero-inner{position:relative;z-index:2;width:100%;max-width:1080px;margin:0 auto;padding:88px 28px 54px;}
+  .hero .kicker{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:13px;letter-spacing:.22em;text-transform:uppercase;
+    color:#f2ddb8;border:1px solid rgba(242,221,184,.45);
+    padding:6px 15px;border-radius:30px;margin-bottom:22px;backdrop-filter:blur(2px);
+  }
+  .hero h1{font-size:clamp(34px,6vw,62px);line-height:1.12;font-weight:700;letter-spacing:.01em;text-shadow:0 2px 24px rgba(0,0,0,.45);margin-bottom:10px;}
+  .hero .sub-en{font-family:var(--serif);font-style:italic;font-size:clamp(15px,2.4vw,22px);color:#ecd3a8;opacity:.92;margin-bottom:20px;}
+  .hero .lead{max-width:640px;font-size:clamp(15px,2vw,18px);color:#f4e9d6;}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:24px 34px;margin-top:30px;}
+  .hero-meta .m{display:flex;flex-direction:column;}
+  .hero-meta .m b{font-family:var(--serif);font-size:20px;color:#fff;}
+  .hero-meta .m span{font-size:12.5px;letter-spacing:.08em;color:#dcc59e;}
+
+  .ribbon{position:absolute;top:0;right:clamp(16px,5vw,52px);z-index:3;width:44px;
+    background:var(--accent);color:#fff;text-align:center;
+    padding:15px 0 24px;font-family:var(--serif);font-size:13px;letter-spacing:.14em;
+    box-shadow:0 6px 16px rgba(0,0,0,.32);}
+  .ribbon::after{content:"";position:absolute;left:0;bottom:-13px;border-width:0 22px 14px;border-style:solid;border-color:var(--accent) var(--accent) transparent;}
+  .ribbon span{writing-mode:vertical-rl;}
+
+  .toc-bar{background:var(--paper-2);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50;box-shadow:0 2px 14px rgba(43,39,34,.06);}
+  .toc-in{max-width:1080px;margin:0 auto;padding:10px 28px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .toc-in .lab{font-family:var(--serif);font-size:13px;color:var(--accent);letter-spacing:.1em;margin-right:6px;}
+  .toc-in a{font-size:12.5px;color:var(--ink-soft);text-decoration:none;padding:4px 11px;border-radius:20px;border:1px solid transparent;transition:all .18s;white-space:nowrap;}
+  .toc-in a:hover{color:var(--accent);border-color:rgba(161,92,28,.35);background:rgba(161,92,28,.05);}
+
+  section{padding:60px 0 56px;scroll-margin-top:64px;}
+  .sec-head{display:flex;align-items:center;gap:14px;margin-bottom:8px;}
+  .sec-no{font-family:var(--serif);font-size:14px;color:var(--accent);border:1px solid var(--accent);border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;flex:none;}
+  .sec-head h2{font-size:clamp(23px,3.4vw,31px);color:var(--ink);}
+  .sec-sub{color:var(--ink-faint);font-size:14.5px;margin-bottom:32px;padding-left:48px;}
+  @media(max-width:880px){.sec-sub{padding-left:0;}}
+
+  .divider{height:1px;background:linear-gradient(90deg,transparent,var(--line) 18%,var(--line) 82%,transparent);}
+
+  .bookcard{
+    display:grid;grid-template-columns:1.1fr 1fr;gap:34px;align-items:center;
+    background:var(--paper-2);border:1px solid var(--line);border-radius:18px;
+    padding:38px;box-shadow:var(--shadow);position:relative;overflow:hidden;
+  }
+  .bookcard::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:linear-gradient(var(--accent),var(--accent-2));}
+  .one-liner{font-family:var(--serif);font-size:clamp(19px,2.9vw,26px);line-height:1.55;color:var(--ink);}
+  .one-liner em{color:var(--accent);font-style:normal;}
+  .one-liner .rule{width:52px;height:3px;background:var(--accent);border-radius:2px;margin-top:18px;opacity:.85;}
+  .meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 22px;}
+  .meta-grid .cell span{display:block;font-size:12px;letter-spacing:.1em;color:var(--ink-faint);text-transform:uppercase;margin-bottom:3px;}
+  .meta-grid .cell b{font-family:var(--serif);font-size:16.5px;color:var(--ink);font-weight:600;line-height:1.45;}
+  @media(max-width:880px){.bookcard{grid-template-columns:1fr;padding:28px;gap:26px;}}
+
+  /* STEPPS 卡片 */
+  .stepps-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+  .stepps{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:24px;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s;}
+  .stepps:hover{transform:translateY(-3px);box-shadow:var(--shadow);}
+  .stepps .letter{
+    position:absolute;top:14px;right:18px;font-family:Georgia,serif;font-size:58px;line-height:1;
+    color:var(--accent);opacity:.10;font-weight:700;
+  }
+  .stepps .badge{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:44px;height:44px;border-radius:12px;margin-bottom:12px;
+    background:linear-gradient(150deg,var(--accent),var(--accent-2));
+    color:#fff;font-family:var(--serif);font-size:22px;font-weight:700;
+    box-shadow:0 4px 12px rgba(161,92,28,.28);
+  }
+  .stepps h3{font-size:18px;margin-bottom:2px;}
+  .stepps .en{font-size:12px;letter-spacing:.06em;color:var(--ink-faint);margin-bottom:6px;}
+  .stepps .slogan{font-family:var(--serif);font-style:italic;font-size:14.5px;color:var(--accent);margin-bottom:10px;}
+  .stepps p{font-size:14px;color:var(--ink-soft);line-height:1.65;}
+  .stepps .eg{margin-top:12px;font-size:13px;color:var(--accent);background:rgba(161,92,28,.06);border-radius:8px;padding:8px 11px;}
+  .stepps .eg b{font-weight:600;}
+  @media(max-width:880px){.stepps-grid{grid-template-columns:1fr;}}
+
+  .sys-note{margin-top:22px;background:var(--paper-2);border:1px dashed var(--accent-2);border-radius:12px;padding:18px 22px;font-size:14.5px;color:var(--ink-soft);}
+  .sys-note b{color:var(--accent);font-family:var(--serif);}
+
+  /* 流程时间轴 */
+  .flow{position:relative;padding-left:8px;}
+  .flow .step{display:grid;grid-template-columns:64px 1fr;gap:20px;position:relative;padding-bottom:28px;}
+  .flow .step:not(:last-child)::before{content:"";position:absolute;left:31px;top:48px;bottom:0;width:2px;background:linear-gradient(var(--accent-2),var(--line));}
+  .flow .node{width:64px;height:64px;border-radius:50%;background:var(--paper-2);border:2px solid var(--accent-2);display:flex;flex-direction:column;align-items:center;justify-content:center;flex:none;position:relative;z-index:2;box-shadow:0 3px 10px rgba(43,39,34,.08);}
+  .flow .node b{font-family:var(--serif);font-size:19px;color:var(--accent);line-height:1.1;}
+  .flow .node span{font-size:10px;color:var(--ink-faint);letter-spacing:.05em;}
+  .flow .body{padding-top:6px;}
+  .flow .body h3{font-size:18px;margin-bottom:5px;}
+  .flow .body h3 small{font-size:12.5px;color:var(--ink-faint);font-family:var(--sans);font-weight:400;margin-left:8px;}
+  .flow .body p{font-size:14px;color:var(--ink-soft);}
+  .flow .body .pill{display:inline-block;margin-top:8px;font-size:12px;color:var(--accent);background:rgba(161,92,28,.09);padding:3px 11px;border-radius:20px;}
+
+  /* 金句 */
+  .quotes{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
+  .quote{background:linear-gradient(160deg,#fbf8f1,#f3ecdd);border:1px solid var(--line);border-radius:16px;padding:30px 28px 26px;position:relative;box-shadow:var(--shadow);}
+  .quote .mark{font-family:Georgia,serif;font-size:64px;line-height:.4;color:var(--accent);opacity:.35;height:30px;}
+  .quote p{font-family:var(--serif);font-size:17.5px;line-height:1.6;color:var(--ink);margin-bottom:14px;}
+  .quote .src{font-size:13px;color:var(--ink-faint);letter-spacing:.04em;}
+  .quote.span2{grid-column:1/-1;background:linear-gradient(110deg,#2b2722,#3a342c);border-color:#241f1a;}
+  .quote.span2 p{color:#f6ecd9;font-size:20.5px;}
+  .quote.span2 .src{color:var(--accent-2);}
+  .quote.span2 .mark{color:var(--accent-2);}
+  @media(max-width:880px){.quotes{grid-template-columns:1fr;}}
+
+  /* 行动 */
+  .act-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+  .act{display:grid;grid-template-columns:46px 1fr;gap:16px;background:var(--paper-2);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:22px;transition:transform .2s,box-shadow .2s;}
+  .act:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm);}
+  .act .num{font-family:var(--serif);font-size:26px;color:var(--accent);line-height:1.1;}
+  .act h3{font-size:16.5px;margin-bottom:5px;}
+  .act p{font-size:13.5px;color:var(--ink-soft);line-height:1.65;}
+  @media(max-width:880px){.act-grid{grid-template-columns:1fr;}}
+
+  /* 适合谁读 */
+  .split{display:grid;grid-template-columns:1fr 1.15fr;gap:30px;align-items:stretch;}
+  .split .imgcol{border-radius:16px;overflow:hidden;min-height:320px;background-size:cover;background-position:center;box-shadow:var(--shadow);position:relative;}
+  .split .imgcol::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,22,16,0) 42%,rgba(28,22,16,.58));}
+  .split .imgcol .cap{position:absolute;left:22px;bottom:18px;z-index:2;color:#f3e8d6;font-family:var(--serif);font-size:15px;}
+  .fit-list{display:flex;flex-direction:column;gap:14px;}
+  .fit{display:flex;gap:13px;background:var(--paper-2);border:1px solid var(--line);border-radius:12px;padding:16px 18px;align-items:flex-start;}
+  .fit svg{flex:none;margin-top:3px;}
+  .fit b{font-family:var(--serif);font-size:15.5px;display:block;margin-bottom:2px;}
+  .fit span{font-size:13.5px;color:var(--ink-soft);}
+  @media(max-width:880px){.split{grid-template-columns:1fr;}}
+
+  footer{padding:46px 28px 60px;text-align:center;color:var(--ink-faint);font-size:13px;}
+  footer .line{width:60px;height:3px;background:var(--accent);margin:0 auto 20px;border-radius:3px;}
+  footer b{font-family:var(--serif);color:var(--ink-soft);}
+  .disclaim{margin-top:10px;font-size:12px;color:var(--ink-faint);max-width:680px;margin-left:auto;margin-right:auto;line-height:1.7;}
+
+  @media print{
+    #progress,.toc-bar,.ribbon{display:none;}
+    body::before{display:none;}
+    section{padding:28px 0;}
+    .stepps,.act,.quote{break-inside:avoid;}
+  }
+
+  /* ===== 系列互链 ===== */
+  .more-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .more{
+    display:flex;flex-direction:column;gap:3px;background:var(--paper-2);
+    border:1px solid var(--line);border-left:4px solid var(--mc);border-radius:12px;
+    padding:16px 18px;text-decoration:none;color:inherit;
+  }
+  a.more:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm,0 4px 18px rgba(43,39,34,.08));}
+  .more b{font-family:var(--serif);font-size:15.5px;}
+  .more i{font-style:normal;font-size:12.5px;color:var(--ink-faint);}
+  .more.current{opacity:.75;background:var(--paper);}
+  .more.current i{color:var(--accent);}
+  .more-all{display:inline-flex;margin-top:18px;font-size:13.5px;color:var(--accent);
+    border:1px solid var(--line);background:var(--paper-2);padding:9px 18px;border-radius:24px;text-decoration:none;transition:all .18s;}
+  .more-all:hover{border-color:var(--accent);background:rgba(154,59,46,.05);}
+  @media(max-width:880px){.more-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<header class="hero" id="hero">
+  <div class="ribbon"><span>读书笔记</span></div>
+  <div class="hero-inner">
+    <span class="kicker">精读笔记 · 摘要卡</span>
+    <h1>《疯传》</h1>
+    <div class="sub-en">Contagious: Why Things Catch On &nbsp;·&nbsp; Jonah Berger</div>
+    <p class="lead">为什么有些产品、思想和内容能口口相传，有些却无人问津？沃顿商学院教授用二十年行为科学研究告诉你：流行的背后不是运气，而是一套可以被设计的心理学。</p>
+    <div class="hero-meta">
+      <div class="m"><b>沃顿商学院</b><span>作者任教机构</span></div>
+      <div class="m"><b>6 大原则</b><span>STEPPS 传播框架</span></div>
+      <div class="m"><b>20%–50%</b><span>购买决策受口碑影响</span></div>
+      <div class="m"><b>引言 + 6 章</b><span>全书结构</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="toc-bar" aria-label="页面目录">
+  <div class="toc-in">
+    <span class="lab">目录</span>
+    <a href="#info">书籍信息</a>
+    <a href="#stepps">STEPPS 六原则</a>
+    <a href="#checklist">使用心法</a>
+    <a href="#flow">章节脉络</a>
+    <a href="#quotes">金句</a>
+    <a href="#actions">行动启发</a>
+    <a href="#who">适合谁读</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <section id="info">
+    <div class="sec-head"><div class="sec-no">01</div><h2>这本书讲了什么</h2></div>
+    <p class="sec-sub">一句话总览 + 核心信息卡</p>
+    <div class="bookcard">
+      <div>
+        <div class="one-liner">
+          流行不靠运气，也未必靠广告砸钱。<em>口口相传</em>才是最高效的传播，而口碑可以被<em>科学设计</em>。<br>
+          掌握 STEPPS 六原则，让你的产品、思想与内容，像病毒一样被<em>主动分享</em>。
+        </div>
+        <div class="rule"></div>
+      </div>
+      <div class="meta-grid">
+        <div class="cell"><span>作者</span><b>乔纳·伯杰（Jonah Berger）</b></div>
+        <div class="cell"><span>作者身份</span><b>沃顿商学院营销学教授</b></div>
+        <div class="cell"><span>领域</span><b>市场营销 / 行为科学</b></div>
+        <div class="cell"><span>核心命题</span><b>流行背后的六大传播原则</b></div>
+        <div class="cell"><span>首次出版</span><b>2013 年</b></div>
+        <div class="cell"><span>姊妹篇</span><b>《传染》《催化剂》</b></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="stepps">
+    <div class="sec-head"><div class="sec-no">02</div><h2>核心框架：STEPPS 六原则</h2></div>
+    <p class="sec-sub">让事物"疯传"的六个开关——每个原则都经过大量实验验证</p>
+    <div class="stepps-grid">
+      <div class="stepps">
+        <div class="letter">S</div>
+        <div class="badge">S</div>
+        <h3>社交货币</h3>
+        <div class="en">Social Currency</div>
+        <div class="slogan">"我们分享那些让我们显得更好的东西。"</div>
+        <p>谈资就是货币。稀缺、新奇、能体现身份的内容，让人分享时"有面子"：内在吸引力、游戏杠杆、专属感，都是铸造社交货币的方式。</p>
+        <div class="eg"><b>例：</b>隐藏酒吧 "Please Don't Tell" 靠电话亭入口与"别外传"，反而人尽皆知。</div>
+      </div>
+      <div class="stepps">
+        <div class="letter">T</div>
+        <div class="badge">T</div>
+        <h3>诱因</h3>
+        <div class="en">Triggers</div>
+        <div class="slogan">"顶尖于脑，方能出口成舌。"</div>
+        <p>被想起，才会被谈论。把产品与高频、贴近使用场景的线索绑定，就能获得持续的口头传播——诱因比话题性更能带来长期口碑。</p>
+        <div class="eg"><b>例：</b>"奇巧巧克力配咖啡"——用无处不在的咖啡，激活吃巧克力的念头。</div>
+      </div>
+      <div class="stepps">
+        <div class="letter">E</div>
+        <div class="badge">E</div>
+        <h3>情绪</h3>
+        <div class="en">Emotion</div>
+        <div class="slogan">"我们在乎，所以我们分享。"</div>
+        <p>情绪是分享的燃料，但不是所有情绪都有效：<b>高唤醒</b>情绪（敬畏、兴奋、幽默、愤怒）催促人们行动与转发；满足、悲伤等低唤醒情绪则会让人安静下来。</p>
+        <div class="eg"><b>例：</b>《纽约时报》转发榜分析显示，敬畏类与实用类文章被转发最多。</div>
+      </div>
+      <div class="stepps">
+        <div class="letter">P</div>
+        <div class="badge">P</div>
+        <h3>公开性</h3>
+        <div class="en">Public</div>
+        <div class="slogan">"为展示而生，为增长而长。"</div>
+        <p>人们会模仿看得见的行为。让产品、使用痕迹变得可观察——logo 外置、颜色可辨、留下"行为剩余"，就是把每位用户变成广告牌。</p>
+        <div class="eg"><b>例：</b>Hotmail 在每封邮件尾部加一行免费注册链接，靠用户自己实现裂变。</div>
+      </div>
+      <div class="stepps">
+        <div class="letter">P</div>
+        <div class="badge">P</div>
+        <h3>实用价值</h3>
+        <div class="en">Practical Value</div>
+        <div class="slogan">"有用的新闻，人人愿意转发。"</div>
+        <p>人们乐于分享省钱、省时的有用信息，帮别人就是帮自己。关键在于包装"价值感"：折扣的表达方式（100 法则）、惊喜价格都能放大实惠感。</p>
+        <div class="eg"><b>例：</b>86 岁老人拍视频讲"买玉米的小窍门"，成为早期最火的病毒视频之一。</div>
+      </div>
+      <div class="stepps">
+        <div class="letter">S</div>
+        <div class="badge">S</div>
+        <h3>故事</h3>
+        <div class="en">Stories</div>
+        <div class="slogan">"信息总是藏在闲谈的外衣下传播。"</div>
+        <p>人们不是在传递信息，而是在讲故事。故事是特洛伊木马——信息要藏进去被一同带走。但故事必须与品牌相关，否则只是徒劳的借势。</p>
+        <div class="eg"><b>例：</b>多芬"真美运动"用一个关于审美偏见的故事，承载品牌理念广泛传播。</div>
+      </div>
+    </div>
+    <div class="sys-note">
+      <b>关键洞察 —</b> 六原则不是六选一的菜单，而是<b>叠加增益</b>的检查清单：符合的原则越多，事物越可能被传播。口碑的秘密不在于找到"网红"，而在于把传播基因设计进产品与内容本身。
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="checklist">
+    <div class="sec-head"><div class="sec-no">03</div><h2>使用心法：三个常见误区</h2></div>
+    <p class="sec-sub">用 STEPPS 之前，先避开这几个坑</p>
+    <div class="act-grid">
+      <div class="act"><div class="num">误</div><div><h3>误区一：认为"病毒传播=找大号转发"</h3><p>信息本身不具传播基因，投再多渠道也只是广告，不是口碑。先问：我的内容本身值得被谈论吗？</p></div></div>
+      <div class="act"><div class="num">误</div><div><h3>误区二：只追求"有意思"</h3><p>有趣只提供社交货币，缺乏诱因的话题会迅速降温。有趣 × 可被反复触发的场景，才有持续口碑。</p></div></div>
+      <div class="act"><div class="num">误</div><div><h3>误区三：故事与品牌脱钩</h3><p>借势热点若与产品无关联，人们记住了故事、忘记了品牌。特洛伊木马里必须装着你的"士兵"。</p></div></div>
+      <div class="act"><div class="num">误</div><div><h3>误区四：把"公开化"做反了</h3><p>禁毒广告强调"人人都吸过大麻"，反而放大了从众。公开性要展示你想扩散的行为，而非想抑制的行为。</p></div></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="flow">
+    <div class="sec-head"><div class="sec-no">04</div><h2>全书脉络图</h2></div>
+    <p class="sec-sub">引言立论，六章各拆一个原则，逐一配以实验与案例</p>
+    <div class="flow">
+      <div class="step">
+        <div class="node"><b>引</b><span>INTRO</span></div>
+        <div class="body">
+          <h3>为什么会流行<small>Introduction</small></h3>
+          <p>口碑影响 20%–50% 的购买决策。流行不是随机事件——是社会传播的科学。</p>
+          <span class="pill">立论 · 口碑优于广告</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="node"><b>S</b><span>CH.1</span></div>
+        <div class="body">
+          <h3>社交货币<small>Chapter 1</small></h3>
+          <p>内在吸引力、杠杆原理、游戏竞赛、专属感——铸造让人们愿意谈论你的"货币"。</p>
+          <span class="pill">谈资 · 身份表达</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="node"><b>T</b><span>CH.2</span></div>
+        <div class="body">
+          <h3>诱因<small>Chapter 2</small></h3>
+          <p>即时口碑 vs 持续口碑：玛氏棒与火星任务、周五的歌。有效诱因 = 高频 + 场景贴近。</p>
+          <span class="pill">记忆 · 场景绑定</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="node"><b>E</b><span>CH.3</span></div>
+        <div class="body">
+          <h3>情绪<small>Chapter 3</small></h3>
+          <p>敬畏的力量与生理唤醒：高唤醒情绪点燃分享之火，低唤醒情绪让传播熄火。</p>
+          <span class="pill">唤醒 · 转发动机</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="node"><b>P</b><span>CH.4</span></div>
+        <div class="body">
+          <h3>公开性<small>Chapter 4</small></h3>
+          <p>模仿心理学与可观察性：蓄须潮、Hotmail、行为剩余——让看不见的使用被看见。</p>
+          <span class="pill">可见 · 社会证明</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="node"><b>P</b><span>CH.5</span></div>
+        <div class="body">
+          <h3>实用价值<small>Chapter 5</small></h3>
+          <p>交易心理学与 100 法则：同样优惠换个说法，感知价值截然不同；有用即流量。</p>
+          <span class="pill">价值 · 省钱心理学</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="node"><b>S</b><span>CH.6</span></div>
+        <div class="body">
+          <h3>故事<small>Chapter 6</small></h3>
+          <p>建造你的特洛伊木马：把想传播的信息织进人们愿意复述的故事里。</p>
+          <span class="pill">叙事 · 信息载体</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="quotes">
+    <div class="sec-head"><div class="sec-no">05</div><h2>金句摘录</h2></div>
+    <p class="sec-sub">值得抄进笔记本、贴在书桌前的句子（据核心观点转述）</p>
+    <div class="quotes">
+      <div class="quote">
+        <div class="mark">&ldquo;</div>
+        <p>人们分享的从来不只是信息，还有分享时自己显得更聪明、更在行的那份感觉。</p>
+        <div class="src">—— 论社交货币</div>
+      </div>
+      <div class="quote">
+        <div class="mark">&ldquo;</div>
+        <p>顶尖于脑，方能出口成舌——被想起的产品，才会被谈论。</p>
+        <div class="src">—— 论诱因与持续口碑</div>
+      </div>
+      <div class="quote">
+        <div class="mark">&ldquo;</div>
+        <p>我们在乎，所以我们分享；能点燃行动的，是让人心跳加速的情绪。</p>
+        <div class="src">—— 论高唤醒情绪</div>
+      </div>
+      <div class="quote">
+        <div class="mark">&ldquo;</div>
+        <p>为展示而生的产品，自己就会生长——看得见的使用，就是无声的广告。</p>
+        <div class="src">—— 论公开性与行为剩余</div>
+      </div>
+      <div class="quote span2">
+        <div class="mark">&ldquo;</div>
+        <p>流行的背后从来不是运气，而是一套可以被理解、被设计的心理学。</p>
+        <div class="src">—— 全书核心命题</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="actions">
+    <div class="sec-head"><div class="sec-no">06</div><h2>对工作与传播的行动启发</h2></div>
+    <p class="sec-sub">把传播科学变成可执行的动作（尤其适合内容创作）</p>
+    <div class="act-grid">
+      <div class="act"><div class="num">1</div><div><h3>给内容注入社交货币</h3><p>写东西前先问：读者转发这条内容时，会在朋友面前显得怎样？让他显得有品味、有信息差。</p></div></div>
+      <div class="act"><div class="num">2</div><div><h3>绑定一个高频诱因</h3><p>把你的主题与一个日常场景挂钩（"早上通勤""周五晚上"），让读者每到那个时刻就想起你。</p></div></div>
+      <div class="act"><div class="num">3</div><div><h3>用高唤醒情绪开头</h3><p>敬畏、惊讶、幽默、愤怒比"还不错"更有传播力。开头三秒就要让情绪升温，而不是慢慢铺垫。</p></div></div>
+      <div class="act"><div class="num">4</div><div><h3>让你的成果被看见</h3><p>把看不见的价值可视化：案例截图、数据对比、可转发的金句卡——给用户留下"行为剩余"。</p></div></div>
+      <div class="act"><div class="num">5</div><div><h3>善用"100 法则"表达价值</h3><p>低于 100 元的商品用百分比折扣（"省 20%"），高于 100 元用金额（"立减 200"），感知更划算。</p></div></div>
+      <div class="act"><div class="num">6</div><div><h3>把信息织进故事</h3><p>别单发观点，讲一个人物遇到问题、解决问题的小故事，让你的核心观点藏在里面被一起带走。</p></div></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="who">
+    <div class="sec-head"><div class="sec-no">07</div><h2>这本书适合谁读</h2></div>
+    <p class="sec-sub">如果你符合其中一条，它都值得放进书单</p>
+    <div class="split">
+      <div class="imgcol" id="who-img">
+        <div class="cap">让好内容自己长出翅膀</div>
+      </div>
+      <div class="fit-list">
+        <div class="fit"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 9l4 4 10-10" stroke="#a15c1c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>营销、品牌与增长从业者</b><span>一本把"口碑"从玄学变成工程学的操作手册。</span></div></div>
+        <div class="fit"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 9l4 4 10-10" stroke="#a15c1c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>内容创作者与自媒体人</b><span>写公众号、做短视频都想被转发？STEPPS 就是转发动机的拆解图。</span></div></div>
+        <div class="fit"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 9l4 4 10-10" stroke="#a15c1c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>创业者与产品人</b><span>预算有限时，把传播基因设计进产品本身，比投广告更划算。</span></div></div>
+        <div class="fit"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2v4M9 12v4M2 9h4M12 9h4" stroke="#c08a3e" stroke-width="2" stroke-linecap="round"/></svg><div><b>读前提示</b><span>案例密集、节奏轻快，可直接按章节挑读；建议每章对照自己的产品做一次 STEPPS 自检。</span></div></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+
+  <div class="divider"></div>
+
+  <section id="more">
+    <div class="sec-head"><div class="sec-no">&rarr;</div><h2>读书笔记系列</h2></div>
+    <p class="sec-sub">同一系列的精读摘要卡，可继续翻阅</p>
+    <div class="more-grid">
+    <span class="more current" style="--mc:#a15c1c"><b>《疯传》</b><i>STEPPS 六原则 · 当前阅读</i></span>
+    <a class="more" href="思考快与慢.html" style="--mc:#9a3b2e"><b>《思考，快与慢》</b><i>双系统 · 认知偏误</i></a>
+    <a class="more" href="传染.html" style="--mc:#2e5a77"><b>《传染》</b><i>社会影响 · 最优差异化</i></a>
+    </div>
+    <a class="more-all" href="book-notes.html">查看全部读书笔记 &rarr;</a>
+  </section>
+
+<footer>
+  <div class="line"></div>
+  <b>《疯传》精读笔记 · 读书摘要卡</b>
+  <p class="disclaim">本页为基于该书公开核心观点整理的读书笔记，用于知识科普与个人学习参考，非原文逐字转载。书名、理论与观点版权归原作者及出版方所有。头图为纽约公共图书馆玫瑰阅览室，来自 Wikimedia Commons。</p>
+</footer>
+
+<script>
+  var DOC_ARCHIVE = "../assets/hero/h38.jpg";
+  document.getElementById('hero').style.backgroundImage = "url('" + DOC_ARCHIVE + "')";
+  document.getElementById('who-img').style.backgroundImage = "url('" + DOC_ARCHIVE + "')";
+
+  (function(){
+    var bar = document.getElementById('progress');
+    function upd(){
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.width = (max > 0 ? (h.scrollTop / max * 100) : 0) + '%';
+    }
+    window.addEventListener('scroll', upd, {passive:true});
+    window.addEventListener('resize', upd);
+    upd();
+  })();
+</script>
+
+</body>
+</html>

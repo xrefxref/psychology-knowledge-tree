@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《铁皮鼓（同名电影原著）》精读笔记 · 读书摘要卡</title>
+<meta name="description" content="三岁那年，奥斯卡看清了大人的世界，决定不再长高。此后二十年，他敲着铁皮鼓、用尖叫震碎玻璃，冷眼看德意志如何一步步走进疯狂。">
+<style>
+  :root{
+    --paper:#f4f2ed;
+    --paper-2:#faf9f5;
+    --ink:#252a2e;
+    --ink-soft:#535b62;
+    --ink-faint:#848d94;
+    --line:#dde0dd;
+    --accent:#4a5568;
+    --accent-2:#8a95a8;
+    --warm:#6d624e;
+    --shadow:0 12px 40px rgba(37,42,46,.10);
+    --shadow-sm:0 4px 18px rgba(37,42,46,.08);
+    --serif:"Songti SC","Source Han Serif SC","Noto Serif SC",Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--sans);color:var(--ink);background:var(--paper);
+    background-image:
+      radial-gradient(circle at 18% 8%, rgba(138,149,168,0.08), transparent 42%),
+      radial-gradient(circle at 84% 88%, rgba(74,85,104,0.06), transparent 46%);
+    line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.035'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  body>*{position:relative;z-index:1;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
+  h1,h2,h3,.serif{font-family:var(--serif);}
+  ::selection{background:rgba(74,85,104,0.18);}
+
+  #progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:99;
+    background:linear-gradient(90deg,var(--accent-2),var(--accent));transition:width .1s linear;}
+
+  .hero{
+    position:relative;min-height:clamp(480px,72vh,640px);
+    display:flex;align-items:flex-end;
+    background-size:cover;background-position:center 45%;
+    color:#f5f7f8;overflow:hidden;
+  }
+  .hero::after{
+    content:"";position:absolute;inset:0;
+    background:
+      linear-gradient(180deg, rgba(36,42,52,0.3) 0%, rgba(36,42,52,0.42) 42%, rgba(23,27,33,0.9) 100%),
+      linear-gradient(90deg, rgba(23,27,33,0.58) 0%, rgba(23,27,33,0) 58%);
+  }
+  .hero-inner{position:relative;z-index:2;width:100%;max-width:1080px;margin:0 auto;padding:88px 28px 54px;}
+  .hero .kicker{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:13px;letter-spacing:.22em;text-transform:uppercase;
+    color:#8a95a8;border:1px solid rgba(138,149,168,0.45);
+    padding:6px 15px;border-radius:30px;margin-bottom:22px;backdrop-filter:blur(2px);
+  }
+  .hero h1{font-size:clamp(34px,6vw,62px);line-height:1.12;font-weight:700;letter-spacing:.01em;text-shadow:0 2px 24px rgba(0,0,0,.45);margin-bottom:10px;}
+  .hero .sub-en{font-family:var(--serif);font-style:italic;font-size:clamp(15px,2.4vw,22px);color:#8a95a8;opacity:.92;margin-bottom:20px;}
+  .hero .lead{max-width:640px;font-size:clamp(15px,2vw,18px);color:#e8edf1;}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:24px 34px;margin-top:30px;}
+  .hero-meta .m{display:flex;flex-direction:column;}
+  .hero-meta .m b{font-family:var(--serif);font-size:20px;color:#fff;}
+  .hero-meta .m span{font-size:12.5px;letter-spacing:.08em;color:#8a95a8;}
+
+  .ribbon{position:absolute;top:0;right:clamp(16px,5vw,52px);z-index:3;width:44px;
+    background:var(--accent);color:#fff;text-align:center;
+    padding:15px 0 24px;font-family:var(--serif);font-size:13px;letter-spacing:.14em;
+    box-shadow:0 6px 16px rgba(0,0,0,.32);}
+  .ribbon::after{content:"";position:absolute;left:0;bottom:-13px;border-width:0 22px 14px;border-style:solid;border-color:var(--accent) var(--accent) transparent;}
+  .ribbon span{writing-mode:vertical-rl;}
+
+  .toc-bar{background:var(--paper-2);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50;box-shadow:0 2px 14px rgba(37,42,46,.06);}
+  .toc-in{max-width:1080px;margin:0 auto;padding:10px 28px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .toc-in .lab{font-family:var(--serif);font-size:13px;color:var(--accent);letter-spacing:.1em;margin-right:6px;}
+  .toc-in a{font-size:12.5px;color:var(--ink-soft);text-decoration:none;padding:4px 11px;border-radius:20px;border:1px solid transparent;transition:all .18s;white-space:nowrap;}
+  .toc-in a:hover{color:var(--accent);border-color:rgba(74,85,104,0.35);background:rgba(74,85,104,0.05);}
+
+  section{padding:60px 0 56px;scroll-margin-top:64px;}
+  .sec-head{display:flex;align-items:center;gap:14px;margin-bottom:8px;}
+  .sec-no{font-family:var(--serif);font-size:14px;color:var(--accent);border:1px solid var(--accent);border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;flex:none;}
+  .sec-head h2{font-size:clamp(23px,3.4vw,31px);color:var(--ink);}
+  .sec-sub{color:var(--ink-faint);font-size:14.5px;margin-bottom:32px;padding-left:48px;}
+  @media(max-width:880px){.sec-sub{padding-left:0;}}
+
+  .divider{height:1px;background:linear-gradient(90deg,transparent,var(--line) 18%,var(--line) 82%,transparent);}
+
+  .bookcard{
+    display:grid;grid-template-columns:1.1fr 1fr;gap:34px;align-items:center;
+    background:var(--paper-2);border:1px solid var(--line);border-radius:18px;
+    padding:38px;box-shadow:var(--shadow);position:relative;overflow:hidden;
+  }
+  .bookcard::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:linear-gradient(var(--accent),var(--accent-2));}
+  .one-liner{font-family:var(--serif);font-size:clamp(19px,2.9vw,26px);line-height:1.55;color:var(--ink);}
+  .one-liner em{color:var(--accent);font-style:normal;}
+  .one-liner .rule{width:52px;height:3px;background:var(--accent);border-radius:2px;margin-top:18px;opacity:.85;}
+  .meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 22px;}
+  .meta-grid .cell span{display:block;font-size:12px;letter-spacing:.1em;color:var(--ink-faint);text-transform:uppercase;margin-bottom:3px;}
+  .meta-grid .cell b{font-family:var(--serif);font-size:16.5px;color:var(--ink);font-weight:600;line-height:1.45;}
+  @media(max-width:880px){.bookcard{grid-template-columns:1fr;padding:28px;gap:26px;}}
+
+  .sys-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .sys{border-radius:16px;padding:30px 28px;color:#fff;position:relative;overflow:hidden;box-shadow:var(--shadow);}
+  .sys.s1{background:linear-gradient(150deg,#4a5568,#353d4a);}
+  .sys.s2{background:linear-gradient(150deg,#6d624e,#504839);}
+  .sys.s3{background:linear-gradient(150deg,#8a95a8,#4a5568);}
+  .sys.s4{background:linear-gradient(150deg,#2c323e,#20252e);}
+  .sys .tag{font-size:12px;letter-spacing:.16em;opacity:.88;text-transform:uppercase;}
+  .sys h3{font-size:25px;margin:6px 0 4px;}
+  .sys .tagline{font-family:var(--serif);font-style:italic;font-size:15.5px;opacity:.92;margin-bottom:16px;}
+  .sys ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+  .sys li{display:flex;gap:10px;font-size:14px;line-height:1.55;align-items:flex-start;}
+  .sys li svg{flex:none;margin-top:4px;}
+  .sys .speed{display:inline-flex;align-items:baseline;gap:8px;margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.22);}
+  .sys .speed b{font-size:24px;font-family:var(--serif);}
+  .sys .speed span{font-size:12.5px;opacity:.82;}
+  @media(max-width:880px){.sys-grid{grid-template-columns:1fr;}}
+
+  .stage-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;}
+  .stage{border-radius:16px;padding:26px 22px;color:#fff;position:relative;overflow:hidden;box-shadow:var(--shadow);}
+  .stage .no{font-family:var(--serif);font-size:15px;opacity:.85;letter-spacing:.12em;}
+  .stage h3{font-size:21px;margin:5px 0 3px;}
+  .stage .tagline{font-family:var(--serif);font-style:italic;font-size:13.5px;opacity:.9;margin-bottom:13px;}
+  .stage ul{list-style:none;display:flex;flex-direction:column;gap:9px;}
+  .stage li{display:flex;gap:9px;font-size:13.5px;line-height:1.55;align-items:flex-start;}
+  .stage li svg{flex:none;margin-top:3px;}
+  .stage::after{content:"→";position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:26px;opacity:.55;color:#fff;}
+  .stage:last-child::after{content:"";}
+
+  .vs-wrap{margin-top:26px;background:var(--paper-2);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .vs-head{display:grid;grid-template-columns:1.1fr 1fr 1fr;background:linear-gradient(90deg,rgba(74,85,104,0.1),rgba(109,98,78,0.1));border-bottom:1px solid var(--line);}
+  .vs-head div{padding:14px 18px;font-family:var(--serif);font-size:15px;}
+  .vs-head .h1c{color:var(--accent);}
+  .vs-head .h2c{color:var(--warm);}
+  .vs-row{display:grid;grid-template-columns:1.1fr 1fr 1fr;border-bottom:1px solid var(--line);}
+  .vs-row:last-child{border-bottom:none;}
+  .vs-row:nth-child(odd){background:rgba(244,242,237,.55);}
+  .vs-row .dim{padding:12px 18px;font-size:13px;color:var(--ink-faint);letter-spacing:.04em;display:flex;align-items:center;}
+  .vs-row .v1{padding:12px 18px;font-size:13.5px;color:var(--ink-soft);border-left:1px dashed var(--line);display:flex;align-items:center;}
+  .vs-row .v2{padding:12px 18px;font-size:13.5px;color:var(--ink-soft);border-left:1px dashed var(--line);display:flex;align-items:center;}
+  @media(max-width:680px){
+    .vs-head.v3{grid-template-columns:1fr 1fr;} .vs-head.v3 .h0{display:none;}
+    .vs-row.v3{grid-template-columns:1fr;padding:10px 0;}
+    .vs-row.v3 .dim{grid-column:1/-1;padding:4px 18px 2px;font-family:var(--serif);color:var(--accent);font-size:13.5px;}
+    .vs-row.v3 .v1,.vs-row.v3 .v2{border-left:none;padding:2px 18px;}
+    .vs-row.v3 .v1::before{content:"甲面　";color:var(--accent);font-weight:600;}
+    .vs-row.v3 .v2::before{content:"乙面　";color:var(--warm);font-weight:600;}
+  }
+
+  .sys-note{margin-top:22px;background:var(--paper-2);border:1px dashed var(--accent-2);border-radius:12px;padding:18px 22px;font-size:14.5px;color:var(--ink-soft);}
+  .sys-note b{color:var(--accent);font-family:var(--serif);}
+
+  .spectrum{margin-top:26px;background:var(--paper-2);border:1px solid var(--line);border-radius:16px;
+    padding:30px 30px 24px;box-shadow:var(--shadow);}
+  .spectrum h3{font-size:19px;margin-bottom:4px;}
+  .spectrum .en{font-size:12.5px;letter-spacing:.06em;color:var(--ink-faint);margin-bottom:18px;}
+  .spectrum svg{width:100%;height:auto;display:block;}
+  .spectrum .cap{margin-top:14px;font-size:13.5px;color:var(--ink-soft);line-height:1.7;}
+  .spectrum .cap b{color:var(--accent);font-family:var(--serif);}
+
+  .fx-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+  .fx{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:24px;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s;}
+  .fx:hover{transform:translateY(-3px);box-shadow:var(--shadow);}
+  .fx .ic{width:42px;height:42px;border-radius:11px;background:rgba(74,85,104,0.09);display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+  .fx h3{font-size:18px;margin-bottom:3px;}
+  .fx .en{font-size:12px;letter-spacing:.06em;color:var(--ink-faint);margin-bottom:11px;}
+  .fx p{font-size:14px;color:var(--ink-soft);line-height:1.65;}
+  .fx .eg{margin-top:12px;font-size:13px;color:var(--accent);background:rgba(74,85,104,0.06);border-radius:8px;padding:8px 11px;}
+  .fx .eg b{font-weight:600;}
+  @media(max-width:880px){.fx-grid{grid-template-columns:1fr;}}
+
+  .flow{position:relative;padding-left:8px;}
+  .flow .step{display:grid;grid-template-columns:64px 1fr;gap:20px;position:relative;padding-bottom:28px;}
+  .flow .step:not(:last-child)::before{content:"";position:absolute;left:31px;top:48px;bottom:0;width:2px;background:linear-gradient(var(--accent-2),var(--line));}
+  .flow .node{width:64px;height:64px;border-radius:50%;background:var(--paper-2);border:2px solid var(--accent-2);display:flex;flex-direction:column;align-items:center;justify-content:center;flex:none;position:relative;z-index:2;box-shadow:0 3px 10px rgba(37,42,46,.08);}
+  .flow .node b{font-family:var(--serif);font-size:17px;color:var(--accent);line-height:1.15;}
+  .flow .node span{font-size:10px;color:var(--ink-faint);letter-spacing:.05em;}
+  .flow .body{padding-top:6px;}
+  .flow .body h3{font-size:18px;margin-bottom:5px;}
+  .flow .body h3 small{font-size:12.5px;color:var(--ink-faint);font-family:var(--sans);font-weight:400;margin-left:8px;}
+  .flow .body p{font-size:14px;color:var(--ink-soft);}
+  .flow .body .pill{display:inline-block;margin-top:8px;font-size:12px;color:var(--warm);background:rgba(109,98,78,0.1);padding:3px 11px;border-radius:20px;}
+
+  .quotes{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
+  .quote{background:linear-gradient(160deg,#faf9f5,#eef0ef);border:1px solid var(--line);border-radius:16px;padding:30px 28px 26px;position:relative;box-shadow:var(--shadow);}
+  .quote .mark{font-family:Georgia,serif;font-size:64px;line-height:.4;color:var(--accent);opacity:.35;height:30px;}
+  .quote p{font-family:var(--serif);font-size:17.5px;line-height:1.6;color:var(--ink);margin-bottom:14px;}
+  .quote .src{font-size:13px;color:var(--ink-faint);letter-spacing:.04em;}
+  .quote.span2{grid-column:1/-1;background:linear-gradient(110deg,#242a34,#171b21);border-color:#1c2129;}
+  .quote.span2 p{color:#e9eef2;font-size:20.5px;}
+  .quote.span2 .src{color:var(--accent-2);}
+  .quote.span2 .mark{color:var(--accent-2);}
+  @media(max-width:880px){.quotes{grid-template-columns:1fr;}}
+
+  .act-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+  .act{display:grid;grid-template-columns:46px 1fr;gap:16px;background:var(--paper-2);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:22px;transition:transform .2s,box-shadow .2s;}
+  .act:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm);}
+  .act .num{font-family:var(--serif);font-size:26px;color:var(--accent);line-height:1.1;}
+  .act h3{font-size:16.5px;margin-bottom:5px;}
+  .act p{font-size:13.5px;color:var(--ink-soft);line-height:1.65;}
+  @media(max-width:880px){.act-grid{grid-template-columns:1fr;}}
+
+  .split{display:grid;grid-template-columns:1fr 1.15fr;gap:30px;align-items:stretch;}
+  .split .imgcol{border-radius:16px;overflow:hidden;min-height:320px;background-size:cover;background-position:center;box-shadow:var(--shadow);position:relative;}
+  .split .imgcol::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,26,34,0) 42%,rgba(23,27,33,0.62));}
+  .split .imgcol .cap{position:absolute;left:22px;bottom:18px;z-index:2;color:#e5ebf0;font-family:var(--serif);font-size:15px;}
+  .fit-list{display:flex;flex-direction:column;gap:14px;}
+  .fit{display:flex;gap:13px;background:var(--paper-2);border:1px solid var(--line);border-radius:12px;padding:16px 18px;align-items:flex-start;}
+  .fit svg{flex:none;margin-top:3px;}
+  .fit b{font-family:var(--serif);font-size:15.5px;display:block;margin-bottom:2px;}
+  .fit span{font-size:13.5px;color:var(--ink-soft);}
+  @media(max-width:880px){.split{grid-template-columns:1fr;}}
+
+  footer{padding:46px 28px 60px;text-align:center;color:var(--ink-faint);font-size:13px;}
+  footer .line{width:60px;height:3px;background:var(--accent);margin:0 auto 20px;border-radius:3px;}
+  footer b{font-family:var(--serif);color:var(--ink-soft);}
+  .disclaim{margin-top:10px;font-size:12px;color:var(--ink-faint);max-width:680px;margin-left:auto;margin-right:auto;line-height:1.7;}
+
+  @media print{
+    #progress,.toc-bar,.ribbon{display:none;}
+    body::before{display:none;}
+    section{padding:28px 0;}
+    .fx,.act,.quote,.sys{break-inside:avoid;}
+  }
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<header class="hero" id="hero">
+  <div class="ribbon"><span>读书笔记</span></div>
+  <div class="hero-inner">
+    <span class="kicker">精读笔记 · 现代文学</span>
+    <h1>《铁皮鼓（同名电影原著）》</h1>
+    <div class="sub-en">Die Blechtrommel / The Tin Drum</div>
+    <p class="lead">三岁那年，奥斯卡看清了大人的世界，决定不再长高。此后二十年，他敲着铁皮鼓、用尖叫震碎玻璃，冷眼看德意志如何一步步走进疯狂。</p>
+    <div class="hero-meta"><div class="m"><b>1 个拒长大的孩子</b><span>永远三岁的身高</span></div><div class="m"><b>2 件武器</b><span>铁皮鼓与尖叫</span></div><div class="m"><b>20 年乱世</b><span>从战前到战后</span></div><div class="m"><b>1 部三部曲</b><span>但泽三部曲开篇</span></div></div>
+  </div>
+</header>
+
+<nav class="toc-bar" aria-label="页面目录"><div class="toc-in"><span class="lab">目录</span><a href="#info">书籍信息</a><a href="#duo">核心框架</a><a href="#chart">一张图</a><a href="#fx">关键概念</a><a href="#flow">章节脉络</a><a href="#quotes">金句</a><a href="#actions">行动启发</a><a href="#who">适合谁读</a></div></nav>
+
+<div class="wrap">
+<section id="info">
+  <div class="sec-head"><div class="sec-no">01</div><h2>这本书讲了什么</h2></div>
+  <p class="sec-sub">一句话总览 + 核心信息卡</p>
+  <div class="bookcard">
+    <div><div class="one-liner">拒绝长大是奥斯卡最<em>安静也最响亮的控诉</em>。格拉斯用一个不肯长高的旁观者，把但泽的市井与战争的疯狂照了个底朝天——荒诞之下全是真实。</div><div class="rule"></div></div>
+    <div class="meta-grid"><div class="cell"><span>作者</span><b>君特·格拉斯（Günter Grass，德国作家，诺贝尔文学奖得主）</b></div><div class="cell"><span>领域</span><b>德国战后文学 · 但泽三部曲</b></div><div class="cell"><span>核心命题</span><b>以拒绝长大的侏儒视角，清算普通人在罪恶年代的责任</b></div><div class="cell"><span>出版</span><b>1959 年出版，“但泽三部曲”第一部，同名电影获奥斯卡奖</b></div><div class="cell"><span>系列/方法</span><b>荒诞与黑色幽默包裹严肃历史反思</b></div><div class="cell"><span>关键概念</span><b>拒绝长大、不可靠叙述、但泽往事</b></div></div>
+  </div>
+</section>
+<div class="divider"></div>
+<section id="duo">
+  <div class="sec-head"><div class="sec-no">02</div><h2>核心框架：奥斯卡的三段旅程</h2></div>
+  <p class="sec-sub">一个不长大的人，把一个变疯的时代从头看到了尾</p>
+  <div class="stage-grid">
+<div class="stage" style="background:linear-gradient(150deg,#495468,#353d4a)"><div class="no">STAGE 1</div>
+<h3>拒绝长大</h3><div class="tagline">三岁生日那天，他主动按下了暂停键</div><ul><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>看清成人世界的虚伪后，以身高的停驻立下誓言</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>铁皮鼓与玻璃碎裂的尖叫是他仅有的武器</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>儿童身量与成人头脑，构成全书的观察错位</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>拒绝不是退行，是对成人规则最彻底的不合作</li></ul></div>
+<div class="stage" style="background:linear-gradient(150deg,#545b76,#323946)"><div class="no">STAGE 2</div>
+<h3>战争年代</h3><div class="tagline">他敲着鼓，穿过被疯狂占领的但泽</div><ul><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>市井家庭在纳粹岁月里的顺从、投机与自保</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>鼓手在集会上的鼓点，竟搅乱了整齐的仪仗</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>荒诞的闹剧场面之下，是制度性的集体沉沦</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>他看见一切，却又无法也不愿当救世主</li></ul></div>
+<div class="stage" style="background:linear-gradient(150deg,#5f5f85,#2f3642)"><div class="no">STAGE 3</div>
+<h3>战后书写</h3><div class="tagline">在疗养院的白墙里，他开始讲述自己</div><ul><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>三十岁的奥斯卡住进疗养院，向护理员口述往事</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>叙述时真时假，把读者也拖进责任的审讯室</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>战后德国的重建与遗忘，成为新的观察对象</li><li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>讲述本身是审判：对自己，也对所有旁观者</li></ul></div>
+</div>
+</section>
+<div class="divider"></div>
+<section id="chart">
+  <div class="sec-head"><div class="sec-no">03</div><h2>全书最深的一张图</h2></div>
+  <p class="sec-sub">两座塔对峙：三岁鼓手的眼睛，与三十岁大人的世界</p>
+  <div class="spectrum">
+    <h3>鼓手与大人</h3>
+    <div class="en">The Drummer and the Adults</div>
+    <svg viewBox="0 0 900 230" role="img" aria-label="鼓手与大人">
+<rect x="0" y="0" width="900" height="230" fill="#faf9f5" rx="12"/>
+<defs><linearGradient id="g_b215_pyramid2" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#4a5568"/><stop offset="0.5" stop-color="#63638b"/><stop offset="1" stop-color="#6d624e"/></linearGradient></defs>
+<text x="235" y="30" text-anchor="middle" font-size="14.5" font-weight="700" fill="#4a5568">鼓手的世界</text>
+<polygon points="158,44 312,44 300,72 170,72" fill="#4a5568" opacity="0.92"/>
+<text x="235.0" y="63" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">永远三岁的身高</text>
+<polygon points="115,77 355,77 343,105 127,105" fill="#4a5568" opacity="0.83"/>
+<text x="235.0" y="96" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">铁皮鼓不离手</text>
+<polygon points="72,110 398,110 386,138 84,138" fill="#4a5568" opacity="0.74"/>
+<text x="235.0" y="129" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">尖叫震碎玻璃</text>
+<polygon points="30,143 440,143 428,171 42,171" fill="#4a5568" opacity="0.65"/>
+<text x="235.0" y="162" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">冷眼记录一切</text>
+<text x="685" y="30" text-anchor="middle" font-size="14.5" font-weight="700" fill="#6d624e">大人的世界</text>
+<polygon points="608,44 762,44 750,72 620,72" fill="#6d624e" opacity="0.92"/>
+<text x="685.0" y="63" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">体面面下的谎言</text>
+<polygon points="565,77 805,77 793,105 577,105" fill="#6d624e" opacity="0.83"/>
+<text x="685.0" y="96" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">战争狂热的合唱</text>
+<polygon points="522,110 848,110 836,138 534,138" fill="#6d624e" opacity="0.74"/>
+<text x="685.0" y="129" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">随波逐流的自保</text>
+<polygon points="480,143 890,143 878,171 492,171" fill="#6d624e" opacity="0.65"/>
+<text x="685.0" y="162" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">事后的集体遗忘</text>
+<text x="450" y="225" text-anchor="middle" font-size="11.5" fill="#848d94">左边是拒绝长大的清醒，右边是长得太快的心灵</text>
+</svg>
+    <div class="cap"><b>怎么用 —</b> 对照两座塔：你身边的成年人更像左塔还是右塔？格拉斯的刻薄在于——左塔只有一个孩子，右塔装下了整个时代。</div>
+  </div>
+</section>
+<div class="divider"></div>
+<section id="fx">
+  <div class="sec-head"><div class="sec-no">04</div><h2>关键看点卡片</h2></div>
+  <p class="sec-sub">这部小说的核心意象、手法与主题</p>
+  <div class="fx-grid"><div class="fx"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4a5568" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4v-4h4v-4h4V8h4V4"/><path d="M4 20h16"/></svg></div>
+<h3>拒绝长大</h3><div class="en">Refusing to Grow</div><p>三岁的奥斯卡自我决定停止生长，把身体变成抗议书。这是全书最强的荒诞设定：当长大意味着加入疯狂，停在三岁就是最清醒的立场。</p><div class="eg"><b>例：</b>他钻不进大人的义务，也躲不开大人的罪责——停止生长反而站到了场外。</div></div><div class="fx"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4a5568" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12c2.5-3 5-3 7.5 0s5 3 7.5 0 3-2 5 0M2 17c2.5-3 5-3 7.5 0s5 3 7.5 0 3-2 5 0M2 7c2.5-3 5-3 7.5 0"/></svg></div>
+<h3>铁皮鼓</h3><div class="en">The Tin Drum</div><p>挂在胸前的铁皮鼓是记忆与抵抗的乐器：敲出回忆，也敲醒装睡的人。鼓声贯穿全书，从童年的玩具变成乱世里不肯缺席的证词。</p><div class="eg"><b>例：</b>纳粹集会上，他的鼓点盖过进行曲，庄严仪式被搅成散场的舞会。</div></div><div class="fx"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4a5568" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"/><circle cx="12" cy="12" r="2.6"/></svg></div>
+<h3>碎玻璃的尖叫</h3><div class="en">The Glass-Shattering Voice</div><p>奥斯卡能以嗓音震碎玻璃，专挑橱窗与钟表下手。玻璃的脆弱与精美，正是那个体面社会的隐喻——尖叫一响，文明的表层当场碎给人看。</p><div class="eg"><b>例：</b>夜里潜入店铺，他一声长啸震碎满墙钟表，时间当场停摆。</div></div><div class="fx"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4a5568" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="14" r="4"/><path d="M11 11l9-9M17 5l2.5 2.5M14 8l2 2"/></svg></div>
+<h3>不可靠叙述</h3><div class="en">Unreliable Narrator</div><p>整部小说是疗养院里奥斯卡的自述，真话与假话互相缠绕。读者被迫当陪审员：连讲述自己的人都在遮掩，历史又岂能只有一种版本。</p><div class="eg"><b>例：</b>他时而认领罪行、时而推卸，叙述的裂缝正是格拉斯留给你的考题。</div></div><div class="fx"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4a5568" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 012-2h6v16H6a2 2 0 00-2 2V5zM12 3h6a2 2 0 012 2v14a2 2 0 00-2-2h-6"/></svg></div>
+<h3>但泽往事</h3><div class="en">Danzig Chronicles</div><p>故事以但泽（今格但斯克）的市井生活为底色：杂货店、教会、方言与邻里恩怨。大战不是背景板，而是渗进每个家庭日常的慢浸毒液。</p><div class="eg"><b>例：</b>一家人为店铺与国籍反复盘算，大时代的风向由账本与餐桌决定。</div></div><div class="fx"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4a5568" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M4 7h16M6 7l-3 6a3 3 0 006 0zM18 7l-3 6a3 3 0 006 0z"/></svg></div>
+<h3>旁观者的罪</h3><div class="en">The Guilt of Onlookers</div><p>全书真正清算的，不只是行凶者，还有沉默的围观者——包括把自己当旁观者的叙述者本人。荒诞笔法之下，是一个沉重的追问：不参与，真的无罪吗。</p><div class="eg"><b>例：</b>奥斯卡常以“我只是个孩子”自辩，读者却始终没法完全放过他。</div></div></div>
+</section>
+<div class="divider"></div>
+<section id="flow">
+  <div class="sec-head"><div class="sec-no">05</div><h2>全书脉络图</h2></div>
+  <p class="sec-sub">按主题线展开：从童年誓言到乱世穿行，再到战后白墙内的自审与讲述。</p>
+  <div class="flow"><div class="step"><div class="node"><b>01</b><span>CH.</span></div>
+<div class="body"><h3>童年但泽<small>Childhood in Danzig</small></h3><p>市井家庭与外祖母的旧世界，奥斯卡在此出生。</p><span class="pill">市井底色</span></div></div><div class="step"><div class="node"><b>02</b><span>CH.</span></div>
+<div class="body"><h3>三岁的誓言<small>The Vow at Three</small></h3><p>看清大人世界后，他以停止生长立下无声宣言。</p><span class="pill">拒绝长大</span></div></div><div class="step"><div class="node"><b>03</b><span>CH.</span></div>
+<div class="body"><h3>战时穿行<small>Through the War</small></h3><p>鼓声与尖叫陪他穿过被狂热占领的街巷。</p><span class="pill">乱世巡游</span></div></div><div class="step"><div class="node"><b>04</b><span>CH.</span></div>
+<div class="body"><h3>战后流离<small>After the Fall</small></h3><p>城市易帜、家庭离散，废墟上的新秩序登场。</p><span class="pill">废墟岁月</span></div></div><div class="step"><div class="node"><b>05</b><span>CH.</span></div>
+<div class="body"><h3>白墙内讲述<small>Telling Behind Walls</small></h3><p>疗养院中的口述自审：讲述即是审判的开始。</p><span class="pill">自我审判</span></div></div></div>
+</section>
+<div class="divider"></div>
+<section id="quotes">
+  <div class="sec-head"><div class="sec-no">06</div><h2>金句摘录</h2></div>
+  <p class="sec-sub">值得抄进笔记本的句子（据核心观点转述）</p>
+  <div class="quotes"><div class="quote"><div class="mark">&ldquo;</div><p>拒绝长大，是孩子最安静的控诉。</p><div class="src">—— 论拒绝长大</div></div><div class="quote"><div class="mark">&ldquo;</div><p>鼓声一响，体面的世界就该碎一地玻璃。</p><div class="src">—— 论清醒</div></div><div class="quote"><div class="mark">&ldquo;</div><p>大人不是变坏了，只是从未真正长大过。</p><div class="src">—— 论成人</div></div><div class="quote"><div class="mark">&ldquo;</div><p>旁观也是一种参与，沉默同样留下指纹。</p><div class="src">—— 论罪责</div></div><div class="quote"><div class="mark">&ldquo;</div><p>历史若不肯被讲述，就会假装从未发生。</p><div class="src">—— 论记忆</div></div><div class="quote span2"><div class="mark">&ldquo;</div><p>连自述都在撒谎的人间，审判永远不会散场。</p><div class="src">—— 论审判</div></div></div>
+</section>
+<div class="divider"></div>
+<section id="actions">
+  <div class="sec-head"><div class="sec-no">07</div><h2>对工作与决策的行动启发</h2></div>
+  <p class="sec-sub">读完就能上手的方法</p>
+  <div class="act-grid"><div class="act"><div class="num">1</div><div><h3>重看一次童年视角</h3><p>今天挑一个日常场合蹲到孩子的高度待十分钟。你会立刻理解奥斯卡为什么看大人的世界像看一出戏。</p></div></div><div class="act"><div class="num">2</div><div><h3>听一段战争口述</h3><p>本周找一段亲历者的口述历史音频或文字看二十分钟。把小说的荒诞对照真实的证词，重量感会完全不同。</p></div></div><div class="act"><div class="num">3</div><div><h3>写下一次沉默</h3><p>回想你最近一次明知不对却没吭声的场合，写下当时的心理账本。旁观者的罪，先从认领自己的那一份开始。</p></div></div><div class="act"><div class="num">4</div><div><h3>识破一层体面</h3><p>留意身边某个“说得漂亮做得另样”的场景，只记录不下判词。格拉斯式的冷眼，是可以练出来的观察力。</p></div></div><div class="act"><div class="num">5</div><div><h3>看同名电影</h3><p>本周看一遍施隆多夫执导的同名电影。文字与影像互为注脚，再来回翻书，荒诞的分寸感会更立体。</p></div></div><div class="act"><div class="num">6</div><div><h3>给自己一个暂停键</h3><p>挑一件你正被裹挟着加速的事，今天主动停一天。奥斯卡用停生长抗议世界，我们至少可以停一天看清楚。</p></div></div></div>
+</section>
+<div class="divider"></div>
+<section id="who">
+  <div class="sec-head"><div class="sec-no">08</div><h2>这本书适合谁读</h2></div>
+  <p class="sec-sub">如果你符合其中一条，它都值得放进书单</p>
+  <div class="split">
+    <div class="imgcol" id="who-img"><div class="cap">三岁的鼓手，敲碎一个时代的体面</div></div>
+    <div class="fit-list"><div class="fit"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 9l4 4 10-10" stroke="#4a5568" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>严肃文学读者</b><span>想啃下德国战后文学的巅峰之作，体验荒诞叙事的全部力量。</span></div></div><div class="fit"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 9l4 4 10-10" stroke="#4a5568" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>历史反思爱好者</b><span>关心普通人如何卷入与反思时代之恶，而非只看战争大事记。</span></div></div><div class="fit"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 9l4 4 10-10" stroke="#4a5568" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>电影爱好者</b><span>看过或正要看法斯宾德之外的德语经典——原著会给出电影的全部底稿。</span></div></div><div class="fit"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2v4M9 12v4M2 9h4M12 9h4" stroke="#8a95a8" stroke-width="2" stroke-linecap="round"/></svg><div><b>读前提示</b><span>本书叙事黑色、意象浓烈且常有令人不适的场景，若近年心境脆弱，可放慢节奏或搭配导读推进。</span></div></div></div>
+  </div>
+</section>
+</div>
+
+<footer>
+  <div class="line"></div>
+  <b>《铁皮鼓（同名电影原著）》精读笔记 · 读书摘要卡</b>
+  <p class="disclaim">本页为基于该书公开核心观点整理的读书笔记，用于知识科普与个人学习参考，非原文逐字转载。书名、理论与观点版权归原作者及出版方所有。头图为现代文学主题配图（Wikimedia Commons，许可）。</p>
+</footer>
+
+<script>
+  var DOC_ARCHIVE = "../assets/hero/h06.jpg";
+  document.getElementById('hero').style.backgroundImage = "url('" + DOC_ARCHIVE + "')";
+  var wi = document.getElementById('who-img');
+  if (wi) wi.style.backgroundImage = "url('" + DOC_ARCHIVE + "')";
+
+  (function(){
+    var bar = document.getElementById('progress');
+    function upd(){
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.width = (max > 0 ? (h.scrollTop / max * 100) : 0) + '%';
+    }
+    window.addEventListener('scroll', upd, {passive:true});
+    window.addEventListener('resize', upd);
+    upd();
+  })();
+</script>
+
+</body>
+</html>

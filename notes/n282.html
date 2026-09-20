@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page-node-id="QHbV5QRZ5saZMh7rr9CRvx">
+<head data-page-node-id="y0Q75h3UGuAR01odS8Rf2U">
+<meta charset="UTF-8" data-page-node-id="7zo0wx8tf7QDleutyGJcil">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" data-page-node-id="UPZqZv3YDQEmtHntMSmgxi">
+<title>《传染》精读笔记 · 读书摘要卡</title>
+<meta name="description" content="乔纳·伯杰《传染》读书笔记：社会影响的隐秘力量、从众与独特、最优差异化、全书脉络与行动启发。" data-page-node-id="R02uwKucewhOrSIF8WYsag">
+<style>
+  :root{
+    --paper:#f4f2ed;
+    --paper-2:#faf9f5;
+    --ink:#252a2e;
+    --ink-soft:#535b62;
+    --ink-faint:#848d94;
+    --line:#dde0dd;
+    --accent:#2e5a77;      /* 墨青蓝 */
+    --accent-2:#6f93ab;    /* 青灰蓝 */
+    --warm:#a15c3a;        /* 对比暖赭 */
+    --shadow:0 12px 40px rgba(37,42,46,.10);
+    --shadow-sm:0 4px 18px rgba(37,42,46,.08);
+    --serif:"Songti SC","Source Han Serif SC","Noto Serif SC",Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--sans);color:var(--ink);background:var(--paper);
+    background-image:
+      radial-gradient(circle at 18% 8%, rgba(111,147,171,.08), transparent 42%),
+      radial-gradient(circle at 84% 88%, rgba(46,90,119,.06), transparent 46%);
+    line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.035'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  body>*{position:relative;z-index:1;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
+  h1,h2,h3,.serif{font-family:var(--serif);}
+  ::selection{background:rgba(46,90,119,.18);}
+
+  #progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:99;
+    background:linear-gradient(90deg,var(--accent-2),var(--accent));transition:width .1s linear;}
+
+  .hero{
+    position:relative;min-height:clamp(480px,72vh,640px);
+    display:flex;align-items:flex-end;
+    background-size:cover;background-position:center 55%;
+    color:#f5f7f8;overflow:hidden;
+  }
+  .hero::after{
+    content:"";position:absolute;inset:0;
+    background:
+      linear-gradient(180deg, rgba(16,26,34,.30) 0%, rgba(16,26,34,.40) 42%, rgba(10,18,25,.90) 100%),
+      linear-gradient(90deg, rgba(10,18,25,.60) 0%, rgba(10,18,25,0) 58%);
+  }
+  .hero-inner{position:relative;z-index:2;width:100%;max-width:1080px;margin:0 auto;padding:88px 28px 54px;}
+  .hero .kicker{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:13px;letter-spacing:.22em;text-transform:uppercase;
+    color:#c6d9e4;border:1px solid rgba(198,217,228,.45);
+    padding:6px 15px;border-radius:30px;margin-bottom:22px;backdrop-filter:blur(2px);
+  }
+  .hero h1{font-size:clamp(34px,6vw,62px);line-height:1.12;font-weight:700;letter-spacing:.01em;text-shadow:0 2px 24px rgba(0,0,0,.45);margin-bottom:10px;}
+  .hero .sub-en{font-family:var(--serif);font-style:italic;font-size:clamp(15px,2.4vw,22px);color:#b3cbd9;opacity:.92;margin-bottom:20px;}
+  .hero .lead{max-width:640px;font-size:clamp(15px,2vw,18px);color:#e6edf2;}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:24px 34px;margin-top:30px;}
+  .hero-meta .m{display:flex;flex-direction:column;}
+  .hero-meta .m b{font-family:var(--serif);font-size:20px;color:#fff;}
+  .hero-meta .m span{font-size:12.5px;letter-spacing:.08em;color:#a8bfcd;}
+
+  .ribbon{position:absolute;top:0;right:clamp(16px,5vw,52px);z-index:3;width:44px;
+    background:var(--accent);color:#fff;text-align:center;
+    padding:15px 0 24px;font-family:var(--serif);font-size:13px;letter-spacing:.14em;
+    box-shadow:0 6px 16px rgba(0,0,0,.32);}
+  .ribbon::after{content:"";position:absolute;left:0;bottom:-13px;border-width:0 22px 14px;border-style:solid;border-color:var(--accent) var(--accent) transparent;}
+  .ribbon span{writing-mode:vertical-rl;}
+
+  .toc-bar{background:var(--paper-2);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50;box-shadow:0 2px 14px rgba(37,42,46,.06);}
+  .toc-in{max-width:1080px;margin:0 auto;padding:10px 28px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .toc-in .lab{font-family:var(--serif);font-size:13px;color:var(--accent);letter-spacing:.1em;margin-right:6px;}
+  .toc-in a{font-size:12.5px;color:var(--ink-soft);text-decoration:none;padding:4px 11px;border-radius:20px;border:1px solid transparent;transition:all .18s;white-space:nowrap;}
+  .toc-in a:hover{color:var(--accent);border-color:rgba(46,90,119,.35);background:rgba(46,90,119,.05);}
+
+  section{padding:60px 0 56px;scroll-margin-top:64px;}
+  .sec-head{display:flex;align-items:center;gap:14px;margin-bottom:8px;}
+  .sec-no{font-family:var(--serif);font-size:14px;color:var(--accent);border:1px solid var(--accent);border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;flex:none;}
+  .sec-head h2{font-size:clamp(23px,3.4vw,31px);color:var(--ink);}
+  .sec-sub{color:var(--ink-faint);font-size:14.5px;margin-bottom:32px;padding-left:48px;}
+  @media(max-width:880px){.sec-sub{padding-left:0;}}
+
+  .divider{height:1px;background:linear-gradient(90deg,transparent,var(--line) 18%,var(--line) 82%,transparent);}
+
+  .bookcard{
+    display:grid;grid-template-columns:1.1fr 1fr;gap:34px;align-items:center;
+    background:var(--paper-2);border:1px solid var(--line);border-radius:18px;
+    padding:38px;box-shadow:var(--shadow);position:relative;overflow:hidden;
+  }
+  .bookcard::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:linear-gradient(var(--accent),var(--accent-2));}
+  .one-liner{font-family:var(--serif);font-size:clamp(19px,2.9vw,26px);line-height:1.55;color:var(--ink);}
+  .one-liner em{color:var(--accent);font-style:normal;}
+  .one-liner .rule{width:52px;height:3px;background:var(--accent);border-radius:2px;margin-top:18px;opacity:.85;}
+  .meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 22px;}
+  .meta-grid .cell span{display:block;font-size:12px;letter-spacing:.1em;color:var(--ink-faint);text-transform:uppercase;margin-bottom:3px;}
+  .meta-grid .cell b{font-family:var(--serif);font-size:16.5px;color:var(--ink);font-weight:600;line-height:1.45;}
+  @media(max-width:880px){.bookcard{grid-template-columns:1fr;padding:28px;gap:26px;}}
+
+  /* 双驱力 */
+  .sys-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .sys{border-radius:16px;padding:30px 28px;color:#fff;position:relative;overflow:hidden;box-shadow:var(--shadow);}
+  .sys.s1{background:linear-gradient(150deg,#3c6b8a,#25485f);}
+  .sys.s2{background:linear-gradient(150deg,#a15c3a,#7c4127);}
+  .sys .tag{font-size:12px;letter-spacing:.16em;opacity:.85;text-transform:uppercase;}
+  .sys h3{font-size:26px;margin:6px 0 4px;}
+  .sys .tagline{font-family:var(--serif);font-style:italic;font-size:16px;opacity:.92;margin-bottom:18px;}
+  .sys ul{list-style:none;display:flex;flex-direction:column;gap:11px;}
+  .sys li{display:flex;gap:10px;font-size:14.5px;line-height:1.55;align-items:flex-start;}
+  .sys li svg{flex:none;margin-top:4px;}
+  .sys .speed{display:inline-flex;align-items:baseline;gap:8px;margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.22);}
+  .sys .speed b{font-size:26px;font-family:var(--serif);}
+  .sys .speed span{font-size:12.5px;opacity:.82;}
+  @media(max-width:880px){.sys-grid{grid-template-columns:1fr;}}
+
+  .vs-wrap{margin-top:26px;background:var(--paper-2);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .vs-head{display:grid;grid-template-columns:1.1fr 1fr 1fr;background:linear-gradient(90deg,rgba(60,107,138,.10),rgba(161,92,58,.10));border-bottom:1px solid var(--line);}
+  .vs-head div{padding:14px 18px;font-family:var(--serif);font-size:15px;}
+  .vs-head .h1c{color:var(--accent);}
+  .vs-head .h2c{color:var(--warm);}
+  .vs-row{display:grid;grid-template-columns:1.1fr 1fr 1fr;border-bottom:1px solid var(--line);}
+  .vs-row:last-child{border-bottom:none;}
+  .vs-row:nth-child(odd){background:rgba(244,242,237,.55);}
+  .vs-row .dim{padding:12px 18px;font-size:13px;color:var(--ink-faint);letter-spacing:.04em;display:flex;align-items:center;}
+  .vs-row .v1{padding:12px 18px;font-size:13.5px;color:var(--ink-soft);border-left:1px dashed var(--line);display:flex;align-items:center;}
+  .vs-row .v2{padding:12px 18px;font-size:13.5px;color:var(--ink-soft);border-left:1px dashed var(--line);display:flex;align-items:center;}
+  @media(max-width:680px){
+    .vs-head{grid-template-columns:1fr 1fr;}
+    .vs-head .h0{display:none;}
+    .vs-row{grid-template-columns:1fr;padding:10px 0;}
+    .vs-row .dim{grid-column:1/-1;padding:4px 18px 2px;font-family:var(--serif);color:var(--accent);font-size:13.5px;}
+    .vs-row .v1,.vs-row .v2{border-left:none;padding:2px 18px;}
+    .vs-row .v1::before{content:"从众　";color:var(--accent);font-weight:600;}
+    .vs-row .v2::before{content:"独特　";color:var(--warm);font-weight:600;}
+  }
+
+  /* 光谱图 */
+  .spectrum{
+    margin-top:26px;background:var(--paper-2);border:1px solid var(--line);border-radius:16px;
+    padding:30px 30px 24px;box-shadow:var(--shadow);
+  }
+  .spectrum h3{font-size:19px;margin-bottom:4px;}
+  .spectrum .en{font-size:12.5px;letter-spacing:.06em;color:var(--ink-faint);margin-bottom:18px;}
+  .spectrum svg{width:100%;height:auto;display:block;}
+  .spectrum .cap{margin-top:14px;font-size:13.5px;color:var(--ink-soft);line-height:1.7;}
+  .spectrum .cap b{color:var(--accent);font-family:var(--serif);}
+
+  .sys-note{margin-top:22px;background:var(--paper-2);border:1px dashed var(--accent-2);border-radius:12px;padding:18px 22px;font-size:14.5px;color:var(--ink-soft);}
+  .sys-note b{color:var(--accent);font-family:var(--serif);}
+
+  /* 效应卡片 */
+  .fx-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+  .fx{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:24px;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s;}
+  .fx:hover{transform:translateY(-3px);box-shadow:var(--shadow);}
+  .fx .ic{width:42px;height:42px;border-radius:11px;background:rgba(46,90,119,.09);display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+  .fx h3{font-size:18px;margin-bottom:3px;}
+  .fx .en{font-size:12px;letter-spacing:.06em;color:var(--ink-faint);margin-bottom:11px;}
+  .fx p{font-size:14px;color:var(--ink-soft);line-height:1.65;}
+  .fx .eg{margin-top:12px;font-size:13px;color:var(--accent);background:rgba(46,90,119,.06);border-radius:8px;padding:8px 11px;}
+  .fx .eg b{font-weight:600;}
+  @media(max-width:880px){.fx-grid{grid-template-columns:1fr;}}
+
+  .flow{position:relative;padding-left:8px;}
+  .flow .step{display:grid;grid-template-columns:64px 1fr;gap:20px;position:relative;padding-bottom:28px;}
+  .flow .step:not(:last-child)::before{content:"";position:absolute;left:31px;top:48px;bottom:0;width:2px;background:linear-gradient(var(--accent-2),var(--line));}
+  .flow .node{width:64px;height:64px;border-radius:50%;background:var(--paper-2);border:2px solid var(--accent-2);display:flex;flex-direction:column;align-items:center;justify-content:center;flex:none;position:relative;z-index:2;box-shadow:0 3px 10px rgba(37,42,46,.08);}
+  .flow .node b{font-family:var(--serif);font-size:17px;color:var(--accent);line-height:1.15;}
+  .flow .node span{font-size:10px;color:var(--ink-faint);letter-spacing:.05em;}
+  .flow .body{padding-top:6px;}
+  .flow .body h3{font-size:18px;margin-bottom:5px;}
+  .flow .body h3 small{font-size:12.5px;color:var(--ink-faint);font-family:var(--sans);font-weight:400;margin-left:8px;}
+  .flow .body p{font-size:14px;color:var(--ink-soft);}
+  .flow .body .pill{display:inline-block;margin-top:8px;font-size:12px;color:var(--warm);background:rgba(161,92,58,.09);padding:3px 11px;border-radius:20px;}
+
+  .quotes{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
+  .quote{background:linear-gradient(160deg,#faf9f5,#eef0ef);border:1px solid var(--line);border-radius:16px;padding:30px 28px 26px;position:relative;box-shadow:var(--shadow);}
+  .quote .mark{font-family:Georgia,serif;font-size:64px;line-height:.4;color:var(--accent);opacity:.35;height:30px;}
+  .quote p{font-family:var(--serif);font-size:17.5px;line-height:1.6;color:var(--ink);margin-bottom:14px;}
+  .quote .src{font-size:13px;color:var(--ink-faint);letter-spacing:.04em;}
+  .quote.span2{grid-column:1/-1;background:linear-gradient(110deg,#232a30,#333c44);border-color:#1c2226;}
+  .quote.span2 p{color:#e9eef2;font-size:20.5px;}
+  .quote.span2 .src{color:var(--accent-2);}
+  .quote.span2 .mark{color:var(--accent-2);}
+  @media(max-width:880px){.quotes{grid-template-columns:1fr;}}
+
+  .act-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+  .act{display:grid;grid-template-columns:46px 1fr;gap:16px;background:var(--paper-2);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:22px;transition:transform .2s,box-shadow .2s;}
+  .act:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm);}
+  .act .num{font-family:var(--serif);font-size:26px;color:var(--accent);line-height:1.1;}
+  .act h3{font-size:16.5px;margin-bottom:5px;}
+  .act p{font-size:13.5px;color:var(--ink-soft);line-height:1.65;}
+  @media(max-width:880px){.act-grid{grid-template-columns:1fr;}}
+
+  .split{display:grid;grid-template-columns:1fr 1.15fr;gap:30px;align-items:stretch;}
+  .split .imgcol{border-radius:16px;overflow:hidden;min-height:320px;background-size:cover;background-position:center;box-shadow:var(--shadow);position:relative;}
+  .split .imgcol::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,26,34,0) 42%,rgba(16,26,34,.58));}
+  .split .imgcol .cap{position:absolute;left:22px;bottom:18px;z-index:2;color:#dfe8ee;font-family:var(--serif);font-size:15px;}
+  .fit-list{display:flex;flex-direction:column;gap:14px;}
+  .fit{display:flex;gap:13px;background:var(--paper-2);border:1px solid var(--line);border-radius:12px;padding:16px 18px;align-items:flex-start;}
+  .fit svg{flex:none;margin-top:3px;}
+  .fit b{font-family:var(--serif);font-size:15.5px;display:block;margin-bottom:2px;}
+  .fit span{font-size:13.5px;color:var(--ink-soft);}
+  @media(max-width:880px){.split{grid-template-columns:1fr;}}
+
+  footer{padding:46px 28px 60px;text-align:center;color:var(--ink-faint);font-size:13px;}
+  footer .line{width:60px;height:3px;background:var(--accent);margin:0 auto 20px;border-radius:3px;}
+  footer b{font-family:var(--serif);color:var(--ink-soft);}
+  .disclaim{margin-top:10px;font-size:12px;color:var(--ink-faint);max-width:680px;margin-left:auto;margin-right:auto;line-height:1.7;}
+
+  @media print{
+    #progress,.toc-bar,.ribbon{display:none;}
+    body::before{display:none;}
+    section{padding:28px 0;}
+    .fx,.act,.quote,.sys{break-inside:avoid;}
+  }
+
+  /* ===== 系列互链 ===== */
+  .more-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .more{
+    display:flex;flex-direction:column;gap:3px;background:var(--paper-2);
+    border:1px solid var(--line);border-left:4px solid var(--mc);border-radius:12px;
+    padding:16px 18px;text-decoration:none;color:inherit;
+  }
+  a.more:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm,0 4px 18px rgba(43,39,34,.08));}
+  .more b{font-family:var(--serif);font-size:15.5px;}
+  .more i{font-style:normal;font-size:12.5px;color:var(--ink-faint);}
+  .more.current{opacity:.75;background:var(--paper);}
+  .more.current i{color:var(--accent);}
+  .more-all{display:inline-flex;margin-top:18px;font-size:13.5px;color:var(--accent);
+    border:1px solid var(--line);background:var(--paper-2);padding:9px 18px;border-radius:24px;text-decoration:none;transition:all .18s;}
+  .more-all:hover{border-color:var(--accent);background:rgba(154,59,46,.05);}
+  @media(max-width:880px){.more-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body data-page-node-id="haDfqtPQMEevbGsl4PgYCd">
+
+<div id="progress" data-page-node-id="XqEUG95TiY80oHZEKTySEJ"></div>
+
+<header class="hero" id="hero" data-page-node-id="BXbkOarThU6uMNcV1hyRSX">
+  <div class="ribbon" data-page-node-id="HlqTpiYYzAWG8g65shmqkP"><span data-page-node-id="lLNKMQjaER4oWhnEWhTEyY">读书笔记</span></div>
+  <div class="hero-inner" data-page-node-id="daVN5HIqr6N7CaslXrzwr1">
+    <span class="kicker" data-page-node-id="t2XO3cQevgR1kkdXTDpk54">精读笔记 · 摘要卡</span>
+    <h1 data-page-node-id="1fLCwzQtBLTQ0AsXUAvlDf">《传染》</h1>
+    <div class="sub-en" data-page-node-id="1LXQHAmDjzI78IhSarLzBQ">Invisible Influence: The Hidden Forces That Shape Behavior &nbsp;·&nbsp; Jonah Berger</div>
+    <p class="lead" data-page-node-id="kbGg2FIVA8miIOFO4LCiie">我们以为每个选择都出于自己——吃什么、买什么、成为谁。行为科学却揭示：他人的影响无处不在，只是我们只看见别人被影响，看不见自己。《疯传》作者的社会影响第二部曲。</p>
+    <div class="hero-meta" data-page-node-id="xOquG5yv7vqYOa4aefl8Iw">
+      <div class="m" data-page-node-id="7wHlagRn2v0hviIFP5eUWh"><b data-page-node-id="FK93oosrgJfItFuH3jmVrJ">疯传三部曲</b><span data-page-node-id="cFniHstCe2LYVSEceFNPWf">第二部 · 社会影响</span></div>
+      <div class="m" data-page-node-id="qVnfPdrjrX9wN7uwPKI1GA"><b data-page-node-id="DHu4g0Ix7VR5juHi5PncJ9">2 种力量</b><span data-page-node-id="PjNuoqvukXEEAuBA4QCkSk">从众 ⇄ 独特</span></div>
+      <div class="m" data-page-node-id="cBfuzZczJrnETCnTNcP1DC"><b data-page-node-id="7uQY5fLFOTPZtQv5Z1YI1n">1 个黄金点</b><span data-page-node-id="9QZVZiTgxHcG7yCV8cwL8y">最优差异化</span></div>
+      <div class="m" data-page-node-id="nQMdlheuY7wBXRnE8u88cC"><b data-page-node-id="HqPe4muKG6kneR2xaDFcBQ">引言 + 5 章</b><span data-page-node-id="Kehol5sFmE9o5NK2aAEaFc">全书结构</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="toc-bar" aria-label="页面目录" data-page-node-id="YiOEiAM1QQoDzk6uZGFDAp">
+  <div class="toc-in" data-page-node-id="W3Hcw4x8DzV0n7cRyUsXVX">
+    <span class="lab" data-page-node-id="CAB2FUAMv0RCtzR17XUbqQ">目录</span>
+    <a href="#info" data-page-node-id="tGBttiJkNiTc6EFu5SbHyg">书籍信息</a>
+    <a href="#duo" data-page-node-id="1s3TyFYxrcpiCHeryDWzX8">两种力量</a>
+    <a href="#spectrum" data-page-node-id="AS0okHmRuQLvSMGvzuCGLE">黄金点</a>
+    <a href="#fx" data-page-node-id="hBG0QnLHnWVJ24QfD5W5rO">五大效应</a>
+    <a href="#flow" data-page-node-id="ITbc04JJcDGLDkHR2y4H4l">章节脉络</a>
+    <a href="#quotes" data-page-node-id="KiqNfzUMmrcrPyCGBrldZu">金句</a>
+    <a href="#actions" data-page-node-id="HkVTwAf4sHVlwRHPPpe0Ot">行动启发</a>
+    <a href="#who" data-page-node-id="JaX0OO8x8hNO9bcseqqfKr">适合谁读</a>
+  </div>
+</nav>
+
+<div class="wrap" data-page-node-id="voFbKH3BCDfcjmMo8gTtqZ">
+
+  <section id="info" data-page-node-id="62YUXo4BdEL8pF45IXe8FZ">
+    <div class="sec-head" data-page-node-id="gCERBPOgAL1WAOz46a9Y5f"><div class="sec-no" data-page-node-id="iMiO5W6UD1Uo65G4DeJmJY">01</div><h2 data-page-node-id="6DaNTcPrhIM7toJR7l8MpW">这本书讲了什么</h2></div>
+    <p class="sec-sub" data-page-node-id="KrnEiEqc3MZbPqWTYlPXrQ">一句话总览 + 核心信息卡</p>
+    <div class="bookcard" data-page-node-id="i1GAD0plHk21X1eXiO2zuK">
+      <div data-page-node-id="RdzNUoMUQCPuxeCmuxEkBr">
+        <div class="one-liner" data-page-node-id="U1Ors2ZJujEeUGg8JgxE46">
+          我们的选择很少真正"属于自己"：他人像一只<em data-page-node-id="OCdwSG1n2ivyJMi0JeO2af">看不见的手</em>，时而推我们从众，时而逼我们标新立异。<br data-page-node-id="NGv72YYGO4PXFBJNIqUArY">
+          看清它，才能决定何时<em data-page-node-id="vKIswt9Fnd1LkfdRy9iNlB">顺从</em>这股力量、何时<em data-page-node-id="9GWbE3Hr9Hg5SsTVngkABL">摆脱</em>它——以及如何用它改变他人。
+        </div>
+        <div class="rule" data-page-node-id="iPbQI1ABqREyj8AyAn5Z9v"></div>
+      </div>
+      <div class="meta-grid" data-page-node-id="BNzPXevLP3CZCaOjZWX25d">
+        <div class="cell" data-page-node-id="znIqYtYpi3dVz4kBrrpaIe"><span data-page-node-id="y1mNrKBKXkWMmpvScYwKyh">作者</span><b data-page-node-id="m34ZkArlhBbR5bn7Xw2Ob6">乔纳·伯杰（Jonah Berger）</b></div>
+        <div class="cell" data-page-node-id="ibVgJrICHlb4m5cht8HWXA"><span data-page-node-id="PYfbNLs3mCtbNYK58vLKf9">领域</span><b data-page-node-id="nOHd77pOoIHTPOHF6TFtqz">社会心理学 / 行为科学</b></div>
+        <div class="cell" data-page-node-id="7WNCwO0BNFMAj5KTGGzTVC"><span data-page-node-id="GRIF6z78IzdQMobmqNEDKd">核心命题</span><b data-page-node-id="IUUBc3pUkyeBbMaM26Yxea">社会影响的隐秘作用机制</b></div>
+        <div class="cell" data-page-node-id="05EPHNXk6HYCj21lktsprK"><span data-page-node-id="3Nhf9UPH6M7VeDrqNj8Yfw">原书出版</span><b data-page-node-id="0Dhz5KfiWtuYzcDA4rCDCj">2016 年（中文版 2017）</b></div>
+        <div class="cell" data-page-node-id="sfpBOFx6RiJpEgdj1f0X2E"><span data-page-node-id="vIPAUcmHoq2GszQOWo9zTp">系列定位</span><b data-page-node-id="8NhXZhWCbfZmtcNgVel3wL">《疯传》三部曲第二部</b></div>
+        <div class="cell" data-page-node-id="ijZBKNYtmgIeZUbQ5XubWG"><span data-page-node-id="Xz4A0ru5k2RQAx39nC2AUh">核心概念</span><b data-page-node-id="BSyBzaRzJbp9rJJ94AeTn4">最优差异化（Optimal Distinctiveness）</b></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" data-page-node-id="rzU9WS1VGFTDiEi7H4Lxxk"></div>
+
+  <section id="duo" data-page-node-id="QZ2X8iorMLszacYn2bJpnA">
+    <div class="sec-head" data-page-node-id="zcKFH6Ne7hQFG8iPZZh01V"><div class="sec-no" data-page-node-id="CdHQXTvgKFrjBLQQTJZh4S">02</div><h2 data-page-node-id="PbYqeagr2sYbfQHc3a3f45">核心框架：两种相反的力量</h2></div>
+    <p class="sec-sub" data-page-node-id="QKPfilBxB6560z3St3Bv6E">我们的每个选择，都是"融入群体"与"成为自己"这两股力博弈的结果</p>
+    <div class="sys-grid" data-page-node-id="Vo2PCyKklm28eumlrQEazG">
+      <div class="sys s1" data-page-node-id="X957gd3hmIX83ZZN8KB0Qb">
+        <div class="tag" data-page-node-id="IapLY7DH6pAJjpQZ5fgWu1">Conformity · 归属的引力</div>
+        <h3 data-page-node-id="sBYkBhDj3WymbTceiELoWS">从众与模仿</h3>
+        <div class="tagline" data-page-node-id="eP2grH1QHPzRROeExAiTeO">"别人都在做，大概率是安全的。"</div>
+        <ul data-page-node-id="F1werR2a5Nx5Qc2lOOaYEP">
+          <li data-page-node-id="MlMNsU00YDJwDx9b0bbQR0"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" data-page-node-id="24kYU6VHo6ge1vxZF6Yg1V"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5" data-page-node-id="dKWhqvqTBbsHWRd6bnwSjm"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="cuqHYeRstm5RQYM9PS9sCH"/></svg>变色龙效应：我们会无意识模仿他人的语气、姿态</li>
+          <li data-page-node-id="MicHPuBC4nsQ9oxk225hMi"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" data-page-node-id="jJ1XUSmEMG75trnCR09FM4"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5" data-page-node-id="7QCUm58Q3LfckadMOHkqUX"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="fE0hsveUWbGWDYHdMVaZkl"/></svg>他人是"信息源"：不确定时，跟随多数人省力又安全</li>
+          <li data-page-node-id="wzLVPYqTIQk0Dss8FFOsYN"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" data-page-node-id="CsqdmUldHLcEoZUFqe9SHO"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5" data-page-node-id="HJkih4I2XYRuINlnM6Tmkp"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="pD7stJmHHE9FA5uSlQrjBo"/></svg>模仿能拉近关系：谈判中被模仿，成功率更高</li>
+          <li data-page-node-id="Ornxy4ocGCfvVtBkOIANq0"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" data-page-node-id="LjUGficFoFXiJAO15vHjnU"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5" data-page-node-id="gV86guJWnAg6Eob3JgU8S4"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="PCKBqlW7pFFkqvvLtGq9Rs"/></svg>看不见的正反馈：越"受欢迎"的东西越受欢迎</li>
+        </ul>
+        <div class="speed" data-page-node-id="PQl2hvWniJP1Yr6HENyWbl"><b data-page-node-id="HrKRO9yhasImFwspUbfA8W">融入</b><span data-page-node-id="PZq2V2GDIyrOZm5o6eOfxM">安全感 · 效率 · 归属感</span></div>
+      </div>
+      <div class="sys s2" data-page-node-id="laUKaxgTEm4gnudFuICAjc">
+        <div class="tag" data-page-node-id="nI5ncIX1Uw9DCeH5ou69eb">Distinction · 独立的推力</div>
+        <h3 data-page-node-id="55FGn65FZDzOP7sto8wEca">标新立异</h3>
+        <div class="tagline" data-page-node-id="txfgf2a2AGFeGLTYATEBDp">"我不想和你一样——那是我的身份。"</div>
+        <ul data-page-node-id="aTeByBemvxQ403GyLVT9Gh">
+          <li data-page-node-id="sEceAmG3bvjbWGPWbYH4Wu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" data-page-node-id="AKdlmcX49Cx2blLTWIIltd"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5" data-page-node-id="pPPEH5C4sbUQVxlmeDFo7B"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="Hy0dualwChQzGsnXzEJplG"/></svg>选择在说话：买什么、穿什么，都在宣告"我是谁"</li>
+          <li data-page-node-id="2HVZzpOQKQKVxH1XvtHb5o"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" data-page-node-id="mYZVAq806OU4sTOblIamGp"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5" data-page-node-id="q13V3F6nHg5hiNXUmH2x4B"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="cDufiPqojy2gfCVNcSzlB2"/></svg>信号被稀释就换：流行款一旦"烂大街"，老用户离场</li>
+          <li data-page-node-id="CvLsYR60VnE0EdCK9aZft5"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" data-page-node-id="AfQHf2XLVh7pwsEE4Bbo7c"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5" data-page-node-id="C6nBrFPtUhTniK1xbHXGj4"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="YtBt85PBRJFsN9bjfGDWrP"/></svg>差异错觉：我们觉得自己独一无二，别人千篇一律</li>
+          <li data-page-node-id="CfPawOSBlqQ7vSWIPwTptO"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" data-page-node-id="Pqt4fz4u0DwIFMCHtUHtrY"><circle cx="8" cy="8" r="7" stroke="#fff" stroke-width="1.5" data-page-node-id="zEEuRZ0sH8TDQGJz9yhvmF"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="LM1DDn4Put9oZRtQx53RAr"/></svg>弟弟妹妹总爱走和哥哥姐姐不一样的路</li>
+        </ul>
+        <div class="speed" data-page-node-id="yTyVC1QnuB9O5piBP3OwnF"><b data-page-node-id="GvLEG1T2sxuiF0Gj1zuF9T">分化</b><span data-page-node-id="iVtCXMCfs25h7AJJkykcu8">身份 · 独特性 · 自我表达</span></div>
+      </div>
+    </div>
+
+    <div class="vs-wrap" data-page-node-id="4fZXrClhjzMG2O6S3Cox3k">
+      <div class="vs-head" data-page-node-id="4ERPAYRqScFn2fZiLGZaeg">
+        <div class="h0" style="color:var(--ink-faint);font-size:13px;" data-page-node-id="b6A6blIy8mJe2f4Gl3K2zX">对比维度</div>
+        <div class="h1c" data-page-node-id="zegdbVwDI1s8Uz9W9c7Zo1">从众（模仿他人）</div>
+        <div class="h2c" data-page-node-id="0lK0No3D5kvMlNh37D9LED">分化（偏离他人）</div>
+      </div>
+      <div class="vs-row" data-page-node-id="vvUO7DCXyz2ZR4VStSnw3b"><div class="dim" data-page-node-id="O4IR0CkmjN2fiAjhwJhPQM">何时更强</div><div class="v1" data-page-node-id="2GZS2ttl3xQhnFJ6VzjGNa">不确定、信息少、依赖他人经验时</div><div class="v2" data-page-node-id="90fe1aBBknmdzzOemYdJh6">身份认同强、信号被"外人"占用时</div></div>
+      <div class="vs-row" data-page-node-id="VqRHtoTKKvKdmLR7iYJoPW"><div class="dim" data-page-node-id="hKtliuHMPHkYxXwHVfxWzQ">心理收益</div><div class="v1" data-page-node-id="96OuV61fkNgwlTEerLJM1P">归属感、正确感、省去决策成本</div><div class="v2" data-page-node-id="YTojHsmkDqgcUi1u1GF481">独特感、自我表达、身份区隔</div></div>
+      <div class="vs-row" data-page-node-id="XjADlOkhmk2h2YPDvlVgtC"><div class="dim" data-page-node-id="Vazz1DC0bo8s3pYbs4EaMG">典型表现</div><div class="v1" data-page-node-id="06bxSNWuEvGWhTFsXziCRb">点大家都点的菜、买畅销款</div><div class="v2" data-page-node-id="iwZyCpk8uZI7AfgxoNBZLu">流行后弃用、刻意选小众品牌</div></div>
+      <div class="vs-row" data-page-node-id="ZOW7l1sAXJ3rv1RjHvfoXC"><div class="dim" data-page-node-id="ZzMtYEvhNJSsqYMEJ87GSQ">对市场</div><div class="v1" data-page-node-id="MGadevEEWIaz7t854BFWvv">助推爆款与流行趋势形成</div><div class="v2" data-page-node-id="ixn5huEBO3ArzAKdzJEmXX">驱动时尚周期与品类细分</div></div>
+      <div class="vs-row" data-page-node-id="EnoyRmGDxsCYuxpdoLgAnp"><div class="dim" data-page-node-id="asmmyIjggw2FvZpw9LjcoO">对个人</div><div class="v1" data-page-node-id="yrfxWAJOifAont2EnEYGcZ">高效但可能随大流犯错</div><div class="v2" data-page-node-id="zhGOZTCzcgura9N0yBo83m">独立但可能为反而反、付出代价</div></div>
+    </div>
+
+    <div class="sys-note" data-page-node-id="6J4cOEDtNP8e7iZa7av13v">
+      <b data-page-node-id="rERofldR3V17i627x4G6NZ">关键洞察 —</b> 社会影响不是"人云亦云"这么简单：同一个"别人"，既是我们要<b data-page-node-id="e2xfBEFsKYUJbkOkgytn43">靠近</b>的群体，也是我们要<b data-page-node-id="wztoSskq5aChzOnayBcs1U">区别</b>的对象。两者同时为真——这就是人类行为最耐人寻味的张力。
+    </div>
+  </section>
+
+  <div class="divider" data-page-node-id="aZCdlDVSmyIGDD87QCfnAa"></div>
+
+  <section id="spectrum" data-page-node-id="WHRbIAYFRXRmPN1gTptYN5">
+    <div class="sec-head" data-page-node-id="8IM37kOOlyZP2eQPeB2dT0"><div class="sec-no" data-page-node-id="Ig8Rejajjgx484xGiowFs4">03</div><h2 data-page-node-id="ZdlFlL8ypXCvXvHI6bhr5W">黄金点：最优差异化</h2></div>
+    <p class="sec-sub" data-page-node-id="kmAAayABz4DLbaU1LqvmUP">全书最实用的概念——相似到能融入，不同到能被记住</p>
+    <div class="spectrum" data-page-node-id="PuP3bftG20sNH4VIADucPo">
+      <h3 data-page-node-id="npGHj5w2UOAYrQIVXvCQor">从众 ⇄ 独特 的光谱</h3>
+      <div class="en" data-page-node-id="xfzDwUkuaL4bB2ytGD0NZ4">Optimal Distinctiveness · 金发女孩效应（Goldilocks Effect）</div>
+      <svg viewBox="0 0 900 220" role="img" aria-label="从众到独特的光谱，最优差异化位于中间黄金点" data-page-node-id="3KSmJpLxvkY95tU0HUAbux">
+        <rect x="0" y="0" width="900" height="220" fill="#faf9f5" rx="12" data-page-node-id="pqJ869W7Jk2Ma7KgdPN2Qo"/>
+        <defs data-page-node-id="b0ScnTpE18H60w7aNtgnm9">
+          <linearGradient id="spec" x1="0" y1="0" x2="1" y2="0" data-page-node-id="Z34oitHUsAcM73AclYU1ih">
+            <stop offset="0" stop-color="#3c6b8a" data-page-node-id="tOclGf7kwSwiAGMLGCCQAW"/>
+            <stop offset="0.5" stop-color="#7f9d84" data-page-node-id="wzZU1t0ch7CTm26gqU71oN"/>
+            <stop offset="1" stop-color="#a15c3a" data-page-node-id="MRzufFL2KhJ83LrWuC5Ie9"/>
+          </linearGradient>
+        </defs>
+        <rect x="60" y="88" width="780" height="26" rx="13" fill="url(#spec)" opacity="0.85" data-page-node-id="4bNduuPpFMA6CZFsBr2V4C"/>
+        <circle cx="450" cy="101" r="17" fill="#faf9f5" stroke="#2e5a77" stroke-width="4" data-page-node-id="ye30nDWKW8AkucOiotuMKA"/>
+        <circle cx="450" cy="101" r="6" fill="#2e5a77" data-page-node-id="DbhDj479sVFXXw0E8YiJfn"/>
+        <text x="450" y="60" text-anchor="middle" font-size="16" font-weight="600" fill="#2e5a77" data-page-node-id="hUeMnOme3cFGXH6VNWEbuW">黄金点 · 最优差异化</text>
+        <text x="450" y="145" text-anchor="middle" font-size="12.5" fill="#535b62" data-page-node-id="AObGaP4OyNXQnp55e0A4Tq">熟悉的新鲜感：像旧相识，又有点意外</text>
+        <text x="130" y="60" text-anchor="middle" font-size="14" fill="#3c6b8a" font-weight="600" data-page-node-id="Zk17vwQUNo0iIsRSH7HvMG">完全从众</text>
+        <text x="130" y="145" text-anchor="middle" font-size="12" fill="#848d94" data-page-node-id="d6fNVxg6Sq2srbsuWyGLQG">安全，但被淹没</text>
+        <text x="770" y="60" text-anchor="middle" font-size="14" fill="#a15c3a" font-weight="600" data-page-node-id="8hwr4AA5kMxzzMVJ75qEVq">彻底标新立异</text>
+        <text x="770" y="145" text-anchor="middle" font-size="12" fill="#848d94" data-page-node-id="6U8iTplQjpTkH4SeZn4EI4">独特，但难以理解与接受</text>
+        <text x="450" y="196" text-anchor="middle" font-size="11.5" fill="#848d94" data-page-node-id="m1NLz78HhJfZUuSS2jBX4i">研究显示：适度新颖又适度熟悉的产品、歌曲与名字，最受欢迎</text>
+      </svg>
+      <div class="cap" data-page-node-id="4cWGD5fl9ZXSpitF1Mvjra"><b data-page-node-id="ldq0qCfpwRG3nRUMRGD9ZB">怎么用 —</b> 预测"下一个大热门"时，别赌全新的，也别押守旧的：找那个"70% 熟悉 + 30% 意外"的选项。飓风过境后名字里多一个字母的婴儿名激增、年度流行色的更替，都遵循这条规律。</div>
+    </div>
+  </section>
+
+  <div class="divider" data-page-node-id="DmDsBp1x2jqBiTnE90b6Lc"></div>
+
+  <section id="fx" data-page-node-id="6FneDtpqtN4ZO9fRDhz2Sl">
+    <div class="sec-head" data-page-node-id="J3Ofin4ivtBESqLEq3oMDK"><div class="sec-no" data-page-node-id="OxemDJm1Z2g5D8K1PZmhNO">04</div><h2 data-page-node-id="9UypvqHIpZN9yX3trRxAFP">五大关键效应卡片</h2></div>
+    <p class="sec-sub" data-page-node-id="0om9WPfUk1NjzodUGgwgPs">看不见的手如何具体发力——认出它们，才谈得上掌控</p>
+    <div class="fx-grid" data-page-node-id="xRHgih7FZ8GnsYR898KfGe">
+      <div class="fx" data-page-node-id="3ukzyGQFOqDomrPa9WXVyT">
+        <div class="ic" data-page-node-id="HEb4Of8gSD6OHkDYZsSIAW"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" data-page-node-id="IQv0CQKWxEgIHLTDYZzLn4"><path d="M4 5h7v7H4zM13 12h7v7h-7z" stroke="#2e5a77" stroke-width="1.8" stroke-linejoin="round" data-page-node-id="4hW7X4gKgzJgB8mtEmgUEF"/><path d="M11 8.5h5.5V12" stroke="#2e5a77" stroke-width="1.8" stroke-linecap="round" data-page-node-id="xtj2JR2EFneOEpK1EBlcm4"/></svg></div>
+        <h3 data-page-node-id="EdfS2t9T9tIDvvlRuR7Af6">变色龙效应</h3>
+        <div class="en" data-page-node-id="OTV349eI5zBRMGdprXD2NN">Chameleon Effect</div>
+        <p data-page-node-id="1EvqIi96Lwy7JhQlJEfJ1A">人会无意识模仿对方的姿势、语气与用词。这种镜像式的同步，会悄悄累积好感与信任，是社交与谈判中的隐形润滑剂。</p>
+        <div class="eg" data-page-node-id="IWB9Vi1VJ7Nu4b2cRgrc9Z"><b data-page-node-id="czIyyfdkLkLSNYa1lG05K1">例：</b>谈判中刻意镜像对方动作的一方，达成协议的概率显著更高。</div>
+      </div>
+      <div class="fx" data-page-node-id="IEVlS9bATLx8oG9wO6fWnx">
+        <div class="ic" data-page-node-id="lWg5nwsumj3R3mdlSZ9gow"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" data-page-node-id="NFCMbaBroEgs6VGpk8RNlv"><circle cx="9" cy="9" r="4" stroke="#2e5a77" stroke-width="1.8" data-page-node-id="m8JibBLonGLgP9Dshkwq2S"/><circle cx="15.5" cy="10.5" r="4" stroke="#2e5a77" stroke-width="1.8" opacity=".6" data-page-node-id="BMLgt6F7FQyA2S61QKNoaX"/><circle cx="12" cy="15.5" r="4" stroke="#2e5a77" stroke-width="1.8" opacity=".35" data-page-node-id="PVxj7jm1gjaLkkiOyIxHbq"/></svg></div>
+        <h3 data-page-node-id="wDgWRzFiWYLaST3rvh71Hj">社会证明的自我强化</h3>
+        <div class="en" data-page-node-id="JaXrIpQRPFBi5xlP2YnUOg">Social Proof Loop</div>
+        <p data-page-node-id="ZXAjymPl1msZzXUiGSmq0u">可见的"受欢迎"会进一步制造受欢迎：同一批歌，被告知下载量高的会越下越多。流行有滚雪球效应，且起跑线上的差距会被放大。</p>
+        <div class="eg" data-page-node-id="Pfsggai5qo2u4kTSEA8Gpx"><b data-page-node-id="dKjABDB1oN9Zzlp0WhStDD">例：</b>音乐实验中，仅靠"显示下载次数"就能让歌曲命运天差地别。</div>
+      </div>
+      <div class="fx" data-page-node-id="SMDcWaWhMhuJNo7erFbScK">
+        <div class="ic" data-page-node-id="rGKLhHVbBLyA4waBsUvyTH"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" data-page-node-id="g7FU9YgsprnR5EXm5PMFi4"><rect x="4" y="7" width="16" height="12" rx="2" stroke="#2e5a77" stroke-width="1.8" data-page-node-id="mKRenhPcGsad3lm7jhhLez"/><path d="M9 7V5.5A1.5 1.5 0 0110.5 4h3A1.5 1.5 0 0115 5.5V7" stroke="#2e5a77" stroke-width="1.8" data-page-node-id="Z67dp1VdjeBn9YImUnCqMC"/><path d="M4 12h16" stroke="#2e5a77" stroke-width="1.6" opacity=".5" data-page-node-id="pHAM0e66PHN7FQhgJbCUrg"/></svg></div>
+        <h3 data-page-node-id="iZl9Ugn4qwClWZP4H69w3r">身份信号与分化</h3>
+        <div class="en" data-page-node-id="1oLEKq4WXRL4obAHyiVPsm">Identity Signaling</div>
+        <p data-page-node-id="XG7dGsqLsrg7FY2AiZNn7D">消费是身份的语言。当某个品牌被"不想要的人群"大量使用，老用户会弃用它来划清界限；昂贵品牌反而隐藏 logo——因为懂的人自然懂。</p>
+        <div class="eg" data-page-node-id="PM0R0wFPpwknBZXp3yM3Pz"><b data-page-node-id="lrkGL01ew5V1ACjOZkB4ck">例：</b>不显示时间的"静默手表"卖 30 万美元——圈内人才懂的信号，外人看不懂才对。</div>
+      </div>
+      <div class="fx" data-page-node-id="zYzovFeFXef5d6TvII5SS9">
+        <div class="ic" data-page-node-id="0CY2i8LZZecpcBQZO4HB6a"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" data-page-node-id="JGEWGmb0yIJiLSsupkW7c1"><path d="M12 4c3 3.5 5 6 5 8.5A5 5 0 017 12.5C7 10 9 7.5 12 4z" stroke="#2e5a77" stroke-width="1.8" stroke-linejoin="round" data-page-node-id="2oOF4dSVgwsMqcFBXgafWz"/><path d="M4 19c2.5-1.2 5-1.2 8 0s5.5 1.2 8 0" stroke="#2e5a77" stroke-width="1.8" stroke-linecap="round" data-page-node-id="rtVKufGqeMMAqKUgXuCmHm"/></svg></div>
+        <h3 data-page-node-id="NSsqgMYJ5HNC6ierCFfrzY">熟悉度法则</h3>
+        <div class="en" data-page-node-id="nVWGdEVDGYYXFV0oaFr3SF">Mere Exposure</div>
+        <p data-page-node-id="9DSQ4chTbhNlvj2EyoIzSY">反复曝光带来喜欢——但过度曝光带来厌倦。流行在"眼熟"与"看腻"之间循环：时尚周期、热歌更替、年度流行色，都是这条法则的时钟。</p>
+        <div class="eg" data-page-node-id="BGr1y2KMVxhlQAAGgyAm5y"><b data-page-node-id="vERlGifA2Pr70GIwX5j051">例：</b>飓风过境后，与飓风名首字母相同的婴儿名字明显增多——熟悉的安全感。</div>
+      </div>
+      <div class="fx" data-page-node-id="q06Jjs1kfqzLKAtTbBqdnn">
+        <div class="ic" data-page-node-id="d0MAWAMQiVJ7bg5rqAAeZh"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" data-page-node-id="eaTo09xoCVItgKhxyN1jmq"><path d="M4 18l5-6 4 3 7-9" stroke="#2e5a77" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="YjClbrwcK5Gq2dMNqGCDMu"/><path d="M20 6v4h-4" stroke="#2e5a77" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="dqjUGVus8FxiFhHleaOH4r"/><path d="M4 21h16" stroke="#2e5a77" stroke-width="1.5" stroke-linecap="round" opacity=".5" data-page-node-id="ePwJVohDgw94FRb1YjGteH"/></svg></div>
+        <h3 data-page-node-id="23PxHiB2sRcTzSqRa8dbe2">相对绩效与激励</h3>
+        <div class="en" data-page-node-id="622VDjfLJHVhAHg9FLIjbb">Relative Performance</div>
+        <p data-page-node-id="vrx4HivwCJNEeAItl9RTBK">有他人在场，简单任务更出色、复杂任务更糟糕；差距不大时人最拼命——落后一点点的"第二名"比遥遥领先的冠军更努力。</p>
+        <div class="eg" data-page-node-id="7dt6T55ZQfDSK8tqTLfBwg"><b data-page-node-id="JgtjG3yYBxy31cynFlkSTL">例：</b>用"邻居比你家省电 X%"的同辈账单，比单纯涨价更能促使家庭节电。</div>
+      </div>
+      <div class="fx" data-page-node-id="MlNBpSAHtbrigDtZcBdTlZ">
+        <div class="ic" data-page-node-id="ntJGhhvrz8BBVnD9mFmE1F"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" data-page-node-id="9160fMPlKnVgwE9HnssohE"><rect x="3" y="5" width="8" height="14" rx="1.5" stroke="#2e5a77" stroke-width="1.8" data-page-node-id="d19bVZIPvPR4HxKko1vYGa"/><rect x="13" y="5" width="8" height="14" rx="1.5" stroke="#a15c3a" stroke-width="1.8" data-page-node-id="QbZ5NtJ1cCAqgQnRfazTit"/><path d="M6 9h2M16 9h2M6 13h2M16 13h2" stroke-linecap="round" stroke="#2e5a77" stroke-width="1.6" data-page-node-id="ohIFKHiBVmewI4t6my2J4V"/></svg></div>
+        <h3 data-page-node-id="f7qLoOVi6yBswiLdZmOAOA">差异错觉</h3>
+        <div class="en" data-page-node-id="qNGYexAVlhd55XWdsgFVf0">Illusion of Difference</div>
+        <p data-page-node-id="LRFGSvRCHglzmB5sCy0W89">我们总觉得自己的孩子、自己的选择独一无二，别人的都千篇一律。这种错觉让我们低估自己被影响的程度——影响之所以"隐形"，正在于此。</p>
+        <div class="eg" data-page-node-id="Ikmy8QLdcSqnvNzBkT7MTJ"><b data-page-node-id="aBYvKqMojGWtuXQmxxSLBx">例：</b>人人都觉得自己独立做主，但几乎所有选择都能找到社会影响的痕迹。</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" data-page-node-id="7qwUu2sDZnG2C2LJkcrxmu"></div>
+
+  <section id="flow" data-page-node-id="UgCjuWTZxjZoK7kX4TzmS9">
+    <div class="sec-head" data-page-node-id="ogQjhoJnFZPbcr0EjnzR53"><div class="sec-no" data-page-node-id="Kg8VBZg0J4wEBRGmORFdEV">05</div><h2 data-page-node-id="UxuMLTnEvV0LDCRwVdPP65">全书脉络图</h2></div>
+    <p class="sec-sub" data-page-node-id="5CFgBHKLFISZLGojbg79Om">引言抛出问题，五章依次展开社会影响的全貌</p>
+    <div class="flow" data-page-node-id="uByQ3Mr5GKNf7lfdvW5HvU">
+      <div class="step" data-page-node-id="6Cry3lRjM1peMY9gADqTlD">
+        <div class="node" data-page-node-id="KuWSyKGkdFkHnoJdMojGlQ"><b data-page-node-id="3lOnhCEBDgDHEF0ZPUouGC">引</b><span data-page-node-id="ddwoKELKlFW5g86FI2q6Bm">INTRO</span></div>
+        <div class="body" data-page-node-id="fAj96q5mF1Hn7CD1YXPCEv">
+          <h3 data-page-node-id="dG5d0VeBXDipb4EUomWrn8">隐藏的说服者<small data-page-node-id="e62Dj5II2xKtKILdj9cF45">Introduction</small></h3>
+          <p data-page-node-id="369AVXvlV2rabe0AilPAA9">"只有你……"的广告为何诱人？我们承认别人会被影响，却坚信自己例外。</p>
+          <span class="pill" data-page-node-id="zT0cC3mCuVq0WVcDM24X5x">立论 · 影响是隐形的</span>
+        </div>
+      </div>
+      <div class="step" data-page-node-id="zMZhL8RKQkEKEzkYJ2o65o">
+        <div class="node" data-page-node-id="70FT5JHh3sKQ56KsdPl88g"><b data-page-node-id="sDnDE5tmiHzmE0lZsCdAYb">01</b><span data-page-node-id="FbTijUUPK9cFUASoZNDV0m">CH.</span></div>
+        <div class="body" data-page-node-id="GFuCu6uK5Gz5TC6Bk3dkBO">
+          <h3 data-page-node-id="3OplJj41tWTlAFtO7RC9fW">有样学样<small data-page-node-id="k2xxAUOEvRS9FUP1cCQppa">Monkey See, Monkey Do</small></h3>
+          <p data-page-node-id="LUhtVqq1IK7X0T6kcs42Hk">从众与模仿的力量：变色龙效应、镜像神经元、夫妻越长越像，以及模仿如何催生大片。</p>
+          <span class="pill" data-page-node-id="aZA5Vrue7ZN1YemzPxZg4H">模仿 · 无声的学习</span>
+        </div>
+      </div>
+      <div class="step" data-page-node-id="ZpyWL9UOYPRFWHs8DQFNjU">
+        <div class="node" data-page-node-id="bwS69uwgpJKoQfn0L9GdGJ"><b data-page-node-id="TZcZkVI3t57QJ6rn1Q8Rwj">02</b><span data-page-node-id="sRC3wYxj2qRp2mHmMWfxRl">CH.</span></div>
+        <div class="body" data-page-node-id="Jv7jT3N6HwKK5m11WWfeFN">
+          <h3 data-page-node-id="TeSC5IOBhaSEiSYg9gQ8pZ">标新立异<small data-page-node-id="JWSNQfGKTBoeRpsOtU3O8b">A Horse of a Different Color</small></h3>
+          <p data-page-node-id="1Hn1uDAaZwncjTiyiwXpHL">与众不同的动机：差异错觉、二胎的"反着来"、为什么成功的运动员常有哥哥姐姐。</p>
+          <span class="pill" data-page-node-id="rhjnUtBqcza5nDMKN3UaaD">独特 · 身份的诉求</span>
+        </div>
+      </div>
+      <div class="step" data-page-node-id="XHAiJiU3Ngl4P3mq11wCnH">
+        <div class="node" data-page-node-id="GvDRPdHBdKA06rq6vyADPY"><b data-page-node-id="a8HdNKVmXQtYotE3Mx7AIr">03</b><span data-page-node-id="3Iofqsje9G69H6ClIAlQFS">CH.</span></div>
+        <div class="body" data-page-node-id="yAFO5miWP0EObHzGoJcVyY">
+          <h3 data-page-node-id="2lfZrY3geN0H6k2ihrmi3T">拒绝随波逐流<small data-page-node-id="sHd4EN4dfBU7p60KP5tBB3">Not If They're Doing It</small></h3>
+          <p data-page-node-id="x2KfevZcWP7CaJzUm2bZgu">选择的信号价值：静默手表、奢侈品的低调 logo、LV 该不该管仿冒——身份决定我们避开什么。</p>
+          <span class="pill" data-page-node-id="2Jg8LcDiyH0TYvGMOcRc9i">信号 · 身份的边界</span>
+        </div>
+      </div>
+      <div class="step" data-page-node-id="9r4uzucoepDESKHfHHdEgV">
+        <div class="node" data-page-node-id="N9AsH6HZIlyS8VLvVbS8XG"><b data-page-node-id="Ox6aF0wgShEpmLfTNbypDz">04</b><span data-page-node-id="5uG3qIqvHyXaod3KenWdaK">CH.</span></div>
+        <div class="body" data-page-node-id="pvkMnxAduMdGYDs2yOge0G">
+          <h3 data-page-node-id="rVGba3gSQbiz7b0F2SGj07">相似但却不同<small data-page-node-id="EPh2wLFJk43yqos3WKS42t">Similar but Different</small></h3>
+          <p data-page-node-id="k7KZwkUnLp1gigKC7IFdVR">金发女孩效应与最优差异化：熟悉带来喜欢，适度新颖赢得流行——预测下一个大热门的方法。</p>
+          <span class="pill" data-page-node-id="JEELwYswGXq50jVjFMc6vd">黄金点 · 平衡的艺术</span>
+        </div>
+      </div>
+      <div class="step" data-page-node-id="S69ILO13wsi6ZT5lOSg6mN">
+        <div class="node" data-page-node-id="LZoh8fLvgX90CIOiv8jEuB"><b data-page-node-id="ayr4RVwVqvUBjYC892W2Nd">05</b><span data-page-node-id="URFMa6fVpJuVsm5VDHOctq">CH.</span></div>
+        <div class="body" data-page-node-id="MSEIFDFMdrtxcXhXz7aAWC">
+          <h3 data-page-node-id="qFNBa67xK7BuXNsSxVxZLy">点燃我的激情<small data-page-node-id="sIcNXg29l8jF34KQO9Rsje">Come on Baby, Light My Fire</small></h3>
+          <p data-page-node-id="wVNFhnKwq9hXmSzBlEEPgb">社会影响与动机：他人在场让我们更快奔跑却更差泊车；小差距最激励人；同辈数据改变行为。</p>
+          <span class="pill" data-page-node-id="giHIQOtbHa2ikRlAquahqJ">激励 · 相对的胜负</span>
+        </div>
+      </div>
+      <div class="step" data-page-node-id="ZLNd8YlPn2OpG1eRHHzh8o">
+        <div class="node" data-page-node-id="p7YQKtQxMOv1uTbDLzfVVT"><b data-page-node-id="vCEe7V2JVgke7wmQCf4ipu">结</b><span data-page-node-id="hAaCVBEoLgBBBcCidAAiUj">END</span></div>
+        <div class="body" data-page-node-id="yOYC6mDNtZPVzaN8bC4Etn">
+          <h3 data-page-node-id="PvJ2PlNhWbp3I0PmZUstIs">让社会影响发挥作用<small data-page-node-id="kNj34xa6M2vxXVHVT7OCOY">Conclusion</small></h3>
+          <p data-page-node-id="Pt8ljbVLlNbrrpz22JsiPQ">选择你的影响源：环境塑造人——搬到更好的社区，就是在给自己挑一支看不见的推手。</p>
+          <span class="pill" data-page-node-id="DYEQXC4U1v62mwNqKlcBIr">应用 · 主动设计环境</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" data-page-node-id="M6qLDHICwPJh6D7UAbbllU"></div>
+
+  <section id="quotes" data-page-node-id="bPsOfdgugEKW9FubDJrW03">
+    <div class="sec-head" data-page-node-id="CozQxog4EMwiZLw0tD1QlU"><div class="sec-no" data-page-node-id="queCWUTRPEHOCRQLGSHXSI">06</div><h2 data-page-node-id="V56u666Rig3R21HtisrTwI">金句摘录</h2></div>
+    <p class="sec-sub" data-page-node-id="9qjK4zZTjhUkA4rbL3HZw1">值得抄进笔记本、贴在书桌前的句子（据核心观点转述）</p>
+    <div class="quotes" data-page-node-id="AKZeu70hmTrx5San6Pua7P">
+      <div class="quote" data-page-node-id="IzCKnbOUmZcONDV9NiqwFf">
+        <div class="mark" data-page-node-id="w0WMCygwk88guqPjcTVQYW">&ldquo;</div>
+        <p data-page-node-id="zTpetKOwAQfB2CiB2Cz5n5">社会影响最隐秘之处在于：我们看得见别人被影响，唯独看不见自己。</p>
+        <div class="src" data-page-node-id="qV7I6HNohlizJ3BZIFugu7">—— 论影响的隐形属性</div>
+      </div>
+      <div class="quote" data-page-node-id="t3TCdU5rHd6IqZPYKKFBnU">
+        <div class="mark" data-page-node-id="w5jfqoQkgppsAvXRJPBFGE">&ldquo;</div>
+        <p data-page-node-id="cxF19pecOT3FWDVQsoTE5d">模仿是最快的学习，也是无声的赞美。</p>
+        <div class="src" data-page-node-id="JCX5VYjym5mUd1yEBdINQt">—— 论变色龙效应</div>
+      </div>
+      <div class="quote" data-page-node-id="Zq339ohcLsL4j4UBJuZbKL">
+        <div class="mark" data-page-node-id="ct7z9EQV4tMHEvt5wckYwd">&ldquo;</div>
+        <p data-page-node-id="UEMohnqm73dMBQuh4ZktSh">我们买下的从来不只是东西，还有"我是谁"这个问题的部分答案。</p>
+        <div class="src" data-page-node-id="2zLl1wlByWE9AoFUisDT8D">—— 论身份信号</div>
+      </div>
+      <div class="quote" data-page-node-id="VtyJrXHhdAdgMOPHDTce31">
+        <div class="mark" data-page-node-id="dpDNSU0juN2XFpkKevfQuT">&ldquo;</div>
+        <p data-page-node-id="IU01BMGmxVvUv6nLcOXgq2">刚刚好的不同，比彻底的不同更迷人——人要的是相似中的惊喜。</p>
+        <div class="src" data-page-node-id="XPdBu2Sc2QHoPOAu08Di44">—— 论最优差异化</div>
+      </div>
+      <div class="quote span2" data-page-node-id="gJVCIJlv6OpboZ5pQdGsND">
+        <div class="mark" data-page-node-id="bUDIZCE69fWtWEFrJPT9Rz">&ldquo;</div>
+        <p data-page-node-id="aW7R2CbxI8OeED32ws70nk">看清那只看不见的手，才能决定何时顺从它、何时摆脱它。</p>
+        <div class="src" data-page-node-id="mVaNWb2tfqWuannMRuvhK1">—— 全书方法论的核心</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" data-page-node-id="F1SKgShFwcv6cudGGZsgWt"></div>
+
+  <section id="actions" data-page-node-id="DwNUU0gFaU6kpPedtyEo5O">
+    <div class="sec-head" data-page-node-id="OR3tebRHS2URcIi6jWLQwF"><div class="sec-no" data-page-node-id="8bNiDpEDUS2eMLUQwx4nbn">07</div><h2 data-page-node-id="0RDAl2dxh5ElQRFKvXExVa">对工作与决策的行动启发</h2></div>
+    <p class="sec-sub" data-page-node-id="yzgu1O5yPTHCz9FmhRbuz5">把社会影响从"背景噪音"变成可用的杠杆</p>
+    <div class="act-grid" data-page-node-id="KVWMdCmllCySZzFebKL0qQ">
+      <div class="act" data-page-node-id="23mppGxBDoxzeC3xbowGfw"><div class="num" data-page-node-id="dGx8YxO1mo4ZtrJTYklrGX">1</div><div data-page-node-id="5GW8kG42WmH5SDdUfGDDZw"><h3 data-page-node-id="7gjlK0NwwxzqD65VpjbwcE">用"同辈数据"推动改变</h3><p data-page-node-id="uIiqz4bpkJWwinCcG6maTv">想让人节能、健身、学习？展示"与你相似的人做到了"，往往比讲道理、给奖金更有效。</p></div></div>
+      <div class="act" data-page-node-id="g0CmSM9nJcp19MBzesmAo6"><div class="num" data-page-node-id="tDbf6CtlDmxZf2lATaLRG9">2</div><div data-page-node-id="kJzk21Q6JApMBBdNOm6Qnk"><h3 data-page-node-id="mABoitU9S6SVjBTG2cKosg">让好行为被看见</h3><p data-page-node-id="rSFNqy4Np5DZd5O6g06kvn">设计可见的痕迹与公示（进度徽章、打卡墙），利用从众的引力放大你想扩散的行为。</p></div></div>
+      <div class="act" data-page-node-id="8nTyghKMeooqFwgyv9jowc"><div class="num" data-page-node-id="kWEA4t4rS5emTiNtVT2wIY">3</div><div data-page-node-id="OUjG1j3OLbHc6Q3YeQLTun"><h3 data-page-node-id="4RVjLRDkcrIBqAEW1Nq8qD">产品定位做"相似但不同"</h3><p data-page-node-id="EuOo0EnEByi7paAfTfjiKb">推新品别赌全新品类：保留熟悉的框架，再给 30% 的意外，才是大众市场的黄金点。</p></div></div>
+      <div class="act" data-page-node-id="gKdSCqw5lMHwfmhztRBseu"><div class="num" data-page-node-id="wqKEQVKro9ExnYBTzSpVJW">4</div><div data-page-node-id="kREif2przF3G3FIfrBFvIZ"><h3 data-page-node-id="bF6iRdIEqXFXcv6b39wOJj">给团队制造"小差距"</h3><p data-page-node-id="0dYs9OAR3dI2UaTedIWlxS">排行榜上只差一点的对手最让人拼劲十足。把大目标拆成"够得着的落后"，激励效果最好。</p></div></div>
+      <div class="act" data-page-node-id="InNqKm50RK62vPGZ22U0Sl"><div class="num" data-page-node-id="2b470T2lXYztCmiHwFTpDF">5</div><div data-page-node-id="mXifXNubihrJ8MCMt75BEk"><h3 data-page-node-id="toHEcyLoeLPuDckASERa1m">检查你的选择信号</h3><p data-page-node-id="DWpvjaDbJAdAUGyNkNYmEg">重要消费与表达前多问一句：这个选择在向谁宣告什么？是我想要的信号，还是被带节奏？</p></div></div>
+      <div class="act" data-page-node-id="9m49oBjawx6H7Nkf0567n0"><div class="num" data-page-node-id="FenffrxpmgEYNESjlb4Foc">6</div><div data-page-node-id="fVr9C3IHpcVYszt6O2xJPh"><h3 data-page-node-id="mQZKfbza8YbTHezYAAFFFi">主动挑选你的"环境"</h3><p data-page-node-id="xpXu3IADiXTXQ15w8HGOfP">同伴的影响长期而巨大。选择社区、圈层与常处的环境，就是在选择那支看不见的推手。</p></div></div>
+    </div>
+  </section>
+
+  <div class="divider" data-page-node-id="jf72Roqogo5QlyzxkUTwcA"></div>
+
+  <section id="who" data-page-node-id="kDEnCu3bN6bKgJFvsHuGEW">
+    <div class="sec-head" data-page-node-id="ckQGGIm1N5FXjY9zCiubQJ"><div class="sec-no" data-page-node-id="GB4pD8f4WMepkOR2Wnek2R">08</div><h2 data-page-node-id="rRzv3VGttr6LiWUXjyYY5D">这本书适合谁读</h2></div>
+    <p class="sec-sub" data-page-node-id="cR3usxV68x7OvXAfgI5T5S">如果你符合其中一条，它都值得放进书单</p>
+    <div class="split" data-page-node-id="Uzi0HNBMOrYOX4rkTkPNBK">
+      <div class="imgcol" id="who-img" data-page-node-id="4AweWLPKIPoIWJ8S24DqlP">
+        <div class="cap" data-page-node-id="iOvTFG2Y4VYLodVlPbvujF">从众与独立之间，藏着真实的自己</div>
+      </div>
+      <div class="fit-list" data-page-node-id="hQzss5EeX07KfSdMAoC00b">
+        <div class="fit" data-page-node-id="wPGkH6zJhug1k8UMxu8dJZ"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" data-page-node-id="cWzWD9Nl3wlsZlD5f9tiz2"><path d="M2 9l4 4 10-10" stroke="#2e5a77" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="YCKcl67Xn4vlvfCkV3hZdP"/></svg><div data-page-node-id="2ui3Brul2mPZFTXcr5R3bR"><b data-page-node-id="AjTGa1J0iUBKavQgYD34pU">营销、品牌与用户研究者</b><span data-page-node-id="WSlFAwVvzEh3YsfdOme6Sf">理解身份信号与差异化动机，才能解释"爆款为何烂大街后失宠"。</span></div></div>
+        <div class="fit" data-page-node-id="1oMNLGYMWcPjJ4mEuSLEmQ"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" data-page-node-id="cFfMqc3gyMKK4w8B226yy1"><path d="M2 9l4 4 10-10" stroke="#2e5a77" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="if25C8BFRV3yqvnyiPQDWt"/></svg><div data-page-node-id="7IbLmslMfsSAhZGjPnIWcH"><b data-page-node-id="XaoSpm3KHBTxjVja86eaVH">管理者与教育者</b><span data-page-node-id="R4b5WgXVcy71SEtEoJ63ph">社会促进、相对绩效与同辈效应，是激励团队与学生的底层开关。</span></div></div>
+        <div class="fit" data-page-node-id="cWnaDHw1KtDJSD5SZx0bBz"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" data-page-node-id="DIHrDCyjL2VHwAwMQWXCBz"><path d="M2 9l4 4 10-10" stroke="#2e5a77" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="AEsQT6BnCyyGngne5WjySY"/></svg><div data-page-node-id="RJgo3VDLpToj2pExa2Eayt"><b data-page-node-id="m8bKlUID3v9g2ucWtYDv8v">想看清自己决策的人</b><span data-page-node-id="WALTddvlayOFOyS0Xvise5">承认"我也会被带节奏"，是做出更自主选择的起点。</span></div></div>
+        <div class="fit" data-page-node-id="O7VHsu3g6supqtIoAX9MQB"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" data-page-node-id="rbWDwe7NEgCYfzVd7H33rY"><path d="M9 2v4M9 12v4M2 9h4M12 9h4" stroke="#6f93ab" stroke-width="2" stroke-linecap="round" data-page-node-id="dp9ZG78H6CyhcwI9cc5UGH"/></svg><div data-page-node-id="FEDR1a7dcP7bwfpKr8Am1k"><b data-page-node-id="jDTWOnemqmSFQLRBQ5nF7Z">读前提示</b><span data-page-node-id="VAJ8n6qS40ARGTwXGAdPiU">与《疯传》互为姊妹篇：《疯传》讲"如何传播"，本作讲"人为何被影响"，连读效果最佳。</span></div></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+
+  <div class="divider" data-page-node-id="EoWeA8vvwjxhDcgRPfTSay"></div>
+
+  <section id="more" data-page-node-id="xtSVI1xHq4y6C1BqKtz0rM">
+    <div class="sec-head" data-page-node-id="WiKyuLmnYg9zSDTL4LIA9y"><div class="sec-no" data-page-node-id="0jgoA9G5bslR0dox8upVRX">&rarr;</div><h2 data-page-node-id="2Z71dppxVc6wJTQdJ0SN8n">读书笔记系列</h2></div>
+    <p class="sec-sub" data-page-node-id="BfI4gfKWsUND47Kl5a1Hro">同一系列的精读摘要卡，可继续翻阅</p>
+    <div class="more-grid" data-page-node-id="4QzkUi9ohMA7OQklReBTGU">
+    <span class="more current" style="--mc:#2e5a77" data-page-node-id="iM7lU9RYi65meaUskuzBpc"><b data-page-node-id="zyiL8im2HIZvIr1t5CgmKV">《传染》</b><i data-page-node-id="SoL0BPuJSCUccTJXBPgVBx">社会影响 · 最优差异化 · 当前阅读</i></span>
+    <a class="more" href="思考快与慢.html" style="--mc:#9a3b2e" data-page-node-id="J9IJTFE8tCtklTeaYMVYEl"><b data-page-node-id="JZE4mPmuC0f7drs8mE4gqn">《思考，快与慢》</b><i data-page-node-id="nHvxmjpC258Os5s0xmXy7p">双系统 · 认知偏误</i></a>
+    <a class="more" href="疯传.html" style="--mc:#a15c1c" data-page-node-id="7Vd69aQuWbo5twMSN5O99F"><b data-page-node-id="uNkTLGR0ouJlLjICAdSco9">《疯传》</b><i data-page-node-id="WSdFjSBAuRQLxe5nRT7C2q">STEPPS 六原则</i></a>
+    </div>
+    <a class="more-all" href="book-notes.html" data-page-node-id="njvJ5rpLhFczIzhoEheBRL">查看全部读书笔记 &rarr;</a>
+  </section>
+
+<footer data-page-node-id="sW2Keql2UL5gy2ivgB6d8c">
+  <div class="line" data-page-node-id="lisq0DnyUR9ZRJR0OhzpFj"></div>
+  <b data-page-node-id="vaMu5SWOHxKDIfaevciCmZ">《传染》精读笔记 · 读书摘要卡</b>
+  <p class="disclaim" data-page-node-id="2KTyYIj79JKgTGQlRLr3nQ">本页为基于该书公开核心观点整理的读书笔记，用于知识科普与个人学习参考，非原文逐字转载。书名、理论与观点版权归原作者及出版方所有。头图为斯图加特市立图书馆内景，来自 Wikimedia Commons。</p>
+</footer>
+
+<script>
+  var DOC_ARCHIVE = "../assets/hero/h31.jpg";
+  document.getElementById('hero').style.backgroundImage = "url('" + DOC_ARCHIVE + "')";
+  document.getElementById('who-img').style.backgroundImage = "url('" + DOC_ARCHIVE + "')";
+
+  (function(){
+    var bar = document.getElementById('progress');
+    function upd(){
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.width = (max > 0 ? (h.scrollTop / max * 100) : 0) + '%';
+    }
+    window.addEventListener('scroll', upd, {passive:true});
+    window.addEventListener('resize', upd);
+    upd();
+  })();
+</script>
+
+</body>
+</html>
