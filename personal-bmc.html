@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>个人商业模式设计 · BMC 九宫格对比 · 林远见路</title>
+<meta name="description" content="用商业模式画布（BMC）九宫格拆解个人变现闭环：以罗振宇的机构化知识服务模型与罗永浩的人格 IP / 直播变现模型为对照，看清核心资源、关键业务、客户关系与收入结构，照着给自己画一张。">
+<style>
+  :root{
+    --paper:#f6f1e7;
+    --paper-2:#fbf8f1;
+    --ink:#2b2722;
+    --ink-soft:#5c554b;
+    --ink-faint:#8a8074;
+    --line:#e3dac8;
+    --accent:#9a3b2e;      /* 朱红书签 */
+    --accent-2:#b8794a;
+    --c-luo:#9a3b2e;       /* 罗振宇 */
+    --c-yong:#2e5a77;      /* 罗永浩 */
+    --shadow:0 12px 40px rgba(43,39,34,.10);
+    --serif:"Songti SC","Source Han Serif SC","Noto Serif SC",Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--sans);color:var(--ink);background:var(--paper);
+    background-image:
+      radial-gradient(circle at 18% 8%, rgba(184,121,74,.06), transparent 42%),
+      radial-gradient(circle at 84% 88%, rgba(46,90,119,.05), transparent 46%);
+    line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.035'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  body>*{position:relative;z-index:1;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
+  h1,h2,h3,.serif{font-family:var(--serif);}
+  ::selection{background:rgba(154,59,46,.18);}
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative;overflow:hidden;color:#fbf6ec;
+    background:linear-gradient(150deg,#2e2721,#3d332b 55%,#29241e);
+    padding:96px 0 68px;
+  }
+  .hero::after{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(circle at 80% 15%, rgba(184,121,74,.18), transparent 55%);
+  }
+  .hero .stripe{position:absolute;left:0;top:0;bottom:0;width:8px;display:flex;flex-direction:column;}
+  .hero .stripe i{flex:1;}
+  .hero-inner{position:relative;z-index:2;max-width:1080px;margin:0 auto;padding:0 28px;}
+  .hero .kicker{
+    display:inline-flex;align-items:center;gap:8px;font-size:13px;letter-spacing:.22em;text-transform:uppercase;
+    color:#f0d9b8;border:1px solid rgba(240,217,184,.42);padding:6px 15px;border-radius:30px;margin-bottom:22px;
+  }
+  .hero h1{font-size:clamp(30px,5.2vw,50px);line-height:1.14;font-weight:700;margin-bottom:10px;}
+  .hero .sub-en{font-family:var(--serif);font-style:italic;font-size:clamp(15px,2.2vw,20px);color:#e2cba6;opacity:.92;margin-bottom:18px;}
+  .hero .lead{max-width:680px;font-size:clamp(15px,2vw,17.5px);color:#efe4d3;}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:22px 32px;margin-top:26px;}
+  .hero-meta .m{display:flex;flex-direction:column;}
+  .hero-meta .m b{font-family:var(--serif);font-size:19px;color:#fff;}
+  .hero-meta .m span{font-size:12.5px;letter-spacing:.08em;color:#d6c1a3;}
+
+  .ribbon{position:absolute;top:0;right:clamp(16px,5vw,52px);z-index:3;width:44px;
+    background:var(--accent);color:#fff;text-align:center;padding:15px 0 24px;
+    font-family:var(--serif);font-size:13px;letter-spacing:.14em;box-shadow:0 6px 16px rgba(0,0,0,.32);}
+  .ribbon::after{content:"";position:absolute;left:0;bottom:-13px;border-width:0 22px 14px;border-style:solid;border-color:var(--accent) var(--accent) transparent;}
+  .ribbon span{writing-mode:vertical-rl;}
+
+  /* ===== 区块 ===== */
+  section{padding:52px 0 46px;}
+  .sec-head{display:flex;align-items:center;gap:14px;margin-bottom:8px;}
+  .sec-no{font-family:var(--serif);font-size:14px;color:var(--accent);border:1px solid var(--accent);
+    border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;flex:none;}
+  .sec-head h2{font-size:clamp(22px,3.2vw,29px);}
+  .sec-sub{color:var(--ink-faint);font-size:14.5px;margin-bottom:26px;padding-left:48px;}
+  @media(max-width:880px){.sec-sub{padding-left:0;}}
+
+  /* ===== 图例 ===== */
+  .legend{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:22px;}
+  .legend .lg{display:inline-flex;align-items:center;gap:9px;background:var(--paper-2);
+    border:1px solid var(--line);border-radius:24px;padding:7px 16px;font-size:14px;color:var(--ink-soft);}
+  .legend .lg .d{width:11px;height:11px;border-radius:50%;flex:none;}
+  .legend .lg b{font-family:var(--serif);color:var(--ink);font-weight:700;}
+
+  /* ===== 对比表 ===== */
+  .table-wrap{background:var(--paper-2);border:1px solid var(--line);border-radius:16px;
+    box-shadow:var(--shadow);overflow:hidden;}
+  table.bmc{width:100%;border-collapse:collapse;font-size:14.5px;}
+  table.bmc thead th{
+    font-family:var(--serif);font-size:15px;text-align:left;padding:16px 20px;
+    background:#f1ead9;border-bottom:1px solid var(--line);color:var(--ink);white-space:nowrap;
+  }
+  table.bmc thead th.a{color:var(--c-luo);}
+  table.bmc thead th.b{color:var(--c-yong);}
+  table.bmc thead th small{display:block;font-family:var(--sans);font-size:11.5px;
+    color:var(--ink-faint);font-weight:400;letter-spacing:.04em;margin-top:2px;}
+  table.bmc tbody tr{border-bottom:1px solid var(--line);}
+  table.bmc tbody tr:last-child{border-bottom:none;}
+  table.bmc tbody tr:nth-child(even){background:rgba(43,39,34,.015);}
+  table.bmc tbody tr:hover{background:rgba(154,59,46,.035);}
+  table.bmc th.blk{
+    width:190px;vertical-align:top;text-align:left;padding:16px 20px;font-family:var(--serif);
+    color:var(--ink);font-weight:700;line-height:1.5;
+  }
+  table.bmc th.blk small{display:block;font-family:var(--sans);font-size:11.5px;
+    color:var(--ink-faint);font-weight:400;letter-spacing:.04em;margin-top:3px;}
+  table.bmc td{vertical-align:top;padding:16px 20px;color:var(--ink-soft);line-height:1.75;}
+  table.bmc td.a{border-left:1px solid var(--line);}
+  table.bmc td.b{border-left:1px solid var(--line);}
+  .tag-sup{display:inline-block;font-size:10.5px;font-family:var(--sans);color:var(--accent);
+    background:rgba(154,59,46,.1);border:1px solid rgba(154,59,46,.25);
+    padding:1px 6px;border-radius:5px;margin-left:6px;vertical-align:2px;letter-spacing:.02em;}
+
+  /* ===== 手机端：表格转卡片，绝不裁切 ===== */
+  @media(max-width:760px){
+    table.bmc thead{display:none;}
+    table.bmc,table.bmc tbody,table.bmc tr,table.bmc th.blk,table.bmc td{display:block;width:100%;}
+    table.bmc tbody tr{
+      border:1px solid var(--line);border-radius:14px;background:var(--paper);
+      margin-bottom:12px;padding:14px 16px;box-shadow:0 4px 14px rgba(43,39,34,.05);
+    }
+    table.bmc th.blk{
+      padding:0 0 10px;border-bottom:1px dashed var(--line);margin-bottom:10px;font-size:16px;
+    }
+    table.bmc td{padding:0 0 12px;border-left:none !important;}
+    table.bmc td:last-child{padding-bottom:0;}
+    table.bmc td::before{
+      content:attr(data-label);display:block;font-family:var(--serif);font-size:12px;
+      letter-spacing:.06em;margin-bottom:4px;font-weight:700;
+    }
+    table.bmc td.a::before{color:var(--c-luo);}
+    table.bmc td.b::before{color:var(--c-yong);}
+  }
+
+  .note{margin-top:24px;background:var(--paper-2);border:1px dashed var(--accent-2);border-radius:12px;
+    padding:18px 22px;font-size:14.5px;color:var(--ink-soft);}
+  .note b{color:var(--accent);font-family:var(--serif);}
+
+  /* ===== 怎么用 ===== */
+  .steps{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+  @media(max-width:760px){.steps{grid-template-columns:1fr;}}
+  .step{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:20px 22px;}
+  .step .n{font-family:var(--serif);font-size:13px;color:var(--accent);letter-spacing:.1em;margin-bottom:6px;}
+  .step h3{font-size:17px;margin-bottom:7px;}
+  .step p{font-size:14px;color:var(--ink-soft);line-height:1.72;}
+
+  .divider{height:1px;background:linear-gradient(90deg,transparent,var(--line) 18%,var(--line) 82%,transparent);}
+
+  .back{
+    display:inline-flex;align-items:center;gap:8px;margin-top:6px;font-size:13.5px;
+    color:var(--ink-soft);text-decoration:none;border:1px solid var(--line);
+    background:var(--paper-2);padding:8px 16px;border-radius:24px;transition:all .18s;
+  }
+  .back:hover{color:var(--accent);border-color:rgba(154,59,46,.35);background:rgba(154,59,46,.05);}
+
+  footer{padding:36px 28px 56px;text-align:center;color:var(--ink-faint);font-size:13px;}
+  footer .line{width:60px;height:3px;background:var(--accent);margin:0 auto 20px;border-radius:3px;}
+  footer b{font-family:var(--serif);color:var(--ink-soft);}
+  .disclaim{margin-top:10px;font-size:12px;color:var(--ink-faint);max-width:680px;margin-left:auto;margin-right:auto;line-height:1.7;}
+
+  @media(max-width:640px){.wrap{padding:0 18px;}.hero-inner{padding:0 18px;}}
+  @media print{.ribbon{display:none;}body::before{display:none;}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="stripe"><i style="background:#9a3b2e"></i><i style="background:#b8794a"></i><i style="background:#2e5a77"></i></div>
+  <div class="ribbon"><span>商业模式</span></div>
+  <div class="hero-inner">
+    <span class="kicker">Personal Business Model Canvas</span>
+    <h1>个人商业模式设计</h1>
+    <div class="sub-en">Business Model Canvas &nbsp;·&nbsp; 林远见路</div>
+    <p class="lead">赚钱这件事，本质是一套可以画出来的闭环：你拿什么资源、做什么事、服务谁、从哪收钱。下面借用亚历山大·奥斯特瓦德的商业模式画布（Business Model Canvas, BMC），把罗振宇与罗永浩两条完全不同的变现路径并排拆开——不是为了评判谁更成功，而是让你照着这张九宫格，给自己也画一张。</p>
+    <div class="hero-meta">
+      <div class="m"><b>9 格</b><span>BMC 构造块</span></div>
+      <div class="m"><b>2 条</b><span>对照变现路径</span></div>
+      <div class="m"><b>1 张</b><span>你可以照着画</span></div>
+      <div class="m"><b>持续更新</b><span>新增案例</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section>
+    <div class="sec-head"><div class="sec-no">格</div><h2>九宫格对比：两种个人商业模式</h2></div>
+    <p class="sec-sub">同一套画布，两种完全不同的闭环——左列偏"机构化知识服务"，右列偏"人格 IP 与流量变现"</p>
+
+    <div class="legend">
+      <span class="lg"><span class="d" style="background:var(--c-luo)"></span><b>罗振宇</b>机构化知识服务模型</span>
+      <span class="lg"><span class="d" style="background:var(--c-yong)"></span><b>罗永浩</b>人格 IP / 直播与流量变现模型</span>
+    </div>
+
+    <div class="table-wrap">
+      <table class="bmc">
+        <thead>
+          <tr>
+            <th>BMC 构造块</th>
+            <th class="a">罗振宇<small>机构化知识服务模型</small></th>
+            <th class="b">罗永浩<small>人格 IP / 直播与流量变现</small></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th class="blk">核心资源<small>Key Resources</small></th>
+            <td class="a" data-label="罗振宇 · 机构化知识服务">机构化版权、得到 App 软件资产、顶尖专家讲师网络、品牌沉淀。</td>
+            <td class="b" data-label="罗永浩 · 人格 IP 变现">极高国民度的个人 IP、拟社会信任、强撕扯感的人格故事与流量召唤力。</td>
+          </tr>
+          <tr>
+            <th class="blk">关键业务<small>Key Activities</small></th>
+            <td class="a" data-label="罗振宇 · 机构化知识服务">知识筛选与二次加工、图书与课程策划、跨年演讲、App 运营。</td>
+            <td class="b" data-label="罗永浩 · 人格 IP 变现">品牌公关/发布会、直播选品与带货、跨界代言、硬件/AR 创业。</td>
+          </tr>
+          <tr>
+            <th class="blk">价值主张<span class="tag-sup">补充</span><small>Value Propositions</small></th>
+            <td class="a" data-label="罗振宇 · 机构化知识服务">把碎片时间换成可交付的系统知识——替你筛书、拆书、讲书，用"省时间的确定性"缓解知识焦虑。</td>
+            <td class="b" data-label="罗永浩 · 人格 IP 变现">用"真诚 + 理想主义 + 较真"的人设替你降低决策成本，让你因为信任这个人而下单。</td>
+          </tr>
+          <tr>
+            <th class="blk">目标客群<small>Customer Segments</small></th>
+            <td class="a" data-label="罗振宇 · 机构化知识服务">渴望阶层跃迁、缓解职业与知识焦虑的中产、白领及管理者。</td>
+            <td class="b" data-label="罗永浩 · 人格 IP 变现">追求性价比的网购用户、对真诚/理想主义人设有强认同感的粉丝。</td>
+          </tr>
+          <tr>
+            <th class="blk">渠道通路<small>Channels</small></th>
+            <td class="a" data-label="罗振宇 · 机构化知识服务">得到 App、微信公众号、跨年演讲、出版物与线下知识社群。</td>
+            <td class="b" data-label="罗永浩 · 人格 IP 变现">微博/抖音/快手公域短视频、直播间、全网舆论热搜。</td>
+          </tr>
+          <tr>
+            <th class="blk">客户关系<small>Customer Relationships</small></th>
+            <td class="a" data-label="罗振宇 · 机构化知识服务">终身学习社区、师生/教练关系、知识履约。</td>
+            <td class="b" data-label="罗永浩 · 人格 IP 变现">拟社会陪伴、同路人关系、黑粉博弈与"交个朋友"信任契约。</td>
+          </tr>
+          <tr>
+            <th class="blk">收入来源<small>Revenue Streams</small></th>
+            <td class="a" data-label="罗振宇 · 机构化知识服务">课程订阅费、图书销售分账、演讲门票与赞助、线下训练营。</td>
+            <td class="b" data-label="罗永浩 · 人格 IP 变现">直播间佣金与坑位费、品牌代言费、股权投资/公司并购收益。</td>
+          </tr>
+          <tr>
+            <th class="blk">重要伙伴<span class="tag-sup">补充</span><small>Key Partners</small></th>
+            <td class="a" data-label="罗振宇 · 机构化知识服务">出版社与版权方、签约专家与讲师、平台技术伙伴、品牌赞助商。</td>
+            <td class="b" data-label="罗永浩 · 人格 IP 变现">供应链与品牌方、直播平台（抖音等）、投资机构、"交个朋友"运营团队。</td>
+          </tr>
+          <tr>
+            <th class="blk">成本结构<small>Cost Structure</small></th>
+            <td class="a" data-label="罗振宇 · 机构化知识服务">专家版权版税、App 技术研发与运营、团队薪酬、营销推广。</td>
+            <td class="b" data-label="罗永浩 · 人格 IP 变现">供应链选品与退换货履约成本、团队运营、债务利息与清偿成本。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note">
+      <b>怎么看这张表 —</b> 两人的差别不在"谁更会赚钱"，而在<b>资产放在哪里</b>：罗振宇把资产沉淀在机构、版权与产品里，个人退居其后也能运转；罗永浩把资产沉淀在人格、信任与流量上，爆发力强但与人高度绑定。<span class="tag-sup">补充</span> 标记的两格（价值主张、重要伙伴）为依上表推导补齐，便于构成完整九宫格，可按你的资料替换。
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section style="padding-top:38px;">
+    <div class="sec-head"><div class="sec-no">用</div><h2>照着给自己画一张</h2></div>
+    <p class="sec-sub">不用一次填完，先挑最有把握的格子落笔，空白的地方就是你下一步要想清楚的事</p>
+    <div class="steps">
+      <div class="step">
+        <div class="n">STEP 01</div>
+        <h3>先写"核心资源"，别写"我想做什么"</h3>
+        <p>列出你已经拥有的东西：专业技能、行业经验、人脉、内容资产、存款。罗振宇起步时真正可依靠的是选题与表达能力，不是"做成得到"这个想法。</p>
+      </div>
+      <div class="step">
+        <div class="n">STEP 02</div>
+        <h3>客群越窄，收入越稳</h3>
+        <p>"想帮所有人"等于没有客群。写清楚你服务的是哪一类具体的人、他在焦虑什么、愿意为什么付钱。表格里两位的客群定义都非常具体。</p>
+      </div>
+      <div class="step">
+        <div class="n">STEP 03</div>
+        <h3>至少设计两条收入来源</h3>
+        <p>单一收入意味着单一风险。主收入的旁边，留一条"睡后收入"（课程、版税、订阅）或"杠杆收入"（佣金、分成），结构才扛得住波动。</p>
+      </div>
+      <div class="step">
+        <div class="n">STEP 04</div>
+        <h3>盯住成本，也盯住"绑定程度"</h3>
+        <p>问自己：这份收入离了我还能不能转？如果答案是不能，你卖的是时间而不是资产——那就该考虑把能力产品化，像罗振宇那样沉淀为可复用的东西。</p>
+      </div>
+    </div>
+  </section>
+
+  <div id="guestbook" data-page-key="personal-bmc"></div>
+
+  <div class="divider"></div>
+
+  <section style="padding-top:30px;">
+    <a class="back" href="/">← 返回「心理学全景学习」首页</a>
+    &nbsp;&nbsp;<a class="back" href="book-notes.html">← 去必读书目推荐</a>
+  </section>
+
+</div>
+
+<footer>
+  <div class="line"></div>
+  <b>个人商业模式设计 · BMC 九宫格对比</b>
+  <p class="disclaim">本页为学习方法整理与案例对比，用于个人商业模式思考参考。BMC（Business Model Canvas）框架由 Alexander Osterwalder 提出；表中人物与业务信息基于公开资料整理，不构成投资、创业或职业建议。</p>
+</footer>
+
+<script src="js/supabase.min.js?v=20260911b" defer></script>
+<script src="js/appdata.js?v=20260911b" defer></script>
+<script src="js/guestbook.js?v=20260911b" defer></script>
+<script src="js/page-counter.js?v=20260908c" defer></script>
+</body>
+</html>
