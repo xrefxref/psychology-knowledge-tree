@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>必读书目推荐 · 心理学精选书单 · 林远见路</title>
-<meta name="description" content="为心理学学习者整理的必读书目：292 本藏书按主题分类，点开每本书看一句话定位与核心框架，290 本附完整精读笔记，帮你决定下一本读什么。">
+<meta name="description" content="为心理学学习者整理的必读书目：292 本藏书按主题分类，点开每本书看一句话定位与核心框架，287 本附完整精读笔记，帮你决定下一本读什么。">
 <style>
   :root{
     --paper:#f6f1e7;
@@ -98,6 +98,8 @@
   .bk .tags span{font-size:11.5px;padding:3px 9px;border-radius:20px;background:rgba(43,39,34,.05);color:var(--ink-soft);}
   .bk .go{font-family:var(--serif);font-size:14.5px;font-weight:600;}
   @media(max-width:880px){.shelf{grid-template-columns:1fr;}}
+  .shelf2{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
+  @media(max-width:880px){.shelf2{grid-template-columns:1fr;}}
 
   .note{margin-top:26px;background:var(--paper-2);border:1px dashed var(--accent-2);border-radius:12px;
     padding:18px 22px;font-size:14.5px;color:var(--ink-soft);}
@@ -216,7 +218,7 @@
     <div class="hero-meta">
       <div class="m"><b>292 本</b><span>推荐藏书</span></div>
       <div class="m"><b>10 大</b><span>主题分类</span></div>
-      <div class="m"><b>3 本</b><span>完整精读笔记</span></div>
+      <div class="m"><b>287 本</b><span>精读笔记</span></div>
       <div class="m"><b>持续更新</b><span>新增书目</span></div>
     </div>
   </div>
@@ -286,6 +288,36 @@
 
     <!-- JS 渲染书单的容器 -->
     <section id="booklist" style="padding-top:18px;scroll-margin-top:72px;"></section>
+  </section>
+
+  <section style="padding-top:34px;">
+    <div class="sec-head"><div class="sec-no">图</div><h2>换个看法</h2></div>
+    <p class="sec-sub">同一批藏书，也可以按图谱和概念网络来浏览</p>
+    <div class="shelf2">
+
+      <a class="bk" href="knowledge-graph.html">
+        <div class="spine" style="background:var(--c1)"></div>
+        <div class="body">
+          <div class="idx">知识图谱 · 分类书架</div>
+          <h3>《我的阅读宇宙》</h3>
+          <div class="orig">289 本书卡墙 · 10 大主题分区</div>
+          <p class="desc">全部藏书做成一面书卡墙，按主题分区铺开。点任意一张书卡直接进入精读笔记，也可以跳微信读书读原文。</p>
+          <div class="go" style="color:var(--c1)">进入图谱 →</div>
+        </div>
+      </a>
+
+      <a class="bk" href="knowledge-map.html">
+        <div class="spine" style="background:var(--c2)"></div>
+        <div class="body">
+          <div class="idx">概念关系网络</div>
+          <h3>《心理学知识图谱》</h3>
+          <div class="orig">流派 · 概念 · 代表人物的连接</div>
+          <p class="desc">不按书目、按知识点组织：看清各流派与核心概念之间如何相连，适合读完书后回头梳理整个体系。</p>
+          <div class="go" style="color:var(--c2)">查看概念图谱 →</div>
+        </div>
+      </a>
+
+    </div>
   </section>
 
   <div class="divider"></div>
