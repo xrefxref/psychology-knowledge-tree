@@ -413,6 +413,53 @@ p.body strong{color:var(--ink);font-weight:500}
 }
 .illus svg{width:100%;max-width:290px;height:auto;display:block}
 
+/* --- 兑换码付费墙 --- */
+.locked-zone{position:relative}
+.locked-zone.is-locked{max-height:300px;overflow:hidden}
+.locked-zone.is-locked::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:200px;
+  background:linear-gradient(180deg,rgba(248,250,255,0) 0%,#F8FAFF 76%);
+  pointer-events:none;
+}
+
+.gate{
+  margin:0 0 18px;padding:30px 20px 26px;text-align:center;
+  background:var(--white);border:1px solid var(--brand-line);border-radius:var(--radius);
+  box-shadow:0 6px 24px rgba(61,90,254,.1);
+  transition:opacity .4s ease,transform .4s ease;
+}
+.gate.is-done{opacity:0;transform:translateY(-10px)}
+.gate-badge{
+  width:46px;height:46px;margin:0 auto 15px;border-radius:50%;
+  background:var(--brand-soft);
+  display:flex;align-items:center;justify-content:center;
+}
+.gate-title{font-size:16px;font-weight:500;color:var(--ink);letter-spacing:.02em;margin-bottom:9px}
+.gate-sub{
+  font-size:13px;color:var(--ink-2);line-height:1.8;margin-bottom:20px;
+  max-width:22em;margin-left:auto;margin-right:auto;
+}
+.gate-row{display:flex;gap:8px;max-width:340px;margin:0 auto}
+.gate-row input{
+  flex:1;min-width:0;font-family:var(--sans);font-size:15px;letter-spacing:.09em;
+  padding:12px 14px;border:1px solid var(--line);border-radius:10px;
+  background:#FBFCFE;color:var(--ink);outline:none;
+  -webkit-appearance:none;appearance:none;
+  transition:border-color .2s,background .2s;
+}
+.gate-row input::placeholder{color:#B6C0D4;letter-spacing:.09em}
+.gate-row input:focus{border-color:var(--brand);background:#fff}
+.gate-row button{padding:12px 22px;border-radius:10px;font-size:14.5px;flex:0 0 auto}
+.gate-msg{font-size:12.5px;margin-top:12px;min-height:1.65em;line-height:1.65}
+.gate-msg.is-err{color:#C0392B}
+.gate-msg.is-ok{color:#1E8449}
+
+@media(max-width:400px){
+  .gate{padding:26px 16px 22px}
+  .gate-row{flex-direction:column}
+  .gate-row button{width:100%}
+}
+
 /* --- 报告底部 --- */
 .report-actions{
   display:flex;flex-direction:column;gap:12px;
@@ -500,6 +547,77 @@ p.body strong{color:var(--ink);font-weight:500}
   </section>
 
 </div>
+<script>
+/* ==========================================================
+   兑换码哈希库（由 gen_codes.py 生成，请勿手改）
+   仅存 cyrb53 哈希值，不含明文；明文码见 codes/ 目录。
+   当前码数：60
+   ========================================================== */
+
+const ACCESS_CODES = [
+  "242tp85z2z2",
+  "2fe4ocmgugf",
+  "23kxaxesrca",
+  "1xjldr9ctmq",
+  "28lc2mn4fds",
+  "b6cdy8h435",
+  "262guo2lw7p",
+  "2ba9w5ks0xu",
+  "1pf8qqekesw",
+  "m373bhmxjw",
+  "1soc9qcpoth",
+  "i2g267l7j0",
+  "236tjbh5eo8",
+  "1mdzgj149w4",
+  "elyvsjnnon",
+  "wcxsesp5a5",
+  "aozcw970b8",
+  "1mwkq2u4pb",
+  "8fsgmvswm6",
+  "1y9efirawzv",
+  "1stn9qlnboc",
+  "jtf3iigz1e",
+  "1fmfpk0f3w9",
+  "19b5b5dupso",
+  "24uqi5ydl1p",
+  "20ip050udru",
+  "1e6x7ch949e",
+  "dtzljnmopm",
+  "2f8f3l119wm",
+  "2a4okjk7d2h",
+  "h4dusyetl9",
+  "1myr0naolzj",
+  "pueweoq21v",
+  "14qqa2iu65n",
+  "pxj43vizmw",
+  "1d2h86ar22n",
+  "1pv9s3xqzto",
+  "19m4usi8ij1",
+  "2eqrq2wrzqz",
+  "pw9zrucxih",
+  "x9ny7wb2cd",
+  "24spi1g5hzf",
+  "24u8w5518hk",
+  "rj3a0az64",
+  "1urjhdf84zw",
+  "1pg1zrv83gy",
+  "pisyo99lb",
+  "245l234fdrg",
+  "ntlxwzpn0s",
+  "q3cslb7cre",
+  "s9m60bk2pq",
+  "1mtnwrq3xy7",
+  "15rdcpna9vp",
+  "26duxjbbxcb",
+  "m0be3oj638",
+  "iv07z35ecc",
+  "23dutxx4l9h",
+  "2pt6g398jc",
+  "136fw0fedmk",
+  "1bwzyg1hd59"
+];
+
+</script>
 <script>
 /* ==========================================================
    职业性格测评 · 数据层
@@ -1294,6 +1412,7 @@ const TYPES = {
   "use strict";
 
   var LS_KEY = "career-mbti-v1";
+  var LOCK_KEY = "career-mbti-unlock-v1";
   var ORDER = ["A", "D", "H", "X"];
 
   var el = {
@@ -1329,6 +1448,43 @@ const TYPES = {
 
   function esc(s) {
     return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+
+  /* ---------------- 兑换码（与 gen_codes.py 保持同一算法） ---------------- */
+  function cyrb53(str, seed) {
+    seed = seed || 0;
+    var h1 = 0xdeadbeef ^ seed, h2 = 0x41c6ce57 ^ seed;
+    for (var i = 0, ch; i < str.length; i++) {
+      ch = str.charCodeAt(i);
+      h1 = Math.imul(h1 ^ ch, 2654435761);
+      h2 = Math.imul(h2 ^ ch, 1597334677);
+    }
+    h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+    h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+    return 4294967296 * (2097151 & h2) + (h1 >>> 0);
+  }
+
+  function normCode(s) {
+    return String(s || "").replace(/[^0-9A-Za-z]/g, "").toUpperCase();
+  }
+
+  /* 码库未配置时返回 false，此时付费墙自动关闭，页面保持原本的完全开放状态 */
+  function hasCodeLib() {
+    return typeof ACCESS_CODES !== "undefined" && ACCESS_CODES && ACCESS_CODES.length > 0;
+  }
+
+  function codeValid(raw) {
+    if (!hasCodeLib()) return null;
+    return ACCESS_CODES.indexOf(cyrb53(normCode(raw)).toString(36)) >= 0;
+  }
+
+  function isUnlocked() {
+    if (!hasCodeLib()) return true;
+    try { return localStorage.getItem(LOCK_KEY) === "1"; } catch (e) { return false; }
+  }
+
+  function markUnlocked() {
+    try { localStorage.setItem(LOCK_KEY, "1"); } catch (e) { }
   }
 
   function save() {
@@ -1546,10 +1702,88 @@ const TYPES = {
       '</svg>';
   }
 
+  /* ---------------- 解锁面板 ---------------- */
+  function gateHTML() {
+    return '' +
+      '<div class="gate" id="unlock-gate">' +
+        '<div class="gate-badge">' +
+          '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3D5AFE" ' +
+          'stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+          '<rect x="4" y="10.5" width="16" height="10.5" rx="2.6"/>' +
+          '<path d="M8 10.5V7.2a4 4 0 0 1 8 0v3.3"/>' +
+          '<circle cx="12" cy="15.8" r="1.3" fill="#3D5AFE" stroke="none"/>' +
+          '</svg>' +
+        '</div>' +
+        '<h3 class="gate-title">报告已生成，还有 6 个章节未解锁</h3>' +
+        '<p class="gate-sub">输入兑换码，查看你的职场取向、匹配职业、深度分析与冲突应对</p>' +
+        '<div class="gate-row">' +
+          '<input id="gate-input" type="text" inputmode="text" autocomplete="off" ' +
+          'autocapitalize="characters" spellcheck="false" placeholder="XXXX-XXXX-XXXX" maxlength="14">' +
+          '<button class="btn btn-primary" id="gate-submit">解锁</button>' +
+        '</div>' +
+        '<p class="gate-msg" id="gate-msg"></p>' +
+      '</div>';
+  }
+
+  function bindGate() {
+    var input = document.getElementById("gate-input");
+    var btn = document.getElementById("gate-submit");
+    var msg = document.getElementById("gate-msg");
+    if (!input || !btn || !msg) return;
+
+    input.addEventListener("input", function () {
+      var v = normCode(input.value).slice(0, 12);
+      input.value = v.replace(/(.{4})/g, "$1-").replace(/-$/, "");
+    });
+
+    function submit() {
+      if (normCode(input.value).length < 12) {
+        msg.textContent = "请输入完整的 12 位兑换码";
+        msg.className = "gate-msg is-err";
+        return;
+      }
+      var res = codeValid(input.value);
+      if (res === null) {
+        msg.textContent = "当前页面未配置兑换码";
+        msg.className = "gate-msg is-err";
+        return;
+      }
+      if (!res) {
+        msg.textContent = "兑换码无效，请核对后重试";
+        msg.className = "gate-msg is-err";
+        input.select();
+        return;
+      }
+      markUnlocked();
+      msg.textContent = "解锁成功，正在展开完整报告…";
+      msg.className = "gate-msg is-ok";
+
+      var zone = document.getElementById("locked-zone");
+      if (zone) zone.classList.remove("is-locked");
+
+      var gate = document.getElementById("unlock-gate");
+      if (gate) {
+        gate.classList.add("is-done");
+        setTimeout(function () { gate.style.display = "none"; }, 430);
+      }
+      Array.prototype.forEach.call(el.reportRoot.querySelectorAll(".card"), function (n, i) {
+        n.classList.add("fade-up");
+        n.style.animationDelay = Math.min(i * 40, 260) + "ms";
+      });
+    }
+
+    btn.addEventListener("click", submit);
+    input.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") submit();
+    });
+  }
+
   function renderReport(r) {
     var t = TYPES[r.code];
     var role = ROLES[r.role];
     var d = r.dims;
+    var unlocked = isUnlocked();
+    var gateOn = hasCodeLib() && !unlocked;
     var meta = [
       [DIMS.EI.name, d.EI.strength + "%"],
       [DIMS.SN.name, d.SN.strength + "%"],
@@ -1582,6 +1816,8 @@ const TYPES = {
             return '<span class="tag">' + esc(x) + '</span>';
           }).join("") + '</div>' +
         '</div>' +
+
+        '<div class="locked-zone' + (gateOn ? ' is-locked' : '') + '" id="locked-zone">' +
 
         '<div class="card">' +
           '<span class="card-label">你的职场取向</span>' +
@@ -1648,6 +1884,10 @@ const TYPES = {
           '</div>' +
         '</div>' +
 
+        '</div>' +
+
+        (gateOn ? gateHTML() : '') +
+
         '<div class="report-actions">' +
           '<button class="btn btn-primary" id="btn-retake">重新测评</button>' +
           '<button class="btn btn-ghost" id="btn-copy">复制我的类型结果</button>' +
@@ -1661,6 +1901,7 @@ const TYPES = {
       '</div>';
 
     el.reportRoot.innerHTML = html;
+    bindGate();
 
     // 入场动画：维度条与柱状图
     requestAnimationFrame(function () {
