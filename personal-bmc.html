@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>个人商业模式设计 · BMC 九宫格对比 · 林远见路</title>
+<title>个人商业模式设计 · BMC 九宫格对比与自测 · 林远见路</title>
 <meta name="description" content="用商业模式画布（BMC）九宫格拆解个人变现闭环：以罗振宇的机构化知识服务模型与罗永浩的人格 IP / 直播变现模型为对照，看清核心资源、关键业务、客户关系与收入结构，照着给自己画一张。">
 <style>
   :root{
@@ -144,6 +144,59 @@
   .step h3{font-size:17px;margin-bottom:7px;}
   .step p{font-size:14px;color:var(--ink-soft);line-height:1.72;}
 
+  /* ===== 你的画布（自测） ===== */
+  .canvas-bar{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin-bottom:16px;}
+  .canvas-bar .prog{font-family:var(--serif);font-size:15px;color:var(--ink);}
+  .canvas-bar .prog b{color:var(--accent);font-size:20px;}
+  .canvas-bar .tip{font-size:12.5px;color:var(--ink-faint);}
+  .canvas-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+  @media(max-width:760px){.canvas-grid{grid-template-columns:1fr;}}
+  .c-cell{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;
+    padding:16px 18px;box-shadow:0 4px 14px rgba(43,39,34,.05);}
+  .c-cell label{display:flex;align-items:baseline;gap:8px;font-family:var(--serif);
+    font-weight:700;font-size:16px;color:var(--ink);}
+  .c-cell label small{font-family:var(--sans);font-weight:400;font-size:11px;
+    color:var(--ink-faint);letter-spacing:.04em;}
+  .c-cell .hint{font-size:12.5px;color:var(--ink-faint);margin:4px 0 8px;line-height:1.6;}
+  .c-cell details{margin-bottom:8px;font-size:12.5px;}
+  .c-cell details summary{cursor:pointer;color:var(--accent-2);font-size:12.5px;
+    list-style:none;user-select:none;display:inline-block;}
+  .c-cell details summary::-webkit-details-marker{display:none;}
+  .c-cell details summary::before{content:"▸ 参考案例怎么写";}
+  .c-cell details[open] summary::before{content:"▾ 参考案例怎么写";}
+  .c-cell details .ref{margin-top:6px;padding:10px 12px;background:rgba(154,59,46,.05);
+    border-left:3px solid var(--accent-2);border-radius:0 8px 8px 0;
+    line-height:1.7;color:var(--ink-soft);font-size:12.5px;}
+  .c-cell details .ref b{font-family:var(--serif);}
+  .c-cell textarea{width:100%;min-height:84px;resize:vertical;border:1px solid var(--line);
+    border-radius:10px;background:var(--paper);padding:10px 12px;font-family:var(--sans);
+    font-size:14px;line-height:1.7;color:var(--ink);}
+  .c-cell textarea:focus{outline:none;border-color:rgba(154,59,46,.5);background:#fffdf8;}
+  .canvas-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px;}
+  .canvas-actions button{cursor:pointer;font-family:var(--serif);font-size:15px;
+    padding:11px 22px;border-radius:26px;border:1px solid var(--accent);
+    background:var(--accent);color:#fbf6ec;transition:all .18s;}
+  .canvas-actions button:hover{filter:brightness(1.08);}
+  .canvas-actions button.ghost{background:var(--paper-2);color:var(--ink-soft);border-color:var(--line);}
+  .canvas-actions button.ghost:hover{color:var(--accent);border-color:rgba(154,59,46,.4);filter:none;}
+  #bmc-result{margin-top:20px;}
+  #bmc-result .r-head{font-family:var(--serif);font-size:19px;margin-bottom:10px;}
+  #bmc-result .r-item{display:flex;gap:10px;padding:10px 14px;border:1px solid var(--line);
+    border-radius:10px;background:var(--paper-2);margin-bottom:8px;font-size:14px;
+    line-height:1.7;color:var(--ink-soft);}
+  #bmc-result .r-item.good{border-color:rgba(46,90,119,.35);background:rgba(46,90,119,.05);}
+  #bmc-result .r-item.warn{border-color:rgba(154,59,46,.4);}
+  #bmc-result .r-item .tag{flex:none;font-family:var(--serif);font-weight:700;font-size:12px;
+    padding:2px 10px;border-radius:20px;align-self:flex-start;margin-top:3px;}
+  #bmc-result .r-item.good .tag{background:rgba(46,90,119,.12);color:var(--c-yong);}
+  #bmc-result .r-item.warn .tag{background:rgba(154,59,46,.1);color:var(--accent);}
+  #bmc-result .r-note{font-size:12px;color:var(--ink-faint);margin-top:10px;line-height:1.7;}
+  .goto-canvas{text-align:center;margin-top:22px;}
+  .goto-canvas a{display:inline-flex;align-items:center;gap:8px;font-family:var(--serif);
+    font-size:14.5px;color:var(--accent);text-decoration:none;border:1px solid rgba(154,59,46,.4);
+    background:rgba(154,59,46,.05);padding:9px 20px;border-radius:24px;transition:all .18s;}
+  .goto-canvas a:hover{background:rgba(154,59,46,.1);}
+
   .divider{height:1px;background:linear-gradient(90deg,transparent,var(--line) 18%,var(--line) 82%,transparent);}
 
   .back{
@@ -283,6 +336,29 @@
         <p>问自己：这份收入离了我还能不能转？如果答案是不能，你卖的是时间而不是资产——那就该考虑把能力产品化，像罗振宇那样沉淀为可复用的东西。</p>
       </div>
     </div>
+    <div class="goto-canvas">
+      <a href="#bmc-canvas">↓ 照着这两张案例，开始画你自己的画布</a>
+    </div>
+  </section>
+
+  <section id="bmc-canvas" style="padding-top:38px;">
+    <div class="sec-head"><div class="sec-no">画</div><h2>你的商业模式画布 · 自测</h2></div>
+    <p class="sec-sub">照着上面两个案例的写法逐格填写：答案只保存在你自己的设备上，填到一半回来也能接着写</p>
+
+    <div class="canvas-bar">
+      <div class="prog">已填 <b id="bmc-count">0</b> / 9 格</div>
+      <span class="tip">不用一次填完——空白格就是下一步要想清楚的事</span>
+    </div>
+
+    <div class="canvas-grid" id="bmc-grid"></div>
+
+    <div class="canvas-actions">
+      <button id="bmc-diagnose" type="button">生成我的 BMC 草图诊断</button>
+      <button id="bmc-export" type="button" class="ghost">复制我的画布文本</button>
+      <button id="bmc-reset" type="button" class="ghost">清空重画</button>
+    </div>
+
+    <div id="bmc-result" hidden></div>
   </section>
 
   <div id="guestbook" data-page-key="personal-bmc"></div>
@@ -306,5 +382,125 @@
 <script src="js/appdata.js?v=20260911b" defer></script>
 <script src="js/guestbook.js?v=20260911b" defer></script>
 <script src="js/page-counter.js?v=20260908c" defer></script>
+<script>
+(function(){
+  'use strict';
+  var BLOCKS=[
+    {id:'kr',zh:'核心资源',en:'Key Resources',hint:'你现在已经拥有的：专业技能、行业经验、人脉、内容资产、存款。别写“我想做什么”。',ref:[['罗振宇','机构化版权、得到 App 软件资产、顶尖专家讲师网络、品牌沉淀。'],['罗永浩','极高国民度的个人 IP、拟社会信任、强人格故事与流量召唤力。']]},
+    {id:'ka',zh:'关键业务',en:'Key Activities',hint:'你每周实际在做、并直接产生价值的事。',ref:[['罗振宇','知识筛选与二次加工、图书与课程策划、跨年演讲、App 运营。'],['罗永浩','品牌公关/发布会、直播选品与带货、跨界代言、硬件/AR 创业。']]},
+    {id:'vp',zh:'价值主张',en:'Value Propositions',hint:'一句话说清：你替谁、省了什么时间 / 解决了什么焦虑。',ref:[['罗振宇','把碎片时间换成可交付的系统知识——替你筛书、拆书、讲书，用“省时间的确定性”缓解知识焦虑。'],['罗永浩','用“真诚 + 理想主义 + 较真”的人设替你降低决策成本，让人因为信任这个人而下单。']]},
+    {id:'cs',zh:'目标客群',en:'Customer Segments',hint:'越窄越好：哪一类具体的人，在为什么焦虑。',ref:[['罗振宇','渴望阶层跃迁、缓解职业与知识焦虑的中产、白领及管理者。'],['罗永浩','追求性价比的网购用户、对真诚/理想主义人设有强认同感的粉丝。']]},
+    {id:'ch',zh:'渠道通路',en:'Channels',hint:'他们从哪里认识你、在哪里找到你。',ref:[['罗振宇','得到 App、微信公众号、跨年演讲、出版物与线下知识社群。'],['罗永浩','微博/抖音/快手公域短视频、直播间、全网舆论热搜。']]},
+    {id:'cr',zh:'客户关系',en:'Customer Relationships',hint:'一次交易、长期陪伴，还是社区？',ref:[['罗振宇','终身学习社区、师生/教练关系、知识履约。'],['罗永浩','拟社会陪伴、同路人关系、“交个朋友”信任契约。']]},
+    {id:'rs',zh:'收入来源',en:'Revenue Streams',hint:'至少两条：主收入之外，再留一条“睡后收入”或“杠杆收入”。',ref:[['罗振宇','课程订阅费、图书销售分账、演讲门票与赞助、线下训练营。'],['罗永浩','直播间佣金与坑位费、品牌代言费、股权投资/公司并购收益。']]},
+    {id:'kp',zh:'重要伙伴',en:'Key Partners',hint:'谁让这件事成立：平台、供应方、合作者。',ref:[['罗振宇','出版社与版权方、签约专家与讲师、平台技术伙伴、品牌赞助商。'],['罗永浩','供应链与品牌方、直播平台（抖音等）、投资机构、“交个朋友”运营团队。']]},
+    {id:'co',zh:'成本结构',en:'Cost Structure',hint:'不只算钱：时间成本，还有“离了你还能不能转”的绑定成本。',ref:[['罗振宇','专家版权版税、App 技术研发与运营、团队薪酬、营销推广。'],['罗永浩','供应链选品与退换货履约成本、团队运营、债务利息与清偿成本。']]}
+  ];
+  var EMPTY_TIPS={
+    kr:'先别想“要做什么”，先列你已有的：技能、经验、人脉、内容、存款。罗振宇起步时真正可依靠的是选题与表达能力，不是“做成得到”这个想法。',
+    ka:'写下你每周实际在做、直接产生价值的事：筛选内容、写文章、做咨询、带课、接项目……',
+    vp:'这是整张画布最值得打磨的一格：一句话说清“你替谁、省了什么”。',
+    cs:'客群越窄越稳：写清是哪一类具体的人、他在焦虑什么、愿意为什么付钱。“想帮所有人”等于没有客群。',
+    ch:'他们从哪里认识你：公众号、短视频、社群、线下活动、朋友推荐……',
+    cr:'一次交易还是长期陪伴？罗振宇做“终身学习社区”，罗永浩做“拟社会陪伴”。',
+    rs:'至少两条收入来源：主收入之外，再留一条“睡后收入”（课程、版税、订阅）或“杠杆收入”（佣金、分成）。',
+    kp:'谁让这件事成立：平台、供应链、合作方、愿意推荐你的人。',
+    co:'不只算钱，也算隐性成本：这份收入离了你还能不能转？如果答案是“不能”，你卖的是时间而不是资产。'
+  };
+  var KEY='bmc_canvas_v1';
+  var grid=document.getElementById('bmc-grid');
+  if(!grid)return;
+  var inputs={},countEl=document.getElementById('bmc-count'),saveTimer=null;
+
+  BLOCKS.forEach(function(b){
+    var cell=document.createElement('div');cell.className='c-cell';
+    var refs=b.ref.map(function(r){return '<p><b>'+r[0]+'：</b>'+r[1]+'</p>';}).join('');
+    cell.innerHTML='<label>'+b.zh+' <small>'+b.en+'</small></label>'
+      +'<p class="hint">'+b.hint+'</p>'
+      +'<details><summary></summary><div class="ref">'+refs+'</div></details>'
+      +'<textarea id="bmc-'+b.id+'" placeholder="照着案例的写法，用几个短语或一两句话……" spellcheck="false"></textarea>';
+    grid.appendChild(cell);
+    var ta=cell.querySelector('textarea');
+    inputs[b.id]=ta;
+    ta.addEventListener('input',onInput);
+  });
+
+  function filledCount(){var n=0;BLOCKS.forEach(function(b){if(inputs[b.id].value.trim())n++;});return n;}
+  function updateCount(){countEl.textContent=String(filledCount());}
+  function save(){
+    var data={b:{},ts:Date.now()};
+    BLOCKS.forEach(function(b){data.b[b.id]=inputs[b.id].value;});
+    try{localStorage.setItem(KEY,JSON.stringify(data));}catch(e){}
+  }
+  function onInput(){updateCount();clearTimeout(saveTimer);saveTimer=setTimeout(save,400);}
+
+  try{
+    var raw=localStorage.getItem(KEY);
+    if(raw){var data=JSON.parse(raw);
+      if(data&&data.b){BLOCKS.forEach(function(b){if(typeof data.b[b.id]==='string')inputs[b.id].value=data.b[b.id];});}}
+  }catch(e){}
+  updateCount();
+
+  /* ---------- 诊断 ---------- */
+  var resultEl=document.getElementById('bmc-result');
+  document.getElementById('bmc-diagnose').addEventListener('click',function(){
+    save();
+    var v={};BLOCKS.forEach(function(b){v[b.id]=inputs[b.id].value.trim();});
+    var n=filledCount(),items=[];
+    if(n>=7){items.push(['good','完成度','已填 '+n+'/9 格，画布基本成形。导出保存一份，每隔一个季度回来对照修订。']);}
+    else{items.push(['warn','完成度','已填 '+n+'/9 格。空白格就是下一步要想清楚的事——优先补「核心资源」和「目标客群」。']);}
+    if(v.kr&&/(我想|希望|打算|想做|准备做)/.test(v.kr)){
+      items.push(['warn','核心资源','出现了“我想 / 希望 / 打算”这类词——案例的写法是只列已有资产：罗振宇起步时靠的是选题与表达能力，不是“做成得到”这个想法。']);}
+    if(v.cs&&/(所有人|每个人|大家)/.test(v.cs)){
+      items.push(['warn','目标客群','客群写得太宽（“所有人 / 大家”）。两位案例的客群都具体到“哪类人在为什么焦虑”：越窄，收入越稳。']);}
+    if(v.vp&&v.vp.length<15){
+      items.push(['warn','价值主张','偏短了：试着用一句话说清“你替谁、省了什么时间 / 解决了什么焦虑”。']);}
+    var rev=(v.rs||'').split(/[\n，。；;、,]+/).filter(function(s){return s.trim().length>=2;}).length;
+    if(v.rs&&rev<2){
+      items.push(['warn','收入来源','只设计了 '+rev+' 条收入：单一收入意味着单一风险。参考罗振宇的“订阅+版税+门票”或罗永浩的“佣金+代言”组合，再补一条。']);}
+    if(v.rs&&rev>=2){
+      items.push(['good','收入来源','已设计 '+rev+' 条收入来源，比单一收入更扛波动。记得定期检查哪条在增长。']);}
+    BLOCKS.forEach(function(b){if(!v[b.id]){items.push(['warn',b.zh,'还没写。'+EMPTY_TIPS[b.id]]);}});
+    render(items);
+    resultEl.scrollIntoView({behavior:'smooth',block:'nearest'});
+  });
+  function render(items){
+    var html='<div class="r-head">你的 BMC 草图诊断</div>';
+    items.forEach(function(it){
+      html+='<div class="r-item '+it[0]+'"><span class="tag">'+it[1]+'</span><span>'+it[2]+'</span></div>';});
+    html+='<p class="r-note">本诊断为基于填写规则的启发式参考，用于个人商业模式思考，不构成投资、创业或职业建议。数据仅保存在你自己的设备上。</p>';
+    resultEl.innerHTML=html;resultEl.hidden=false;
+  }
+
+  /* ---------- 导出 ---------- */
+  document.getElementById('bmc-export').addEventListener('click',function(){
+    save();
+    var lines=['我的个人商业模式画布（BMC）'];
+    BLOCKS.forEach(function(b){
+      var val=inputs[b.id].value.trim()||'（待填）';
+      lines.push(b.zh+'：'+val.replace(/\n+/g,'；'));});
+    var text=lines.join('\n');
+    function fallback(){
+      var ta=document.createElement('textarea');ta.value=text;
+      ta.style.position='fixed';ta.style.opacity='0';
+      document.body.appendChild(ta);ta.select();
+      try{document.execCommand('copy');alert('已复制到剪贴板，可粘贴到备忘录或发给朋友');}
+      catch(e){alert('复制失败，请手动选择文本复制');}
+      document.body.removeChild(ta);}
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){alert('已复制到剪贴板，可粘贴到备忘录或发给朋友');},fallback);
+    }else{fallback();}
+  });
+
+  /* ---------- 清空 ---------- */
+  document.getElementById('bmc-reset').addEventListener('click',function(){
+    if(!confirm('确定清空已填的九格内容？此操作不可恢复。'))return;
+    BLOCKS.forEach(function(b){inputs[b.id].value='';});
+    try{localStorage.removeItem(KEY);}catch(e){}
+    resultEl.hidden=true;resultEl.innerHTML='';
+    updateCount();
+  });
+})();
+</script>
 </body>
 </html>
