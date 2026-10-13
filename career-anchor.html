@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>施恩职业锚测试 · Career Anchors 40题 · 林远见路</title>
+<meta name="description" content="施恩职业锚（Career Anchors）自助测试：40 道自述题，测出你在技术职能、管理、自主独立、安全稳定、创业创造、服务奉献、挑战、生活方式八种职业锚上的得分与你的主锚，附每锚的职业方向与搞钱视角。答案自动保存在你的设备上，中途退出可接着答。">
+<style>
+  :root{
+    --paper:#f6f1e7;
+    --paper-2:#fbf8f1;
+    --ink:#2b2722;
+    --ink-soft:#5c554b;
+    --ink-faint:#8a8074;
+    --line:#e3dac8;
+    --accent:#9a3b2e;
+    --accent-2:#b8794a;
+    --shadow:0 12px 40px rgba(43,39,34,.10);
+    --serif:"Songti SC","Source Han Serif SC","Noto Serif SC",Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--sans);color:var(--ink);background:var(--paper);
+    background-image:
+      radial-gradient(circle at 18% 8%, rgba(184,121,74,.06), transparent 42%),
+      radial-gradient(circle at 84% 88%, rgba(46,90,119,.05), transparent 46%);
+    line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.035'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  body>*{position:relative;z-index:1;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
+  h1,h2,h3,.serif{font-family:var(--serif);}
+  ::selection{background:rgba(154,59,46,.18);}
+
+  .hero{
+    position:relative;overflow:hidden;color:#fbf6ec;
+    background:linear-gradient(150deg,#2e2721,#3d332b 55%,#29241e);
+    padding:96px 0 68px;
+  }
+  .hero::after{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(circle at 80% 15%, rgba(184,121,74,.18), transparent 55%);
+  }
+  .hero .stripe{position:absolute;left:0;top:0;bottom:0;width:8px;display:flex;flex-direction:column;}
+  .hero .stripe i{flex:1;}
+  .hero-inner{position:relative;z-index:2;max-width:1080px;margin:0 auto;padding:0 28px;}
+  .hero .kicker{
+    display:inline-flex;align-items:center;gap:8px;font-size:13px;letter-spacing:.22em;text-transform:uppercase;
+    color:#f0d9b8;border:1px solid rgba(240,217,184,.42);padding:6px 15px;border-radius:30px;margin-bottom:22px;
+  }
+  .hero h1{font-size:clamp(30px,5.2vw,50px);line-height:1.14;font-weight:700;margin-bottom:10px;}
+  .hero .sub-en{font-family:var(--serif);font-style:italic;font-size:clamp(15px,2.2vw,20px);color:#e2cba6;opacity:.92;margin-bottom:18px;}
+  .hero .lead{max-width:680px;font-size:clamp(15px,2vw,17.5px);color:#efe4d3;}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:22px 32px;margin-top:26px;}
+  .hero-meta .m{display:flex;flex-direction:column;}
+  .hero-meta .m b{font-family:var(--serif);font-size:19px;color:#fff;}
+  .hero-meta .m span{font-size:12.5px;letter-spacing:.08em;color:#d6c1a3;}
+
+  .ribbon{position:absolute;top:0;right:clamp(16px,5vw,52px);z-index:3;width:44px;
+    background:var(--accent);color:#fff;text-align:center;padding:15px 0 24px;
+    font-family:var(--serif);font-size:13px;letter-spacing:.14em;box-shadow:0 6px 16px rgba(0,0,0,.32);}
+  .ribbon::after{content:"";position:absolute;left:0;bottom:-13px;border-width:0 22px 14px;border-style:solid;border-color:var(--accent) var(--accent) transparent;}
+  .ribbon span{writing-mode:vertical-rl;}
+
+  section{padding:52px 0 46px;}
+  .sec-head{display:flex;align-items:center;gap:14px;margin-bottom:8px;}
+  .sec-no{font-family:var(--serif);font-size:14px;color:var(--accent);border:1px solid var(--accent);
+    border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;flex:none;}
+  .sec-head h2{font-size:clamp(22px,3.2vw,29px);}
+  .sec-sub{color:var(--ink-faint);font-size:14.5px;margin-bottom:26px;padding-left:48px;}
+  @media(max-width:880px){.sec-sub{padding-left:0;}}
+
+  .tips{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+  @media(max-width:760px){.tips{grid-template-columns:1fr;}}
+  .tip{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:20px 22px;}
+  .tip .n{font-family:var(--serif);font-size:13px;color:var(--accent);letter-spacing:.1em;margin-bottom:6px;}
+  .tip h3{font-size:17px;margin-bottom:7px;}
+  .tip p{font-size:14px;color:var(--ink-soft);line-height:1.72;}
+
+  .divider{height:1px;background:linear-gradient(90deg,transparent,var(--line) 18%,var(--line) 82%,transparent);}
+
+  /* ===== 测试区 ===== */
+  .quiz-bar{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin-bottom:14px;}
+  .quiz-bar .prog{font-family:var(--serif);font-size:15px;}
+  .quiz-bar .prog b{color:var(--accent);font-size:20px;}
+  .quiz-track{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin-bottom:22px;}
+  .quiz-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--accent-2),var(--accent));border-radius:3px;transition:width .25s;}
+  .q-card{background:var(--paper-2);border:1px solid var(--line);border-radius:16px;
+    box-shadow:var(--shadow);padding:26px 22px 22px;}
+  .q-no{font-family:var(--serif);font-size:13px;color:var(--ink-faint);letter-spacing:.12em;margin-bottom:10px;}
+  .q-text{font-family:var(--serif);font-size:clamp(18px,2.6vw,22px);line-height:1.6;margin-bottom:20px;}
+  .opts{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;}
+  .opt{cursor:pointer;border:1px solid var(--line);background:var(--paper);border-radius:10px;
+    padding:11px 2px 9px;text-align:center;transition:all .15s;user-select:none;-webkit-tap-highlight-color:transparent;}
+  .opt .v{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--ink-soft);}
+  .opt .l{display:block;font-size:10.5px;color:var(--ink-faint);margin-top:3px;line-height:1.3;}
+  .opt:hover{border-color:rgba(154,59,46,.45);}
+  .opt.sel{background:var(--accent);border-color:var(--accent);}
+  .opt.sel .v,.opt.sel .l{color:#fbf6ec;}
+  .quiz-nav{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:20px;flex-wrap:wrap;}
+  .btn{cursor:pointer;font-family:var(--serif);font-size:15px;padding:11px 24px;border-radius:26px;
+    border:1px solid var(--accent);background:var(--accent);color:#fbf6ec;transition:all .18s;}
+  .btn:hover{filter:brightness(1.08);}
+  .btn:disabled{opacity:.4;cursor:default;filter:none;}
+  .btn.ghost{background:var(--paper-2);color:var(--ink-soft);border-color:var(--line);}
+  .btn.ghost:hover{color:var(--accent);border-color:rgba(154,59,46,.4);filter:none;}
+  .quiz-hint{font-size:12.5px;color:var(--ink-faint);}
+
+  /* ===== 结果区 ===== */
+  #result{margin-top:8px;}
+  .r-code{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:6px;}
+  .r-code .letters{font-family:var(--serif);font-size:clamp(26px,5vw,40px);font-weight:700;color:var(--accent);}
+  .r-code .cap{font-size:14.5px;color:var(--ink-soft);}
+  .bars{margin:18px 0 8px;}
+  .bar-row{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+  .bar-row .bt{flex:none;width:130px;font-family:var(--serif);font-size:13.5px;}
+  .bar-row .track{flex:1;height:14px;background:var(--paper-2);border:1px solid var(--line);border-radius:7px;overflow:hidden;display:block;}
+  .bar-row .fill{display:block;height:100%;border-radius:7px;transition:width .6s;}
+  .bar-row .sc{flex:none;width:44px;text-align:right;font-family:var(--serif);font-size:14px;color:var(--ink-soft);}
+  .r-top3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px;}
+  @media(max-width:880px){.r-top3{grid-template-columns:1fr;}}
+  .r-card{background:var(--paper-2);border:1px solid var(--line);border-left:4px solid var(--accent);
+    border-radius:14px;padding:18px 20px;}
+  .r-card .rk{font-size:12px;color:var(--ink-faint);letter-spacing:.1em;}
+  .r-card h3{font-size:19px;margin:4px 0 8px;}
+  .r-card h3 small{font-family:var(--sans);font-weight:400;font-size:12px;color:var(--ink-faint);margin-left:6px;}
+  .r-card p{font-size:13.5px;color:var(--ink-soft);line-height:1.75;}
+  .r-card .careers{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);}
+  .r-card .careers b{font-family:var(--serif);font-size:13px;color:var(--accent);}
+  .r-card .careers p{font-size:13px;margin-top:4px;}
+  .r-rest{margin-top:18px;font-size:13.5px;color:var(--ink-soft);line-height:2;}
+  .r-rest b{font-family:var(--serif);color:var(--ink);}
+  .r-note{margin-top:16px;background:var(--paper-2);border:1px dashed var(--accent-2);border-radius:12px;
+    padding:14px 18px;font-size:13.5px;color:var(--ink-soft);}
+  .r-note b{color:var(--accent);font-family:var(--serif);}
+  .r-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px;}
+  .r-cta a{display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-family:var(--serif);
+    font-size:14px;color:var(--accent);border:1px solid rgba(154,59,46,.4);background:rgba(154,59,46,.05);
+    padding:9px 18px;border-radius:24px;transition:all .18s;}
+  .r-cta a:hover{background:rgba(154,59,46,.1);}
+
+  .back{
+    display:inline-flex;align-items:center;gap:8px;margin-top:6px;font-size:13.5px;
+    color:var(--ink-soft);text-decoration:none;border:1px solid var(--line);
+    background:var(--paper-2);padding:8px 16px;border-radius:24px;transition:all .18s;
+  }
+  .back:hover{color:var(--accent);border-color:rgba(154,59,46,.35);background:rgba(154,59,46,.05);}
+
+  footer{padding:36px 28px 56px;text-align:center;color:var(--ink-faint);font-size:13px;}
+  footer .line{width:60px;height:3px;background:var(--accent);margin:0 auto 20px;border-radius:3px;}
+  footer b{font-family:var(--serif);color:var(--ink-soft);}
+  .disclaim{margin-top:10px;font-size:12px;color:var(--ink-faint);max-width:680px;margin-left:auto;margin-right:auto;line-height:1.7;}
+
+  @media(max-width:640px){.wrap{padding:0 18px;}.hero-inner{padding:0 18px;}}
+  @media print{.ribbon{display:none;}body::before{display:none;}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="stripe"><i style="background:#9a3b2e"></i><i style="background:#b8794a"></i><i style="background:#2e5a77"></i></div>
+  <div class="ribbon"><span>职业锚</span></div>
+  <div class="hero-inner">
+    <span class="kicker">Career Anchors · Edgar Schein</span>
+    <h1>施恩职业锚测试</h1>
+    <div class="sub-en">Career Anchors Self-Assessment · 林远见路</div>
+    <p class="lead">兴趣告诉你"做什么来劲"，职业锚告诉你"什么你死也不肯放"。沙因（Edgar Schein）追踪大批职场人十几年后发现：无论换几份工作，人心里都有一个不肯让步的锚——它是你做职业选择时真正的底线。40 道自述题，找出你的主锚。</p>
+    <div class="hero-meta">
+      <div class="m"><b>40 题</b><span>自述式作答</span></div>
+      <div class="m"><b>约 7 分钟</b><span>手机可完成</span></div>
+      <div class="m"><b>8 锚</b><span>职业锚类型</span></div>
+      <div class="m"><b>断点续答</b><span>自动保存</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section>
+    <div class="sec-head"><div class="sec-no">讲</div><h2>开始之前，先说清四件事</h2></div>
+    <p class="sec-sub">职业锚测的不是"你现在做什么"，而是"你做选择时真正守住什么"</p>
+    <div class="tips">
+      <div class="tip">
+        <div class="n">TIP 01</div>
+        <h3>以"真实选择"作答</h3>
+        <p>每题描述一种处境下的偏好。别答"应该怎么样"，答"真到那个关口，我会怎么选"。</p>
+      </div>
+      <div class="tip">
+        <div class="n">TIP 02</div>
+        <h3>回看你的关键时刻</h3>
+        <p>沙因说职业锚藏在"你职业生涯里最纠结的那几次选择"里。答题时想想过去那些真实的取舍。</p>
+      </div>
+      <div class="tip">
+        <div class="n">TIP 03</div>
+        <h3>主锚只有一个</h3>
+        <p>八种锚人人都有一些，但真正"死也不肯放"的通常只有一个。分数接近时，看第一名——那才是底线。</p>
+      </div>
+      <div class="tip">
+        <div class="n">TIP 04</div>
+        <h3>和兴趣代码搭配用</h3>
+        <p>霍兰德代码是"方向"，职业锚是"底线"：方向告诉你去哪，底线告诉你什么条件不能让。两个一起看才完整。</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="quiz-section">
+    <div class="sec-head"><div class="sec-no">测</div><h2>职业锚自述量表</h2></div>
+    <p class="sec-sub">每题选一个符合程度：1 = 完全不符合，6 = 完全符合</p>
+
+    <div class="quiz-bar">
+      <div class="prog">已答 <b id="q-count">0</b> / 40 题</div>
+      <span class="quiz-hint">答案只保存在你自己的设备上</span>
+    </div>
+    <div class="quiz-track"><div class="quiz-fill" id="q-fill"></div></div>
+
+    <div class="q-card">
+      <div class="q-no" id="q-no">第 1 / 40 题</div>
+      <div class="q-text" id="q-text">加载中…</div>
+      <div class="opts" id="q-opts">
+        <div class="opt" data-v="1"><span class="v">1</span><span class="l">完全不符</span></div>
+        <div class="opt" data-v="2"><span class="v">2</span><span class="l">较不符</span></div>
+        <div class="opt" data-v="3"><span class="v">3</span><span class="l">有点不符</span></div>
+        <div class="opt" data-v="4"><span class="v">4</span><span class="l">有点符合</span></div>
+        <div class="opt" data-v="5"><span class="v">5</span><span class="l">较符合</span></div>
+        <div class="opt" data-v="6"><span class="v">6</span><span class="l">完全符合</span></div>
+      </div>
+      <div class="quiz-nav">
+        <button class="btn ghost" id="q-prev" type="button">← 上一题</button>
+        <button class="btn" id="q-finish" type="button" hidden>生成我的职业锚</button>
+        <button class="btn ghost" id="q-next" type="button">下一题 →</button>
+      </div>
+    </div>
+  </section>
+
+  <div id="result" hidden>
+    <div class="divider"></div>
+    <section>
+      <div class="sec-head"><div class="sec-no">果</div><h2>你的职业锚</h2></div>
+      <p class="sec-sub">得分代表"这类底线对你有多重要"，排第一的就是你的主锚</p>
+      <div class="r-code">
+        <span class="letters" id="r-letters">—</span>
+        <span class="cap" id="r-cap"></span>
+      </div>
+      <div class="bars" id="r-bars"></div>
+      <div class="r-top3" id="r-top3"></div>
+      <div class="r-rest" id="r-rest"></div>
+      <div class="r-note"><b>怎么用这个结果 —</b> 主锚是你跳槽、接活、谈条件时<b>最不该让步的那一项</b>。副锚高的方向可以尝试，但别用副锚的岗位去换主锚的代价——那正是大多数人职业痛苦的来源。</div>
+      <div class="r-cta">
+        <a href="holland-test.html">上一步：霍兰德兴趣代码 →</a>
+        <a href="personal-bmc.html">下一步：画出你的商业模式画布 →</a>
+        <a href="strengths.html">配套：优势才干测量器 →</a>
+      </div>
+    </section>
+  </div>
+
+  <div class="divider"></div>
+
+  <section style="padding-top:30px;">
+    <button class="btn ghost" id="q-reset" type="button">清空重测</button>
+    &nbsp;&nbsp;<a class="back" href="/">← 返回「心理学全景学习」首页</a>
+    &nbsp;&nbsp;<a class="back" href="holland-test.html">← 去霍兰德兴趣测试</a>
+  </section>
+
+</div>
+
+<footer>
+  <div class="line"></div>
+  <b>施恩职业锚测试 · Career Anchors 自助版</b>
+  <p class="disclaim">本页基于 Edgar Schein 的职业锚理论（Career Anchors）整理的自助简化版，不是职业指导领域中使用的官方 Career Anchors Self-Assessment 量表，也不构成职业选择、升学、投资或创业建议。结果仅供自我探索参考，数据仅保存在你自己的设备上。</p>
+</footer>
+
+<script src="js/supabase.min.js?v=20260911b" defer></script>
+<script src="js/appdata.js?v=20260911b" defer></script>
+<script src="js/guestbook.js?v=20260911b" defer></script>
+<script src="js/page-counter.js?v=20260908c" defer></script>
+<script>
+(function(){
+  'use strict';
+  var TYPES={
+    TF:{name:'技术/职能型',en:'Technical',color:'#2e5a77',desc:'你的底线是"在本领域做真内行"。职位、头衔都可以让，但专业上被认可不能让。如果晋升意味着离开一线专业，你会认真犹豫——这不是不上进，是你的锚在说话。',careers:'深耕型专家路线：高级工程师、专业顾问、主诊医师、资深设计师、行业研究员、手艺名家。',money:'变现走"专业溢价"：咨询、定制、专家服务，靠稀缺手艺定价，而不是靠管理别人。'},
+    GM:{name:'管理型',en:'Managerial',color:'#b8794a',desc:'你的底线是"对整盘业务负最终责任"。你喜欢统筹全局、协调各方、在不确定中拍板，管理能力本身就是你认同的价值，而非跳板。',careers:'总经理路径：事业部负责人、创业公司操盘手、项目负责人、连锁门店管理者。',money:'变现走"经营权"：分红、股权、利润分成，用别人的时间和资源放大结果。'},
+    AU:{name:'自主/独立型',en:'Autonomy',color:'#4a7a4f',desc:'你的底线是"按自己的方式做事"。条条框框、打卡坐班、被人指挥，比低薪更让你难受。为了自由，你愿意用收入和稳定来换。',careers:'自由职业：独立咨询师、自由撰稿、独立开发者、摄影师、独立教练、手艺人。',money:'变现走"个人品牌"：一对一服务、小而美的产品，规模可以不大，但必须是你的名字。'},
+    SE:{name:'安全/稳定型',en:'Security',color:'#5c6b8a',desc:'你的底线是"可预期的未来"。稳定的收入、靠谱的平台、足够的保障，是你做所有决定的第一权重。别人眼里的保守，其实是你清晰的优先级。',careers:'体制内与平台型：公务员、事业编、大厂职能岗、公用事业、财务与行政、长期雇佣的专业岗。',money:'变现走"稳定现金流"：主业保底+低风险副业，先守后攻，不押注高波动机会。'},
+    EC:{name:'创业创造型',en:'Entrepreneurial',color:'#9a3b2e',desc:'你的底线是"做出完全属于自己的东西"。产品、公司、品牌——从零到一的过程比守住现成的东西更吸引你。你愿为大起大落买单，只要那事业姓你。',careers:'创业路径：创始人、联合创始人、独立产品人、店铺与品牌主理人、内容IP主理人。',money:'变现走"资产增值"：产品、股权、品牌，赚的是资产的钱而不是时间的钱。'},
+    SV:{name:'服务/奉献型',en:'Service',color:'#4f7d8a',desc:'你的底线是"做符合价值观的事"。让世界或具体的人变好，比奖金更让你满足；价值观不合的钱，你宁可不赚。这不是情怀泛滥，是你的锚。',careers:'价值驱动岗：公益组织、教育、医疗与社工、可持续与公共事务、企业社会责任、乡村与社区发展。',money:'变现走"意义溢价"：愿意为你价值观买单的同路人，是最忠实的服务对象。'},
+    CH:{name:'挑战型',en:'Challenge',color:'#8a5a3b',desc:'你的底线是"永远有值得攻的难题"。越说做不到越来劲，问题一旦解决你就去追更大的。对手、难度、胜算，是你的燃料。',careers:'高压高难岗：投融资与交易、疑难销售、竞技与赛事、攻坚型研发、危机公关、极限客户服务。',money:'变现走"难度溢价"：专挑难做的生意做，难=门槛=定价权。'},
+    LS:{name:'生活方式型',en:'Lifestyle',color:'#7a6a9a',desc:'你的底线是"工作不能吃掉生活"。家庭、健康、兴趣和关系必须有自己的位置，为工作无限牺牲生活对你不是敬业，是失控。',careers:'弹性与远程岗：远程办公、弹性工时职业、家庭与工作平衡的自雇、数字游民型自由职业。',money:'变现走"可持续"：单位时间回报高的服务+自动化收入，用结构换时间。'}
+  };
+  var QUESTIONS=[
+    {t:'TF',q:'我更愿意因为专业能力被人认可，而不是因为职位'},
+    {t:'TF',q:'遇到纯技术难题，我会兴奋而不是想躲'},
+    {t:'TF',q:'如果晋升要离开专业一线，我会犹豫'},
+    {t:'TF',q:'我很在意自己在这个领域是不是"真内行"'},
+    {t:'TF',q:'比起管人，我更喜欢把一件专业的事做到极致'},
+    {t:'GM',q:'我喜欢统筹全局，把不同部门的人协调起来'},
+    {t:'GM',q:'我渴望对整盘业务负最终责任'},
+    {t:'GM',q:'分析跨领域的复杂问题并拍板，让我有成就感'},
+    {t:'GM',q:'我乐于承担影响很多人的决策及其后果'},
+    {t:'GM',q:'我迟早要带一支团队、管一摊事'},
+    {t:'AU',q:'我受不了别人规定我每天怎么干活'},
+    {t:'AU',q:'为了自由安排自己的工作方式，我愿意少赚一些'},
+    {t:'AU',q:'我更想按自己的节奏做事，而不是跟着组织走'},
+    {t:'AU',q:'"我说了算"的工作状态对我很重要'},
+    {t:'AU',q:'我宁愿单干，也不愿被条条框框绑住'},
+    {t:'SE',q:'可预期的收入和稳定的职位对我很重要'},
+    {t:'SE',q:'决定投入之前，我会先想"这行十年后还在不在"'},
+    {t:'SE',q:'大的变动（重组、转型）让我不安'},
+    {t:'SE',q:'我更愿意待在一个靠谱的大平台慢慢积累'},
+    {t:'SE',q:'稳定的社保、福利和退休保障会影响我的选择'},
+    {t:'EC',q:'我一直想做出一个完全属于自己的东西（产品/公司/品牌）'},
+    {t:'EC',q:'看到新机会，我第一反应是"能不能做成一门生意"'},
+    {t:'EC',q:'从零到一的过程，比守住现成的东西更吸引我'},
+    {t:'EC',q:'我能承受大起大落，只要那是我自己开创的事业'},
+    {t:'EC',q:'我经常冒出"这个可以做成产品/服务"的念头'},
+    {t:'SV',q:'我希望自己的工作能让世界或某些人变得更好'},
+    {t:'SV',q:'价值观不合的钱，我宁可不赚'},
+    {t:'SV',q:'我愿意为公共事务或公益投入业余时间'},
+    {t:'SV',q:'帮到具体的人，比拿到奖金更让我满足'},
+    {t:'SV',q:'我会拒绝违背良心的任务，哪怕代价不小'},
+    {t:'CH',q:'越是别人说做不到的事，我越想试试'},
+    {t:'CH',q:'我需要不断攻克难题，才有工作的劲头'},
+    {t:'CH',q:'一个问题刚解决，我很快就想追更大的挑战'},
+    {t:'CH',q:'我喜欢和强者竞争并赢下来'},
+    {t:'CH',q:'在舒适区待久了，我会浑身难受'},
+    {t:'LS',q:'工作之外，我必须给家庭和自己留出固定空间'},
+    {t:'LS',q:'为了陪家人，我可以放弃一些重要的机会'},
+    {t:'LS',q:'"为生活打工"还是"为工作牺牲生活"，我选前者'},
+    {t:'LS',q:'工作地点、通勤和作息，会实质影响我的职业选择'},
+    {t:'LS',q:'把兴趣、健康、关系和工作摆平，对我才算成功'}
+  ];
+  var ORDER=['TF','GM','AU','SE','EC','SV','CH','LS'];
+  var KEY='career_anchor_v1';
+  var N=QUESTIONS.length;
+
+  var answers={},idx=0,cur=-1;
+  var elNo=document.getElementById('q-no'),elText=document.getElementById('q-text'),
+      elOpts=document.getElementById('q-opts'),elCount=document.getElementById('q-count'),
+      elFill=document.getElementById('q-fill'),elPrev=document.getElementById('q-prev'),
+      elNext=document.getElementById('q-next'),elFinish=document.getElementById('q-finish'),
+      elResult=document.getElementById('result');
+
+  function save(){
+    try{localStorage.setItem(KEY,JSON.stringify({a:answers,idx:idx}));}catch(e){}
+  }
+  function answeredCount(){var n=0;for(var i=0;i<N;i++){if(answers[i])n++;}return n;}
+  function updateBar(){var n=answeredCount();elCount.textContent=String(n);elFill.style.width=(n/N*100)+'%';elFinish.hidden=(n<N);}
+  function load(){
+    try{
+      var raw=localStorage.getItem(KEY);
+      if(raw){var d=JSON.parse(raw);if(d&&d.a){answers=d.a;}if(d&&typeof d.idx==='number'){idx=d.idx;}}
+    }catch(e){}
+  }
+
+  function render(){
+    if(cur<0||cur>=N)cur=idx;
+    elNo.textContent='第 '+(cur+1)+' / '+N+' 题';
+    elText.textContent=QUESTIONS[cur].q;
+    var sel=answers[cur]||0;
+    var opts=elOpts.querySelectorAll('.opt');
+    for(var k=0;k<opts.length;k++){
+      var v=parseInt(opts[k].getAttribute('data-v'),10);
+      opts[k].className='opt'+(v===sel?' sel':'');
+    }
+    elPrev.disabled=(cur===0);
+    elNext.disabled=(cur===N-1);
+    updateBar();
+  }
+  function go(i){idx=Math.max(0,Math.min(N-1,i));cur=idx;save();render();}
+
+  elOpts.addEventListener('click',function(ev){
+    var node=ev.target;
+    while(node&&node!==elOpts&&!node.classList.contains('opt')){node=node.parentNode;}
+    if(!node||node===elOpts)return;
+    var v=parseInt(node.getAttribute('data-v'),10);
+    answers[cur]=v;save();updateBar();render();
+    if(answeredCount()>=N){elFinish.hidden=false;}
+    else if(cur<N-1){setTimeout(function(){go(cur+1);},180);}
+  });
+  elPrev.addEventListener('click',function(){go(cur-1);});
+  elNext.addEventListener('click',function(){go(cur+1);});
+  elFinish.addEventListener('click',function(){
+    if(answeredCount()<N)return;
+    save();showResult();
+    elResult.hidden=false;
+    elResult.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+
+  document.getElementById('q-reset').addEventListener('click',function(){
+    if(!confirm('确定清空全部作答并重新开始？此操作不可恢复。'))return;
+    answers={};idx=0;cur=0;
+    try{localStorage.removeItem(KEY);}catch(e){}
+    elResult.hidden=true;render();
+    document.getElementById('quiz-section').scrollIntoView({behavior:'smooth'});
+  });
+
+  /* ---------- 结果 ---------- */
+  function showResult(){
+    var scores={};ORDER.forEach(function(t){scores[t]=0;});
+    for(var i=0;i<N;i++){if(answers[i])scores[QUESTIONS[i].t]+=answers[i];}
+    var sorted=ORDER.slice().sort(function(a,b){return scores[b]-scores[a];});
+    var top=TYPES[sorted[0]];
+    document.getElementById('r-letters').textContent=top.name;
+    document.getElementById('r-cap').textContent=sorted[0]+' · '+top.en+' —— 你的主锚（第 1 位，'+scores[sorted[0]]+' 分）';
+    var bars='';
+    sorted.forEach(function(t){
+      var pct=Math.round(scores[t]/30*100);
+      bars+='<div class="bar-row"><span class="bt">'+TYPES[t].name+'<small>'+t+'</small></span>'
+        +'<span class="track"><span class="fill" style="width:'+pct+'%;background:'+TYPES[t].color+';"></span></span>'
+        +'<span class="sc">'+scores[t]+'</span></div>';
+    });
+    document.getElementById('r-bars').innerHTML=bars;
+    var cards='';
+    sorted.slice(0,3).forEach(function(t,i){
+      cards+='<div class="r-card" style="border-left-color:'+TYPES[t].color+';">'
+        +'<div class="rk">第 '+(i+1)+' 位 · '+scores[t]+' 分</div>'
+        +'<h3>'+TYPES[t].name+'<small>'+t+' · '+TYPES[t].en+'</small></h3>'
+        +'<p>'+TYPES[t].desc+'</p>'
+        +'<div class="careers"><b>职业方向参考</b><p>'+TYPES[t].careers+'</p>'
+        +'<b style="display:block;margin-top:8px;">搞钱视角</b><p>'+TYPES[t].money+'</p></div>'
+        +'</div>';
+    });
+    document.getElementById('r-top3').innerHTML=cards;
+    var rest=sorted.slice(3).map(function(t){return '<b>'+TYPES[t].name+'</b> '+scores[t]+' 分';}).join('　·　');
+    document.getElementById('r-rest').innerHTML='其余职业锚（参考）：'+rest+'。';
+  }
+
+  load();
+  if(answers){
+    for(var i=0;i<N;i++){if(!answers[i]){idx=i;break;}}
+  }
+  cur=idx;
+  render();
+  if(answeredCount()>=N){showResult();elResult.hidden=false;}
+})();
+</script>
+</body>
+</html>
