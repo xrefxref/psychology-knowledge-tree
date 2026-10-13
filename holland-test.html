@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>霍兰德职业兴趣测试 · RIASEC 48题 · 林远见路</title>
+<meta name="description" content="霍兰德（RIASEC）职业兴趣测试自助版：48 道兴趣偏好题，测出你在现实型、研究型、艺术型、社会型、企业型、常规型六维的倾向与三字母兴趣代码，并给出每型的职业方向与变现优势。答案自动保存在你的设备上，中途退出可接着答。">
+<style>
+  :root{
+    --paper:#f6f1e7;
+    --paper-2:#fbf8f1;
+    --ink:#2b2722;
+    --ink-soft:#5c554b;
+    --ink-faint:#8a8074;
+    --line:#e3dac8;
+    --accent:#9a3b2e;
+    --accent-2:#b8794a;
+    --shadow:0 12px 40px rgba(43,39,34,.10);
+    --serif:"Songti SC","Source Han Serif SC","Noto Serif SC",Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--sans);color:var(--ink);background:var(--paper);
+    background-image:
+      radial-gradient(circle at 18% 8%, rgba(184,121,74,.06), transparent 42%),
+      radial-gradient(circle at 84% 88%, rgba(46,90,119,.05), transparent 46%);
+    line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.035'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  body>*{position:relative;z-index:1;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
+  h1,h2,h3,.serif{font-family:var(--serif);}
+  ::selection{background:rgba(154,59,46,.18);}
+
+  .hero{
+    position:relative;overflow:hidden;color:#fbf6ec;
+    background:linear-gradient(150deg,#2e2721,#3d332b 55%,#29241e);
+    padding:96px 0 68px;
+  }
+  .hero::after{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(circle at 80% 15%, rgba(184,121,74,.18), transparent 55%);
+  }
+  .hero .stripe{position:absolute;left:0;top:0;bottom:0;width:8px;display:flex;flex-direction:column;}
+  .hero .stripe i{flex:1;}
+  .hero-inner{position:relative;z-index:2;max-width:1080px;margin:0 auto;padding:0 28px;}
+  .hero .kicker{
+    display:inline-flex;align-items:center;gap:8px;font-size:13px;letter-spacing:.22em;text-transform:uppercase;
+    color:#f0d9b8;border:1px solid rgba(240,217,184,.42);padding:6px 15px;border-radius:30px;margin-bottom:22px;
+  }
+  .hero h1{font-size:clamp(30px,5.2vw,50px);line-height:1.14;font-weight:700;margin-bottom:10px;}
+  .hero .sub-en{font-family:var(--serif);font-style:italic;font-size:clamp(15px,2.2vw,20px);color:#e2cba6;opacity:.92;margin-bottom:18px;}
+  .hero .lead{max-width:680px;font-size:clamp(15px,2vw,17.5px);color:#efe4d3;}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:22px 32px;margin-top:26px;}
+  .hero-meta .m{display:flex;flex-direction:column;}
+  .hero-meta .m b{font-family:var(--serif);font-size:19px;color:#fff;}
+  .hero-meta .m span{font-size:12.5px;letter-spacing:.08em;color:#d6c1a3;}
+
+  .ribbon{position:absolute;top:0;right:clamp(16px,5vw,52px);z-index:3;width:44px;
+    background:var(--accent);color:#fff;text-align:center;padding:15px 0 24px;
+    font-family:var(--serif);font-size:13px;letter-spacing:.14em;box-shadow:0 6px 16px rgba(0,0,0,.32);}
+  .ribbon::after{content:"";position:absolute;left:0;bottom:-13px;border-width:0 22px 14px;border-style:solid;border-color:var(--accent) var(--accent) transparent;}
+  .ribbon span{writing-mode:vertical-rl;}
+
+  section{padding:52px 0 46px;}
+  .sec-head{display:flex;align-items:center;gap:14px;margin-bottom:8px;}
+  .sec-no{font-family:var(--serif);font-size:14px;color:var(--accent);border:1px solid var(--accent);
+    border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;flex:none;}
+  .sec-head h2{font-size:clamp(22px,3.2vw,29px);}
+  .sec-sub{color:var(--ink-faint);font-size:14.5px;margin-bottom:26px;padding-left:48px;}
+  @media(max-width:880px){.sec-sub{padding-left:0;}}
+
+  .tips{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+  @media(max-width:760px){.tips{grid-template-columns:1fr;}}
+  .tip{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:20px 22px;}
+  .tip .n{font-family:var(--serif);font-size:13px;color:var(--accent);letter-spacing:.1em;margin-bottom:6px;}
+  .tip h3{font-size:17px;margin-bottom:7px;}
+  .tip p{font-size:14px;color:var(--ink-soft);line-height:1.72;}
+
+  .divider{height:1px;background:linear-gradient(90deg,transparent,var(--line) 18%,var(--line) 82%,transparent);}
+
+  /* ===== 测试区 ===== */
+  .quiz-bar{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin-bottom:14px;}
+  .quiz-bar .prog{font-family:var(--serif);font-size:15px;}
+  .quiz-bar .prog b{color:var(--accent);font-size:20px;}
+  .quiz-track{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin-bottom:22px;}
+  .quiz-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--accent-2),var(--accent));border-radius:3px;transition:width .25s;}
+  .q-card{background:var(--paper-2);border:1px solid var(--line);border-radius:16px;
+    box-shadow:var(--shadow);padding:26px 26px 22px;}
+  .q-no{font-family:var(--serif);font-size:13px;color:var(--ink-faint);letter-spacing:.12em;margin-bottom:10px;}
+  .q-text{font-family:var(--serif);font-size:clamp(19px,2.6vw,23px);line-height:1.6;margin-bottom:22px;}
+  .opts{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;}
+  @media(max-width:480px){.opts{gap:6px;}}
+  .opt{cursor:pointer;border:1px solid var(--line);background:var(--paper);border-radius:12px;
+    padding:12px 4px 10px;text-align:center;transition:all .15s;user-select:none;-webkit-tap-highlight-color:transparent;}
+  .opt .v{font-family:var(--serif);font-size:19px;font-weight:700;color:var(--ink-soft);}
+  .opt .l{display:block;font-size:11px;color:var(--ink-faint);margin-top:3px;line-height:1.3;}
+  .opt:hover{border-color:rgba(154,59,46,.45);}
+  .opt.sel{background:var(--accent);border-color:var(--accent);}
+  .opt.sel .v,.opt.sel .l{color:#fbf6ec;}
+  .quiz-nav{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:20px;flex-wrap:wrap;}
+  .btn{cursor:pointer;font-family:var(--serif);font-size:15px;padding:11px 24px;border-radius:26px;
+    border:1px solid var(--accent);background:var(--accent);color:#fbf6ec;transition:all .18s;}
+  .btn:hover{filter:brightness(1.08);}
+  .btn:disabled{opacity:.4;cursor:default;filter:none;}
+  .btn.ghost{background:var(--paper-2);color:var(--ink-soft);border-color:var(--line);}
+  .btn.ghost:hover{color:var(--accent);border-color:rgba(154,59,46,.4);filter:none;}
+  .quiz-hint{font-size:12.5px;color:var(--ink-faint);}
+
+  /* ===== 结果区 ===== */
+  #result{margin-top:8px;}
+  .r-code{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:6px;}
+  .r-code .letters{font-family:var(--serif);font-size:clamp(40px,7vw,64px);font-weight:700;color:var(--accent);letter-spacing:.06em;}
+  .r-code .cap{font-size:14.5px;color:var(--ink-soft);}
+  .bars{margin:18px 0 8px;}
+  .bar-row{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+  .bar-row .bt{flex:none;width:118px;font-family:var(--serif);font-size:14px;}
+  .bar-row .bt small{color:var(--ink-faint);font-family:var(--sans);font-size:11px;margin-left:4px;}
+  .bar-row .track{flex:1;height:14px;background:var(--paper-2);border:1px solid var(--line);border-radius:7px;overflow:hidden;display:block;}
+  .bar-row .fill{display:block;height:100%;border-radius:7px;transition:width .6s;}
+  .bar-row .sc{flex:none;width:44px;text-align:right;font-family:var(--serif);font-size:14px;color:var(--ink-soft);}
+  .r-top3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px;}
+  @media(max-width:880px){.r-top3{grid-template-columns:1fr;}}
+  .r-card{background:var(--paper-2);border:1px solid var(--line);border-left:4px solid var(--accent);
+    border-radius:14px;padding:18px 20px;}
+  .r-card .rk{font-size:12px;color:var(--ink-faint);letter-spacing:.1em;}
+  .r-card h3{font-size:19px;margin:4px 0 8px;}
+  .r-card h3 small{font-family:var(--sans);font-weight:400;font-size:12px;color:var(--ink-faint);margin-left:6px;}
+  .r-card p{font-size:13.5px;color:var(--ink-soft);line-height:1.75;}
+  .r-card .careers{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);}
+  .r-card .careers b{font-family:var(--serif);font-size:13px;color:var(--accent);}
+  .r-card .careers p{font-size:13px;margin-top:4px;}
+  .r-rest{margin-top:18px;font-size:13.5px;color:var(--ink-soft);line-height:2;}
+  .r-rest b{font-family:var(--serif);color:var(--ink);}
+  .r-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px;}
+  .r-cta a{display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-family:var(--serif);
+    font-size:14px;color:var(--accent);border:1px solid rgba(154,59,46,.4);background:rgba(154,59,46,.05);
+    padding:9px 18px;border-radius:24px;transition:all .18s;}
+  .r-cta a:hover{background:rgba(154,59,46,.1);}
+
+  .back{
+    display:inline-flex;align-items:center;gap:8px;margin-top:6px;font-size:13.5px;
+    color:var(--ink-soft);text-decoration:none;border:1px solid var(--line);
+    background:var(--paper-2);padding:8px 16px;border-radius:24px;transition:all .18s;
+  }
+  .back:hover{color:var(--accent);border-color:rgba(154,59,46,.35);background:rgba(154,59,46,.05);}
+
+  footer{padding:36px 28px 56px;text-align:center;color:var(--ink-faint);font-size:13px;}
+  footer .line{width:60px;height:3px;background:var(--accent);margin:0 auto 20px;border-radius:3px;}
+  footer b{font-family:var(--serif);color:var(--ink-soft);}
+  .disclaim{margin-top:10px;font-size:12px;color:var(--ink-faint);max-width:680px;margin-left:auto;margin-right:auto;line-height:1.7;}
+
+  @media(max-width:640px){.wrap{padding:0 18px;}.hero-inner{padding:0 18px;}}
+  @media print{.ribbon{display:none;}body::before{display:none;}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="stripe"><i style="background:#9a3b2e"></i><i style="background:#b8794a"></i><i style="background:#2e5a77"></i></div>
+  <div class="ribbon"><span>职业兴趣</span></div>
+  <div class="hero-inner">
+    <span class="kicker">Holland Code · RIASEC</span>
+    <h1>霍兰德职业兴趣测试</h1>
+    <div class="sub-en">Self-Directed Search · 林远见路</div>
+    <p class="lead">你愿意把时间花在哪种事上，往往比"擅长什么"更早告诉你方向。这套测试基于心理学家约翰·霍兰德的职业兴趣理论（RIASEC），用 48 道兴趣偏好题，帮你找出自己的三字母兴趣代码——它是选方向、挑副业、画商业模式画布之前最值得先看的一张底牌。</p>
+    <div class="hero-meta">
+      <div class="m"><b>48 题</b><span>兴趣偏好</span></div>
+      <div class="m"><b>约 8 分钟</b><span>手机可完成</span></div>
+      <div class="m"><b>6 型</b><span>RIASEC 维度</span></div>
+      <div class="m"><b>断点续答</b><span>自动保存</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section>
+    <div class="sec-head"><div class="sec-no">讲</div><h2>开始之前，先说清四件事</h2></div>
+    <p class="sec-sub">这四句话决定了你测出来的东西准不准</p>
+    <div class="tips">
+      <div class="tip">
+        <div class="n">TIP 01</div>
+        <h3>凭第一感觉，别想太久</h3>
+        <p>每题按"你喜不喜欢做这件事"来答，不问擅不擅长、有没有做过。想得越久越失真。</p>
+      </div>
+      <div class="tip">
+        <div class="n">TIP 02</div>
+        <h3>兴趣不等于能力</h3>
+        <p>结果告诉你"做什么事来劲"，不等于"已经做得好"。兴趣是方向的种子，能力要靠练。</p>
+      </div>
+      <div class="tip">
+        <div class="n">TIP 03</div>
+        <h3>没有好坏高低</h3>
+        <p>六种类型只是六种"来劲的方式"，没有哪种更高级。分数低不代表差，只代表那样做事你不来电。</p>
+      </div>
+      <div class="tip">
+        <div class="n">TIP 04</div>
+        <h3>中途退出没关系</h3>
+        <p>答案自动保存在你自己的设备上，随时回来接着答。测完别停：结果页教你接着画自己的变现路径。</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="quiz-section">
+    <div class="sec-head"><div class="sec-no">测</div><h2>兴趣偏好测试</h2></div>
+    <p class="sec-sub">每题选一个程度：1 = 很不喜欢，5 = 非常喜欢</p>
+
+    <div class="quiz-bar">
+      <div class="prog">已答 <b id="q-count">0</b> / 48 题</div>
+      <span class="quiz-hint">答案只保存在你自己的设备上</span>
+    </div>
+    <div class="quiz-track"><div class="quiz-fill" id="q-fill"></div></div>
+
+    <div class="q-card">
+      <div class="q-no" id="q-no">第 1 / 48 题</div>
+      <div class="q-text" id="q-text">加载中…</div>
+      <div class="opts" id="q-opts">
+        <div class="opt" data-v="1"><span class="v">1</span><span class="l">很不喜欢</span></div>
+        <div class="opt" data-v="2"><span class="v">2</span><span class="l">不太喜欢</span></div>
+        <div class="opt" data-v="3"><span class="v">3</span><span class="l">一般</span></div>
+        <div class="opt" data-v="4"><span class="v">4</span><span class="l">比较喜欢</span></div>
+        <div class="opt" data-v="5"><span class="v">5</span><span class="l">非常喜欢</span></div>
+      </div>
+      <div class="quiz-nav">
+        <button class="btn ghost" id="q-prev" type="button">← 上一题</button>
+        <button class="btn" id="q-finish" type="button" hidden>生成我的兴趣代码</button>
+        <button class="btn ghost" id="q-next" type="button">下一题 →</button>
+      </div>
+    </div>
+  </section>
+
+  <div id="result" hidden>
+    <div class="divider"></div>
+    <section>
+      <div class="sec-head"><div class="sec-no">果</div><h2>你的霍兰德兴趣代码</h2></div>
+      <p class="sec-sub">分数代表"做这类事你来劲的程度"，取前三个字母组成你的兴趣代码</p>
+      <div class="r-code">
+        <span class="letters" id="r-letters">---</span>
+        <span class="cap" id="r-cap"></span>
+      </div>
+      <div class="bars" id="r-bars"></div>
+      <div class="r-top3" id="r-top3"></div>
+      <div class="r-rest" id="r-rest"></div>
+      <div class="r-cta">
+        <a href="personal-bmc.html">下一步：画出你的商业模式画布 →</a>
+        <a href="strengths.html">配套：优势才干测量器 →</a>
+        <a href="money-mind.html">配套：搞钱心智检测 →</a>
+      </div>
+    </section>
+  </div>
+
+  <div class="divider"></div>
+
+  <section style="padding-top:30px;">
+    <button class="btn ghost" id="q-reset" type="button">清空重测</button>
+    &nbsp;&nbsp;<a class="back" href="/">← 返回「心理学全景学习」首页</a>
+    &nbsp;&nbsp;<a class="back" href="strengths.html">← 去优势才干测量器</a>
+  </section>
+
+</div>
+
+<footer>
+  <div class="line"></div>
+  <b>霍兰德职业兴趣测试 · RIASEC 自助版</b>
+  <p class="disclaim">本页基于 John L. Holland 的职业兴趣理论（RIASEC 六型模型）整理的自助简化版，不是职业指导领域中使用的 SDS 官方量表，也不构成职业选择、升学、投资或创业建议。结果仅供自我探索参考，数据仅保存在你自己的设备上。</p>
+</footer>
+
+<script src="js/supabase.min.js?v=20260911b" defer></script>
+<script src="js/appdata.js?v=20260911b" defer></script>
+<script src="js/guestbook.js?v=20260911b" defer></script>
+<script src="js/page-counter.js?v=20260908c" defer></script>
+<script>
+(function(){
+  'use strict';
+  var TYPES={
+    R:{name:'现实型',en:'Realistic',color:'#8a6a3b',desc:'你喜欢看得见、摸得着的事：动手、操作、户外、造出实物。比起开会讨论，你更信"装好了就是装好了"。你的优势在于把想法落成可用的东西，动手能力和实操经验是你的护城河。',careers:'工程师、技师、木工/手工、健身与户外教练、农艺园艺、飞行员与驾驶员、维修与安装服务、手作匠人。',money:'你的变现优势在"手艺变现"：作品、维修、私教、定制，先做出来再谈。'},
+    I:{name:'研究型',en:'Investigative',color:'#2e5a77',desc:'你喜欢搞明白"为什么"：分析、推理、钻研、验证。别人嫌麻烦的深度探究，对你恰恰是乐趣。你的优势在于把复杂问题拆开揉碎，独立想清楚别人想不明白的事。',careers:'数据分析、研究岗、程序员、医生与医药、心理咨询与测评、精算与量化、产品研究、教师（学科研究型）。',money:'你的变现优势在"知识深度变现"：咨询、报告、课程、工具，把搞明白的东西卖出去。'},
+    A:{name:'艺术型',en:'Artistic',color:'#9a3b2e',desc:'你喜欢创造和表达：文字、画面、声音、风格，你在意"美不美、妙不妙"，讨厌按部就班。你的优势在于审美和原创力，能把普通的东西做得让人眼前一亮。',careers:'设计师、插画师、写作与编剧、摄影摄像、剪辑与短视频、音乐、广告创意、家居与陈列。',money:'你的变现优势在"审美溢价"：作品集、账号、设计服务，风格就是你最大的资产。'},
+    S:{name:'社会型',en:'Social',color:'#4a7a4f',desc:'你喜欢和人打交道：倾听、开导、教会、照顾。别人的成长和好转，会让你比自己赚到了还高兴。你的优势在于信任感，人们天然愿意把难题讲给你听。',careers:'教师与培训、心理咨询、医护与康复、人力与猎头、社群运营、公益组织、客服与客户成功、家庭教育指导。',money:'你的变现优势在"信任变现"：陪伴式服务、社群、咨询，别人因为信你这个人而付钱。'},
+    E:{name:'企业型',en:'Enterprising',color:'#b8794a',desc:'你喜欢影响和说服：带队伍、谈条件、拿结果，享受"把一件事推动起来"的快感。你的优势在于行动力和资源整合，敢定目标、敢开口、敢拍板。',careers:'销售与商务、创业者、市场与增长、项目经理、猎头与中介、主持人、直播与带货、采购与供应链谈判。',money:'你的变现优势在"杠杆变现"：团队、佣金、撮合，让资源和人替你转动。'},
+    C:{name:'常规型',en:'Conventional',color:'#5c6b8a',desc:'你喜欢有条理：清单、流程、数据、归档，"安排得明明白白"让你踏实。你的优势在于可靠和细致，交给你的事不会乱，错漏逃不过你的眼睛。',careers:'财务与会计、行政与文秘、数据分析与报表、仓管与供应链执行、质检、银行与证券后台、档案与合规。',money:'你的变现优势在"确定性变现"：代账、整理、流程外包，别人花钱买你的不出错。'}
+  };
+  var QUESTIONS=[
+    {t:'R',q:'修理家电、组装家具或动手做物件'},
+    {t:'R',q:'操作机器、工具或设备'},
+    {t:'R',q:'户外的体力活动，比如徒步、球类运动'},
+    {t:'R',q:'照着说明书，把一件东西从零件装成整体'},
+    {t:'R',q:'种植花木、木工或手工制作'},
+    {t:'R',q:'驾驶或操控交通工具、航模、无人机'},
+    {t:'R',q:'亲自动手试验一个想法，而不是纸上讨论'},
+    {t:'R',q:'排查并修好出了故障的东西'},
+    {t:'I',q:'做实验或查资料，弄清一件事的原因'},
+    {t:'I',q:'读科普文章、论文或深度长文'},
+    {t:'I',q:'解数学题、谜题或逻辑推理游戏'},
+    {t:'I',q:'观察并记录自然现象或身边的数据'},
+    {t:'I',q:'用数据验证一个想法是否成立'},
+    {t:'I',q:'钻研一个"为什么"，直到搞明白为止'},
+    {t:'I',q:'系统学习一门新理论或新学科'},
+    {t:'I',q:'和有人讨论抽象的概念与思想'},
+    {t:'A',q:'写作、绘画、摄影或谱曲'},
+    {t:'A',q:'设计海报、排版或做视觉方案'},
+    {t:'A',q:'弹奏乐器或唱歌'},
+    {t:'A',q:'拍摄并剪辑一支短视频'},
+    {t:'A',q:'装饰布置房间或设计一个展台'},
+    {t:'A',q:'凭想象创作一件原创作品'},
+    {t:'A',q:'看展览或电影时，特别留意风格与细节'},
+    {t:'A',q:'随手涂鸦、编故事或冒出新点子'},
+    {t:'S',q:'帮朋友调解矛盾、开导情绪'},
+    {t:'S',q:'教会别人一件事，看着ta学会'},
+    {t:'S',q:'参加志愿服务或公益活动'},
+    {t:'S',q:'倾听朋友的烦恼'},
+    {t:'S',q:'照顾孩子、老人或需要帮助的人'},
+    {t:'S',q:'组织大家参与集体活动'},
+    {t:'S',q:'关注并参与社区公共事务'},
+    {t:'S',q:'和陌生人聊几分钟就能熟络起来'},
+    {t:'E',q:'带领一个团队完成目标'},
+    {t:'E',q:'说服别人接受你的方案'},
+    {t:'E',q:'组织一场活动，并拉来所需资源'},
+    {t:'E',q:'谈判、砍价或争取更好的条件'},
+    {t:'E',q:'给自己定一个销售或增长目标'},
+    {t:'E',q:'竞选、竞聘或主动争取一个职位'},
+    {t:'E',q:'规划一个赚钱的创业想法'},
+    {t:'E',q:'在很多人面前演讲'},
+    {t:'C',q:'整理文件、做表格或记账'},
+    {t:'C',q:'按清单逐项完成并打勾'},
+    {t:'C',q:'核对数据、找出差错'},
+    {t:'C',q:'制定日程计划并严格执行'},
+    {t:'C',q:'把东西分类归位、保持井井有条'},
+    {t:'C',q:'做细致重复的工作也不出错'},
+    {t:'C',q:'记录并整理一段时间的流水数据'},
+    {t:'C',q:'按既定规章和流程办事'}
+  ];
+  var ORDER=['R','I','A','S','E','C'];
+  var KEY='holland_v1';
+  var N=QUESTIONS.length;
+
+  var answers={},idx=0,cur=-1;
+  var elNo=document.getElementById('q-no'),elText=document.getElementById('q-text'),
+      elOpts=document.getElementById('q-opts'),elCount=document.getElementById('q-count'),
+      elFill=document.getElementById('q-fill'),elPrev=document.getElementById('q-prev'),
+      elNext=document.getElementById('q-next'),elFinish=document.getElementById('q-finish'),
+      elResult=document.getElementById('result');
+  var saveTimer=null;
+
+  function save(){
+    try{localStorage.setItem(KEY,JSON.stringify({a:answers,idx:idx}));}catch(e){}
+  }
+  function answeredCount(){var n=0;for(var i=0;i<N;i++){if(answers[i])n++;}return n;}
+  function updateBar(){var n=answeredCount();elCount.textContent=String(n);elFill.style.width=(n/N*100)+'%';elFinish.hidden=(n<N);}
+  function load(){
+    try{
+      var raw=localStorage.getItem(KEY);
+      if(raw){var d=JSON.parse(raw);if(d&&d.a){answers=d.a;}if(d&&typeof d.idx==='number'){idx=d.idx;}}
+    }catch(e){}
+  }
+
+  function render(){
+    if(cur<0||cur>=N)cur=idx;
+    elNo.textContent='第 '+(cur+1)+' / '+N+' 题';
+    elText.textContent=QUESTIONS[cur].q;
+    var sel=answers[cur]||0;
+    var opts=elOpts.querySelectorAll('.opt');
+    for(var k=0;k<opts.length;k++){
+      var v=parseInt(opts[k].getAttribute('data-v'),10);
+      opts[k].className='opt'+(v===sel?' sel':'');
+    }
+    elPrev.disabled=(cur===0);
+    elNext.disabled=(cur===N-1);
+    updateBar();
+  }
+  function go(i){idx=Math.max(0,Math.min(N-1,i));cur=idx;save();render();}
+
+  elOpts.addEventListener('click',function(ev){
+    var node=ev.target;
+    while(node&&node!==elOpts&&!node.classList.contains('opt')){node=node.parentNode;}
+    if(!node||node===elOpts)return;
+    var v=parseInt(node.getAttribute('data-v'),10);
+    answers[cur]=v;save();updateBar();render();
+    if(answeredCount()>=N){elFinish.hidden=false;}
+    else if(cur<N-1){setTimeout(function(){go(cur+1);},180);}
+  });
+  elPrev.addEventListener('click',function(){go(cur-1);});
+  elNext.addEventListener('click',function(){go(cur+1);});
+  elFinish.addEventListener('click',function(){
+    if(answeredCount()<N)return;
+    save();showResult();
+    elResult.hidden=false;
+    elResult.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+
+  document.getElementById('q-reset').addEventListener('click',function(){
+    if(!confirm('确定清空全部作答并重新开始？此操作不可恢复。'))return;
+    answers={};idx=0;cur=0;
+    try{localStorage.removeItem(KEY);}catch(e){}
+    elResult.hidden=true;render();
+    document.getElementById('quiz-section').scrollIntoView({behavior:'smooth'});
+  });
+
+  /* ---------- 结果 ---------- */
+  function showResult(){
+    var scores={};ORDER.forEach(function(t){scores[t]=0;});
+    for(var i=0;i<N;i++){if(answers[i])scores[QUESTIONS[i].t]+=answers[i];}
+    var sorted=ORDER.slice().sort(function(a,b){return scores[b]-scores[a];});
+    var code=sorted.slice(0,3).join('');
+    document.getElementById('r-letters').textContent=code;
+    document.getElementById('r-cap').textContent=sorted.slice(0,3).map(function(t){return TYPES[t].name;}).join(' · ')+' —— 你的霍兰德兴趣代码';
+    /* bars */
+    var bars='';
+    sorted.forEach(function(t){
+      var pct=Math.round(scores[t]/(8*5)*100);
+      bars+='<div class="bar-row"><span class="bt">'+t+' '+TYPES[t].name+'<small>'+TYPES[t].en+'</small></span>'
+        +'<span class="track"><span class="fill" style="width:'+pct+'%;background:'+TYPES[t].color+';"></span></span>'
+        +'<span class="sc">'+scores[t]+'</span></div>';
+    });
+    document.getElementById('r-bars').innerHTML=bars;
+    /* top3 cards */
+    var cards='';
+    sorted.slice(0,3).forEach(function(t,i){
+      cards+='<div class="r-card" style="border-left-color:'+TYPES[t].color+';">'
+        +'<div class="rk">第 '+(i+1)+' 位 · '+scores[t]+' 分</div>'
+        +'<h3>'+t+' '+TYPES[t].name+'<small>'+TYPES[t].en+'</small></h3>'
+        +'<p>'+TYPES[t].desc+'</p>'
+        +'<div class="careers"><b>职业方向参考</b><p>'+TYPES[t].careers+'</p>'
+        +'<b style="display:block;margin-top:8px;">搞钱视角</b><p>'+TYPES[t].money+'</p></div>'
+        +'</div>';
+    });
+    document.getElementById('r-top3').innerHTML=cards;
+    /* rest line */
+    var rest=sorted.slice(3).map(function(t){return '<b>'+t+' '+TYPES[t].name+'</b> '+scores[t]+' 分';}).join('　·　');
+    document.getElementById('r-rest').innerHTML='其余维度（参考）：'+rest+'。后三位不代表缺点，只代表你花同样力气时，回报感更低的方向。';
+  }
+
+  load();
+  /* 续答定位：跳到第一个未答题 */
+  if(answers){
+    for(var i=0;i<N;i++){if(!answers[i]){idx=i;break;}}
+  }
+  cur=idx;
+  render();
+  /* 若已完成过，直接显示结果 */
+  if(answeredCount()>=N){showResult();elResult.hidden=false;}
+})();
+</script>
+</body>
+</html>
