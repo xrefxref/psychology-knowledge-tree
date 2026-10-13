@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>页面走丢了 · 404 · 林远见路</title>
+<meta name="robots" content="noindex">
+<style>
+  :root{
+    --paper:#f6f1e7; --paper-2:#fbf8f1; --ink:#2b2722; --ink-soft:#5c554b;
+    --ink-faint:#8a8074; --line:#e3dac8; --accent:#9a3b2e; --accent-2:#b8794a;
+    --serif:"Songti SC","Source Han Serif SC","Noto Serif SC",Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:var(--sans);color:var(--ink);background:var(--paper);line-height:1.75;
+    min-height:100vh;display:flex;flex-direction:column;justify-content:center;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:640px;margin:0 auto;padding:48px 24px;text-align:center;}
+  .code{font-family:var(--serif);font-size:88px;font-weight:700;color:var(--accent);line-height:1;}
+  .code small{display:block;font-size:15px;letter-spacing:.3em;color:var(--ink-faint);margin-top:8px;}
+  h1{font-family:var(--serif);font-size:24px;margin:26px 0 10px;}
+  p.lead{font-size:14.5px;color:var(--ink-soft);margin-bottom:30px;}
+  .links{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;}
+  .links a{display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-family:var(--serif);
+    font-size:14.5px;color:var(--accent);border:1px solid rgba(154,59,46,.4);background:rgba(154,59,46,.05);
+    padding:10px 20px;border-radius:26px;transition:all .18s;}
+  .links a:hover{background:rgba(154,59,46,.1);}
+  .links a.ghost{color:var(--ink-soft);border-color:var(--line);background:var(--paper-2);}
+  footer{padding:24px;text-align:center;color:var(--ink-faint);font-size:12px;}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="code">404<small>PAGE NOT FOUND</small></div>
+    <h1>这一页走丢了</h1>
+    <p class="lead">地址可能输错了，或者页面已经搬家。别急，你真正要找的东西就在下面。</p>
+    <div class="links">
+      <a href="/">← 回首页</a>
+      <a href="holland-test.html">霍兰德兴趣测试</a>
+      <a href="career-anchor.html">职业锚测试</a>
+      <a href="personal-bmc.html">商业模式画布</a>
+      <a href="book-notes.html" class="ghost">必读书目</a>
+    </div>
+  </div>
+  <footer>心理学全景学习 · 林远见路</footer>
+</body>
+</html>
