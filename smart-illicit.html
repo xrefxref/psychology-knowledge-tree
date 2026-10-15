@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart &amp; Illicit 创业者基因测评 · 林远见路</title>
+<meta name="description" content="《Smart & Illicit 创业者基因测评》：基于 NBER/QJE 创业者选择机制实证研究（Levine & Rubinstein）与鸿氏心理抗拒量表设计的 10 题快测——测测你是「听话的名校高薪雇员」还是「打破陈规的商业破局者」。答完即出四象限结果卡片。">
+<meta property="og:site_name" content="林远见路 · 心理学全景学习">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Smart &amp; Illicit 创业者基因测评">
+<meta property="og:description" content="10 道场景题，从认知解构力与规则突破力两个维度交叉定位你的商业基因：破局创新者、名校精英、莽撞冒险者还是循规蹈矩者？">
+<meta property="og:url" content="https://shenzhen-ai.icu/smart-illicit.html">
+<meta property="og:image" content="https://shenzhen-ai.icu/share.png">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root{
+    --paper:#f6f1e7;
+    --paper-2:#fbf8f1;
+    --ink:#2b2722;
+    --ink-soft:#5c554b;
+    --ink-faint:#8a8074;
+    --line:#e3dac8;
+    --accent:#9a3b2e;      /* Illicit · 规则突破力 */
+    --accent-2:#b8794a;
+    --c-blue:#2e5a77;      /* Smart · 认知解构力 */
+    --shadow:0 12px 40px rgba(43,39,34,.10);
+    --serif:"Songti SC","Source Han Serif SC","Noto Serif SC",Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--sans);color:var(--ink);background:var(--paper);
+    background-image:
+      radial-gradient(circle at 18% 8%, rgba(184,121,74,.06), transparent 42%),
+      radial-gradient(circle at 84% 88%, rgba(46,90,119,.05), transparent 46%);
+    line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.035'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  body>*{position:relative;z-index:1;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
+  h1,h2,h3,.serif{font-family:var(--serif);}
+  ::selection{background:rgba(154,59,46,.18);}
+
+  .hero{
+    position:relative;overflow:hidden;color:#fbf6ec;
+    background:linear-gradient(150deg,#2e2721,#3d332b 55%,#29241e);
+    padding:96px 0 68px;
+  }
+  .hero::after{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(circle at 80% 15%, rgba(184,121,74,.18), transparent 55%);
+  }
+  .hero .stripe{position:absolute;left:0;top:0;bottom:0;width:8px;display:flex;flex-direction:column;}
+  .hero .stripe i{flex:1;}
+  .hero-inner{position:relative;z-index:2;max-width:1080px;margin:0 auto;padding:0 28px;}
+  .hero .kicker{
+    display:inline-flex;align-items:center;gap:8px;font-size:13px;letter-spacing:.22em;text-transform:uppercase;
+    color:#f0d9b8;border:1px solid rgba(240,217,184,.42);padding:6px 15px;border-radius:30px;margin-bottom:22px;
+  }
+  .hero h1{font-size:clamp(28px,5vw,48px);line-height:1.16;font-weight:700;margin-bottom:10px;}
+  .hero .sub-en{font-family:var(--serif);font-style:italic;font-size:clamp(15px,2.2vw,20px);color:#e2cba6;opacity:.92;margin-bottom:18px;}
+  .hero .lead{max-width:680px;font-size:clamp(15px,2vw,17.5px);color:#efe4d3;}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:22px 32px;margin-top:26px;}
+  .hero-meta .m{display:flex;flex-direction:column;}
+  .hero-meta .m b{font-family:var(--serif);font-size:19px;color:#fff;}
+  .hero-meta .m span{font-size:12.5px;letter-spacing:.08em;color:#d6c1a3;}
+
+  .ribbon{position:absolute;top:0;right:clamp(16px,5vw,52px);z-index:3;width:44px;
+    background:var(--accent);color:#fff;text-align:center;padding:15px 0 24px;
+    font-family:var(--serif);font-size:13px;letter-spacing:.14em;box-shadow:0 6px 16px rgba(0,0,0,.32);}
+  .ribbon::after{content:"";position:absolute;left:0;bottom:-13px;border-width:0 22px 14px;border-style:solid;border-color:var(--accent) var(--accent) transparent;}
+  .ribbon span{writing-mode:vertical-rl;}
+
+  section{padding:52px 0 46px;}
+  .sec-head{display:flex;align-items:center;gap:14px;margin-bottom:8px;}
+  .sec-no{font-family:var(--serif);font-size:14px;color:var(--accent);border:1px solid var(--accent);
+    border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;flex:none;}
+  .sec-head h2{font-size:clamp(22px,3.2vw,29px);}
+  .sec-sub{color:var(--ink-faint);font-size:14.5px;margin-bottom:26px;padding-left:48px;}
+  @media(max-width:880px){.sec-sub{padding-left:0;}}
+
+  /* ===== 理论背景 ===== */
+  .theory{background:var(--paper-2);border:1px solid var(--line);border-radius:16px;
+    box-shadow:var(--shadow);padding:24px 26px;font-size:14.5px;color:var(--ink-soft);line-height:1.85;}
+  .theory+.theory{margin-top:16px;}
+  .theory b{color:var(--ink);}
+  .theory .src{font-size:12.5px;color:var(--ink-faint);margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);}
+  .dims{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:16px;}
+  @media(max-width:760px){.dims{grid-template-columns:1fr;}}
+  .dim{border-radius:16px;padding:20px 22px;color:#fbf6ec;}
+  .dim.s{background:linear-gradient(150deg,#2e5a77,#3d6d8f);}
+  .dim.i{background:linear-gradient(150deg,#9a3b2e,#b8553f);}
+  .dim h3{font-size:19px;margin-bottom:6px;}
+  .dim h3 small{font-family:var(--serif);font-style:italic;font-weight:400;font-size:13px;opacity:.85;margin-left:6px;}
+  .dim p{font-size:13.5px;line-height:1.8;opacity:.95;}
+
+  /* ===== 答题区 ===== */
+  .quiz-box{max-width:680px;margin:0 auto;}
+  .quiz-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
+  .quiz-bar .prog{font-family:var(--serif);font-size:15px;}
+  .quiz-bar .prog b{color:var(--accent);font-size:19px;}
+  .quiz-bar .dim-tag{font-size:11.5px;letter-spacing:.12em;color:var(--ink-faint);border:1px solid var(--line);
+    border-radius:20px;padding:3px 12px;background:var(--paper-2);}
+  .quiz-track{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin-bottom:24px;}
+  .quiz-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--c-blue),var(--accent));border-radius:3px;transition:width .3s;}
+  .q-card{background:var(--paper-2);border:1px solid var(--line);border-radius:16px;
+    box-shadow:var(--shadow);padding:26px 24px 20px;}
+  .q-card.fade{animation:fadein .28s ease;}
+  @keyframes fadein{from{opacity:0;transform:translateX(14px);}to{opacity:1;transform:none;}}
+  .q-no{font-family:var(--serif);font-size:13px;color:var(--ink-faint);letter-spacing:.12em;margin-bottom:10px;}
+  .q-text{font-family:var(--serif);font-size:clamp(18px,2.6vw,22px);line-height:1.65;margin-bottom:20px;}
+  .opt{cursor:pointer;display:block;width:100%;text-align:left;border:1px solid var(--line);
+    background:var(--paper);border-radius:12px;padding:15px 16px;margin-bottom:10px;
+    font-family:var(--sans);font-size:14.5px;line-height:1.7;color:var(--ink-soft);transition:all .15s;
+    user-select:none;-webkit-tap-highlight-color:transparent;}
+  .opt:hover{border-color:rgba(154,59,46,.45);color:var(--ink);}
+  .opt .k{display:inline-flex;align-items:center;justify-content:center;flex:none;width:26px;height:26px;
+    border-radius:50%;background:var(--ink-faint);color:#fff;font-family:var(--serif);font-weight:700;
+    font-size:14px;margin-right:10px;vertical-align:middle;}
+  .opt:hover .k{background:var(--accent);}
+  .quiz-nav{display:flex;justify-content:space-between;align-items:center;margin-top:14px;}
+  .btn{cursor:pointer;font-family:var(--serif);font-size:15px;padding:11px 24px;border-radius:26px;
+    border:1px solid var(--accent);background:var(--accent);color:#fbf6ec;transition:all .18s;}
+  .btn:hover{filter:brightness(1.08);}
+  .btn:disabled{opacity:.4;cursor:default;filter:none;}
+  .btn.ghost{background:var(--paper-2);color:var(--ink-soft);border-color:var(--line);}
+  .btn.ghost:hover{color:var(--accent);border-color:rgba(154,59,46,.4);filter:none;}
+  .quiz-hint{font-size:12.5px;color:var(--ink-faint);}
+
+  /* ===== 结果区 ===== */
+  #result{max-width:680px;margin:0 auto;}
+  .matrix{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px;}
+  .mx{border-radius:12px;padding:14px 12px;text-align:center;border:1px solid var(--line);
+    background:var(--paper-2);font-size:12.5px;color:var(--ink-faint);line-height:1.6;}
+  .mx b{display:block;font-family:var(--serif);font-size:14.5px;color:var(--ink-soft);}
+  .mx.hit{background:linear-gradient(150deg,#3d332b,#2e2721);border-color:var(--accent);color:#e2cba6;box-shadow:var(--shadow);}
+  .mx.hit b{color:#f0d9b8;font-size:16px;}
+  .r-card{background:var(--paper-2);border:1px solid var(--line);border-left:5px solid var(--accent);
+    border-radius:16px;box-shadow:var(--shadow);padding:26px 24px;text-align:center;}
+  .r-card .cap{font-size:12.5px;color:var(--ink-faint);letter-spacing:.16em;}
+  .r-card .title{font-family:var(--serif);font-size:clamp(26px,5vw,36px);font-weight:700;
+    color:var(--accent);margin:10px 0 16px;line-height:1.3;}
+  .r-card .scores{display:flex;justify-content:center;gap:26px;margin-bottom:16px;}
+  .r-card .sc{font-size:12.5px;color:var(--ink-faint);}
+  .r-card .sc b{display:block;font-family:var(--serif);font-size:24px;color:var(--ink);}
+  .r-card .sc.s b{color:var(--c-blue);}
+  .r-card .sc.i b{color:var(--accent);}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:18px;}
+  .tags span{font-size:12.5px;color:var(--accent);border:1px solid rgba(154,59,46,.4);
+    background:rgba(154,59,46,.06);border-radius:20px;padding:4px 14px;}
+  .r-card .concl{font-family:var(--serif);font-size:16px;color:var(--ink);line-height:1.8;
+    padding:16px 8px 0;border-top:1px dashed var(--line);}
+  .r-card .from{margin-top:18px;font-size:12px;color:var(--ink-faint);line-height:1.8;}
+  .r-card .from b{color:var(--accent-2);}
+  .r-actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:18px;}
+  .share-img-wrap{margin-top:20px;text-align:center;}
+  .share-img-wrap img{max-width:100%;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);}
+  .share-img-wrap .hint{font-size:12.5px;color:var(--ink-faint);margin-top:10px;}
+
+  .divider{height:1px;background:linear-gradient(90deg,transparent,var(--line) 18%,var(--line) 82%,transparent);}
+
+  .back{
+    display:inline-flex;align-items:center;gap:8px;margin-top:6px;font-size:13.5px;
+    color:var(--ink-soft);text-decoration:none;border:1px solid var(--line);
+    background:var(--paper-2);padding:8px 16px;border-radius:24px;transition:all .18s;
+  }
+  .back:hover{color:var(--accent);border-color:rgba(154,59,46,.35);background:rgba(154,59,46,.05);}
+
+  footer{padding:36px 28px 56px;text-align:center;color:var(--ink-faint);font-size:13px;}
+  footer .line{width:60px;height:3px;background:var(--accent);margin:0 auto 20px;border-radius:3px;}
+  footer b{font-family:var(--serif);color:var(--ink-soft);}
+  .disclaim{margin-top:10px;font-size:12px;color:var(--ink-faint);max-width:680px;margin-left:auto;margin-right:auto;line-height:1.7;}
+
+  @media(max-width:640px){.wrap{padding:0 18px;}.hero-inner{padding:0 18px;}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="stripe"><i style="background:#9a3b2e"></i><i style="background:#b8794a"></i><i style="background:#2e5a77"></i></div>
+  <div class="ribbon"><span>创业者基因</span></div>
+  <div class="hero-inner">
+    <span class="kicker">Smart &amp; Illicit · Founder Gene</span>
+    <h1>《Smart &amp; Illicit 创业者基因测评》</h1>
+    <div class="sub-en">测测你是"听话的名校高薪雇员"还是"打破陈规的商业破局者"</div>
+    <p class="lead">10 道场景化题目，从「认知解构力」与「规则突破力」两个维度交叉打分，即时定位你的商业基因与职业卡点——不需要留任何信息，答完直接出结果卡片。</p>
+    <div class="hero-meta">
+      <div class="m"><b>10 题</b><span>场景单选</span></div>
+      <div class="m"><b>约 2 分钟</b><span>答完即出</span></div>
+      <div class="m"><b>2×2</b><span>基因四象限</span></div>
+      <div class="m"><b>零门槛</b><span>无需注册</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section id="theory-sec">
+    <div class="sec-head"><div class="sec-no">理</div><h2>这个测评的科学原理</h2></div>
+    <p class="sec-sub">不是网上随手编的性格小测试——两个维度都有实证研究背书</p>
+
+    <div class="theory">
+      <b>研究背景 —</b> 经济学界对"谁会成为真正的创业者"做过大样本追踪研究（Levine &amp; Rubinstein，发表于 NBER 工作论文与《经济学季刊》QJE）。结论颠覆直觉：真正的商业<b>创造者</b>与公司化创业者，既不是单纯的"名校好学生"，也不是"盲目的冒险家"——而是同时具备下述两大特质的<b>极少数人</b>：既聪明到能看透系统，又"野"到不肯被系统收编。
+    </div>
+
+    <div class="dims">
+      <div class="dim s">
+        <h3>维度一：Smart 认知解构力<small>Levine &amp; Rubinstein 的学习与推理能力变量</small></h3>
+        <p>评估你的逻辑推理、系统提纯、概率直觉与效果逻辑（Effectuation）能力——面对陌生赛道时，你是等"标准答案"，还是 15 分钟拆出商业闭环。</p>
+      </div>
+      <div class="dim i">
+        <h3>维度二：Illicit 规则突破力<small>鸿氏心理抗拒量表（Hong's Reactance Scale）</small></h3>
+        <p>评估你对既有秩序的独立思考、打破陈规的勇气与拒绝盲目顺从的倾向——心理学称之为"心理抗拒"（Reactance）：被规则推着走时，你会逆来顺受还是想掀桌。</p>
+      </div>
+    </div>
+
+    <div class="theory" style="margin-top:16px;">
+      <b>计分方式 —</b> 共 10 道单选（第 1–5 题测 Smart，第 6–10 题测 Illicit），选项 A 计 0 分、选项 B 计 2 分。每个维度满分 10 分，≥6 分判为 High。两个维度交叉，得到你的 2×2 商业基因象限。
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="quiz-sec">
+    <div class="sec-head"><div class="sec-no">测</div><h2>开始测评</h2></div>
+    <p class="sec-sub">每题二选一：凭第一直觉，别想太久</p>
+
+    <div class="quiz-box">
+      <div class="quiz-bar">
+        <span class="prog">第 <b id="q-count">1</b> / 10 题</span>
+        <span class="dim-tag" id="q-dim">SMART · 认知解构力</span>
+      </div>
+      <div class="quiz-track"><div class="quiz-fill" id="quiz-fill"></div></div>
+      <div class="q-card" id="q-card">
+        <div class="q-no" id="q-no">第 1 / 10 题</div>
+        <div class="q-text" id="q-text">加载中…</div>
+        <div id="q-opts"></div>
+      </div>
+      <div class="quiz-nav">
+        <button class="btn ghost" id="q-prev" type="button">← 上一题</button>
+        <span class="quiz-hint">答案只保存在你的设备上</span>
+      </div>
+    </div>
+  </section>
+
+  <div id="result" hidden>
+    <div class="divider"></div>
+    <section>
+      <div class="sec-head"><div class="sec-no">果</div><h2>你的商业基因坐标</h2></div>
+      <p class="sec-sub">横轴 Illicit · 纵轴 Smart——你落在四象限中的这一格</p>
+
+      <div class="matrix">
+        <div class="mx" id="mx-hs-hi"><b>High Smart + High Illicit</b>破局创新者</div>
+        <div class="mx" id="mx-hs-li"><b>High Smart + Low Illicit</b>名校精英 / 高薪专家</div>
+        <div class="mx" id="mx-ls-hi"><b>Low Smart + High Illicit</b>莽撞冒险者 / 边缘个体户</div>
+        <div class="mx" id="mx-ls-li"><b>Low Smart + Low Illicit</b>循规蹈矩者 / 传统雇员</div>
+      </div>
+
+      <div class="r-card" id="r-card">
+        <div class="cap">YOUR FOUNDER GENE · 你的匹配称号</div>
+        <div class="title" id="r-title">—</div>
+        <div class="scores">
+          <div class="sc s"><b id="r-s">0</b>Smart 认知解构力 / 10</div>
+          <div class="sc i"><b id="r-i">0</b>Illicit 规则突破力 / 10</div>
+        </div>
+        <div class="tags" id="r-tags"></div>
+        <div class="concl" id="r-concl">—</div>
+        <div class="from">来自 <b>shenzhen-ai.icu</b> 评估报告<br>访问 shenzhen-ai.icu 体验林远同款 AI 搞钱与人生规划工具箱</div>
+      </div>
+
+      <div class="r-actions">
+        <button class="btn" id="btn-share" type="button">保存 / 分享卡片</button>
+        <button class="btn ghost" id="btn-retry" type="button">重新测试</button>
+      </div>
+      <div class="share-img-wrap" id="share-wrap" hidden>
+        <img id="share-img" alt="测评结果卡片">
+        <div class="hint">手机长按图片即可保存 / 转发到朋友圈</div>
+      </div>
+    </section>
+  </div>
+
+  <div class="divider"></div>
+
+  <section style="padding-top:30px;">
+    <a class="back" href="test-suite.html">← 返回「搞钱测试集」</a>
+    &nbsp;&nbsp;<a class="back" href="/">← 返回首页</a>
+  </section>
+
+</div>
+
+<footer>
+  <div class="line"></div>
+  <b>Smart &amp; Illicit 创业者基因测评</b>
+  <p class="disclaim">本测评基于 Levine &amp; Rubinstein 关于创业者选择机制的实证研究框架与鸿氏心理抗拒量表（Hong's Reactance Scale）简化改编，为自助娱乐与自我探索用途，不是官方学术量表，不构成职业、投资或创业建议。结果与答案仅保存在你自己的设备上。</p>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  var QS=[
+    {d:'S',q:'面对一个完全陌生的新赛道或商业模式，你的第一反应是？',
+     a:'等待行业大咖出课程或写出标准 SOP 后再去学习',
+     b:'迅速找到底层研报/资料，用 AI 工具 15 分钟提纯其商业闭环'},
+    {d:'S',q:'想启动一个新项目但手头资金与资源严重不足时，你会？',
+     a:'撰写完美商业计划书，到处寻找投资或等待资源到位再干',
+     b:'盘点现有的"边角料资源"，用最小可行性产品（MVP）明天就上线测试'},
+    {d:'S',q:'面对一项胜率仅 40%、但潜在回报高达 10 倍的非线性机会：',
+     a:'觉得胜率算不清、风险太大，选择放弃',
+     b:'设定"可承受损失"上限，在风险可控的前提下下注试错'},
+    {d:'S',q:'遇到公开的商业成功案例或同行爆款时，你倾向于？',
+     a:'羡慕别人的运气，或者直接照搬对方的表面动作',
+     b:'拆解其底层商业结构、底层逻辑与第一性原理'},
+    {d:'S',q:'面对全网飞舞的爆炸信息与每日碎片化热点，你通常？',
+     a:'沉迷吃瓜、被动接收资讯，看完就忘',
+     b:'把自媒体当搜索引擎，建立自己的知识库与自动化提纯工作流'},
+    {d:'I',q:'面对行业内效率极低、但大家都默认遵守的繁琐规则或流程：',
+     a:'默默承受并适应既有流程，按部就班操作',
+     b:'极度厌恶，主动寻找合规缝隙或技术工具去绕过它'},
+    {d:'I',q:'当你的直觉判断与行业权威或大多数同行的意见发生剧烈冲突时：',
+     a:'怀疑自己，选择跟从大多数人的选择以求安全',
+     b:'感到兴奋，认为"反对多数人意见"往往孕育着超额溢价'},
+    {d:'I',q:'回顾你的成长历程（学生时代或早期职场），你的处事风格更接近？',
+     a:'始终是听话好学生/优秀员工，极少违反既定规矩',
+     b:'经常质疑规则合理性，有折腾小生意或"违纪反叛"的经历'},
+    {d:'I',q:'当现有的公司分配体制或行业薪酬结构严重不合理时：',
+     a:'抱怨体制，但继续在既有框架内卷工时',
+     b:'尝试建立自己的独立城邦、分布式副业或个人产品化'},
+    {d:'I',q:'面对未知的尝试与世俗评价（如被人说不务正业）：',
+     a:'极其在意他人评价，追求世俗眼中的体面与稳定',
+     b:'完全不在乎世俗偏见，只关注底层事实与商业对价'}
+  ];
+  var QUAD={
+    'HS_HI':{name:'破局创新者',sub:'真正的创业者基因',tags:['#规则解构者','#效果逻辑操盘手','#不按套路出牌','#独立城邦'],
+             concl:'你具备极其稀缺的企业家基因，既拥有透视本质的认知敏锐度，又敢于打破陈规定义新规则。'},
+    'HS_LI':{name:'名校精英 / 高薪职场专家',sub:'',tags:['#听话好学生','#体制内学霸','#规则内极客','#高智商雇员'],
+             concl:'你拥有顶级的学习与解构力，但受限于对既有规则的顺从，谨防落入"听话好学生陷阱"。'},
+    'LS_HI':{name:'莽撞冒险者 / 边缘个体户',sub:'',tags:['#盲目冲锋','#粗放投机','#强硬反骨','#缺乏中台'],
+             concl:'你具备强烈的破局勇气与反叛精神，但缺乏底层系统的认知解构，切忌无套路盲目试错。'},
+    'LS_LI':{name:'循规蹈矩者 / 传统雇员',sub:'',tags:['#秩序守护者','#按部就班','#风险厌恶','#标准流程'],
+             concl:'你习惯在既定规则内寻求安全感与确定性，适合在成熟系统内担当稳定骨干。'}
+  };
+  var N=QS.length;
+
+  var answers={},cur=0;
+  var elCount=document.getElementById('q-count'),elDim=document.getElementById('q-dim'),
+      elFill=document.getElementById('quiz-fill'),elCard=document.getElementById('q-card'),
+      elNo=document.getElementById('q-no'),elText=document.getElementById('q-text'),
+      elOpts=document.getElementById('q-opts'),elPrev=document.getElementById('q-prev'),
+      elResult=document.getElementById('result');
+
+  function answeredCount(){var n=0;for(var i=0;i<N;i++){if(answers[i]!==undefined)n++;}return n;}
+
+  function render(){
+    var q=QS[cur];
+    elCount.textContent=String(cur+1);
+    elNo.textContent='第 '+(cur+1)+' / '+N+' 题';
+    elDim.textContent=(q.d==='S'?'SMART · 认知解构力':'ILLICIT · 规则突破力');
+    elFill.style.width=(answeredCount()/N*100)+'%';
+    elText.textContent=q.q;
+    var sel=answers[cur];
+    elOpts.innerHTML=
+      '<button class="opt" type="button" data-v="a"><span class="k">A</span>'+q.a+'</button>'+
+      '<button class="opt" type="button" data-v="b"><span class="k">B</span>'+q.b+'</button>';
+    var opts=elOpts.querySelectorAll('.opt');
+    for(var k=0;k<opts.length;k++){
+      if((k===0&&sel==='a')||(k===1&&sel==='b')){opts[k].style.borderColor='rgba(154,59,46,.6)';}
+    }
+    elPrev.disabled=(cur===0);
+    elCard.classList.remove('fade');
+    void elCard.offsetWidth;
+    elCard.classList.add('fade');
+  }
+  function go(i){cur=Math.max(0,Math.min(N-1,i));render();}
+
+  elOpts.addEventListener('click',function(ev){
+    var btn=ev.target.closest('.opt');
+    if(!btn)return;
+    answers[cur]=btn.getAttribute('data-v');
+    elFill.style.width=(answeredCount()/N*100)+'%';
+    if(answeredCount()>=N){showResult();return;}
+    setTimeout(function(){go(cur+1);},180);
+  });
+  elPrev.addEventListener('click',function(){go(cur-1);});
+
+  function showResult(){
+    var s=0,i=0;
+    for(var k=0;k<N;k++){
+      var v=answers[k];
+      if(!v)continue;
+      if(QS[k].d==='S'&&v==='b')s+=2;
+      if(QS[k].d==='I'&&v==='b')i+=2;
+    }
+    var hs=s>=6, hi=i>=6;
+    var key=hs?(hi?'HS_HI':'HS_LI'):(hi?'LS_HI':'LS_LI');
+    var q=QUAD[key];
+    document.getElementById('r-s').textContent=String(s);
+    document.getElementById('r-i').textContent=String(i);
+    document.getElementById('r-title').textContent=q.name+(q.sub?'（'+q.sub+'）':'');
+    document.getElementById('r-tags').innerHTML=q.tags.map(function(t){return '<span>'+t+'</span>';}).join('');
+    document.getElementById('r-concl').textContent=q.concl;
+    ['HS_HI','HS_LI','LS_HI','LS_LI'].forEach(function(k2){
+      document.getElementById('mx-'+k2.toLowerCase().replace('_','-')).className='mx'+(k2===key?' hit':'');
+    });
+    elResult.hidden=false;
+    setTimeout(function(){drawShare(s,i,q);},60);
+    elResult.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+
+  /* ---------- Canvas 分享卡片 ---------- */
+  function drawShare(s,i,q){
+    var W=750,H=1000,cv=document.createElement('canvas');
+    cv.width=W;cv.height=H;
+    var c=cv.getContext('2d');
+    c.fillStyle='#f6f1e7';c.fillRect(0,0,W,H);
+    c.fillStyle='#9a3b2e';c.fillRect(0,0,14,H);
+    c.fillStyle='#b8794a';c.fillRect(14,0,28,H);
+    c.fillStyle='#2e5a77';c.fillRect(28,0,42,H);
+    function font(px,bold){return (bold?'bold ':'')+'px "Microsoft YaHei","PingFang SC",sans-serif';}
+    function wrap(text,maxW,fn){
+      var line='',lines=[];
+      for(var j=0;j<text.length;j++){
+        var t=line+text[j];
+        if(c.measureText(t).width>maxW&&line){lines.push(line);line=text[j];}
+        else line=t;
+      }
+      if(line)lines.push(line);
+      lines.forEach(function(l,n){fn(l,n);});
+      return lines.length;
+    }
+    c.textBaseline='top';
+    c.fillStyle='#8a8074';c.font=font(24);
+    c.fillText('SMART & ILLICIT · 创业者基因测评',90,70);
+    c.fillStyle='#b8794a';c.font='bold '+font(30);
+    c.fillText('我的商业基因坐标',90,115);
+    /* 分数块 */
+    c.font='bold '+font(56);c.fillStyle='#2e5a77';c.fillText('S '+s,90,190);
+    c.font=font(22);c.fillStyle='#8a8074';c.fillText('认知解构力 / 10',230,215);
+    c.font='bold '+font(56);c.fillStyle='#9a3b2e';c.fillText('I '+i,430,190);
+    c.font=font(22);c.fillStyle='#8a8074';c.fillText('规则突破力 / 10',570,215);
+    /* 称号 */
+    c.fillStyle='#9a3b2e';c.font='bold '+font(58);
+    var nameLines=[];
+    var name=q.name+(q.sub?'（'+q.sub+'）':'');
+    wrap(name,W-180,function(l){nameLines.push(l);});
+    nameLines.forEach(function(l,n){c.fillText(l,90,320+n*72);});
+    var y=320+nameLines.length*72+20;
+    /* 标签 */
+    c.font=font(26);
+    var tx=90;
+    q.tags.forEach(function(t){
+      var w=c.measureText(t).width+36;
+      if(tx+w>W-90){tx=90;y+=54;}
+      c.strokeStyle='rgba(154,59,46,.45)';c.lineWidth=2;
+      c.strokeRect(tx,y,w,44);
+      c.fillStyle='#9a3b2e';c.fillText(t,tx+18,y+8);
+      tx+=w+14;
+    });
+    y+=80;
+    /* 一句话结论 */
+    c.fillStyle='#2b2722';c.font=font(28);
+    wrap(q.concl,W-180,function(l,n){c.fillText(l,90,y+n*44);});
+    /* 底部 */
+    c.fillStyle='#8a8074';c.font=font(22);
+    c.fillText('来自 shenzhen-ai.icu 评估报告',90,H-120);
+    c.fillStyle='#b8794a';
+    c.fillText('访问 shenzhen-ai.icu 体验林远同款',90,H-84);
+    c.fillText('AI 搞钱与人生规划工具箱',90,H-48);
+    var url=cv.toDataURL('image/png');
+    var img=document.getElementById('share-img');
+    img.src=url;
+    document.getElementById('share-wrap').hidden=false;
+  }
+
+  document.getElementById('btn-share').addEventListener('click',function(){
+    var w=document.getElementById('share-wrap');
+    if(w.hidden){w.hidden=false;window.scrollBy(0,300);}
+    var img=document.getElementById('share-img');
+    if(navigator.clipboard&&img.src.startsWith('data:')){
+      /* 桌面端直接下载 */
+      var a=document.createElement('a');
+      a.href=img.src;a.download='Smart-Illlicit-结果卡.png';
+      document.body.appendChild(a);a.click();document.body.removeChild(a);
+    }
+  });
+  document.getElementById('btn-retry').addEventListener('click',function(){
+    answers={};cur=0;
+    elResult.hidden=true;
+    document.getElementById('share-wrap').hidden=true;
+    render();
+    document.getElementById('quiz-sec').scrollIntoView({behavior:'smooth'});
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
