@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>搞钱测试集 · 8 站完整路径 · 林远见路</title>
+<meta name="description" content="搞钱测试集：8 个测试串成一条完整路径——心智底牌（搞钱心智）→ 兴趣方向（霍兰德）→ 职业底线（职业锚）→ 性格类型（MBTI）→ 天赋优势（优势才干）→ 人生蓝图（人生设计）→ 变现落地（商业模式画布）→ 日常思维训练（CBT 挑战）。从公众号「林远见路」而来的你，从这里开始。">
+<style>
+  :root{
+    --paper:#f6f1e7;
+    --paper-2:#fbf8f1;
+    --ink:#2b2722;
+    --ink-soft:#5c554b;
+    --ink-faint:#8a8074;
+    --line:#e3dac8;
+    --accent:#9a3b2e;
+    --accent-2:#b8794a;
+    --c-blue:#2e5a77;
+    --shadow:0 12px 40px rgba(43,39,34,.10);
+    --serif:"Songti SC","Source Han Serif SC","Noto Serif SC",Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--sans);color:var(--ink);background:var(--paper);
+    background-image:
+      radial-gradient(circle at 18% 8%, rgba(184,121,74,.06), transparent 42%),
+      radial-gradient(circle at 84% 88%, rgba(46,90,119,.05), transparent 46%);
+    line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.035'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  body>*{position:relative;z-index:1;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
+  h1,h2,h3,.serif{font-family:var(--serif);}
+  ::selection{background:rgba(154,59,46,.18);}
+
+  .hero{
+    position:relative;overflow:hidden;color:#fbf6ec;
+    background:linear-gradient(150deg,#2e2721,#3d332b 55%,#29241e);
+    padding:96px 0 68px;
+  }
+  .hero::after{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(circle at 80% 15%, rgba(184,121,74,.18), transparent 55%);
+  }
+  .hero .stripe{position:absolute;left:0;top:0;bottom:0;width:8px;display:flex;flex-direction:column;}
+  .hero .stripe i{flex:1;}
+  .hero-inner{position:relative;z-index:2;max-width:1080px;margin:0 auto;padding:0 28px;}
+  .hero .kicker{
+    display:inline-flex;align-items:center;gap:8px;font-size:13px;letter-spacing:.22em;text-transform:uppercase;
+    color:#f0d9b8;border:1px solid rgba(240,217,184,.42);padding:6px 15px;border-radius:30px;margin-bottom:22px;
+  }
+  .hero h1{font-size:clamp(30px,5.2vw,50px);line-height:1.14;font-weight:700;margin-bottom:10px;}
+  .hero .sub-en{font-family:var(--serif);font-style:italic;font-size:clamp(15px,2.2vw,20px);color:#e2cba6;opacity:.92;margin-bottom:18px;}
+  .hero .lead{max-width:680px;font-size:clamp(15px,2vw,17.5px);color:#efe4d3;}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:22px 32px;margin-top:26px;}
+  .hero-meta .m{display:flex;flex-direction:column;}
+  .hero-meta .m b{font-family:var(--serif);font-size:19px;color:#fff;}
+  .hero-meta .m span{font-size:12.5px;letter-spacing:.08em;color:#d6c1a3;}
+
+  .ribbon{position:absolute;top:0;right:clamp(16px,5vw,52px);z-index:3;width:44px;
+    background:var(--accent);color:#fff;text-align:center;padding:15px 0 24px;
+    font-family:var(--serif);font-size:13px;letter-spacing:.14em;box-shadow:0 6px 16px rgba(0,0,0,.32);}
+  .ribbon::after{content:"";position:absolute;left:0;bottom:-13px;border-width:0 22px 14px;border-style:solid;border-color:var(--accent) var(--accent) transparent;}
+  .ribbon span{writing-mode:vertical-rl;}
+
+  section{padding:52px 0 46px;}
+  .sec-head{display:flex;align-items:center;gap:14px;margin-bottom:8px;}
+  .sec-no{font-family:var(--serif);font-size:14px;color:var(--accent);border:1px solid var(--accent);
+    border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;flex:none;}
+  .sec-head h2{font-size:clamp(22px,3.2vw,29px);}
+  .sec-sub{color:var(--ink-faint);font-size:14.5px;margin-bottom:26px;padding-left:48px;}
+  @media(max-width:880px){.sec-sub{padding-left:0;}}
+
+  /* ===== 8 站路径 ===== */
+  .path{position:relative;max-width:760px;margin:0 auto;}
+  .path::before{content:"";position:absolute;left:26px;top:12px;bottom:12px;width:2px;
+    background:linear-gradient(180deg,var(--accent),var(--accent-2),var(--c-blue));opacity:.35;}
+  .station{position:relative;display:flex;gap:20px;margin-bottom:22px;}
+  .station .dot{flex:none;width:54px;height:54px;border-radius:50%;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;background:var(--paper-2);border:2px solid var(--accent);
+    font-family:var(--serif);z-index:1;}
+  .station .dot b{font-size:19px;line-height:1;color:var(--accent);}
+  .station .dot small{font-size:9px;color:var(--ink-faint);letter-spacing:.1em;}
+  .station.done .dot{background:var(--accent);}
+  .station.done .dot b{color:#fbf6ec;}
+  .st-card{flex:1;background:var(--paper-2);border:1px solid var(--line);border-radius:16px;
+    box-shadow:var(--shadow);padding:20px 22px;}
+  .st-card .tag-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:6px;}
+  .st-card .stage{font-family:var(--serif);font-size:12px;letter-spacing:.14em;color:var(--accent-2);
+    border:1px solid rgba(184,121,74,.45);border-radius:20px;padding:2px 12px;}
+  .st-card .meta{font-size:11.5px;color:var(--ink-faint);}
+  .st-card h3{font-size:20px;margin:2px 0 8px;}
+  .st-card p{font-size:14px;color:var(--ink-soft);line-height:1.75;}
+  .st-card .go{display:inline-flex;align-items:center;gap:6px;margin-top:12px;text-decoration:none;
+    font-family:var(--serif);font-size:14.5px;color:var(--accent);border:1px solid rgba(154,59,46,.4);
+    background:rgba(154,59,46,.05);padding:9px 20px;border-radius:26px;transition:all .18s;}
+  .st-card .go:hover{background:rgba(154,59,46,.1);}
+  .st-card .tip{margin-top:10px;font-size:12.5px;color:var(--ink-faint);}
+  .st-card .tip b{color:var(--accent-2);font-family:var(--serif);}
+
+  .howto{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:8px;}
+  @media(max-width:760px){.howto{grid-template-columns:1fr;}}
+  .how{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:18px 20px;}
+  .how .n{font-family:var(--serif);font-size:13px;color:var(--accent);letter-spacing:.1em;margin-bottom:6px;}
+  .how h3{font-size:16.5px;margin-bottom:6px;}
+  .how p{font-size:13.5px;color:var(--ink-soft);line-height:1.7;}
+
+  .divider{height:1px;background:linear-gradient(90deg,transparent,var(--line) 18%,var(--line) 82%,transparent);}
+
+  .back{
+    display:inline-flex;align-items:center;gap:8px;margin-top:6px;font-size:13.5px;
+    color:var(--ink-soft);text-decoration:none;border:1px solid var(--line);
+    background:var(--paper-2);padding:8px 16px;border-radius:24px;transition:all .18s;
+  }
+  .back:hover{color:var(--accent);border-color:rgba(154,59,46,.35);background:rgba(154,59,46,.05);}
+
+  footer{padding:36px 28px 56px;text-align:center;color:var(--ink-faint);font-size:13px;}
+  footer .line{width:60px;height:3px;background:var(--accent);margin:0 auto 20px;border-radius:3px;}
+  footer b{font-family:var(--serif);color:var(--ink-soft);}
+  .disclaim{margin-top:10px;font-size:12px;color:var(--ink-faint);max-width:680px;margin-left:auto;margin-right:auto;line-height:1.7;}
+
+  @media(max-width:640px){.wrap{padding:0 18px;}.hero-inner{padding:0 18px;}
+    .path::before{left:21px;}
+    .station .dot{width:44px;height:44px;}
+    .station .dot b{font-size:16px;}
+    .station{gap:12px;}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="stripe"><i style="background:#9a3b2e"></i><i style="background:#b8794a"></i><i style="background:#2e5a77"></i></div>
+  <div class="ribbon"><span>测试集</span></div>
+  <div class="hero-inner">
+    <span class="kicker">Money Mind Test Suite</span>
+    <h1>搞钱测试集 · 8 站完整路径</h1>
+    <div class="sub-en">Know yourself, then earn it · 林远见路</div>
+    <p class="lead">搞钱之前，先把"自己"这张底牌看清楚。8 个测试串成一条路：从脑子里有没有财富黑洞，到兴趣在哪、底线是什么、优势靠什么，最后落到一张属于你自己的变现蓝图。不必一次走完——每一站都独立可用，答案都只存在你自己的设备上。</p>
+    <div class="hero-meta">
+      <div class="m"><b>8 站</b><span>完整链路</span></div>
+      <div class="m"><b>0 元</b><span>全部免费</span></div>
+      <div class="m"><b>本地保存</b><span>隐私安全</span></div>
+      <div class="m"><b>手机友好</b><span>微信直接打开</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section>
+    <div class="sec-head"><div class="sec-no">法</div><h2>这套测试集怎么用</h2></div>
+    <p class="sec-sub">三条使用建议，然后按顺序出发即可</p>
+    <div class="howto">
+      <div class="how">
+        <div class="n">建议 01</div>
+        <h3>按顺序走，不必一次走完</h3>
+        <p>顺序是刻意设计的：先测心智，再找方向，最后才谈落地。每站独立可用，中断了随时回来接着走。</p>
+      </div>
+      <div class="how">
+        <div class="n">建议 02</div>
+        <h3>凭直觉答，别追求标准答案</h3>
+        <p>所有题目都测"你真实的倾向"，不是考试。答得越快越真，结果越准。</p>
+      </div>
+      <div class="how">
+        <div class="n">建议 03</div>
+        <h3>走完回来看"合在一起"的意思</h3>
+        <p>单站结果告诉你一个侧面，8 站连起来才是完整底牌——每一站的结果页都会提示你下一步去哪。</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section>
+    <div class="sec-head"><div class="sec-no">路</div><h2>8 站路径</h2></div>
+    <p class="sec-sub">从"看懂脑子"到"画出蓝图"，建议全程 2~3 周，每天一站</p>
+
+    <div class="path">
+
+      <div class="station done">
+        <div class="dot"><b>1</b><small>MIND</small></div>
+        <div class="st-card">
+          <div class="tag-row"><span class="stage">心智底牌</span><span class="meta">10 题 · 约 1 分钟</span></div>
+          <h3>搞钱心智检测</h3>
+          <p>先看脑子里有没有"财富黑洞"。10 道直觉题测出你的心力平衡度，定位你在财富心智四象限中的坐标——这是后面所有测试的起点。</p>
+          <a class="go" href="money-mind.html">进入第 1 站 →</a>
+          <div class="tip"><b>为什么放第一 —</b> 心智是底牌：不知道自己怎么想钱，后面的方向和落地都会变形。</div>
+        </div>
+      </div>
+
+      <div class="station">
+        <div class="dot"><b>2</b><small>LIKE</small></div>
+        <div class="st-card">
+          <div class="tag-row"><span class="stage">兴趣方向</span><span class="meta">48 题 · 约 8 分钟</span></div>
+          <h3>霍兰德职业兴趣测试</h3>
+          <p>测出你在现实、研究、艺术、社会、企业、常规六型的倾向与三字母兴趣代码——告诉你"做什么事来劲"。</p>
+          <a class="go" href="holland-test.html">进入第 2 站 →</a>
+          <div class="tip"><b>第 2 站解决 —</b> 方向问题：来劲的事才做得久。</div>
+        </div>
+      </div>
+
+      <div class="station">
+        <div class="dot"><b>3</b><small>ANCHOR</small></div>
+        <div class="st-card">
+          <div class="tag-row"><span class="stage">职业底线</span><span class="meta">40 题 · 约 7 分钟</span></div>
+          <h3>施恩职业锚测试</h3>
+          <p>找出你"死也不肯放"的那一个锚：技术、管理、自主、稳定、创业、服务、挑战还是生活方式。跳槽谈条件时最不该让步的，就是它。</p>
+          <a class="go" href="career-anchor.html">进入第 3 站 →</a>
+          <div class="tip"><b>第 3 站解决 —</b> 底线问题：方向之外，什么条件不能让。</div>
+        </div>
+      </div>
+
+      <div class="station">
+        <div class="dot"><b>4</b><small>TYPE</small></div>
+        <div class="st-card">
+          <div class="tag-row"><span class="stage">性格类型</span><span class="meta">48 题 · 支持续答</span></div>
+          <h3>MBTI 性格类型测试</h3>
+          <p>经典的四维性格框架：你获取能量的方式、收集信息的方式、做决策的方式、对待外部世界的方式。和前几站交叉印证。</p>
+          <a class="go" href="mbti-test.html">进入第 4 站 →</a>
+          <div class="tip"><b>第 4 站解决 —</b> 认知风格：你天然擅长用什么方式处理世界。</div>
+        </div>
+      </div>
+
+      <div class="station">
+        <div class="dot"><b>5</b><small>GIFT</small></div>
+        <div class="st-card">
+          <div class="tag-row"><span class="stage">天赋优势</span><span class="meta">170 题 · 约 25 分钟</span></div>
+          <h3>优势才干测量器</h3>
+          <p>34 项才干主题的完整排序，找出你的 Top 5 优势与四大领域分布——把力气花在天生擅长的事上，而不是补短板。</p>
+          <a class="go" href="strengths.html">进入第 5 站 →</a>
+          <div class="tip"><b>第 5 站解决 —</b> 弹药问题：拿什么本事去打你选的方向。</div>
+        </div>
+      </div>
+
+      <div class="station">
+        <div class="dot"><b>6</b><small>LIFE</small></div>
+        <div class="st-card">
+          <div class="tag-row"><span class="stage">人生蓝图</span><span class="meta">8 步工坊 · 可导出</span></div>
+          <h3>人生设计工坊</h3>
+          <p>基于斯坦福《人生设计课》的 8 步实操：HWPL 仪表盘、奥德赛计划、原型设计……把前 5 站的发现变成一张当前人生最优解。</p>
+          <a class="go" href="life-design.html">进入第 6 站 →</a>
+          <div class="tip"><b>第 6 站解决 —</b> 路线图：优势放到哪条人生轨道上。</div>
+        </div>
+      </div>
+
+      <div class="station">
+        <div class="dot"><b>7</b><small>BIZ</small></div>
+        <div class="st-card">
+          <div class="tag-row"><span class="stage">变现落地</span><span class="meta">9 格画布 · 规则诊断</span></div>
+          <h3>个人商业模式画布</h3>
+          <p>以罗振宇与罗永浩两个案例为参照，照着填你自己的九宫格：核心资源、目标客群、收入来源……系统按案例规则给你的画布做诊断。</p>
+          <a class="go" href="personal-bmc.html">进入第 7 站 →</a>
+          <div class="tip"><b>第 7 站解决 —</b> 收口问题：前面所有发现，落成一张变现闭环图。</div>
+        </div>
+      </div>
+
+      <div class="station">
+        <div class="dot"><b>8</b><small>DAILY</small></div>
+        <div class="st-card">
+          <div class="tag-row"><span class="stage">日常训练</span><span class="meta">闯关式 · 随时练</span></div>
+          <h3>CBT 思维挑战</h3>
+          <p>前 7 站是"测绘"，这一站是"健身"：用认知行为疗法的思维方式闯关，识别自动化负性思维，练出心理免疫力——搞钱路上最不怕的就是心态崩。</p>
+          <a class="go" href="mind-game.html">进入第 8 站 →</a>
+          <div class="tip"><b>第 8 站解决 —</b> 续航问题：把测试带来的觉察，变成每天的思维习惯。</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section style="padding-top:30px;">
+    <a class="back" href="/">← 返回「心理学全景学习」首页</a>
+    &nbsp;&nbsp;<a class="back" href="money-mind.html">从第 1 站开始 →</a>
+  </section>
+
+</div>
+
+<footer>
+  <div class="line"></div>
+  <b>搞钱测试集 · 8 站完整路径</b>
+  <p class="disclaim">测试集各工具均为自助简化版，基于公开的心理学理论框架（霍兰德 RIASEC、沙因职业锚、MBTI、斯坦福人生设计、商业模式画布、认知行为疗法等）整理，不是官方临床或认证量表。结果仅供自我探索参考，不构成职业、投资、创业或医疗建议。所有答案仅保存在你自己的设备上。</p>
+</footer>
+
+<script src="js/supabase.min.js?v=20260911b" defer></script>
+<script src="js/appdata.js?v=20260911b" defer></script>
+<script src="js/guestbook.js?v=20260911b" defer></script>
+<script src="js/page-counter.js?v=20260908c" defer></script>
+</body>
+</html>
