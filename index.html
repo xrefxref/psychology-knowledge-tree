@@ -76,6 +76,67 @@
             font-weight: 500;
         }
 
+        /* ── 四大板块悬停下拉 ── */
+        .nav-item {
+            position: relative;
+        }
+        .nav-item > a {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .nav-item > a::after {
+            content: "▾";
+            font-size: 10px;
+            color: #64748b;
+            transition: transform 0.3s;
+        }
+        .nav-item:hover > a::after {
+            transform: rotate(180deg);
+        }
+        .nav-links .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(8px);
+            min-width: 150px;
+            background: rgba(15, 23, 42, 0.97);
+            border: 1px solid #1e293b;
+            border-radius: 10px;
+            padding: 8px 0;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.25s, transform 0.25s, visibility 0.25s;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+            z-index: 1001;
+        }
+        /* 悬停桥：挂在板块项自身宽度上，跨过链接与面板间的间隙；避免横向盖住相邻导航 */
+        .nav-item::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            height: 14px;
+        }
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(2px);
+        }
+        .nav-links .dropdown a {
+            display: block;
+            padding: 9px 18px;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+        .nav-links .dropdown a:hover {
+            background: rgba(99, 102, 241, 0.12);
+            color: #f1f5f9;
+        }
+
         .user-area {
             display: flex;
             align-items: center;
@@ -879,6 +940,25 @@
             .menu-toggle {
                 display: block;
             }
+            /* 移动端：下拉平铺展开（触屏无 hover） */
+            .nav-links .dropdown,
+            .nav-item:hover .dropdown {
+                position: static;
+                transform: none;
+                opacity: 1;
+                visibility: visible;
+                background: transparent;
+                border: none;
+                box-shadow: none;
+                padding: 2px 0 2px 14px;
+                min-width: 0;
+            }
+            .nav-item::after {
+                display: none;
+            }
+            .nav-links .dropdown a {
+                padding: 7px 0;
+            }
             .hero-section {
                 padding: 80px 20px 40px;
             }
@@ -935,24 +1015,40 @@
         </div>
         <nav class="nav-links" id="navLinks">
             <a href="#" class="active">首页</a>
-            <a href="test-suite.html" style="color:#e8b04a;">搞钱测试集</a>
-            <a href="money-mind.html">搞钱心智</a>
-            <a href="holland-test.html">霍兰德</a>
-            <a href="career-anchor.html">职业锚</a>
-            <a href="mbti-test.html">MBTI</a>
-            <a href="strengths.html">优势才干</a>
-            <a href="life-design.html">人生设计</a>
-            <a href="personal-bmc.html">商业模式</a>
-            <a href="smart-illicit.html" style="color:#e8b04a;">创业者基因</a>
-            <a href="knowledge-map.html">知识图谱</a>
-            <a href="timeline.html">时间树</a>
-            <a href="book-notes.html">必读书目</a>
-            <a href="brain-3d.html">大脑模型</a>
-            <a href="mind-game.html">思维挑战</a>
-            <a href="sparx.html">游戏治疗</a>
-            <a href="mind-city.html">心象城市</a>
-            <a href="#community">交流群</a>
-            <a href="#host">主理人</a>
+            <div class="nav-item">
+                <a href="#sec-tests">测试</a>
+                <div class="dropdown">
+                    <a href="test-suite.html" style="color:#e8b04a;">搞钱测试集</a>
+                    <a href="money-mind.html">搞钱心智检测</a>
+                    <a href="holland-test.html">霍兰德测试</a>
+                    <a href="career-anchor.html">职业锚</a>
+                    <a href="mbti-test.html">MBTI</a>
+                    <a href="strengths.html">优势才干</a>
+                    <a href="life-design.html">人生设计</a>
+                    <a href="personal-bmc.html">商业模式画布</a>
+                    <a href="smart-illicit.html" style="color:#e8b04a;">创业者基因</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="#sec-learn">学习</a>
+                <div class="dropdown">
+                    <a href="knowledge-map.html">知识图谱</a>
+                    <a href="timeline.html">时间树</a>
+                    <a href="knowledge-graph.html">阅读宇宙</a>
+                    <a href="book-notes.html">必读书目</a>
+                    <a href="brain-3d.html">3D 大脑模型</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="#sec-relax">放松</a>
+                <div class="dropdown">
+                    <a href="mind-game.html">CBT 思维挑战</a>
+                    <a href="sparx.html">SPARX 游戏治疗</a>
+                    <a href="mind-city.html">心象城市</a>
+                </div>
+            </div>
+            <a href="#community">社区</a>
+            <a href="#host">关于我</a>
         </nav>
         <button class="menu-toggle" id="menuToggle" onclick="toggleMenu()">☰</button>
         <div class="user-area">
