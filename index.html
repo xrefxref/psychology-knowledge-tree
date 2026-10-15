@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>心理学全景学习 - 林远见路</title>
 <meta name="description" content="心理学全景学习站 · 林远见路：290+ 本心理学精选藏书精读笔记、八大测试工具（搞钱心智、霍兰德职业兴趣、施恩职业锚、创业者基因、优势才干、MBTI、人生设计、商业模式画布），帮你把心理学变成看得懂、用得上的搞钱地图。">
-    <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
     <script src="js/supabase.min.js?v=20260911b"></script>
     <script src="js/appdata.js?v=20260911b"></script>
     <style>
@@ -1342,9 +1341,17 @@
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
     <script>
         var chartDom = document.getElementById('chart-container');
-        var myChart = echarts.init(chartDom);
+        var myChart;
+        if (typeof echarts === 'undefined') {
+            /* 弱网降级：echarts 加载失败时显示占位，不阻塞页面 */
+            myChart = { setOption: function(){}, on: function(){}, resize: function(){} };
+            chartDom.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#64748b;font-size:14px;">图表组件加载失败，请刷新重试</div>';
+        } else {
+            myChart = echarts.init(chartDom);
+        }
         var option;
 
         const EXPLORED_COLOR = '#ef4444';

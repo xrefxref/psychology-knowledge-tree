@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>心理学知识图谱 - 林远见路</title>
 <meta name="description" content="心理学知识图谱：150 年心理学流派、人物与经典概念的关系网络，从精神分析到认知行为，一图看清心理学的全景脉络。">
-    <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body, html {
@@ -650,9 +649,17 @@
 
     <div class="toast" id="toast"></div>
 
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
     <script>
         var chartDom = document.getElementById('chart-container');
-        var myChart = echarts.init(chartDom);
+        var myChart;
+        if (typeof echarts === 'undefined') {
+            /* 弱网降级：echarts 加载失败时显示占位，不阻塞页面 */
+            myChart = { setOption: function(){}, on: function(){}, resize: function(){} };
+            chartDom.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#64748b;font-size:14px;">图谱组件加载失败，请刷新重试</div>';
+        } else {
+            myChart = echarts.init(chartDom);
+        }
         
         const EXPLORED_COLOR = '#ef4444';
         const UNEXPLORED_COLOR = '#3b82f6';

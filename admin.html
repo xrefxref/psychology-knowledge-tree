@@ -117,56 +117,38 @@
   }
 
   function renderLogin(){
-    var isLogin = authMode === 'login';
-    var warnHtml = isLogin ? '' :
-      '<div class="warn">⚠️ 首次使用请在此注册站长账号，<b>用户名必须填写 admin</b>，密码请牢记。<br>该账号仅用于审核留言，注册后不可更改用户名。</div>';
+    /* P0 安全整改：注册入口已关闭，仅保留登录。站长账号在 Supabase 控制台预先创建。 */
     app.innerHTML =
       '<div class="auth-box">' +
-      '<div class="auth-tabs">' +
-        '<button class="auth-tab' + (isLogin?' active':'') + '" data-mode="login">登录</button>' +
-        '<button class="auth-tab' + (!isLogin?' active':'') + '" data-mode="register">注册</button>' +
-      '</div>' +
-      '<h2>' + (isLogin?'站长登录':'注册站长账号') + '</h2>' +
-      warnHtml +
-      '<div class="field"><label>用户名</label><input type="text" id="lg-uname" placeholder="' + (isLogin?'站长用户名':'请填写 admin') + '" maxlength="20"' + (!isLogin?' value="admin"':'') + '></div>' +
+      '<h2>站长登录</h2>' +
+      '<div class="field"><label>用户名</label><input type="text" id="lg-uname" placeholder="站长用户名" maxlength="20"></div>' +
       '<div class="field"><label>密码</label><input type="password" id="lg-pwd" placeholder="密码（至少 6 位）"></div>' +
-      '<button class="btn" id="lg-btn">' + (isLogin?'登录':'注册并进入') + '</button>' +
+      '<button class="btn" id="lg-btn">登录</button>' +
       '<div class="err" id="lg-err"></div>' +
-      '<div class="note">仅站长账号可进入审核后台。<br>如忘记密码，可在 Supabase 控制台 → Authentication → Users 重置。</div>' +
+      '<div class="note">仅站长账号可进入审核后台。注册入口已关闭。<br>如忘记密码，可在 Supabase 控制台 → Authentication → Users 重置。</div>' +
       '</div>';
-    var self = this;
-    document.querySelectorAll('.auth-tab').forEach(function(t){
-      t.addEventListener('click', function(){
-        authMode = t.getAttribute('data-mode');
-        renderLogin();
-      });
-    });
     document.getElementById('lg-btn').addEventListener('click', doAuth);
     document.getElementById('lg-pwd').addEventListener('keydown', function(e){ if(e.key==='Enter') doAuth(); });
     document.getElementById('lg-uname').addEventListener('keydown', function(e){ if(e.key==='Enter') document.getElementById('lg-pwd').focus(); });
   }
 
   function doAuth(){
+    authMode = 'login';
     var name = document.getElementById('lg-uname').value.trim();
     var pwd = document.getElementById('lg-pwd').value;
     var err = document.getElementById('lg-err');
     if(!name){ err.textContent='请输入用户名'; return; }
     if(pwd.length < 6){ err.textContent='密码至少 6 位'; return; }
-    if(authMode === 'register' && name !== 'admin'){
-      err.textContent = '站长账号用户名必须为 admin';
-      return;
-    }
     err.textContent = '';
     var btn = document.getElementById('lg-btn');
     btn.disabled = true;
-    btn.textContent = authMode === 'login' ? '登录中…' : '注册中…';
-    var fn = authMode === 'login' ? AppData.login : AppData.register;
-    fn.call(AppData, name, pwd).then(function(u){
+    btn.textContent = '登录中…';
+    AppData.login(name, pwd).then(function(u){
       u._username = name; user = u; render();
     }).catch(function(e){
-      err.textContent = (e&&e.message)?e.message:(authMode==='login'?'登录失败':'注册失败');
+      err.textContent = (e&&e.message)?e.message:'登录失败';
       btn.disabled = false;
-      btn.textContent = authMode === 'login' ? '登录' : '注册并进入';
+      btn.textContent = '登录';
     });
   }
 
