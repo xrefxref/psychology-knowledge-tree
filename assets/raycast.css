@@ -1,98 +1,99 @@
 /* ============================================================
-   搞钱副驾 · 全站暗黑极客风主题 (Raycast-style) v20261015
-   用法：<link rel="stylesheet" href="assets/raycast.css?v=20261015b">
+   搞钱副驾 · 全站暗黑主题 v2 (Raycast 真身参数对齐版) 20261016
+   参数来源：raycast.com 生产 CSS 提取
+   -- grey-900 #07080a / fg #f4f4f6 / border #242728
+   -- 强调 blue #57c1ff / 渐变 #052dff→#3ef3ff / 主按钮白底
+   用法：<link rel="stylesheet" href="assets/raycast.css?v=20261016">
    必须放在页面自身 <style> 之后（</head> 前），令牌覆盖才生效
    ============================================================ */
 
 /* ---- 核心令牌：覆盖纸感变量族（A 族页 + 290 篇笔记共用） ---- */
 :root{
-  --paper:#0a0b10;
-  --paper-2:#12141d;
-  --ink:#f2f4f8;
-  --ink-soft:#a9b0bd;
-  --ink-faint:#697080;
-  --ink-2:#a9b0bd;
-  --ink-3:#697080;
-  --line:#232634;
-  --accent:#ff8a5c;
-  --accent-2:#ffb347;
-  --accent-soft:rgba(255,179,71,.12);
-  --c-blue:#5ea3e8;
-  --warm:#5ea3e8;
-  --bg:#0a0b10;
-  --white:#151823;
-  --brand:#7c5cff;
-  --brand-2:#9d7bff;
-  --brand-deep:#5a3ee0;
-  --brand-soft:rgba(124,92,255,.14);
-  --brand-line:#2c2f45;
-  --shadow:0 16px 48px rgba(0,0,0,.55);
-  --shadow-sm:0 6px 20px rgba(0,0,0,.45);
-  --grad:linear-gradient(120deg,#7c5cff 0%,#ff4d6d 52%,#ffb347 100%);
+  --paper:#07080a;
+  --paper-2:#111214;
+  --ink:#f4f4f6;
+  --ink-soft:#9c9c9d;
+  --ink-faint:#6a6b6c;
+  --ink-2:#9c9c9d;
+  --ink-3:#6a6b6c;
+  --line:#242728;
+  --accent:#57c1ff;
+  --accent-2:#3ef3ff;
+  --accent-soft:rgba(87,193,255,.10);
+  --c-blue:#57c1ff;
+  --warm:#57c1ff;
+  --bg:#07080a;
+  --white:#111214;
+  --brand:#57c1ff;
+  --brand-2:#3ef3ff;
+  --brand-deep:#052dff;
+  --brand-soft:rgba(87,193,255,.10);
+  --brand-line:#1b1c1e;
+  --shadow:0 0 0 1px #1b1c1e, 0 16px 48px rgba(0,0,0,.5);
+  --shadow-sm:0 0 0 1px #1b1c1e, 0 6px 20px rgba(0,0,0,.4);
+  --grad:linear-gradient(120deg,#3d7bff 0%,#3ef3ff 100%);
 }
 
-/* ---- 黑暗中的极光：Raycast 质感核心（三团柔光，fixed 不随滚动） ---- */
-html{background:#0a0b10!important;}
+/* ---- 背景：近纯黑 + 极克制的光晕（Raycast 手法：白光 3-8% 透明度） ---- */
+html{background:#07080a!important;}
 body{background:transparent!important;}
 body::before{
   content:"";
   position:fixed;inset:0;z-index:-1;pointer-events:none;
   background:
-    radial-gradient(640px 440px at 10% -6%, rgba(124,92,255,.26), transparent 68%),
-    radial-gradient(760px 500px at 92% 2%, rgba(255,77,109,.16), transparent 70%),
-    radial-gradient(620px 420px at 50% 112%, rgba(255,179,71,.09), transparent 70%);
+    radial-gradient(52% 46% at 50% -8%, rgba(255,255,255,.07), transparent 70%),
+    radial-gradient(44% 34% at 84% 6%, rgba(245,48,107,.07), transparent 72%),
+    radial-gradient(40% 32% at 12% 30%, rgba(87,193,255,.05), transparent 72%);
 }
 
 /* ---- 通用细节 ---- */
-::selection{background:rgba(124,92,255,.45);color:#fff;}
+::selection{background:rgba(87,193,255,.32);color:#fff;}
 a{transition:color .25s;}
 img{max-width:100%;}
-/* 暗底下的半透明朱红悬停底色（A 族页大量使用）转金橙 */
-[class*="card"]:hover{box-shadow:0 10px 34px rgba(0,0,0,.5);}
-/* 渐变文字（首页/标题用） */
+[class*="card"]:hover{box-shadow:0 0 0 1px #2f3234, 0 10px 34px rgba(0,0,0,.45);}
+/* 渐变文字（蓝→青，Raycast 主题渐变） */
 .rc-grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
-/* 渐变 CTA 按钮 */
-.rc-btn{background:var(--grad);color:#fff;border:none;border-radius:10px;padding:10px 22px;font-weight:600;cursor:pointer;text-decoration:none;display:inline-block;}
-.rc-btn:hover{filter:brightness(1.12);}
-/* 等宽终端行（Raycast 签名元素） */
+/* 主按钮：白底黑字（Raycast 签名 CTA） */
+.rc-btn{background:rgba(255,255,255,.82);color:#18191a;border:none;border-radius:10px;padding:10px 22px;font-weight:600;cursor:pointer;text-decoration:none;display:inline-block;transition:background .2s;}
+.rc-btn:hover{background:#fff;}
+/* 等宽终端行 */
 .rc-mono{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;color:#00e58a;font-size:13px;letter-spacing:.5px;}
 
 /* ============================================================
    money-mind.html 专项覆盖（body.mm-page 作用域，防止误伤他页）
-   该页大量硬编码 #f6f7fb/#fff/#eef1ff 亮色，无法靠令牌翻转
+   该页大量硬编码亮色，无法靠令牌翻转
    ============================================================ */
-body.mm-page{color:#f2f4f8;}
-.mm-page .container{background:#12141d!important;box-shadow:0 24px 70px rgba(0,0,0,.55)!important;border:1px solid #232634!important;}
-.mm-page .intro-card{background:#151823!important;border-color:#2a3040!important;color:#a9b0bd!important;}
-.mm-page .intro-card b{color:#f2f4f8!important;}
-.mm-page .hero-sub{color:#a9b0bd!important;}
-.mm-page .brand-tag{color:#9d7bff!important;border-color:#2c2f45!important;background:rgba(124,92,255,.1)!important;}
-.mm-page .form-group input{background:#0f1119!important;border-color:#2a3040!important;color:#f2f4f8!important;}
-.mm-page .form-group input:focus{background:#151823!important;border-color:#7c5cff!important;box-shadow:0 0 0 4px rgba(124,92,255,.18)!important;}
-.mm-page .btn.ghost{background:#151823!important;color:#9d7bff!important;border-color:#2c2f45!important;}
-.mm-page .progress{background:#1c1f2b!important;}
-.mm-page .option{background:#0f1119!important;border-color:#2a3040!important;color:#f2f4f8!important;}
-.mm-page .option:hover{border-color:#5a3ee0!important;background:#151823!important;}
-.mm-page .option.selected{border-color:#7c5cff!important;background:rgba(124,92,255,.16)!important;color:#d4c9ff!important;}
-.mm-page .quiz-nav .btn.prev{background:#151823!important;color:#a9b0bd!important;border-color:#2a3040!important;}
-.mm-page .topo-chart{background:#12141d!important;border-color:#232634!important;}
-.mm-page .point{border-color:#0a0b10!important;}
-.mm-page .metric{background:#0f1119!important;border-color:#232634!important;}
-.mm-page .section-text{background:#151823!important;color:#a9b0bd!important;}
-.mm-page .records-table th{background:#151823!important;color:#a9b0bd!important;}
-.mm-page .records-table th,.mm-page .records-table td{border-bottom-color:#232634!important;}
+body.mm-page{color:#f4f4f6;}
+.mm-page .container{background:#111214!important;box-shadow:0 0 0 1px #1b1c1e,0 24px 70px rgba(0,0,0,.55)!important;border:none!important;}
+.mm-page .intro-card{background:#0c0d0f!important;border-color:#242728!important;color:#9c9c9d!important;}
+.mm-page .intro-card b{color:#f4f4f6!important;}
+.mm-page .hero-sub{color:#9c9c9d!important;}
+.mm-page .brand-tag{color:#57c1ff!important;border-color:#1f2a33!important;background:rgba(87,193,255,.08)!important;}
+.mm-page .form-group input{background:#0c0d0f!important;border-color:#242728!important;color:#f4f4f6!important;}
+.mm-page .form-group input:focus{background:#111214!important;border-color:#57c1ff!important;box-shadow:0 0 0 4px rgba(87,193,255,.14)!important;}
+.mm-page .btn.ghost{background:#111214!important;color:#9c9c9d!important;border-color:#242728!important;}
+.mm-page .progress{background:#1b1c1e!important;}
+.mm-page .option{background:#0c0d0f!important;border-color:#242728!important;color:#f4f4f6!important;}
+.mm-page .option:hover{border-color:#3d7bff!important;background:#111214!important;}
+.mm-page .option.selected{border-color:#57c1ff!important;background:rgba(87,193,255,.12)!important;color:#bfe6ff!important;}
+.mm-page .quiz-nav .btn.prev{background:#111214!important;color:#9c9c9d!important;border-color:#242728!important;}
+.mm-page .topo-chart{background:#0c0d0f!important;border-color:#1b1c1e!important;}
+.mm-page .point{border-color:#07080a!important;}
+.mm-page .metric{background:#0c0d0f!important;border-color:#1b1c1e!important;}
+.mm-page .section-text{background:#111214!important;color:#9c9c9d!important;}
+.mm-page .records-table th{background:#111214!important;color:#9c9c9d!important;}
+.mm-page .records-table th,.mm-page .records-table td{border-bottom-color:#1b1c1e!important;}
 
-/* ---- 留言墙组件（js/guestbook.js 注入，全变量驱动）统一转暗 ----
-   组件样式只用 var(--gb-*, 亮色fallback)，此处定义即全局生效 */
+/* ---- 留言墙组件（js/guestbook.js 注入，全变量驱动）统一转暗 ---- */
 :root{
-  --gb-paper:#12141d;
-  --gb-paper2:#0f1119;
-  --gb-line:#2a3040;
-  --gb-ink:#f2f4f8;
-  --gb-inksoft:#a9b0bd;
-  --gb-faint:#697080;
-  --gb-accent:#9d7bff;
-  --gb-accent2:#7c5cff;
+  --gb-paper:#111214;
+  --gb-paper2:#0c0d0f;
+  --gb-line:#242728;
+  --gb-ink:#f4f4f6;
+  --gb-inksoft:#9c9c9d;
+  --gb-faint:#6a6b6c;
+  --gb-accent:#57c1ff;
+  --gb-accent2:#3d7bff;
 }
-.gb-btn.primary:hover{background:#7c5cff!important;}
-.gb-form textarea:focus{box-shadow:0 0 0 3px rgba(124,92,255,.2)!important;}
+.gb-btn.primary:hover{background:#3d7bff!important;}
+.gb-form textarea:focus{box-shadow:0 0 0 3px rgba(87,193,255,.15)!important;}

@@ -36,7 +36,7 @@
   .logo {
     font-size: 16px;
     font-weight: 600;
-    color: #f8fafc;
+    color: #f4f4f6;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -44,7 +44,7 @@
 
   .logo-icon {
     width: 26px; height: 26px;
-    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    background: linear-gradient(135deg, #3d7bff, #3ef3ff);
     border-radius: 6px;
     display: flex;
     align-items: center;
@@ -59,7 +59,7 @@
   }
 
   .nav-links a {
-    color: #94a3b8;
+    color: #9c9c9d;
     text-decoration: none;
     font-size: 13px;
     transition: color 0.3s;
@@ -70,7 +70,7 @@
   }
 
   .nav-links a.active {
-    color: #6366f1;
+    color: #3d7bff;
   }
 
   #canvas-container {
@@ -105,7 +105,7 @@
 
   .control-btn:hover {
     background: rgba(99, 102, 241, 0.2);
-    border-color: #6366f1;
+    border-color: #3d7bff;
     transform: translateY(-2px);
   }
 
@@ -143,7 +143,7 @@
   .info-title {
     font-size: 20px;
     font-weight: 700;
-    color: #f8fafc;
+    color: #f4f4f6;
     display: flex;
     align-items: center;
     gap: 12px;
@@ -162,7 +162,7 @@
     border-radius: 50%;
     background: rgba(71, 85, 105, 0.5);
     border: none;
-    color: #94a3b8;
+    color: #9c9c9d;
     font-size: 18px;
     cursor: pointer;
     display: flex;
@@ -225,7 +225,7 @@
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: #6366f1;
+    background: #3d7bff;
   }
 
   .legend {
@@ -281,7 +281,7 @@
     border-radius: 10px;
     padding: 16px 20px;
     font-size: 13px;
-    color: #94a3b8;
+    color: #9c9c9d;
     z-index: 100;
     backdrop-filter: blur(8px);
     line-height: 1.8;
@@ -325,7 +325,7 @@
     width: 60px;
     height: 60px;
     border: 3px solid rgba(99, 102, 241, 0.2);
-    border-top-color: #6366f1;
+    border-top-color: #3d7bff;
     border-radius: 50%;
     animation: spin 1s linear infinite;
     margin: 0 auto 20px;
@@ -337,7 +337,7 @@
   }
 
   .loading p {
-    color: #94a3b8;
+    color: #9c9c9d;
     font-size: 14px;
   }
 
@@ -367,7 +367,7 @@
 <meta property="og:url" content="https://shenzhen-ai.icu/brain-3d.html">
 <meta property="og:image" content="https://shenzhen-ai.icu/share.png">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="assets/raycast.css?v=20261015b">
+<link rel="stylesheet" href="assets/raycast.css?v=20261016">
 </head>
 <body>
 
@@ -412,7 +412,7 @@
   <div class="legend-title">大脑区域</div>
   <div class="legend-item"><div class="legend-color" style="background: #ef4444;"></div>额叶</div>
   <div class="legend-item"><div class="legend-color" style="background: #f59e0b;"></div>顶叶</div>
-  <div class="legend-item"><div class="legend-color" style="background: #8b5cf6;"></div>颞叶</div>
+  <div class="legend-item"><div class="legend-color" style="background: #3ef3ff;"></div>颞叶</div>
   <div class="legend-item"><div class="legend-color" style="background: #10b981;"></div>枕叶</div>
   <div class="legend-item"><div class="legend-color" style="background: #3b82f6;"></div>小脑</div>
   <div class="legend-item"><div class="legend-color" style="background: #06b6d4;"></div>脑干</div>
@@ -477,7 +477,7 @@ var brainData = {
   },
   temporalLobe: {
     name: '颞叶',
-    color: 0x8b5cf6,
+    color: 0x3ef3ff,
     description: '颞叶位于大脑两侧，是听觉和记忆处理的中心。它包含海马体和杏仁核等重要结构，对记忆形成和情绪处理至关重要。',
     functions: ['听觉处理', '语言理解', '记忆存储', '情绪反应', '面孔识别', '音乐感知'],
     phenomena: ['听觉感知', '记忆形成', '语言理解', '情绪识别', '面孔识别', '音乐欣赏'],
@@ -573,7 +573,7 @@ function init() {
   directionalLight.shadow.mapSize.height = 2048;
   scene.add(directionalLight);
 
-  var directionalLight2 = new THREE.DirectionalLight(0x6366f1, 0.4);
+  var directionalLight2 = new THREE.DirectionalLight(0x3d7bff, 0.4);
   directionalLight2.position.set(-5, -5, -5);
   scene.add(directionalLight2);
 
@@ -581,7 +581,7 @@ function init() {
   pointLight.position.set(3, 3, -3);
   scene.add(pointLight);
 
-  var hemisphereLight = new THREE.HemisphereLight(0x6366f1, 0x0f172a, 0.5);
+  var hemisphereLight = new THREE.HemisphereLight(0x3d7bff, 0x0f172a, 0.5);
   scene.add(hemisphereLight);
 
   brainGroup = new THREE.Group();
@@ -609,7 +609,7 @@ function createRealisticBrain() {
 
   var frontalMaterial = new THREE.MeshStandardMaterial({ ...brainMaterialParams, color: 0xef4444 });
   var parietalMaterial = new THREE.MeshStandardMaterial({ ...brainMaterialParams, color: 0xf59e0b });
-  var temporalMaterial = new THREE.MeshStandardMaterial({ ...brainMaterialParams, color: 0x8b5cf6 });
+  var temporalMaterial = new THREE.MeshStandardMaterial({ ...brainMaterialParams, color: 0x3ef3ff });
   var occipitalMaterial = new THREE.MeshStandardMaterial({ ...brainMaterialParams, color: 0x10b981 });
   var cerebellumMaterial = new THREE.MeshStandardMaterial({ ...brainMaterialParams, color: 0x3b82f6 });
   var brainstemMaterial = new THREE.MeshStandardMaterial({ ...brainMaterialParams, color: 0x06b6d4 });
@@ -1032,7 +1032,7 @@ init();
 </script>
 
     <script src="js/page-counter.js?v=20260908c" defer></script>
-<script src="capsule-widget.js?v=20261015" defer></script>
-<script src="site-nav.js?v=20261015" defer></script>
+<script src="capsule-widget.js?v=20261016" defer></script>
+<script src="site-nav.js?v=20261016" defer></script>
 </body>
 </html>

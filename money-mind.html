@@ -45,7 +45,7 @@
         .form-group label { display: block; font-size: 14px; color: #374151; margin-bottom: 8px; font-weight: 600; }
         .form-group input {
             width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px;
-            font-size: 16px; outline: none; background: #f8fafc; transition: all .25s ease;
+            font-size: 16px; outline: none; background: #f4f4f6; transition: all .25s ease;
         }
         .form-group input:focus { border-color: #667eea; background: #fff; box-shadow: 0 0 0 4px rgba(102,126,234,.12); }
         .error-msg { color: #e53e3e; font-size: 13px; margin-top: 6px; display: none; }
@@ -75,7 +75,7 @@
         .options { display: flex; flex-direction: column; gap: 12px; margin-bottom: 26px; }
         .option {
             display: flex; align-items: flex-start; gap: 12px; text-align: left; width: 100%;
-            background: #f8fafc; border: 2px solid #e5e9f2; padding: 15px 16px; border-radius: 12px;
+            background: #f4f4f6; border: 2px solid #e5e9f2; padding: 15px 16px; border-radius: 12px;
             font-size: 15px; line-height: 1.6; color: #4b5563; cursor: pointer; transition: all .2s ease;
             font-family: inherit;
         }
@@ -95,33 +95,33 @@
         .quadrant-position { font-size: 13px; color: #6b7280; }
         .user-line { font-size: 13px; color: #9ca3af; margin-top: 10px; }
 
-        .topo-chart { background: #f8fafc; border: 1px solid #e8eaf3; border-radius: 14px; padding: 18px; margin-bottom: 24px; }
+        .topo-chart { background: #f4f4f6; border: 1px solid #e8eaf3; border-radius: 14px; padding: 18px; margin-bottom: 24px; }
         .chart-title { font-size: 14px; font-weight: 700; text-align: center; margin-bottom: 14px; color: #374151; }
         .chart-area { position: relative; width: 100%; height: 260px; background: linear-gradient(to right, #f0f2ff 50%, #fff5f0 50%); border: 1px solid #e2e8f0; border-radius: 10px; overflow: hidden; }
         .quad { position: absolute; width: 50%; height: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 8px; }
-        .quad .qtag { font-size: 11px; color: #94a3b8; font-weight: 700; letter-spacing: 1px; }
+        .quad .qtag { font-size: 11px; color: #9c9c9d; font-weight: 700; letter-spacing: 1px; }
         .quad .qname { font-size: 13px; color: #4b5563; font-weight: 700; margin-top: 3px; }
         .quad-1 { top: 0; left: 0; } .quad-3 { top: 0; right: 0; }
         .quad-4 { bottom: 0; left: 0; } .quad-2 { bottom: 0; right: 0; }
         .quad.active { background: rgba(102, 126, 234, .14); }
         .quad.active .qtag, .quad.active .qname { color: #4338ca; }
-        .axis-x { position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: #94a3b8; }
-        .axis-y { position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: #94a3b8; }
+        .axis-x { position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: #9c9c9d; }
+        .axis-y { position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: #9c9c9d; }
         .point { position: absolute; width: 16px; height: 16px; background: #667eea; border: 3px solid #fff; border-radius: 50%; box-shadow: 0 2px 10px rgba(102,126,234,.6); transform: translate(-50%, -50%); z-index: 2; transition: all .8s cubic-bezier(.2,.8,.2,1); }
         .axis-label-x { font-size: 12px; color: #6b7280; text-align: center; margin-top: 8px; }
         .axis-label-y { font-size: 12px; color: #6b7280; text-align: center; margin-top: 3px; }
 
         .metric-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
-        .metric { flex: 1 1 30%; min-width: 96px; background: #f8fafc; border: 1px solid #e8eaf3; border-radius: 12px; padding: 13px 8px; text-align: center; }
+        .metric { flex: 1 1 30%; min-width: 96px; background: #f4f4f6; border: 1px solid #e8eaf3; border-radius: 12px; padding: 13px 8px; text-align: center; }
         .metric .num { font-size: 24px; font-weight: 800; display: block; }
         .metric .label { font-size: 12px; color: #6b7280; display: block; margin-top: 3px; }
-        .m-a .num { color: #10b981; } .m-b .num { color: #6366f1; } .m-c .num { color: #ef4444; }
-        .m-p .num { color: #f59e0b; } .m-ib .num { color: #8b5cf6; }
+        .m-a .num { color: #10b981; } .m-b .num { color: #3d7bff; } .m-c .num { color: #ef4444; }
+        .m-p .num { color: #f59e0b; } .m-ib .num { color: #3ef3ff; }
 
         .section { margin-bottom: 24px; }
         .section-title { font-size: 17px; font-weight: 800; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 2px solid #eef0f6; display: flex; align-items: center; gap: 8px; }
         .section-title::before { content: ''; width: 5px; height: 18px; border-radius: 3px; background: linear-gradient(#667eea, #764ba2); display: inline-block; }
-        .section-text { font-size: 14.5px; line-height: 1.85; color: #4b5563; background: #f8fafc; border-radius: 12px; padding: 16px 18px; white-space: pre-wrap; }
+        .section-text { font-size: 14.5px; line-height: 1.85; color: #4b5563; background: #f4f4f6; border-radius: 12px; padding: 16px 18px; white-space: pre-wrap; }
 
         .result-actions { display: flex; flex-direction: column; gap: 10px; margin-top: 28px; }
         .footnote { text-align: center; font-size: 12px; color: #b0b7c3; margin-top: 22px; }
@@ -130,7 +130,7 @@
         /* ===== 管理页 ===== */
         .records-table { width: 100%; border-collapse: collapse; font-size: 13px; }
         .records-table th, .records-table td { padding: 9px 8px; border-bottom: 1px solid #eef0f6; text-align: left; white-space: nowrap; }
-        .records-table th { color: #6b7280; font-weight: 700; background: #f8fafc; }
+        .records-table th { color: #6b7280; font-weight: 700; background: #f4f4f6; }
         .records-wrap { overflow-x: auto; border: 1px solid #e8eaf3; border-radius: 12px; }
         .empty-tip { text-align: center; color: #9ca3af; padding: 30px 0; font-size: 14px; }
         .toast { position: fixed; left: 50%; bottom: 48px; transform: translateX(-50%) translateY(20px); background: rgba(31,41,55,.92); color: #fff; font-size: 14px; padding: 10px 22px; border-radius: 999px; opacity: 0; pointer-events: none; transition: all .3s ease; z-index: 99; }
@@ -143,7 +143,7 @@
             .quadrant-name { font-size: 28px; }
         }
     </style>
-<link rel="stylesheet" href="assets/raycast.css?v=20261015b">
+<link rel="stylesheet" href="assets/raycast.css?v=20261016">
 </head>
 <body class="mm-page">
 <div class="container">
@@ -551,7 +551,7 @@
 <script src="js/appdata.js?v=20260911b" defer></script>
 <script src="js/guestbook.js?v=20260911b" defer></script>
     <script src="js/page-counter.js?v=20260908c" defer></script>
-<script src="capsule-widget.js?v=20261015" defer></script>
-<script src="site-nav.js?v=20261015" defer></script>
+<script src="capsule-widget.js?v=20261016" defer></script>
+<script src="site-nav.js?v=20261016" defer></script>
 </body>
 </html>
