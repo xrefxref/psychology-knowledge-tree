@@ -1577,6 +1577,16 @@
             document.body.style.overflow = 'hidden';
         }
 
+        // 子页面导航栏「登录/注册」跳转回首页时，自动弹出登录框
+        (function () {
+            try {
+                if (sessionStorage.getItem('sn_open_login') === '1') {
+                    sessionStorage.removeItem('sn_open_login');
+                    setTimeout(showAuthModal, 300);
+                }
+            } catch (e) {}
+        })();
+
         function closeAuthModal() {
             document.getElementById('auth-modal-overlay').classList.remove('active');
             document.body.style.overflow = '';
