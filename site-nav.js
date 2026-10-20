@@ -13,7 +13,7 @@
 
     var HOME = "index.html";
     var MENUS = [
-      { label: "测试", href: "test-suite.html", items: [
+      { label: "测一测你的搞钱人格", href: "test-suite.html", items: [
         ["搞钱测试集", "test-suite.html", true],
         ["搞钱心智检测", "money-mind.html"],
         ["霍兰德测试", "holland-test.html"],
