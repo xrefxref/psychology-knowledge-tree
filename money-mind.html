@@ -162,11 +162,6 @@
             <label for="nickname">昵称（选填）</label>
             <input type="text" id="nickname" placeholder="怎么称呼你？" maxlength="20">
         </div>
-        <div class="form-group">
-            <label for="phone">手机号（选填）</label>
-            <input type="tel" id="phone" placeholder="选填：用于后续接收完整解读" maxlength="11" inputmode="numeric">
-            <span class="error-msg" id="phoneError">请正确填写电话号码</span>
-        </div>
         <button class="btn" id="startBtn">开始检测 →</button>
         <p class="footnote">数据仅保存在你的浏览器本地 · <a href="https://shenzhen-ai.icu/">返回首页</a></p>
     </section>
@@ -314,7 +309,7 @@
     var MANAGER_CODE = '20201020';
 
     /* ================= 状态 ================= */
-    var state = { index: 0, answers: [], nickname: '', phone: '', startTime: 0, timerId: null, lastResult: null };
+    var state = { index: 0, answers: [], nickname: '', startTime: 0, timerId: null, lastResult: null };
 
     /* ================= 工具 ================= */
     function $(id) { return document.getElementById(id); }
@@ -353,20 +348,12 @@
 
     /* ================= 首页逻辑 ================= */
     $('startBtn').addEventListener('click', function () {
-        var phone = $('phone').value.trim();
-        var err = $('phoneError');
-        if (phone === MANAGER_CODE) { openManager(); return; }
-        if (phone && !/^1[3-9]\d{9}$/.test(phone)) { err.classList.add('show'); return; }
-        err.classList.remove('show');
-        state.nickname = $('nickname').value.trim();
-        state.phone = phone;
+        var nick = $('nickname').value.trim();
+        if (nick === MANAGER_CODE) { openManager(); return; }
+        state.nickname = nick;
         startQuiz();
     });
-    $('phone').addEventListener('input', function () {
-        var v = this.value.trim();
-        if (/^1[3-9]\d{9}$/.test(v) || v === MANAGER_CODE) $('phoneError').classList.remove('show');
-    });
-    $('phone').addEventListener('keydown', function (e) { if (e.key === 'Enter') $('startBtn').click(); });
+    $('nickname').addEventListener('keydown', function (e) { if (e.key === 'Enter') $('startBtn').click(); });
 
     /* ================= 答题逻辑 ================= */
     function startQuiz() {
@@ -480,7 +467,6 @@
             records.unshift({
                 id: Date.now(),
                 nickname: state.nickname,
-                phone: state.phone.replace(/^(\d{3})\d{4}(\d{4})$/, '$1****$2'),
                 result: r.quad.name,
                 resultKey: r.key,
                 A: r.A, B: r.B, C: r.C, P: r.P, IB: r.IB,
@@ -505,7 +491,7 @@
         }
     });
     $('retestBtn').addEventListener('click', function () {
-        $('phone').value = ''; $('nickname').value = '';
+        $('nickname').value = '';
         showScreen('info');
     });
 
@@ -517,9 +503,9 @@
         if (!records.length) {
             wrap.innerHTML = '<div class="empty-tip">暂无检测记录</div>';
         } else {
-            var html = '<table class="records-table"><thead><tr><th>时间</th><th>昵称</th><th>手机号</th><th>结果</th><th>A</th><th>B</th><th>C</th><th>P</th><th>IB</th><th>用时</th></tr></thead><tbody>';
+            var html = '<table class="records-table"><thead><tr><th>时间</th><th>昵称</th><th>结果</th><th>A</th><th>B</th><th>C</th><th>P</th><th>IB</th><th>用时</th></tr></thead><tbody>';
             records.forEach(function (rec) {
-                html += '<tr><td>' + esc(rec.testTime) + '</td><td>' + esc(rec.nickname || '-') + '</td><td>' + esc(rec.phone) + '</td><td>' + esc(rec.result) + '</td><td>' + rec.A + '</td><td>' + rec.B + '</td><td>' + rec.C + '</td><td>' + rec.P + '</td><td>' + rec.IB + '</td><td>' + rec.seconds + 's</td></tr>';
+                html += '<tr><td>' + esc(rec.testTime) + '</td><td>' + esc(rec.nickname || '-') + '</td><td>' + esc(rec.result) + '</td><td>' + rec.A + '</td><td>' + rec.B + '</td><td>' + rec.C + '</td><td>' + rec.P + '</td><td>' + rec.IB + '</td><td>' + rec.seconds + 's</td></tr>';
             });
             html += '</tbody></table>';
             wrap.innerHTML = html;
@@ -530,9 +516,9 @@
         var records = [];
         try { records = JSON.parse(localStorage.getItem(STORE_KEY) || '[]'); } catch (e) {}
         if (!records.length) { toast('暂无记录可导出'); return; }
-        var head = '时间,昵称,手机号,结果,A,B,C,P,IB,答题顺序,用时(秒)\n';
+        var head = '时间,昵称,结果,A,B,C,P,IB,答题顺序,用时(秒)\n';
         var rows = records.map(function (r) {
-            return [r.testTime, r.nickname || '', r.phone, r.result, r.A, r.B, r.C, r.P, r.IB, r.answers, r.seconds]
+            return [r.testTime, r.nickname || '', r.result, r.A, r.B, r.C, r.P, r.IB, r.answers, r.seconds]
                 .map(function (v) { return '"' + String(v).replace(/"/g, '""') + '"'; }).join(',');
         }).join('\n');
         var blob = new Blob(['\ufeff' + head + rows], { type: 'text/csv;charset=utf-8' });

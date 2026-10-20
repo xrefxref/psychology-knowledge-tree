@@ -5,38 +5,41 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>页面走丢了 · 404 · 林远见路</title>
 <meta name="robots" content="noindex">
+<link rel="icon" href="favicon.ico">
 <style>
   :root{
-    --paper:#f6f1e7; --paper-2:#fbf8f1; --ink:#2b2722; --ink-soft:#5c554b;
-    --ink-faint:#8a8074; --line:#e3dac8; --accent:#9a3b2e; --accent-2:#b8794a;
-    --serif:"Songti SC","Source Han Serif SC","Noto Serif SC",Georgia,"Times New Roman",serif;
-    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Helvetica,Arial,sans-serif;
+    --paper:#07080a; --paper-2:#111214; --ink:#f4f4f6; --ink-soft:#9c9c9d;
+    --ink-faint:#6a6b6c; --line:#242728; --accent:#57c1ff; --accent-2:#3ef3ff;
+    --grad:linear-gradient(120deg,#3d7bff 0%,#3ef3ff 100%);
   }
   *{box-sizing:border-box;margin:0;padding:0;}
-  body{font-family:var(--sans);color:var(--ink);background:var(--paper);line-height:1.75;
-    min-height:100vh;display:flex;flex-direction:column;justify-content:center;-webkit-font-smoothing:antialiased;}
-  .wrap{max-width:640px;margin:0 auto;padding:48px 24px;text-align:center;}
-  .code{font-family:var(--serif);font-size:88px;font-weight:700;color:var(--accent);line-height:1;}
-  .code small{display:block;font-size:15px;letter-spacing:.3em;color:var(--ink-faint);margin-top:8px;}
-  h1{font-family:var(--serif);font-size:24px;margin:26px 0 10px;}
-  p.lead{font-size:14.5px;color:var(--ink-soft);margin-bottom:30px;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);line-height:1.75;min-height:100vh;display:flex;flex-direction:column;justify-content:center;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:680px;margin:0 auto;padding:48px 24px;text-align:center;position:relative;z-index:1;}
+  .code{font-size:96px;font-weight:800;line-height:1;
+    background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;}
+  .code small{display:block;font-size:14px;letter-spacing:.4em;color:var(--ink-faint);margin-top:10px;
+    -webkit-text-fill-color:var(--ink-faint);}
+  h1{font-size:26px;font-weight:700;margin:28px 0 10px;color:var(--ink);}
+  p.lead{font-size:15px;color:var(--ink-soft);margin-bottom:34px;}
   .links{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;}
-  .links a{display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-family:var(--serif);
-    font-size:14.5px;color:var(--accent);border:1px solid rgba(154,59,46,.4);background:rgba(154,59,46,.05);
-    padding:10px 20px;border-radius:26px;transition:all .18s;}
-  .links a:hover{background:rgba(154,59,46,.1);}
-  .links a.ghost{color:var(--ink-soft);border-color:var(--line);background:var(--paper-2);}
-  footer{padding:24px;text-align:center;color:var(--ink-faint);font-size:12px;}
+  .links a{display:inline-flex;align-items:center;gap:6px;text-decoration:none;
+    font-size:14.5px;font-weight:600;color:#18191a;background:rgba(255,255,255,.85);
+    padding:11px 22px;border-radius:10px;transition:background .2s;}
+  .links a:hover{background:#fff;}
+  .links a.ghost{color:var(--ink-soft);background:transparent;border:1px solid var(--line);font-weight:400;}
+  .links a.ghost:hover{color:var(--ink);border-color:#2f3234;background:rgba(255,255,255,.03);}
+  footer{padding:26px;text-align:center;color:var(--ink-faint);font-size:12px;letter-spacing:.1em;}
 </style>
 
-<meta property="og:site_name" content="林远见路 · 心理学全景学习">
+<meta property="og:site_name" content="林远见路 · 搞钱心理学">
 <meta property="og:type" content="website">
 <meta property="og:title" content="页面走丢了 · 404 · 林远见路">
-<meta property="og:description" content="心理学全景学习站 · 林远见路：290+ 本心理学精选藏书精读笔记与七大测试工具，帮你把心理学变成看得懂、用得上的搞钱地图。">
+<meta property="og:description" content="搞钱心理学 · 林远见路：测一测你的搞钱人格，290+ 本心理学精选藏书精读笔记，把心理学变成看得懂、用得上的搞钱地图。">
 <meta property="og:url" content="https://shenzhen-ai.icu/404.html">
 <meta property="og:image" content="https://shenzhen-ai.icu/share.png">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="assets/raycast.css?v=20261016">
+<link rel="stylesheet" href="assets/raycast.css?v=20261020">
 </head>
 <body>
   <div class="wrap">
@@ -44,14 +47,13 @@
     <h1>这一页走丢了</h1>
     <p class="lead">地址可能输错了，或者页面已经搬家。别急，你真正要找的东西就在下面。</p>
     <div class="links">
-      <a href="/">← 回首页</a>
-      <a href="holland-test.html">霍兰德兴趣测试</a>
-      <a href="career-anchor.html">职业锚测试</a>
-      <a href="personal-bmc.html">商业模式画布</a>
+      <a href="test-suite.html">测一测你的搞钱人格 →</a>
+      <a href="money-mind.html">搞钱心智检测</a>
+      <a href="/" class="ghost">← 回首页</a>
       <a href="book-notes.html" class="ghost">必读书目</a>
     </div>
   </div>
-  <footer>心理学全景学习 · 林远见路</footer>
+  <footer>搞钱心理学 · 林远见路</footer>
 <script src="site-nav.js?v=20261020" defer></script>
 </body>
 </html>

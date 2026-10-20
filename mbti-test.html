@@ -1488,8 +1488,8 @@ const TYPES = {
   }
 
   function isUnlocked() {
-    if (!hasCodeLib()) return true;
-    try { return localStorage.getItem(LOCK_KEY) === "1"; } catch (e) { return false; }
+    /* 2026-10-20 起全站免费：所有章节直接解锁，兑换码通道停用 */
+    return true;
   }
 
   function markUnlocked() {
