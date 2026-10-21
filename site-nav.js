@@ -96,7 +96,7 @@
     var header = document.createElement("header");
     header.className = "sn-header";
     header.innerHTML =
-      '<a class="sn-logo" href="' + HOME + '"><span class="sn-logo-icon">心</span><span>心理学全景学习</span></a>' +
+      '<a class="sn-logo" href="' + HOME + '"><span class="sn-logo-icon">心</span><span>搞钱心理学实验室</span></a>' +
       '<nav class="sn-nav" id="snNav">' +
       '  <a href="' + HOME + '">首页</a>' + nav +
       '  <a href="' + HOME + '#community">社区</a>' +

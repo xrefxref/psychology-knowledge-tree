@@ -1,0 +1,30 @@
+18:39:39.865217 exec-cmd.c:266          trace: resolved executable dir: C:/Users/TJ/AppData/Local/Programs/WorkBuddy/resources/vendor/PortableGit/mingw64/bin
+18:39:39.877182 git.c:502               trace: built-in: git push --verbose origin main
+18:39:39.881525 run-command.c:674       trace: run_command: GIT_DIR=.git git remote-https origin https://github.com/xrefxref/psychology-knowledge-tree.git
+18:39:39.881525 run-command.c:946       trace: start_command: git remote-https origin https://github.com/xrefxref/psychology-knowledge-tree.git
+18:39:40.039739 exec-cmd.c:266          trace: resolved executable dir: C:/Users/TJ/AppData/Local/Programs/WorkBuddy/resources/vendor/PortableGit/mingw64/bin
+18:39:40.060051 git.c:812               trace: exec: git-remote-https origin https://github.com/xrefxref/psychology-knowledge-tree.git
+18:39:40.060051 run-command.c:674       trace: run_command: git-remote-https origin https://github.com/xrefxref/psychology-knowledge-tree.git
+18:39:40.060051 run-command.c:946       trace: start_command: git-remote-https origin https://github.com/xrefxref/psychology-knowledge-tree.git
+18:39:40.219799 exec-cmd.c:266          trace: resolved executable dir: C:/Users/TJ/AppData/Local/Programs/WorkBuddy/resources/vendor/PortableGit/mingw64/bin
+Pushing to https://github.com/xrefxref/psychology-knowledge-tree.git
+18:39:40.949247 run-command.c:674       trace: run_command: 'git credential-manager get'
+18:39:40.952309 run-command.c:946       trace: start_command: C:/Users/TJ/AppData/Local/Programs/WorkBuddy/resources/vendor/PortableGit/usr/bin/sh.exe -c 'git credential-manager get' 'git credential-manager get'
+18:39:41.293190 exec-cmd.c:266          trace: resolved executable dir: C:/Users/TJ/AppData/Local/Programs/WorkBuddy/resources/vendor/PortableGit/mingw64/bin
+18:39:41.300804 git.c:812               trace: exec: git-credential-manager get
+18:39:41.300804 run-command.c:674       trace: run_command: git-credential-manager get
+18:39:41.300804 run-command.c:946       trace: start_command: git-credential-manager get
+18:39:41.410445 exec-cmd.c:266          trace: resolved executable dir: C:/Users/TJ/AppData/Local/Programs/WorkBuddy/resources/vendor/PortableGit/mingw64/bin
+18:39:41.414429 git.c:502               trace: built-in: git version
+18:39:41.438282 exec-cmd.c:266          trace: resolved executable dir: C:/Users/TJ/AppData/Local/Programs/WorkBuddy/resources/vendor/PortableGit/mingw64/bin
+18:39:41.442865 git.c:502               trace: built-in: git config list --show-scope -z --no-type
+18:39:41.607255 exec-cmd.c:266          trace: resolved executable dir: C:/Users/TJ/AppData/Local/Programs/WorkBuddy/resources/vendor/PortableGit/mingw64/bin
+18:39:41.612081 git.c:502               trace: built-in: git config list --show-scope -z --type=path
+18:40:09.821872 run-command.c:674       trace: run_command: '"C:/Users/TJ/AppData/Local/Programs/WorkBuddy/resources/vendor/PortableGit/mingw64/bin/git-credential-manager.exe" get'
+18:40:09.824866 run-command.c:946       trace: start_command: C:/Users/TJ/AppData/Local/Programs/WorkBuddy/resources/vendor/PortableGit/usr/bin/sh.exe -c '"C:/Users/TJ/AppData/Local/Programs/WorkBuddy/resources/vendor/PortableGit/mingw64/bin/git-credential-manager.exe" get' '"C:/Users/TJ/AppData/Local/Programs/WorkBuddy/resources/vendor/PortableGit/mingw64/bin/git-credential-manager.exe" get'
+18:40:10.175237 exec-cmd.c:266          trace: resolved executable dir: C:/Users/TJ/AppData/Local/Programs/WorkBuddy/resources/vendor/PortableGit/mingw64/bin
+18:40:10.179223 git.c:502               trace: built-in: git version
+18:40:10.210706 exec-cmd.c:266          trace: resolved executable dir: C:/Users/TJ/AppData/Local/Programs/WorkBuddy/resources/vendor/PortableGit/mingw64/bin
+18:40:10.217872 git.c:502               trace: built-in: git config list --show-scope -z --no-type
+18:40:10.390444 exec-cmd.c:266          trace: resolved executable dir: C:/Users/TJ/AppData/Local/Programs/WorkBuddy/resources/vendor/PortableGit/mingw64/bin
+18:40:10.395428 git.c:502               trace: built-in: git config list --show-scope -z --type=path

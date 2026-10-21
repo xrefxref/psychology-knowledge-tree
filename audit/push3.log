@@ -1,0 +1,84 @@
+18:47:52.542833 exec-cmd.c:266          trace: resolved executable dir: C:/Users/TJ/AppData/Local/Programs/WorkBuddy/resources/vendor/PortableGit/mingw64/bin
+18:47:52.553719 git.c:502               trace: built-in: git push origin main
+18:47:52.556905 run-command.c:674       trace: run_command: GIT_DIR=.git git remote-https origin https://github.com/xrefxref/psychology-knowledge-tree.git
+18:47:52.556905 run-command.c:946       trace: start_command: git remote-https origin https://github.com/xrefxref/psychology-knowledge-tree.git
+18:47:52.717569 exec-cmd.c:266          trace: resolved executable dir: C:/Users/TJ/AppData/Local/Programs/WorkBuddy/resources/vendor/PortableGit/mingw64/bin
+18:47:52.725157 git.c:812               trace: exec: git-remote-https origin https://github.com/xrefxref/psychology-knowledge-tree.git
+18:47:52.726397 run-command.c:674       trace: run_command: git-remote-https origin https://github.com/xrefxref/psychology-knowledge-tree.git
+18:47:52.726397 run-command.c:946       trace: start_command: git-remote-https origin https://github.com/xrefxref/psychology-knowledge-tree.git
+18:47:52.883325 exec-cmd.c:266          trace: resolved executable dir: C:/Users/TJ/AppData/Local/Programs/WorkBuddy/resources/vendor/PortableGit/mingw64/bin
+18:47:52.906073 http.c:1033             == Info: Could not find host github.com in the .netrc file; using defaults
+18:47:52.906073 http.c:1033             == Info:   Trying 127.0.0.1:60459...
+18:47:52.919681 http.c:1033             == Info: CONNECT: no ALPN negotiated
+18:47:52.920241 http.c:1033             == Info: Establishing HTTP proxy tunnel to github.com:443
+18:47:52.920241 http.c:980              => Send header, 0000000121 bytes (0x00000079)
+18:47:52.920241 http.c:992              => Send header: CONNECT github.com:443 HTTP/1.1
+18:47:52.920241 http.c:992              => Send header: Host: github.com:443
+18:47:52.920241 http.c:992              => Send header: User-Agent: git/2.55.0.windows.3
+18:47:52.920241 http.c:992              => Send header: Proxy-Connection: Keep-Alive
+18:47:52.920241 http.c:992              => Send header:
+18:47:52.921838 http.c:980              <= Recv header, 0000000037 bytes (0x00000025)
+18:47:52.921838 http.c:992              <= Recv header: HTTP/1.1 200 Connection Established
+18:47:52.921838 http.c:980              <= Recv header, 0000000002 bytes (0x00000002)
+18:47:52.921838 http.c:992              <= Recv header:
+18:47:52.921838 http.c:1033             == Info: CONNECT phase completed for HTTP proxy
+18:47:52.921838 http.c:1033             == Info: CONNECT tunnel established, response 200
+18:47:52.921838 http.c:1033             == Info: schannel: disabled automatic use of client certificate
+18:47:52.924837 http.c:1033             == Info: ALPN: curl offers http/1.1
+18:47:53.084184 http.c:1033             == Info: ALPN: server accepted http/1.1
+18:47:53.084184 http.c:1033             == Info: Established connection to 127.0.0.1 (127.0.0.1 port 60459) from 127.0.0.1 port 53382 
+18:47:53.084184 http.c:1033             == Info: using HTTP/1.x
+18:47:53.084184 http.c:980              => Send header, 0000000216 bytes (0x000000d8)
+18:47:53.084184 http.c:992              => Send header: GET /xrefxref/psychology-knowledge-tree.git/info/refs?service=git-receive-pack HTTP/1.1
+18:47:53.084184 http.c:992              => Send header: Host: github.com
+18:47:53.084184 http.c:992              => Send header: User-Agent: git/2.55.0.windows.3
+18:47:53.084184 http.c:992              => Send header: Accept: */*
+18:47:53.084184 http.c:992              => Send header: Accept-Encoding: deflate, gzip, br, zstd
+18:47:53.084184 http.c:992              => Send header: Pragma: no-cache
+18:47:53.084184 http.c:992              => Send header:
+18:47:53.084184 http.c:1033             == Info: Request completely sent off
+18:47:53.150593 http.c:1033             == Info: schannel: remote party requests renegotiation
+18:47:53.150593 http.c:1033             == Info: schannel: renegotiating SSL/TLS connection
+18:47:53.151165 http.c:1033             == Info: schannel: SSL/TLS connection renegotiated
+18:47:53.151165 http.c:1033             == Info: schannel: remote party requests renegotiation
+18:47:53.151165 http.c:1033             == Info: schannel: renegotiating SSL/TLS connection
+18:47:53.151165 http.c:1033             == Info: schannel: SSL/TLS connection renegotiated
+18:47:53.445763 http.c:980              <= Recv header, 0000000027 bytes (0x0000001b)
+18:47:53.446348 http.c:992              <= Recv header: HTTP/1.1 401 Unauthorized
+18:47:53.446348 http.c:980              <= Recv header, 0000000026 bytes (0x0000001a)
+18:47:53.446348 http.c:992              <= Recv header: Server: GitHub-Babel/3.0
+18:47:53.446348 http.c:980              <= Recv header, 0000000054 bytes (0x00000036)
+18:47:53.446348 http.c:992              <= Recv header: Content-Security-Policy: default-src 'none'; sandbox
+18:47:53.446348 http.c:980              <= Recv header, 0000000041 bytes (0x00000029)
+18:47:53.446348 http.c:992              <= Recv header: Content-Type: text/plain; charset=UTF-8
+18:47:53.446348 http.c:980              <= Recv header, 0000000045 bytes (0x0000002d)
+18:47:53.446348 http.c:992              <= Recv header: Strict-Transport-Security: max-age=31536000
+18:47:53.446348 http.c:980              <= Recv header, 0000000040 bytes (0x00000028)
+18:47:53.446348 http.c:992              <= Recv header: www-authenticate: Basic realm="GitHub"
+18:47:53.446348 http.c:980              <= Recv header, 0000000020 bytes (0x00000014)
+18:47:53.446348 http.c:992              <= Recv header: Content-Length: 26
+18:47:53.446348 http.c:980              <= Recv header, 0000000037 bytes (0x00000025)
+18:47:53.446348 http.c:992              <= Recv header: Date: Tue, 20 Oct 2026 10:47:53 GMT
+18:47:53.446348 http.c:980              <= Recv header, 0000000023 bytes (0x00000017)
+18:47:53.446348 http.c:992              <= Recv header: X-Frame-Options: DENY
+18:47:53.446348 http.c:980              <= Recv header, 0000000056 bytes (0x00000038)
+18:47:53.446348 http.c:992              <= Recv header: X-GitHub-Request-Id: B4EB:8D483:9D276E:E01F93:6AD746D9
+18:47:53.446348 http.c:980              <= Recv header, 0000000037 bytes (0x00000025)
+18:47:53.446348 http.c:992              <= Recv header: x-github-edge-region: southeastasia
+18:47:53.446348 http.c:980              <= Recv header, 0000000002 bytes (0x00000002)
+18:47:53.446348 http.c:992              <= Recv header:
+18:47:53.447043 http.c:1033             == Info: Connection #0 to host github.com:443 left intact
+18:47:53.447043 run-command.c:674       trace: run_command: '"D:/Program Files/Git/mingw64/bin/git-credential-manager.exe" get'
+18:47:53.451902 run-command.c:946       trace: start_command: C:/Users/TJ/AppData/Local/Programs/WorkBuddy/resources/vendor/PortableGit/usr/bin/sh.exe -c '"D:/Program Files/Git/mingw64/bin/git-credential-manager.exe" get' '"D:/Program Files/Git/mingw64/bin/git-credential-manager.exe" get'
+18:47:53.748365 exec-cmd.c:266          trace: resolved executable dir: C:/Users/TJ/AppData/Local/Programs/WorkBuddy/resources/vendor/PortableGit/mingw64/bin
+18:47:53.752753 git.c:502               trace: built-in: git config --null --list
+18:47:53.910690 exec-cmd.c:266          trace: resolved executable dir: C:/Users/TJ/AppData/Local/Programs/WorkBuddy/resources/vendor/PortableGit/mingw64/bin
+18:47:53.913998 git.c:502               trace: built-in: git version
+18:47:53.934302 exec-cmd.c:266          trace: resolved executable dir: C:/Users/TJ/AppData/Local/Programs/WorkBuddy/resources/vendor/PortableGit/mingw64/bin
+18:47:53.938923 git.c:502               trace: built-in: git config --null --type=path credential.https://github.com.gitHubHelper
+18:47:53.957450 exec-cmd.c:266          trace: resolved executable dir: C:/Users/TJ/AppData/Local/Programs/WorkBuddy/resources/vendor/PortableGit/mingw64/bin
+18:47:53.962285 git.c:502               trace: built-in: git config --null --type=path credential.github.com.gitHubHelper
+18:47:53.983257 exec-cmd.c:266          trace: resolved executable dir: C:/Users/TJ/AppData/Local/Programs/WorkBuddy/resources/vendor/PortableGit/mingw64/bin
+18:47:53.988153 git.c:502               trace: built-in: git config --null --type=path credential.gitHubHelper
+fatal: could not read Username for 'https://github.com': terminal prompts disabled
+exit=124
