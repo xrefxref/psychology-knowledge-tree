@@ -127,6 +127,23 @@
         location.href = HOME;
       }
     });
+
+    // 全站统一页脚（含备案号）：仅在没有原生 footer 的子页注入
+    if (!document.querySelector("footer")) {
+      var fc = ".sn-footer{padding:28px 24px 40px;text-align:center;color:rgba(154,157,160,.85);font-size:13px;line-height:1.9;border-top:1px solid #1b1c1e;margin-top:48px;}";
+      fc += ".sn-footer a{color:inherit;text-decoration:none;}";
+      var fstyle = document.createElement("style");
+      fstyle.textContent = fc;
+      document.head.appendChild(fstyle);
+
+      var footer = document.createElement("footer");
+      footer.className = "sn-footer";
+      footer.innerHTML =
+        '<div>搞钱心理学实验室 · 林远见路</div>' +
+        '<div>把心理学变成你的搞钱地图</div>' +
+        '<div style="margin-top:6px;opacity:.75;"><a href="https://beian.miit.gov.cn" target="_blank" rel="noopener">粤ICP备2026030540号-2</a></div>';
+      document.body.appendChild(footer);
+    }
   }
 
   if (document.readyState === "loading") {
