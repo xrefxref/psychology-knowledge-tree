@@ -1287,6 +1287,10 @@
                         <span class="social-icon">💬</span>
                         <span>学习交流群</span>
                     </div>
+                    <div class="social-link" onclick="showModal('xiaohongshu')">
+                        <span class="social-icon">📕</span>
+                        <span>小红书：林远见路</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1587,6 +1591,11 @@
                 desc.textContent = '添加林远老师微信，备注「心理学学习」即可加入交流群，与志同道合的伙伴共同成长。';
                 hint.textContent = '💡 提示：用微信扫描上方二维码添加好友';
                 qrcode.innerHTML = '<img src="images/wechat-group.jpg" alt="微信群二维码">';
+            } else if (type === 'xiaohongshu') {
+                title.textContent = '小红书：林远见路';
+                desc.textContent = '搞钱心理学研究员林远——不讲玄学、不卖课、不割韭菜，免费分享搞钱心理学。';
+                hint.textContent = '💡 提示：用小红书扫描上方二维码找到我';
+                qrcode.innerHTML = '<img src="images/xiaohongshu.jpg" alt="小红书二维码">';
             }
 
             overlay.classList.add('active');
