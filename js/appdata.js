@@ -151,11 +151,6 @@
         return msg;
     }
 
-    function isAdminPage() {
-        try { return /(^|\/)admin\.html(\?|$)/.test(window.location.pathname); }
-        catch (e) { return false; }
-    }
-
     /* 前端仅控制 UI 入口；真正权限由数据库 RLS 强制 */
     function isAdmin() {
         var u = currentSBUser();
@@ -221,8 +216,10 @@
         register: function (username, password) {
             init();
             if (!sb) return Promise.reject(new Error('数据服务未配置'));
-            // admin 用户名仅在 admin.html 可注册
-            if (username === ADMIN_NAME && !isAdminPage()) {
+            // 安全：站长账号「admin」完全禁止通过本接口注册，无论在任何页面。
+            // 站长账号只能由 Supabase 控制台（Authentication → Users）预先创建，
+            // 从而杜绝任何人打开 admin.html 用控制台调用 register('admin', …) 抢占后台。
+            if (username === ADMIN_NAME) {
                 return Promise.reject(new Error('该用户名已保留'));
             }
             var v = validateUsername(username);
