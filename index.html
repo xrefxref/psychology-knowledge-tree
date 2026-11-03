@@ -853,6 +853,50 @@
             flex-wrap: wrap;
         }
 
+        .community-qrcodes {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .community-qr-card {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 20px 20px 16px;
+            text-align: center;
+            width: 180px;
+            transition: all 0.3s;
+        }
+
+        .community-qr-card:hover {
+            border-color: #3d7bff;
+            transform: translateY(-4px);
+        }
+
+        .community-qr-card img {
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 10px;
+            background: #fff;
+            margin-bottom: 12px;
+        }
+
+        .community-qr-card .qr-title {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .community-qr-card .qr-desc {
+            font-size: 12px;
+            color: #9c9c9d;
+            line-height: 1.5;
+        }
+
         .community-features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -1302,9 +1346,22 @@
                 <div class="card-icon">💬</div>
                 <h3 class="card-title">心理学学习 · 公众号创作交流群</h3>
                 <p class="card-desc">这是一个心理学爱好者的聚集地。在这里，我们共同探讨心理学理论，分享学习心得，交流公众号创作经验。无论你是心理学入门者还是进阶学习者，都能在这里找到志同道合的伙伴。</p>
-                <div class="community-btns">
-                    <button class="card-btn" onclick="showModal('group')">添加微信入群</button>
-                    <button class="card-btn card-btn-outline" onclick="showModal('wechat')">关注公众号</button>
+                <div class="community-qrcodes">
+                    <div class="community-qr-card">
+                        <img src="images/wechat-group.jpg" alt="微信群二维码">
+                        <div class="qr-title">学习交流群</div>
+                        <div class="qr-desc">微信扫码，添加好友后入群</div>
+                    </div>
+                    <div class="community-qr-card">
+                        <img src="images/wechat-official.jpg" alt="公众号二维码">
+                        <div class="qr-title">公众号 · 林远见路</div>
+                        <div class="qr-desc">微信扫码，关注公众号</div>
+                    </div>
+                    <div class="community-qr-card">
+                        <img src="images/xiaohongshu.jpg" alt="小红书二维码">
+                        <div class="qr-title">小红书 · 林远见路</div>
+                        <div class="qr-desc">小红书扫码，找到林远</div>
+                    </div>
                 </div>
             </div>
 
