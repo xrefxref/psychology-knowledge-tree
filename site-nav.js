@@ -141,7 +141,11 @@
       footer.innerHTML =
         '<div>搞钱心理学实验室 · 林远见路</div>' +
         '<div>把心理学变成你的搞钱地图</div>' +
-        '<div style="margin-top:6px;opacity:.75;"><a href="https://beian.miit.gov.cn" target="_blank" rel="noopener">粤ICP备2026030540号-2</a></div>';
+        '<div style="margin-top:6px;opacity:.75;">' +
+          '<a href="https://beian.miit.gov.cn" target="_blank" rel="noopener">粤ICP备2026030540号-2</a>' +
+          '&nbsp;|&nbsp;' +
+          '<a href="https://beian.mps.gov.cn" target="_blank" rel="noopener">粤公网安备 44030002019081 号</a>' +
+        '</div>';
       document.body.appendChild(footer);
     }
   }
