@@ -320,13 +320,29 @@
         }
 
         .hero-section {
-            padding: 100px 40px 60px;
+            padding: 120px 40px 80px;
             text-align: center;
             position: relative;
-            min-height: 600px;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* Raycast 式激光束背景（蓝青配色） */
+        .hero-beams {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .hero-beams canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
         }
 
         .hero-glow {
@@ -337,13 +353,13 @@
             filter: blur(8px);
             background:
                 radial-gradient(52% 46% at 50% 4%, rgba(255, 255, 255, 0.07), transparent 70%),
-                radial-gradient(44% 34% at 86% 18%, rgba(245, 48, 107, 0.08), transparent 72%),
-                radial-gradient(40% 32% at 10% 36%, rgba(87, 193, 255, 0.06), transparent 72%);
+                radial-gradient(44% 34% at 86% 18%, rgba(61, 123, 255, 0.10), transparent 72%),
+                radial-gradient(40% 32% at 10% 36%, rgba(62, 243, 255, 0.08), transparent 72%);
         }
 
         .hero-kicker {
             font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-            color: #00e58a;
+            color: #3ef3ff;
             font-size: 14px;
             letter-spacing: 1.5px;
             margin: 0 0 22px;
@@ -359,6 +375,7 @@
             letter-spacing: 2px;
             position: relative;
             z-index: 1;
+            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.9), 0 2px 10px rgba(0, 0, 0, 0.7);
         }
 
         .hero-title span {
@@ -379,25 +396,29 @@
         }
 
         .hero-btn {
-            background: rgba(255, 255, 255, 0.85);
-            color: #18191a;
+            background: #ffffff;
+            color: #0a0a0c;
             border: none;
-            border-radius: 10px;
-            padding: 13px 30px;
+            border-radius: 999px;
+            padding: 14px 34px;
             font-size: 15px;
             font-weight: 600;
             cursor: pointer;
             text-decoration: none;
-            transition: background 0.2s, transform 0.2s;
+            transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 10px 35px rgba(255, 255, 255, 0.15);
         }
 
-        .hero-btn:hover { background: #fff; transform: translateY(-2px); }
+        .hero-btn:hover { background: #f1f5f9; transform: translateY(-2px); }
 
         .hero-btn.ghost {
             background: rgba(255, 255, 255, 0.04);
-            border: 1px solid #242728;
-            color: #9c9c9d;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            color: #cbd5e1;
+            box-shadow: none;
         }
+
+        .hero-btn.ghost:hover { background: rgba(255, 255, 255, 0.08); }
 
         .hero-subtitle {
             font-size: 18px;
@@ -420,8 +441,8 @@
 
         .legend-panel {
             position: absolute;
-            top: 120px;
-            left: 40px;
+            top: 24px;
+            left: 24px;
             background: rgba(30, 41, 59, 0.9);
             border: 1px solid #334155;
             padding: 20px;
@@ -1047,10 +1068,12 @@
                 padding: 7px 0;
             }
             .hero-section {
-                padding: 80px 20px 40px;
+                padding: 100px 20px 60px;
+                min-height: 100vh;
             }
             .hero-title {
-                font-size: 46px;
+                font-size: 44px;
+                letter-spacing: 1px;
             }
             .hero-kicker {
                 font-size: 12px;
@@ -1152,6 +1175,7 @@
     </header>
 
     <section class="hero-section">
+        <div class="hero-beams" id="hero-beams"><canvas id="beams-canvas"></canvas></div>
         <div class="hero-glow"></div>
 
         <p class="hero-kicker">~/opc-money-copilot $ ./start --free</p>
@@ -1162,10 +1186,15 @@
             <a class="hero-btn" href="test-suite.html">开始 8 站测评 →</a>
             <a class="hero-btn ghost" href="book-notes.html">翻 290 本笔记</a>
         </div>
+    </section>
+
+    <section class="section" id="sec-knowledge">
+        <h2 class="section-title">心理学知识体系</h2>
+        <p class="section-subtitle">点击节点探索 · 滚轮缩放 · 拖拽平移</p>
 
         <div style="position: relative;">
             <div id="chart-container" class="chart-container"></div>
-            
+
             <div class="legend-panel">
                 <h4>心理学知识体系</h4>
                 <div class="legend-item">
@@ -1181,8 +1210,6 @@
                     <span>应用领域</span>
                 </div>
             </div>
-            
-            <div class="chart-hint">点击节点探索 · 滚轮缩放 · 拖拽平移</div>
         </div>
     </section>
 
@@ -1459,6 +1486,100 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+    <script>
+        /* Raycast 式蓝青激光束背景（WebGL Shader） */
+        (function () {
+            var canvas = document.getElementById('beams-canvas');
+            if (!canvas) return;
+            function syncSize() {
+                var w = canvas.clientWidth || 1280;
+                var h = canvas.clientHeight || 720;
+                if (canvas.width !== w || canvas.height !== h) {
+                    canvas.width = w;
+                    canvas.height = h;
+                }
+            }
+            if (typeof ResizeObserver !== 'undefined') {
+                new ResizeObserver(syncSize).observe(canvas);
+            }
+            syncSize();
+
+            var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+            if (!gl) return;
+
+            var vs = 'attribute vec2 a_position;varying vec2 v_texCoord;void main(){v_texCoord=a_position*0.5+0.5;gl_Position=vec4(a_position,0.0,1.0);}';
+            var fs = 'precision highp float;uniform float u_time;uniform vec2 u_resolution;uniform vec2 u_mouse;varying vec2 v_texCoord;\n' +
+                'float hash(vec2 p){p=fract(p*vec2(123.34,456.21));p+=dot(p,p+45.32);return fract(p.x*p.y);}\n' +
+                'float noise(vec2 p){vec2 i=floor(p);vec2 f=fract(p);f=f*f*(3.0-2.0*f);float a=hash(i);float b=hash(i+vec2(1.0,0.0));float c=hash(i+vec2(0.0,1.0));float d=hash(i+vec2(1.0,1.0));return mix(mix(a,b,f.x),mix(c,d,f.x),f.y);}\n' +
+                'void main(){\n' +
+                'vec2 uv=(gl_FragCoord.xy-0.5*u_resolution.xy)/min(u_resolution.x,u_resolution.y);\n' +
+                'vec2 mouse=(u_mouse-0.5*u_resolution.xy)/min(u_resolution.x,u_resolution.y);\n' +
+                'float angle=-0.672;float s=sin(angle);float c=cos(angle);mat2 rot=mat2(c,-s,s,c);vec2 p=rot*uv;\n' +
+                'float t=u_time*0.35;\n' +
+                'float progress=clamp((p.x+0.6)/1.2,0.0,1.0);float expandFactor=mix(1.35,0.60,progress);\n' +
+                'float lengthMask=smoothstep(0.92,0.12,abs(p.x+0.05));\n' +
+                'float crossGroupMask=smoothstep(0.48*expandFactor,0.02,abs(p.y-0.02));\n' +
+                'vec3 colIncandescent=vec3(0.85,0.97,1.0);\n' +
+                'vec3 colPeachCoral=vec3(0.24,0.68,1.0);\n' +
+                'vec3 colLaserCrimson=vec3(0.24,0.48,0.99);\n' +
+                'vec3 colRuby=vec3(0.05,0.16,0.42);\n' +
+                'vec3 colWine=vec3(0.02,0.06,0.14);\n' +
+                'vec3 colEdgeCyan=vec3(0.24,0.95,1.0);\n' +
+                'vec2 grainUv=vec2(p.x*140.0+t*1.5,p.y*65.0);\n' +
+                'float fineGrain=noise(grainUv)*0.28+0.86;\n' +
+                'float linearStreak=sin(p.x*60.0+t*3.0)*0.07;\n' +
+                'vec3 beamAcc=vec3(0.0);float totalIntensity=0.0;\n' +
+                'for(int i=-2;i<=3;i++){float fi=float(i);float beamCenter=fi*(0.092*expandFactor);float dist=abs(p.y-beamCenter);float beamRadius=0.035*expandFactor;float beamCore=smoothstep(beamRadius,0.0,dist);float hotRidge=smoothstep(beamRadius*0.42,0.0,dist);float stagger=fi*0.07;float beamLenFade=smoothstep(0.78+stagger,-0.05,p.x)*smoothstep(-0.82+stagger,0.05,p.x);float beamWeight=1.0-abs(fi-0.4)*0.20;float intensity=(pow(beamCore,1.4)*0.72+pow(hotRidge,2.2)*1.15)*beamWeight*beamLenFade;vec3 cl=mix(colRuby,colLaserCrimson,clamp(beamCore*1.1,0.0,1.0));cl=mix(cl,colPeachCoral,hotRidge);cl=mix(cl,colIncandescent,pow(hotRidge,2.6)*0.75);float rim=smoothstep(0.0,beamRadius,dist)*smoothstep(beamRadius*1.3,beamRadius,dist);cl+=colEdgeCyan*(rim*0.42*beamWeight);beamAcc+=cl*intensity;totalIntensity+=intensity;}\n' +
+                'beamAcc*=(fineGrain+linearStreak);beamAcc*=lengthMask*crossGroupMask;\n' +
+                'float softAmbientGlow=exp(-abs(p.y-0.02)*(5.2/expandFactor))*lengthMask*0.17;\n' +
+                'vec3 ambientBacklight=mix(colWine,colLaserCrimson,0.3)*softAmbientGlow;\n' +
+                'float mouseDist=length(uv-mouse);float mouseGlow=exp(-mouseDist*4.2)*0.20;\n' +
+                'vec3 interactiveLight=colPeachCoral*mouseGlow*lengthMask;\n' +
+                'vec3 bgVoid=vec3(0.027,0.027,0.035);\n' +
+                'vec3 finalColor=bgVoid+ambientBacklight+beamAcc+interactiveLight;\n' +
+                'float vig=smoothstep(1.35,0.42,length(uv));finalColor*=vig;\n' +
+                'gl_FragColor=vec4(finalColor,1.0);}';
+
+            function cs(type, src) {
+                var s = gl.createShader(type);
+                gl.shaderSource(s, src);
+                gl.compileShader(s);
+                return s;
+            }
+            var prog = gl.createProgram();
+            gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+            gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+            gl.linkProgram(prog);
+            gl.useProgram(prog);
+            var buf = gl.createBuffer();
+            gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+            var pos = gl.getAttribLocation(prog, 'a_position');
+            gl.enableVertexAttribArray(pos);
+            gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+            var uTime = gl.getUniformLocation(prog, 'u_time');
+            var uRes = gl.getUniformLocation(prog, 'u_resolution');
+            var uMouse = gl.getUniformLocation(prog, 'u_mouse');
+            var mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+            window.addEventListener('mousemove', function (event) {
+                var rect = canvas.getBoundingClientRect();
+                if (rect.width && rect.height) {
+                    mouse.x = (event.clientX - rect.left) / rect.width * canvas.width;
+                    mouse.y = (1.0 - (event.clientY - rect.top) / rect.height) * canvas.height;
+                }
+            });
+            function render(t) {
+                if (typeof ResizeObserver === 'undefined') syncSize();
+                gl.viewport(0, 0, canvas.width, canvas.height);
+                if (uTime) gl.uniform1f(uTime, t * 0.001);
+                if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+                if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
+                gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+                requestAnimationFrame(render);
+            }
+            render(0);
+        })();
+    </script>
     <script>
         var chartDom = document.getElementById('chart-container');
         var myChart;
