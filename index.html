@@ -1475,7 +1475,7 @@
             <a href="#host">关于我们</a>
         </div>
         <div class="footer-bottom">
-            © 2025 搞钱心理学实验室 · 把心理学变成你的搞钱地图
+            © <span id="footer-year">2025</span> 搞钱心理学实验室 · 把心理学变成你的搞钱地图
         </div>
         <div class="footer-bottom" style="margin-top:8px;">
             <a href="https://beian.miit.gov.cn" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">粤ICP备2026030540号-2</a> &nbsp;|&nbsp; <a href="https://beian.mps.gov.cn" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">粤公网安备 44030002019081 号</a>
@@ -1483,6 +1483,13 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+    <script>
+        /* 页脚年份动态取当前年份 */
+        (function () {
+            var el = document.getElementById('footer-year');
+            if (el) el.textContent = new Date().getFullYear();
+        })();
+    </script>
     <script>
         /* Raycast 式蓝青激光束背景（WebGL Shader） */
         (function () {
